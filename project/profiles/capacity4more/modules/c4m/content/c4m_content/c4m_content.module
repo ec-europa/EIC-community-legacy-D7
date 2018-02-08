@@ -144,7 +144,7 @@ function c4m_content_form_node_form_alter(&$form, &$form_state, $form_id) {
   );
 
   $is_unpublish = $form['actions']['draft']['#value'] == t('Unpublish');
-  $is_og_group = in_array($form['type']['#value'], array('group', 'project'));
+  $is_og_group = in_array($form['type']['#value'], array('group', 'project', 'event_site'));
   // Removes Unpublish button from forms.
   if ($is_unpublish && $is_og_group) {
     $form['actions']['draft']['#access'] = FALSE;
@@ -195,6 +195,7 @@ function c4m_content_construct_path_to_content_page($content_type) {
     $types_path = array(
       'group' => 'groups',
       'project' => 'projects',
+      'event_site' => 'event_sites',
     );
 
     if (in_array($content_type, array_keys($types_path))) {
@@ -799,6 +800,7 @@ function c4m_content_highlightable_node_types() {
   return array(
     'group',
     'project',
+    'event_site',
     'discussion',
     'document',
     'event',
@@ -1228,7 +1230,7 @@ function c4m_content_create_group_content_access() {
   }
 
   // Discussion should not be added to a project.
-  if ($matches[1] == 'discussion' && $group->type == 'project') {
+  if ($matches[1] == 'discussion' && in_array($group->type, ['project', 'event_site'])) {
     c4m_content_deny_access();
   }
 
@@ -1346,7 +1348,7 @@ function c4m_content_theme_toggle_group_notification_link() {
   }
 
   // It's a project, and user is not authenticated.
-  if (c4m_og_is_of_group_type('project') && $user->uid === 0) {
+  if ((c4m_og_is_of_group_type('project') || c4m_og_is_of_group_type('event_site')) && $user->uid === 0) {
     return '';
   }
 
@@ -1406,7 +1408,7 @@ function c4m_content_toggle_group_notification_access($group) {
   }
 
   // It's a project, and user is not authenticated.
-  if (c4m_og_is_of_group_type('project') && $user->uid === 0) {
+  if ((c4m_og_is_of_group_type('project') || c4m_og_is_of_group_type('event_site')) && $user->uid === 0) {
     return FALSE;
   }
 

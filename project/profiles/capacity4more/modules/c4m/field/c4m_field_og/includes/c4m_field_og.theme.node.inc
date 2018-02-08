@@ -63,6 +63,10 @@ function theme_c4m_field_og_group(array $field) {
     $entity = entity_metadata_wrapper('node', $group);
     $group_type = $entity->c4m_project_type->value();
   }
+  if ($group->type == 'event_site') {
+    $entity = entity_metadata_wrapper('node', $group);
+    $group_type = 'project';
+  }
 
   // Return a link to the group dashboard.
   $output = l($group->title, $uri_info['path'], $uri_info['options']);

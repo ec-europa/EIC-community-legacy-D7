@@ -305,7 +305,7 @@ function c4m_content_group_replace_mail_tokens(array &$replacements, array $data
  */
 function c4m_content_group_node_access_records($node) {
   // Only for group and project nodes.
-  if ($node->type != 'group' && $node->type != 'project') {
+  if ($node->type != 'group' && $node->type != 'project' && $node->type != 'event_site') {
     return;
   }
 

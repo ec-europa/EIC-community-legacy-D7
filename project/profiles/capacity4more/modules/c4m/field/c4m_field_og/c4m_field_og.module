@@ -145,6 +145,24 @@ function c4m_field_og_form_project_node_form_alter(&$form, &$form_state, $form_i
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Sets predefined status flow for the project.
+ * Hides certain status values at form, according to users access rights.
+ */
+function c4m_field_og_form_event_site_node_form_alter(&$form, &$form_state, $form_id) {
+  // If editing node, set allowed values at 'c4m_og_status' field.
+  // On create, there's no access to this field. It's always set to 'pending'.
+  if (isset($form['nid']['#value'])) {
+    _c4m_field_og_set_status_flow($form, $form_state, 'event_site');
+  }
+  // Node is being created, set initial state.
+  else {
+    $form['c4m_og_status'][LANGUAGE_NONE]['#default_value'][0] = 'pending';
+  }
+}
+
+/**
  * Defines allowed values for c4m_og_status field, per access type.
  *
  * @param array $form

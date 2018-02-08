@@ -663,10 +663,9 @@ function c4m_og_invite_visitors_user_update(&$edit, $account, $category) {
   // Add the user to the group.
   og_group('node', $group, array('entity' => $account));
 
-  // Add the administrator role for users joining a project.
-  $bundle = 'project';
-  if ($group->type === $bundle) {
-    $role = c4m_og_user_role_load_by_name('administrator member', $bundle);
+  // Add the administrator role for users joining a project or event site.
+  if ($group->type === "project" || $group->type === "event_site") {
+    $role = c4m_og_user_role_load_by_name('administrator member', $group->type);
     og_role_grant('node', $gid, $account->uid, $role->rid);
   }
 

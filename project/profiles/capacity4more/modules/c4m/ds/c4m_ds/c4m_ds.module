@@ -468,7 +468,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_group_members_count'] = array(
     'title' => t('Group members count'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('group|*', 'project|*'),
+    'ui_limit' => array('group|*', 'project|*', 'event_site|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_group_members_count',
     'properties' => array(
@@ -481,7 +481,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_group_posts_count'] = array(
     'title' => t('Group posts count'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('group|*', 'project|*'),
+    'ui_limit' => array('group|*', 'project|*', 'event_site|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_group_posts_count',
     'properties' => array(
@@ -494,7 +494,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_group_recommendation_count'] = array(
     'title' => t('Group recommendation count'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('group|*', 'project|*'),
+    'ui_limit' => array('group|*', 'project|*', 'event_site|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_group_recommendation_count_full',
     'properties' => array(
@@ -703,6 +703,19 @@ function c4m_ds_ds_fields_info($entity_type) {
     'ui_limit' => array('project|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_project_type_icon',
+    'properties' => array(
+      'formatters' => array(
+        'default' => t('Default'),
+      ),
+    ),
+  );
+
+  $fields['node']['c4m_ds_event_site_type_icon'] = array(
+    'title' => t('Event Site type icon'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('event_site|*'),
+    'file' => $path . '/includes/c4m_ds.theme.node.inc',
+    'function' => 'theme_c4m_ds_event_site_type_icon',
     'properties' => array(
       'formatters' => array(
         'default' => t('Default'),
