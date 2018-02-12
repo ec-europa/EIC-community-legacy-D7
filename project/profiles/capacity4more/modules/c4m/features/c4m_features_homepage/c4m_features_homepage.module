@@ -443,9 +443,13 @@ function c4m_features_homepage_newsletter_form_submit($form, &$form_state) {
  *   Returns a renderable array with the CTA button.
  */
 function c4m_features_homepage_node_creation_button_cta($node_type) {
+  $node_type_label = $node_type;
+  if ($node_type == 'event-site') {
+    $node_type_label = t('event site');
+  }
   $cta = array(
     '#theme' => 'c4m_group_visitor_cta',
-    '#button_label' => t('Create @type', array('@type' => $node_type)),
+    '#button_label' => t('Create @type', array('@type' => $node_type_label)),
     '#button_icon' => 'fa-plus',
     '#url' => url('/node/add/' . $node_type),
   );

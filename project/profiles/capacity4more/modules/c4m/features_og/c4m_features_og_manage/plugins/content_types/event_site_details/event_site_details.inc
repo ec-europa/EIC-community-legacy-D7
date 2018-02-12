@@ -9,7 +9,7 @@
  * Plugin definition.
  */
 $plugin = array(
-  'title' => t('Event Site details management dashboard'),
+  'title' => t('Event site details management dashboard'),
   'description' => t('Renders event_site details management dashboard with edit links.'),
   'category' => t('C4M'),
   'hook theme' => 'c4m_features_og_manage_event_site_details_content_type_theme',
@@ -24,14 +24,9 @@ function c4m_features_og_manage_event_site_details_content_type_render($subtype,
   $block->title = '';
 
   $event_site_details = c4m_features_og_manage_event_site_details();
-  $theme = 'c4m_features_og_manage_event_site_details';
-
-  if (!empty($event_site_details['type']) && $event_site_details['type'] == 'programme') {
-    $theme = 'c4m_features_og_manage_programme_details';
-  }
 
   $block->content = array(
-    '#theme'   => $theme,
+    '#theme'   => 'c4m_features_og_manage_event_site_details',
     '#details' => $event_site_details,
   );
 

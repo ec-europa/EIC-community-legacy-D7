@@ -59,6 +59,11 @@ function c4m_user_profile_block_info() {
     'cache' => DRUPAL_CACHE_PER_USER,
   );
 
+  $blocks['user_my_profile_event_sites'] = array(
+    'info' => t('My event sites'),
+    'cache' => DRUPAL_CACHE_PER_USER,
+  );
+
   return $blocks;
 }
 

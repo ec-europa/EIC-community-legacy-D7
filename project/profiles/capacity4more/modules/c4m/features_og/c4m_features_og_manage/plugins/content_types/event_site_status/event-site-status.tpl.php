@@ -10,7 +10,7 @@
   <div class="col-md-12 project-management-wrapper right">
     <div class="group-membership-wrapper panel-pane">
       <div class="title">
-        <h2><?php print $info['project_title']; ?></h2>
+        <h2><?php print $info['event_site_title']; ?></h2>
       </div>
       <div class="row">
         <div class="col-md-12 text-justify"><?php print $info['manage_members_link'] ?></div>

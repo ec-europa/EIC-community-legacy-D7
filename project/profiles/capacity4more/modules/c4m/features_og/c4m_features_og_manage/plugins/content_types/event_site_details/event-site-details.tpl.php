@@ -10,7 +10,7 @@
   <div class="col-md-12 project-management-wrapper">
     <div class="project-administration">
       <div class="title">
-        <h2><?php print t('Project administration') ?></h2>
+        <h2><?php print t('Event site administration') ?></h2>
       </div>
       <div class="row">
         <div class="col-md-3"><?php print t('Owner') ?> (<a
@@ -31,7 +31,7 @@
     </div>
     <div class="project-details">
       <div class="title">
-        <h2><?php print t('Project details') ?></h2>
+        <h2><?php print t('Event site details') ?></h2>
         <a href="<?php print $details['edit_link'] ?>#edit-details"><?php print t('Edit'); ?></a>
       </div>
       <div class="row">
@@ -39,59 +39,63 @@
         <div class="col-md-9"><?php print (isset($details['title'])) ? $details['title'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Project path') ?></div>
+        <div class="col-md-3"><?php print t('Event site path') ?></div>
         <div class="col-md-9"><?php print (isset($details['purl'])) ? $details['purl'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Project tag line') ?></div>
+        <div class="col-md-3"><?php print t('Event site tag line') ?></div>
         <div class="col-md-9"><?php print isset($details['tagline']) ? $details['tagline'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Project stage') ?></div>
-        <div class="col-md-9"><?php print isset($details['stage']) ? $details['stage'] : ''; ?></div>
+         <div class="col-md-3"><?php print t('Event site type') ?></div>
+         <div class="col-md-9"><?php print isset($details['event_type']) ? $details['event_type'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Project description') ?></div>
+        <div class="col-md-3"><?php print t('Event site description') ?></div>
         <div class="col-md-9"><?php print isset($details['description']['value']) ? $details['description']['value'] : ''; ?></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><?php print t('Organised by') ?></div>
+        <div class="col-md-9"><?php print isset($details['organised_by']) ? $details['organised_by'] : ''; ?></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><?php print t('Registration Url') ?></div>
+        <div class="col-md-9"><?php print (isset($details['url'])) ? $details['url'] : ''; ?></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><?php print t('Facebook Page') ?></div>
+        <div class="col-md-9"><?php print (isset($details['f_url'])) ? $details['f_url'] : ''; ?></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><?php print t('Twitter Page') ?></div>
+        <div class="col-md-9"><?php print (isset($details['t_url'])) ? $details['t_url'] : ''; ?></div>
       </div>
       <div class="row">
         <div class="col-md-3"><?php print t('Duration') ?></div>
         <div class="col-md-9"><?php print (isset($details['duration'])) ? $details['duration'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('External URL') ?></div>
-        <div class="col-md-9"><?php print (isset($details['url'])) ? $details['url'] : ''; ?></div>
+        <div class="col-md-3"><?php print t('Location') ?></div>
+        <div class="col-md-9"><?php print (isset($details['location'])) ? $details['location'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Total budget') ?></div>
-        <div class="col-md-9"><?php print (isset($details['total_budget'])) ? $details['total_budget'] : ''; ?></div>
+        <div class="col-md-3"><?php print t('Agenda & information') ?></div>
+        <div class="col-md-9"><?php print (isset($details['document_agenda'])) ? $details['document_agenda'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Project stakeholders') ?></div>
-        <div class="col-md-9"><?php print isset($details['stakeholders']) ? $details['stakeholders'] : ''; ?></div>
+        <div class="col-md-3"><?php print t('Presentations') ?></div>
+        <div class="col-md-9"><?php print (isset($details['document_presentation'])) ? $details['document_presentation'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Source of funding') ?></div>
-        <div class="col-md-9"><?php print (isset($details['source_funding'])) ? $details['source_funding'] : ''; ?></div>
+        <div class="col-md-3"><?php print t('Additional') ?></div>
+        <div class="col-md-9"><?php print (isset($details['related_document'])) ? $details['related_document'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Partners') ?></div>
-        <div class="col-md-9"><?php print (isset($details['partners'])) ? $details['partners'] : ''; ?></div>
-      </div>
-      <div class="row">
-        <div class="col-md-3"><?php print t('CRIS Decision number') ?></div>
-        <div class="col-md-9"><?php print (isset($details['cris_decision_number'])) ? $details['cris_decision_number'] : ''; ?></div>
-      </div>
-      <div class="row">
-        <div class="col-md-3"><?php print t('CRIS Contract number') ?></div>
-        <div class="col-md-9"><?php print (isset($details['cris_contract_number'])) ? $details['cris_contract_number'] : ''; ?></div>
-      </div>
-      <div class="row">
-        <div class="col-md-3"><?php print t('Project topics') ?></div>
+        <div class="col-md-3"><?php print t('Event site topics') ?></div>
         <div class="col-md-9"><div class="c4m-taxonomy-tree"><?php print (isset($details['topics'])) ? $details['topics'] : ''; ?></div></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Project regions & countries') ?></div>
+        <div class="col-md-3"><?php print t('Event site regions & countries') ?></div>
         <div class="col-md-9"><div class="c4m-taxonomy-tree"><?php print (isset($details['locations'])) ? $details['locations'] : ''; ?></div></div>
       </div>
     </div>
@@ -106,10 +110,6 @@
       <div class="row">
         <div class="col-md-3"><?php print t('Related Groups') ?></div>
         <div class="col-md-9"><?php print (isset($details['related_groups'])) ? $details['related_groups'] : ''; ?></div>
-      </div>
-      <div class="row">
-        <div class="col-md-3"><?php print t('Related Projects') ?></div>
-        <div class="col-md-9"><?php print (isset($details['related_projects'])) ? $details['related_projects'] : ''; ?></div>
       </div>
     </div>
     <div class="project-related-content">
@@ -144,7 +144,7 @@
     </div>
     <div class="project-navigation">
       <div class="title">
-        <h2><?php print t('Project Navigation') ?></h2>
+        <h2><?php print t('Event site Navigation') ?></h2>
         <a href="<?php print $details['menu_link']; ?>"><?php print t(
             'Edit'
           ) ?></a>

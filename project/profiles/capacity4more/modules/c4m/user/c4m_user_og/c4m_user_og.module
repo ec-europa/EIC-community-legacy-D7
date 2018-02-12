@@ -744,11 +744,15 @@ function c4m_user_og_group_management_cta($group) {
   $items = array();
 
   if (c4m_features_og_members_is_power_user($group)) {
-    $items['#title'] = t("You're the manager of this !group_type", array('!group_type' => $group->type));
+    $type = $group->type;
+    if ($type == 'event_site') {
+      $type = 'event site';
+    }
+    $items['#title'] = t("You're the manager of this !group_type", array('!group_type' => $type));
     $items['#links'][] = array(
       '#theme' => 'c4m_group_text_cta',
       '#icon' => 'fa-cogs',
-      '#text' => l(t("Manage !group_type", array('!group_type' => $group->type)), 'manage'),
+      '#text' => l(t("Manage !group_type", array('!group_type' => $type)), 'manage'),
     );
 
     // Add project highlight icon.

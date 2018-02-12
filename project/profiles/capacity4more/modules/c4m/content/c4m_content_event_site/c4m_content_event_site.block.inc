@@ -5,6 +5,43 @@
  * Code for the project blocks.
  */
 
+/**
+ * Callback for the c4m_block_create_event_site block.
+ */
+function _c4m_content_event_site_block_c4m_block_create_event_site() {
+  global $user;
+  $markup = '';
+
+  $markup = '';
+  if ($user->uid) {
+    if (user_access('create event site content')) {
+      $markup = l(
+        t('Create an event site'),
+        'node/add/event-site',
+        array('attributes' => array('class' => array('btn', 'btn-primary')))
+      );
+    }
+  }
+  else {
+    $markup = t(
+      '!register or !login to create or join event sites',
+      array(
+        '!register' => l(t('Register'), 'user/register'),
+        '!login' => l(
+          t('log in'),
+          'user/login',
+          array(
+            'query' => array('destination' => request_path()),
+          )
+        ),
+      )
+    );
+  }
+  return array(
+    'subject' => '',
+    'content' => $markup,
+  );
+}
 
 /**
  * Project Dashboard title redesign.
@@ -27,7 +64,7 @@ function _c4m_content_event_site_block_header_name_banner_event_site() {
   $variables = [
     'title' => check_plain($title),
     'tagline' => check_plain($tagline),
-    'type' => 'event-site',
+    'type' => 'event site',
     'status' => $status,
   ];
   $markup .= theme('c4m_content_event_site_header_title', $variables);

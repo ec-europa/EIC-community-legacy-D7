@@ -95,6 +95,11 @@ function c4m_content_event_site_block_info() {
     'cache' => DRUPAL_NO_CACHE,
   );
 
+  $blocks['c4m_block_create_event_site'] = array(
+    'info' => t('Event site: Create event site'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
   return $blocks;
 }
 

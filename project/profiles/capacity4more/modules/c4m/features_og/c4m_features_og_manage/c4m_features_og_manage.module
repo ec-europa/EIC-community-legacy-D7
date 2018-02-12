@@ -744,13 +744,27 @@ function c4m_features_og_manage_event_site_details() {
     'purl' => url($wrapper->value()->purl, array('absolute' => TRUE)),
     'title' => '<strong>' . $wrapper->label() . '</strong>',
     'tagline' => t('No tag line'),
+    'event_type' => t('No event type'),
     'description' => $wrapper->c4m_body->value(),
     'duration' => t('No duration'),
+    'location' => t('No location'),
+    'organised_by' => !empty($wrapper->c4m_organised_by->value())? $wrapper->c4m_organised_by->value() : t('No organiser'),
     'url' => t('No external URL'),
+    'f_url' => t('No facebbook URL'),
+    't_url' => t('No twitter URL'),
     'topics' => t('No Group Topics'),
     'locations' => t('No Group Regions & Countries'),
+    'document_agenda' => t('No agenda documents'),
+    'document_presentation' => t('No presentation documents'),
+    'related_document' => t('No additional documents'),
+    'related_groups' => t('No Related Groups'),
   );
 
+  // The event type.
+  $event_type = $wrapper->c4m_event_type->value();
+  if (!empty($event_type)) {
+    $details['event_type'] = $event_type;
+  }
   // List of related topics.
   $topics = $wrapper->c4m_vocab_topic->value();
   if ($list = c4m_features_og_manage_list_related_topics($topics)) {
@@ -770,18 +784,36 @@ function c4m_features_og_manage_event_site_details() {
   }
 
   // Duration.
-//  $duration = $wrapper->c4m_date_end->value();
-//  if (!empty($duration)) {
-//    $duration = field_view_field('node', $event_site, 'c4m_date_end');
-//    $details['duration'] = $duration[0]['#markup'];
-//  }
+  $duration = $wrapper->c4m_datetime_end->value();
+  if (!empty($duration)) {
+    $duration = field_view_field('node', $event_site, 'c4m_datetime_end');
+    $details['duration'] = $duration[0]['#markup'];
+  }
+
+  // Location.
+  $location = $wrapper->c4m_location_address->value();
+  if (!empty($location)) {
+    $location = field_view_field('node', $event_site, 'c4m_location_address');
+    $details['location'] = drupal_render($location[0]);
+  }
 
   // URL.
   $url = $wrapper->c4m_link->value();
   if (!empty($url)) {
-    $details['url'] = $url['url'] . ' (' . $url['title'] . ')';
+    $details['url'] = $url['url'];
   }
 
+  // Facebook.
+  $f_url = $wrapper->c4m_facebook->value();
+  if (!empty($f_url)) {
+    $details['f_url'] = $f_url['url'];
+  }
+
+  // Twitter.
+  $t_url = $wrapper->c4m_twitter->value();
+  if (!empty($t_url)) {
+    $details['t_url'] = $t_url['url'];
+  }
 
   // Tag line.
   $tagline = $wrapper->c4m_project_tag_line->value();
@@ -790,6 +822,28 @@ function c4m_features_og_manage_event_site_details() {
     $details['tagline'] = $tagline[0]['#markup'];
   }
 
+  // Documents.
+  $document_agenda = $wrapper->c4m_document_agenda->value();
+  if (!empty($document_agenda)) {
+    $document_agenda = field_view_field('node', $event_site, 'c4m_document_agenda');
+    $details['document_agenda'] = drupal_render($document_agenda[0]);
+  }
+  $document_presentation = $wrapper->c4m_document_presentation->value();
+  if (!empty($document_presentation)) {
+    $document_presentation = field_view_field('node', $event_site, 'c4m_document_presentation');
+    $details['document_presentation'] = drupal_render($document_presentation[0]);
+  }
+  $related_document = $wrapper->c4m_related_document->value();
+  if (!empty($related_document)) {
+    $related_document = field_view_field('node', $event_site, 'c4m_related_document');
+    $details['related_document'] = drupal_render($related_document[0]);
+  }
+
+  // List of related groups.
+  $related_groups = $wrapper->c4m_related_group->value();
+  if ($list = c4m_features_og_manage_list_related($related_groups)) {
+    $details['related_groups'] = $list;
+  }
 
   // Get categories and terms count for current group.
   c4m_features_og_manage_list_taxonomy($event_site, $details);
@@ -970,7 +1024,7 @@ function c4m_features_og_manage_event_site_thumbnail() {
   $link_options = ['purl' => $purl, 'absolute' => TRUE];
 
   $info = [
-    'event_site_title' => t('Event Site membership'),
+    'event_site_title' => t('Event site membership'),
     'manage_members_link' => l(
       t('Manage all event site memberships'),
       url('group/' . $event_site->entity_type . '/' . $event_site->nid . '/admin/people', $link_options)
