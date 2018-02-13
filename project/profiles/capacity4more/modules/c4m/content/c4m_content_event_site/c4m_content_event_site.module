@@ -5,6 +5,13 @@
  * Code for the Event Site content type feature.
  */
 
+include_once 'c4m_content_event_site.features.inc';
+
+/**
+ * @file
+ * Code for the Event Site content type feature.
+ */
+
 /**
  * Implements hook_ctools_plugin_directory().
  */
@@ -92,6 +99,11 @@ function c4m_content_event_site_block_info() {
 
   $blocks['c4m_block_event_site_about'] = array(
     'info' => t('Event Site: About'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['c4m_block_event_site_documents'] = array(
+    'info' => t('Event Site: Documents'),
     'cache' => DRUPAL_NO_CACHE,
   );
 
@@ -268,45 +280,16 @@ function c4m_content_event_site_c4m_helper_entity_metrics_info() {
   );
 }
 
-
-/**
- * Alter referenceable blocks, BEFORE the autocomplete match.
- *
- * @see hook_blockreference_blocks_pre_alter()
- */
-function c4m_content_event_site_blockreference_blocks_pre_alter(
-  &$blocks,
-  $context
-) {
-  $whitelist = module_invoke_all(
-    'c4m_content_event_site_blockreference_whitelist'
-  );
-
-  // Remove blocks which are not whitelisted.
-  foreach ($blocks as $id => $block) {
-    $block_string = $block->module . ':' . $block->delta;
-    if (!in_array($block_string, $whitelist) && !array_key_exists(
-        $block_string,
-        $whitelist
-      )
-    ) {
-      unset($blocks[$id]);
-    }
-    else {
-      if (array_key_exists($block_string, $whitelist)) {
-        $block->info = $whitelist[$block_string]['label'];
-      }
-    }
-  }
-}
-
 /**
  * Implements hook_pc_system_component_blockreference_whitelist().
  */
-function c4m_content_event_site_c4m_content_event_site_blockreference_whitelist() {
+function c4m_content_event_site_c4m_content_project_blockreference_whitelist() {
   return array(
-    'c4m_content_event_site:c4m_block_project_about' => array(
-      'label' => t('About this project/programme'),
+    'c4m_content_event_site:c4m_block_event_site_about' => array(
+      'label' => t('About this event site'),
+    ),
+    'c4m_content_event_site:c4m_block_event_site_documents' => array(
+      'label' => t('Event site documents'),
     ),
   );
 }

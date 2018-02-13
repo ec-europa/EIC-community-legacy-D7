@@ -42,6 +42,18 @@ function c4m_og_group_menu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'og_menu_default_links_node_event_site';
+  $strongarm->value = 'Home|node/[node:nid]
+Wiki|wiki
+Library|documents
+News|news
+Media|media
+Members|members';
+  $export['og_menu_default_links_node_event_site'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'og_menu_default_links_node_group';
   $strongarm->value = 'Home|node/[node:nid]
 Wiki|wiki
@@ -64,6 +76,13 @@ Media|media
 Events|calendar
 Members|members';
   $export['og_menu_default_links_node_project'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'og_menu_enable_event_site';
+  $strongarm->value = 0;
+  $export['og_menu_enable_event_site'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

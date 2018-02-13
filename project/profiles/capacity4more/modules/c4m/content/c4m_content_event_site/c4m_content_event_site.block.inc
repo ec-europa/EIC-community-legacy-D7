@@ -94,3 +94,20 @@ function _c4m_content_event_site_block_c4m_block_event_site_about() {
 
   return $block;
 }
+
+
+/**
+ * Callback for the c4m_block_event_site_documents block.
+ */
+function _c4m_content_event_site_block_c4m_block_event_site_documents() {
+  $block = array();
+  $block['subject'] = '';
+
+  if ($node = c4m_og_current_group()) {
+    // Render it with our custom group_dashboard view mode.
+    $node_view = node_view($node, 'group_dashboard');
+    $block['content'] = drupal_render($node_view);
+  }
+
+  return $block;
+}
