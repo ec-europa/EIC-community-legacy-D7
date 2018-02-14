@@ -614,7 +614,7 @@ function theme_c4m_features_og_manage_categories_types_overview_form($variables)
 function theme_c4m_features_og_manage_categories_overview_form(array $variables) {
   $form = $variables['form'];
   $type = $form['#group']->type;
-
+  $type = str_replace('_', ' ', $type);
   $vocabulary = $form['#vocabulary'];
 
   $errors = form_get_errors() != FALSE ? form_get_errors() : array();

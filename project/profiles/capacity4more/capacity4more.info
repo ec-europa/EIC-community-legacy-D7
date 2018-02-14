@@ -95,7 +95,6 @@ dependencies[] = c4m_admin_event_sites
 dependencies[] = c4m_admin_groups
 dependencies[] = c4m_admin_organisations
 dependencies[] = c4m_admin_projects
-dependencies[] = c4m_admin_event_sites
 
 ; Helpers
 dependencies[] = c4m_helper_captcha

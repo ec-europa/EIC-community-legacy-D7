@@ -590,3 +590,10 @@ function capacity4more_update_7007() {
 function capacity4more_update_7008() {
   module_enable(['queue_ui']);
 }
+
+/**
+ * Enable module .
+ */
+function capacity4more_update_7009() {
+  module_enable(['c4m_admin_event_sites']);
+}

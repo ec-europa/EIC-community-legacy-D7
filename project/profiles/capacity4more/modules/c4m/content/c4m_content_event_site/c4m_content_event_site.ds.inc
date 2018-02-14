@@ -66,6 +66,43 @@ function c4m_content_event_site_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|event_site|documents';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'event_site';
+  $ds_fieldsetting->view_mode = 'documents';
+  $ds_fieldsetting->settings = array(
+    'c4m_document_agenda' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+          'lb-el' => 'h3',
+          'lb-col' => TRUE,
+        ),
+      ),
+    ),
+    'c4m_document_presentation' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+          'lb-el' => 'h3',
+          'lb-col' => TRUE,
+        ),
+      ),
+    ),
+    'c4m_related_document' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+          'lb-el' => 'h3',
+          'lb-col' => TRUE,
+        ),
+      ),
+    ),
+  );
+  $export['node|event_site|documents'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'node|event_site|group_dashboard';
   $ds_fieldsetting->entity_type = 'node';
   $ds_fieldsetting->bundle = 'event_site';
@@ -266,6 +303,45 @@ function c4m_content_event_site_ds_layout_settings_info() {
     'layout_disable_css' => FALSE,
   );
   $export['node|event_site|block_list'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|event_site|documents';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'event_site';
+  $ds_layout->view_mode = 'documents';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'group_documents',
+        1 => 'c4m_document_agenda',
+        2 => 'c4m_document_presentation',
+        3 => 'c4m_related_document',
+      ),
+    ),
+    'fields' => array(
+      'group_documents' => 'ds_content',
+      'c4m_document_agenda' => 'ds_content',
+      'c4m_document_presentation' => 'ds_content',
+      'c4m_related_document' => 'ds_content',
+    ),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
+  );
+  $export['node|event_site|documents'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;

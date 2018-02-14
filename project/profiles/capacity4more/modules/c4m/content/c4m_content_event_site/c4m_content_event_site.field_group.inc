@@ -129,6 +129,40 @@ function c4m_content_event_site_field_group_info() {
   );
   $field_groups['group_c4m_related_content|node|event_site|form'] = $field_group;
 
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_documents|node|event_site|documents';
+  $field_group->group_name = 'group_documents';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'event_site';
+  $field_group->mode = 'documents';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Documents',
+    'weight' => '0',
+    'children' => array(
+      0 => 'c4m_document_agenda',
+      1 => 'c4m_document_presentation',
+      2 => 'c4m_related_document',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Documents',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-node-documents field-group-fieldset',
+        'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h2',
+        'effect' => 'none',
+        'speed' => 'none',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_documents|node|event_site|documents'] = $field_group;
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Documents');

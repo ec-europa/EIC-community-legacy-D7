@@ -105,7 +105,7 @@ function _c4m_content_event_site_block_c4m_block_event_site_documents() {
 
   if ($node = c4m_og_current_group()) {
     // Render it with our custom group_dashboard view mode.
-    $node_view = node_view($node, 'group_dashboard');
+    $node_view = node_view($node, 'documents');
     $block['content'] = drupal_render($node_view);
   }
 
