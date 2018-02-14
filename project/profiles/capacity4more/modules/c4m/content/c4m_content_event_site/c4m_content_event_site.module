@@ -418,3 +418,32 @@ function _c4m_content_event_site_form__og_invite_answer_form_submit($form, &$for
   $role = c4m_og_user_role_load_by_name('administrator member', $bundle);
   og_role_grant($group_type, $gid, $user->uid, $role->rid);
 }
+
+/**
+ * Implements hook_menu_link_insert().
+ */
+function c4m_content_event_site_menu_link_insert($link) {
+  if (empty($link['menu_name']) || $link['link_path'] != 'wiki') {
+    return;
+  }
+
+  $nid = !empty(explode('-',$link['menu_name'])[2]) ? explode('-',$link['menu_name'])[2] : '';
+  if (empty($nid)) {
+    return;
+  }
+
+  $node = node_load($nid);
+  if (empty($node)) {
+    return;
+  }
+
+  $node_type = $node->type;
+
+  if ($node_type != 'event_site') {
+    return;
+  }
+
+  // Disable by default the Wiki link for Event Sites.
+  $link['hidden'] = 1;
+  menu_link_save($link);
+}
