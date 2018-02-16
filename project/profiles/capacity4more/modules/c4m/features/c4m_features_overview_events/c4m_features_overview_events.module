@@ -199,7 +199,7 @@ function c4m_features_overview_events_form_alter(&$form, &$form_state, $form_id)
  * On the events overviews we should not display the author of the event.
  */
 function c4m_features_overview_events_node_view_alter(&$build) {
-  if (empty($build['#bundle']) || $build['#bundle'] != 'event') {
+  if (empty($build['#bundle']) || !in_array($build['#bundle'], ['event', 'event_site'])) {
     return;
   }
 
@@ -215,6 +215,8 @@ function c4m_features_overview_events_node_view_alter(&$build) {
 
   $item = menu_get_item();
   if (empty($item['path']) || !in_array($item['path'], $allowed_paths)) {
+    // Remove "Content type label" for Teaser except for allowed paths.
+    $build["c4m_ds_content_type_label"]['#access'] = FALSE;
     return;
   }
 

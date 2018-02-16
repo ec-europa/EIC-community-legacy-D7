@@ -247,12 +247,36 @@ function c4m_content_event_site_get_owned_event_sites_count($uid) {
 function c4m_content_event_site_c4m_helper_entity_label_info() {
   return array(
     'event_site' => array(
-      'article' => t('a'),
-      'singular' => t('event_site'),
-      'plural' => t('event_sites'),
+      'article' => t('an'),
+      'singular' => t('event site'),
+      'plural' => t('event sites'),
+      'insert action' => t('added a new Event Site'),
+      'update action' => t('updated the Event Site'),
+      'icon' => 'fa-calendar',
+    ),
+    'event_site-event' => array(
+      'article' => t('an'),
+      'singular' => t('event site'),
+      'plural' => t('event sites'),
       'insert action' => t('created a new event site'),
       'update action' => t('updated the event site'),
+      'icon' => 'fa-calendar',
+    ),
+    'event_site-meeting' => array(
+      'article' => t('an'),
+      'singular' => t('event site meeting'),
+      'plural' => t('event site meetings'),
+      'insert action' => t('created a new meeting event site'),
+      'update action' => t('updated the meeting event site'),
       'icon' => 'fa-users',
+    ),
+    'event_site-learning' => array(
+      'article' => t('an'),
+      'singular' => t('learning event site'),
+      'plural' => t('learning event sites'),
+      'insert action' => t('created a new learning event site'),
+      'update action' => t('updated the learning event site'),
+      'icon' => 'fa-university',
     ),
   );
 }
