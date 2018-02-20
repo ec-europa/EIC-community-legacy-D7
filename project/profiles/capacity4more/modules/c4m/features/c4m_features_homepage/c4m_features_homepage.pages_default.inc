@@ -1229,7 +1229,7 @@ function c4m_features_homepage_default_page_manager_pages() {
     'name' => 'project-dashboard',
   );
   $display = new panels_display();
-  $display->layout = 'homepage';
+  $display->layout = 'bootstrap_twocol_stacked';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
