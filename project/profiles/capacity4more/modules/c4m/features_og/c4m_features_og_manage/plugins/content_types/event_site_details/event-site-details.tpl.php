@@ -59,7 +59,7 @@
         <div class="col-md-9"><?php print isset($details['organised_by']) ? $details['organised_by'] : ''; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Registration Url') ?></div>
+        <div class="col-md-3"><?php print t('Registration URL') ?></div>
         <div class="col-md-9"><?php print (isset($details['url'])) ? $details['url'] : ''; ?></div>
       </div>
       <div class="row">

@@ -1813,6 +1813,11 @@ function c4m_message_format_group_node_type(Message $message) {
   $wrapper = entity_metadata_wrapper('message', $message);
   $group_type = $wrapper->field_group_node->getBundle();
 
+  // Get label if available.
+  if ($entity_info = $wrapper->field_group_node->entityInfo()) {
+    $group_type = $entity_info['bundles'][$group_type]['label'];
+  }
+
   return $group_type ? $group_type : '';
 }
 

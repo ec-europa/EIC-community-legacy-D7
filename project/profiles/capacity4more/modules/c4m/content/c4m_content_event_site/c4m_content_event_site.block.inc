@@ -14,7 +14,7 @@ function _c4m_content_event_site_block_c4m_block_create_event_site() {
 
   $markup = '';
   if ($user->uid) {
-    if (user_access('create event site content')) {
+    if (user_access('create event_site content')) {
       $markup = l(
         t('Create an event site'),
         'node/add/event-site',
