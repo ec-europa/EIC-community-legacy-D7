@@ -56,7 +56,7 @@ function c4m_features_og_events_views_default_views() {
   $handler->display->display_options['header']['c4m_views_node_add']['ui_name'] = 'Add Event link';
   $handler->display->display_options['header']['c4m_views_node_add']['empty'] = TRUE;
   $handler->display->display_options['header']['c4m_views_node_add']['node_type'] = 'event';
-  $handler->display->display_options['header']['c4m_views_node_add']['link_text'] = 'Add an Event';
+  $handler->display->display_options['header']['c4m_views_node_add']['link_text'] = 'Add a group event';
   /* Header: Sort results */
   $handler->display->display_options['header']['c4m_views_search_api_sorts']['id'] = 'c4m_views_search_api_sorts';
   $handler->display->display_options['header']['c4m_views_search_api_sorts']['table'] = 'views';
@@ -272,7 +272,7 @@ function c4m_features_og_events_views_default_views() {
   $handler->display->display_options['header']['c4m_views_node_add']['table'] = 'views';
   $handler->display->display_options['header']['c4m_views_node_add']['field'] = 'c4m_views_node_add';
   $handler->display->display_options['header']['c4m_views_node_add']['node_type'] = 'event';
-  $handler->display->display_options['header']['c4m_views_node_add']['link_text'] = 'Add an event';
+  $handler->display->display_options['header']['c4m_views_node_add']['link_text'] = 'Add a group event';
   $handler->display->display_options['header']['c4m_views_node_add']['icon'] = 'fa-calendar';
   /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';
