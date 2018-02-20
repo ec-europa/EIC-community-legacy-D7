@@ -145,6 +145,17 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
   if (is_null($form['nid']['#value'])) {
     $form['c4m_og_status']['#access'] = FALSE;
   }
+
+  // Show/Hide Publish date field based on value of Status field.
+  $form['c4m_publish_date']['#access'] = FALSE;
+  if ($form['c4m_og_status']['#access'] == TRUE) {
+    $form['c4m_publish_date']['#access'] = TRUE;
+    $form['c4m_publish_date']['#states'] = array(
+      'visible' => array(
+        'select[name="c4m_og_status[und]"]' => array('value' => 'draft'),
+      ),
+    );
+  }
 }
 
 /**
@@ -446,4 +457,12 @@ function c4m_content_event_site_menu_link_insert($link) {
   // Disable by default the Wiki link for Event Sites.
   $link['hidden'] = 1;
   menu_link_save($link);
+}
+
+/**
+ * Implements hook_cron().
+ */
+function c4m_content_event_site_cron() {
+  module_load_include('inc', 'c4m_content_event_site', 'c4m_content_event_site.cron');
+  _c4m_content_event_site_cron();
 }
