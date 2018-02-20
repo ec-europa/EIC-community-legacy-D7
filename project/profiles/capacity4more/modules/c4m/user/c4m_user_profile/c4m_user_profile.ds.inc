@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_user_profile.ds.inc
@@ -146,6 +147,7 @@ function c4m_user_profile_ds_layout_settings_info() {
       'c4m_user_organisation_full' => 'left',
       'c4m_ds_user_my_groups' => 'right',
       'c4m_ds_user_my_projects' => 'right',
+      'c4m_ds_user_my_event_sites' => 'right',
       'c4m_user_country' => 'left',
       'c4m_user_contact_link' => 'left',
     ),

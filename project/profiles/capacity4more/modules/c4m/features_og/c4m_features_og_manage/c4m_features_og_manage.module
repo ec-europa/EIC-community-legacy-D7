@@ -701,6 +701,157 @@ function c4m_features_og_manage_project_details() {
 }
 
 /**
+ * Gets the event site details.
+ *
+ * For the event site management dashboard,
+ * this function gets a specific information about the current event site.
+ *
+ * @return array|bool
+ *   An array of the current event site's info OR false if there's no event site in
+ *   current context.
+ */
+function c4m_features_og_manage_event_site_details() {
+  $event_site = c4m_og_current_group();
+  if (!$event_site) {
+    return FALSE;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $event_site);
+
+  $purl = array(
+    'provider' => "og_purl|node",
+    'id' => $event_site->nid,
+  );
+  $options = array('purl' => $purl, 'absolute' => TRUE);
+
+  $details = array(
+    'type' => NULL,
+    'edit_link' => url(
+      'node/' . $event_site->nid . '/edit',
+      array('absolute' => TRUE)
+    ),
+    'menu_link' => url(
+      'group/node/' . $event_site->nid . '/admin/menus/menu-og-' . $event_site->nid,
+      array('absolute' => TRUE)
+    ),
+    'owner' => c4m_user_name(user_load($event_site->uid)),
+    'owner_edit' => url(
+      'event_site/node/' . $event_site->nid . '/admin/owner',
+      array('absolute' => TRUE)
+    ),
+    'admins' => t('No administrators'),
+    'admins_edit' => url('group/node/' . $event_site->nid . '/admin/people', $options),
+    'purl' => url($wrapper->value()->purl, array('absolute' => TRUE)),
+    'title' => '<strong>' . $wrapper->label() . '</strong>',
+    'tagline' => t('No tag line'),
+    'event_type' => t('No event type'),
+    'description' => $wrapper->c4m_body->value(),
+    'duration' => t('No duration'),
+    'location' => t('No location'),
+    'organised_by' => !empty($wrapper->c4m_organised_by->value())? $wrapper->c4m_organised_by->value() : t('No organiser'),
+    'url' => t('No external URL'),
+    'f_url' => t('No facebbook URL'),
+    't_url' => t('No twitter URL'),
+    'topics' => t('No Group Topics'),
+    'locations' => t('No Group Regions & Countries'),
+    'document_agenda' => t('No agenda documents'),
+    'document_presentation' => t('No presentation documents'),
+    'related_document' => t('No additional documents'),
+    'related_groups' => t('No Related Groups'),
+  );
+
+  // The event type.
+  $event_type = $wrapper->c4m_event_type->value();
+  if (!empty($event_type)) {
+    $details['event_type'] = $event_type;
+  }
+  // List of related topics.
+  $topics = $wrapper->c4m_vocab_topic->value();
+  if ($list = c4m_features_og_manage_list_related_topics($topics)) {
+    $details['topics'] = $list;
+  }
+
+  // List of regions & countries.
+  $geo = $wrapper->c4m_vocab_geo->value();
+  if ($list = c4m_features_og_manage_list_regions_countries($geo)) {
+    $details['locations'] = $list;
+  }
+
+  // Administrators.
+  $admins = c4m_og_get_group_admins($event_site->nid, FALSE, 'event_site');
+  if ($list = c4m_features_og_manage_list_group_admins($admins)) {
+    $details['admins'] = $list;
+  }
+
+  // Duration.
+  $duration = $wrapper->c4m_datetime_end->value();
+  if (!empty($duration)) {
+    $duration = field_view_field('node', $event_site, 'c4m_datetime_end');
+    $details['duration'] = $duration[0]['#markup'];
+  }
+
+  // Location.
+  $location = $wrapper->c4m_location_address->value();
+  if (!empty($location)) {
+    $location = field_view_field('node', $event_site, 'c4m_location_address');
+    $details['location'] = drupal_render($location[0]);
+  }
+
+  // URL.
+  $url = $wrapper->c4m_link->value();
+  if (!empty($url)) {
+    $details['url'] = $url['url'];
+  }
+
+  // Facebook.
+  $f_url = $wrapper->c4m_facebook->value();
+  if (!empty($f_url)) {
+    $details['f_url'] = $f_url['url'];
+  }
+
+  // Twitter.
+  $t_url = $wrapper->c4m_twitter->value();
+  if (!empty($t_url)) {
+    $details['t_url'] = $t_url['url'];
+  }
+
+  // Tag line.
+  $tagline = $wrapper->c4m_project_tag_line->value();
+  if (!empty($tagline)) {
+    $tagline = field_view_field('node', $event_site, 'c4m_project_tag_line');
+    $details['tagline'] = $tagline[0]['#markup'];
+  }
+
+  // Documents.
+  $document_agenda = $wrapper->c4m_document_agenda->value();
+  if (!empty($document_agenda)) {
+    $document_agenda = field_view_field('node', $event_site, 'c4m_document_agenda');
+    $details['document_agenda'] = drupal_render($document_agenda[0]);
+  }
+  $document_presentation = $wrapper->c4m_document_presentation->value();
+  if (!empty($document_presentation)) {
+    $document_presentation = field_view_field('node', $event_site, 'c4m_document_presentation');
+    $details['document_presentation'] = drupal_render($document_presentation[0]);
+  }
+  $related_document = $wrapper->c4m_related_document->value();
+  if (!empty($related_document)) {
+    $related_document = field_view_field('node', $event_site, 'c4m_related_document');
+    $details['related_document'] = drupal_render($related_document[0]);
+  }
+
+  // List of related groups.
+  $related_groups = $wrapper->c4m_related_group->value();
+  if ($list = c4m_features_og_manage_list_related($related_groups)) {
+    $details['related_groups'] = $list;
+  }
+
+  // Get categories and terms count for current group.
+  c4m_features_og_manage_list_taxonomy($event_site, $details);
+
+  return $details;
+}
+
+/**
  * Gets the group status and thumbnail.
  *
  * For the group management dashboard,
@@ -722,26 +873,19 @@ function c4m_features_og_manage_group_status_and_thumbnail() {
 
   $wrapper = entity_metadata_wrapper('node', $group);
 
-  // Pending memberships count link.
-  $pending_memberships_count_text = t(
-    '@count Group membership requests',
-    array(
-      '@count' => c4m_og_get_members_count($group, OG_STATE_PENDING),
-    )
-  );
-  $link_options = array(
-    'absolute' => TRUE,
-    'query' => array(
-      'f[0]' => 'c4m_og_membership_type:' . $group->nid . '_pending',
-    ),
-  );
-  $info = array(
+  $purl = [
+    'provider' => "og_purl|node",
+    'id' => $group->nid,
+  ];
+  $link_options = ['purl' => $purl, 'absolute' => TRUE];
+  $info = [
     'status' => $wrapper->c4m_og_status->value(),
-    'pending_members_link' => l(
-      $pending_memberships_count_text,
-      url('members', $link_options)
+    'group_title' => t('Group membership'),
+    'manage_members_link' => l(
+      t('Manage all group memberships'),
+      url('group/' . $group->entity_type . '/' . $group->nid . '/admin/people', $link_options)
     ),
-  );
+  ];
 
   // Group thumbnail image with edit link.
   $info['thumbnail_image'] = NULL;
@@ -775,12 +919,6 @@ function c4m_features_og_manage_group_status_and_thumbnail() {
     );
   }
 
-  // Archive group link (If group is not archived already).
-  $info['archive_link'] = $info['status'] != 'archived' ? l(
-    t('Archive group'),
-    url('node/' . $group->nid . '/edit', array('absolute' => TRUE))
-  ) : '';
-
   return $info;
 }
 
@@ -803,6 +941,20 @@ function c4m_features_og_manage_project_thumbnail() {
 
   $wrapper = entity_metadata_wrapper('node', $project);
 
+  // Project membership.
+  $purl = [
+    'provider' => "og_purl|node",
+    'id' => $project->nid,
+  ];
+  $link_options = ['purl' => $purl, 'absolute' => TRUE];
+
+  $info = [
+    'project_title' => t('Project membership'),
+    'manage_members_link' => l(
+      t('Manage all project memberships'),
+      url('group/' . $project->entity_type . '/' . $project->nid . '/admin/people', $link_options)
+    ),
+  ];
   // Project thumbnail image with edit link.
   $info['thumbnail_image'] = NULL;
   $file = $wrapper->c4m_media->value();
@@ -845,6 +997,72 @@ function c4m_features_og_manage_project_thumbnail() {
   return $info;
 }
 
+/**
+ * Gets the event site thumbnail.
+ *
+ * For the group management dashboard,
+ * This function gets a thumbnail image of the group with an edit
+ * link.
+ *
+ * @return array|bool
+ *   An array of current group's thumbnail image OR false if there's
+ *   no group in current context.
+ */
+function c4m_features_og_manage_event_site_thumbnail() {
+  $event_site = c4m_og_current_group();
+  if (!$event_site) {
+    return FALSE;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $event_site);
+
+  // Event Site membership.
+  $purl = [
+    'provider' => "og_purl|node",
+    'id' => $event_site->nid,
+  ];
+  $link_options = ['purl' => $purl, 'absolute' => TRUE];
+
+  $info = [
+    'event_site_title' => t('Event site membership'),
+    'manage_members_link' => l(
+      t('Manage all event site memberships'),
+      url('group/' . $event_site->entity_type . '/' . $event_site->nid . '/admin/people', $link_options)
+    ),
+  ];
+  // Event site thumbnail image with edit link.
+  $info['thumbnail_image'] = NULL;
+  $file = $wrapper->c4m_media->value();
+  if (!empty($file)) {
+    $options = array(
+      'html' => TRUE,
+      'attributes' => array(
+        'class' => array(
+          'edit-thumbnail',
+        ),
+      ),
+    );
+    $edit_link['element'] = array(
+      '#tag' => 'span',
+      '#attributes' => array(
+        'class' => array('edit-link'),
+      ),
+      '#value' => t('Edit'),
+    );
+    $file['style_name'] = 'medium';
+    $file['path'] = $file['uri'];
+    $file['attributes'] = array('class' => 'group-thumbnail');
+    $info['thumbnail_image'] = l(
+      theme_image_style($file) . theme_html_tag($edit_link),
+      url(
+        'node/' . $event_site->nid . '/edit',
+        array('absolute' => TRUE, 'fragment' => 'edit-image-list')
+      ),
+      $options
+    );
+  }
+  return $info;
+}
 /**
  * Implements hook_form_FORM_ID_alter().
  *
@@ -905,7 +1123,7 @@ function c4m_features_og_manage_variable_realm_edit_submit($form, &$form_state) 
  * Add anchors to the following elements by adding an ID on their elements.
  */
 function c4m_features_og_manage_form_alter(&$form, &$form_state, $form_id) {
-  if (in_array($form_id, array('group_node_form', 'project_node_form'))) {
+  if (in_array($form_id, array('group_node_form', 'project_node_form', 'event_site_node_form'))) {
     $form_elements = array(
       'title' => 'edit-details',
       'c4m_related_group' => 'edit-related-content',

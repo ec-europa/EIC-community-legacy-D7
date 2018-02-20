@@ -1,0 +1,465 @@
+<?php
+
+/**
+ * @file
+ * Code for the Event Site content type feature.
+ */
+
+include_once 'c4m_content_event_site.features.inc';
+
+/**
+ * @file
+ * Code for the Event Site content type feature.
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function c4m_content_event_site_ctools_plugin_directory($module, $plugin_type) {
+  if ($module == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Implements hook_c4m_og_vocab_info_groups().
+ */
+function c4m_content_event_site_c4m_og_vocab_info_groups() {
+  return array(
+    'event_site' => array(
+      'c4m_vocab_category',
+      'c4m_vocab_tag',
+    ),
+  );
+}
+
+/**
+ * Implements hook_c4m_content_statistics_info().
+ */
+function c4m_content_event_site_c4m_content_statistics_info() {
+  return array(
+    'global' => array(
+      'c4m_event_sites' => array(
+        'type' => 'event_site',
+        'entity_type' => 'node',
+        'bundles' => array('event_site'),
+        'singular' => 'Event Site',
+        'plural' => 'Event Sites',
+        'state' => 1,
+        'skip_access_check' => TRUE,
+        'c4m_status' => array('published', 'archived'),
+        'aggregate' => array(),
+        'weight' => -3,
+        'attributes' => array(
+          'class' => array('projects'),
+        ),
+        'link' => array(
+          'path' => 'event_sites',
+        ),
+      ),
+    ),
+    'topic' => array(
+      'c4m_topic_event_sites' => array(
+        'type' => 'event_site',
+        'entity_type' => 'node',
+        'bundles' => array('event_site'),
+        'singular' => 'Event Site',
+        'plural' => 'Event Sites',
+        'state' => 1,
+        'aggregate' => array(),
+        'weight' => 1,
+        'attributes' => array(
+          'class' => array('topic-projects'),
+        ),
+        'link' => array(
+          'path' => 'event_sites',
+          'options' => array(
+            'query' => array(
+              'f' => array(
+                'c4m_vocab_topic:@TOPIC_ID',
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function c4m_content_event_site_block_info() {
+  $blocks = array();
+
+  $blocks['header_name_banner_event_site'] = array(
+    'info' => t('Event Site header'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
+
+  $blocks['c4m_block_event_site_about'] = array(
+    'info' => t('Event Site: About'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['c4m_block_event_site_documents'] = array(
+    'info' => t('Event Site: Documents'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['c4m_block_create_event_site'] = array(
+    'info' => t('Event site: Create event site'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function c4m_content_event_site_block_view($delta) {
+  $module = 'c4m_content_event_site';
+
+  module_load_include('inc', $module, $module . '.block');
+  $callback = "_{$module}_block_" . $delta;
+  if (function_exists($callback)) {
+    return $callback();
+  }
+
+  return array();
+}
+
+/**
+ * Implements hook_FORM_ID_form_alter().
+ *
+ * Alter the Event Site creation form.
+ */
+function c4m_content_event_site_form_event_site_node_form_alter(array &$form, array &$form_state) {
+  $type = 'project';
+
+  _c4m_og_alter_group_form($form, $form_state, $type);
+
+  // There's no node ID at form => form is for new project creation.
+  // Hide status field, for it to get default value of Pending, once created.
+  if (is_null($form['nid']['#value'])) {
+    $form['c4m_og_status']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Returns the administered event sites count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_event_site_get_administered_event_sites_count($uid) {
+  // We are counting the memberships as there are no roles in Event Sites.
+  return c4m_content_event_site_get_user_event_site_memberships_count($uid, OG_STATE_ACTIVE);
+}
+
+
+/**
+ * Returns the pending event sites count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_event_site_get_pending_event_sites_count($uid) {
+  return c4m_content_event_site_get_user_event_site_memberships_count($uid, OG_STATE_PENDING);
+}
+
+
+/**
+ * Returns the memberships in event_site count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ * @param int $state
+ *   OG state.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_event_site_get_user_event_site_memberships_count($uid, $state = OG_STATE_ACTIVE) {
+  $query = db_select('og_membership', 'm');
+  $query->fields('m', array('id'));
+  $query->join('node', 'n', 'n.nid = m.gid');
+  $query->condition('m.group_type', 'node');
+  $query->condition('m.entity_type', 'user');
+  $query->condition('m.etid', $uid);
+  $query->condition('m.state', $state);
+  $query->condition('n.type', 'event_site');
+
+
+  $query = $query->execute();
+  $amount = $query->rowCount();
+
+  return $amount;
+}
+
+/**
+ * Returns the owned projects count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_event_site_owned_event_sites_count($uid) {
+  return c4m_content_event_site_get_owned_event_sites_count($uid);
+}
+
+/**
+ * Returns the count of owned event sites for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_event_site_get_owned_event_sites_count($uid) {
+  $query = db_select('node', 'n');
+  $query->fields('n', array('nid'));
+  $query->condition('n.uid', $uid);
+  $query->condition('n.status', NODE_PUBLISHED);
+  $query->condition('n.type', 'event_site');
+
+
+
+  $query = $query->execute();
+  $amount = $query->rowCount();
+
+  return $amount;
+}
+
+/**
+ * Implements hook_c4m_helper_entity_label_info().
+ */
+function c4m_content_event_site_c4m_helper_entity_label_info() {
+  return array(
+    'event_site' => array(
+      'article' => t('a'),
+      'singular' => t('event_site'),
+      'plural' => t('event_sites'),
+      'insert action' => t('created a new event site'),
+      'update action' => t('updated the event site'),
+      'icon' => 'fa-users',
+    ),
+  );
+}
+
+/**
+ * Implements hook_c4m_helper_entity_metrics_info().
+ */
+function c4m_content_event_site_c4m_helper_entity_metrics_info() {
+  return array(
+    'c4m_user_event_sites_administered' => array(
+      'type' => 'event_sites_administered',
+      'context' => 'user',
+      'callback' => 'c4m_content_event_site_get_administered_event_sites_count',
+    ),
+    'c4m_user_event_sites_pending' => array(
+      'type' => 'event_sites_pending',
+      'context' => 'user',
+      'callback' => 'c4m_content_event_site_get_pending_event_sites_count',
+    ),
+    'c4m_user_event_sites_owned' => array(
+      'type' => 'event_sites',
+      'context'  => 'user',
+      'callback'  => 'c4m_content_event_site_owned_event_sites_count',
+    ),
+  );
+}
+
+/**
+ * Implements hook_pc_system_component_blockreference_whitelist().
+ */
+function c4m_content_event_site_c4m_content_project_blockreference_whitelist($context) {
+  if ($context['entity']->hostEntity()->type == 'event_site') {
+    return array(
+      'c4m_content_event_site:c4m_block_event_site_about' => array(
+        'label' => t('About this event site'),
+      ),
+      'c4m_content_event_site:c4m_block_event_site_documents' => array(
+        'label' => t('Event site documents'),
+      ),
+      'c4m_content_project:c4m_block_project_groups' => array(
+        'label' => t('Related groups'),
+      ),
+      'views:c4m_project_news-block' => array(
+        'label' => t('Latest news'),
+      ),
+      'views:c4m_project_highlights-block' => array(
+        'label' => t('Highlights block'),
+      ),
+      'c4m_search_og:c4m_search_group_form' => array(
+        'label' => t('Search block'),
+      ),
+    );
+  }
+
+  return array();
+}
+
+/**
+ * Implements hook_theme().
+ */
+function c4m_content_event_site_theme() {
+  $theme['c4m_content_event_site_header_title'] = array(
+    'variables' => array(
+      'title' => '',
+      'tagline' => '',
+      'stage' => '',
+      'type' => '',
+      'status' => '',
+      'flag' => '',
+    ),
+    'path' => drupal_get_path('module', 'c4m_content_event_site') . '/theme',
+    'template' => 'c4m-content-event-site-header-title',
+  );
+
+  return $theme;
+}
+
+/**
+ * Implements hook_TYPE_alter().
+ *
+ * Using hook_c4m_offcanvas_trigger_label_left_alter().
+ */
+function c4m_content_event_site_c4m_offcanvas_trigger_label_left_alter(
+  &$trigger_label
+) {
+  if (arg(0) == 'event_sites' && empty(arg(1))) {
+    $trigger_label['label'] = t('Filter results');
+    $trigger_label['icon'] = 'filter';
+  }
+}
+
+/**
+ * Implements hook_c4m_cta_block().
+ */
+function c4m_content_event_site_c4m_cta_block() {
+  global $user;
+
+  // Only add items if there is an OG group.
+  if (!$group = c4m_og_current_group()) {
+    return;
+  }
+
+  // Prevent from 'group' nodes to run this logic.
+  if ($group->type != 'event_site' ) {
+    return;
+  }
+
+  // A blocked (banned) user should not be able to see the CTA block.
+  $user_role = c4m_user_og_get_role_in_group($user, $group);
+  if ($user_role == 'blocked') {
+    return;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $group);
+  // Do not present CTA block for archived group.
+  if ($wrapper->c4m_og_status->value() == 'archived') {
+    return;
+  }
+
+  $items = array();
+
+  if (!drupal_is_front_page() || user_is_anonymous()) {
+    return $items;
+  }
+
+  if ($item = c4m_user_og_follow_group_cta($group)) {
+    $items['follow'] = $item;
+  }
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Implemented for og_ui_add_users form. Checks and removes the Administrator
+ * role checkbox. This is required only for projects.
+ */
+function c4m_content_event_site_form_og_ui_add_users_alter(&$form, &$form_state, $form_id) {
+  $group = entity_load_single($form['group_type']['#value'], $form['gid']['#value']);
+  list(,, $bundle) = entity_extract_ids($form['group_type']['#value'], $group);
+  if ($bundle !== 'event_site') {
+    return;
+  }
+
+  $role = c4m_og_user_role_load_by_name('administrator member', $bundle);
+  $form['og_user']['roles']['#default_value'] = [$role->rid];
+  $form['og_user']['roles']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Implemented for _og_invite_answer_form form.
+ */
+function c4m_content_event_site_form__og_invite_answer_form_alter(&$form, &$form_state, $form_id) {
+  $form['#submit'][] = '_c4m_content_event_site_form__og_invite_answer_form_submit';
+}
+
+/**
+ * Submit handler for _og_invite_answer_form form.
+ *
+ * Adds administrator role for users accepting an invitation to a project.
+ */
+function _c4m_content_event_site_form__og_invite_answer_form_submit($form, &$form_state) {
+  global $user;
+  $answer = $form_state['values']['answer'];
+  if ($answer !== 'approve') {
+    return;
+  }
+  $group_type = $form_state['values']['group_type'];
+  $gid = $form_state['values']['gid'];
+  $group = entity_load_single($group_type, $gid);
+  list(,, $bundle) = entity_extract_ids($group_type, $group);
+  if ($bundle !== 'event_site') {
+    return;
+  }
+
+  $role = c4m_og_user_role_load_by_name('administrator member', $bundle);
+  og_role_grant($group_type, $gid, $user->uid, $role->rid);
+}
+
+/**
+ * Implements hook_menu_link_insert().
+ */
+function c4m_content_event_site_menu_link_insert($link) {
+  if (empty($link['menu_name']) || $link['link_path'] != 'wiki') {
+    return;
+  }
+
+  $nid = !empty(explode('-',$link['menu_name'])[2]) ? explode('-',$link['menu_name'])[2] : '';
+  if (empty($nid)) {
+    return;
+  }
+
+  $node = node_load($nid);
+  if (empty($node)) {
+    return;
+  }
+
+  $node_type = $node->type;
+
+  if ($node_type != 'event_site') {
+    return;
+  }
+
+  // Disable by default the Wiki link for Event Sites.
+  $link['hidden'] = 1;
+  menu_link_save($link);
+}

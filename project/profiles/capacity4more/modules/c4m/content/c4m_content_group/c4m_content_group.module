@@ -305,7 +305,7 @@ function c4m_content_group_replace_mail_tokens(array &$replacements, array $data
  */
 function c4m_content_group_node_access_records($node) {
   // Only for group and project nodes.
-  if ($node->type != 'group' && $node->type != 'project') {
+  if ($node->type != 'group' && $node->type != 'project' && $node->type != 'event_site') {
     return;
   }
 
@@ -639,7 +639,7 @@ function c4m_content_group_ds_fields_info($entity_type) {
     'title'      => t('Group statistics'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
     // Only for group nodes.
-    'ui_limit'   => array('group|*', 'project|*'),
+    'ui_limit'   => array('group|*', 'project|*', 'event_site|*'),
     'file'       => $path . '/includes/c4m_content_group_statistics.theme.inc',
     'function'   => 'c4m_content_group_statistics',
   );

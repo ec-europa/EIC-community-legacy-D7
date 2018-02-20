@@ -59,6 +59,11 @@ function c4m_user_profile_block_info() {
     'cache' => DRUPAL_CACHE_PER_USER,
   );
 
+  $blocks['user_my_profile_event_sites'] = array(
+    'info' => t('My event sites'),
+    'cache' => DRUPAL_CACHE_PER_USER,
+  );
+
   return $blocks;
 }
 
@@ -198,6 +203,14 @@ function c4m_user_profile_theme() {
   );
 
   $theme['c4m_user_profile_projects_top_bar'] = array(
+    'variables' => array(
+      'projects' => array(),
+      'link' => array(),
+    ),
+    'file' => 'c4m_user_profile.theme.inc',
+    'path' => drupal_get_path('module', 'c4m_user_profile') . '/includes',
+  );
+  $theme['c4m_user_profile_event_sites_top_bar'] = array(
     'variables' => array(
       'projects' => array(),
       'link' => array(),
@@ -1450,7 +1463,8 @@ function c4m_user_profile_message_subscribe_get_subscribers_alter(
 ) {
   $entity_type = $values['context']['entity_type'];
   $entity_id = $values['context']['entity_id'];
-  $uids = c4m_user_profile_get_subscribed($entity_type, $entity_id, $uids);
+  $flagged_entity_type = $entity_type == 'term' ? 'taxonomy_term' : 'node';
+  $uids = c4m_user_profile_get_subscribed($flagged_entity_type, $entity_id, $uids);
 }
 
 /**
