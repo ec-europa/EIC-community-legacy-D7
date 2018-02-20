@@ -29,7 +29,8 @@
   }
 }
 
-.node-project {
+.node-project,
+.node-event-site {
   &.view-mode-group_dashboard {
     > .content > .field {
       border-bottom: 1px dotted $color-gray-light;
