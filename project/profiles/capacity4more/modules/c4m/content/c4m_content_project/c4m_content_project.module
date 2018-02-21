@@ -515,8 +515,10 @@ function c4m_content_project_blockreference_blocks_pre_alter(
   &$blocks,
   $context
 ) {
+
   $whitelist = module_invoke_all(
-    'c4m_content_project_blockreference_whitelist'
+    'c4m_content_project_blockreference_whitelist',
+    $context
   );
 
   // Remove blocks which are not whitelisted.
@@ -540,33 +542,37 @@ function c4m_content_project_blockreference_blocks_pre_alter(
 /**
  * Implements hook_pc_system_component_blockreference_whitelist().
  */
-function c4m_content_project_c4m_content_project_blockreference_whitelist() {
-  return array(
-    'c4m_content_project:c4m_block_project_projects' => array(
-      'label' => t('Related initiatives (projects/programmes)'),
-    ),
-    'c4m_content_project:c4m_block_project_groups' => array(
-      'label' => t('Related groups'),
-    ),
-    'c4m_content_project:c4m_block_project_partners' => array(
-      'label' => t('Partners'),
-    ),
-    'views:c4m_project_news-block' => array(
-      'label' => t('Latest news'),
-    ),
-    'views:c4m_project_events-block' => array(
-      'label' => t('Upcoming events'),
-    ),
-    'views:c4m_project_highlights-block' => array(
-      'label' => t('Highlights block'),
-    ),
-    'c4m_content_project:c4m_block_project_about' => array(
-      'label' => t('About this project/programme'),
-    ),
-    'c4m_search_og:c4m_search_group_form' => array(
-      'label' => t('Search block'),
-    ),
-  );
+function c4m_content_project_c4m_content_project_blockreference_whitelist($context) {
+  if ($context['entity']->hostEntity()->type == 'project') {
+    return array(
+      'c4m_content_project:c4m_block_project_projects' => array(
+        'label' => t('Related initiatives (projects/programmes)'),
+      ),
+      'c4m_content_project:c4m_block_project_groups' => array(
+        'label' => t('Related groups'),
+      ),
+      'c4m_content_project:c4m_block_project_partners' => array(
+        'label' => t('Partners'),
+      ),
+      'views:c4m_project_news-block' => array(
+        'label' => t('Latest news'),
+      ),
+      'views:c4m_project_events-block' => array(
+        'label' => t('Upcoming events'),
+      ),
+      'views:c4m_project_highlights-block' => array(
+        'label' => t('Highlights block'),
+      ),
+      'c4m_content_project:c4m_block_project_about' => array(
+        'label' => t('About this project/programme'),
+      ),
+      'c4m_search_og:c4m_search_group_form' => array(
+        'label' => t('Search block'),
+      ),
+    );
+  }
+
+  return array();
 }
 
 /**
