@@ -421,6 +421,140 @@ function c4m_features_og_manage_default_page_manager_pages() {
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_group_management__organisation';
+  $handler->task = 'page';
+  $handler->subtask = 'group_management';
+  $handler->handler = 'panel_context';
+  $handler->weight = 3;
+  $handler->conf = array(
+    'title' => 'Organisation',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(
+      0 => array(
+        'identifier' => ' OG current group',
+        'keyword' => 'og_context',
+        'name' => 'og_context',
+        'og_context_group_types' => array(
+          'organisation' => 'organisation',
+        ),
+        'id' => 1,
+      ),
+      1 => array(
+        'identifier' => 'User',
+        'keyword' => 'user',
+        'name' => 'user',
+        'type' => 'current',
+        'uid' => '',
+        'id' => 1,
+      ),
+    ),
+    'relationships' => array(),
+    'name' => 'organisation',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_context',
+          'settings' => array(
+            'og_context_access_groups' => array(
+              'organisation' => 'organisation',
+              'event_site' => 0,
+              'group' => 0,
+              'project' => 0,
+            ),
+          ),
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'c4m_og_perm',
+          'settings' => array(
+            'perm' => 'administer group',
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'homepage';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'left' => NULL,
+      'right' => NULL,
+      'bottom' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '26b05cf3-97e4-419b-aab4-b3c32a5f9874';
+  $display->storage_type = 'page_manager';
+  $display->storage_id = 'page_group_management__organisation';
+  $display->content = array();
+  $display->panels = array();
+  $pane = new stdClass();
+  $pane->pid = 'new-57626e8a-e211-4624-ae65-1f2790271d9e';
+  $pane->panel = 'left';
+  $pane->type = 'organisation_details';
+  $pane->subtype = 'organisation_details';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '57626e8a-e211-4624-ae65-1f2790271d9e';
+  $display->content['new-57626e8a-e211-4624-ae65-1f2790271d9e'] = $pane;
+  $display->panels['left'][0] = 'new-57626e8a-e211-4624-ae65-1f2790271d9e';
+  $pane = new stdClass();
+  $pane->pid = 'new-03c0ad09-167f-403b-b514-a84c60680748';
+  $pane->panel = 'right';
+  $pane->type = 'organisation_status';
+  $pane->subtype = 'organisation_status';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '03c0ad09-167f-403b-b514-a84c60680748';
+  $display->content['new-03c0ad09-167f-403b-b514-a84c60680748'] = $pane;
+  $display->panels['right'][0] = 'new-03c0ad09-167f-403b-b514-a84c60680748';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
   $pages['group_management'] = $page;
 
   return $pages;

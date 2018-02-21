@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Code for the Organisation Types vocabulary feature.
+ */
+
+include_once 'c4m_vocab_organisation_types.features.inc';

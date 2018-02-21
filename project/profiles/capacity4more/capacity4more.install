@@ -605,4 +605,7 @@ function capacity4more_update_7009() {
 function capacity4more_update_7010() {
   module_enable(['telephone']);
   module_enable(['email']);
+  module_enable(['c4m_vocab_nace']);
+  module_enable(['c4m_vocab_organisation_types']);
+  module_enable(['c4m_vocab_tr']);
 }
