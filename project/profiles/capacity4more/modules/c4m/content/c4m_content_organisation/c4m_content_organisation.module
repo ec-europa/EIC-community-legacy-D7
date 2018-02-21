@@ -5,430 +5,412 @@
  * Code for the Organisation content type feature.
  */
 
-include_once 'c4m_content_organisation.features.inc';
+/**
+ * @file
+ * Code for the Organisation content type feature.
+ */
 
 /**
- * Implements hook_field_info().
+ * Implements hook_ctools_plugin_directory().
  */
-function c4m_content_organisation_field_info() {
+function c4m_content_organisation_ctools_plugin_directory($module, $plugin_type) {
+  if ($module == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Implements hook_c4m_og_vocab_info_groups().
+ */
+function c4m_content_organisation_c4m_og_vocab_info_groups() {
   return array(
-    'c4m_domain' => array(
-      'label' => t('Domain'),
-      'description' => t(
-        'Define the domain name and optional if it should be used to brand the users.'
+    'organisation' => array(
+      'c4m_vocab_category',
+      'c4m_vocab_tag',
+    ),
+  );
+}
+
+/**
+ * Implements hook_c4m_content_statistics_info().
+ */
+function c4m_content_organisation_c4m_content_statistics_info() {
+  return array(
+    'global' => array(
+      'c4m_organisations' => array(
+        'type' => 'organisation',
+        'entity_type' => 'node',
+        'bundles' => array('organisation'),
+        'singular' => 'Organisation',
+        'plural' => 'Organisations',
+        'state' => 1,
+        'skip_access_check' => TRUE,
+        'c4m_status' => array('published', 'archived'),
+        'aggregate' => array(),
+        'weight' => -3,
+        'attributes' => array(
+          'class' => array('projects'),
+        ),
+        'link' => array(
+          'path' => 'organisations',
+        ),
       ),
-      'default_widget' => 'c4m_domain_field',
-      'default_formatter' => 'c4m_domain_default',
-
-      'property_type' => 'field_c4m_domain',
-      'property_callbacks' => array('c4m_content_organisation_domain_field_property_info_callback'),
+    ),
+    'topic' => array(
+      'c4m_topic_organisations' => array(
+        'type' => 'organisation',
+        'entity_type' => 'node',
+        'bundles' => array('organisation'),
+        'singular' => 'Organisation',
+        'plural' => 'Organisations',
+        'state' => 1,
+        'aggregate' => array(),
+        'weight' => 1,
+        'attributes' => array(
+          'class' => array('topic-projects'),
+        ),
+        'link' => array(
+          'path' => 'organisations',
+          'options' => array(
+            'query' => array(
+              'f' => array(
+                'c4m_vocab_topic:@TOPIC_ID',
+              ),
+            ),
+          ),
+        ),
+      ),
     ),
   );
 }
 
 /**
- * Additional callback to adapt the property info of domain fields.
- *
- * @see entity_metadata_field_entity_property_info()
+ * Implements hook_block_info().
  */
-function c4m_content_organisation_domain_field_property_info_callback(
-  &$info,
-  $entity_type,
-  $field,
-  $instance,
-  $field_type
-) {
-  $property = &$info[$entity_type]['bundles'][$instance['bundle']]['properties'][$field['field_name']];
+function c4m_content_organisation_block_info() {
+  $blocks = array();
 
-  $property['getter callback'] = 'entity_metadata_field_verbatim_get';
-  $property['setter callback'] = 'entity_metadata_field_verbatim_set';
-
-  // Auto-create the field item as soon as a property is set.
-  $property['auto creation'] = 'c4m_content_organisation_domain_field_create';
-
-  $property['property info'] = c4m_content_organisation_domain_field_property_info(
+  $blocks['header_name_banner_organisation'] = array(
+    'info' => t('Organisation header'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
   );
-  $property['property info']['icon']['required'] = FALSE;
-  $property['property info']['domain']['required'] = TRUE;
 
-  unset($property['query callback']);
+  $blocks['c4m_block_organisation_about'] = array(
+    'info' => t('Organisation: About'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['c4m_block_create_organisation'] = array(
+    'info' => t('Organisation: Create Organisation'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
 }
 
 /**
- * Callback for creating a new, empty domain field item.
- *
- * @return array
- *   The empty properties information array.
- *
- * @see c4m_content_organisation_domain_field_property_info_callback()
+ * Implements hook_block_view().
  */
-function c4m_content_organisation_domain_field_create() {
+function c4m_content_organisation_block_view($delta) {
+  $module = 'c4m_content_organisation';
+
+  module_load_include('inc', $module, $module . '.block');
+  $callback = "_{$module}_block_" . $delta;
+  if (function_exists($callback)) {
+    return $callback();
+  }
+
+  return array();
+}
+
+/**
+ * Implements hook_FORM_ID_form_alter().
+ *
+ * Alter the Organisation creation form.
+ */
+function c4m_content_organisation_form_organisation_node_form_alter(array &$form, array &$form_state) {
+  $type = 'organisation';
+
+  _c4m_og_alter_group_form($form, $form_state, $type);
+
+  // There's no node ID at form => form is for new project creation.
+  // Hide status field, for it to get default value of Pending, once created.
+  if (is_null($form['nid']['#value'])) {
+    $form['c4m_og_status']['#access'] = FALSE;
+  }
+
+  // Don't let access to fill in icon and domain fields.
+  $form["c4m_icon"]["#access"] = FALSE;
+  $form["c4m_domain"]["#access"] = FALSE;
+
+}
+
+/**
+ * Returns the administered Organisations count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_get_administered_organisations_count($uid) {
+  // We are counting the memberships as there are no roles in Organisations.
+  return c4m_content_organisation_get_user_organisation_memberships_count($uid, OG_STATE_ACTIVE);
+}
+
+
+/**
+ * Returns the pending Organisations count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_get_pending_organisations_count($uid) {
+  return c4m_content_organisation_get_user_organisation_memberships_count($uid, OG_STATE_PENDING);
+}
+
+
+/**
+ * Returns the memberships in organisation count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ * @param int $state
+ *   OG state.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_get_user_organisation_memberships_count($uid, $state = OG_STATE_ACTIVE) {
+  $query = db_select('og_membership', 'm');
+  $query->fields('m', array('id'));
+  $query->join('node', 'n', 'n.nid = m.gid');
+  $query->condition('m.group_type', 'node');
+  $query->condition('m.entity_type', 'user');
+  $query->condition('m.etid', $uid);
+  $query->condition('m.state', $state);
+  $query->condition('n.type', 'organisation');
+
+
+  $query = $query->execute();
+  $amount = $query->rowCount();
+
+  return $amount;
+}
+
+/**
+ * Returns the owned projects count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_owned_organisations_count($uid) {
+  return c4m_content_organisation_get_owned_organisations_count($uid);
+}
+
+/**
+ * Returns the count of owned Organisations for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_get_owned_organisations_count($uid) {
+  $query = db_select('node', 'n');
+  $query->fields('n', array('nid'));
+  $query->condition('n.uid', $uid);
+  $query->condition('n.status', NODE_PUBLISHED);
+  $query->condition('n.type', 'organisation');
+
+
+
+  $query = $query->execute();
+  $amount = $query->rowCount();
+
+  return $amount;
+}
+
+/**
+ * Implements hook_c4m_helper_entity_label_info().
+ */
+function c4m_content_organisation_c4m_helper_entity_label_info() {
   return array(
-    'icon' => NULL,
-    'domain' => NULL,
-  );
-}
-
-/**
- * Defines info for the properties of the link-field item data structure.
- *
- * @return array
- *   The properties information array.
- *
- * @see c4m_content_organisation_domain_field_property_info_callback()
- */
-function c4m_content_organisation_domain_field_property_info() {
-  $properties['icon'] = array(
-    'type' => 'int',
-    'label' => t(
-      'Should the domain be used to add an icon to the user profile.'
+    'organisation' => array(
+      'article' => t('a'),
+      'singular' => t('organisation'),
+      'plural' => t('organisations'),
+      'insert action' => t('created a new organisation'),
+      'update action' => t('updated the organisation'),
+      'icon' => 'fa-users',
     ),
-    'setter callback' => 'entity_property_verbatim_set',
   );
-  $properties['domain'] = array(
-    'type' => 'text',
-    'label' => t('The domain part of an email address.'),
-    'setter callback' => 'entity_property_verbatim_set',
-  );
-
-  return $properties;
 }
 
 /**
- * Implements hook_field_widget_info().
+ * Implements hook_c4m_helper_entity_metrics_info().
  */
-function c4m_content_organisation_field_widget_info() {
+function c4m_content_organisation_c4m_helper_entity_metrics_info() {
   return array(
-    'c4m_domain_field' => array(
-      'label' => t('Text field'),
-      'field types' => array('c4m_domain'),
+    'c4m_user_organisations_administered' => array(
+      'type' => 'organisations_administered',
+      'context' => 'user',
+      'callback' => 'c4m_content_organisation_get_administered_organisations_count',
+    ),
+    'c4m_user_organisations_pending' => array(
+      'type' => 'organisations_pending',
+      'context' => 'user',
+      'callback' => 'c4m_content_organisation_get_pending_organisations_count',
+    ),
+    'c4m_user_organisations_owned' => array(
+      'type' => 'organisations',
+      'context'  => 'user',
+      'callback'  => 'c4m_content_organisation_owned_organisations_count',
     ),
   );
 }
 
 /**
- * Implements hook_field_settings_form().
+ * Implements hook_pc_system_component_blockreference_whitelist().
  */
-function c4m_content_organisation_field_settings_form(
-  $field,
-  $instance,
-  $has_data
-) {
-  $settings = $field['settings'];
-  // Add your global settings fields here.
-  $form = array();
-  return $form;
-}
-
-/**
- * Implements hook_field_widget_form().
- */
-function c4m_content_organisation_field_widget_form(
-  &$form,
-  &$form_state,
-  $field,
-  $instance,
-  $langcode,
-  $items,
-  $delta,
-  $element
-) {
-  switch ($instance['widget']['type']) {
-    case 'c4m_domain_field':
-      $element['c4m_domain'] = array(
-        '#type' => 'fieldset',
-        '#title' => $element['#title'],
-        '#tree' => TRUE,
-      );
-      $element['c4m_domain']['icon'] = array(
-        '#type' => 'checkbox',
-        '#title' => t('Use icon'),
-        '#default_value' => isset($items[$delta]['icon']) ? $items[$delta]['icon'] : '',
-      );
-      $element['c4m_domain']['domain'] = array(
-        '#type' => 'textfield',
-        '#title' => t('Domain'),
-        '#default_value' => isset($items[$delta]['domain']) ? $items[$delta]['domain'] : '',
-        '#required' => $element['#required'],
-      );
-      break;
-  }
-  return $element;
-}
-
-/**
- * Implements hook_field_presave().
- */
-function c4m_content_organisation_field_presave(
-  $entity_type,
-  $entity,
-  $field,
-  $instance,
-  $langcode,
-  &$items
-) {
-  foreach ($items as $delta => $item) {
-    if (isset($item['c4m_domain']['domain'])) {
-      $items[$delta]['domain'] = $item['c4m_domain']['domain'];
-      $items[$delta]['icon'] = $item['c4m_domain']['icon'];
-    }
-  }
-}
-
-/**
- * Implements hook_field_is_empty().
- */
-function c4m_content_organisation_field_is_empty($item, $field) {
-  if (empty($item['c4m_domain']['domain'])) {
-    return TRUE;
-  }
-  return FALSE;
-}
-
-/**
- * Implements hook_field_formatter_info().
- */
-function c4m_content_organisation_field_formatter_info() {
+function c4m_content_organisation_c4m_content_project_blockreference_whitelist() {
   return array(
-    'c4m_domain_default' => array(
-      'label' => t('Default'),
-      'field types' => array('c4m_domain'),
-    ),
-    'c4m_domain_icon' => array(
-      'label' => t('Domain and icon'),
-      'field types' => array('c4m_domain'),
+    'c4m_content_organisation:c4m_block_organisation_about' => array(
+      'label' => t('About this organisation'),
     ),
   );
 }
 
 /**
- * Implements hook_field_formatter_view().
+ * Implements hook_theme().
  */
-function c4m_content_organisation_field_formatter_view(
-  $entity_type,
-  $entity,
-  $field,
-  $instance,
-  $langcode,
-  $items,
-  $display
+function c4m_content_organisation_theme() {
+  $theme['c4m_content_organisation_header_title'] = array(
+    'variables' => array(
+      'title' => '',
+      'tagline' => '',
+      'stage' => '',
+      'type' => '',
+      'status' => '',
+      'flag' => '',
+    ),
+    'path' => drupal_get_path('module', 'c4m_content_organisation') . '/theme',
+    'template' => 'c4m-content-organisation-header-title',
+  );
+
+  return $theme;
+}
+
+/**
+ * Implements hook_TYPE_alter().
+ *
+ * Using hook_c4m_offcanvas_trigger_label_left_alter().
+ */
+function c4m_content_organisation_c4m_offcanvas_trigger_label_left_alter(
+  &$trigger_label
 ) {
-  $element = array();
-  switch ($display['type']) {
-    case 'c4m_domain_default':
-      foreach ($items as $delta => $item) {
-        if (isset($item['domain'])) {
-          $element[$delta]['#markup'] = $item['domain'];
-        }
-      }
-      break;
-
-    case 'c4m_domain_icon':
-      foreach ($items as $delta => $item) {
-        if (isset($item['domain'])) {
-          $element[$delta]['#markup'] = '';
-          // Render the organisation icon when checkbox is checked.
-          if ($item['icon'] && isset($entity->c4m_icon)) {
-            $icons = field_get_items('node', $entity, 'c4m_icon');
-            if (!empty($icons)) {
-              $icon = field_view_value(
-                'node',
-                $entity,
-                'c4m_icon',
-                $icons[0],
-                array(
-                  'type' => 'image',
-                  'settings' => array(
-                    'image_style' => 'thumbnail',
-                  ),
-                )
-              );
-            }
-            $element[$delta]['#markup'] = render($icon);
-          }
-          $element[$delta]['#markup'] .= '<div class="c4m_domain">' . $item['domain'] . '</div>';
-        }
-      }
-      break;
-  }
-  return $element;
-}
-
-/**
- * Implements hook_ds_fields_info_alter().
- */
-function c4m_content_organisation_ds_fields_info_alter(&$fields, $entity_type) {
-  if (isset($fields['c4m_user_first_and_last_name']) &&
-    $user_fullname = &$fields['c4m_user_first_and_last_name']
-  ) {
-    $fields['c4m_user_first_and_last_name']['properties']['formatters']['user_with_icon'] = 'User first and last name with icon';
-    $fields['c4m_user_first_and_last_name']['properties']['formatters']['linked_user_with_icon'] = 'User first and last name with icon linked to profile';
+  if (arg(0) == 'organisations' && empty(arg(1))) {
+    $trigger_label['label'] = t('Filter results');
+    $trigger_label['icon'] = 'filter';
   }
 }
 
 /**
- * Get the organisation by a given email address.
- *
- * @param string $email
- *   The email address we want the organisation for.
- *
- * @return mixed
- *   Organisation node (if any).
+ * Implements hook_c4m_cta_block().
  */
-function c4m_content_organisation_get_organisation_by_email($email) {
-  $domain = explode('@', $email);
-  if (isset($domain[1]) && $domain = $domain[1]) {
-    $results = db_select('node', 'n');
-    $results->join('field_data_c4m_domain', 'd', 'n.nid = d.entity_id');
-    $results->fields('n', array('nid'));
-    $results->condition('d.c4m_domain_domain', $domain, '=');
-    $results->condition('d.c4m_domain_icon', 1, '=');
+function c4m_content_organisation_c4m_cta_block() {
+  global $user;
 
-    $nid = $results->execute()->fetchField();
-    if (!$nid) {
-      return NULL;
-    }
-
-    $organisation = node_load($nid);
-    return $organisation;
-  }
-}
-
-/**
- * Implements hook_node_view().
- */
-function c4m_content_organisation_node_view($node, $view_mode, $langcode) {
-  if ($view_mode !== 'full') {
+  // Only add items if there is an OG group.
+  if (!$group = c4m_og_current_group()) {
     return;
   }
 
-  if ($node->type !== 'organisation') {
+  // Prevent from 'group' nodes to run this logic.
+  if ($group->type != 'organisation' ) {
     return;
   }
 
-  drupal_goto('<front>');
-}
-
-/**
- * Get icon for the given organisation entity.
- *
- * @param object $organisation
- *   The organisation node we want to get the icon for.
- *
- * @return array
- *   Render array for the icon.
- */
-function c4m_content_organisation_get_icon($organisation) {
-  $icons = field_get_items('node', $organisation, 'c4m_icon');
-
-  if (empty($icons)) {
-    return array();
+  // A blocked (banned) user should not be able to see the CTA block.
+  $user_role = c4m_user_og_get_role_in_group($user, $group);
+  if ($user_role == 'blocked') {
+    return;
   }
 
-  $icon = field_view_value(
-    'node',
-    $organisation,
-    'c4m_icon',
-    $icons[0],
-    array(
-      'type' => 'image',
-      'settings' => array(
-        'image_style' => 'icon_small',
-      ),
-    )
-  );
-
-  return $icon;
-}
-
-/**
- * Get organisation icon, where it matches the given domain.
- *
- * @param string $email
- *   The email address we want the icon for (if any).
- *
- * @return array
- *   Render array for the icon.
- */
-function c4m_content_organisation_get_icon_by_email($email) {
-  $organisation = c4m_content_organisation_get_organisation_by_email($email);
-  if (!$organisation) {
-    return array();
+  $wrapper = entity_metadata_wrapper('node', $group);
+  // Do not present CTA block for archived group.
+  if ($wrapper->c4m_og_status->value() == 'archived') {
+    return;
   }
 
-  return c4m_content_organisation_get_icon($organisation);
-}
+  $items = array();
 
-/**
- * Get organisation type label.
- *
- * @param string $organisation_key
- *   Key of the organisation type.
- *
- * @return string
- *   Label of the organisation type.
- */
-function c4m_content_organisation_type_value($organisation_key) {
-  $fields = &drupal_static(__FUNCTION__);
-
-  if (!isset($fields)) {
-    $fields = field_info_fields();
-    $allowed_values = list_allowed_values($fields['c4m_organisation_type']);
+  if (!drupal_is_front_page() || user_is_anonymous()) {
+    return $items;
   }
 
-  if (isset($allowed_values[$organisation_key])) {
-    return $allowed_values[$organisation_key];
+  if ($item = c4m_user_og_follow_group_cta($group)) {
+    $items['follow'] = $item;
   }
 
-  return NULL;
+  return $items;
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  *
- * Add our own validation handler.
+ * Implemented for og_ui_add_users form. Checks and removes the Administrator
+ * role checkbox. This is required only for projects.
  */
-function c4m_content_organisation_form_organisation_node_form_alter(array &$form, array $form_state) {
-  $form['#validate'][] = 'c4m_content_organisation_form_organisation_node_form_validate';
+function c4m_content_organisation_form_og_ui_add_users_alter(&$form, &$form_state, $form_id) {
+  $group = entity_load_single($form['group_type']['#value'], $form['gid']['#value']);
+  list(,, $bundle) = entity_extract_ids($form['group_type']['#value'], $group);
+  if ($bundle !== 'organisation') {
+    return;
+  }
+
+  $role = c4m_og_user_role_load_by_name('administrator member', $bundle);
+  $form['og_user']['roles']['#default_value'] = [$role->rid];
+  $form['og_user']['roles']['#access'] = FALSE;
 }
 
 /**
- * Organisation node form validation handler.
+ * Implements hook_form_FORM_ID_alter().
  *
- * @param array $form
- *   Form render array.
- * @param array $form_state
- *   Form state array.
- *
- * @ingroup forms
+ * Implemented for _og_invite_answer_form form.
  */
-function c4m_content_organisation_form_organisation_node_form_validate(array $form, array $form_state) {
-  $values = $form_state['values'];
-
-  if (
-    isset($values['c4m_domain'][LANGUAGE_NONE]) &&
-    is_array($values['c4m_domain'][LANGUAGE_NONE]) &&
-    count($values['c4m_domain'][LANGUAGE_NONE])
-  ) {
-    $domains = $values['c4m_domain'][LANGUAGE_NONE];
-    foreach ($domains as $key => $domain) {
-      if (
-        isset($domain['c4m_domain']['domain']) &&
-        !empty($domain['c4m_domain']['domain'])
-      ) {
-        $domain = trim($domain['c4m_domain']['domain']);
-
-        // Check if the string starts with "@" and return error if so.
-        if (stripos($domain, '@') === 0) {
-          $form_key = 'c4m_domain][' . LANGUAGE_NONE . '][' . $key . '][c4m_domain][domain';
-          form_set_error($form_key, t('The domain name should not start with an "@".'));
-        }
-        // Use a fake mail address just for validation of the domain.
-        elseif (!valid_email_address('fake@' . $domain)) {
-          $form_key = 'c4m_domain][' . LANGUAGE_NONE . '][' . $key . '][c4m_domain][domain';
-          form_set_error($form_key, t('Not a valid domain name.'));
-        }
-      }
-    }
-  }
+function c4m_content_organisation_form__og_invite_answer_form_alter(&$form, &$form_state, $form_id) {
+  $form['#submit'][] = '_c4m_content_organisation_form__og_invite_answer_form_submit';
 }
+
+/**
+ * Submit handler for _og_invite_answer_form form.
+ *
+ * Adds administrator role for users accepting an invitation to a project.
+ */
+function _c4m_content_organisation_form__og_invite_answer_form_submit($form, &$form_state) {
+  global $user;
+  $answer = $form_state['values']['answer'];
+  if ($answer !== 'approve') {
+    return;
+  }
+  $group_type = $form_state['values']['group_type'];
+  $gid = $form_state['values']['gid'];
+  $group = entity_load_single($group_type, $gid);
+  list(,, $bundle) = entity_extract_ids($group_type, $group);
+  if ($bundle !== 'organisation') {
+    return;
+  }
+
+  $role = c4m_og_user_role_load_by_name('administrator member', $bundle);
+  og_role_grant($group_type, $gid, $user->uid, $role->rid);
+}
+

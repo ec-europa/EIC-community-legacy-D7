@@ -218,7 +218,7 @@ function c4m_og_invite_users_mail_tokens(array &$replacements, array $data, $opt
   $hash = og_invite_generate_hash($og_membership);
   $answer_link = url(og_invite_answer_path_by_hash($data['group']->type, $data['group']->nid, $hash, 'answer'), $options);
   // Need to pass the entity type, not bundle.
-  $answer_link = str_replace(array("/group/group/", "/group/project/", "/goup/event_site/"), "/group/node/", $answer_link);
+  $answer_link = str_replace(array("/group/group/", "/group/project/", "/goup/event_site/", "/goup/organisation/"), "/group/node/", $answer_link);
 
   $replacements['[personal:subject]'] = $data['subject'];
   $replacements['[user:member]'] = c4m_user_name($data['inviter']);

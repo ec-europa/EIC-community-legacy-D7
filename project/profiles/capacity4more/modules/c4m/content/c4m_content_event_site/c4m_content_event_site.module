@@ -136,7 +136,7 @@ function c4m_content_event_site_block_view($delta) {
  * Alter the Event Site creation form.
  */
 function c4m_content_event_site_form_event_site_node_form_alter(array &$form, array &$form_state) {
-  $type = 'project';
+  $type = 'event_site';
 
   _c4m_og_alter_group_form($form, $form_state, $type);
 
