@@ -518,8 +518,8 @@ function c4m_content_organisation_form_organisation_node_form_alter(array &$form
   }
 
   // Don't let access to fill in icon and domain fields.
-//  $form["c4m_icon"]["#access"] = FALSE;
-//  $form["c4m_domain"]["#access"] = FALSE;
+  $form["c4m_icon"]["#access"] = FALSE;
+  $form["c4m_domain"]["#access"] = FALSE;
 
 }
 

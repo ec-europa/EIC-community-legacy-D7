@@ -410,32 +410,32 @@ var jQuery = jQuery || {};
 
     };
 
-  /**
-   * Scroll to top functionality.
-   *
-   * @type {{attach: Drupal.behaviors.registration.attach}}
-   */
-  Drupal.behaviors.scrollToTop = {
-      attach: function (context, settings) {
-          var windowHeight = window.innerHeight;
+    /**
+     * Scroll to top functionality.
+     *
+     * @type {{attach: Drupal.behaviors.registration.attach}}
+     */
+    Drupal.behaviors.scrollToTop = {
+        attach: function (context, settings) {
+            var windowHeight = window.innerHeight;
 
-          $('.container--push .page-content').add(window).on('scroll', (function () {
-              if ($(this).scrollTop() > windowHeight / 2) {
-                  $("#scroll-top:hidden").stop(true, true).fadeIn();
-              }
-              else {
-                  $("#scroll-top").stop(true, true).fadeOut();
-              }
-          }));
-          $(function () {
-              $("#scroll-top").on("click", (function (e) {
-                  e.preventDefault();
-                  $("html, body, .container--push .page-content").animate({scrollTop: 0}, "2000");
-                  return false;
-              }));
-          });
-      }
-  };
+            $('.container--push .page-content').add(window).on('scroll', (function () {
+                if ($(this).scrollTop() > windowHeight / 2) {
+                    $("#scroll-top:hidden").stop(true, true).fadeIn();
+                }
+                else {
+                    $("#scroll-top").stop(true, true).fadeOut();
+                }
+            }));
+            $(function () {
+                $("#scroll-top").on("click", (function (e) {
+                    e.preventDefault();
+                    $("html, body, .container--push .page-content").animate({scrollTop: 0}, "2000");
+                    return false;
+                }));
+            });
+        }
+    };
 
     /**
      * Automatically focus the registration form on the mail field after page load.
@@ -449,15 +449,15 @@ var jQuery = jQuery || {};
      * Disable form buttons on AJAX calls and enable them when AJAX is completed.
      */
     $(document).ajaxStart((function () {
-        $(".form-submit").addClass("drupal-ajax-disabled").attr("disabled", "disabled");
-    })
+            $(".form-submit").addClass("drupal-ajax-disabled").attr("disabled", "disabled");
+        })
     ).ajaxComplete((function () {
-        $(".drupal-ajax-disabled").removeClass('drupal-ajax-disabled').each(function () {
-          if (!$(this).hasClass(/-disabled/)) {
-            $(this).removeAttr('disabled');
-          }
-        });
-      })
+            $(".drupal-ajax-disabled").removeClass('drupal-ajax-disabled').each(function () {
+                if (!$(this).hasClass(/-disabled/)) {
+                    $(this).removeAttr('disabled');
+                }
+            });
+        })
     );
 
     /**
@@ -631,178 +631,213 @@ var jQuery = jQuery || {};
         }
     }
 
-  Drupal.behaviors.disableSubmitUntilAllRequired = {
-    requiredImageFields: null,
-    emptyImageFields: null,
+    Drupal.behaviors.disableSubmitUntilAllRequired = {
+        requiredImageFields: null,
+        emptyImageFields: null,
 
-    requiredTextFields: null,
-    emptyTextFields: null,
+        requiredDragAndDropFields: null,
+        emptyDragAndDropFields: null,
 
-    requiredWidgetFields: null,
-    emptyWidgetFields: null,
+        requiredTextFields: null,
+        emptyTextFields: null,
 
-    requiredTopicFields: null,
-    emptyTopicFields: null,
+        requiredWidgetFields: null,
+        emptyWidgetFields: null,
 
-    submitButtons: null,
+        requiredAngularFields: null,
+        emptyAngularFields: null,
 
-    updateSubmitButtons: function () {
-      if (this.emptyTextFields || this.emptyWidgetFields || this.emptyImageFields || this.emptyTopicFields) {
-        this.submitButtons.addClass('form-disabled').attr('disabled', 'disabled');
-      }
-      else {
-        this.submitButtons.removeClass('form-disabled').each(function () {
-          if (!$(this).hasClass(/-disabled/)) {
-            $(this).removeAttr('disabled');
-          }
-        });
-      }
-    },
+        forms: null,
+        submitButtons: null,
 
-    checkTextFields: function () {
-      var emptyFields = false;
-      this.requiredTextFields.each(function () {
-        if ($(this).val() === '') {
-          if (($(this).prop("type") === 'textarea') && ($(this).parent().find('iframe'))) {
-            if ($(this).parent().find('iframe').contents().find("p").text() === '') {
-              emptyFields = true;
+        updateSubmitButtons: function () {
+            if (this.emptyImageFields || this.emptyDragAndDropFields || this.emptyTextFields || this.emptyWidgetFields || this.emptyAngularFields) {
+                if (!this.submitButtons.hasClass('form-disabled')) {
+                    this.submitButtons.closest('.form-actions').before('<p class="required-fields-message text-danger">' + Drupal.t('Please fill in required fields before submitting the form') + '</p>');
+                    this.submitButtons.addClass('form-disabled').attr('disabled', 'disabled');
+                }
             }
-          }
-          else {
-            emptyFields = true;
-          }
+            else {
+                this.submitButtons.removeClass('form-disabled').each(function () {
+                    if (!$(this).hasClass(/-disabled/)) {
+                        $(this).removeAttr('disabled');
+                        var $message = $(this).closest('.form-actions').prev();
+                        if ($message.hasClass('required-fields-message')) {
+                            $message.remove();
+                        }
+                    }
+                });
+            }
+        },
+
+        checkImageFields: function () {
+            var emptyFields = false;
+            this.requiredImageFields.each(function () {
+                var fid = $(this).find('input.fid');
+                if (fid.val() === '0') {
+                    emptyFields = true;
+                }
+            });
+
+            this.emptyImageFields = emptyFields;
+        },
+
+        checkDragAndDropFields: function () {
+            var emptyFields = false;
+            this.requiredDragAndDropFields.each(function () {
+                var fid = $(this).find("input[name$='[fid]']");
+                if (fid.val() === '0') {
+                    emptyFields = true;
+                }
+            });
+
+            this.emptyDragAndDropFields = emptyFields;
+        },
+
+        checkTextFields: function () {
+            var emptyFields = false;
+            this.requiredTextFields.each(function () {
+                if ($(this).val() === '' || $(this).val() === '_none' && $(this).prop('tagName').toLowerCase() === 'select') {
+                    if (($(this).prop("type") === 'textarea') && ($(this).parent().find('iframe'))) {
+                        if ($(this).parent().find('iframe').contents().find("p").text() === '') {
+                            emptyFields = true;
+                        }
+                    }
+                    else {
+                        emptyFields = true;
+                    }
+                }
+            });
+
+            this.emptyTextFields = emptyFields;
+        },
+
+        checkWidgetFields: function () {
+            var emptyFields = false;
+            this.requiredWidgetFields.each(function () {
+                if ($(this).val() === '') {
+                    emptyFields = true;
+                }
+            });
+
+            this.emptyWidgetFields = emptyFields;
+        },
+
+        checkAngularFields: function () {
+            var emptyFields = false;
+            this.requiredAngularFields.each(function () {
+                if ($(this).find('.selected-values > .ng-scope:not(.ng-hide)').length === 0) {
+                    emptyFields = true;
+                }
+            });
+
+            this.emptyAngularFields = emptyFields;
+        },
+
+        checkFields: function () {
+            this.checkImageFields();
+            this.checkDragAndDropFields();
+            this.checkTextFields();
+            this.checkWidgetFields();
+            this.checkAngularFields();
+        },
+
+        initializeFields: function () {
+            this.requiredImageFields = this.forms.find('.field-type-image').has('.form-required');
+            this.requiredDragAndDropFields = this.forms.find('.field-widget-dragndrop-upload-file').has('.form-required');
+            this.requiredTextFields = this.forms.find('.required');
+            this.requiredWidgetFields = this.forms.find('.required-checkbox');
+            this.requiredAngularFields = this.forms.find('.c4m_vocab_topic, .c4m_vocab_document_type').has('.form-required');
+            this.submitButtons = this.forms.find('.form-actions').find('.form-submit, .form-preview');
+
+            // Text fields.
+            this.requiredTextFields.on('input change', function () {
+                // @todo Only Text Fields are needed to be checked here.
+                Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
+                Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
+            });
+
+            // Widgets.
+            this.requiredWidgetFields.click(function () {
+                // @todo Only Widget Fields are needed to be checked here.
+                Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
+                Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
+            });
+
+            // Angular fields.
+            this.requiredAngularFields.click(function () {
+                // @todo Only Angular Fields are needed to be checked here.
+                Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
+                Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
+            });
+        },
+
+        attach: function (context) {
+            // Make sure the rest of the code is not executed on AJAX calls.
+            if (context !== document) {
+                // Initialize fields when fields get replaced, eg email field on
+                // registration form. Otherwise, for image fields, the tagName is FORM
+                // or the id is empty.
+                if ($(context).prop('tagName').toLowerCase() === 'div' && $(context).attr('id')) {
+                    this.initializeFields();
+                }
+                this.checkFields();
+                this.updateSubmitButtons();
+                return;
+            }
+
+            this.forms = $('form');
+            this.initializeFields();
+
+            // Initialize on page load after 1 sec. Allow Angular script to run.
+            setTimeout(function () {
+                Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
+                Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
+            }, 1000);
         }
-      });
+    };
 
-      this.emptyTextFields = emptyFields;
-    },
-
-    checkImageFields: function () {
-      var emptyFields = false;
-      this.requiredImageFields.each(function () {
-        if ($(this).find('input.fid').val() === '0') {
-          emptyFields = true;
+    Drupal.behaviors.disableSubmitButtons = {
+        attach: function (context) {
+            // We can target all forms not only form.node-form.
+            $('form', context).once('disableSubmitButtons', function () {
+                var $form = $(this);
+                $form.find('#edit-submit, #edit-draft, #edit-cancel, #edit-delete').click(function (e) {
+                    var el = $(this);
+                    el.after('<input type="hidden" name="' + el.attr('name') + '" value="' + el.attr('value') + '" />');
+                    return true;
+                });
+                $form.submit(function (e) {
+                    if (!e.isPropagationStopped()) {
+                        $form.find('#edit-submit, #edit-draft, #edit-cancel, #edit-delete').addClass('form-disabled').attr('disabled', 'disabled');
+                        $form.find("#edit-preview-changes").addClass("disabled-preview");
+                        return true;
+                    }
+                });
+            });
         }
-      });
-
-      this.emptyImageFields = emptyFields;
-    },
-
-    checkWidgetFields: function () {
-      var emptyFields = false;
-      this.requiredWidgetFields.each(function () {
-        if ($(this).val() === '') {
-          emptyFields = true;
-        }
-      });
-
-      this.emptyWidgetFields = emptyFields;
-    },
-
-    checkTopicFields: function () {
-      var emptyFields = false;
-      this.requiredTopicFields.each(function () {
-        if ($(this).find('.selected-values > .ng-scope:not(.ng-hide)').length === 0) {
-          emptyFields = true;
-        }
-      });
-
-      this.emptyTopicFields = emptyFields;
-    },
-
-    checkFields: function () {
-      this.checkWidgetFields();
-      this.checkImageFields();
-      this.checkTextFields();
-      this.checkTopicFields();
-    },
-
-    attach: function (context) {
-      // Make sure the rest of the code is not executed on AJAX calls.
-      if (context !== document) {
-        // @todo Only Image Fields are needed to be checked here.
-        this.checkFields();
-        return;
-      }
-
-      var forms = $('form');
-      this.requiredTextFields = forms.find('.required');
-      this.requiredImageFields = forms.find('.field-type-image').has('.form-required');
-      this.requiredWidgetFields = forms.find('.required-checkbox');
-      this.requiredTopicFields = forms.find('.c4m_vocab_topic').has('.form-required');
-      this.submitButtons = forms.find('.form-actions').find('.form-submit, .form-preview');
-
-      // Text fields.
-      this.requiredTextFields.change(function () {
-        // @todo Only Text Fields are needed to be checked here.
-        Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
-        Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
-      });
-
-      // Widgets.
-      this.requiredWidgetFields.click(function () {
-        // @todo Only Widget Fields are needed to be checked here.
-        Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
-        Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
-      });
-
-      // Topics.
-      this.requiredTopicFields.click(function () {
-        // @todo Only Topic Fields are needed to be checked here.
-        Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
-        Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
-      });
-
-      // Initialize on page load after 1 sec. Allow Angular script to run.
-      setTimeout(function () {
-        Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
-        Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
-      }, 1000);
-    }
-  };
-
-  Drupal.behaviors.disableSubmitButtons = {
-    attach: function (context) {
-      $('form.node-form', context).once('disableSubmitButtons', function () {
-        var $form = $(this);
-        $form.find('#edit-submit').click(function (e) {
-          var el = $(this);
-          el.after('<input type="hidden" name="' + el.attr('name') + '" value="' + el.attr('value') + '" />');
-          return true;
-        });
-        $form.submit(function (e) {
-          if (!e.isPropagationStopped()) {
-            $form.find('#edit-submit').addClass('form-disabled').attr("disabled", "disabled");
-            $form.find('#edit-cancel').addClass('form-disabled').attr("disabled", "disabled");
-            $form.find('#edit-delete').addClass('form-disabled').attr("disabled", "disabled");
-            $form.find("#edit-preview-changes").addClass("disabled-preview");
-            return true;
-          }
-        });
-      });
-    }
-  };
+    };
 
 })
 (jQuery);
 
 // https://github.com/NV/jquery-regexp-classes
 (function (hasClass) {
-  jQuery.fn.hasClass = function hasClassRegExp(selector) {
-    if (selector && typeof selector.test === "function") {
-      for (var i = 0, l = this.length; i < l; i++) {
-        var classNames = this[i].className.split(/\s+/);
-        for (var c = 0, cl = classNames.length; c < cl; c++) {
-          if (selector.test(classNames[c])) {
-            return true;
-          }
+    jQuery.fn.hasClass = function hasClassRegExp(selector) {
+        if (selector && typeof selector.test === "function") {
+            for (var i = 0, l = this.length; i < l; i++) {
+                var classNames = this[i].className.split(/\s+/);
+                for (var c = 0, cl = classNames.length; c < cl; c++) {
+                    if (selector.test(classNames[c])) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
-      }
-      return false;
+        else {
+            return hasClass.call(this, selector);
+        }
     }
-    else {
-      return hasClass.call(this, selector);
-    }
-  }
 
 })(jQuery.fn.hasClass);
