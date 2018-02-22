@@ -285,9 +285,9 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => NULL,
+        'module' => 'c4m_content_organisation',
         'settings' => array(),
-        'type' => NULL,
+        'type' => 'c4m_domain_icon',
         'weight' => 3,
       ),
       'featured_block' => array(
@@ -337,9 +337,9 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => NULL,
+      'module' => 'c4m_content_organisation',
       'settings' => array(),
-      'type' => NULL,
+      'type' => 'c4m_domain_field',
       'weight' => 20,
     ),
   );

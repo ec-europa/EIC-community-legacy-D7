@@ -6,9 +6,62 @@
  */
 
 /**
+ * Implements hook_field_schema().
+ */
+function c4m_content_organisation_field_schema($field) {
+  switch ($field['type']) {
+    case 'c4m_domain':
+      $columns = array(
+        'domain' => array(
+          'type'      => 'varchar',
+          'length'    => 255,
+          'not null'  => TRUE,
+        ),
+        'icon' => array(
+          'type'      => 'int',
+          'not null'  => FALSE,
+          'default'   => 0,
+        ),
+      );
+      break;
+  }
+  $columns += array(
+    'format' => array(
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => FALSE,
+    ),
+  );
+  return array(
+    'columns' => $columns,
+    'indexes' => array(
+      'format' => array('format'),
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'table' => 'filter_format',
+        'columns' => array('format' => 'format'),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_install().
+ */
+function c4m_content_organisation_install() {
+  module_enable(['telephone', 'email', 'c4m_vocab_nace', 'c4m_vocab_organisation_types', 'c4m_vocab_tr']);
+}
+/**
  * Implements hook_update_n().
  */
 function c4m_content_organisation_update_7001() {
+  // Enable module .
+  module_enable(['telephone']);
+  module_enable(['email']);
+  module_enable(['c4m_vocab_nace']);
+  module_enable(['c4m_vocab_organisation_types']);
+  module_enable(['c4m_vocab_tr']);
   // Set the pathauto for the content type trough the install hook.
   // It can then be overridden without interfere the feature settings.
   variable_set('pathauto_node_organisation_pattern', 'organisation/[node:title]');
