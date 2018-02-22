@@ -9,9 +9,6 @@
  * Implements hook_ctools_plugin_api().
  */
 function c4m_search_ctools_plugin_api($module = NULL, $api = NULL) {
-  if ('current_search' == $module && 'current_search' == $api) {
-    return array('version' => 1);
-  }
   if ($module == "facetapi" && $api == "facetapi_defaults") {
     return array("version" => "1");
   }
@@ -170,6 +167,7 @@ function c4m_search_default_search_api_index() {
               "feed" : "feed",
               "group" : "group",
               "news" : "news",
+              "organisation" : "organisation",
               "photo" : "photo",
               "photoalbum" : "photoalbum",
               "project" : "project",
@@ -177,6 +175,19 @@ function c4m_search_default_search_api_index() {
             }
           }
         },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_hierarchy" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : { "fields" : {
+              "c4m_vocab_geo:parents_all" : "c4m_vocab_geo:parents_all",
+              "og_vocabulary:parents_all" : "og_vocabulary:parents_all"
+            }
+          }
+        },
+        "search_api_alter_node_access" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_alter_node_status" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_attachments_alter_settings" : {
           "status" : 1,
@@ -187,19 +198,6 @@ function c4m_search_default_search_api_index() {
             "max_file_size" : "0",
             "excluded_private" : 1
           }
-        },
-        "search_api_alter_node_access" : { "status" : 1, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
-        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_hierarchy" : {
-          "status" : 1,
-          "weight" : "0",
-          "settings" : { "fields" : {
-              "c4m_vocab_geo:parents_all" : "c4m_vocab_geo:parents_all",
-              "og_vocabulary:parents_all" : "og_vocabulary:parents_all"
-            }
-          }
         }
       },
       "processors" : {
@@ -208,12 +206,10 @@ function c4m_search_default_search_api_index() {
           "weight" : "0",
           "settings" : { "fields" : {
               "title" : true,
-              "c4m_organised_by" : true,
               "c4m_cris_contract_number" : true,
               "c4m_cris_decision_number" : true,
-              "c4m_partner" : true,
               "c4m_source_of_funding" : true,
-              "body:value" : true
+              "c4m_organised_by" : true
             }
           }
         },
@@ -223,12 +219,10 @@ function c4m_search_default_search_api_index() {
           "settings" : {
             "fields" : {
               "title" : true,
-              "c4m_organised_by" : true,
               "c4m_cris_contract_number" : true,
               "c4m_cris_decision_number" : true,
-              "c4m_partner" : true,
               "c4m_source_of_funding" : true,
-              "body:value" : true
+              "c4m_organised_by" : true
             },
             "title" : 0,
             "alt" : 1,
@@ -240,12 +234,10 @@ function c4m_search_default_search_api_index() {
           "weight" : "15",
           "settings" : { "fields" : {
               "title" : true,
-              "c4m_organised_by" : true,
               "c4m_cris_contract_number" : true,
               "c4m_cris_decision_number" : true,
-              "c4m_partner" : true,
               "c4m_source_of_funding" : true,
-              "body:value" : true
+              "c4m_organised_by" : true
             }
           }
         },
@@ -255,12 +247,10 @@ function c4m_search_default_search_api_index() {
           "settings" : {
             "fields" : {
               "title" : true,
-              "c4m_organised_by" : true,
               "c4m_cris_contract_number" : true,
               "c4m_cris_decision_number" : true,
-              "c4m_partner" : true,
               "c4m_source_of_funding" : true,
-              "body:value" : true
+              "c4m_organised_by" : true
             },
             "spaces" : "[^\\\\p{L}\\\\p{N}]",
             "ignorable" : "[-]"
@@ -272,12 +262,10 @@ function c4m_search_default_search_api_index() {
           "settings" : {
             "fields" : {
               "title" : true,
-              "c4m_organised_by" : true,
               "c4m_cris_contract_number" : true,
               "c4m_cris_decision_number" : true,
-              "c4m_partner" : true,
               "c4m_source_of_funding" : true,
-              "body:value" : true
+              "c4m_organised_by" : true
             },
             "file" : "",
             "stopwords" : "but\\r\\ndid\\r\\nthe this that those\\r\\netc"

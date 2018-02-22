@@ -340,9 +340,6 @@ function _c4m_user_profile_my_organisations_top_bar() {
           'data-toggle' => array('dropdown'),
           'data-disabled' => TRUE,
         ),
-        'query' => array(
-          'filter' => 'organisations',
-        ),
         'html' => TRUE,
         'purl' => array(
           'disabled' => TRUE,
@@ -485,9 +482,6 @@ function _c4m_user_profile_render_explore_all_my_organisations_link() {
     'html' => TRUE,
     'purl' => array(
       'disabled' => TRUE,
-    ),
-    'query' => array(
-      'filter' => 'organisations',
     ),
   );
 

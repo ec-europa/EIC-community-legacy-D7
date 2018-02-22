@@ -62,14 +62,9 @@ function c4m_features_homepage_my_organisations_content_type_render($subtype, $c
   // should display the "show more" button.
   $display_see_more = $total_organisations > $max_organisations_to_display;
 
-  $link_options = array(
-    'query' => array(
-      'filter' => 'organisations',
-    )
-  );
   $variables = array(
     'organisations' => $rendered_organisations,
-    'link' => url('organisations', $link_options),
+    'link' => url('organisations'),
     'display_see_more' => $display_see_more,
   );
   $output = '';
