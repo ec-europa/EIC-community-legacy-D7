@@ -94,3 +94,36 @@ function _c4m_content_organisation_block_c4m_block_organisation_about() {
 
   return $block;
 }
+
+/**
+ * Callback for the c4m_block_organisation_as Activity Stream block.
+ */
+function _c4m_content_organisation_block_c4m_block_organisation_as() {
+  $block = array();
+
+  $request = array(
+    'group' => c4m_og_current_group()->nid,
+    'html' => TRUE,
+    // Sort the activity stream by timestamp descending.
+    'sort' => '-timestamp',
+    'hide_articles' => 1,
+    'group_context' => TRUE,
+  );
+
+  $activities = c4m_message_get_activities($request);
+  // Pass info via Drupal.settings.
+  $settings['c4m'] = [
+    'csrfToken' => drupal_get_token(\RestfulInterface::TOKEN_VALUE),
+    'activities' => $activities,
+    'data' => [
+      'request' => $request,
+      'entity' => ['group' => c4m_og_current_group()->nid],
+    ],
+  ];
+  drupal_add_js($settings, 'setting');
+  $block['subject'] = t('LATEST ACTIVITY');
+  $block['content'] = theme('c4m_message_activity_stream');
+  $block['content'] .= views_embed_view('group_activity_stream');
+
+  return $block;
+}

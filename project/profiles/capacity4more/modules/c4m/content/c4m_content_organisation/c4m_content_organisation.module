@@ -478,6 +478,11 @@ function c4m_content_organisation_block_info() {
     'cache' => DRUPAL_NO_CACHE,
   );
 
+  $blocks['c4m_block_organisation_as'] = array(
+    'info' => t('Organisation: Activity Stream'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
   $blocks['c4m_block_create_organisation'] = array(
     'info' => t('Organisation: Create Organisation'),
     'cache' => DRUPAL_NO_CACHE,
@@ -665,6 +670,9 @@ function c4m_content_organisation_c4m_content_project_blockreference_whitelist($
       'c4m_content_organisation:c4m_block_organisation_about' => array(
         'label' => t('About this organisation'),
       ),
+      'c4m_content_organisation:c4m_block_organisation_as' => array(
+        'label' => t('Organisation\'s Activity Stream'),
+      ),
       'c4m_content_project:c4m_block_project_groups' => array(
         'label' => t('Related groups'),
       ),
@@ -807,4 +815,3 @@ function _c4m_content_organisation_form__og_invite_answer_form_submit($form, &$f
   $role = c4m_og_user_role_load_by_name('administrator member', $bundle);
   og_role_grant($group_type, $gid, $user->uid, $role->rid);
 }
-
