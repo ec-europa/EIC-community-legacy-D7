@@ -258,7 +258,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'weight' => 38,
       ),
       'group_dashboard' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'addtocal',
         'settings' => array(
           'description' => array(
@@ -716,7 +716,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'weight' => 35,
       ),
       'group_dashboard' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_url',
@@ -1145,7 +1145,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'weight' => 34,
       ),
       'group_dashboard' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',

@@ -16,6 +16,7 @@ function c4m_content_event_site_user_default_permissions() {
     'name' => 'create event_site content',
     'roles' => array(
       'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
   );
@@ -34,6 +35,7 @@ function c4m_content_event_site_user_default_permissions() {
     'name' => 'delete own event_site content',
     'roles' => array(
       'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
   );
@@ -52,6 +54,7 @@ function c4m_content_event_site_user_default_permissions() {
     'name' => 'edit own event_site content',
     'roles' => array(
       'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
   );
