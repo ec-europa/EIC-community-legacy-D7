@@ -390,7 +390,7 @@ function c4m_content_event_site_ds_field_settings_info() {
           'lb-col' => TRUE,
           'ow' => TRUE,
           'ow-el' => 'span',
-          'ow-cl' => 'teaser-date',
+          'ow-cl' => 'teaser-date label-inline',
           'ow-def-cl' => FALSE,
           'ow-at' => '',
           'ow-def-at' => FALSE,
