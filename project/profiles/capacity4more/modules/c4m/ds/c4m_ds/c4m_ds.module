@@ -596,7 +596,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_event_start_icon'] = array(
     'title' => t('Event Icon with date in it'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('event|*'),
+    'ui_limit' => array('event|*', 'event_site|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_event_start_icon',
     'properties' => array(
