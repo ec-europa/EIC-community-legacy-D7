@@ -386,7 +386,8 @@ function c4m_helper_entity_label_info($entity) {
   $entity_type = $entity->type;
 
   // Allow content types to define subtypes (e.g. c4m_event_type).
-  $field_name = 'c4m_' . $entity->type . '_type';
+  $type = ($entity->type == 'event_site')? 'event' : $entity->type;
+  $field_name = 'c4m_' . $type . '_type';
 
   if (!empty($entity->$field_name)) {
     $object_wrapper = entity_metadata_wrapper('node', $entity);

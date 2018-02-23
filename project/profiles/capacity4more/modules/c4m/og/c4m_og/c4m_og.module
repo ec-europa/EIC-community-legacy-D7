@@ -2276,7 +2276,7 @@ function c4m_og_get_group_type(array $group, $subtype = FALSE) {
         return $group_node->c4m_project_type[LANGUAGE_NONE][0]['value'];
       }
       if ($subtype && $group_node->type == 'event_site') {
-        return 'project';
+        return 'Event site';
       }
       return $group_node->type;
     }
