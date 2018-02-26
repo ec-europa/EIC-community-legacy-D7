@@ -53,7 +53,12 @@
     }
   }
 
-  &.node-event {
+  &.node-event, &.node-event-site {
+    .label-primary {
+      i {
+        color: $color-white !important;
+      }
+    }
     .icon-wrapper {
       margin-top: 1em;
 
@@ -89,7 +94,7 @@
     }
   }
 
-  &.node-event:not(.view-mode-pinned_content) {
+  &.node-event:not(.view-mode-pinned_content), &.node-event-site:not(.view-mode-pinned_content) {
     .paragraphs-item-c4m-paragraph-system-block & {
       .field-name-title + .fa, .user-name, .posted-by, .teaser-date .label-inline {
         display: none;

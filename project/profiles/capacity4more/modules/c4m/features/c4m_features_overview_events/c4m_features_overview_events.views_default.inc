@@ -514,7 +514,7 @@ function c4m_features_overview_events_views_default_views() {
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Field: Groups (og_group_ref) */
+  /* Contextual filter: Content: Groups (og_group_ref) */
   $handler->display->display_options['arguments']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
   $handler->display->display_options['arguments']['og_group_ref_target_id']['table'] = 'og_membership';
   $handler->display->display_options['arguments']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
@@ -631,7 +631,7 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Field: Groups (og_group_ref) */
+  /* Contextual filter: Content: Groups (og_group_ref) */
   $handler->display->display_options['arguments']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
   $handler->display->display_options['arguments']['og_group_ref_target_id']['table'] = 'og_membership';
   $handler->display->display_options['arguments']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
@@ -792,6 +792,7 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['filters']['type']['ui_name'] = 'Only Event nodes';
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
+    'event_site' => 'event_site',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Search form */
@@ -850,6 +851,7 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['filters']['type']['ui_name'] = 'Only Event nodes';
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
+    'event_site' => 'event_site',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Search form */
@@ -993,6 +995,55 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['header']['area']['content'] = '<h2><i class="fa fa-clock-o"></i> Upcoming events</h2>';
   $handler->display->display_options['header']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['footer'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Node is published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'search_api_index_c4m_search_nodes';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['ui_name'] = 'Node is published';
+  $handler->display->display_options['filters']['status']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  /* Filter criterion: Only Event nodes */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_c4m_search_nodes';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['ui_name'] = 'Only Event nodes';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+    'event_site' => 'event_site',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Search form */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_c4m_search_nodes';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['ui_name'] = 'Search form';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'text';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    4 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Date: End date (indexed) */
+  $handler->display->display_options['filters']['c4m_datetime_end_value2']['id'] = 'c4m_datetime_end_value2';
+  $handler->display->display_options['filters']['c4m_datetime_end_value2']['table'] = 'search_api_index_c4m_search_nodes';
+  $handler->display->display_options['filters']['c4m_datetime_end_value2']['field'] = 'c4m_datetime_end_value2';
+  $handler->display->display_options['filters']['c4m_datetime_end_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['c4m_datetime_end_value2']['value'] = 'now';
+  /* Filter criterion: Indexed Node: Source Content */
+  $handler->display->display_options['filters']['c4m_source_entity']['id'] = 'c4m_source_entity';
+  $handler->display->display_options['filters']['c4m_source_entity']['table'] = 'search_api_index_c4m_search_nodes';
+  $handler->display->display_options['filters']['c4m_source_entity']['field'] = 'c4m_source_entity';
+  $handler->display->display_options['filters']['c4m_source_entity']['operator'] = 'empty';
   $handler->display->display_options['path'] = 'events';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Events';
@@ -1030,6 +1081,7 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['filters']['type']['ui_name'] = 'Only Event nodes';
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
+    'event_site' => 'event_site',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Search form */
