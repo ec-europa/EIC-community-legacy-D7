@@ -1758,6 +1758,80 @@ function c4m_content_event_site_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event_site-c4m_publish_date'.
+  $field_instances['node-event_site-c4m_publish_date'] = array(
+    'bundle' => 'event_site',
+    'deleted' => 0,
+    'description' => 'Set a date at which this event site should automatically be published.	',
+    'display' => array(
+      'block_list' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 25,
+      ),
+      'documents' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'group_dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'c4m_publish_date',
+    'label' => 'Publish date',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'd/m/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 33,
+    ),
+  );
+
   // Exported field_instance: 'node-event_site-group_group'.
   $field_instances['node-event_site-group_group'] = array(
     'bundle' => 'event_site',
@@ -1855,10 +1929,12 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Location Map');
   t('Organised by');
   t('Presentations');
+  t('Publish date');
   t('Regions & Countries');
   t('Registration Link');
   t('Related Groups');
   t('Right column content');
+  t('Set a date at which this event site should automatically be published.	');
   t('Small image used in lists.');
   t('Start and end date of the Event.');
   t('Status');
