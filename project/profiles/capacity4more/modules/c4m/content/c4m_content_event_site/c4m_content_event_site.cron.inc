@@ -9,6 +9,12 @@
  * Callback for the c4m_content_event_ite cron job.
  */
 function _c4m_content_event_site_cron() {
+  // Run script as Administrator.
+  global $user;
+  $original_user = $user;
+  $old_state = drupal_save_session(FALSE);
+  $user = user_load(1);
+
   // Get all the nodes that have the draft c4m_og_state.
   // If they have a Published date that is less that current time, change status to published and save node.
   $query = new EntityFieldQuery();
@@ -29,4 +35,8 @@ function _c4m_content_event_site_cron() {
     $event_site->c4m_og_status[LANGUAGE_NONE][0]['value'] = 'published';
     node_save($event_site);
   }
+
+  // Get back to original user state.
+  $user = $original_user;
+  drupal_save_session($old_state);
 }
