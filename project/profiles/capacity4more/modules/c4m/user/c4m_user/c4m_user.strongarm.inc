@@ -167,7 +167,7 @@ function c4m_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_403';
-  $strongarm->value = 'access-denied';
+  $strongarm->value = 'access-denied-ecas';
   $export['site_403'] = $strongarm;
 
   return $export;
