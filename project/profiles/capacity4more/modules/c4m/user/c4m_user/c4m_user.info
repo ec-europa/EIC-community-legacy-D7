@@ -19,7 +19,6 @@ dependencies[] = current_search
 dependencies[] = draggableviews
 dependencies[] = ds
 dependencies[] = elysia_cron
-dependencies[] = email_confirm
 dependencies[] = entity
 dependencies[] = entityreference
 dependencies[] = facetapi
