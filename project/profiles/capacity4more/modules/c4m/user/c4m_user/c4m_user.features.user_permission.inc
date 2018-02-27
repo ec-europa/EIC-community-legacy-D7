@@ -271,6 +271,15 @@ function c4m_user_user_default_permissions() {
     'module' => 'c4m_admin',
   );
 
+  // Exported permission: 'administer ecas'.
+  $permissions['administer ecas'] = array(
+    'name' => 'administer ecas',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'ecas',
+  );
+
   // Exported permission: 'administer elysia_cron'.
   $permissions['administer elysia_cron'] = array(
     'name' => 'administer elysia_cron',

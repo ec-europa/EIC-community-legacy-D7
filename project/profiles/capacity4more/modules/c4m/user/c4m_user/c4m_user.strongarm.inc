@@ -14,6 +14,55 @@ function c4m_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'ecas_default_mail_address';
+  $strongarm->value = 'unknown.mail@nomail.nodomain.tld';
+  $export['ecas_default_mail_address'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'ecas_login_message';
+  $strongarm->value = 'Logged in via EU Login as %ecas_username.';
+  $export['ecas_login_message'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'ecas_profile_core_ecas_email_field';
+  $strongarm->value = '';
+  $export['ecas_profile_core_ecas_email_field'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'ecas_profile_core_enabled';
+  $strongarm->value = 1;
+  $export['ecas_profile_core_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'ecas_profile_core_firstname_field';
+  $strongarm->value = 'c4m_first_name';
+  $export['ecas_profile_core_firstname_field'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'ecas_profile_core_lastname_field';
+  $strongarm->value = 'c4m_last_name';
+  $export['ecas_profile_core_lastname_field'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'ecas_warning_message';
+  $strongarm->value = 'Your account is not yet approved';
+  $export['ecas_warning_message'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_user__user';
   $strongarm->value = array(
     'view_modes' => array(
