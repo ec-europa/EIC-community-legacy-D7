@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_features_homepage_intro.context.inc
@@ -11,7 +12,7 @@ function c4m_features_homepage_intro_context_default_contexts() {
   $export = array();
 
   $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->disabled = TRUE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
   $context->name = 'c4m_homepage_intro_video';
   $context->description = 'Adds the capacity4more intro video to the header of the homepage for anonymous users.';
