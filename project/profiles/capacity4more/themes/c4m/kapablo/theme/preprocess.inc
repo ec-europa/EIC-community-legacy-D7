@@ -188,24 +188,10 @@ function kapablo_preprocess_page(&$variables) {
   if (in_array('authenticated user', array_values($user->roles))) {
     $variables['search_form'] = drupal_get_form('c4m_search_form');
   }
-  // For anonymous users, hide navigation + show welcome message + CTA.
+  // For anonymous users, hide navigation.
   else {
     unset($variables['primary_nav']);
     unset($variables['navigation']);
-
-    $welcome_message = t('Welcome to EIC Community! To get started, please authenticate.');
-    $cta = l(
-      t('Authenticate using EU Login'),
-      'ecas', array(
-        'attributes' => array(
-          'class' => array(
-            'btn',
-            'btn-warning',
-          )
-        )
-      )
-    );
-    $variables['page']['content'] = theme('kapablo_anonymous_welcome', array('welcome_message' => $welcome_message, 'cta' => $cta));
   }
 
   $variables['image_banner'] = kapablo_group_image_banner();
