@@ -43,7 +43,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'access content',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
@@ -129,7 +128,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'access site-wide contact form',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'contact',
@@ -159,19 +157,9 @@ function c4m_user_user_default_permissions() {
     'name' => 'access user profiles',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'user',
-  );
-
-  // Exported permission: 'add JS snippets for piwik'.
-  $permissions['add JS snippets for piwik'] = array(
-    'name' => 'add JS snippets for piwik',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
   );
 
   // Exported permission: 'add content to books'.
@@ -481,15 +469,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: 'administer piwik'.
-  $permissions['administer piwik'] = array(
-    'name' => 'administer piwik',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
-  );
-
   // Exported permission: 'administer redirects'.
   $permissions['administer redirects'] = array(
     'name' => 'administer redirects',
@@ -623,15 +602,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'panels',
-  );
-
-  // Exported permission: 'bypass email confirmation'.
-  $permissions['bypass email confirmation'] = array(
-    'name' => 'bypass email confirmation',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'email_confirm',
   );
 
   // Exported permission: 'bypass maxlength'.
@@ -806,7 +776,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'create messages',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'message',
@@ -1922,15 +1891,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'pathauto',
   );
 
-  // Exported permission: 'opt-in or out of tracking'.
-  $permissions['opt-in or out of tracking'] = array(
-    'name' => 'opt-in or out of tracking',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
-  );
-
   // Exported permission: 'perform unlimited index queries'.
   $permissions['perform unlimited index queries'] = array(
     'name' => 'perform unlimited index queries',
@@ -2220,15 +2180,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'node_gallery_api',
   );
 
-  // Exported permission: 'use PHP for tracking visibility'.
-  $permissions['use PHP for tracking visibility'] = array(
-    'name' => 'use PHP for tracking visibility',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
-  );
-
   // Exported permission: 'use ctools import'.
   $permissions['use ctools import'] = array(
     'name' => 'use ctools import',
@@ -2316,7 +2267,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'use search_api_sorts',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'search_api_sorts',

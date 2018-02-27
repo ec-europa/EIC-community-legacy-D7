@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_user_bar.context.inc
@@ -17,9 +18,9 @@ function c4m_user_bar_context_default_contexts() {
   $context->description = 'Sitewide context (always active)';
   $context->tag = 'cap4more - Sitewide';
   $context->conditions = array(
-    'sitewide' => array(
+    'user' => array(
       'values' => array(
-        1 => 1,
+        'authenticated user' => 'authenticated user',
       ),
     ),
   );
