@@ -65,4 +65,9 @@ function c4m_content_organisation_update_7001() {
   // Set the pathauto for the content type trough the install hook.
   // It can then be overridden without interfere the feature settings.
   variable_set('pathauto_node_organisation_pattern', 'organisation/[node:title]');
+
+  // Remove old instance of organisation type field.
+  if ($instance = field_info_instance('node', 'c4m_organisation_type', 'organisation')) {
+    field_delete_instance($instance);
+  }
 }

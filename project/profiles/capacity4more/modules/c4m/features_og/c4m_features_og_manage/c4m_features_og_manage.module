@@ -911,7 +911,7 @@ function c4m_features_og_manage_organisation_details() {
   );
 
   // The event type.
-  $event_type = $wrapper->field_c4m_organisation_type->value();
+  $event_type = $wrapper->c4m_organisations_type->value();
   if (!empty($event_type)) {
     $details['event_type'] = $event_type;
   }

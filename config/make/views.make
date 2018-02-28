@@ -5,6 +5,7 @@ api = 2
 
 projects[views][subdir] = "contrib"
 projects[views][version] = "3.14"
+projects[views][patch][] = "https://www.drupal.org/files/issues/2331209-4-views-7.x-3.x-undefined-index.patch"
 
 projects[views_bulk_operations][subdir] = "contrib"
 projects[views_bulk_operations][version] = "3.3"

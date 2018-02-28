@@ -653,7 +653,6 @@ var jQuery = jQuery || {};
         updateSubmitButtons: function () {
             if (this.emptyImageFields || this.emptyDragAndDropFields || this.emptyTextFields || this.emptyWidgetFields || this.emptyAngularFields) {
                 if (!this.submitButtons.hasClass('form-disabled')) {
-                    this.submitButtons.closest('.form-actions').before('<p class="required-fields-message text-danger">' + Drupal.t('Please fill in required fields before submitting the form') + '</p>');
                     this.submitButtons.addClass('form-disabled').attr('disabled', 'disabled');
                 }
             }

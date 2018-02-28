@@ -52,13 +52,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_c4m_contact_persons'.
-  $field_bases['field_c4m_contact_persons'] = array(
+  // Exported field_base: 'c4m_contact_persons'.
+  $field_bases['c4m_contact_persons'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_contact_persons',
+    'field_name' => 'c4m_contact_persons',
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -85,13 +85,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_c4m_customers'.
-  $field_bases['field_c4m_customers'] = array(
+  // Exported field_base: 'c4m_customers'.
+  $field_bases['c4m_customers'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_customers',
+    'field_name' => 'c4m_customers',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'paragraphs',
@@ -100,13 +100,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'paragraphs',
   );
 
-  // Exported field_base: 'field_c4m_date_est'.
-  $field_bases['field_c4m_date_est'] = array(
+  // Exported field_base: 'c4m_date_est'.
+  $field_bases['c4m_date_est'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_date_est',
+    'field_name' => 'c4m_date_est',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'date',
@@ -129,13 +129,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_c4m_email'.
-  $field_bases['field_c4m_email'] = array(
+  // Exported field_base: 'c4m_email'.
+  $field_bases['c4m_email'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_email',
+    'field_name' => 'c4m_email',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'email',
@@ -144,13 +144,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_c4m_linkedin'.
-  $field_bases['field_c4m_linkedin'] = array(
+  // Exported field_base: 'c4m_linkedin'.
+  $field_bases['c4m_linkedin'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_linkedin',
+    'field_name' => 'c4m_linkedin',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'link',
@@ -173,13 +173,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_c4m_looking_for'.
-  $field_bases['field_c4m_looking_for'] = array(
+  // Exported field_base: 'c4m_looking_for'.
+  $field_bases['c4m_looking_for'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_looking_for',
+    'field_name' => 'c4m_looking_for',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -201,13 +201,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_c4m_offering'.
-  $field_bases['field_c4m_offering'] = array(
+  // Exported field_base: 'c4m_offering'.
+  $field_bases['c4m_offering'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_offering',
+    'field_name' => 'c4m_offering',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -229,13 +229,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_c4m_organisation_size'.
-  $field_bases['field_c4m_organisation_size'] = array(
+  // Exported field_base: 'c4m_organisation_size'.
+  $field_bases['c4m_organisation_size'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_organisation_size',
+    'field_name' => 'c4m_organisation_size',
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -257,13 +257,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_c4m_organisation_type'.
-  $field_bases['field_c4m_organisation_type'] = array(
+  // Exported field_base: 'c4m_organisations_type'.
+  $field_bases['c4m_organisations_type'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_organisation_type',
+    'field_name' => 'c4m_organisations_type',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -285,13 +285,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_c4m_phone'.
-  $field_bases['field_c4m_phone'] = array(
+  // Exported field_base: 'c4m_phone'.
+  $field_bases['c4m_phone'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_phone',
+    'field_name' => 'c4m_phone',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'telephone',
@@ -300,13 +300,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'telephone',
   );
 
-  // Exported field_base: 'field_c4m_product_service_type'.
-  $field_bases['field_c4m_product_service_type'] = array(
+  // Exported field_base: 'c4m_product_service_type'.
+  $field_bases['c4m_product_service_type'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_product_service_type',
+    'field_name' => 'c4m_product_service_type',
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -325,13 +325,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_c4m_qualitative_attributes'.
-  $field_bases['field_c4m_qualitative_attributes'] = array(
+  // Exported field_base: 'c4m_qualitative_attributes'.
+  $field_bases['c4m_qualitative_attributes'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_qualitative_attributes',
+    'field_name' => 'c4m_qualitative_attributes',
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -344,13 +344,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_c4m_target_markets'.
-  $field_bases['field_c4m_target_markets'] = array(
+  // Exported field_base: 'c4m_target_markets'.
+  $field_bases['c4m_target_markets'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_target_markets',
+    'field_name' => 'c4m_target_markets',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -372,13 +372,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_c4m_vocab_geo_selling'.
-  $field_bases['field_c4m_vocab_geo_selling'] = array(
+  // Exported field_base: 'c4m_vocab_geo_selling'.
+  $field_bases['c4m_vocab_geo_selling'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_vocab_geo_selling',
+    'field_name' => 'c4m_vocab_geo_selling',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -400,13 +400,13 @@ function c4m_content_organisation_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_c4m_youtube'.
-  $field_bases['field_c4m_youtube'] = array(
+  // Exported field_base: 'c4m_youtube'.
+  $field_bases['c4m_youtube'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_youtube',
+    'field_name' => 'c4m_youtube',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'link',

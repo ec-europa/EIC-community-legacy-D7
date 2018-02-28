@@ -130,16 +130,16 @@ function c4m_content_organisation_ds_layout_settings_info() {
         0 => 'c4m_link',
         1 => 'c4m_facebook',
         2 => 'c4m_twitter',
-        3 => 'field_c4m_youtube',
-        4 => 'field_c4m_linkedin',
+        3 => 'c4m_youtube',
+        4 => 'c4m_linkedin',
       ),
     ),
     'fields' => array(
       'c4m_link' => 'ds_content',
       'c4m_facebook' => 'ds_content',
       'c4m_twitter' => 'ds_content',
-      'field_c4m_youtube' => 'ds_content',
-      'field_c4m_linkedin' => 'ds_content',
+      'c4m_youtube' => 'ds_content',
+      'c4m_linkedin' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(

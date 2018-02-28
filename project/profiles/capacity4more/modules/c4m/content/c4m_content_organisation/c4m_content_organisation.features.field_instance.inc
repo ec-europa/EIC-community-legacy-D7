@@ -1343,8 +1343,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_contact_persons'.
-  $field_instances['node-organisation-field_c4m_contact_persons'] = array(
+  // Exported field_instance: 'node-organisation-c4m_contact_persons'.
+  $field_instances['node-organisation-c4m_contact_persons'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'default_value_function' => '',
@@ -1382,7 +1382,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_contact_persons',
+    'field_name' => 'c4m_contact_persons',
     'label' => 'Contact persons',
     'required' => 0,
     'settings' => array(
@@ -1406,8 +1406,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_customers'.
-  $field_instances['node-organisation-field_c4m_customers'] = array(
+  // Exported field_instance: 'node-organisation-c4m_customers'.
+  $field_instances['node-organisation-c4m_customers'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1443,7 +1443,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_customers',
+    'field_name' => 'c4m_customers',
     'label' => 'Customers',
     'required' => 0,
     'settings' => array(
@@ -1476,8 +1476,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_date_est'.
-  $field_instances['node-organisation-field_c4m_date_est'] = array(
+  // Exported field_instance: 'node-organisation-c4m_date_est'.
+  $field_instances['node-organisation-c4m_date_est'] = array(
     'bundle' => 'organisation',
     'deleted' => 0,
     'description' => 'Period in which the organisation is active.',
@@ -1517,7 +1517,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_date_est',
+    'field_name' => 'c4m_date_est',
     'label' => 'Date of establishment',
     'required' => 0,
     'settings' => array(
@@ -1544,8 +1544,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_email'.
-  $field_instances['node-organisation-field_c4m_email'] = array(
+  // Exported field_instance: 'node-organisation-c4m_email'.
+  $field_instances['node-organisation-c4m_email'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1579,7 +1579,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_email',
+    'field_name' => 'c4m_email',
     'label' => 'Email',
     'required' => 0,
     'settings' => array(
@@ -1596,8 +1596,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_linkedin'.
-  $field_instances['node-organisation-field_c4m_linkedin'] = array(
+  // Exported field_instance: 'node-organisation-c4m_linkedin'.
+  $field_instances['node-organisation-c4m_linkedin'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1632,7 +1632,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_linkedin',
+    'field_name' => 'c4m_linkedin',
     'label' => 'LinkedIn',
     'required' => 0,
     'settings' => array(
@@ -1667,8 +1667,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_looking_for'.
-  $field_instances['node-organisation-field_c4m_looking_for'] = array(
+  // Exported field_instance: 'node-organisation-c4m_looking_for'.
+  $field_instances['node-organisation-c4m_looking_for'] = array(
     'bundle' => 'organisation',
     'deleted' => 0,
     'description' => 'Services and Products looking for ',
@@ -1701,7 +1701,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_looking_for',
+    'field_name' => 'c4m_looking_for',
     'label' => 'Looking for',
     'required' => 0,
     'settings' => array(
@@ -1716,8 +1716,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_offering'.
-  $field_instances['node-organisation-field_c4m_offering'] = array(
+  // Exported field_instance: 'node-organisation-c4m_offering'.
+  $field_instances['node-organisation-c4m_offering'] = array(
     'bundle' => 'organisation',
     'deleted' => 0,
     'description' => 'Services and Products offered',
@@ -1750,7 +1750,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_offering',
+    'field_name' => 'c4m_offering',
     'label' => 'Offering',
     'required' => 0,
     'settings' => array(
@@ -1765,8 +1765,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_organisation_size'.
-  $field_instances['node-organisation-field_c4m_organisation_size'] = array(
+  // Exported field_instance: 'node-organisation-c4m_organisation_size'.
+  $field_instances['node-organisation-c4m_organisation_size'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1800,7 +1800,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_organisation_size',
+    'field_name' => 'c4m_organisation_size',
     'label' => 'Organisation size',
     'required' => 1,
     'settings' => array(
@@ -1817,8 +1817,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_organisation_type'.
-  $field_instances['node-organisation-field_c4m_organisation_type'] = array(
+  // Exported field_instance: 'node-organisation-c4m_organisations_type'.
+  $field_instances['node-organisation-c4m_organisations_type'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1852,7 +1852,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_organisation_type',
+    'field_name' => 'c4m_organisations_type',
     'label' => 'Organisation type(s)',
     'required' => 1,
     'settings' => array(
@@ -1867,8 +1867,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_phone'.
-  $field_instances['node-organisation-field_c4m_phone'] = array(
+  // Exported field_instance: 'node-organisation-c4m_phone'.
+  $field_instances['node-organisation-c4m_phone'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1902,7 +1902,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_phone',
+    'field_name' => 'c4m_phone',
     'label' => 'Phone',
     'required' => 0,
     'settings' => array(
@@ -1920,8 +1920,8 @@ function c4m_content_organisation_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-organisation-field_c4m_product_service_type'.
-  $field_instances['node-organisation-field_c4m_product_service_type'] = array(
+  // 'node-organisation-c4m_product_service_type'.
+  $field_instances['node-organisation-c4m_product_service_type'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1955,7 +1955,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_product_service_type',
+    'field_name' => 'c4m_product_service_type',
     'label' => 'Product/service type',
     'required' => 0,
     'settings' => array(
@@ -1971,8 +1971,8 @@ function c4m_content_organisation_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-organisation-field_c4m_qualitative_attributes'.
-  $field_instances['node-organisation-field_c4m_qualitative_attributes'] = array(
+  // 'node-organisation-c4m_qualitative_attributes'.
+  $field_instances['node-organisation-c4m_qualitative_attributes'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2006,7 +2006,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_qualitative_attributes',
+    'field_name' => 'c4m_qualitative_attributes',
     'label' => 'Qualitative attributes',
     'required' => 0,
     'settings' => array(
@@ -2054,8 +2054,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_target_markets'.
-  $field_instances['node-organisation-field_c4m_target_markets'] = array(
+  // Exported field_instance: 'node-organisation-c4m_target_markets'.
+  $field_instances['node-organisation-c4m_target_markets'] = array(
     'bundle' => 'organisation',
     'deleted' => 0,
     'description' => 'Select the target market(s) for the organisation',
@@ -2088,7 +2088,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_target_markets',
+    'field_name' => 'c4m_target_markets',
     'label' => 'Target markets',
     'required' => 0,
     'settings' => array(
@@ -2103,8 +2103,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_vocab_geo_selling'.
-  $field_instances['node-organisation-field_c4m_vocab_geo_selling'] = array(
+  // Exported field_instance: 'node-organisation-c4m_vocab_geo_selling'.
+  $field_instances['node-organisation-c4m_vocab_geo_selling'] = array(
     'bundle' => 'organisation',
     'deleted' => 0,
     'description' => 'Country(ies) the organisation is selling to',
@@ -2137,7 +2137,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_vocab_geo_selling',
+    'field_name' => 'c4m_vocab_geo_selling',
     'label' => 'Countries selling to',
     'required' => 0,
     'settings' => array(
@@ -2152,8 +2152,8 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_c4m_youtube'.
-  $field_instances['node-organisation-field_c4m_youtube'] = array(
+  // Exported field_instance: 'node-organisation-c4m_youtube'.
+  $field_instances['node-organisation-c4m_youtube'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2188,7 +2188,7 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_c4m_youtube',
+    'field_name' => 'c4m_youtube',
     'label' => 'YouTube',
     'required' => 0,
     'settings' => array(
