@@ -145,6 +145,17 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
   if (is_null($form['nid']['#value'])) {
     $form['c4m_og_status']['#access'] = FALSE;
   }
+
+  // Show/Hide Publish date field based on value of Status field.
+  $form['c4m_publish_date']['#access'] = FALSE;
+  if ($form['c4m_og_status']['#access'] == TRUE) {
+    $form['c4m_publish_date']['#access'] = TRUE;
+    $form['c4m_publish_date']['#states'] = array(
+      'visible' => array(
+        'select[name="c4m_og_status[und]"]' => array('value' => 'draft'),
+      ),
+    );
+  }
 }
 
 /**
@@ -247,12 +258,36 @@ function c4m_content_event_site_get_owned_event_sites_count($uid) {
 function c4m_content_event_site_c4m_helper_entity_label_info() {
   return array(
     'event_site' => array(
-      'article' => t('a'),
-      'singular' => t('event_site'),
-      'plural' => t('event_sites'),
+      'article' => t('an'),
+      'singular' => t('event site'),
+      'plural' => t('event sites'),
+      'insert action' => t('added a new Event Site'),
+      'update action' => t('updated the Event Site'),
+      'icon' => 'fa-calendar',
+    ),
+    'event_site-event' => array(
+      'article' => t('an'),
+      'singular' => t('event site'),
+      'plural' => t('event sites'),
       'insert action' => t('created a new event site'),
       'update action' => t('updated the event site'),
+      'icon' => 'fa-calendar',
+    ),
+    'event_site-meeting' => array(
+      'article' => t('an'),
+      'singular' => t('event site meeting'),
+      'plural' => t('event site meetings'),
+      'insert action' => t('created a new meeting event site'),
+      'update action' => t('updated the meeting event site'),
       'icon' => 'fa-users',
+    ),
+    'event_site-learning' => array(
+      'article' => t('an'),
+      'singular' => t('learning event site'),
+      'plural' => t('learning event sites'),
+      'insert action' => t('created a new learning event site'),
+      'update action' => t('updated the learning event site'),
+      'icon' => 'fa-university',
     ),
   );
 }
@@ -462,4 +497,12 @@ function c4m_content_event_site_menu_link_insert($link) {
   // Disable by default the Wiki link for Event Sites.
   $link['hidden'] = 1;
   menu_link_save($link);
+}
+
+/**
+ * Implements hook_cron().
+ */
+function c4m_content_event_site_cron() {
+  module_load_include('inc', 'c4m_content_event_site', 'c4m_content_event_site.cron');
+  _c4m_content_event_site_cron();
 }
