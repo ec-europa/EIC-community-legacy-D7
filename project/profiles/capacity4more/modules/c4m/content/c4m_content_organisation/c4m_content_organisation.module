@@ -673,9 +673,6 @@ function c4m_content_organisation_c4m_content_project_blockreference_whitelist($
       'c4m_content_organisation:c4m_block_organisation_as' => array(
         'label' => t('Organisation\'s Activity Stream'),
       ),
-      'c4m_content_project:c4m_block_project_groups' => array(
-        'label' => t('Related groups'),
-      ),
       'views:c4m_project_news-block' => array(
         'label' => t('Latest news'),
       ),
