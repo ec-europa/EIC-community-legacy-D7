@@ -43,6 +43,16 @@ function kapablo_theme() {
     ),
   );
 
+  $theme['kapablo_anonymous_welcome'] = array(
+    'template' => 'kapablo_anonymous_welcome',
+    'path' => drupal_get_path('theme', 'kapablo') . '/templates',
+    'type' => 'theme',
+    'variables' => array(
+      'welcome_message' => NULL,
+      'cta' => NULL,
+    ),
+  );
+
   return $theme;
 }
 

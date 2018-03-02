@@ -14,7 +14,6 @@ dependencies[] = campaignmonitor
 dependencies[] = context
 dependencies[] = ctools
 dependencies[] = ds
-dependencies[] = email_confirm
 dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = field_group
