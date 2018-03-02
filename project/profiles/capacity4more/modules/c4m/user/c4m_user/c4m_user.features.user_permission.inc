@@ -43,7 +43,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'access content',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
@@ -129,7 +128,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'access site-wide contact form',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'contact',
@@ -159,7 +157,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'access user profiles',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'user',
@@ -281,6 +278,15 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'c4m_admin',
+  );
+
+  // Exported permission: 'administer ecas'.
+  $permissions['administer ecas'] = array(
+    'name' => 'administer ecas',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'ecas',
   );
 
   // Exported permission: 'administer elysia_cron'.
@@ -625,15 +631,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'panels',
   );
 
-  // Exported permission: 'bypass email confirmation'.
-  $permissions['bypass email confirmation'] = array(
-    'name' => 'bypass email confirmation',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'email_confirm',
-  );
-
   // Exported permission: 'bypass maxlength'.
   $permissions['bypass maxlength'] = array(
     'name' => 'bypass maxlength',
@@ -806,7 +803,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'create messages',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'message',
@@ -2316,7 +2312,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'use search_api_sorts',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'search_api_sorts',

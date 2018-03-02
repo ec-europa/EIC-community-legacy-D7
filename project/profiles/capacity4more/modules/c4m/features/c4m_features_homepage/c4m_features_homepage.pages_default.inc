@@ -28,7 +28,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   );
   $page->default_handlers = array();
   $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->disabled = TRUE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_c4m_homepage_panel_context_2';
   $handler->task = 'page';
@@ -823,7 +823,9 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->type = 'activity_stream';
   $pane->subtype = 'activity_stream';
   $pane->shown = TRUE;
-  $pane->access = array();
+  $pane->access = array(
+    'logic' => 'and',
+  );
   $pane->configuration = array(
     'override_title' => 1,
     'override_title_text' => 'Latest activity',

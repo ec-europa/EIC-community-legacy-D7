@@ -69,6 +69,8 @@ function kapablo_preprocess_message(&$variables) {
  * Implements theme_preprocess_block().
  */
 function kapablo_preprocess_block(&$variables) {
+  global $user;
+
   if (isset($variables['elements']['#block']->bid) && $variables['elements']['#block']->bid == 'og_menu-og_single_menu_block') {
     // This block is the OG Menu. Add the tpl to the suggested filename list:
     $variables['theme_hook_suggestions'][] = 'block__menu__c4m_og_menu';
@@ -101,17 +103,20 @@ function kapablo_preprocess_block(&$variables) {
         )
       );
 
-      $form = drupal_get_form(
-        'c4m_search_redirect_form',
-        $redirect_url,
-        NULL,
-        t(
-          'Search in @group_type...',
-          array('@group_type' => c4m_og_get_group_type(array('gid' => $gid)))
-        )
-      );
+      // Only for authenticated users.
+      if (in_array('authenticated user', array_values($user->roles))) {
+        $form = drupal_get_form(
+          'c4m_search_redirect_form',
+          $redirect_url,
+          NULL,
+          t(
+            'Search in @group_type...',
+            array('@group_type' => c4m_og_get_group_type(array('gid' => $gid)))
+          )
+        );
 
-      $variables['search_form'] = $form;
+        $variables['search_form'] = $form;
+      }
 
       break;
 
@@ -142,6 +147,7 @@ function kapablo_preprocess_views_view(&$vars) {
  * @see page--og--project.tpl.php
  */
 function kapablo_preprocess_page(&$variables) {
+  global $user;
 
   drupal_add_js(
     '//ec.europa.eu/wel/cookie-consent/consent.js',
@@ -174,8 +180,15 @@ function kapablo_preprocess_page(&$variables) {
 
   $variables['front_page'] = url('<front>', array('purl' => array('disabled' => TRUE)));
 
-  // Add search form.
-  $variables['search_form'] = drupal_get_form('c4m_search_form');
+  // Add search form (only for authenticated users).
+  if (in_array('authenticated user', array_values($user->roles))) {
+    $variables['search_form'] = drupal_get_form('c4m_search_form');
+  }
+  // For anonymous users, hide navigation.
+  else {
+    unset($variables['primary_nav']);
+    unset($variables['navigation']);
+  }
 
   $variables['image_banner'] = kapablo_group_image_banner();
   $variables['image_banner_background'] = kapablo_group_image_banner_background();

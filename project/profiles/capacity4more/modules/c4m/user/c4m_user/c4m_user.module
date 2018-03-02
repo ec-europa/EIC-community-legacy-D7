@@ -676,6 +676,10 @@ function c4m_user_menu() {
     'page callback' => 'c4m_user_access_denied',
     'access callback' => 'user_is_anonymous',
   );
+  $items['access-denied-ecas'] = array(
+    'page callback' => 'c4m_user_access_denied_ecas',
+    'access callback' => 'user_is_anonymous',
+  );
 
   return $items;
 }
@@ -691,6 +695,35 @@ function c4m_user_access_denied() {
     // Display login form for anonymous users.
     $form = drupal_get_form('user_login');
     return $form;
+  }
+  else {
+    // Access denied message for authenticated users.
+    drupal_access_denied();
+    drupal_exit();
+  }
+}
+
+/**
+ * Callback providing tailored access denied behaviour with ECAS authentication.
+ *
+ * @return array|null
+ *   Return login form if user is visitor, access denied if user is logged in.
+ */
+function c4m_user_access_denied_ecas() {
+  if (user_is_anonymous()) {
+    $welcome_message = t('Welcome to EIC Community! To get started, please authenticate.');
+    $cta = l(
+      t('Authenticate using EU Login'),
+      'ecas', array(
+        'attributes' => array(
+          'class' => array(
+            'btn',
+            'btn-warning',
+          )
+        )
+      )
+    );
+    return theme('kapablo_anonymous_welcome', array('welcome_message' => $welcome_message, 'cta' => $cta));
   }
   else {
     // Access denied message for authenticated users.

@@ -336,6 +336,7 @@
   <?php endif; ?>
 
 
+  <?php if (!empty($page['footer_top'])): ?>
   <div id="footer-top-wrapper">
     <div class="container">
       <div class="row">
@@ -345,8 +346,10 @@
       </div>
     </div>
   </div>
+  <?php endif; ?>
 
 
+  <?php if (!empty($page['footer_bottom'])): ?>
   <div id="footer-bottom-wrapper">
     <div class="container">
       <div class="row">
@@ -356,4 +359,6 @@
       </div>
     </div>
   </div>
+  <?php endif; ?>
+
 </div>
