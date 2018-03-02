@@ -751,6 +751,10 @@ function c4m_user_menu_alter(&$items) {
     'access callback' => 'c4m_user_contact_form_access',
     'access arguments' => array(1),
   );
+
+  // Don't let users access Register and Password recovery pages.
+  $items['user/register']['access callback'] = FALSE;
+  $items['user/password']['access callback'] = FALSE;
 }
 
 /**
@@ -1565,6 +1569,7 @@ function c4m_user_form_alter(&$form, &$form_state, $form_id) {
     '#prefix' => '<p class="text-small text-muted">',
     '#suffix' => '</p>',
   );
+  $form['#validate'][] = 'c4m_user_login_administrator_validate';
 }
 
 /**
@@ -1604,4 +1609,21 @@ function c4m_user_is_site_admin($user = NULL) {
   $site_admin_role = user_role_load_by_name('administrator');
 
   return user_has_role($site_admin_role->rid, $user);
+}
+
+/**
+ * Custom validator for login. Allows only administrator users to login.
+ */
+function c4m_user_login_administrator_validate($form, &$form_state) {
+  $user = user_load($form_state['uid']);
+
+  $access_granted = in_array('administrator', $user->roles);
+  if ($access_granted) {
+    return TRUE;
+  }
+  else {
+    form_set_error('', t('Only site administrators can login.'));
+    return FALSE;
+  }
+
 }
