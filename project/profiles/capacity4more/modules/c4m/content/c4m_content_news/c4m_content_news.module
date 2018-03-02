@@ -99,6 +99,25 @@ function c4m_content_news_c4m_content_statistics_info() {
         ),
       ),
     ),
+    'event_site' => array(
+      'c4m_og_news' => array(
+        'type' => 'news',
+        'entity_type' => 'node',
+        'bundles' => array('news'),
+        'singular' => 'News item',
+        'plural' => 'News items',
+        'state' => 1,
+        'aggregate' => array(),
+        'weight' => 1,
+        'feature_name' => 'c4m_features_og_news',
+        'attributes' => array(
+          'class' => array('og-news'),
+        ),
+        'link' => array(
+          'path' => 'news',
+        ),
+      ),
+    ),
     'topic' => array(
       'c4m_topic_news' => array(
         'type' => 'news',

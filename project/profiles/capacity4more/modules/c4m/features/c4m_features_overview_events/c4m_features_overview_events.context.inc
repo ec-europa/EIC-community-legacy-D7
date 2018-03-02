@@ -51,6 +51,12 @@ function c4m_features_overview_events_context_default_contexts() {
           'region' => 'content',
           'weight' => '-9',
         ),
+        'c4m_content_event_site-c4m_block_create_event_site' => array(
+          'module' => 'c4m_content_event_site',
+          'delta' => 'c4m_block_create_event_site',
+          'region' => 'sidebar_first_top',
+          'weight' => '-10',
+        ),
         'views-7bb1ca745e57e37fa0b09b237cb1086c' => array(
           'module' => 'views',
           'delta' => '7bb1ca745e57e37fa0b09b237cb1086c',

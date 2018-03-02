@@ -445,6 +445,25 @@ function c4m_user_og_c4m_content_statistics_info() {
         'link' => array(),
       ),
     ),
+    'event_site' => array(
+      'c4m_og_user' => array(
+        'type' => 'user',
+        'entity_type' => 'user',
+        'bundles' => array(),
+        'singular' => 'Administrator',
+        'plural' => 'Administrators',
+        'state' => 1,
+        'c4m_status' => array(1),
+        'scope' => 'group',
+        'aggregate' => array(),
+        'weight' => 7,
+        'feature_name' => 'c4m_features_og_members',
+        'attributes' => array(
+          'class' => array('og-users'),
+        ),
+        'link' => array(),
+      ),
+    ),
   );
 }
 
@@ -713,15 +732,19 @@ function c4m_user_og_group_management_cta($group) {
   $items = array();
 
   if (c4m_features_og_members_is_power_user($group)) {
-    $items['#title'] = t("You're the manager of this !group_type", array('!group_type' => $group->type));
+    $type = $group->type;
+    if ($type == 'event_site') {
+      $type = 'event site';
+    }
+    $items['#title'] = t("You're the manager of this !group_type", array('!group_type' => $type));
     $items['#links'][] = array(
       '#theme' => 'c4m_group_text_cta',
       '#icon' => 'fa-cogs',
-      '#text' => l(t("Manage !group_type", array('!group_type' => $group->type)), 'manage'),
+      '#text' => l(t("Manage !group_type", array('!group_type' => $type)), 'manage'),
     );
 
     // Add project highlight icon.
-    if (c4m_user_is_site_admin() && $group->type == 'project') {
+    if (c4m_user_is_site_admin() && in_array($group->type,  ['project', 'event_site'])) {
       $field = array(
         'entity' => $group,
         'view_mode' => 'block_list',

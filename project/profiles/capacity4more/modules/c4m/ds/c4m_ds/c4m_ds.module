@@ -216,6 +216,17 @@ function c4m_ds_ds_view_modes_info() {
   );
   $ds_view_modes['highlight_list'] = $ds_view_mode;
 
+  // Documents.
+  $ds_view_mode = new stdClass();
+  $ds_view_mode->disabled = FALSE; /* Edit this to true to make a default ds_view_mode disabled initially */
+  $ds_view_mode->api_version = 1;
+  $ds_view_mode->view_mode = 'documents';
+  $ds_view_mode->label = 'Documents';
+  $ds_view_mode->entities = array(
+    'node' => 'node',
+  );
+  $ds_view_modes['documents'] = $ds_view_mode;
+
   // Block List.
   $ds_view_mode = new stdClass();
   $ds_view_mode->disabled = FALSE; /* Edit this to true to make a default ds_view_mode disabled initially */
@@ -501,7 +512,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_group_members_count'] = array(
     'title' => t('Group members count'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('group|*', 'project|*'),
+    'ui_limit' => array('group|*', 'project|*', 'event_site|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_group_members_count',
     'properties' => array(
@@ -514,7 +525,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_group_posts_count'] = array(
     'title' => t('Group posts count'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('group|*', 'project|*'),
+    'ui_limit' => array('group|*', 'project|*', 'event_site|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_group_posts_count',
     'properties' => array(
@@ -527,7 +538,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_group_recommendation_count'] = array(
     'title' => t('Group recommendation count'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('group|*', 'project|*'),
+    'ui_limit' => array('group|*', 'project|*', 'event_site|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_group_recommendation_count_full',
     'properties' => array(
@@ -618,7 +629,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_event_start_icon'] = array(
     'title' => t('Event Icon with date in it'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('event|*'),
+    'ui_limit' => array('event|*', 'event_site|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_event_start_icon',
     'properties' => array(
@@ -730,12 +741,38 @@ function c4m_ds_ds_fields_info($entity_type) {
     ),
   );
 
+  $fields['user']['c4m_ds_user_my_event_sites'] = array(
+    'title' => t('My event sites'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('*|*'),
+    'file' => $path . '/includes/c4m_ds.theme.user.inc',
+    'function' => 'theme_c4m_ds_user_my_event_sites',
+    'properties' => array(
+      'formatters' => array(
+        'default' => t('Default'),
+      ),
+    ),
+  );
+
   $fields['node']['c4m_ds_project_type_icon'] = array(
     'title' => t('Project type icon'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
     'ui_limit' => array('project|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_project_type_icon',
+    'properties' => array(
+      'formatters' => array(
+        'default' => t('Default'),
+      ),
+    ),
+  );
+
+  $fields['node']['c4m_ds_event_site_type_icon'] = array(
+    'title' => t('Event Site type icon'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('event_site|*'),
+    'file' => $path . '/includes/c4m_ds.theme.node.inc',
+    'function' => 'theme_c4m_ds_event_site_type_icon',
     'properties' => array(
       'formatters' => array(
         'default' => t('Default'),

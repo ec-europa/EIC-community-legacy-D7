@@ -1813,6 +1813,11 @@ function c4m_message_format_group_node_type(Message $message) {
   $wrapper = entity_metadata_wrapper('message', $message);
   $group_type = $wrapper->field_group_node->getBundle();
 
+  // Get label if available.
+  if ($entity_info = $wrapper->field_group_node->entityInfo()) {
+    $group_type = $entity_info['bundles'][$group_type]['label'];
+  }
+
   return $group_type ? $group_type : '';
 }
 
@@ -3395,6 +3400,12 @@ function c4m_message_load_homepage_activity_stream() {
         $hide_articles = TRUE;
         break;
 
+      case 'event_sites':
+        // Gets all the project IDs that the user belongs to.
+        $groups = c4m_og_get_user_group_ids_by_bundle('event_site');
+        $hide_articles = TRUE;
+        break;
+
       case 'interests':
         // Get user's interests.
         $user_wrapper = entity_metadata_wrapper('user', $user->uid);
@@ -3805,7 +3816,7 @@ function c4m_message_views_query_alter(&$view, &$query) {
 
   $filter_by = filter_input(INPUT_GET, 'filter', FILTER_SANITIZE_STRING);
 
-  if ($filter_by == 'groups' || $filter_by == 'projects') {
+  if ($filter_by == 'groups' || $filter_by == 'projects' || $filter_by == 'event_sites') {
     // `rtrim` removes plural 's' from the query string value to get the bundle.
     $groups = c4m_og_get_user_group_ids_by_bundle(rtrim($filter_by, 's'));
     $condition = c4m_message_get_query_condition_index_by_field_name(

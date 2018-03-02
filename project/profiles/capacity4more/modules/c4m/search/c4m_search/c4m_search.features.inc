@@ -167,6 +167,7 @@ function c4m_search_default_search_api_index() {
               "discussion" : "discussion",
               "document" : "document",
               "event" : "event",
+              "event_site" : "event_site",
               "feed" : "feed",
               "group" : "group",
               "news" : "news",

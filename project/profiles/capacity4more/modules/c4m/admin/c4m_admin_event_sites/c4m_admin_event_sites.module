@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Code for the Admin Event Sites feature.
+ */
+
+include_once 'c4m_admin_event_sites.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function c4m_admin_event_sites_menu() {
+  $items = array();
+
+  $items['admin/c4m/event_sites'] = array(
+    'title' => 'Event sites',
+    'description' => 'Administration interface to manage event sites & their status.',
+    'page callback' => 'views_embed_view',
+    'page arguments' => array('c4m_admin_event_sites_pending', 'page'),
+    'access arguments' => array('administer nodes'),
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'management',
+  );
+
+  $items['admin/c4m/event_sites/export'] = array(
+    'title' => 'Export',
+    'description' => 'Capacity4more event sites export.',
+    'page callback' => 'c4m_admin_event_sites_event_sites_export_page',
+    'access arguments' => array('administer nodes'),
+    'file' => 'c4m_admin_event_sites.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
+  );
+
+  return $items;
+}

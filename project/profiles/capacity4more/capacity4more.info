@@ -93,6 +93,7 @@ dependencies[] = user_revision
 
 ; Admin Management
 dependencies[] = c4m_admin
+dependencies[] = c4m_admin_event_sites
 dependencies[] = c4m_admin_groups
 dependencies[] = c4m_admin_organisations
 dependencies[] = c4m_admin_projects
@@ -133,6 +134,7 @@ dependencies[] = c4m_content_discussion
 dependencies[] = c4m_content_news
 dependencies[] = c4m_content_document
 dependencies[] = c4m_content_event
+dependencies[] = c4m_content_event_site
 dependencies[] = c4m_content_featured
 dependencies[] = c4m_content_feed
 dependencies[] = c4m_content_group
