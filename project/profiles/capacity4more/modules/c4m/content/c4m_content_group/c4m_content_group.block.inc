@@ -48,7 +48,7 @@ function _c4m_content_group_block_header_name_banner_group() {
     'published';
 
   $variables['group_status'] = ($status !== 'published') ? $status : '';
-
+  $variables['label_type'] = ($status == 'pending') ? "label-danger" : "label-default";
   $variables['organisations'] = array();
   $variables['organisation_icons'] = array();
   $variables['emails'] = array();
