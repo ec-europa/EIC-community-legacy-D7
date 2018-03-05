@@ -487,29 +487,116 @@ function c4m_content_organisation_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'teaser';
   $ds_fieldsetting->settings = array(
     'title' => array(
+      'weight' => '14',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link' => 'purl_og_dashboard',
+        'wrapper' => 'h3',
+        'class' => 'label-inline',
+        'ft' => array(
+          'func' => 'theme_ds_field_reset',
+        ),
+      ),
+    ),
+    'c4m_ds_group_members_count' => array(
       'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_reset',
+        ),
+      ),
     ),
-    'c4m_user_first_and_last_name' => array(
-      'weight' => '0',
-      'label' => 'hidden',
-      'format' => 'user',
-    ),
-    'c4m_ds_type_insert_action' => array(
-      'weight' => '0',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'c4m_ds_content_type_icon' => array(
-      'weight' => '0',
+    'c4m_ds_group_posts_count' => array(
+      'weight' => '1',
       'label' => 'hidden',
       'format' => 'default',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_reset',
+        ),
+      ),
     ),
-    'c4m_ds_content_type_label' => array(
-      'weight' => '0',
+    'c4m_ds_group_recommendation_count' => array(
+      'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_reset',
+        ),
+      ),
+    ),
+    'c4m_ds_node_highlight' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_reset',
+        ),
+      ),
+    ),
+    'c4m_ds_organisation_type_icon' => array(
+      'weight' => '12',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_reset',
+        ),
+      ),
+    ),
+    'c4m_body' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_reset',
+        ),
+      ),
+    ),
+    'c4m_looking_for' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+          'prefix' => '<div>',
+          'suffix' => '</div>',
+        ),
+      ),
+    ),
+    'c4m_media' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+        ),
+      ),
+    ),
+    'c4m_offering' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+          'prefix' => '<div>',
+          'suffix' => '</div>',
+        ),
+      ),
+    ),
+    'c4m_qualitative_attributes' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_reset',
+        ),
+      ),
+    ),
+    'c4m_vocab_topic' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+          'lb-def-at' => TRUE,
+          'prefix' => '<div>',
+          'suffix' => '</div>',
+        ),
+      ),
     ),
   );
   $export['node|organisation|teaser'] = $ds_fieldsetting;
@@ -646,37 +733,51 @@ function c4m_content_organisation_ds_layout_settings_info() {
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'organisation';
   $ds_layout->view_mode = 'teaser';
-  $ds_layout->layout = 'c4m_ds_2col_icon_left_stacked';
+  $ds_layout->layout = 'c4m_ds_3_9_fluid_stacked';
   $ds_layout->settings = array(
     'regions' => array(
-      'header' => array(
-        0 => 'c4m_user_first_and_last_name',
-        1 => 'title',
-        2 => 'c4m_ds_type_insert_action',
-        3 => 'c4m_ds_content_type_icon',
-        4 => 'c4m_ds_content_type_label',
-      ),
       'right' => array(
-        5 => 'c4m_media',
-        6 => 'c4m_email',
-        7 => 'c4m_offering',
-        8 => 'c4m_looking_for',
-        9 => 'c4m_vocab_topic',
-        10 => 'c4m_qualitative_attributes',
+        0 => 'c4m_ds_group_members_count',
+        3 => 'c4m_ds_group_posts_count',
+        4 => 'c4m_ds_group_recommendation_count',
+        5 => 'c4m_body',
+        6 => 'c4m_ds_node_highlight',
+        7 => 'c4m_email',
+        8 => 'group_metadata',
+        9 => 'c4m_offering',
+        10 => 'c4m_looking_for',
+        11 => 'c4m_vocab_topic',
+        12 => 'c4m_qualitative_attributes',
+        13 => 'group_iconbar_comments_views',
+      ),
+      'header' => array(
+        1 => 'group_teaser_header_inline',
+        14 => 'c4m_ds_organisation_type_icon',
+        15 => 'c4m_og_status',
+        16 => 'title',
+      ),
+      'left' => array(
+        2 => 'c4m_media',
       ),
     ),
     'fields' => array(
-      'c4m_user_first_and_last_name' => 'header',
-      'title' => 'header',
-      'c4m_ds_type_insert_action' => 'header',
-      'c4m_ds_content_type_icon' => 'header',
-      'c4m_ds_content_type_label' => 'header',
-      'c4m_media' => 'right',
+      'c4m_ds_group_members_count' => 'right',
+      'group_teaser_header_inline' => 'header',
+      'c4m_media' => 'left',
+      'c4m_ds_group_posts_count' => 'right',
+      'c4m_ds_group_recommendation_count' => 'right',
+      'c4m_body' => 'right',
+      'c4m_ds_node_highlight' => 'right',
       'c4m_email' => 'right',
+      'group_metadata' => 'right',
       'c4m_offering' => 'right',
       'c4m_looking_for' => 'right',
       'c4m_vocab_topic' => 'right',
       'c4m_qualitative_attributes' => 'right',
+      'group_iconbar_comments_views' => 'right',
+      'c4m_ds_organisation_type_icon' => 'header',
+      'c4m_og_status' => 'header',
+      'title' => 'header',
     ),
     'classes' => array(
       'layout_class' => array(
