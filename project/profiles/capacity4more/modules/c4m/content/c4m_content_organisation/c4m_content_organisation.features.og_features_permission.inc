@@ -22,7 +22,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:administer group'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -30,7 +29,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:administer og menu'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -45,7 +43,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:approve and deny subscription'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -53,7 +50,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:c4m_og_content_depromote'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -61,7 +57,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:c4m_og_content_promote'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -269,7 +264,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:delete terms'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -285,7 +279,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:invite any user'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -293,7 +286,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:invite visitors'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -322,7 +314,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:manage variables'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -340,7 +331,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:unsubscribe'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 
@@ -404,7 +394,6 @@ function c4m_content_organisation_og_features_default_permissions() {
   $permissions['node:organisation:update group'] = array(
     'roles' => array(
       'administrator member' => 'administrator member',
-      'member' => 'member',
     ),
   );
 

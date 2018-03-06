@@ -124,7 +124,6 @@ function _c4m_content_organisation_block_c4m_block_organisation_as() {
     ],
   ];
   drupal_add_js($settings, 'setting');
-  $block['subject'] = t('LATEST ACTIVITY');
   $block['content'] = theme('c4m_message_activity_stream');
   $block['content'] .= views_embed_view('group_activity_stream');
 
