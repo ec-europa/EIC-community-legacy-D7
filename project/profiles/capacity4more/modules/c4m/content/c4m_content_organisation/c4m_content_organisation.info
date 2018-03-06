@@ -6,7 +6,6 @@ dependencies[] = addressfield
 dependencies[] = addtocal
 dependencies[] = c4m_comment
 dependencies[] = c4m_content_group
-dependencies[] = c4m_content_organisation
 dependencies[] = c4m_content_project
 dependencies[] = c4m_content_topic
 dependencies[] = c4m_domain
