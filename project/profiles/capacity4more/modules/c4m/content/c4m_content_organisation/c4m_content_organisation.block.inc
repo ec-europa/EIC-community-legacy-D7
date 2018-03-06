@@ -44,7 +44,7 @@ function _c4m_content_organisation_block_c4m_block_create_organisation() {
 }
 
 /**
- * Project Dashboard title redesign.
+ * Organisation Dashboard title redesign.
  *
  * The function handles header title redesign project page.
  */
@@ -61,11 +61,14 @@ function _c4m_content_organisation_block_header_name_banner_organisation() {
   $status = isset($wrapper->c4m_og_status) ? $wrapper->c4m_og_status->value(
   ) : 'published';
 
+  $label_type = ($status == 'pending') ? "label-danger" : "label-default";
+
   $variables = [
     'title' => check_plain($title),
     'tagline' => check_plain($tagline),
     'type' => $project->type,
     'status' => $status,
+    'label_type' => $label_type,
   ];
   $markup .= theme('c4m_content_organisation_header_title', $variables);
 
