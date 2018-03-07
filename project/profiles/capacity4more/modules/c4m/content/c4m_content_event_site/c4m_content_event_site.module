@@ -506,3 +506,47 @@ function c4m_content_event_site_cron() {
   module_load_include('inc', 'c4m_content_event_site', 'c4m_content_event_site.cron');
   _c4m_content_event_site_cron();
 }
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function c4m_content_event_site_cron_queue_info() {
+  module_load_include('inc', 'c4m_content_event_site', 'c4m_content_event_site.cron');
+  $queues = array();
+  $queues['c4m_event_site_email_subscribers'] = array(
+    'worker callback' => '_c4m_content_event_site_queue_process_email_subscribers',
+  );
+
+  return $queues;
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function c4m_content_event_site_node_update($node) {
+  if ($node->type != 'event_site') {
+    return;
+  }
+  $original_node_wrapper = entity_metadata_wrapper('node', $node->original);
+  if ($original_node_wrapper->c4m_og_status->value() == 'published') {
+    return;
+  }
+  $updated_node_wrapper = entity_metadata_wrapper('node', $node);
+  if ($updated_node_wrapper->c4m_og_status->value() != 'published') {
+    return;
+  }
+  $topics = $updated_node_wrapper->c4m_vocab_topic->value();
+  if (!empty($topics)) {
+    $tids = [];
+    foreach ($topics as $topic) {
+      $tids[] = $topic->tid;
+    }
+    $queue = DrupalQueue::get('c4m_event_site_email_subscribers');
+    $queue->createQueue();
+    $queue_item = [
+      'nid' => $node->nid,
+      'tids' => $tids,
+    ];
+    $queue->createItem($queue_item);
+  }
+}

@@ -40,3 +40,26 @@ function _c4m_content_event_site_cron() {
   $user = $original_user;
   drupal_save_session($old_state);
 }
+
+/**
+ * Callback for c4m_event_site_email_subscribers Drupal Queue.
+ *
+ * @param array $item
+ *   Contains one item from the queue.
+ */
+function _c4m_content_event_site_queue_process_email_subscribers($item) {
+  // Get emails from users that are subscribed to a related topic.
+  if (!empty($item['tids'])) {
+    $query = db_select('field_data_c4m_vocab_topic_expertise', 'vt');
+    $query->join('users', 'u', 'u.uid = vt.entity_id');
+    $query->fields('u', ['mail'])
+      ->condition('vt.c4m_vocab_topic_expertise_tid', $item['tids'], 'IN')
+      ->condition('vt.bundle', 'user')
+      ->condition('u.status', 1)
+      ->distinct();
+    $results = $query->execute()->fetchCol();
+    if (!empty($results)) {
+      // Prepare batch function for sending emails.
+    }
+  }
+}
