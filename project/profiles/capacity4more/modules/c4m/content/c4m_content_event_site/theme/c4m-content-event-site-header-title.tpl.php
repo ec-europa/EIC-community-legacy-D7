@@ -11,7 +11,7 @@
   <?php endif; ?>
   
   <?php if ($status): ?>
-    <span class="top-buffer indication label label-default project-status"><?php print $status; ?></span>
+    <span class="top-buffer indication label project-status <?php print (!empty($label_type)) ? $label_type : ''; ?>"><?php print $status; ?></span>
   <?php endif; ?>
 </div>
 
