@@ -3,7 +3,7 @@ var consent_required_cookies = {
         "europa": ["*"],
         "youtube": ["*"],
         "dailymotion": ["*"],
-        "google": ["1P_JAR", "APISID", "CONSENT", "HSID", "NID", "OTZ", "SAPISID", "SID", "SIDCC", "SSID", "__qca"],
+        "google": ["*"],
         "slideshare": ["*"],
         "vimeo": ["*"],
         "ustream": ["*"],

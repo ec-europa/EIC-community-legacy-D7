@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * c4m_contact2.features.contact_categories.inc
+ * c4m_contact.features.contact_categories.inc
  */
 
 /**
