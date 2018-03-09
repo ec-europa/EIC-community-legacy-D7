@@ -1615,15 +1615,13 @@ function c4m_user_is_site_admin($user = NULL) {
  * Custom validator for login. Allows only administrator users to login.
  */
 function c4m_user_login_administrator_validate($form, &$form_state) {
-  $user = user_load($form_state['uid']);
-
-  $access_granted = in_array('administrator', $user->roles);
-  if ($access_granted) {
-    return TRUE;
-  }
-  else {
-    form_set_error('', t('Only site administrators can login.'));
-    return FALSE;
+  if (is_numeric($form_state['uid']) && $user = user_load($form_state['uid'])) {
+    $access_granted = in_array('administrator', $user->roles);
+    if ($access_granted) {
+      return TRUE;
+    }
   }
 
+  form_set_error('', t('Only site administrators can login.'));
+  return FALSE;
 }
