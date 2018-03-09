@@ -347,11 +347,6 @@ var jQuery = jQuery || {};
                 $("input[name=\"mail\"]").val("").focus();
                 return false;
             }));
-
-            // AJAX might disable some fields, which causes JavaScript errors on submitting.
-            $("#user-register-form").submit((function () {
-                $(":disabled", this).prop("disabled", false);
-            }));
         }
     };
 
@@ -632,37 +627,111 @@ var jQuery = jQuery || {};
     }
 
   Drupal.behaviors.disableSubmitUntilAllRequired = {
-    requiredImageFields: null,
-    emptyImageFields: null,
+    forms: [],
 
-    requiredTextFields: null,
-    emptyTextFields: null,
+    attach: function (context) {
+      // Make sure the rest of the code is not executed on AJAX calls.
+      if (context !== document) {
+        // Initialize fields when fields get replaced, eg email field on
+        // registration form. Otherwise, for image fields, the tagName is FORM
+        // or the id is empty.
+        if ($(context).prop('tagName').toLowerCase() === 'div' && $(context).attr('id')) {
+          $.each(Drupal.behaviors.disableSubmitUntilAllRequired.forms, function () {
+            this.initializeFields();
+          });
+        }
+        $.each(Drupal.behaviors.disableSubmitUntilAllRequired.forms, function () {
+          this.checkFields();
+          this.updateSubmitButtons();
+        });
+        return;
+      }
 
-    requiredWidgetFields: null,
-    emptyWidgetFields: null,
+      var index = 0;
+      $('form').each(function () {
+        if ($(this).attr('id')) {
+          Drupal.behaviors.disableSubmitUntilAllRequired.forms[index] = new formDisableSubmitUntilAllRequired();
+          Drupal.behaviors.disableSubmitUntilAllRequired.forms[index].form = $(this);
+          Drupal.behaviors.disableSubmitUntilAllRequired.forms[index].initializeFields();
+          index++;
+        }
+      });
 
-    requiredTopicFields: null,
-    emptyTopicFields: null,
+      // Initialize on page load after 1 sec. Allow Angular script to run.
+      setTimeout(function () {
+        $.each(Drupal.behaviors.disableSubmitUntilAllRequired.forms, function () {
+          this.checkFields();
+          this.updateSubmitButtons();
+        });
+      }, 1000);
+    }
+  };
 
-    submitButtons: null,
+  function formDisableSubmitUntilAllRequired() {
+    this.requiredImageFields = null;
+    this.emptyImageFields = null;
 
-    updateSubmitButtons: function () {
-      if (this.emptyTextFields || this.emptyWidgetFields || this.emptyImageFields || this.emptyTopicFields) {
-        this.submitButtons.addClass('form-disabled').attr('disabled', 'disabled');
+    this.requiredDragAndDropFields = null;
+    this.emptyDragAndDropFields = null;
+
+    this.requiredTextFields = null;
+    this.emptyTextFields = null;
+
+    this.requiredWidgetFields = null;
+    this.emptyWidgetFields = null;
+
+    this.requiredAngularFields = null;
+    this.emptyAngularFields = null;
+
+    this.form = null;
+    this.submitButtons = null;
+
+    this.updateSubmitButtons = function () {
+      if (this.emptyImageFields || this.emptyDragAndDropFields || this.emptyTextFields || this.emptyWidgetFields || this.emptyAngularFields) {
+        if (!this.submitButtons.hasClass('form-disabled')) {
+          this.submitButtons.closest('.form-actions').before('<p class="required-fields-message text-danger">' + Drupal.t('Please fill in required fields before submitting the form') + '</p>');
+          this.submitButtons.addClass('form-disabled').attr('disabled', 'disabled');
+        }
       }
       else {
         this.submitButtons.removeClass('form-disabled').each(function () {
+          // The button may have other classes like ".drupal-ajax-disabled".
           if (!$(this).hasClass(/-disabled/)) {
             $(this).removeAttr('disabled');
           }
         });
+        this.form.find('.required-fields-message').remove();
       }
-    },
+    };
 
-    checkTextFields: function () {
+    this.checkImageFields = function () {
+      var emptyFields = false;
+      this.requiredImageFields.each(function () {
+        var fid = $(this).find('input.fid');
+        if (fid.val() === '0') {
+          emptyFields = true;
+        }
+      });
+
+      this.emptyImageFields = emptyFields;
+    };
+
+    this.checkDragAndDropFields = function () {
+      var emptyFields = false;
+      this.requiredDragAndDropFields.each(function () {
+        var fid = $(this).find("input[name$='[fid]']");
+        if (fid.val() === '0') {
+          emptyFields = true;
+        }
+      });
+
+      this.emptyDragAndDropFields = emptyFields;
+    };
+
+    this.checkTextFields = function () {
       var emptyFields = false;
       this.requiredTextFields.each(function () {
-        if ($(this).val() === '') {
+        if ($(this).val() === '' || $(this).val() === '_none' && $(this).prop('tagName').toLowerCase() === 'select') {
           if (($(this).prop("type") === 'textarea') && ($(this).parent().find('iframe'))) {
             if ($(this).parent().find('iframe').contents().find("p").text() === '') {
               emptyFields = true;
@@ -675,20 +744,9 @@ var jQuery = jQuery || {};
       });
 
       this.emptyTextFields = emptyFields;
-    },
+    };
 
-    checkImageFields: function () {
-      var emptyFields = false;
-      this.requiredImageFields.each(function () {
-        if ($(this).find('input.fid').val() === '0') {
-          emptyFields = true;
-        }
-      });
-
-      this.emptyImageFields = emptyFields;
-    },
-
-    checkWidgetFields: function () {
+    this.checkWidgetFields = function () {
       var emptyFields = false;
       this.requiredWidgetFields.each(function () {
         if ($(this).val() === '') {
@@ -697,86 +755,80 @@ var jQuery = jQuery || {};
       });
 
       this.emptyWidgetFields = emptyFields;
-    },
+    };
 
-    checkTopicFields: function () {
+    this.checkAngularFields = function () {
       var emptyFields = false;
-      this.requiredTopicFields.each(function () {
+      this.requiredAngularFields.each(function () {
         if ($(this).find('.selected-values > .ng-scope:not(.ng-hide)').length === 0) {
           emptyFields = true;
         }
       });
 
-      this.emptyTopicFields = emptyFields;
-    },
+      this.emptyAngularFields = emptyFields;
+    };
 
-    checkFields: function () {
-      this.checkWidgetFields();
+    this.checkFields = function () {
       this.checkImageFields();
+      this.checkDragAndDropFields();
       this.checkTextFields();
-      this.checkTopicFields();
-    },
+      this.checkWidgetFields();
+      this.checkAngularFields();
+    };
 
-    attach: function (context) {
-      // Make sure the rest of the code is not executed on AJAX calls.
-      if (context !== document) {
-        // @todo Only Image Fields are needed to be checked here.
-        this.checkFields();
-        return;
-      }
+    this.initializeFields = function () {
+      this.requiredImageFields = this.form.find('.field-type-image').has('.form-required');
+      this.requiredDragAndDropFields = this.form.find('.field-widget-dragndrop-upload-file').has('.form-required');
+      // #security_code is for captcha inputs. We cannot alter that code as it's
+      // part of captchalib.
+      this.requiredTextFields = this.form.find('.required, #security_code');
+      this.requiredWidgetFields = this.form.find('.required-checkbox');
+      this.requiredAngularFields = this.form.find('.c4m_vocab_topic, .c4m_vocab_document_type').has('.form-required');
+      this.submitButtons = this.form.find('.form-actions').find('.form-submit, .form-preview').not('#edit-cancel, #edit-delete');
 
-      var forms = $('form');
-      this.requiredTextFields = forms.find('.required');
-      this.requiredImageFields = forms.find('.field-type-image').has('.form-required');
-      this.requiredWidgetFields = forms.find('.required-checkbox');
-      this.requiredTopicFields = forms.find('.c4m_vocab_topic').has('.form-required');
-      this.submitButtons = forms.find('.form-actions').find('.form-submit, .form-preview');
+      var self = this;
 
       // Text fields.
-      this.requiredTextFields.change(function () {
+      this.requiredTextFields.on('input change', function () {
         // @todo Only Text Fields are needed to be checked here.
-        Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
-        Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
+        self.checkFields();
+        self.updateSubmitButtons();
       });
 
       // Widgets.
       this.requiredWidgetFields.click(function () {
         // @todo Only Widget Fields are needed to be checked here.
-        Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
-        Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
+        self.checkFields();
+        self.updateSubmitButtons();
       });
 
-      // Topics.
-      this.requiredTopicFields.click(function () {
-        // @todo Only Topic Fields are needed to be checked here.
-        Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
-        Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
+      // Angular fields.
+      this.requiredAngularFields.click(function () {
+        // @todo Only Angular Fields are needed to be checked here.
+        self.checkFields();
+        self.updateSubmitButtons();
       });
-
-      // Initialize on page load after 1 sec. Allow Angular script to run.
-      setTimeout(function () {
-        Drupal.behaviors.disableSubmitUntilAllRequired.checkFields();
-        Drupal.behaviors.disableSubmitUntilAllRequired.updateSubmitButtons();
-      }, 1000);
     }
-  };
+  }
 
   Drupal.behaviors.disableSubmitButtons = {
     attach: function (context) {
-      $('form.node-form', context).once('disableSubmitButtons', function () {
+      // We can target all forms not only form.node-form.
+      $('form', context).once('disableSubmitButtons', function () {
         var $form = $(this);
-        $form.find('#edit-submit').click(function (e) {
+        $form.find('#edit-submit, #edit-draft, #edit-cancel, #edit-delete').click(function (e) {
           var el = $(this);
-          el.after('<input type="hidden" name="' + el.attr('name') + '" value="' + el.attr('value') + '" />');
+          // Even though the input is clicked the form might not get submitted
+          // due to javascript validation. So, we have to remove hidden input
+          // added on previous submit buttons clicked.
+          el.closest('form').find('.input_button_name').remove();
+          el.after('<input type="hidden" class="input_button_name" name="' + el.attr('name') + '" value="' + el.attr('value') + '" />');
           return true;
         });
         $form.submit(function (e) {
-          if (!e.isPropagationStopped()) {
-            $form.find('#edit-submit').addClass('form-disabled').attr("disabled", "disabled");
-            $form.find('#edit-cancel').addClass('form-disabled').attr("disabled", "disabled");
-            $form.find('#edit-delete').addClass('form-disabled').attr("disabled", "disabled");
-            $form.find("#edit-preview-changes").addClass("disabled-preview");
-            return true;
+          if (!e.isDefaultPrevented()) {
+            $form.find('#edit-submit, #edit-draft, #edit-cancel, #edit-delete').addClass('form-disabled').attr('disabled', 'disabled');
+            $form.find('#edit-preview-changes').addClass('disabled-preview');
           }
         });
       });

@@ -22,6 +22,36 @@ function c4m_og_group_menu_block_view_alter(&$data, $block) {
 
   $item = menu_get_item();
 
+  // Set the active path for all nodes from group.
+  $active_path = FALSE;
+  if ($node = menu_get_object()) {
+    switch ($node->type) {
+      case 'discussion':
+        $active_path = 'discussions';
+        break;
+
+      case 'document':
+        $active_path = 'documents';
+        break;
+
+      case 'event':
+        $active_path = 'calendar';
+        break;
+
+      case 'news':
+        $active_path = 'news';
+        break;
+
+      case 'photo':
+        $active_path = 'media';
+        break;
+
+      case 'photoalbum':
+        $active_path = 'media';
+        break;
+    }
+  }
+
   foreach ($data['content'] as &$value) {
     if (!isset($value['#attributes']['class'])) {
       // Not a menu item.
@@ -37,6 +67,10 @@ function c4m_og_group_menu_block_view_alter(&$data, $block) {
       if ($item['path'] == 'node' || $item['path'] == 'dashboard') {
         $value['#attributes']['class'][] = 'active';
       }
+    }
+    // Set the active trail to the parent menu item.
+    elseif ($value['#href'] == $active_path) {
+      $value['#attributes']['class'][] = 'active';
     }
   }
 }
