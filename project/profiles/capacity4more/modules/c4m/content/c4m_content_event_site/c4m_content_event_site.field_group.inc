@@ -54,10 +54,9 @@ function c4m_content_event_site_field_group_info() {
     'label' => 'Metadata',
     'weight' => '15',
     'children' => array(
-      0 => 'c4m_vocab_topic',
+      0 => 'c4m_vocab_geo',
       1 => 'c4m_vocab_language',
-      2 => 'c4m_vocab_geo',
-      3 => 'og_vocabulary',
+      2 => 'c4m_vocab_topic',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -130,7 +129,7 @@ function c4m_content_event_site_field_group_info() {
   $field_groups['group_c4m_related_content|node|event_site|form'] = $field_group;
 
   $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_documents|node|event_site|documents';
   $field_group->group_name = 'group_documents';
