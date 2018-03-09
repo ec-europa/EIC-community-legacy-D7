@@ -83,6 +83,6 @@
   <?php endif; ?>
 
   <?php if ($group_status): ?>
-    <span class="top-buffer indication label label-default group-status"><?php print $group_status; ?></span>
+    <span class="top-buffer indication label group-status <?php print (!empty($label_type)) ? $label_type : ''; ?>"><?php print $group_status; ?></span>
   <?php endif; ?>
 </div>
