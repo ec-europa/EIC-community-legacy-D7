@@ -128,7 +128,7 @@ function c4m_user_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'teaser';
   $ds_fieldsetting->settings = array(
     'c4m_user_member_since' => array(
-      'weight' => '4',
+      'weight' => '2',
       'label' => 'inline',
       'format' => 'default',
       'formatter_settings' => array(
@@ -160,33 +160,57 @@ function c4m_user_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_user_country' => array(
-      'weight' => '3',
-      'label' => 'inline',
+    'c4m_user_contact_link' => array(
+      'weight' => '4',
+      'label' => 'hidden',
       'format' => 'default',
+    ),
+    'c4m_ds_user_footer_stats' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'c4m_facebook' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
-          'lb' => 'Based in',
-          'lb-el' => 'span',
+          'prefix' => '<i class="fa fa-facebook"></i>',
           'ow' => TRUE,
           'ow-el' => 'div',
-          'ow-cl' => '',
+          'ow-cl' => 'c4m-social-media-item',
           'ow-def-cl' => FALSE,
           'ow-at' => '',
           'ow-def-at' => FALSE,
         ),
       ),
     ),
-    'c4m_user_contact_link' => array(
-      'weight' => '6',
-      'label' => 'hidden',
-      'format' => 'default',
+    'c4m_twitter' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+          'prefix' => '<i class="fa fa-twitter"></i>',
+          'ow' => TRUE,
+          'ow-el' => 'div',
+          'ow-cl' => 'c4m-social-media-item',
+          'ow-def-cl' => FALSE,
+          'ow-at' => '',
+          'ow-def-at' => FALSE,
+        ),
+      ),
     ),
-    'c4m_ds_user_footer_stats' => array(
-      'weight' => '5',
-      'label' => 'hidden',
-      'format' => 'default',
+    'field_c4m_linkedin' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+          'prefix' => '<i class="fa fa-linkedin"></i>',
+          'ow' => TRUE,
+          'ow-el' => 'div',
+          'ow-cl' => 'c4m-social-media-item',
+          'ow-def-cl' => FALSE,
+          'ow-at' => '',
+          'ow-def-at' => FALSE,
+        ),
+      ),
     ),
   );
   $export['user|user|teaser'] = $ds_fieldsetting;
@@ -314,23 +338,31 @@ function c4m_user_ds_layout_settings_info() {
       ),
       'right' => array(
         1 => 'c4m_user_first_and_last_name',
-        2 => 'c4m_organisation',
-        3 => 'c4m_user_country',
-        4 => 'c4m_user_member_since',
-        5 => 'c4m_ds_user_footer_stats',
-        6 => 'c4m_user_contact_link',
+        2 => 'c4m_user_member_since',
+        3 => 'c4m_ds_user_footer_stats',
+        4 => 'c4m_user_contact_link',
+        5 => 'field_c4m_user_types',
+        6 => 'c4m_facebook',
+        7 => 'c4m_twitter',
+        8 => 'field_c4m_linkedin',
       ),
     ),
     'fields' => array(
       'c4m_user_picture' => 'left',
       'c4m_user_first_and_last_name' => 'right',
-      'c4m_organisation' => 'right',
-      'c4m_user_country' => 'right',
       'c4m_user_member_since' => 'right',
       'c4m_ds_user_footer_stats' => 'right',
       'c4m_user_contact_link' => 'right',
+      'field_c4m_user_types' => 'right',
+      'c4m_facebook' => 'right',
+      'c4m_twitter' => 'right',
+      'field_c4m_linkedin' => 'right',
     ),
-    'classes' => array(),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
     'wrappers' => array(
       'left' => 'div',
       'right' => 'div',

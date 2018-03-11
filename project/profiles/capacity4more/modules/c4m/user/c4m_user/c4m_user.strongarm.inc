@@ -117,6 +117,9 @@ function c4m_user_strongarm() {
         'contact' => array(
           'weight' => '3',
         ),
+        'overlay_control' => array(
+          'weight' => '5',
+        ),
       ),
       'display' => array(
         'summary' => array(
@@ -157,7 +160,7 @@ function c4m_user_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '38',
+            'weight' => '51',
             'visible' => FALSE,
           ),
           'member_overview' => array(
@@ -199,7 +202,7 @@ function c4m_user_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '34',
+            'weight' => '50',
             'visible' => FALSE,
           ),
           'member_overview' => array(
