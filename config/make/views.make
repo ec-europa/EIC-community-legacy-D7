@@ -3,6 +3,9 @@ api = 2
 
 ; Views
 
+projects[draggableviews][subdir] = "contrib"
+projects[draggableviews][version] = "2.1"
+
 projects[views][subdir] = "contrib"
 projects[views][version] = "3.14"
 projects[views][patch][] = "https://www.drupal.org/files/issues/2331209-4-views-7.x-3.x-undefined-index.patch"

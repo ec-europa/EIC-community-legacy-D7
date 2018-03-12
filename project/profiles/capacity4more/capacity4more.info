@@ -32,6 +32,7 @@ dependencies[] = current_search_links
 dependencies[] = date
 dependencies[] = date_popup
 dependencies[] = diff
+dependencies[] = draggableviews
 dependencies[] = email
 dependencies[] = entity
 dependencies[] = entity_token
@@ -46,6 +47,7 @@ dependencies[] = flag
 dependencies[] = jquery_update
 dependencies[] = lazyloader
 dependencies[] = libraries
+dependencies[] = masquerade
 dependencies[] = message
 dependencies[] = message_notify
 dependencies[] = message_subscribe
@@ -202,6 +204,7 @@ dependencies[] = c4m_moodle
 ; Message
 dependencies[] = c4m_mail
 dependencies[] = c4m_message
+dependencies[] = c4m_message_digest
 
 ; Widgets
 dependencies[] = c4m_document_widget

@@ -86,13 +86,6 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['sorts']['c4m_datetime_end_value']['id'] = 'c4m_datetime_end_value';
   $handler->display->display_options['sorts']['c4m_datetime_end_value']['table'] = 'field_data_c4m_datetime_end';
   $handler->display->display_options['sorts']['c4m_datetime_end_value']['field'] = 'c4m_datetime_end_value';
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 0;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
 
   /* Display: Month */
   $handler = $view->new_display('page', 'Month', 'month');
@@ -147,9 +140,9 @@ function c4m_features_overview_events_views_default_views() {
     40 => '#ffffff',
   );
   $handler->display->display_options['row_options']['colors']['c4m_event_type'] = array(
-    'event' => '#42709e',
-    'learning' => '#42c530',
-    'meeting' => '#f49c2a',
+    'event' => '#347C98',
+    'learning' => '#B0C35A',
+    'meeting' => '#EE6A32',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -399,9 +392,9 @@ function c4m_features_overview_events_views_default_views() {
     40 => '#ffffff',
   );
   $handler->display->display_options['row_options']['colors']['c4m_event_type'] = array(
-    'event' => '#42709e',
-    'learning' => '#42c530',
-    'meeting' => '#f49c2a',
+    'event' => '#347C98',
+    'learning' => '#B0C35A',
+    'meeting' => '#EE6A32',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -508,9 +501,9 @@ function c4m_features_overview_events_views_default_views() {
     40 => '#ffffff',
   );
   $handler->display->display_options['row_options']['colors']['c4m_event_type'] = array(
-    'event' => '#42709e',
-    'learning' => '#42c530',
-    'meeting' => '#f49c2a',
+    'event' => '#347C98',
+    'learning' => '#B0C35A',
+    'meeting' => '#EE6A32',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -600,9 +593,9 @@ function c4m_features_overview_events_views_default_views() {
     40 => '#ffffff',
   );
   $handler->display->display_options['row_options']['colors']['c4m_event_type'] = array(
-    'event' => '#42709e',
-    'learning' => '#42c530',
-    'meeting' => '#f49c2a',
+    'event' => '#347C98',
+    'learning' => '#B0C35A',
+    'meeting' => '#EE6A32',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;

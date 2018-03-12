@@ -520,13 +520,14 @@ function _capacity4more_add_lazyloader_settings() {
   variable_set('lazyloader_enabled', 1);
   variable_set('lazyloader_exclude_option', 'exclude');
   variable_set('lazyloader_icon', '0');
-  variable_set('lazyloader_paths', 'media/*/format-form
-admin/*
-node/add/*
-node/*/edit
+  variable_set('lazyloader_paths', 'admin/*
 api/*
-overlay-file/*
-media/browser*');
+media/*/format-form
+media/ajax/*
+media/browser*
+node/*/edit
+node/add/*
+overlay-file/*');
   variable_set('lazyloader_placeholder', '');
 }
 
@@ -592,9 +593,11 @@ function capacity4more_update_7008() {
 }
 
 /**
- * Enable module .
+ * Adjust Lazyloader settings. Add media/ajax/* path.
+ * Enable modules .
  */
 function capacity4more_update_7009() {
+  _capacity4more_add_lazyloader_settings();
   module_enable(['c4m_admin_event_sites']);
   module_enable(['c4m_content_event_site']);
 }
@@ -603,5 +606,12 @@ function capacity4more_update_7009() {
  * Enable module .
  */
 function capacity4more_update_7010() {
-  module_enable(['telephone', 'email', 'c4m_vocab_nace', 'c4m_vocab_organisation_types', 'c4m_vocab_tr']);
+  module_enable(['draggableviews', 'telephone', 'email', 'c4m_vocab_nace', 'c4m_vocab_organisation_types', 'c4m_vocab_tr']);
+}
+
+/**
+ * Enable masquerade module.
+ */
+function capacity4more_update_7011() {
+  module_enable(['masquerade']);
 }

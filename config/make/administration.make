@@ -51,16 +51,20 @@ projects[entityreference_prepopulate][subdir] = "contrib"
 projects[entityreference_prepopulate][version] = "1.7"
 
 projects[file_entity][subdir] = "contrib"
-projects[file_entity][version] = "2.0-beta3"
+projects[file_entity][version] = "2.15"
 
 projects[file_download_count][subdir] = "contrib"
 projects[file_download_count][version] = "1.0-rc1"
+projects[file_download_count][patch][] = "../patches/file-download-count-skip-download-count.patch"
 
 projects[inline_entity_form][subdir] = "contrib"
 projects[inline_entity_form][version] = "1.8"
 
 projects[mefibs][subdir] = "contrib"
 projects[mefibs][version] = "1.x-dev"
+
+projects[masquerade][subdir] = "contrib"
+projects[masquerade][version] = "1.0-rc7"
 
 projects[plupload][subdir] = "contrib"
 projects[plupload][version] = "2.x-dev"
