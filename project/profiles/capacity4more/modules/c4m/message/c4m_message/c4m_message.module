@@ -449,11 +449,6 @@ function c4m_message_load_tokens__c4m_new_membership_request(Message $message) {
     'pass message' => TRUE,
   ];
 
-  $message->arguments['@new_member_country'] = [
-    'callback' => 'c4m_message_format_new_member_country',
-    'pass message' => TRUE,
-  ];
-
   $message->arguments['@new_member_expertise'] = [
     'callback' => 'c4m_message_format_new_member_expertise',
     'pass message' => TRUE,
@@ -556,11 +551,6 @@ function c4m_message_load_tokens__c4m_new_member_joined(Message $message) {
 
   $message->arguments['@new_member_organisation_type'] = [
     'callback' => 'c4m_message_format_new_member_organisation_type',
-    'pass message' => TRUE,
-  ];
-
-  $message->arguments['@new_member_country'] = [
-    'callback' => 'c4m_message_format_new_member_country',
     'pass message' => TRUE,
   ];
 
@@ -803,11 +793,6 @@ function c4m_message_load_tokens__c4m_notify_admins_membership_accepted(
 
   $message->arguments['@related_user_organisation_type'] = [
     'callback' => 'c4m_message_format_new_member_organisation_type',
-    'pass message' => TRUE,
-  ];
-
-  $message->arguments['@related_user_country'] = [
-    'callback' => 'c4m_message_format_new_member_country',
     'pass message' => TRUE,
   ];
 
@@ -1492,54 +1477,6 @@ function c4m_message_format_new_member_full_name(Message $message) {
   $new_member = $wrapper->field_related_user->value();
 
   return c4m_user_name($new_member);
-}
-
-/**
- * Returns new member organisation.
- *
- * @param Message $message
- *   The Message entity.
- *
- * @return string
- *   Returns member's organisation.
- */
-function c4m_message_format_new_member_organisation(Message $message) {
-  $wrapper = entity_metadata_wrapper('message', $message);
-
-  return $wrapper->field_related_user->c4m_organisation->value();
-}
-
-/**
- * Returns new member organisation type.
- *
- * @param Message $message
- *   The Message entity.
- *
- * @return string
- *   Returns member's organisation type.
- */
-function c4m_message_format_new_member_organisation_type(Message $message) {
-  $wrapper = entity_metadata_wrapper('message', $message);
-
-  return $wrapper->field_related_user->c4m_organisation_type->label();
-}
-
-/**
- * Returns new member country.
- *
- * @param Message $message
- *   The Message entity.
- *
- * @return string
- *   Returns member's country.
- */
-function c4m_message_format_new_member_country(Message $message) {
-  $wrapper = entity_metadata_wrapper('message', $message);
-  $field = field_info_field('c4m_country');
-  $allowed_values = list_allowed_values($field);
-  $index = $wrapper->field_related_user->c4m_country->value();
-
-  return empty($index) ? '' : $allowed_values[$index];
 }
 
 /**

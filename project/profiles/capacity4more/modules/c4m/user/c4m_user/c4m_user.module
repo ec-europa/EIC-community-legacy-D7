@@ -1051,24 +1051,12 @@ function c4m_user_update_information(
     if ($ldap->isUp()) {
       $info = $ldap->getInfo($account->mail);
       if ($info && !empty($info['valid'])) {
-        if ($info['country']) {
-          $edit['c4m_country'][LANGUAGE_NONE]['0']['value'] = $info['country'];
-        }
-        if ($info['dg']) {
-          $edit['c4m_organisation'][LANGUAGE_NONE]['0']['value'] = $info['dg'];
-        }
-        if (_c4m_user_is_organisation_empty($edit) && $domain->organisation_name) {
-          $edit['c4m_organisation'][LANGUAGE_NONE]['0']['value'] = $domain->organisation_name;
-        }
         $edit['c4m_is_ldap_user'][LANGUAGE_NONE]['0']['value'] = 1;
         $edit['c4m_is_invalid_email'][LANGUAGE_NONE]['0']['value'] = 0;
       }
       elseif (isset($whitelist_domain) && ($whitelist_domain || $whitelist_domain = $domain_user->getEmailDomainByWhitelist(
           ))
       ) {
-        if ($whitelist_domain->organisation_name) {
-          $edit['c4m_organisation'][LANGUAGE_NONE]['0']['value'] = $whitelist_domain->organisation_name;
-        }
         $edit['c4m_is_ldap_user'][LANGUAGE_NONE]['0']['value'] = 2;
         $edit['c4m_is_invalid_email'][LANGUAGE_NONE]['0']['value'] = 0;
       }
@@ -1076,8 +1064,6 @@ function c4m_user_update_information(
       elseif ($info['valid'] === "0") {
         $edit['c4m_is_ldap_user'][LANGUAGE_NONE]['0']['value'] = 0;
         $edit['c4m_is_invalid_email'][LANGUAGE_NONE]['0']['value'] = 1;
-        $edit['c4m_organisation'][LANGUAGE_NONE] = array();
-        $edit['c4m_country'][LANGUAGE_NONE] = array();
       }
     }
   }
@@ -1088,49 +1074,11 @@ function c4m_user_update_information(
   if ($was_ldap && empty($edit['c4m_is_ldap_user'][LANGUAGE_NONE]['0']['value'])) {
     $edit['c4m_is_ldap_user'][LANGUAGE_NONE]['0']['value'] = 0;
     $edit['c4m_is_invalid_email'][LANGUAGE_NONE]['0']['value'] = 0;
-    $edit['c4m_organisation'][LANGUAGE_NONE] = array();
-    $edit['c4m_country'][LANGUAGE_NONE] = array();
-  }
-
-  $organisation_user = new C4mOrganisationUser($account->mail);
-  if ($organisations = $organisation_user->getOrganisationsInfo()) {
-    $organisation = array_shift($organisations);
-    $organisation = entity_metadata_wrapper('node', $organisation);
-    if ($organisation->c4m_organisation_type->value()) {
-      $edit['c4m_organisation_type'][LANGUAGE_NONE]['0']['value'] = $organisation->c4m_organisation_type->value(
-      );
-    }
-    if (_c4m_user_is_organisation_empty($edit)) {
-      $edit['c4m_organisation'][LANGUAGE_NONE]['0']['value'] = $organisation->title->value(
-      );
-    }
-    $edit['c4m_is_organisation_user'][LANGUAGE_NONE]['0']['value'] = 1;
-  }
-  elseif (!empty($account->c4m_is_organisation_user[LANGUAGE_NONE]['0']['value'])) {
-    $edit['c4m_is_organisation_user'][LANGUAGE_NONE]['0']['value'] = 0;
-    // Organisation was not set in previous steps.
-    if (empty($edit['c4m_organisation'])) {
-      $edit['c4m_organisation'][LANGUAGE_NONE] = array();
-    }
-    $edit['c4m_organisation_type'][LANGUAGE_NONE] = array();
   }
 
   if (!empty($edit)) {
     user_save($account, $edit);
   }
-}
-
-/**
- * Check if the user has an empty organisation.
- *
- * @param array $edit
- *   Edit array.
- *
- * @return bool
- *   TRUE if the c4m_organisation field array value is empty.
- */
-function _c4m_user_is_organisation_empty(array $edit) {
-  return empty($edit['c4m_organisation'][LANGUAGE_NONE]['0']['value']);
 }
 
 /**
