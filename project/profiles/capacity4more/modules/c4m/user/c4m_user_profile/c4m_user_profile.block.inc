@@ -57,7 +57,9 @@ function _c4m_user_profile_block_user_menu() {
         ],
       ],
     ],
-    'user_logout' => [
+  ];
+  if (user_access('access logout')) {
+    $menu_list['user_logout'] = [
       'title' => t('Log out'),
       'url' => 'user/logout',
       'options' => [
@@ -67,8 +69,8 @@ function _c4m_user_profile_block_user_menu() {
         ],
         'query' => ['destination' => request_path()],
       ],
-    ],
-  ];
+    ];
+  }
 
   $menu = [
     '#theme' => 'c4m_user_profile_menu',
