@@ -931,9 +931,13 @@ function c4m_features_og_manage_organisation_details() {
   }
 
   // The organisation type.
-  $organisation_type = $wrapper->c4m_organisations_type->value();
-  if ($list = c4m_features_og_manage_list_related_topics($organisation_type)) {
-    $details['c4m_organisations_type'] = $list;
+  $organisations_type = $wrapper->c4m_organisations_type->value();
+  if ($organisations_type) {
+    foreach ($organisations_type as $one) {
+      $types[] = $one->name;
+    }
+    $types = implode(', ', $types);
+    $details['c4m_organisations_type'] = $types;
   }
 
   // The organisation size.
@@ -1300,7 +1304,7 @@ function c4m_features_og_manage_event_site_thumbnail() {
 }
 
 /**
- * Gets the event site thumbnail.
+ * Gets the organisation thumbnail.
  *
  * For the group management dashboard,
  * This function gets a thumbnail image of the group with an edit

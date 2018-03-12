@@ -226,7 +226,7 @@ function theme_c4m_user_profile_organisations_top_bar(array $variables) {
   );
   // Adding the icon before the title of the menu, leaving it outside of the
   // title so it won't be hidden on mobile screens.
-  $menu_title = '<i class="fa fa-flag"></i>' . render($menu_title);
+  $menu_title = '<i class="fa fa-building"></i>' . render($menu_title);
 
   $menu = array(
     '#theme'      => 'html_tag',

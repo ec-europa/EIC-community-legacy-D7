@@ -1242,7 +1242,7 @@ function theme_c4m_ds_organisation_type_icon(array $field) {
     '#attributes' => array(
       'class' => array(
         'fa',
-        'fa-flag',
+        'fa-building',
         'organisation',
       ),
     ),
