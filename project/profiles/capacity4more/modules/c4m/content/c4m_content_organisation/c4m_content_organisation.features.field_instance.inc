@@ -374,7 +374,7 @@ function c4m_content_organisation_field_default_field_instances() {
     'label' => 'Customers',
     'required' => 0,
     'settings' => array(
-      'add_mode' => 'button',
+      'add_mode' => 'select',
       'allowed_bundles' => array(
         'c4m_paragraph_map' => -1,
         'c4m_paragraph_partner' => 'c4m_paragraph_partner',
@@ -1704,7 +1704,7 @@ function c4m_content_organisation_field_default_field_instances() {
     'label' => 'Partners',
     'required' => 0,
     'settings' => array(
-      'add_mode' => 'button',
+      'add_mode' => 'select',
       'allowed_bundles' => array(
         'c4m_paragraph_map' => -1,
         'c4m_paragraph_partner' => 'c4m_paragraph_partner',
