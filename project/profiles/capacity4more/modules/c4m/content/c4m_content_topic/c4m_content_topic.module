@@ -366,12 +366,20 @@ function c4m_content_topic_field_formatter_view(
           if ($settings['link'] || $settings['link_organisations']) {
             // Get the vocabulary to create a filter on vocab facet.
             $vocab = taxonomy_vocabulary_load($item['taxonomy_term']->vid);
-
             $options = array(
               'query' => array(
                 'f' => array($vocab->machine_name . ':' . $term->tid),
               ),
             );
+
+            // Alter the links in Teaser VM for Organisation to go to prefiltered Organisations overview page.
+            if ($settings['link_organisations'] && in_array($field['field_name'], ['c4m_looking_for', 'c4m_offering'])) {
+              $options = array(
+                'query' => array(
+                  'f' => array($field['field_name'] . ':' . $term->tid),
+                ),
+              );
+            }
 
             $link = array(
               '#type' => 'link',
