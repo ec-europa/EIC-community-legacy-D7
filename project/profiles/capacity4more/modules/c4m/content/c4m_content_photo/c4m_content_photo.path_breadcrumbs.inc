@@ -18,14 +18,16 @@ function c4m_content_photo_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'node/%nodeidnumber';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => '%nodeidnumber:og-group-ref:title',
-      1 => 'Media',
-      2 => '%nodeidnumber:title',
+      0 => '@C4M_Group_type',
+      1 => '%nodeidnumber:og-group-ref:title',
+      2 => 'Media',
+      3 => '%nodeidnumber:title',
     ),
     'paths' => array(
-      0 => 'node/%nodeidnumber:og-group-ref:nid',
-      1 => 'media',
-      2 => '<none>',
+      0 => '@C4M_Group_overview_path',
+      1 => 'node/%nodeidnumber:og-group-ref:nid',
+      2 => 'media',
+      3 => '<none>',
     ),
     'home' => 0,
     'translatable' => 0,
@@ -81,16 +83,18 @@ function c4m_content_photo_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'node/%nodeidnumber';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => '%nodeidnumber:og-group-ref:title',
-      1 => 'Media',
-      2 => '%nodeidnumber:node-gallery-ref-1:title',
-      3 => '%nodeidnumber:title',
+      0 => '@C4M_Group_type',
+      1 => '%nodeidnumber:og-group-ref:title',
+      2 => 'Media',
+      3 => '%nodeidnumber:node-gallery-ref-1:title',
+      4 => '%nodeidnumber:title',
     ),
     'paths' => array(
-      0 => 'node/%nodeidnumber:og-group-ref:nid',
-      1 => 'media',
-      2 => 'node/%nodeidnumber:node-gallery-ref-1:nid',
-      3 => '<none>',
+      0 => '@C4M_Group_overview_path',
+      1 => 'node/%nodeidnumber:og-group-ref:nid',
+      2 => 'media',
+      3 => 'node/%nodeidnumber:node-gallery-ref-1:nid',
+      4 => '<none>',
     ),
     'home' => 0,
     'translatable' => 0,

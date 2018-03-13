@@ -4078,3 +4078,62 @@ function c4m_og_permission() {
 
   return $perms;
 }
+
+/**
+ * Implements hook_path_breadcrumbs_view().
+ */
+function c4m_og_path_breadcrumbs_view($path_breadcrumbs, $contexts) {
+  // Convert breadcrumb titles and paths to string.
+  $titles = implode("\n", $path_breadcrumbs->titles);
+  $paths = implode("\n", $path_breadcrumbs->paths);
+
+  $group_type = '';
+  $group_overview_path = '';
+
+  $group = c4m_og_current_group();
+  if (!empty($group->type)) {
+    switch ($group->type) {
+      case 'group':
+        $group_type = t("Groups");
+        $group_overview_path = '/groups';
+        break;
+
+      case 'project':
+        $group_type = t("Projects");
+        $group_overview_path = '/projects';
+        break;
+
+      case 'event_site':
+        $group_type = t("Events");
+        $group_overview_path = '/events';
+        break;
+
+      case 'organisation':
+        $group_type = t("Organisations");
+        $group_overview_path = '/organisations';
+        break;
+    }
+  }
+
+  // Replace placeholders.
+  $search_title[] = '@C4M_Group_type';
+  $replace_title[] = $group_type;
+
+  $search_path[] = '@C4M_Group_overview_path';
+  $replace_path[] = $group_overview_path;
+
+  $titles = str_replace($search_title, $replace_title, $titles);
+  $paths = str_replace($search_path, $replace_path, $paths);
+
+  // Explode titles and paths into array.
+  $path_breadcrumbs->titles = explode("\n", $titles);
+  $path_breadcrumbs->paths = explode("\n", $paths);
+
+  // Remove the tokens from breadcrumbs if they were not validated.
+  foreach ($path_breadcrumbs->titles as $key => $title) {
+    if (in_array($title, $search_title)) {
+      unset($path_breadcrumbs->titles[$key]);
+      unset($path_breadcrumbs->paths[$key]);
+    }
+  }
+}
