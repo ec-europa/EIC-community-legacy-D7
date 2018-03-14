@@ -20,7 +20,7 @@ function c4m_features_og_events_c4m_og_feature_info() {
       'machine_name' => 'c4m_features_og_events',
       'weight' => 4,
       'default' => TRUE,
-      'group_types' => array('group', 'project'),
+      'group_types' => array('group', 'project', 'organisation'),
       'content_types' => array('event'),
     ),
   );
