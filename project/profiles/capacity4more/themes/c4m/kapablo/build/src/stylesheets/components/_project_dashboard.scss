@@ -30,7 +30,8 @@
 }
 
 .node-project,
-.node-event-site {
+.node-event-site,
+.node-organisation {
   &.view-mode-group_dashboard {
     > .content > .field {
       border-bottom: 1px dotted $color-gray-light;

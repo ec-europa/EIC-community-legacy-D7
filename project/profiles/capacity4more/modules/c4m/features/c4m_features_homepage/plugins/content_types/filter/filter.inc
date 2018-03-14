@@ -51,6 +51,10 @@ function c4m_features_homepage_filter_form_create() {
     $options['event_sites'] = t('My Event Sites');
   }
 
+  if (c4m_og_get_user_group_ids_by_bundle('organisation')) {
+    $options['organisations'] = t('My Organisations');
+  }
+
   if (c4m_user_profile_get_interests()) {
     $options['interests'] = t('My interests');
   }

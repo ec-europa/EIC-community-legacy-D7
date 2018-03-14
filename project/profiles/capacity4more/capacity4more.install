@@ -601,11 +601,12 @@ function capacity4more_update_7009() {
   module_enable(['c4m_admin_event_sites']);
   module_enable(['c4m_content_event_site']);
 }
+
 /**
- * Enable draggableviews module.
+ * Enable module .
  */
 function capacity4more_update_7010() {
-  module_enable(['draggableviews']);
+  module_enable(['draggableviews', 'telephone', 'email', 'c4m_vocab_nace', 'c4m_vocab_organisation_types', 'c4m_vocab_tr']);
 }
 
 /**

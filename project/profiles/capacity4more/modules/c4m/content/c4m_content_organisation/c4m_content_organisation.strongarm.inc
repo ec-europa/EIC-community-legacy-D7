@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_content_organisation.strongarm.inc
@@ -69,7 +70,7 @@ function c4m_content_organisation_strongarm() {
         'custom_settings' => FALSE,
       ),
       'teaser' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -113,6 +114,24 @@ function c4m_content_organisation_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'block_list' => array(
+        'custom_settings' => TRUE,
+      ),
+      'teaser_group' => array(
+        'custom_settings' => FALSE,
+      ),
+      'highlight_list' => array(
+        'custom_settings' => FALSE,
+      ),
+      'documents' => array(
+        'custom_settings' => FALSE,
+      ),
+      'group_dashboard' => array(
+        'custom_settings' => TRUE,
+      ),
+      'pinned_content' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -120,13 +139,19 @@ function c4m_content_organisation_strongarm() {
           'weight' => '30',
         ),
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '33',
         ),
         'redirect' => array(
-          'weight' => '1',
+          'weight' => '36',
+        ),
+        'og_menu' => array(
+          'weight' => '0',
+        ),
+        'og_purl' => array(
+          'weight' => '34',
         ),
       ),
       'display' => array(),
@@ -173,6 +198,13 @@ function c4m_content_organisation_strongarm() {
   $strongarm->name = 'node_submitted_organisation';
   $strongarm->value = 1;
   $export['node_submitted_organisation'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_organisation_pattern';
+  $strongarm->value = 'organisation/[node:title]';
+  $export['pathauto_node_organisation_pattern'] = $strongarm;
 
   return $export;
 }

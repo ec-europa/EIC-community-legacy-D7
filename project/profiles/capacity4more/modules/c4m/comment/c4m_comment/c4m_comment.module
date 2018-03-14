@@ -180,6 +180,21 @@ function c4m_comment_c4m_content_statistics_info() {
         ),
       ),
     ),
+    'organisations' => array(
+      'c4m_og_comment' => array(
+        'type' => 'comment',
+        'entity_type' => 'comment',
+        'bundles' => array(),
+        'singular' => 'Comment',
+        'plural' => 'Comments',
+        'state' => 1,
+        'aggregate' => array(),
+        'weight' => 6,
+        'attributes' => array(
+          'class' => array('og-comments'),
+        ),
+      ),
+    ),
   );
 }
 
