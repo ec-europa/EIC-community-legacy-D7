@@ -464,6 +464,25 @@ function c4m_user_og_c4m_content_statistics_info() {
         'link' => array(),
       ),
     ),
+    'organisation' => array(
+      'c4m_og_user' => array(
+        'type' => 'user',
+        'entity_type' => 'user',
+        'bundles' => array(),
+        'singular' => 'Administrator',
+        'plural' => 'Administrators',
+        'state' => 1,
+        'c4m_status' => array(1),
+        'scope' => 'group',
+        'aggregate' => array(),
+        'weight' => 7,
+        'feature_name' => 'c4m_features_og_members',
+        'attributes' => array(
+          'class' => array('og-users'),
+        ),
+        'link' => array(),
+      ),
+    ),
   );
 }
 
@@ -744,7 +763,7 @@ function c4m_user_og_group_management_cta($group) {
     );
 
     // Add project highlight icon.
-    if (c4m_user_is_site_admin() && in_array($group->type,  ['project', 'event_site'])) {
+    if (c4m_user_is_site_admin() && in_array($group->type,  ['project', 'event_site', 'organisation'])) {
       $field = array(
         'entity' => $group,
         'view_mode' => 'block_list',

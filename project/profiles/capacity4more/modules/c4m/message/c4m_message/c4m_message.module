@@ -3473,6 +3473,12 @@ function c4m_message_load_homepage_activity_stream() {
         $hide_articles = TRUE;
         break;
 
+      case 'organisation':
+        // Gets all the project IDs that the user belongs to.
+        $groups = c4m_og_get_user_group_ids_by_bundle('organisation');
+        $hide_articles = TRUE;
+        break;
+
       case 'interests':
         // Get user's interests.
         $user_wrapper = entity_metadata_wrapper('user', $user->uid);
@@ -3883,7 +3889,7 @@ function c4m_message_views_query_alter(&$view, &$query) {
 
   $filter_by = filter_input(INPUT_GET, 'filter', FILTER_SANITIZE_STRING);
 
-  if ($filter_by == 'groups' || $filter_by == 'projects' || $filter_by == 'event_sites') {
+  if ($filter_by == 'groups' || $filter_by == 'projects' || $filter_by == 'event_sites' || $filter_by == 'organisations') {
     // `rtrim` removes plural 's' from the query string value to get the bundle.
     $groups = c4m_og_get_user_group_ids_by_bundle(rtrim($filter_by, 's'));
     $condition = c4m_message_get_query_condition_index_by_field_name(

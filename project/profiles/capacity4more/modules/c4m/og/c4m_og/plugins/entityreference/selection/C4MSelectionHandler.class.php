@@ -224,7 +224,7 @@ class C4MSelectionHandler extends C4MOgSelectionHandler {
     $query->fieldCondition(OG_GROUP_FIELD, 'value', 1, '=');
 
     // If project, don't include templates.
-    if ($group_type === 'project' || $group_type === 'event_site') {
+    if ($group_type === 'project' || $group_type === 'event_site' || $group_type === 'organisation') {
       $query->fieldCondition('c4m_is_template', 'value', 1, '<>');
     }
   }
@@ -383,6 +383,25 @@ class C4MSelectionHandler extends C4MOgSelectionHandler {
             'class' => array(
               'fa',
               'project-type-project',
+            ),
+          ),
+          '#value' => '',
+        );
+
+        $options[$bundle][$entity_id] = theme_html_tag(
+            $tag
+          ) . ' ' . check_plain($this->getLabel($entity));
+
+        break;
+
+        case 'organisation':
+        // Add organisation indicator.
+        $tag['element'] = array(
+          '#tag' => 'i',
+          '#attributes' => array(
+            'class' => array(
+              'fa',
+              'organisation',
             ),
           ),
           '#value' => '',

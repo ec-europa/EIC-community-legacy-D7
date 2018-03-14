@@ -147,6 +147,7 @@ function c4m_user_profile_ds_layout_settings_info() {
       'group_user_contributions' => 'left',
       'c4m_ds_user_my_groups' => 'right',
       'c4m_ds_user_my_event_sites' => 'right',
+      'c4m_ds_user_my_organisations' => 'right',
       'c4m_user_country' => 'left',
       'c4m_body' => 'left',
       'c4m_user_contact_link' => 'left',
