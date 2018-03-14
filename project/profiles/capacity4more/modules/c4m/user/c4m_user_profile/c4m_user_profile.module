@@ -11,6 +11,28 @@ define('C4M_USER_PROFILE_VALIDATION_MESSAGE_TYPE_MESSAGE', 1);
 define('C4M_USER_PROFILE_VALIDATION_MESSAGE_TYPE_ERROR', 2);
 
 /**
+ * Implements hook_permission().
+ */
+function c4m_user_profile_permission() {
+  return array(
+    'access logout' => array(
+      'title' => t('Access the logout action'),
+      'description' => t('Access the logout link and page.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function c4m_user_profile_user_logout() {
+  if (!user_access('access logout')) {
+    drupal_set_message(t("This operation is not permitted"), "error");
+    drupal_goto('<front>');
+  }
+}
+
+/**
  * Implements hook_field_extra_fields_alter().
  */
 function c4m_user_profile_field_extra_fields_alter(&$info) {

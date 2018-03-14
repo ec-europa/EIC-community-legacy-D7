@@ -18,7 +18,7 @@ ini_set('display_startup_errors', FALSE);
 ini_set('session.gc_probability', 1);
 ini_set('session.gc_divisor', 100);
 ini_set('session.gc_maxlifetime', 200000);
-ini_set('session.cookie_lifetime', 2000000);
+ini_set('session.cookie_lifetime', 157784760);
 
 /**
  * File system config.
