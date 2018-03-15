@@ -459,7 +459,8 @@
 
 .og-context .pane-c4m-content-group .group-details,
 .node-project.view-mode-group_dashboard,
-.node-event-site.view-mode-group_dashboard {
+.node-event-site.view-mode-group_dashboard,
+.node-organisation.view-mode-group_dashboard {
   .field-name-c4m-content-group-statistics {
     margin-top: 25px;
 
@@ -912,6 +913,7 @@
 
 .view-id-c4m_overview_projects,
 .view-id-c4m_overview_event_sites,
+.view-id-c4m_overview_organisations,
 .view-id-c4m_overview_groups,
 .sidebarblock {
   .c4m-node-highlight {

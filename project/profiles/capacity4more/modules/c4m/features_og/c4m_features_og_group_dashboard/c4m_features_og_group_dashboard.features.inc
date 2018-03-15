@@ -205,7 +205,8 @@ function c4m_features_og_group_dashboard_flag_default_flags() {
     'types' => array(
       0 => 'event_site',
       1 => 'group',
-      2 => 'project',
+      2 => 'organisation',
+      3 => 'project',
     ),
     'flag_short' => 'Enable notifications',
     'flag_long' => '',
@@ -228,6 +229,7 @@ function c4m_features_og_group_dashboard_flag_default_flags() {
       'activity_group' => 0,
       'block_list' => 0,
       'highlight_list' => 0,
+      'documents' => 0,
       'group_dashboard' => 0,
       'pinned_content' => 0,
       'revision' => 0,

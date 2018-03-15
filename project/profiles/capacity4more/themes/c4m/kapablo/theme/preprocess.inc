@@ -168,12 +168,8 @@ function kapablo_preprocess_page(&$variables) {
   $context = og_context();
   if ($context) {
     if (($group_type = c4m_og_get_group_type($context)) && $group_type == 'project') {
-      // Instruct to use a page template designated for project OG type.
-      $variables['theme_hook_suggestions'][] = 'page__og__project';
-    }
-    if (($group_type = c4m_og_get_group_type($context)) && $group_type == 'event_site') {
-      // Instruct to use a page template designated for project OG type.
-      $variables['theme_hook_suggestions'][] = 'page__og__event_site';
+      // Instruct to use a page template designated for project, event_site and organisation OG type.
+      $variables['theme_hook_suggestions'][] = 'page__og__' . $group_type;
     }
   }
 

@@ -937,7 +937,7 @@ function theme_c4m_ds_node_promote(array $field) {
     return NULL;
   }
 
-  if ($group->type == 'project' || $group->type == 'event_site') {
+  if ($group->type == 'project' || $group->type == 'event_site' || $group->type == 'organisation') {
     return;
   }
 
@@ -1225,6 +1225,37 @@ function theme_c4m_ds_event_site_type_icon(array $field) {
         'fa',
         'fa-calendar',
         'project-type-project',
+      ),
+    ),
+    '#value' => '',
+  );
+
+  return theme_html_tag($tag);
+}
+
+/**
+ * DS function field.
+ *
+ * Render project type icon.
+ *
+ * @param array $field
+ *   The field that needs to be rendered.
+ *
+ * @return mixed
+ *   The rendered field.
+ */
+function theme_c4m_ds_organisation_type_icon(array $field) {
+  if (!isset($field['entity'])) {
+    return NULL;
+  }
+
+  $tag['element'] = array(
+    '#tag' => 'i',
+    '#attributes' => array(
+      'class' => array(
+        'fa',
+        'fa-building',
+        'organisation',
       ),
     ),
     '#value' => '',

@@ -787,14 +787,16 @@ function c4m_features_og_manage_event_site_details() {
   $duration = $wrapper->c4m_datetime_end->value();
   if (!empty($duration)) {
     $duration = field_view_field('node', $event_site, 'c4m_datetime_end');
-    $details['duration'] = $duration[0]['#markup'];
+    $duration["#label_display"] = 'hidden';
+    $details['duration'] = drupal_render($duration);
   }
 
   // Location.
   $location = $wrapper->c4m_location_address->value();
   if (!empty($location)) {
     $location = field_view_field('node', $event_site, 'c4m_location_address');
-    $details['location'] = drupal_render($location[0]);
+    $location["#label_display"] = 'hidden';
+    $details['location'] = drupal_render($location);
   }
 
   // URL.
@@ -819,24 +821,28 @@ function c4m_features_og_manage_event_site_details() {
   $tagline = $wrapper->c4m_project_tag_line->value();
   if (!empty($tagline)) {
     $tagline = field_view_field('node', $event_site, 'c4m_project_tag_line');
-    $details['tagline'] = $tagline[0]['#markup'];
+    $tagline["#label_display"] = 'hidden';
+    $details['tagline'] = drupal_render($tagline);
   }
 
   // Documents.
   $document_agenda = $wrapper->c4m_document_agenda->value();
   if (!empty($document_agenda)) {
     $document_agenda = field_view_field('node', $event_site, 'c4m_document_agenda');
-    $details['document_agenda'] = drupal_render($document_agenda[0]);
+    $document_agenda["#label_display"] = 'hidden';
+    $details['document_agenda'] = drupal_render($document_agenda);
   }
   $document_presentation = $wrapper->c4m_document_presentation->value();
   if (!empty($document_presentation)) {
     $document_presentation = field_view_field('node', $event_site, 'c4m_document_presentation');
-    $details['document_presentation'] = drupal_render($document_presentation[0]);
+    $document_presentation["#label_display"] = 'hidden';
+    $details['document_presentation'] = drupal_render($document_presentation);
   }
   $related_document = $wrapper->c4m_related_document->value();
   if (!empty($related_document)) {
     $related_document = field_view_field('node', $event_site, 'c4m_related_document');
-    $details['related_document'] = drupal_render($related_document[0]);
+    $related_document["#label_display"] = 'hidden';
+    $details['related_document'] = drupal_render($related_document);
   }
 
   // List of related groups.
@@ -847,6 +853,220 @@ function c4m_features_og_manage_event_site_details() {
 
   // Get categories and terms count for current group.
   c4m_features_og_manage_list_taxonomy($event_site, $details);
+
+  return $details;
+}
+
+/**
+ * Gets the organisation details.
+ *
+ * For the organisation management dashboard,
+ * this function gets a specific information about the current organisation.
+ *
+ * @return array|bool
+ *   An array of the current organisation's info OR false if there's no organisation in
+ *   current context.
+ */
+function c4m_features_og_manage_organisation_details() {
+  $organisation = c4m_og_current_group();
+  if (!$organisation) {
+    return FALSE;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $organisation);
+
+  $purl = array(
+    'provider' => "og_purl|node",
+    'id' => $organisation->nid,
+  );
+  $options = array('purl' => $purl, 'absolute' => TRUE);
+
+  $details = array(
+    'type' => NULL,
+    'edit_link' => url(
+      'node/' . $organisation->nid . '/edit',
+      array('absolute' => TRUE)
+    ),
+    'menu_link' => url(
+      'group/node/' . $organisation->nid . '/admin/menus/menu-og-' . $organisation->nid,
+      array('absolute' => TRUE)
+    ),
+    'owner' => c4m_user_name(user_load($organisation->uid)),
+    'owner_edit' => url(
+      'organisation/node/' . $organisation->nid . '/admin/owner',
+      array('absolute' => TRUE)
+    ),
+    'admins' => t('No administrators'),
+    'admins_edit' => url('group/node/' . $organisation->nid . '/admin/people', $options),
+    'purl' => url($wrapper->value()->purl, array('absolute' => TRUE)),
+    'title' => '<strong>' . $wrapper->label() . '</strong>',
+    'tagline' => t('No tag line'),
+    'c4m_organisations_type' => t('No organisation type'),
+    'c4m_organisation_size' => t('No organisation size'),
+    'description' => !empty($wrapper->c4m_body->value())? $wrapper->c4m_body->value()['value'] : t('No text about this organisation.'),
+    'c4m_link' => t('No organisation website.'),
+    'c4m_facebook' => t('No facebbook URL.'),
+    'c4m_twitter' => t('No twitter URL.'),
+    'c4m_youtube' => t('No YouTube URL.'),
+    'c4m_linkedin' => t('No LinkedIn URL.'),
+    'c4m_location_address' => t('No location address.'),
+    'c4m_vocab_geo' => t('No Countries based in.'),
+    'c4m_vocab_geo_selling' => t('No countries selling to.'),
+    'c4m_email' => t('No email.'),
+    'c4m_phone' => t('No phone.'),
+    'c4m_contact_persons' => t('No contact persons.'),
+    'c4m_date_est' => t('No date of establishment.'),
+    'c4m_product_service_type' => t('No product/service type.'),
+    'c4m_target_markets' => t('No target markets.'),
+    'c4m_offering' => t('No offerings.'),
+    'c4m_looking_for' => t('No looking for.'),
+    'c4m_vocab_topic' => t('No group topics.'),
+    'c4m_qualitative_attributes' => !empty($wrapper->c4m_qualitative_attributes->value())? $wrapper->c4m_qualitative_attributes->value() : t('No qualitative attributes.'),
+  );
+  // Tag line.
+  $tagline = $wrapper->c4m_project_tag_line->value();
+  if (!empty($tagline)) {
+    $tagline = field_view_field('node', $organisation, 'c4m_project_tag_line');
+    $details['tagline'] = $tagline[0]['#markup'];
+  }
+
+  // The organisation type.
+  $organisations_type = $wrapper->c4m_organisations_type->value();
+  if ($organisations_type) {
+    foreach ($organisations_type as $one) {
+      $types[] = $one->name;
+    }
+    $types = implode(', ', $types);
+    $details['c4m_organisations_type'] = $types;
+  }
+
+  // The organisation size.
+  $organisation_size = $wrapper->c4m_organisation_size->value();
+  if (!empty($organisation_type)) {
+    $details['c4m_organisation_size'] = $organisation_size;
+  }
+
+  // URL.
+  $c4m_link = $wrapper->c4m_link->value();
+  if (!empty($c4m_link)) {
+    $details['c4m_link'] = $c4m_link['url'];
+  }
+
+  // Facebook.
+  $c4m_facebook = $wrapper->c4m_facebook->value();
+  if (!empty($c4m_facebook)) {
+    $details['c4m_facebook'] = $c4m_facebook['url'];
+  }
+
+  // Twitter.
+  $c4m_twitter = $wrapper->c4m_twitter->value();
+  if (!empty($c4m_twitter)) {
+    $details['c4m_twitter'] = $c4m_twitter['url'];
+  }
+  // Facebook.
+  $c4m_youtube = $wrapper->c4m_youtube->value();
+  if (!empty($c4m_youtube)) {
+    $details['c4m_youtube'] = $c4m_youtube['url'];
+  }
+
+  // Twitter.
+  $c4m_linkedin = $wrapper->c4m_linkedin->value();
+  if (!empty($c4m_linkedin)) {
+    $details['c4m_linkedin'] = $c4m_linkedin['url'];
+  }
+
+  // Location.
+  $c4m_location_address = $wrapper->c4m_location_address->value();
+  if (!empty($c4m_location_address)) {
+    $c4m_location_address = field_view_field('node', $organisation, 'c4m_location_address');
+    $c4m_location_address["#label_display"] = 'hidden';
+    $details['c4m_location_address'] = drupal_render($c4m_location_address);
+  }
+
+  // List of regions & countries.
+  $geo = $wrapper->c4m_vocab_geo->value();
+  if ($list = c4m_features_og_manage_list_regions_countries($geo)) {
+    $details['c4m_vocab_geo'] = $list;
+  }
+
+  // List of selling regions & countries.
+  $geo = $wrapper->c4m_vocab_geo_selling->value();
+  if ($list = c4m_features_og_manage_list_regions_countries($geo)) {
+    $details['c4m_vocab_geo_selling'] = $list;
+  }
+
+  // Email.
+  $c4m_email = $wrapper->c4m_email->value();
+  if (!empty($c4m_email)) {
+    $c4m_email = field_view_field('node', $organisation, 'c4m_email');
+    $c4m_email["#label_display"] = 'hidden';
+    $details['c4m_email'] = drupal_render($c4m_email);
+  }
+
+  // Phone.
+  $c4m_phone = $wrapper->c4m_phone->value();
+  if (!empty($c4m_phone)) {
+    $c4m_phone = field_view_field('node', $organisation, 'c4m_phone');
+    $c4m_phone["#label_display"] = 'hidden';
+    $details['c4m_phone'] = drupal_render($c4m_phone);
+  }
+
+  // Contact Persons.
+  $c4m_contact_persons = $wrapper->c4m_contact_persons->value();
+  if (!empty($c4m_contact_persons)) {
+    $c4m_contact_persons = field_view_field('node', $organisation, 'c4m_contact_persons');
+    $c4m_contact_persons["#label_display"] = 'hidden';
+    $details['c4m_contact_persons'] = drupal_render($c4m_contact_persons);
+  }
+
+  // Date establishment.
+  $c4m_date_est = $wrapper->c4m_date_est->value();
+  if (!empty($c4m_date_est)) {
+    $c4m_date_est = field_view_field('node', $organisation, 'c4m_date_est');
+    $c4m_date_est["#label_display"] = 'hidden';
+    $details['c4m_date_est'] = drupal_render($c4m_date_est);
+  }
+
+  // Product/service type.
+  $c4m_product_service_type = $wrapper->c4m_product_service_type->value();
+  if (!empty($c4m_product_service_type)) {
+    $c4m_product_service_type = field_view_field('node', $organisation, 'c4m_product_service_type');
+    $c4m_product_service_type["#label_display"] = 'hidden';
+    $details['c4m_product_service_type'] = drupal_render($c4m_product_service_type);
+  }
+
+  // Target markets.
+  $c4m_target_markets = $wrapper->c4m_target_markets->value();
+  if ($list = c4m_features_og_manage_list_related_topics($c4m_target_markets)) {
+    $details['c4m_target_markets'] = $list;
+  }
+
+  // Offering.
+  $c4m_offering = $wrapper->c4m_offering->value();
+  if ($list = c4m_features_og_manage_list_related_topics($c4m_offering)) {
+    $details['c4m_offering'] = $list;
+  }
+
+  // Looking for.
+  $c4m_looking_for = $wrapper->c4m_looking_for->value();
+  if ($list = c4m_features_og_manage_list_related_topics($c4m_looking_for)) {
+    $details['c4m_looking_for'] = $list;
+  }
+
+  // List of related topics.
+  $c4m_vocab_topic = $wrapper->c4m_vocab_topic->value();
+  if ($list = c4m_features_og_manage_list_related_topics($c4m_vocab_topic)) {
+    $details['c4m_vocab_topic'] = $list;
+  }
+
+  // Administrators.
+  $admins = c4m_og_get_group_admins($organisation->nid, FALSE, 'organisation');
+  if ($list = c4m_features_og_manage_list_group_admins($admins)) {
+    $details['admins'] = $list;
+  }
+
+  // Get categories and terms count for current group.
+  c4m_features_og_manage_list_taxonomy($organisation, $details);
 
   return $details;
 }
@@ -1082,6 +1302,74 @@ function c4m_features_og_manage_event_site_thumbnail() {
   }
   return $info;
 }
+
+/**
+ * Gets the organisation thumbnail.
+ *
+ * For the group management dashboard,
+ * This function gets a thumbnail image of the group with an edit
+ * link.
+ *
+ * @return array|bool
+ *   An array of current group's thumbnail image OR false if there's
+ *   no group in current context.
+ */
+function c4m_features_og_manage_organisation_thumbnail() {
+  $organisation = c4m_og_current_group();
+  if (!$organisation) {
+    return FALSE;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $organisation);
+
+  // Organisation membership.
+  $purl = [
+    'provider' => "og_purl|node",
+    'id' => $organisation->nid,
+  ];
+  $link_options = ['purl' => $purl, 'absolute' => TRUE];
+
+  $info = [
+    'organisation_title' => t('Organisation membership'),
+    'manage_members_link' => l(
+      t('Manage all organisation memberships'),
+      url('group/' . $organisation->entity_type . '/' . $organisation->nid . '/admin/people', $link_options)
+    ),
+  ];
+  // Organisation thumbnail image with edit link.
+  $info['thumbnail_image'] = NULL;
+  $file = $wrapper->c4m_media->value();
+  if (!empty($file)) {
+    $options = array(
+      'html' => TRUE,
+      'attributes' => array(
+        'class' => array(
+          'edit-thumbnail',
+        ),
+      ),
+    );
+    $edit_link['element'] = array(
+      '#tag' => 'span',
+      '#attributes' => array(
+        'class' => array('edit-link'),
+      ),
+      '#value' => t('Edit'),
+    );
+    $file['style_name'] = 'medium';
+    $file['path'] = $file['uri'];
+    $file['attributes'] = array('class' => 'group-thumbnail');
+    $info['thumbnail_image'] = l(
+      theme_image_style($file) . theme_html_tag($edit_link),
+      url(
+        'node/' . $organisation->nid . '/edit',
+        array('absolute' => TRUE, 'fragment' => 'edit-image-list')
+      ),
+      $options
+    );
+  }
+  return $info;
+}
+
 /**
  * Implements hook_form_FORM_ID_alter().
  *
@@ -1142,7 +1430,7 @@ function c4m_features_og_manage_variable_realm_edit_submit($form, &$form_state) 
  * Add anchors to the following elements by adding an ID on their elements.
  */
 function c4m_features_og_manage_form_alter(&$form, &$form_state, $form_id) {
-  if (in_array($form_id, array('group_node_form', 'project_node_form', 'event_site_node_form'))) {
+  if (in_array($form_id, array('group_node_form', 'project_node_form', 'event_site_node_form', 'organisation_node_form'))) {
     $form_elements = array(
       'title' => 'edit-details',
       'c4m_related_group' => 'edit-related-content',
