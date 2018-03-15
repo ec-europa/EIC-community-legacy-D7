@@ -63,6 +63,12 @@ function c4m_content_organisation_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'c4m_views-views_page_title' => array(
+          'module' => 'c4m_views',
+          'delta' => 'views_page_title',
+          'region' => 'content_above',
+          'weight' => '-10',
+        ),
         'views-ef7115aa19b04a910234c06331b00c44' => array(
           'module' => 'views',
           'delta' => 'ef7115aa19b04a910234c06331b00c44',

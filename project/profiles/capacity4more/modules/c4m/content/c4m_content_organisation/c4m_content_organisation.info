@@ -15,6 +15,7 @@ dependencies[] = c4m_field_location
 dependencies[] = c4m_field_media
 dependencies[] = c4m_og
 dependencies[] = c4m_og_invite_visitors
+dependencies[] = c4m_views
 dependencies[] = c4m_vocab_nace
 dependencies[] = c4m_vocab_organisation_types
 dependencies[] = c4m_vocab_tr
