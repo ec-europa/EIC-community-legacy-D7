@@ -129,3 +129,93 @@ function _c4m_content_organisation_block_c4m_block_organisation_as() {
 
   return $block;
 }
+
+/**
+ * Callback for the c4m_block_organisation_groups block.
+ */
+function _c4m_content_organisation_block_c4m_block_organisation_groups() {
+  $block = array();
+  $block['subject'] = '';
+  $block['content'] = '';
+
+  if ($node = c4m_og_current_group()) {
+    // Get uids of all active subscribers of current organisation.
+    $uids = _c4m_content_organisation_get_organisation_members($node);
+    if (empty($uids)) {
+      return $block;
+    }
+    // Get the nids of Groups that have members in the organisation.
+    $group_nids = _c4m_content_organisation_get_groups_of_members($uids);
+    if (empty($group_nids)) {
+      return $block;
+    }
+    $group_nids = implode(',', $group_nids);
+    // Render the view and pass arguments.
+    $block['content'] = views_embed_view('c4m_organisations_groups', 'block', $group_nids);
+  }
+  return $block;
+}
+
+/**
+ * Get the uids of members in Organisation.
+ *
+ * @param object $node
+ *   The current node.
+ *
+ * @return mixed
+ *   Uids of members in organisation (if any).
+ */
+function _c4m_content_organisation_get_organisation_members($node) {
+  $uids = [];
+
+  if (empty($node)) {
+    return $uids;
+  }
+
+  list($id) = entity_extract_ids('node', $node);
+
+  $query = db_select("og_membership", "ogm");
+  $query->condition("ogm.gid", $id, "=");
+  $query->condition("ogm.group_type", 'node', "=");
+  $query->condition("ogm.entity_type", 'user', "=");
+  $query->fields("ogm", array("etid"));
+  $result = $query->execute();
+
+  while ($record = $result->fetchAssoc()) {
+    $uids[] = $record['etid'];
+  }
+
+  return array_unique($uids);
+}
+
+/**
+ * Get the nids of Groups that have members in the organisation.
+ *
+ * @param array $uids
+ *   An array of uids that represent the members of the organisation.
+ *
+ * @return array $nids
+ *   Group nids (if any).
+ */
+function _c4m_content_organisation_get_groups_of_members($uids) {
+  $nids = [];
+
+  if (empty($uids)) {
+    return $nids;
+  }
+
+  $query = db_select("og_membership", "ogm");
+  $query->condition("ogm.etid", $uids, "IN");
+  $query->condition("ogm.group_type", 'node', "=");
+  $query->condition("ogm.entity_type", 'user', "=");
+  $query->fields("ogm", array("gid"));
+  $query->leftJoin('node', 'node', 'node.nid = ogm.gid');
+  $query->condition('node.type', 'group', '=');
+  $result = $query->execute();
+
+  while ($record = $result->fetchAssoc()) {
+    $nids[] = $record['gid'];
+  }
+
+  return array_unique($nids);
+}

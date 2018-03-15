@@ -45,6 +45,7 @@ dependencies[] = strongarm
 dependencies[] = telephone
 dependencies[] = text
 dependencies[] = views
+dependencies[] = views_load_more
 explanation = Field type(s) in use - see <a href="/admin/reports/fields">Field list</a>
 features[context][] = c4m_context_og_header_organisation
 features[ctools][] = context:context:3
@@ -189,6 +190,7 @@ features[variable][] = node_options_organisation
 features[variable][] = node_preview_organisation
 features[variable][] = node_submitted_organisation
 features[variable][] = pathauto_node_organisation_pattern
+features[views_view][] = c4m_organisations_groups
 features[views_view][] = c4m_overview_organisations
 features_exclude[dependencies][c4m_content_organisation] = c4m_content_organisation
 features_exclude[dependencies][taxonomy] = taxonomy
