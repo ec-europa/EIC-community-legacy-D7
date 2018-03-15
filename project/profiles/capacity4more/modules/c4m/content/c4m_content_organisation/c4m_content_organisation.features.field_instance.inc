@@ -431,16 +431,8 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'group_dashboard' => array(
         'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'c4m_long_without_time',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 10,
       ),
       'teaser' => array(
@@ -1321,9 +1313,8 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'group_dashboard' => array(
         'label' => 'above',
-        'module' => 'c4m_vocab_widget',
         'settings' => array(),
-        'type' => 'term_reference_tree_hierarchical',
+        'type' => 'hidden',
         'weight' => 18,
       ),
       'teaser' => array(
@@ -1464,9 +1455,8 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'group_dashboard' => array(
         'label' => 'above',
-        'module' => 'c4m_vocab_widget',
         'settings' => array(),
-        'type' => 'term_reference_tree_hierarchical',
+        'type' => 'hidden',
         'weight' => 17,
       ),
       'teaser' => array(
@@ -1810,9 +1800,8 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'group_dashboard' => array(
         'label' => 'above',
-        'module' => 'list',
         'settings' => array(),
-        'type' => 'list_default',
+        'type' => 'hidden',
         'weight' => 15,
       ),
       'teaser' => array(
@@ -1942,9 +1931,8 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'group_dashboard' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_plain',
+        'type' => 'hidden',
         'weight' => 20,
       ),
       'teaser' => array(
@@ -2108,9 +2096,8 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'group_dashboard' => array(
         'label' => 'above',
-        'module' => 'c4m_vocab_widget',
         'settings' => array(),
-        'type' => 'term_reference_tree_hierarchical',
+        'type' => 'hidden',
         'weight' => 16,
       ),
       'teaser' => array(
@@ -2229,9 +2216,8 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'group_dashboard' => array(
         'label' => 'above',
-        'module' => 'c4m_vocab_widget',
         'settings' => array(),
-        'type' => 'term_reference_tree_hierarchical',
+        'type' => 'hidden',
         'weight' => 13,
       ),
       'teaser' => array(
@@ -2279,9 +2265,8 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'group_dashboard' => array(
         'label' => 'above',
-        'module' => 'c4m_vocab_widget',
         'settings' => array(),
-        'type' => 'term_reference_tree_hierarchical',
+        'type' => 'hidden',
         'weight' => 14,
       ),
       'teaser' => array(
