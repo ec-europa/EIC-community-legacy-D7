@@ -27,7 +27,7 @@ function _c4m_search_block_facetapi_view_alter(&$data, $block) {
     'dGKhc10y2QJpsM5ad2fQ7SS0YaaUVZXg' => t('Group or Project'),
 
     // Geographical.
-    'JQeEQzhfJJBhHcXpX4531H7GTXL1viNU' => t('Regions & Countries'),
+    'JQeEQzhfJJBhHcXpX4531H7GTXL1viNU' => (strpos(current_path(), 'organisations') !== FALSE) ? t('Countries based in') : t('Regions & Countries'),
 
     // Topics.
     'SpfB5FmHUHWhgc7eyjZ86g8LsNjQHx8E' => t('Topics'),
@@ -54,10 +54,24 @@ function _c4m_search_block_facetapi_view_alter(&$data, $block) {
     '2qrTnbxWr0rI2lmcQR6mBDryPwkuS1PH' => t('Type'),
     // Event type.
     'ajPbeoCHay77liOuYn2HrFBMw0VZUgCz' => t('Type'),
+    // Organisation type.
+    'pDwQkkFRyuAyJpzVYbF8BA3nQXL5VT1P' => t('Type'),
     // Project type.
     'S9qne31IKDd1jhPm8FHFcpVq9mtX65DM' => t('Type'),
     // Project stage.
     'OK4Vyc0ny8QpANDSYVhonW7ExFGaGeb5' => t('Stage'),
+    // Organisation size.
+    'KuUeBwgXnNAZL1C4FTlwm6j7gjuavYTy' => t('Size'),
+    // Countries selling to.
+    'K2D7GVHq40RxVz0IPD6o7IupU9AHGkQ1' => t('Countries selling to'),
+    // Product/service type.
+    '7AzQiU3dXTkeePI0LKd59q4rhL9dHLg5' => t('Product/service type'),
+    // Target markets.
+    '3CQPCYa1sRApPJ27ceXsTn0iYqs5r4q6' => t('Target markets'),
+    // Offering.
+    'MlLMz1yRO5G4gB8gyoi9RVCMPfchd7FN' => t('Offering'),
+    // Looking for.
+    'vMMGtBj3zf2hNgMoSddj1CKETgNB2hOj' => t('Looking for'),
   );
 
   // Check if we have an override for the block delta.
