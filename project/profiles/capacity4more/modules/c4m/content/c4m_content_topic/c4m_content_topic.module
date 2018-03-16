@@ -79,6 +79,7 @@ function c4m_content_topic_field_formatter_info() {
       'settings' => array(
         'display' => 'all',
         'link' => '',
+        'link_organisations' => '',
         'wrap' => 'none',
         'separator' => ' » ',
         'exclude_top_parent' => FALSE,
@@ -90,6 +91,7 @@ function c4m_content_topic_field_formatter_info() {
       'settings' => array(
         'display' => 'all',
         'link' => '',
+        'link_organisations' => '',
         'wrap' => 'none',
         'separator' => ' > ',
         'glue' => ', ',
@@ -101,6 +103,7 @@ function c4m_content_topic_field_formatter_info() {
       'settings' => array(
         'display' => 'all',
         'link' => '',
+        'link_organisations' => '',
         'wrap' => 'none',
         'separator' => ' > ',
         'glue' => ' - ',
@@ -112,6 +115,7 @@ function c4m_content_topic_field_formatter_info() {
       'settings' => array(
         'display' => 'all',
         'link' => '',
+        'link_organisations' => '',
         'wrap' => 'none',
         'separator' => ', ',
       ),
@@ -141,6 +145,15 @@ function c4m_content_topic_field_formatter_settings_form(
     ),
     '#type' => 'checkbox',
     '#default_value' => $settings['link'],
+  );
+
+  $element['link_organisations'] = array(
+    '#title' => t('Link each term to the organisations overview page'),
+    '#description' => t(
+      'If checked, the terms will link to the organisations overview page, filtered by this term.'
+    ),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['link_organisations'],
   );
 
   $element['separator'] = array(
@@ -193,7 +206,7 @@ function c4m_content_topic_field_formatter_settings_summary(
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
 
-  $format = $settings['link'] ? t('Links') : t('Plain text');
+  $format = ($settings['link'] || $settings['link_organisations']) ? t('Links') : t('Plain text');
 
   $summary = t('Display: As %format', array('%format' => $format));
 
@@ -293,7 +306,7 @@ function c4m_content_topic_field_formatter_view(
           $vocab = taxonomy_vocabulary_load($item['taxonomy_term']->vid);
 
           foreach ($term_tree as $term) {
-            if ($settings['link']) {
+            if ($settings['link'] || $settings['link_organisations']) {
               $options = array(
                 'query' => array(
                   'f' => array($vocab->machine_name . ':' . $term->tid),
@@ -303,7 +316,7 @@ function c4m_content_topic_field_formatter_view(
               $link = array(
                 '#type' => 'link',
                 '#title' => $term->name,
-                '#href' => 'search',
+                '#href' => isset($settings['link'])? 'search' : isset($settings['link_organisations'])? 'organisations' : '',
                 '#options' => $options,
               );
               $terms[] = array(
@@ -350,20 +363,28 @@ function c4m_content_topic_field_formatter_view(
         else {
           $term = $item['taxonomy_term'];
 
-          if ($settings['link']) {
+          if ($settings['link'] || $settings['link_organisations']) {
             // Get the vocabulary to create a filter on vocab facet.
             $vocab = taxonomy_vocabulary_load($item['taxonomy_term']->vid);
-
             $options = array(
               'query' => array(
                 'f' => array($vocab->machine_name . ':' . $term->tid),
               ),
             );
 
+            // Alter the links in Teaser VM for Organisation to go to prefiltered Organisations overview page.
+            if ($settings['link_organisations'] && in_array($field['field_name'], ['c4m_looking_for', 'c4m_offering'])) {
+              $options = array(
+                'query' => array(
+                  'f' => array($field['field_name'] . ':' . $term->tid),
+                ),
+              );
+            }
+
             $link = array(
               '#type' => 'link',
               '#title' => $term->name,
-              '#href' => 'search',
+              '#href' => isset($settings['link'])? 'search' : isset($settings['link_organisations'])? 'organisations' : '',
               '#options' => $options,
             );
             $content = drupal_render($link);
@@ -390,6 +411,7 @@ function c4m_content_topic_field_formatter_view(
           'terms' => $terms,
           'separator' => $settings['separator'],
           'glue' => $settings['glue'],
+          'link_organisations' => $settings['link_organisations'],
         );
 
         $element[$delta] = array(
@@ -413,7 +435,7 @@ function c4m_content_topic_field_formatter_view(
         else {
           $term = $item['taxonomy_term'];
 
-          if ($settings['link']) {
+          if ($settings['link'] || $settings['link_organisations']) {
             // Get the vocabulary to create a filter on vocab facet.
             $vocab = taxonomy_vocabulary_load($item['taxonomy_term']->vid);
 
@@ -426,7 +448,7 @@ function c4m_content_topic_field_formatter_view(
             $link = array(
               '#type' => 'link',
               '#title' => $term->name,
-              '#href' => 'search',
+              '#href' => isset($settings['link'])? 'search' : isset($settings['link_organisations'])? 'organisations' : '',
               '#options' => $options,
             );
             $content = drupal_render($link);
@@ -477,7 +499,7 @@ function c4m_content_topic_field_formatter_view(
             // Get the vocabulary to create a filter on vocab facet.
             $vocab = taxonomy_vocabulary_load($item['taxonomy_term']->vid);
 
-            if ($settings['link']) {
+            if ($settings['link'] || $settings['link_organisations']) {
               $options = array(
                 'query' => array(
                   'f' => array($vocab->machine_name . ':' . $term->tid),
@@ -487,7 +509,7 @@ function c4m_content_topic_field_formatter_view(
               $link = array(
                 '#type' => 'link',
                 '#title' => $term->name,
-                '#href' => 'search',
+                '#href' => isset($settings['link'])? 'search' : isset($settings['link_organisations'])? 'organisations' : '',
                 '#options' => $options,
               );
               $terms[$term->tid] = array(
@@ -570,6 +592,14 @@ function theme_c4m_content_topic_inline_tree($variables) {
   $separator = filter_xss_admin($variables['separator']);
   $glue = filter_xss_admin($variables['glue']);
   $items = array();
+
+  if ($variables['link_organisations']) {
+    foreach ($variables['terms'] as $item) {
+      $items = array_merge($items, c4m_content_topic_tree_to_string($item, $separator, $glue));
+    }
+    $items = implode($glue, $items);
+    return $items;
+  }
 
   foreach ($variables['terms'] as $item) {
     $items = array_merge($items, c4m_content_topic_tree_to_string($item, $separator, $glue));

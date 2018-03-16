@@ -22,6 +22,15 @@
   <?php endif; ?>
 
   <div id="header-ec-wrapper" class="c4m-project-page">
+    <?php if (!empty($breadcrumb)): ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 header-breadcrumb">
+                  <?php print $breadcrumb; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
     <?php if ($image_banner_background): ?>
       <div class="background-banner">
         <?php print $image_banner_background; ?>

@@ -615,3 +615,12 @@ function capacity4more_update_7010() {
 function capacity4more_update_7011() {
   module_enable(['masquerade']);
 }
+
+/**
+ * Disable admin_views_comment view.
+ */
+function capacity4more_update_7012() {
+  $view_name = "admin_views_comment";
+  $view = views_get_view($view_name);
+  ctools_export_crud_set_status("views_view", $view, TRUE);
+}
