@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_content_topic.features.field_instance.inc
@@ -783,6 +784,7 @@ function c4m_content_topic_field_default_field_instances() {
           'display' => 'all',
           'exclude_top_parent' => 1,
           'link' => 1,
+          'link_organisations' => '',
           'separator' => ' - ',
           'wrap' => 'none',
         ),

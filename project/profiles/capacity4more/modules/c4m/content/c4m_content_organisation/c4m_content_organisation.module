@@ -8,6 +8,11 @@
 include_once 'c4m_content_organisation.features.inc';
 
 /**
+ * @file
+ * Code for the Organisation content type feature.
+ */
+
+/**
  * Implements hook_field_info().
  */
 function c4m_content_organisation_field_info() {
@@ -384,51 +389,376 @@ function c4m_content_organisation_type_value($organisation_key) {
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
- *
- * Add our own validation handler.
+ * Implements hook_ctools_plugin_directory().
  */
-function c4m_content_organisation_form_organisation_node_form_alter(array &$form, array $form_state) {
-  $form['#validate'][] = 'c4m_content_organisation_form_organisation_node_form_validate';
+function c4m_content_organisation_ctools_plugin_directory($module, $plugin_type) {
+  if ($module == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
 }
 
 /**
- * Organisation node form validation handler.
- *
- * @param array $form
- *   Form render array.
- * @param array $form_state
- *   Form state array.
- *
- * @ingroup forms
+ * Implements hook_c4m_og_vocab_info_groups().
  */
-function c4m_content_organisation_form_organisation_node_form_validate(array $form, array $form_state) {
-  $values = $form_state['values'];
+function c4m_content_organisation_c4m_og_vocab_info_groups() {
+  return array(
+    'organisation' => array(
+      'c4m_vocab_category',
+      'c4m_vocab_tag',
+    ),
+  );
+}
 
-  if (
-    isset($values['c4m_domain'][LANGUAGE_NONE]) &&
-    is_array($values['c4m_domain'][LANGUAGE_NONE]) &&
-    count($values['c4m_domain'][LANGUAGE_NONE])
-  ) {
-    $domains = $values['c4m_domain'][LANGUAGE_NONE];
-    foreach ($domains as $key => $domain) {
-      if (
-        isset($domain['c4m_domain']['domain']) &&
-        !empty($domain['c4m_domain']['domain'])
-      ) {
-        $domain = trim($domain['c4m_domain']['domain']);
+/**
+ * Implements hook_c4m_content_statistics_info().
+ */
+function c4m_content_organisation_c4m_content_statistics_info() {
+  return array(
+    'global' => array(
+      'c4m_organisations' => array(
+        'type' => 'organisation',
+        'entity_type' => 'node',
+        'bundles' => array('organisation'),
+        'singular' => 'Organisation',
+        'plural' => 'Organisations',
+        'state' => 1,
+        'skip_access_check' => TRUE,
+        'c4m_status' => array('published', 'archived'),
+        'aggregate' => array(),
+        'weight' => -3,
+        'attributes' => array(
+          'class' => array('projects'),
+        ),
+        'link' => array(
+          'path' => 'organisations',
+        ),
+      ),
+    ),
+    'topic' => array(
+      'c4m_topic_organisations' => array(
+        'type' => 'organisation',
+        'entity_type' => 'node',
+        'bundles' => array('organisation'),
+        'singular' => 'Organisation',
+        'plural' => 'Organisations',
+        'state' => 1,
+        'aggregate' => array(),
+        'weight' => 1,
+        'attributes' => array(
+          'class' => array('topic-projects'),
+        ),
+        'link' => array(
+          'path' => 'organisations',
+          'options' => array(
+            'query' => array(
+              'f' => array(
+                'c4m_vocab_topic:@TOPIC_ID',
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
 
-        // Check if the string starts with "@" and return error if so.
-        if (stripos($domain, '@') === 0) {
-          $form_key = 'c4m_domain][' . LANGUAGE_NONE . '][' . $key . '][c4m_domain][domain';
-          form_set_error($form_key, t('The domain name should not start with an "@".'));
-        }
-        // Use a fake mail address just for validation of the domain.
-        elseif (!valid_email_address('fake@' . $domain)) {
-          $form_key = 'c4m_domain][' . LANGUAGE_NONE . '][' . $key . '][c4m_domain][domain';
-          form_set_error($form_key, t('Not a valid domain name.'));
-        }
-      }
-    }
+/**
+ * Implements hook_block_info().
+ */
+function c4m_content_organisation_block_info() {
+  $blocks = array();
+
+  $blocks['header_name_banner_organisation'] = array(
+    'info' => t('Organisation header'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
+
+  $blocks['c4m_block_organisation_about'] = array(
+    'info' => t('Organisation: About'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['c4m_block_organisation_as'] = array(
+    'info' => t('Organisation: Activity Stream'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['c4m_block_create_organisation'] = array(
+    'info' => t('Organisation: Create Organisation'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function c4m_content_organisation_block_view($delta) {
+  $module = 'c4m_content_organisation';
+
+  module_load_include('inc', $module, $module . '.block');
+  $callback = "_{$module}_block_" . $delta;
+  if (function_exists($callback)) {
+    return $callback();
   }
+
+  return array();
+}
+
+/**
+ * Implements hook_FORM_ID_form_alter().
+ *
+ * Alter the Organisation creation form.
+ */
+function c4m_content_organisation_form_organisation_node_form_alter(array &$form, array &$form_state) {
+  $type = 'organisation';
+
+  _c4m_og_alter_group_form($form, $form_state, $type);
+
+  // There's no node ID at form => form is for new project creation.
+  // Hide status field, for it to get default value of Pending, once created.
+  if (is_null($form['nid']['#value'])) {
+    $form['c4m_og_status']['#access'] = FALSE;
+  }
+
+  // Don't let access to fill in icon and domain fields.
+  $form["c4m_icon"]["#access"] = FALSE;
+  $form["c4m_domain"]["#access"] = FALSE;
+
+}
+
+/**
+ * Returns the administered Organisations count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_get_administered_organisations_count($uid) {
+  // We are counting the memberships as there are no roles in Organisations.
+  return c4m_content_organisation_get_user_organisation_memberships_count($uid, OG_STATE_ACTIVE);
+}
+
+
+/**
+ * Returns the pending Organisations count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_get_pending_organisations_count($uid) {
+  return c4m_content_organisation_get_user_organisation_memberships_count($uid, OG_STATE_PENDING);
+}
+
+
+/**
+ * Returns the memberships in organisation count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ * @param int $state
+ *   OG state.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_get_user_organisation_memberships_count($uid, $state = OG_STATE_ACTIVE) {
+  $query = db_select('og_membership', 'm');
+  $query->fields('m', array('id'));
+  $query->join('node', 'n', 'n.nid = m.gid');
+  $query->condition('m.group_type', 'node');
+  $query->condition('m.entity_type', 'user');
+  $query->condition('m.etid', $uid);
+  $query->condition('m.state', $state);
+  $query->condition('n.type', 'organisation');
+
+
+  $query = $query->execute();
+  $amount = $query->rowCount();
+
+  return $amount;
+}
+
+/**
+ * Returns the owned projects count for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_owned_organisations_count($uid) {
+  return c4m_content_organisation_get_owned_organisations_count($uid);
+}
+
+/**
+ * Returns the count of owned Organisations for an user.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return int
+ *   Count.
+ */
+function c4m_content_organisation_get_owned_organisations_count($uid) {
+  $query = db_select('node', 'n');
+  $query->fields('n', array('nid'));
+  $query->condition('n.uid', $uid);
+  $query->condition('n.status', NODE_PUBLISHED);
+  $query->condition('n.type', 'organisation');
+
+
+
+  $query = $query->execute();
+  $amount = $query->rowCount();
+
+  return $amount;
+}
+
+/**
+ * Implements hook_c4m_helper_entity_label_info().
+ */
+function c4m_content_organisation_c4m_helper_entity_label_info() {
+  return array(
+    'organisation' => array(
+      'article' => t('a'),
+      'singular' => t('organisation'),
+      'plural' => t('organisations'),
+      'insert action' => t('created a new organisation'),
+      'update action' => t('updated the organisation'),
+      'icon' => 'fa-users',
+    ),
+  );
+}
+
+/**
+ * Implements hook_c4m_helper_entity_metrics_info().
+ */
+function c4m_content_organisation_c4m_helper_entity_metrics_info() {
+  return array(
+    'c4m_user_organisations_administered' => array(
+      'type' => 'organisations_administered',
+      'context' => 'user',
+      'callback' => 'c4m_content_organisation_get_administered_organisations_count',
+    ),
+    'c4m_user_organisations_pending' => array(
+      'type' => 'organisations_pending',
+      'context' => 'user',
+      'callback' => 'c4m_content_organisation_get_pending_organisations_count',
+    ),
+    'c4m_user_organisations_owned' => array(
+      'type' => 'organisations',
+      'context'  => 'user',
+      'callback'  => 'c4m_content_organisation_owned_organisations_count',
+    ),
+  );
+}
+
+/**
+ * Implements hook_pc_system_component_blockreference_whitelist().
+ */
+function c4m_content_organisation_c4m_content_project_blockreference_whitelist($context) {
+  if ($context['entity']->hostEntity()->type == 'organisation') {
+    return array(
+      'c4m_content_organisation:c4m_block_organisation_about' => array(
+        'label' => t('About this organisation'),
+      ),
+      'c4m_content_organisation:c4m_block_organisation_as' => array(
+        'label' => t('Organisation\'s Activity Stream'),
+      ),
+      'views:c4m_project_news-block' => array(
+        'label' => t('Latest news'),
+      ),
+      'views:c4m_project_highlights-block' => array(
+        'label' => t('Highlights block'),
+      ),
+      'c4m_search_og:c4m_search_group_form' => array(
+        'label' => t('Search block'),
+      ),
+    );
+  }
+
+  return array();
+}
+
+/**
+ * Implements hook_theme().
+ */
+function c4m_content_organisation_theme() {
+  $theme['c4m_content_organisation_header_title'] = array(
+    'variables' => array(
+      'title' => '',
+      'tagline' => '',
+      'stage' => '',
+      'type' => '',
+      'status' => '',
+      'flag' => '',
+    ),
+    'path' => drupal_get_path('module', 'c4m_content_organisation') . '/theme',
+    'template' => 'c4m-content-organisation-header-title',
+  );
+
+  return $theme;
+}
+
+/**
+ * Implements hook_TYPE_alter().
+ *
+ * Using hook_c4m_offcanvas_trigger_label_left_alter().
+ */
+function c4m_content_organisation_c4m_offcanvas_trigger_label_left_alter(
+  &$trigger_label
+) {
+  if (arg(0) == 'organisations' && empty(arg(1))) {
+    $trigger_label['label'] = t('Filter results');
+    $trigger_label['icon'] = 'filter';
+  }
+}
+
+/**
+ * Implements hook_c4m_cta_block().
+ */
+function c4m_content_organisation_c4m_cta_block() {
+  global $user;
+
+  // Only add items if there is an OG group.
+  if (!$group = c4m_og_current_group()) {
+    return;
+  }
+
+  // Prevent from 'group' nodes to run this logic.
+  if ($group->type != 'organisation' ) {
+    return;
+  }
+
+  // A blocked (banned) user should not be able to see the CTA block.
+  $user_role = c4m_user_og_get_role_in_group($user, $group);
+  if ($user_role == 'blocked') {
+    return;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $group);
+  // Do not present CTA block for archived group.
+  if ($wrapper->c4m_og_status->value() == 'archived') {
+    return;
+  }
+
+  $items = array();
+
+  if (!drupal_is_front_page() || user_is_anonymous()) {
+    return $items;
+  }
+
+  if ($item = c4m_user_og_follow_group_cta($group)) {
+    $items['follow'] = $item;
+  }
+
+  return $items;
 }
