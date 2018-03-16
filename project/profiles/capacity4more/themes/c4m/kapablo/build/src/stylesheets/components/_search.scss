@@ -369,6 +369,11 @@
     @extend .facetapi-link;
   }
 
+  .facetapi-link--organisation::before {
+    content: "\f1ad";
+    @extend .facetapi-link;
+  }
+
   .facetapi-link--wiki-page::before {
     content: "\f266";
     @extend .facetapi-link;
