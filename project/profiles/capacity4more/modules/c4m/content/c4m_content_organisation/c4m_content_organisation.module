@@ -488,6 +488,11 @@ function c4m_content_organisation_block_info() {
     'cache' => DRUPAL_NO_CACHE,
   );
 
+  $blocks['c4m_block_organisation_groups'] = array(
+    'info' => t('Organisation: Organisation\'s groups'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
   return $blocks;
 }
 
@@ -669,6 +674,9 @@ function c4m_content_organisation_c4m_content_project_blockreference_whitelist($
     return array(
       'c4m_content_organisation:c4m_block_organisation_about' => array(
         'label' => t('About this organisation'),
+      ),
+      'c4m_content_organisation:c4m_block_organisation_groups' => array(
+        'label' => t('Organisation\'s groups'),
       ),
       'c4m_content_organisation:c4m_block_organisation_as' => array(
         'label' => t('Organisation\'s Activity Stream'),
