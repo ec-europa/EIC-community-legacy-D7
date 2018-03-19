@@ -18,14 +18,16 @@ function c4m_features_og_discussions_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'node/%nodeidnumber';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => '%nodeidnumber:og-group-ref:title',
-      1 => 'Discussions',
-      2 => '%nodeidnumber:title',
+      0 => '@C4M_Group_type',
+      1 => '%nodeidnumber:og-group-ref:title',
+      2 => 'Discussions',
+      3 => '%nodeidnumber:title',
     ),
     'paths' => array(
-      0 => 'node/%nodeidnumber:og-group-ref:nid',
-      1 => 'discussions',
-      2 => '<none>',
+      0 => '@C4M_Group_overview_path',
+      1 => 'node/%nodeidnumber:og-group-ref:nid',
+      2 => 'discussions',
+      3 => '<none>',
     ),
     'home' => 0,
     'translatable' => 0,

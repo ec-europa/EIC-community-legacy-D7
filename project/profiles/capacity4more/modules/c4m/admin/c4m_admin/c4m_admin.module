@@ -31,6 +31,15 @@ function c4m_admin_menu() {
     'file' => 'c4m_admin.pages.inc',
   );
 
+  $items['admin/config/c4m/breadcrumbs'] = array(
+    'access arguments' => array('administer site configuration'),
+    'description' => 'Manage the breadcrumbs settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('c4m_admin_breadcrumbs_settings_form'),
+    'title' => 'Breadcrumbs settings',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
   return $items;
 }
 
@@ -109,4 +118,77 @@ function c4m_admin_permission() {
   );
 
   return $perms;
+}
+
+/**
+ * Form builder for breadcrumbs settings.
+ */
+function c4m_admin_breadcrumbs_settings_form($form, &$form_state) {
+  $title = variable_get('c4m_smei_dashboard_title');
+  $url = variable_get('c4m_smei_dashboard_url');
+  $form['c4m_smei_dashboard_title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('SMEi Dashboard breadcrumb title'),
+    '#required' => TRUE,
+    '#default_value' => (!empty($title)) ? $title : t('SMEi Dashboard'),
+  );
+
+  $form['c4m_smei_dashboard_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to SMEi Dashboard'),
+    '#required' => TRUE,
+    '#default_value' => (!empty($url)) ? $url : "",
+  );
+
+  $form['actions']['#type'] = 'actions';
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
+
+  return $form;
+}
+
+/**
+ * Validation handler for c4m_admin_breadcrumbs_settings_form.
+ */
+function c4m_admin_breadcrumbs_settings_form_validate(
+  $form,
+  &$form_state
+) {
+  if (empty($form_state['values']['c4m_smei_dashboard_title'])) {
+    form_set_error('c4m_smei_dashboard_title',
+      t('Title for SMEi dashboard is required.'));
+    return;
+  }
+
+  if (empty($form_state['values']['c4m_smei_dashboard_url'])) {
+    form_set_error('c4m_smei_dashboard_url',
+      t('Url to SMEi dashboard is required.'));
+    return;
+  }
+
+  if (filter_var($form_state['values']['c4m_smei_dashboard_url'], FILTER_VALIDATE_URL) === FALSE) {
+    form_set_error('c4m_smei_dashboard_url',
+      t('Url to SMEi dashboard is not valid.'));
+    return;
+  }
+}
+
+/**
+ * Submit handler for c4m_admin_breadcrumbs_settings_form.
+ */
+function c4m_admin_breadcrumbs_settings_form_submit(
+  $form,
+  &$form_state
+) {
+  if (!empty($form_state['values']['c4m_smei_dashboard_title'])) {
+    variable_set('c4m_smei_dashboard_title',
+      $form_state['values']['c4m_smei_dashboard_title']);
+  }
+  if (!empty($form_state['values']['c4m_smei_dashboard_url'])) {
+    variable_set('c4m_smei_dashboard_url',
+      $form_state['values']['c4m_smei_dashboard_url']);
+  }
+  drupal_set_message(t("Breadcrumbs settings were saved."));
 }
