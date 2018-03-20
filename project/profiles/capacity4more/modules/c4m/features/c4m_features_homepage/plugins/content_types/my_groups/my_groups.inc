@@ -100,7 +100,7 @@ function c4m_features_homepage_get_group_type_title($type) {
     'pending' => t('Membership requested in the following Group(s)'),
   );
 
-  return $titles[$type];
+  return !empty($titles[$type])? $titles[$type] : '';
 }
 
 /**
