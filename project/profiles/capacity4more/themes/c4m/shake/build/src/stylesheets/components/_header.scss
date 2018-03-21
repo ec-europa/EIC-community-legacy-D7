@@ -1,5 +1,6 @@
 #header-ec-wrapper {
   background-color: transparent;
+  border-top-color: $color-gray-light;
   overflow: visible;
 }
 
@@ -12,7 +13,8 @@
 }
 
 .logo {
-  width: 120px;
+  margin-right: 10px;
+  width: 140px;
 }
 
 .header-breadcrumb {
@@ -39,6 +41,7 @@
 
 .navigation--primary {
   background-color: $color-blue-light;
+  border-bottom: none;
 
   .navbar {
     max-width: 100%;

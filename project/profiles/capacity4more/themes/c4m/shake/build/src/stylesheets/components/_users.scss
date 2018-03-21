@@ -1,5 +1,8 @@
 #user-bar {
-  background-color: transparent;
+  background-color: $color-white;
+  box-shadow: none;
+  height: 50px;
+  padding: 10px 0;
   .user-groups,
   .user-projects {
     background: $color-blue-light;
@@ -39,11 +42,11 @@
     color: $color-blue;
   }
 
-  .fa-chevron-down {
-    color: $color-blue;
-  }
-
-  .fa-users, .fa-flag-checkered, .fa-calendar, .fa-flag, .fa-building {
-    color: $color-blue;
+  .fullname-picture-wrapper {
+    .fullname-picture {
+      .fa-users, .fa-flag-checkered, .fa-calendar, .fa-flag, .fa-building, .fa-chevron-down {
+        color: $color-blue;
+      }
+    }
   }
 }
