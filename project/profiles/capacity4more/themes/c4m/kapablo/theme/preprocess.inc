@@ -252,20 +252,44 @@ function _set_og_breadcrumbs() {
     // We need to load the group to get the
     // group title to use in the breadcrumb.
     $group = node_load($purl['id']);
+    $groups_breadcrumb = FALSE;
+    if (!empty($group->type)) {
+      switch ($group->type) {
+        case 'group':
+          $groups_breadcrumb = l(t("Groups"), '/groups');
+          break;
+
+        case 'project':
+          $groups_breadcrumb = l(t("Projects"), '/projects');
+          break;
+
+        case 'event_site':
+          $groups_breadcrumb = l(t("Events"), '/events');
+          break;
+
+        case 'organisation':
+          $groups_breadcrumb = l(t("Organisations"), '/organisations');
+          break;
+      }
+    }
 
     // Just have the group title displayed on group pages.
     if (count($path_elements) == 1) {
+      if ($groups_breadcrumb) {
+        $breadcrumb[] = $groups_breadcrumb;
+      }
       $breadcrumb[] = $group->title;
     }
     // This deals with the direct menu items in the group menu.
     else {
       // We use the menu trail to get the titles for the breadcrumb.
       $trail = menu_get_active_trail();
-      if (isset($trail[1]['menu_name']) && $trail[1]['menu_name'] == 'c4m-og-menu') {
-        // Breadcrumb element linking to the group page.
-        $breadcrumb[] = l($group->title, $path_elements[0]);
-        $breadcrumb[] = $trail[1]['link_title'];
+      if ($groups_breadcrumb) {
+        $breadcrumb[] = $groups_breadcrumb;
       }
+      // Breadcrumb element linking to the group page.
+      $breadcrumb[] = l($group->title, $path_elements[0]);
+      $breadcrumb[] = $trail[1]['link_title'];
     }
 
     drupal_set_breadcrumb($breadcrumb);
@@ -450,8 +474,21 @@ function kapablo_breadcrumb($variables) {
 
     array_unshift(
       $breadcrumb,
-      l(t('EUROPA'), 'http://ec.europa.eu'),
-      l(t('capacity4dev'), '<front>', array('purl' => array('disabled' => TRUE)))
+      l(t('EIC Community'), '<front>', array('purl' => array('disabled' => TRUE)))
+    );
+
+    $smei_dashboard_title = variable_get('c4m_smei_dashboard_title');
+    $smei_dashboard_url = variable_get('c4m_smei_dashboard_url');
+    if (!empty($smei_dashboard_title) && !empty($smei_dashboard_url)) {
+      array_unshift(
+        $breadcrumb,
+        l($smei_dashboard_title, $smei_dashboard_url)
+      );
+    }
+
+    array_unshift(
+      $breadcrumb,
+      l(t('EUROPA'), 'http://ec.europa.eu')
     );
 
     $num_items = count($breadcrumb);
