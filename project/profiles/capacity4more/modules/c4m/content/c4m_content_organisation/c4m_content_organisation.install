@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Installation hooks for the Content Organisation module.
+ * Install & Update hooks.
  */
 
 /**
@@ -44,4 +44,30 @@ function c4m_content_organisation_field_schema($field) {
       ),
     ),
   );
+}
+
+/**
+ * Implements hook_install().
+ */
+function c4m_content_organisation_install() {
+  module_enable(['telephone', 'email', 'c4m_vocab_nace', 'c4m_vocab_organisation_types', 'c4m_vocab_tr']);
+}
+/**
+ * Implements hook_update_n().
+ */
+function c4m_content_organisation_update_7001() {
+  // Enable module .
+  module_enable(['telephone']);
+  module_enable(['email']);
+  module_enable(['c4m_vocab_nace']);
+  module_enable(['c4m_vocab_organisation_types']);
+  module_enable(['c4m_vocab_tr']);
+  // Set the pathauto for the content type trough the install hook.
+  // It can then be overridden without interfere the feature settings.
+  variable_set('pathauto_node_organisation_pattern', 'organisation/[node:title]');
+
+  // Remove old instance of organisation type field.
+  if ($instance = field_info_instance('node', 'c4m_organisation_type', 'organisation')) {
+    field_delete_instance($instance);
+  }
 }

@@ -31,6 +31,7 @@ function theme_c4m_website_statistics_summary(array $variables) {
     'photo' => 'fa-picture-o',
     'project' => 'fa-flag-checkered',
     'event_site' => 'fa-calendar',
+    'organisation' => 'fa-building',
     'posts' => 'fa-comments-o',
     'event' => 'fa-calendar',
     'news' => 'fa-newspaper-o',
@@ -88,6 +89,13 @@ function theme_c4m_website_statistics_summary(array $variables) {
         'text-small',
       ),
     );
+  }
+
+  if (!empty($variables['more_link'])) {
+    $list['more_link'] = [
+      'data' => $variables['more_link'] . '<i class="fa fa-angle-right"></i>',
+      'class' => ['see-more'],
+    ];
   }
 
   $summary = array(

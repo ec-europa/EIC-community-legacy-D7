@@ -61,11 +61,14 @@ function _c4m_content_event_site_block_header_name_banner_event_site() {
   $status = isset($wrapper->c4m_og_status) ? $wrapper->c4m_og_status->value(
   ) : 'published';
 
+  $label_type = ($status == 'pending') ? "label-danger" : "label-default";
+
   $variables = [
     'title' => check_plain($title),
     'tagline' => check_plain($tagline),
     'type' => 'event site',
     'status' => $status,
+    'label_type' => $label_type,
   ];
   $markup .= theme('c4m_content_event_site_header_title', $variables);
 

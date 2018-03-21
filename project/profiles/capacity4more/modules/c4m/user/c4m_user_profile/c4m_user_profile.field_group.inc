@@ -187,8 +187,9 @@ function c4m_user_profile_field_group_info() {
     'label' => '',
     'weight' => '2',
     'children' => array(
-      0 => 'c4m_user_first_and_last_name',
-      1 => 'c4m_user_contact_link',
+      0 => 'masquerade',
+      1 => 'c4m_user_first_and_last_name',
+      2 => 'c4m_user_contact_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(

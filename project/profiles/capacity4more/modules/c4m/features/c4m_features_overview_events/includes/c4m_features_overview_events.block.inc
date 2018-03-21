@@ -70,7 +70,7 @@ function _c4m_features_overview_events_block_event_total_count() {
   $content = theme('html_tag', array(
     'element' => array(
       '#tag' => 'h2',
-      '#value' => 'EVENTS (' . $total_events_count . ' in total)',
+      '#value' => $total_events_count . ' in total',
     ),
   ));
 

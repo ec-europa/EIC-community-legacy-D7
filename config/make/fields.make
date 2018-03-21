@@ -15,6 +15,12 @@ projects[date][version] = "2.10"
 projects[dragndrop_upload][subdir] = "contrib"
 projects[dragndrop_upload][version] = "1.x-dev"
 
+projects[email][subdir] = "contrib"
+projects[email][version] = "1.3"
+
+projects[telephone][subdir] = "contrib"
+projects[telephone][version] = "1.0-alpha1"
+
 projects[field_group][subdir] = "contrib"
 projects[field_group][version] = "1.6"
 

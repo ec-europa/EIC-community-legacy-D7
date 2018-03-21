@@ -14,7 +14,7 @@
  *   The block definition.
  */
 function _c4m_user_profile_block_user_menu() {
-  $block = array();
+  $block = [];
   $block['subject'] = '';
 
   if (user_is_anonymous()) {
@@ -26,74 +26,76 @@ function _c4m_user_profile_block_user_menu() {
   $user = user_load($user->uid);
 
   // User fullname + user picture.
-  $full_name_picture = c4m_user_profile_render_user_profile(
-    'c4m_user_profile_picture_fullname', $user);
+  $full_name_picture = c4m_user_profile_render_user_profile('c4m_user_profile_picture_fullname', $user);
 
   // User profile menu.
-  $menu_list = array(
-    'view_profile' => array(
+  $menu_list = [
+    'view_profile' => [
       'title' => t('View Profile'),
       'url' => 'user',
-      'options' => array(
-        'purl' => array(
+      'options' => [
+        'purl' => [
           'disabled' => TRUE,
-        ),
-      ),
-    ),
-    'edit_profile' => array(
-      'title' => t('Edit Profile'),
-      'url' => 'user/' . $user->uid . '/edit/',
-      'options' => array(
-        'purl' => array(
+        ],
+      ],
+    ],
+    'edit_profile' => [
+      'title' => t('Settings'),
+      'url' => 'user/' . $user->uid . '/settings',
+      'options' => [
+        'purl' => [
           'disabled' => TRUE,
-        ),
-      ),
-    ),
-    'user_content' => array(
+        ],
+      ],
+    ],
+    'user_content' => [
       'title' => t('My content'),
       'url' => 'user/' . $user->uid . '/content/',
-      'options' => array(
-        'purl' => array(
+      'options' => [
+        'purl' => [
           'disabled' => TRUE,
-        ),
-      ),
-    ),
-    'user_logout' => array(
+        ],
+      ],
+    ],
+  ];
+  if (user_access('access logout')) {
+    $menu_list['user_logout'] = [
       'title' => t('Log out'),
       'url' => 'user/logout',
-      'options' => array(
+      'options' => [
         'absolute' => TRUE,
-        'purl' => array(
+        'purl' => [
           'disabled' => TRUE,
-        ),
-        'query' => array('destination' => request_path()),
-      ),
-    ),
-  );
+        ],
+        'query' => ['destination' => request_path()],
+      ],
+    ];
+  }
 
-  $menu = array(
+  $menu = [
     '#theme' => 'c4m_user_profile_menu',
     '#menu_items' => $menu_list,
-    '#attributes' => array(
-      'class' => array('user-profile-menu', 'dropdown-menu'),
-    ),
-  );
+    '#attributes' => [
+      'class' => ['user-profile-menu', 'dropdown-menu'],
+    ],
+  ];
   $menu = render($menu);
 
-  $output = array(
+  $output = [
     '#theme' => 'html_tag',
     '#tag' => 'div',
     '#value' => $full_name_picture . $menu,
-    '#attributes' => array(
-      'class' => array('userbar-userprofile', 'dropdown'),
-    ),
-  );
+    '#attributes' => [
+      'class' => ['userbar-userprofile', 'dropdown'],
+    ],
+  ];
 
   $user_groups_top_bar = _c4m_user_profile_my_groups_top_bar();
   $user_projects_top_bar = _c4m_user_profile_my_projects_top_bar();
   $user_event_sites_top_bar = _c4m_user_profile_my_event_sites_top_bar();
+  $user_organisations_top_bar = _c4m_user_profile_my_organisations_top_bar();
 
-  $block['content'] = render($output) . $user_event_sites_top_bar . $user_projects_top_bar . $user_groups_top_bar;
+  $block['content'] = render($output) . $user_organisations_top_bar . $user_event_sites_top_bar . $user_projects_top_bar . $user_groups_top_bar;
   return $block;
 }
 
@@ -106,7 +108,7 @@ function _c4m_user_profile_my_groups_top_bar() {
   module_load_include('inc', 'c4m_features_homepage', 'plugins/content_types/my_groups/my_groups');
 
   $max_groups_to_display = 3;
-  $user_groups = array();
+  $user_groups = [];
 
   foreach (c4m_features_homepage_get_user_groups_grouped_by_membership($user) as $group_list) {
     foreach ($group_list as $group) {
@@ -131,44 +133,44 @@ function _c4m_user_profile_my_groups_top_bar() {
     return '';
   }
 
-  $groups_top_bar = array(
+  $groups_top_bar = [
     '#theme' => 'c4m_user_profile_groups_top_bar',
-    '#link' => array(
+    '#link' => [
       'url' => 'groups',
-      'options' => array(
-        'attributes' => array(
-          'class' => array('fullname-picture-wrapper', 'dropdown-toggle'),
-          'data-toggle' => array('dropdown'),
+      'options' => [
+        'attributes' => [
+          'class' => ['fullname-picture-wrapper', 'dropdown-toggle'],
+          'data-toggle' => ['dropdown'],
           'data-disabled' => TRUE,
-        ),
-        'query' => array(
+        ],
+        'query' => [
           'filter' => 'groups',
-        ),
+        ],
         'html' => TRUE,
-        'purl' => array(
+        'purl' => [
           'disabled' => TRUE,
-        ),
-      ),
-    ),
-  );
+        ],
+      ],
+    ],
+  ];
 
-  $menu = array(
+  $menu = [
     '#theme' => 'item_list',
     '#items' => $user_groups,
-    '#attributes' => array(
-      'class' => array('dropdown-menu', 'user-groups'),
-    ),
-  );
+    '#attributes' => [
+      'class' => ['dropdown-menu', 'user-groups'],
+    ],
+  ];
   $menu = render($menu);
 
-  $output = array(
+  $output = [
     '#theme' => 'html_tag',
     '#tag' => 'div',
     '#value' => render($groups_top_bar) . $menu,
-    '#attributes' => array(
-      'class' => array('right-menu-section', 'userbar-userprofile', 'dropdown'),
-    ),
-  );
+    '#attributes' => [
+      'class' => ['right-menu-section', 'userbar-userprofile', 'dropdown'],
+    ],
+  ];
 
   return render($output);
 }
@@ -177,7 +179,7 @@ function _c4m_user_profile_my_groups_top_bar() {
  * Render the top bar menu for "my projects".
  */
 function _c4m_user_profile_my_projects_top_bar() {
-  $user_projects = array();
+  $user_projects = [];
 
   foreach (c4m_user_og_get_groups(NULL, 'project') as $project) {
     if ($project->c4m_is_template[LANGUAGE_NONE][0]['value'] != '1' && node_access('view', $project)) {
@@ -197,44 +199,44 @@ function _c4m_user_profile_my_projects_top_bar() {
     return '';
   }
 
-  $projects_top_bar = array(
+  $projects_top_bar = [
     '#theme' => 'c4m_user_profile_projects_top_bar',
-    '#link' => array(
+    '#link' => [
       'url' => 'projects',
-      'options' => array(
-        'attributes' => array(
-          'class' => array('fullname-picture-wrapper', 'dropdown-toggle'),
-          'data-toggle' => array('dropdown'),
+      'options' => [
+        'attributes' => [
+          'class' => ['fullname-picture-wrapper', 'dropdown-toggle'],
+          'data-toggle' => ['dropdown'],
           'data-disabled' => TRUE,
-        ),
-        'query' => array(
+        ],
+        'query' => [
           'filter' => 'projects',
-        ),
+        ],
         'html' => TRUE,
-        'purl' => array(
+        'purl' => [
           'disabled' => TRUE,
-        ),
-      ),
-    ),
-  );
+        ],
+      ],
+    ],
+  ];
 
-  $menu = array(
+  $menu = [
     '#theme' => 'item_list',
     '#items' => $user_projects,
-    '#attributes' => array(
-      'class' => array('dropdown-menu', 'user-projects'),
-    ),
-  );
+    '#attributes' => [
+      'class' => ['dropdown-menu', 'user-projects'],
+    ],
+  ];
   $menu = render($menu);
 
-  $output = array(
+  $output = [
     '#theme' => 'html_tag',
     '#tag' => 'div',
     '#value' => render($projects_top_bar) . $menu,
-    '#attributes' => array(
-      'class' => array('right-menu-section', 'userbar-userprofile', 'dropdown'),
-    ),
-  );
+    '#attributes' => [
+      'class' => ['right-menu-section', 'userbar-userprofile', 'dropdown'],
+    ],
+  ];
 
   return render($output);
 }
@@ -306,6 +308,69 @@ function _c4m_user_profile_my_event_sites_top_bar() {
 }
 
 /**
+ * Render the top bar menu for "my organisations".
+ */
+function _c4m_user_profile_my_organisations_top_bar() {
+  $user_projects = array();
+
+  foreach (c4m_user_og_get_groups(NULL, 'organisation') as $project) {
+    if (node_access('view', $project)) {
+      $node_view = node_view($project, 'block_list');
+      $user_projects[] = render($node_view);
+
+      // The max projects to display on the top bar is 3 by definition.
+      if (count($user_projects) == 3) {
+        $user_projects[] = _c4m_user_profile_render_explore_all_my_organisations_link();
+        break;
+      }
+    }
+  }
+
+  // The user is not yet a member of any project.
+  if (!$user_projects) {
+    return '';
+  }
+
+  $projects_top_bar = array(
+    '#theme' => 'c4m_user_profile_organisations_top_bar',
+    '#link' => array(
+      'url' => 'organisations',
+      'options' => array(
+        'attributes' => array(
+          'class' => array('fullname-picture-wrapper', 'dropdown-toggle'),
+          'data-toggle' => array('dropdown'),
+          'data-disabled' => TRUE,
+        ),
+        'html' => TRUE,
+        'purl' => array(
+          'disabled' => TRUE,
+        ),
+      ),
+    ),
+  );
+
+  $menu = array(
+    '#theme' => 'item_list',
+    '#items' => $user_projects,
+    '#attributes' => array(
+      'class' => array('dropdown-menu', 'user-projects'),
+    ),
+  );
+  $menu = render($menu);
+
+  $output = array(
+    '#theme' => 'html_tag',
+    '#tag' => 'div',
+    '#value' => render($projects_top_bar) . $menu,
+    '#attributes' => array(
+      'class' => array('right-menu-section', 'userbar-userprofile', 'dropdown'),
+    ),
+  );
+
+  return render($output);
+}
+
+/**
  * Render a link to the groups overview page, filtered to the user groups.
  *
  * @return string
@@ -315,25 +380,25 @@ function _c4m_user_profile_render_explore_all_my_groups_link() {
   $text = t('Explore all my groups');
   $text .= '<i class="fa fa-angle-right" aria-hidden="true"></i>';
 
-  $options = array(
+  $options = [
     'html' => TRUE,
-    'purl' => array(
+    'purl' => [
       'disabled' => TRUE,
-    ),
-    'query' => array(
+    ],
+    'query' => [
       'filter' => 'groups',
-    ),
-  );
+    ],
+  ];
 
   $link = l($text, '/groups', $options);
 
-  $tag['element'] = array(
+  $tag['element'] = [
     '#tag' => 'div',
     '#value' => $link,
-    '#attributes' => array(
+    '#attributes' => [
       'class' => 'c4m-explore-all-my-groups-link',
-    ),
-  );
+    ],
+  ];
 
   return theme_html_tag($tag);
 }
@@ -348,25 +413,25 @@ function _c4m_user_profile_render_explore_all_my_projects_link() {
   $text = t('Explore all my projects');
   $text .= '<i class="fa fa-angle-right" aria-hidden="true"></i>';
 
-  $options = array(
+  $options = [
     'html' => TRUE,
-    'purl' => array(
+    'purl' => [
       'disabled' => TRUE,
-    ),
-    'query' => array(
+    ],
+    'query' => [
       'filter' => 'projects',
-    ),
-  );
+    ],
+  ];
 
   $link = l($text, '/projects', $options);
 
-  $tag['element'] = array(
+  $tag['element'] = [
     '#tag' => 'div',
     '#value' => $link,
-    '#attributes' => array(
+    '#attributes' => [
       'class' => 'c4m-explore-all-my-projects-link',
-    ),
-  );
+    ],
+  ];
 
   return theme_html_tag($tag);
 }
@@ -405,6 +470,36 @@ function _c4m_user_profile_render_explore_all_my_event_sites_link() {
 }
 
 /**
+ * Render a link to the Organisations overview page, filtered to the user groups.
+ *
+ * @return string
+ *   A link to the projects page (filtered).
+ */
+function _c4m_user_profile_render_explore_all_my_organisations_link() {
+  $text = t('Explore all my organisations');
+  $text .= '<i class="fa fa-angle-right" aria-hidden="true"></i>';
+
+  $options = array(
+    'html' => TRUE,
+    'purl' => array(
+      'disabled' => TRUE,
+    ),
+  );
+
+  $link = l($text, '/organisations', $options);
+
+  $tag['element'] = array(
+    '#tag' => 'div',
+    '#value' => $link,
+    '#attributes' => array(
+      'class' => 'c4m-explore-all-my-projects-link',
+    ),
+  );
+
+  return theme_html_tag($tag);
+}
+
+/**
  * Block definition for the top bar (user region).
  *
  * Displays number of messages/notifications/...
@@ -413,7 +508,7 @@ function _c4m_user_profile_render_explore_all_my_event_sites_link() {
  *   The block definition.
  */
 function _c4m_user_profile_block_user_notifications() {
-  $block = array();
+  $block = [];
   $block['subject'] = '';
 
   if (user_is_anonymous()) {
@@ -435,14 +530,14 @@ function _c4m_user_profile_block_user_notifications() {
 function _c4m_user_profile_block_user_is_invalid_email() {
   global $user;
 
-  $block = array();
+  $block = [];
   $block['subject'] = '';
 
-  $block['content'] = t('<div class="well alert"><h3>Your email is no longer valid</h3><p>It seems that the email you used to register on !site !mail is no longer valid.</p><p>Please update your profile accordingly.</p><p>Please !contact_us if you think this is a mistake.</div>', array(
+  $block['content'] = t('<div class="well alert"><h3>Your email is no longer valid</h3><p>It seems that the email you used to register on !site !mail is no longer valid.</p><p>Please update your profile accordingly.</p><p>Please !contact_us if you think this is a mistake.</div>', [
     '!site' => variable_get('site_name'),
-    '!mail' => l($user->mail, 'mailto:' . $user->mail, array('absolute' => TRUE)),
-    '!contact_us' => l(t('contact us'), 'mailto:capacity4dev@ec.europa.eu', array('absolute' => TRUE)),
-  ));
+    '!mail' => l($user->mail, 'mailto:' . $user->mail, ['absolute' => TRUE]),
+    '!contact_us' => l(t('contact us'), 'mailto:capacity4dev@ec.europa.eu', ['absolute' => TRUE]),
+  ]);
 
   return $block;
 }
@@ -451,34 +546,34 @@ function _c4m_user_profile_block_user_is_invalid_email() {
  * Helper function to render user profile.
  *
  * @param string $theme_function
- *    Name of the theme function to be used.
+ *   Name of the theme function to be used.
  * @param object $user
- *    User object.
+ *   User object.
  *
  * @return string
- *    The rendered output.
+ *   The rendered output.
  */
 function c4m_user_profile_render_user_profile($theme_function, $user) {
   switch ($theme_function) {
     case 'c4m_user_profile_picture_fullname':
-      $user_profile = array(
+      $user_profile = [
         '#theme' => 'c4m_user_profile_picture_fullname',
         '#user' => $user,
-        '#link' => array(
+        '#link' => [
           'url' => 'user/' . $user->uid,
-          'options' => array(
-            'attributes' => array(
-              'class' => array('fullname-picture-wrapper', 'dropdown-toggle'),
-              'data-toggle' => array('dropdown'),
+          'options' => [
+            'attributes' => [
+              'class' => ['fullname-picture-wrapper', 'dropdown-toggle'],
+              'data-toggle' => ['dropdown'],
               'data-disabled' => TRUE,
-            ),
+            ],
             'html' => TRUE,
-            'purl' => array(
+            'purl' => [
               'disabled' => TRUE,
-            ),
-          ),
-        ),
-      );
+            ],
+          ],
+        ],
+      ];
       break;
   }
 
@@ -492,7 +587,7 @@ function c4m_user_profile_render_user_profile($theme_function, $user) {
  *   The block definition.
  */
 function _c4m_user_profile_block_user_confirm_email() {
-  $block = array();
+  $block = [];
   $block['subject'] = '';
 
   $block['content'] = t('<div class="well bg-warning"><h3>Your email needs to be confirmed</h3><p>Please check your inbox to confirm your new email address.</p></div>');
@@ -509,7 +604,7 @@ function _c4m_user_profile_block_user_confirm_email() {
 function _c4m_user_profile_block_user_my_profile_groups() {
   module_load_include('inc', 'c4m_features_homepage', 'plugins/content_types/my_groups/my_groups');
 
-  $block = array();
+  $block = [];
   $block['subject'] = '';
   $block['content'] = '';
 
@@ -541,9 +636,9 @@ function _c4m_user_profile_block_user_my_profile_groups() {
     }
   }
 
-  $variables = array(
+  $variables = [
     'groups' => $rendered_groups,
-  );
+  ];
 
   $block['content'] = !empty($rendered_groups) ? theme('c4m_user_profile_my_profile_groups', $variables) : FALSE;
 
@@ -559,7 +654,7 @@ function _c4m_user_profile_block_user_my_profile_groups() {
 function _c4m_user_profile_block_user_my_profile_projects() {
   module_load_include('inc', 'c4m_features_homepage', 'plugins/content_types/my_projects/my_projects');
 
-  $block = array();
+  $block = [];
   $block['subject'] = '';
   $block['content'] = '';
 
@@ -591,9 +686,9 @@ function _c4m_user_profile_block_user_my_profile_projects() {
     }
   }
 
-  $variables = array(
+  $variables = [
     'projects' => $rendered_projects,
-  );
+  ];
 
   $block['content'] = !empty($rendered_projects) ? theme('c4m_user_profile_my_profile_projects', $variables) : FALSE;
 
