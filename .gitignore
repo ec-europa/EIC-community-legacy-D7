@@ -20,6 +20,11 @@ project/profiles/capacity4more/themes/c4m/kapablo/css
 project/profiles/capacity4more/themes/c4m/kapablo/js
 project/profiles/capacity4more/themes/c4m/kapablo/images
 
+# Subtheme assets are generated dynamically.
+project/profiles/capacity4more/themes/c4m/shake/css
+project/profiles/capacity4more/themes/c4m/shake/js
+project/profiles/capacity4more/themes/c4m/shake/images
+
 # Ignore dev dependencies.
 node_modules
 bower_components
