@@ -1,0 +1,41 @@
+name = Shake Theme
+description = Shake theme, based on Kapablo.
+core = 7.x
+base theme = kapablo
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Regions
+;;;;;;;;;;;;;;;;;;;;;
+
+regions[navigation]         = 'Navigation'
+regions[user_bar]           = 'User Bar'
+regions[top_menu]           = 'Top Menu'
+regions[header]             = 'Top Bar'
+regions[content_top]        = 'Page top'
+regions[content_above]      = 'Above Content'
+regions[highlighted]        = 'Highlighted'
+regions[help]               = 'Help'
+regions[content]            = 'Content'
+regions[sidebar_first_top]  = 'Primary top'
+regions[sidebar_first]      = 'Primary'
+regions[sidebar_second]     = 'Secondary'
+regions[content_bottom]     = 'Page bottom'
+regions[footer_top]         = 'Footer top'
+regions[footer_bottom]      = 'Footer bottom'
+regions[off_canvas]         = 'Off-Canvas'
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Overlay regions
+;;;;;;;;;;;;;;;;;;;;;
+
+overlay_regions[] = sidebar_first
+overlay_regions[] = sidebar_second
+overlay_regions[] = footer
+overlay_regions[] = content
+overlay_regions[] = content_bottom
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Stylesheets.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+stylesheets[all][] = css/shake.concat.css
