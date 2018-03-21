@@ -1,0 +1,52 @@
+#user-bar {
+  background-color: $color-white;
+  box-shadow: none;
+  height: 50px;
+  padding: 10px 0;
+  .user-groups,
+  .user-projects {
+    background: $color-blue-light;
+    .content {
+      color: $color-blue;
+    }
+    .text-muted {
+      color: $color-white;
+    }
+  }
+  .user-profile-menu {
+    background: $color-blue-light;
+    li {
+      a {
+        color: $color-blue;
+        &:hover {
+          color: $color-white;
+        }
+      }
+    }
+  }
+  .group-statistic {
+    color: $color-white;
+  }
+  .fullname-picture-wrapper .fullname-picture .fullname {
+    color: $color-blue;
+  }
+  .userbar-userprofile {
+    float: right;
+  }
+
+  .group-members-count {
+    color: $color-blue;
+  }
+
+  .text-muted {
+    color: $color-blue;
+  }
+
+  .fullname-picture-wrapper {
+    .fullname-picture {
+      .fa-users, .fa-flag-checkered, .fa-calendar, .fa-flag, .fa-building, .fa-chevron-down {
+        color: $color-blue;
+      }
+    }
+  }
+}

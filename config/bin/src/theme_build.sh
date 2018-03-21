@@ -29,6 +29,14 @@ function theme_build_npm {
     npm install
   fi
 
+  cd "$DIR_PROJECT/profiles/capacity4more/themes/c4m/shake/build"
+
+  if [ ! -d "./node_modules" ]; then
+    npm install
+  elif [ $( option_is_set "--no-update" ) -ne 1 ]; then
+    npm install
+  fi
+
   cd "$DIR_ROOT"
 }
 
@@ -40,6 +48,10 @@ function theme_build_npm {
 ##
 function theme_build_grunt {
   cd "$DIR_PROJECT/profiles/capacity4more/themes/c4m/kapablo/build"
+
+  grunt $1
+
+  cd "$DIR_PROJECT/profiles/capacity4more/themes/c4m/shake/build"
 
   grunt $1
 
