@@ -58,6 +58,7 @@ footer a {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jan\.lemmens\/Projects\/smeic-fork\/project\/profiles\/capacity4more\/themes\/c4m\/shake\/build\/src\/stylesheets\/components\/_footer\.scss}line{font-family:\0000327}}
 footer a:hover {
+  color: #FFFFFF;
   text-decoration: underline;
 }
 
