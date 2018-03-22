@@ -667,32 +667,25 @@ function c4m_user_profile_form_user_profile_form_alter(
     ];
   }
 
-  // Disable and provide info regarding fields that are not manageable from Drupal.
+  // Dashboard managed fields.
   $c4m_user_dashboard_link = variable_get('c4m_user_dashboard_link', '');
   if(!empty($c4m_user_dashboard_link)) {
-    $form['mail']['#disabled'] = TRUE;
-    $form['mail']['#description'] = t('The Email Adress is managed through EU Login.');
-
-    $form["account"]["name"]['#disabled'] = TRUE;
-    $form["account"]["name"]['#description'] = t('The Username is managed through EU Login.');
-
-    $form["account"]["pass"]['#disabled'] = TRUE;
-    $form["account"]["pass"]['#description'] = t('The Password is managed through EU Login.');
-
-    $form["account"]["current_pass"]['#disabled'] = TRUE;
-    $form["account"]["current_pass"]['#description'] = t('The Current Password is managed through EU Login.');
-
     $form["c4m_user_types"]['#disabled'] = TRUE;
+    $edit_link = l('(' . t('edit here') . ')', $c4m_user_dashboard_link);
+    $form['c4m_user_types']["#suffix"] .= '<small class="disabled-text disabled--user-type">'
+      . t('The User Type is managed through dashboard. ')
+      . ' ' . $edit_link . '</small>';
+
   }
 
-  // Disable the firstname and lastname fields.
+  // ECAS managed fields.
+  $form['mail']['#disabled'] = TRUE;
+  $form['mail']['#description'] = t('The Email Adress is managed through EU Login.');
   if ($field_firstname = trim(variable_get('ecas_profile_core_firstname_field', 'field_firstname'))) {
     $form[$field_firstname]['#disabled'] = TRUE;
-    $form[$field_firstname]['#description'] = t('The Firstname is managed through EU Login.');
   }
   if ($field_lastname = trim(variable_get('ecas_profile_core_lastname_field', 'field_lastname'))) {
     $form[$field_lastname]['#disabled'] = TRUE;
-    $form[$field_lastname]['#description'] = t('The Lastname is managed through EU Login.');
   }
 }
 
