@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_features_theme.strongarm.inc
@@ -9,6 +10,13 @@
  */
 function c4m_features_theme_strongarm() {
   $export = array();
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'theme_default';
+  $strongarm->value = 'shake';
+  $export['theme_default'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

@@ -1,0 +1,78 @@
+#header-ec-wrapper {
+  background-color: transparent;
+  border-top-color: $color-gray-light;
+  overflow: visible;
+}
+
+#ecl-page-header {
+  background-color: $color-blue;
+  color: #fff;
+  a {
+    color: $color-white;
+  }
+}
+
+.logo {
+  margin-right: 10px;
+  width: 140px;
+}
+
+.header-breadcrumb {
+  margin-top: 0;
+}
+
+.header-logo {
+  h1 {
+    color: rgb(45,45,45);
+    display: table-row;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.6em !important;
+    font-weight: bold;
+    line-height: 28px !important;
+  }
+  h2 {
+    color: rgb(45,45,45);
+    display: table-row;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.2em !important;
+    line-height: 21px;
+  }
+}
+
+.navigation--primary {
+  background-color: $color-blue-light;
+  border-bottom: none;
+
+  .navbar {
+    max-width: 100%;
+    width: 1170px;
+    .navbar-nav li {
+      a {
+        color: $color-white;
+      }
+    }
+  }
+}
+
+header {
+  a {
+    color: $color-white;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.header-actions {
+  background-color: $color-blue;
+}
+
+.offCanvasNavigation {
+  &.animation--push {
+    background-color: $color-blue-light;
+  }
+  ul li a {
+    color: $color-white;
+  }
+}

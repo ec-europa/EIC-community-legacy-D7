@@ -1,0 +1,10 @@
+.navigation--primary {
+  .navbar-collapse ul.menu li {
+    border-right: 1px solid white;
+    a:hover {
+      text-decoration: underline;
+      color: $color-white;
+    }
+  }
+
+}
