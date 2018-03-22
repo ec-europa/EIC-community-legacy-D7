@@ -570,7 +570,7 @@ function _c4m_content_organisation_alter_organisation_form(array &$form, array &
 
   foreach ($form as $form_item_name => &$form_item) {
     if (in_array($form_item_name, array_keys($c4m_organisation_dashboard_fields))) {
-      $edit_link = l( '(' . t('edit here') . ')', $c4m_organisation_dashboard_link);
+      $edit_link = l( '(' . t('edit in SMEi Dashboard') . ')', $c4m_organisation_dashboard_link);
       !empty($form_item["und"]["#suffix"])?
         $form_item["und"]["#suffix"] .= '<small class="disabled-text disabled--'
           . $form_item_name . '">'
