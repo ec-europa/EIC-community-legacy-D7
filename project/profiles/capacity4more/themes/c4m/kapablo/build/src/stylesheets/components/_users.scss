@@ -38,6 +38,17 @@
       width: auto;
     }
   }
+  // Info text for externally managed fields.
+  small.disabled-text {
+    display: block;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .form-group {
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .form-item-subscribe-to-mailinglist {

@@ -13,6 +13,24 @@ include_once 'c4m_content_organisation.features.inc';
  */
 
 /**
+ * Implements hook_menu().
+ */
+function c4m_content_organisation_menu() {
+  $items = array();
+
+  $items['admin/config/c4m/dashboard'] = array(
+    'title' => 'Manage dashboard links',
+    'description' => 'Manage links to edit Organisation/User fields.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('c4m_content_organisation_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'c4m_content_organisation.admin.inc',
+    'weight' => -10,
+  );
+  return $items;
+}
+
+/**
  * Implements hook_field_info().
  */
 function c4m_content_organisation_field_info() {
@@ -531,8 +549,41 @@ function c4m_content_organisation_form_organisation_node_form_alter(array &$form
   $form["c4m_icon"]["#access"] = FALSE;
   $form["c4m_domain"]["#access"] = FALSE;
 
+  // Disable fields managed through dashboard.
+  _c4m_content_organisation_alter_organisation_form($form, $form_state);
 }
 
+/**
+ * Alters the add/edit form for organisation content type. Disable fields managed in Dashboard.
+ *
+ * @param array $form
+ *   Form array.
+ * @param array $form_state
+ *   Form state array.
+ */
+function _c4m_content_organisation_alter_organisation_form(array &$form, array &$form_state) {
+  $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
+  $c4m_organisation_dashboard_link =variable_get('c4m_organisation_dashboard_link', '');
+  if (empty($c4m_organisation_dashboard_fields) || empty($c4m_organisation_dashboard_link)) {
+    return;
+  }
+
+  foreach ($form as $form_item_name => &$form_item) {
+    if (in_array($form_item_name, array_keys($c4m_organisation_dashboard_fields))) {
+      $edit_link = l(t('Edit here.'), $c4m_organisation_dashboard_link);
+      !empty($form_item["und"]["#suffix"])?
+        $form_item["und"]["#suffix"] .= '<small class="disabled-text disabled--'
+          . $form_item_name . '">'
+          . $c4m_organisation_dashboard_fields[$form_item_name]
+          . $edit_link . '</small>'
+        : $form_item['#suffix'] = '<small class="disabled-text disabled--'
+        . $form_item_name . '">'
+        . $c4m_organisation_dashboard_fields[$form_item_name]
+        . $edit_link . '</small>';
+      $form_item['#disabled'] = TRUE;
+    }
+  }
+}
 /**
  * Returns the administered Organisations count for an user.
  *

@@ -71,3 +71,28 @@ function c4m_content_organisation_update_7001() {
     field_delete_instance($instance);
   }
 }
+
+/**
+ * Implements hook_update_n().
+ */
+function c4m_content_organisation_update_7002() {
+  // Add default descriptions for fields managed through dashboard.
+
+  $conf_array = [
+    'title' => t('The Name field is managed through dashboard.'),
+    'c4m_organisations_type' => t('The Organisation Type(s) field is managed through dashboard.'),
+    'c4m_organisation_size' => t('The Organisation Size field is managed through dashboard.'),
+    'c4m_link' => t('The Website field is managed through dashboard.'),
+    'c4m_location_address' => t('The Location Address field is managed through dashboard.'),
+    'c4m_vocab_geo' => t('The Countries Based In field is managed through dashboard.'),
+    'c4m_vocab_geo_selling' => t('The Countries Selling To field is managed through dashboard.'),
+    'c4m_email' => t('The Email field is managed through dashboard.'),
+    'c4m_phone' => t('The Phone field is managed through dashboard.'),
+    'c4m_contact_persons' => t('The Contact Persons field is managed through dashboard.'),
+    'c4m_date_est' => t('The Date Of Establishment field is managed through dashboard.'),
+    'c4m_product_service_type' => t('The Product/Service Type field is managed through dashboard.'),
+    'c4m_target_markets' => t('The Target Markets field is managed through dashboard.'),
+    'c4m_offering' => t('The Offering field is managed through dashboard.'),
+  ];
+  variable_set('c4m_organisation_dashboard_fields', $conf_array);
+}
