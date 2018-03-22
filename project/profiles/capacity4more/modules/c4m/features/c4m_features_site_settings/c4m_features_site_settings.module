@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Code for the Site settings feature.
+ */
+
+include_once 'c4m_features_site_settings.features.inc';

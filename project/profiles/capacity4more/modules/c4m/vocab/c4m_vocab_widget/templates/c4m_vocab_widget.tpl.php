@@ -12,7 +12,9 @@
 <div class="form-group <?php print $vocabulary_machine_name; ?>">
   <div class="checkboxes-wrapper">
     <div>
-      <button name="<?php print $vocabulary_machine_name ?>" type="button"
+      <button name="<?php print $vocabulary_machine_name ?>"
+              <?php ($disabled)? print "disabled=TRUE" : ''; ?>
+              type="button"
               ng-click="togglePopover('<?php print $vocabulary_machine_name; ?>', $event)"
               class="btn btn-primary fa fa-plus"
               title="<?php print t('Select @name', array('@name' => $vocabulary_label)); ?>">&nbsp;<?php print t(
