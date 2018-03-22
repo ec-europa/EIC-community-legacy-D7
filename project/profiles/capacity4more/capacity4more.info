@@ -154,6 +154,9 @@ dependencies[] = c4m_content_share
 dependencies[] = c4m_content_topic
 dependencies[] = c4m_content_wiki_page
 
+; Site Settings
+dependencies[] = c4m_features_site_settings
+
 ; Content Actions
 dependencies[] = c4m_content_actions
 dependencies[] = c4m_features_social
