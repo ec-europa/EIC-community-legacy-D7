@@ -358,7 +358,6 @@ features[variable][] = ecas_profile_core_firstname_field
 features[variable][] = ecas_profile_core_lastname_field
 features[variable][] = ecas_warning_message
 features[variable][] = field_bundle_settings_user__user
-features[variable][] = site_403
 features[views_view][] = my_comments
 features[views_view][] = my_content
 files[] = includes/c4m_user_organisation.inc
