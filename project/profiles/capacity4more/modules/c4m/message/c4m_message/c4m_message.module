@@ -1768,7 +1768,7 @@ function c4m_message_format_help_section_url(Message $message) {
  *   Site contact link.
  */
 function c4m_message_format_site_contact_link(Message $message) {
-  return 'mailto:EASME-SME-HELPDESK@ec.europa.euu';
+  return 'mailto:EASME-SME-HELPDESK@ec.europa.eu';
 }
 
 /**
