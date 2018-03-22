@@ -87,13 +87,6 @@
         </div>
       </div>
 
-      <header role="banner" id="page-header">
-        <?php if (!empty($site_slogan)): ?>
-          <p class="lead"><?php print $site_slogan; ?></p>
-        <?php endif; ?>
-      </header>
-      <!-- /#page-header -->
-
       <?php if (!empty($page['sidebar_first']) || !empty($page['sidebar_first_top'])): ?>
         <aside class="col-sm-4 offCanvasNavigation--left" role="complementary">
           <?php print render($page['sidebar_first_top']); ?>

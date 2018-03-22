@@ -78,6 +78,118 @@
  */
 ?>
 
+<header id="page-header" role="banner">
+
+  <!--  USER BAR -->
+  <?php if (!empty($page['user_bar'])): ?>
+    <section id="user-bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <?php print render($page['user_bar']); ?>
+          </div>
+        </div>
+      </div>
+    </section>
+  <?php endif; ?>
+
+  <div id="header-ec-wrapper">
+    <?php if ($image_banner_background): ?>
+      <div class="background-banner">
+        <?php print $image_banner_background; ?>
+      </div>
+    <?php endif; ?>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-9 col-sm-8 col-md-9 header-logo">
+          <?php if ($logo): ?>
+            <a class="logo pull-left" href="<?php print $front_page; ?>"
+               title="<?php print t('Home'); ?>">
+              <img src="<?php print $logo; ?>" alt="<?php print t('capacity4dev logo'); ?>" title="<?php print t('capacity4dev logo'); ?>"/>
+            </a>
+          <?php endif; ?>
+          <h1><?php print (!empty($site_name)) ? $site_name : ''; ?></h1>
+          <h2><?php print (!empty($site_slogan)) ? $site_slogan : ''; ?></h2>
+        </div>
+
+        <div class="col-xs-3 col-sm-4 col-md-3">
+
+          <div class="header-actions">
+
+            <span class="header-actions--wrapper">
+              <span class="header-actions--search fa fa-search"
+                    data-toggle="collapse" data-target="#search"></span>
+            </span>
+            <span class="header-actions--wrapper">
+              <div class="header-actions--navigation js-navigationButton"
+                   data-effect="animation--push">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </div>
+            </span>
+          </div>
+
+        </div>
+
+
+        <div id="search"
+             class="col-xs-4 col-sm-4 col-md-3 header-search collapse">
+          <!-- SEARCH-->
+          <?php print render($search_form); ?>
+        </div>
+      </div>
+
+      <?php if ($image_banner): ?>
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <?php print $image_banner; ?>
+          </div>
+        </div>
+      <?php endif; ?>
+    </div>
+  </div><!-- /banner-ec -->
+
+  <div id="ecl-page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 header-breadcrumb">
+          <?php if (!empty($breadcrumb)): print $breadcrumb;
+          endif; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
+    <div class="navigation--primary">
+      <nav class="container navbar" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse"
+                  data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <div class="navbar-collapse collapse">
+          <?php if (!empty($primary_nav)): ?>
+            <?php print render($primary_nav); ?>
+          <?php endif; ?>
+          <?php if (!empty($page['navigation'])): ?>
+            <?php print render($page['navigation']); ?>
+          <?php endif; ?>
+        </div>
+      </nav>
+    </div>
+  <?php endif; ?>
+</header>
+
 <?php if (!empty($page['content_top'])): ?>
   <div id="content-top-wrapper">
     <div class="container">
@@ -111,7 +223,7 @@
           <span class="trigger-label circle circle--green">
             <span class="fa fa-info"></span>
           </span>
-          <span class="trigger-text">More info</span>
+          <span class="trigger-text">Group info</span>
           <i class="pull-right fa fa-chevron-right"></i>
         </div>
 
@@ -189,11 +301,30 @@
     </div>
   </div>
 
-  <?php if (!empty($page['content_bottom'])): ?>
-    <div class="row content-bottom">
-      <div class="col-sm-12">
-        <?php print render($page['content_bottom']); ?>
+    <footer class="ecl-footer">
+      <?php if (!empty($page['footer_top'])): ?>
+      <div id="footer-top-wrapper">
+        <div class="container">
+          <div class="row">
+            <section class="col-md-12">
+              <?php print render($page['footer_top']); ?>
+            </section>
+          </div>
+        </div>
       </div>
-    </div>
-  <?php endif; ?>
+      <?php endif; ?>
+
+
+      <?php if (!empty($page['footer_bottom'])): ?>
+      <div id="footer-bottom-wrapper">
+        <div class="container">
+          <div class="row">
+            <section class="col-md-12">
+              <?php print render($page['footer_bottom']); ?>
+            </section>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
+    </footer>
 </div>
