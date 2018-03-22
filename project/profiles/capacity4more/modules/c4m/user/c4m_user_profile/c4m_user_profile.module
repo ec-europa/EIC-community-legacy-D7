@@ -680,7 +680,7 @@ function c4m_user_profile_form_user_profile_form_alter(
 
   // ECAS managed fields.
   $form['mail']['#disabled'] = TRUE;
-  $form['mail']['#description'] = t('The Email Adress is managed through EU Login.');
+  $form['mail']['#description'] = t('The Email Address is managed through EU Login.');
   if ($field_firstname = trim(variable_get('ecas_profile_core_firstname_field', 'field_firstname'))) {
     $form[$field_firstname]['#disabled'] = TRUE;
   }
