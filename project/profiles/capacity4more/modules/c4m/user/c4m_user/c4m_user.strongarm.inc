@@ -100,25 +100,25 @@ function c4m_user_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'ckeditor' => array(
-          'weight' => '8',
+          'weight' => '12',
         ),
         'mimemail' => array(
           'weight' => '4',
         ),
         'redirect' => array(
-          'weight' => '11',
+          'weight' => '16',
         ),
         'account' => array(
           'weight' => '-100',
         ),
         'timezone' => array(
-          'weight' => '7',
+          'weight' => '10',
         ),
         'contact' => array(
           'weight' => '3',
         ),
         'overlay_control' => array(
-          'weight' => '5',
+          'weight' => '7',
         ),
       ),
       'display' => array(
@@ -160,7 +160,7 @@ function c4m_user_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '51',
+            'weight' => '38',
             'visible' => FALSE,
           ),
           'member_overview' => array(
@@ -202,7 +202,7 @@ function c4m_user_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '50',
+            'weight' => '34',
             'visible' => FALSE,
           ),
           'member_overview' => array(

@@ -1279,6 +1279,13 @@ function c4m_user_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete terms in c4m_job_titles'.
+  $permissions['delete terms in c4m_job_titles'] = array(
+    'name' => 'delete terms in c4m_job_titles',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'delete terms in c4m_vocab_date'.
   $permissions['delete terms in c4m_vocab_date'] = array(
     'name' => 'delete terms in c4m_vocab_date',
@@ -1665,6 +1672,13 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'edit terms in c4m_job_titles'.
+  $permissions['edit terms in c4m_job_titles'] = array(
+    'name' => 'edit terms in c4m_job_titles',
+    'roles' => array(),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: 'edit terms in c4m_vocab_date'.
