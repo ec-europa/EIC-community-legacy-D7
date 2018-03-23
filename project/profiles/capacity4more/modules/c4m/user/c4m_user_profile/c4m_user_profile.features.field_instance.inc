@@ -2081,8 +2081,8 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
     ),
   );
 
-  // Exported field_instance: 'user-user-field_c4m_cv_link'.
-  $field_instances['user-user-field_c4m_cv_link'] = array(
+  // Exported field_instance: 'user-user-c4m_cv_link'.
+  $field_instances['user-user-c4m_cv_link'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2129,7 +2129,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'user',
-    'field_name' => 'field_c4m_cv_link',
+    'field_name' => 'c4m_cv_link',
     'label' => 'Full CV',
     'required' => 0,
     'settings' => array(
@@ -2164,8 +2164,8 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
     ),
   );
 
-  // Exported field_instance: 'user-user-field_c4m_linkedin'.
-  $field_instances['user-user-field_c4m_linkedin'] = array(
+  // Exported field_instance: 'user-user-c4m_linkedin'.
+  $field_instances['user-user-c4m_linkedin'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2213,7 +2213,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'user',
-    'field_name' => 'field_c4m_linkedin',
+    'field_name' => 'c4m_linkedin',
     'label' => 'LinkedIn',
     'required' => 0,
     'settings' => array(
@@ -2248,8 +2248,8 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
     ),
   );
 
-  // Exported field_instance: 'user-user-field_c4m_user_types'.
-  $field_instances['user-user-field_c4m_user_types'] = array(
+  // Exported field_instance: 'user-user-c4m_user_types'.
+  $field_instances['user-user-c4m_user_types'] = array(
     'bundle' => 'user',
     'deleted' => 0,
     'description' => '',
@@ -2308,7 +2308,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'user',
-    'field_name' => 'field_c4m_user_types',
+    'field_name' => 'c4m_user_types',
     'label' => 'User type',
     'required' => 1,
     'settings' => array(

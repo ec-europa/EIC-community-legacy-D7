@@ -102,7 +102,7 @@ function c4m_user_profile_ds_field_settings_info() {
         ),
       ),
     ),
-    'field_c4m_linkedin' => array(
+    'c4m_linkedin' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
@@ -152,13 +152,13 @@ function c4m_user_profile_ds_layout_settings_info() {
         12 => 'c4m_job_title',
         13 => 'group_user_contributions',
         15 => 'c4m_body',
-        16 => 'field_c4m_user_types',
+        16 => 'c4m_user_types',
         18 => 'c4m_vocab_language',
         19 => 'c4m_user_contact_link',
         20 => 'c4m_facebook',
         21 => 'c4m_twitter',
-        22 => 'field_c4m_linkedin',
-        23 => 'field_c4m_cv_link',
+        22 => 'c4m_linkedin',
+        23 => 'c4m_cv_link',
       ),
       'right' => array(
         1 => 'c4m_ds_user_my_event_sites',
@@ -181,15 +181,14 @@ function c4m_user_profile_ds_layout_settings_info() {
       'c4m_job_title' => 'left',
       'c4m_ds_user_my_groups' => 'right',
       'c4m_body' => 'left',
-      'field_c4m_user_types' => 'left',
+      'c4m_user_types' => 'left',
       'c4m_vocab_language' => 'left',
-      'c4m_ds_user_my_organisations' => 'right',
       'c4m_body' => 'left',
       'c4m_user_contact_link' => 'left',
       'c4m_facebook' => 'left',
       'c4m_twitter' => 'left',
-      'field_c4m_linkedin' => 'left',
-      'field_c4m_cv_link' => 'left',
+      'c4m_linkedin' => 'left',
+      'c4m_cv_link' => 'left',
     ),
     'classes' => array(
       'layout_class' => array(

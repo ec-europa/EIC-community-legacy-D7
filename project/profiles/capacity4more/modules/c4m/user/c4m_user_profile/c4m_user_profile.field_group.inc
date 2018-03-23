@@ -120,10 +120,10 @@ function c4m_user_profile_field_group_info() {
       1 => 'c4m_job_title',
       2 => 'c4m_facebook',
       3 => 'c4m_twitter',
-      4 => 'field_c4m_cv_link',
+      4 => 'c4m_cv_link',
       5 => 'c4m_vocab_language',
-      6 => 'field_c4m_linkedin',
-      7 => 'field_c4m_user_types',
+      6 => 'c4m_linkedin',
+      7 => 'c4m_user_types',
     ),
     'format_type' => 'div',
     'format_settings' => array(

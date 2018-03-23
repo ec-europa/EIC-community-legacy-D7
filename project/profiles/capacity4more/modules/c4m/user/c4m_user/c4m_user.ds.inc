@@ -198,7 +198,7 @@ function c4m_user_ds_field_settings_info() {
         ),
       ),
     ),
-    'field_c4m_linkedin' => array(
+    'c4m_linkedin' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
@@ -341,10 +341,10 @@ function c4m_user_ds_layout_settings_info() {
         2 => 'c4m_user_member_since',
         3 => 'c4m_ds_user_footer_stats',
         4 => 'c4m_user_contact_link',
-        5 => 'field_c4m_user_types',
+        5 => 'c4m_user_types',
         6 => 'c4m_facebook',
         7 => 'c4m_twitter',
-        8 => 'field_c4m_linkedin',
+        8 => 'c4m_linkedin',
       ),
     ),
     'fields' => array(
@@ -353,10 +353,10 @@ function c4m_user_ds_layout_settings_info() {
       'c4m_user_member_since' => 'right',
       'c4m_ds_user_footer_stats' => 'right',
       'c4m_user_contact_link' => 'right',
-      'field_c4m_user_types' => 'right',
+      'c4m_user_types' => 'right',
       'c4m_facebook' => 'right',
       'c4m_twitter' => 'right',
-      'field_c4m_linkedin' => 'right',
+      'c4m_linkedin' => 'right',
     ),
     'classes' => array(
       'layout_class' => array(

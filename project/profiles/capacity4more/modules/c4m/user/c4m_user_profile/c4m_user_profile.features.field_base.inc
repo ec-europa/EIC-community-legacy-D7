@@ -456,13 +456,13 @@ function c4m_user_profile_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_c4m_cv_link'.
-  $field_bases['field_c4m_cv_link'] = array(
+  // Exported field_base: 'c4m_cv_link'.
+  $field_bases['c4m_cv_link'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_cv_link',
+    'field_name' => 'c4m_cv_link',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'link',
@@ -485,13 +485,13 @@ function c4m_user_profile_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_c4m_linkedin'.
-  $field_bases['field_c4m_linkedin'] = array(
+  // Exported field_base: 'c4m_linkedin'.
+  $field_bases['c4m_linkedin'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_linkedin',
+    'field_name' => 'c4m_linkedin',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'link',
@@ -514,13 +514,13 @@ function c4m_user_profile_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_c4m_user_types'.
-  $field_bases['field_c4m_user_types'] = array(
+  // Exported field_base: 'c4m_user_types'.
+  $field_bases['c4m_user_types'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_user_types',
+    'field_name' => 'c4m_user_types',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
