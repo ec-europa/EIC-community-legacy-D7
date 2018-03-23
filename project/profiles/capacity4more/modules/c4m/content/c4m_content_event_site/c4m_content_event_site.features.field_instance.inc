@@ -48,7 +48,7 @@ function c4m_content_event_site_field_default_field_instances() {
   $field_instances['node-event_site-c4m_banner'] = array(
     'bundle' => 'event_site',
     'deleted' => 0,
-    'description' => 'Banner to be used on the event site landing page	',
+    'description' => 'Banner to be used on the event site landing page. Minimum image resolution: 940x300 px, Maximum upload size: 2MB.',
     'display' => array(
       'block_list' => array(
         'label' => 'above',
@@ -100,6 +100,7 @@ function c4m_content_event_site_field_default_field_instances() {
       'min_resolution' => '940x300',
       'title_field' => 0,
       'user_register_form' => FALSE,
+      'wysiwyg_insert' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -1063,7 +1064,7 @@ function c4m_content_event_site_field_default_field_instances() {
   $field_instances['node-event_site-c4m_media'] = array(
     'bundle' => 'event_site',
     'deleted' => 0,
-    'description' => 'Small image used in lists.',
+    'description' => 'Small image used in lists. Maximum upload size: 512KB.',
     'display' => array(
       'block_list' => array(
         'label' => 'hidden',
@@ -1119,6 +1120,7 @@ function c4m_content_event_site_field_default_field_instances() {
       'min_resolution' => '',
       'title_field' => 0,
       'user_register_form' => FALSE,
+      'wysiwyg_insert' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -2006,7 +2008,7 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Additional');
   t('Agenda & Information');
   t('Banner Image');
-  t('Banner to be used on the event site landing page	');
+  t('Banner to be used on the event site landing page. Minimum image resolution: 940x300 px, Maximum upload size: 2MB.');
   t('Comment');
   t('Date');
   t('Describe the event in a few words.	');
@@ -2027,7 +2029,7 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Related Groups');
   t('Right column content');
   t('Set a date at which this event site should automatically be published.	');
-  t('Small image used in lists.');
+  t('Small image used in lists. Maximum upload size: 512KB.');
   t('Start and end date of the Event.');
   t('Status');
   t('Tag line');
