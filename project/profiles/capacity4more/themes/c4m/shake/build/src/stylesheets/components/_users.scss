@@ -50,3 +50,17 @@
     }
   }
 }
+#user-profile-form {
+  // Info text for externally managed fields.
+  small.disabled-text , .help-block{
+    font-size: 85%;
+    display: block;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .form-group {
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
+}

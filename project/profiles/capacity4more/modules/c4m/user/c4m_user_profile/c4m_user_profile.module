@@ -629,8 +629,6 @@ function c4m_user_profile_form_user_profile_form_alter(
 
   c4m_user_profile_alter_user_form($form, $form_state, FALSE);
 
-  $form['mail']['#description'] = 'Please note you will have to provide your password and confirm your new address to change your e-mail address.';
-
   // Hide Overlay, Email, Locale and Contact settings. They are moved to
   // Settings page.
   $form['overlay_control']['#access'] = FALSE;
@@ -667,6 +665,27 @@ function c4m_user_profile_form_user_profile_form_alter(
       '#type' => 'markup',
       '#markup' => l(t('Delete account'), 'user/' . $account->uid . '/leave'),
     ];
+  }
+
+  // Dashboard managed fields.
+  $c4m_user_dashboard_link = variable_get('c4m_user_dashboard_link', '');
+  if(!empty($c4m_user_dashboard_link)) {
+    $form["c4m_user_types"]['#disabled'] = TRUE;
+    $edit_link = l('(' . t('edit here') . ')', $c4m_user_dashboard_link);
+    $form['c4m_user_types']["#suffix"] .= '<small class="disabled-text disabled--user-type">'
+      . t('The User Type is managed through dashboard. ')
+      . ' ' . $edit_link . '</small>';
+
+  }
+
+  // ECAS managed fields.
+  $form['mail']['#disabled'] = TRUE;
+  $form['mail']['#description'] = t('The Email Address is managed through EU Login.');
+  if ($field_firstname = trim(variable_get('ecas_profile_core_firstname_field', 'field_firstname'))) {
+    $form[$field_firstname]['#disabled'] = TRUE;
+  }
+  if ($field_lastname = trim(variable_get('ecas_profile_core_lastname_field', 'field_lastname'))) {
+    $form[$field_lastname]['#disabled'] = TRUE;
   }
 }
 
