@@ -61,6 +61,60 @@ function theme_c4m_ds_submitted_by_and_on(array $field) {
 /**
  * DS function field.
  *
+ * Render "Submitted by" User first and last name and updated on timestamp.
+ * (extends default ds field with first + last name).
+ *
+ * @param array $field
+ *   The field that needs to be rendered.
+ *
+ * @return mixed
+ *   The rendered field.
+ */
+function theme_c4m_ds_submitted_by_and_updated_on(array $field) {
+  if (empty($field['entity'])) {
+    return;
+  }
+
+  $entity = $field['entity'];
+  $user = user_load($entity->uid);
+  $name = c4m_user_name($user);
+  $options = array(
+    'attributes' => array('class' => array('user-name')),
+    'purl' => array('disabled' => TRUE),
+  );
+
+  // If user is not anonymous, set link on user name.
+  if ($entity->uid > 0) {
+    $name = l($name, 'user/' . $user->uid, $options);
+  }
+  else {
+    $plain_user_name['element'] = array(
+      '#tag' => 'span',
+      '#attributes' => array(
+        'class' => array('user-name'),
+      ),
+      '#value' => $name,
+    );
+    $name = theme_html_tag($plain_user_name);
+  }
+
+  $tag['element'] = array(
+    '#tag' => 'span',
+    '#attributes' => array(
+      'class' => array('creation-date'),
+      'data-toggle' => 'tooltip',
+      'data-placement' => 'bottom',
+      'title' => format_date($entity->changed, 'custom', 'd M Y H:i'),
+    ),
+    '#value' => c4m_helper_date_time_ago($entity->changed, $field['formatter']),
+  );
+
+  return $name . theme_html_tag($tag);
+}
+
+/**
+ * DS function field.
+ *
  * Render node creation date according to time ago.
  *
  * If timestamp is within 24h of now: Indicate the time ago:
@@ -96,6 +150,51 @@ function theme_c4m_ds_creation_date(array $field) {
     ),
     '#value' => c4m_helper_date_time_ago(
       $field['entity']->created,
+      $field['formatter']
+    ),
+  );
+
+  return theme_html_tag($tag);
+}
+
+/**
+ * DS function field.
+ *
+ * Render node update date according to time ago.
+ *
+ * If timestamp is within 24h of now: Indicate the time ago:
+ *  - x seconds ago
+ *  - x minutes ago
+ *  - x hours ago
+ * If timestamp is more then 1 day go: Show as a date (with or without time):
+ * - 5 January 2015 (, 16:47)
+ * - 28 August 2014 (, 9:05)
+ *
+ * @param array $field
+ *   The field that needs to be rendered.
+ *
+ * @return mixed
+ *   The rendered field.
+ */
+function theme_c4m_ds_update_date(array $field) {
+  if (empty($field['entity'])) {
+    return;
+  }
+
+  $tag['element'] = array(
+    '#tag' => 'span',
+    '#attributes' => array(
+      'class' => array('update-date'),
+      'data-toggle' => 'tooltip',
+      'data-placement' => 'bottom',
+      'title' => format_date(
+        $field['entity']->changed,
+        'custom',
+        'd F Y - H:i'
+      ),
+    ),
+    '#value' => c4m_helper_date_time_ago(
+      $field['entity']->changed,
       $field['formatter']
     ),
   );
@@ -151,7 +250,19 @@ function theme_c4m_ds_content_type_label(array $field) {
   $entity = $field['entity'];
   $info = c4m_helper_entity_label_info($entity);
 
-  $type = ucwords($info['singular']);
+  if ($entity->type == 'event') {
+    $wrapper = entity_metadata_wrapper('node', $entity->nid);
+    if ($wrapper->c4m_event_type->value() == 'event') {
+      $type = t("Group Event");
+    }
+    else {
+      $type = t("@type Group Event", ['@type' => ucfirst($wrapper->c4m_event_type->value())]);
+    }
+  }
+  else {
+    $type = ucwords($info['singular']);
+  }
+
   $icon_html = '';
 
   if (!empty($info['icon'])) {
@@ -203,7 +314,39 @@ function theme_c4m_ds_entity_type_label(array $field) {
  * @return mixed
  *   The rendered field.
  */
+function theme_c4m_ds_type_update_action(array $field) {
+  return _theme_c4m_ds_type_action($field, 'update action');
+}
+
+/**
+ * DS function field.
+ *
+ * Render <content type> posted by.
+ *
+ * @param array $field
+ *   The field that needs to be rendered.
+ *
+ * @return mixed
+ *   The rendered field.
+ */
 function theme_c4m_ds_type_insert_action(array $field) {
+  return _theme_c4m_ds_type_action($field, 'insert action');
+}
+
+/**
+ * DS function field.
+ *
+ * Render <content type> posted by.
+ *
+ * @param array $field
+ *   The field that needs to be rendered.
+ * @param string $action
+ *   The action that needs to be rendered.
+ *
+ * @return mixed
+ *   The rendered field.
+ */
+function _theme_c4m_ds_type_action(array $field, $action) {
   $output = '';
 
   if (empty($field['entity'])) {
@@ -263,7 +406,7 @@ function theme_c4m_ds_type_insert_action(array $field) {
       '#attributes' => array(
         'class' => array('posted-by'),
       ),
-      '#value' => $label_info['insert action'],
+      '#value' => $label_info[$action],
     );
   }
 
@@ -794,7 +937,7 @@ function theme_c4m_ds_node_promote(array $field) {
     return NULL;
   }
 
-  if ($group->type == 'project' || $group->type == 'event_site') {
+  if ($group->type == 'project' || $group->type == 'event_site' || $group->type == 'organisation') {
     return;
   }
 
@@ -1082,6 +1225,37 @@ function theme_c4m_ds_event_site_type_icon(array $field) {
         'fa',
         'fa-calendar',
         'project-type-project',
+      ),
+    ),
+    '#value' => '',
+  );
+
+  return theme_html_tag($tag);
+}
+
+/**
+ * DS function field.
+ *
+ * Render project type icon.
+ *
+ * @param array $field
+ *   The field that needs to be rendered.
+ *
+ * @return mixed
+ *   The rendered field.
+ */
+function theme_c4m_ds_organisation_type_icon(array $field) {
+  if (!isset($field['entity'])) {
+    return NULL;
+  }
+
+  $tag['element'] = array(
+    '#tag' => 'i',
+    '#attributes' => array(
+      'class' => array(
+        'fa',
+        'fa-building',
+        'organisation',
       ),
     ),
     '#value' => '',

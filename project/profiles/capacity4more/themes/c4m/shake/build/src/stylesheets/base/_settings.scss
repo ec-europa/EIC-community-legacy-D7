@@ -1,0 +1,112 @@
+/*
+ * COLOR DEFINITIONS
+ */
+
+// -- Decorative colors -- //
+
+$color-black: #000000;
+$color-white: #FFFFFF;
+$color-gray-light: #E5E5E5;
+$color-gray-lightTwo: #F1F6F9;
+$color-green: #B0C35A;
+
+// -- Background colors -- //
+
+$color-background: #F1F6F9;
+
+// ----- Font colors ----- //
+
+// Lightest gray that passes AA (fails AAA on small text).
+$color-gray-lighter: #767676;
+
+// WCAG AAA Pass
+$color-blue-dark: #2C4A59;
+// WCAG AA Pass, AAA FAIL
+$color-blue-darkTwo: #53757d;
+
+// WCAG AAA Pass
+$color-gray-dark: #515151;
+
+// EC Blue color does not pass AA. Darkened it once:
+//$color-logo-blue: #1484C6;
+$color-logo-blue: #1172ab;
+
+// WCAG AAA Pass
+$color-blue: #004494;
+$color-blue-light: #bfd0e4;
+
+// WCAG AA Pass, AAA FAIL
+$color-red: #D0021B;
+
+// WCAG AA FAIL
+$color-accent: #FFBB6D;
+// WCAG AA FAIL
+$color-highlight: #EE6A32;
+// WCAG AA Pass, AAA FAIL
+$color-link: #347C98;
+// WCAG AAA Pass
+$color-text: #4A4A4A;
+// WCAG AA FAIL
+$color-text-alternative: #6E969F;
+// WCAG AA Pass, AAA FAIL
+$color-form-input-error: #A94442;
+
+$color-facebook: #345294;
+$color-rss: #F67300;
+$color-twitter: #42A1D9;
+$color-youtube: #F2423F;
+
+$body-bg: $color-white;
+$brand-danger: $color-red;
+$brand-info: $color-accent;
+$brand-primary: $color-text-alternative;
+$brand-success: $color-green;
+$brand-warning: $color-highlight;
+
+$base-accent: #6E969F;
+$base-spacing-large: 25px;
+$base-spacing-medium: 16px;
+$base-spacing-small: 12px;
+$base-spacing-tiny: 6px;
+
+/*
+ * FONT STACKS
+ */
+$font-gill: "GillSans-Light", Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-verdana: Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$font-family-sans-serif: $font-verdana;
+$font-size-base: 14px;
+
+$headings-color: $color-text;
+$headings-font-family: $font-gill;
+$headings-font-weight: normal;
+
+
+/*
+ * FONT SIZES
+ */
+$font-size-h1: 2.571428571rem;
+$font-size-h2: 1.428571429rem;
+$font-size-h3: 1.285714286rem;
+$font-size-h4: 1rem;
+$font-size-h5: 0.857142857rem;
+$font-size-h6: 0.714285714rem;
+
+
+/**
+ * LINKS
+ */
+$link-color: $color-link;
+$link-hover-color: $color-link;
+$link-hover-decoration: underline;
+
+/*
+ * GRID
+ */
+$grid-gutter-width: 36px;
+
+/**
+ * FORMS
+ */
+$form-item-spacing: 15px;

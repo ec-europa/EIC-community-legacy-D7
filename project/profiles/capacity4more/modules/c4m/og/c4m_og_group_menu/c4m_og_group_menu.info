@@ -27,6 +27,7 @@ features[variable][] = og_menu_context_limit
 features[variable][] = og_menu_create_by_default
 features[variable][] = og_menu_default_links_node_event_site
 features[variable][] = og_menu_default_links_node_group
+features[variable][] = og_menu_default_links_node_organisation
 features[variable][] = og_menu_default_links_node_project
 features[variable][] = og_menu_enable_event_site
 features[variable][] = og_menu_hide_create_option

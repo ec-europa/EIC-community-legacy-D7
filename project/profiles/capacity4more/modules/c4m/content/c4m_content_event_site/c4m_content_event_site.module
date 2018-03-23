@@ -136,7 +136,7 @@ function c4m_content_event_site_block_view($delta) {
  * Alter the Event Site creation form.
  */
 function c4m_content_event_site_form_event_site_node_form_alter(array &$form, array &$form_state) {
-  $type = 'project';
+  $type = 'event_site';
 
   _c4m_og_alter_group_form($form, $form_state, $type);
 
@@ -416,6 +416,12 @@ function c4m_content_event_site_c4m_cta_block() {
   if ($item = c4m_user_og_follow_group_cta($group)) {
     $items['follow'] = $item;
   }
+
+  // Add the print functionality.
+  $items['print_event_site'] = [
+    '#theme' => 'c4m_helper_entity_actions_print',
+    '#weight' => 100,
+  ];
 
   return $items;
 }

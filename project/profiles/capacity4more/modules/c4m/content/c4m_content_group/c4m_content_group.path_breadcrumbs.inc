@@ -18,10 +18,12 @@ function c4m_content_group_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'node/%nodeidnumber';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => '%nodeidnumber:title',
+      0 => '@C4M_Group_type',
+      1 => '%nodeidnumber:title',
     ),
     'paths' => array(
-      0 => '<none>',
+      0 => '@C4M_Group_overview_path',
+      1 => '<none>',
     ),
     'home' => 0,
     'translatable' => 0,

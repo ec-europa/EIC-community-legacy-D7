@@ -22,6 +22,36 @@ function c4m_og_group_menu_block_view_alter(&$data, $block) {
 
   $item = menu_get_item();
 
+  // Set the active path for all nodes from group.
+  $active_path = FALSE;
+  if ($node = menu_get_object()) {
+    switch ($node->type) {
+      case 'discussion':
+        $active_path = 'discussions';
+        break;
+
+      case 'document':
+        $active_path = 'documents';
+        break;
+
+      case 'event':
+        $active_path = 'calendar';
+        break;
+
+      case 'news':
+        $active_path = 'news';
+        break;
+
+      case 'photo':
+        $active_path = 'media';
+        break;
+
+      case 'photoalbum':
+        $active_path = 'media';
+        break;
+    }
+  }
+
   foreach ($data['content'] as &$value) {
     if (!isset($value['#attributes']['class'])) {
       // Not a menu item.
@@ -38,6 +68,10 @@ function c4m_og_group_menu_block_view_alter(&$data, $block) {
         $value['#attributes']['class'][] = 'active';
       }
     }
+    // Set the active trail to the parent menu item.
+    elseif ($value['#href'] == $active_path) {
+      $value['#attributes']['class'][] = 'active';
+    }
   }
 }
 
@@ -49,7 +83,7 @@ function c4m_og_group_menu_block_view_alter(&$data, $block) {
 function og_group_menu_og_ui_get_group_admin_alter(&$data, $context) {
   // If we are in a project context, keep the link in place.
   $group = node_load($context['etid']);
-  if ($group && in_array($group->type, ['project', 'event_site'])) {
+  if ($group && in_array($group->type, ['project', 'event_site', 'organisation'])) {
     return;
   }
 
@@ -89,7 +123,7 @@ function c4m_og_group_menu_page_access() {
 
   $gid = og_menu_get_context();
   $group = node_load($gid);
-  if (!$group || !in_array($group->type, ['project', 'event_site'])) {
+  if (!$group || !in_array($group->type, ['project', 'event_site', 'organisation'])) {
     return FALSE;
   }
 
@@ -103,7 +137,7 @@ function c4m_og_group_menu_page_access() {
  */
 function c4m_og_group_menu_form_og_menu_edit_item_form_alter(&$form, &$form_state, $form_id) {
   $group = c4m_og_current_group();
-  if (!$group || !in_array($group->type, ['project', 'event_site']) || !isset($group->book['menu_name'])) {
+  if (!$group || !in_array($group->type, ['project', 'event_site', 'organisation']) || !isset($group->book['menu_name'])) {
     return;
   }
 

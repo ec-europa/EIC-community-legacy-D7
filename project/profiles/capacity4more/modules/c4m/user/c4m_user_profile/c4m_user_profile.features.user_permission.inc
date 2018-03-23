@@ -11,6 +11,16 @@
 function c4m_user_profile_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'access logout'.
+  $permissions['access logout'] = array(
+    'name' => 'access logout',
+    'roles' => array(
+      'PIWIK administrator' => 'PIWIK administrator',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'c4m_user_profile',
+  );
+
   // Exported permission: 'administer Terms and Conditions'.
   $permissions['administer Terms and Conditions'] = array(
     'name' => 'administer Terms and Conditions',

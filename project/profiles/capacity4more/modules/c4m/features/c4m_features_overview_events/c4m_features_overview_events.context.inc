@@ -33,17 +33,17 @@ function c4m_features_overview_events_context_default_contexts() {
           'region' => 'content_top',
           'weight' => '-10',
         ),
+        'c4m_views-views_page_title' => array(
+          'module' => 'c4m_views',
+          'delta' => 'views_page_title',
+          'region' => 'content_above',
+          'weight' => '-10',
+        ),
         'c4m_search_filter-search_filter' => array(
           'module' => 'c4m_search_filter',
           'delta' => 'search_filter',
           'region' => 'content_above',
-          'weight' => '-8',
-        ),
-        'current_search-c4m_current_search_nodes' => array(
-          'module' => 'current_search',
-          'delta' => 'c4m_current_search_nodes',
-          'region' => 'content',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'c4m_features_overview_events-event_total_count' => array(
           'module' => 'c4m_features_overview_events',

@@ -24,6 +24,22 @@ function c4m_og_invite_users_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function c4m_og_invite_users_menu() {
+  $items['c4m-user-fields/autocomplete/%'] = array(
+    'title' => 'User autocomplete by field',
+    'page callback' => '_c4m_og_invite_users_fields_autocomplete',
+    'page arguments' => array(2),
+    'access callback' => 'user_access',
+    'access arguments' => array('access user profiles'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_og_ui_get_group_admin_alter().
  *
  * Removes the Invite Users link from the group admin page. This module is meant
@@ -218,7 +234,7 @@ function c4m_og_invite_users_mail_tokens(array &$replacements, array $data, $opt
   $hash = og_invite_generate_hash($og_membership);
   $answer_link = url(og_invite_answer_path_by_hash($data['group']->type, $data['group']->nid, $hash, 'answer'), $options);
   // Need to pass the entity type, not bundle.
-  $answer_link = str_replace(array("/group/group/", "/group/project/", "/group/event_site/"), "/group/node/", $answer_link);
+  $answer_link = str_replace(array("/group/group/", "/group/project/", "/group/event_site/", "/group/organisation/"), "/group/node/", $answer_link);
 
   $replacements['[personal:subject]'] = $data['subject'];
   $replacements['[user:member]'] = c4m_user_name($data['inviter']);
@@ -397,4 +413,143 @@ function c4m_og_invite_users_pending_invitations($group_id) {
   }
 
   return $output;
+}
+
+/**
+ * Implements hook_form_form_id_alter().
+ */
+function c4m_og_invite_users_form_og_ui_add_users_alter(&$form, &$form_state, $form_id) {
+  $form['og_user']['user_field'] = [
+    '#type' => 'radios',
+    '#options' => [
+      'name' => t('Username'),
+      'first_name' => t('First name'),
+      'last_name' => t('Last name'),
+    ],
+    '#default_value' => 'name',
+    '#title' => t('Search user by:'),
+    '#weight' => '-2',
+  ];
+  $form['og_user']['name']['#required'] = FALSE;
+  $form['og_user']['name']['#states'] = [
+    'visible' => [
+      ':input[name="user_field"]' => ['value' => 'name'],
+    ],
+    'required' => [
+      ':input[name="user_field"]' => ['value' => 'name'],
+    ],
+  ];
+  $form['og_user']['name']['#weight'] = '-1';
+  $form['og_user']['first_name'] = [
+    '#type' => 'textfield',
+    '#title' => t("First name"),
+    '#autocomplete_path' => "c4m-user-fields/autocomplete/first-name",
+    '#required' => FALSE,
+    '#states' => [
+      'visible' => [
+        ':input[name="user_field"]' => ['value' => 'first_name'],
+      ],
+      'required' => [
+        ':input[name="user_field"]' => ['value' => 'first_name'],
+      ],
+    ],
+    '#weight' => '-1',
+  ];
+  $form['og_user']['last_name'] = [
+    '#type' => 'textfield',
+    '#title' => t("Last name"),
+    '#autocomplete_path' => "c4m-user-fields/autocomplete/last-name",
+    '#required' => FALSE,
+    '#states' => [
+      'visible' => [
+        ':input[name="user_field"]' => ['value' => 'last_name'],
+      ],
+      'required' => [
+        ':input[name="user_field"]' => ['value' => 'last_name'],
+      ],
+    ],
+    '#weight' => '-1',
+  ];
+  array_unshift($form['#submit'], '_c4m_og_invite_users_custom_submit');
+  $form['#validate'] = ["_c4m_og_invite_users_validate_add_members_in_group"];
+}
+
+/**
+ * Custom validation for the add user in organization form.
+ */
+function _c4m_og_invite_users_validate_add_members_in_group(&$form, &$form_state) {
+  $values = $form_state['values'];
+  // Check if the user field has any option selected.
+  if (empty($values['user_field'])) {
+    form_set_error('user_field', t("Please select the field you want to search the user by."));
+    return;
+  }
+  // Check if the user search is made by the selected field.
+  if (empty($values[$values['user_field']])) {
+    form_set_error($values['user_field'], t("Please select the user you want to add."));
+    return;
+  }
+  // Check if the value entered in the user field has the needed format.
+  if ($values['user_field'] == 'name') {
+    og_ui_add_users_validate($form, $form_state);
+    return;
+  }
+  if (!preg_match("/.+\((\d+)\)/", $values[$values['user_field']], $matches)) {
+    form_set_error($values['user_field'], t('Please use the suggestions for this field.'));
+    return;
+  }
+  else {
+    $user = user_load($matches[1]);
+    if (!$user) {
+      form_set_error($values['user_field'], t("Please use the suggestions for this field."));
+      return;
+    }
+    else {
+      $form_state['values']['name'] = $user->name;
+      og_ui_add_users_validate($form, $form_state);
+    }
+  }
+}
+
+/**
+ * Custom submit for the add user in organization form.
+ */
+function _c4m_og_invite_users_custom_submit($form, &$form_state) {
+  $values = &$form_state['values'];
+  // Add the selected user name in the default field.
+  if ($values['field_name'] != 'name') {
+    if (preg_match("/.+\((\d+)\)/", $values[$values['user_field']], $matches)) {
+      $user_id = $matches[1];
+      $user = user_load($user_id);
+      $values['name'] = $user->name;
+    }
+  }
+}
+
+/**
+ * Menu callback; Returns autocomplete suggestions for users searched by fields.
+ *
+ * @param string $field
+ *   The name of the field we need to search by.
+ * @param string $string
+ *   The input from the user.
+ */
+function _c4m_og_invite_users_fields_autocomplete($field, $string = '') {
+  $matches = [];
+  $field = str_replace("-", "_", $field);
+  $field_table = 'field_data_c4m_' . $field;
+  $field_column = 'c4m_' . $field . '_value';
+  if ($string) {
+    $result = db_select($field_table, 'f')
+      ->fields('f', ['entity_id', 'c4m_' . $field . '_value'])
+      ->condition($field_column, db_like($string) . '%', 'LIKE')
+      ->range(0, 10)
+      ->execute();
+    foreach ($result as $user) {
+      $key = check_plain($user->$field_column) . ' (' . check_plain($user->entity_id) . ')';
+      $matches[$key] = $key;
+    }
+  }
+
+  drupal_json_output($matches);
 }

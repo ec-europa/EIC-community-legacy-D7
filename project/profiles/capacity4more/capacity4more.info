@@ -32,6 +32,8 @@ dependencies[] = current_search_links
 dependencies[] = date
 dependencies[] = date_popup
 dependencies[] = diff
+dependencies[] = draggableviews
+dependencies[] = email
 dependencies[] = entity
 dependencies[] = entity_token
 dependencies[] = entityreference
@@ -45,6 +47,7 @@ dependencies[] = flag
 dependencies[] = jquery_update
 dependencies[] = lazyloader
 dependencies[] = libraries
+dependencies[] = masquerade
 dependencies[] = message
 dependencies[] = message_notify
 dependencies[] = message_subscribe
@@ -72,6 +75,7 @@ dependencies[] = restful
 ; dependencies[] = save_draft
 dependencies[] = strongarm
 dependencies[] = smart_trim
+dependencies[] = telephone
 dependencies[] = term_reference_tree
 dependencies[] = transliteration
 dependencies[] = token
@@ -107,9 +111,12 @@ dependencies[] = c4m_helper_url_alias
 
 ; Vocabularies
 dependencies[] = c4m_vocab_category
+dependencies[] = c4m_vocab_nace
+dependencies[] = c4m_vocab_organisation_types
 dependencies[] = c4m_vocab_tag
 dependencies[] = c4m_vocab_topic
 dependencies[] = c4m_vocab_theme
+dependencies[] = c4m_vocab_tr
 
 ; Users
 dependencies[] = c4m_user
@@ -142,10 +149,13 @@ dependencies[] = c4m_content_page_element
 dependencies[] = c4m_content_photo
 dependencies[] = c4m_content_photoalbum
 dependencies[] = c4m_content_project
+dependencies[] = c4m_content_organisation
 dependencies[] = c4m_content_share
 dependencies[] = c4m_content_topic
 dependencies[] = c4m_content_wiki_page
-dependencies[] = c4m_content_organisation
+
+; Site Settings
+dependencies[] = c4m_features_site_settings
 
 ; Content Actions
 dependencies[] = c4m_content_actions
@@ -197,6 +207,7 @@ dependencies[] = c4m_moodle
 ; Message
 dependencies[] = c4m_mail
 dependencies[] = c4m_message
+dependencies[] = c4m_message_digest
 
 ; Widgets
 dependencies[] = c4m_document_widget

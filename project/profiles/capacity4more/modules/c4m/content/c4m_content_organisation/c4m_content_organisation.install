@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Installation hooks for the Content Organisation module.
+ * Install & Update hooks.
  */
 
 /**
@@ -44,4 +44,55 @@ function c4m_content_organisation_field_schema($field) {
       ),
     ),
   );
+}
+
+/**
+ * Implements hook_install().
+ */
+function c4m_content_organisation_install() {
+  module_enable(['telephone', 'email', 'c4m_vocab_nace', 'c4m_vocab_organisation_types', 'c4m_vocab_tr']);
+}
+/**
+ * Implements hook_update_n().
+ */
+function c4m_content_organisation_update_7001() {
+  // Enable module .
+  module_enable(['telephone']);
+  module_enable(['email']);
+  module_enable(['c4m_vocab_nace']);
+  module_enable(['c4m_vocab_organisation_types']);
+  module_enable(['c4m_vocab_tr']);
+  // Set the pathauto for the content type trough the install hook.
+  // It can then be overridden without interfere the feature settings.
+  variable_set('pathauto_node_organisation_pattern', 'organisation/[node:title]');
+
+  // Remove old instance of organisation type field.
+  if ($instance = field_info_instance('node', 'c4m_organisation_type', 'organisation')) {
+    field_delete_instance($instance);
+  }
+}
+
+/**
+ * Implements hook_update_n().
+ */
+function c4m_content_organisation_update_7002() {
+  // Add default descriptions for fields managed through the SMEi Dashboard.
+
+  $conf_array = [
+    'title' => t('The Name field is managed through the SMEi Dashboard.'),
+    'c4m_organisations_type' => t('The Organisation Type(s) field is managed through the SMEi Dashboard.'),
+    'c4m_organisation_size' => t('The Organisation Size field is managed through the SMEi Dashboard.'),
+    'c4m_link' => t('The Website field is managed through the SMEi Dashboard.'),
+    'c4m_location_address' => t('The Location Address field is managed through the SMEi Dashboard.'),
+    'c4m_vocab_geo' => t('The Countries Based In field is managed through the SMEi Dashboard.'),
+    'c4m_vocab_geo_selling' => t('The Countries Selling To field is managed through the SMEi Dashboard.'),
+    'c4m_email' => t('The Email field is managed through the SMEi Dashboard.'),
+    'c4m_phone' => t('The Phone field is managed through the SMEi Dashboard.'),
+    'c4m_contact_persons' => t('The Contact Persons field is managed through the SMEi Dashboard.'),
+    'c4m_date_est' => t('The Date Of Establishment field is managed through the SMEi Dashboard.'),
+    'c4m_product_service_type' => t('The Product/Service Type field is managed through the SMEi Dashboard.'),
+    'c4m_target_markets' => t('The Target Markets field is managed through the SMEi Dashboard.'),
+    'c4m_offering' => t('The Offering field is managed through the SMEi Dashboard.'),
+  ];
+  variable_set('c4m_organisation_dashboard_fields', $conf_array);
 }

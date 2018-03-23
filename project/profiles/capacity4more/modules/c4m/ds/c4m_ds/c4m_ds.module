@@ -325,6 +325,17 @@ function c4m_ds_ds_fields_info($entity_type) {
     ),
   );
 
+  $fields['node']['c4m_ds_submitted_by_and_updated_on'] = array(
+    'title' => t('User name + last update date'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('*|*'),
+    'file' => $path . '/includes/c4m_ds.theme.node.inc',
+    'function' => 'theme_c4m_ds_submitted_by_and_updated_on',
+    'properties' => array(
+      'formatters' => $date_formatters,
+    ),
+  );
+
   $fields['node']['c4m_ds_creation_date'] = array(
     'title' => t('C4M creation date'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
@@ -336,12 +347,34 @@ function c4m_ds_ds_fields_info($entity_type) {
     ),
   );
 
+  $fields['node']['c4m_ds_update_date'] = array(
+    'title' => t('C4M update date'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('*|*'),
+    'file' => $path . '/includes/c4m_ds.theme.node.inc',
+    'function' => 'theme_c4m_ds_update_date',
+    'properties' => array(
+      'formatters' => $date_formatters,
+    ),
+  );
+
   $fields['node']['c4m_ds_type_insert_action'] = array(
     'title' => t('Content type specific insert string'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
     'ui_limit' => array('*|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_type_insert_action',
+    'properties' => array(
+      'default' => 'Default',
+    ),
+  );
+
+  $fields['node']['c4m_ds_type_update_action'] = array(
+    'title' => t('Content type specific update string'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('*|*'),
+    'file' => $path . '/includes/c4m_ds.theme.node.inc',
+    'function' => 'theme_c4m_ds_type_update_action',
     'properties' => array(
       'default' => 'Default',
     ),
@@ -479,7 +512,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_group_members_count'] = array(
     'title' => t('Group members count'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('group|*', 'project|*', 'event_site|*'),
+    'ui_limit' => array('group|*', 'project|*', 'event_site|*', 'organisation|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_group_members_count',
     'properties' => array(
@@ -492,7 +525,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_group_posts_count'] = array(
     'title' => t('Group posts count'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('group|*', 'project|*', 'event_site|*'),
+    'ui_limit' => array('group|*', 'project|*', 'event_site|*', 'organisation|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_group_posts_count',
     'properties' => array(
@@ -505,7 +538,7 @@ function c4m_ds_ds_fields_info($entity_type) {
   $fields['node']['c4m_ds_group_recommendation_count'] = array(
     'title' => t('Group recommendation count'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
-    'ui_limit' => array('group|*', 'project|*', 'event_site|*'),
+    'ui_limit' => array('group|*', 'project|*', 'event_site|*', 'organisation|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_group_recommendation_count_full',
     'properties' => array(
@@ -721,6 +754,19 @@ function c4m_ds_ds_fields_info($entity_type) {
     ),
   );
 
+  $fields['user']['c4m_ds_user_my_organisations'] = array(
+    'title' => t('My organisations'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('*|*'),
+    'file' => $path . '/includes/c4m_ds.theme.user.inc',
+    'function' => 'theme_c4m_ds_user_my_organisations',
+    'properties' => array(
+      'formatters' => array(
+        'default' => t('Default'),
+      ),
+    ),
+  );
+
   $fields['node']['c4m_ds_project_type_icon'] = array(
     'title' => t('Project type icon'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
@@ -740,6 +786,19 @@ function c4m_ds_ds_fields_info($entity_type) {
     'ui_limit' => array('event_site|*'),
     'file' => $path . '/includes/c4m_ds.theme.node.inc',
     'function' => 'theme_c4m_ds_event_site_type_icon',
+    'properties' => array(
+      'formatters' => array(
+        'default' => t('Default'),
+      ),
+    ),
+  );
+
+  $fields['node']['c4m_ds_organisation_type_icon'] = array(
+    'title' => t('Organisation type icon'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('organisation|*'),
+    'file' => $path . '/includes/c4m_ds.theme.node.inc',
+    'function' => 'theme_c4m_ds_organisation_type_icon',
     'properties' => array(
       'formatters' => array(
         'default' => t('Default'),
@@ -862,6 +921,9 @@ function c4m_ds_theme() {
   $path = drupal_get_path('module', 'c4m_ds') . '/templates';
 
   return array(
+    'c4m_ds_formatter_link_and_size' => array(
+      'variables' => array(),
+    ),
     'c4m_link_and_size' => array(
       'variables' => array(
         'file' => NULL,

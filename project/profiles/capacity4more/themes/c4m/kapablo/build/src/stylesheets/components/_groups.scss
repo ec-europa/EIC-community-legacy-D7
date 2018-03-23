@@ -430,6 +430,17 @@
             display: inline-block;
             width: 20px;
           }
+          &.see-more {
+            a {
+              color: $color-link;
+            }
+            i {
+              color: $color-link;
+              font-size: 17px;
+              font-weight: bold;
+              padding-left: 5px;
+            }
+          }
         }
       }
     }
@@ -448,7 +459,8 @@
 
 .og-context .pane-c4m-content-group .group-details,
 .node-project.view-mode-group_dashboard,
-.node-event-site.view-mode-group_dashboard {
+.node-event-site.view-mode-group_dashboard,
+.node-organisation.view-mode-group_dashboard {
   .field-name-c4m-content-group-statistics {
     margin-top: 25px;
 
@@ -787,19 +799,25 @@
   padding-top: 15px;
 }
 
-.pane-c4m-overview-og-highlights .pane-title {
-  margin-bottom: 10px;
+.pane-c4m-overview-og-highlights {
+  .pane-title {
+    margin-bottom: 10px;
+  }
+  .views-row:first-of-type {
+    margin-top: 0;
+  }
+  .views-row,
+  .views-row + .views-row:not(.no-border),
+  .view-footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+  .view-footer {
+    border-top: 1px dashed $color-gray-light;
+    text-align: right;
+  }
 }
 
-.pane-c4m-overview-og-highlights .views-row:first-of-type {
-  margin-top: 0;
-}
-
-.pane-c4m-overview-og-highlights .views-row,
-.pane-c4m-overview-og-highlights .views-row + .views-row {
-  margin-top: 1rem;
-  padding-top: 1rem;
-}
 
 .group-node-documents {
   margin-top: 25px;
@@ -895,6 +913,7 @@
 
 .view-id-c4m_overview_projects,
 .view-id-c4m_overview_event_sites,
+.view-id-c4m_overview_organisations,
 .view-id-c4m_overview_groups,
 .sidebarblock {
   .c4m-node-highlight {

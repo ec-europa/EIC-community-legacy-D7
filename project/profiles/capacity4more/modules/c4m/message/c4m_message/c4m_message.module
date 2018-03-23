@@ -920,6 +920,11 @@ function c4m_message_load_tokens__c4m_notify_content_recommendation(
     'pass message' => TRUE,
   ];
 
+  $message->arguments['!user_settings_url'] = [
+    'callback' => 'c4m_message_format_user_settings_url',
+    'pass message' => TRUE,
+  ];
+
   $message->arguments['@event_user_full_name'] = [
     'callback' => 'c4m_message_format_event_user_full_name',
     'pass message' => TRUE,
@@ -983,6 +988,11 @@ function c4m_message_load_tokens__c4m_content_inserted_or_updated(
     'pass message' => TRUE,
   ];
 
+  $message->arguments['!user_settings_url'] = [
+    'callback' => 'c4m_message_format_user_settings_url',
+    'pass message' => TRUE,
+  ];
+
   $message->arguments['@event_user_full_name'] = [
     'callback' => 'c4m_message_format_event_user_full_name',
     'pass message' => TRUE,
@@ -1041,6 +1051,11 @@ function c4m_message_load_tokens__c4m_content_of_interest(
     'pass message' => TRUE,
   ];
 
+  $message->arguments['!user_settings_url'] = [
+    'callback' => 'c4m_message_format_user_settings_url',
+    'pass message' => TRUE,
+  ];
+
   $message->arguments['@event_user_full_name'] = [
     'callback' => 'c4m_message_format_event_user_full_name',
     'pass message' => TRUE,
@@ -1066,6 +1081,11 @@ function c4m_message_load_tokens__c4m_content_share_inserted_or_updated(
 ) {
   $message->arguments['!original_group_dashboard_url'] = [
     'callback' => 'c4m_message_format_original_group_url',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['!user_settings_url'] = [
+    'callback' => 'c4m_message_format_user_settings_url',
     'pass message' => TRUE,
   ];
 
@@ -1140,6 +1160,11 @@ function c4m_message_load_tokens__c4m_notify_subscribers_new_comment(
 
   $message->arguments['!unsubscribe_content_comments_url'] = [
     'callback' => 'c4m_message_format_unsubscribe_content_comments_url',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['!user_settings_url'] = [
+    'callback' => 'c4m_message_format_user_settings_url',
     'pass message' => TRUE,
   ];
 
@@ -1290,6 +1315,11 @@ function c4m_message_load_tokens__c4m_notify_content_followers_new_comment(
 
   $message->arguments['!unsubscribe_content_comments_url'] = [
     'callback' => 'c4m_message_format_unsubscribe_content_comments_url',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['!user_settings_url'] = [
+    'callback' => 'c4m_message_format_user_settings_url',
     'pass message' => TRUE,
   ];
 
@@ -1738,7 +1768,7 @@ function c4m_message_format_help_section_url(Message $message) {
  *   Site contact link.
  */
 function c4m_message_format_site_contact_link(Message $message) {
-  return 'mailto:capacity4dev@ec.europa.eu';
+  return 'mailto:EASME-SME-HELPDESK@ec.europa.eu';
 }
 
 /**
@@ -2135,6 +2165,19 @@ function c4m_message_format_unsubscribe_content_url(Message $message) {
 }
 
 /**
+ * Returns a url that is used to manage settings.
+ *
+ * @param Message $message
+ *   The Message entity.
+ *
+ * @return string
+ *   Unsubscribe url.
+ */
+function c4m_message_format_user_settings_url(Message $message) {
+  return _c4m_message_format_user_settings_url($message);
+}
+
+/**
  * Returns a url that is used to unsubscribe from following content comments.
  *
  * @param Message $message
@@ -2180,16 +2223,15 @@ function _c4m_message_format_unsubscribe_url(Message $message, $flag_suffix) {
   // Group field at message is 'field_group_node'.
   $field_suffix = $flag_suffix == 'group' ? 'group_node' : $flag_suffix;
   $field = "field_{$field_suffix}";
-  $nid = $wrapper->$field->value(['identifier' => TRUE]);
+  $entity_id = $wrapper->$field->value(['identifier' => TRUE]);
   if ($flag_suffix == 'comment') {
     // The identifier we got is actually cid. Need to get the correct one.
-    $comment = comment_load($nid);
-    $nid = $comment->nid;
+    $comment = comment_load($entity_id);
+    $entity_id = $comment->nid;
   }
 
   $uid = $message->uid;
-  $account = user_load($uid);
-  $hash = c4m_user_profile_get_or_create_account_unsubscribe_hash($account);
+  $hash = c4m_user_profile_get_unsubscribe_hash($uid, $flag_suffix, $entity_id);
 
   $options = [
     'absolute' => TRUE,
@@ -2197,7 +2239,32 @@ function _c4m_message_format_unsubscribe_url(Message $message, $flag_suffix) {
   ];
 
   return url(
-    'user/' . $uid . '/unsubscribe/' . $flag_suffix . '/' . $nid . '/' . $hash,
+    'user/' . $uid . '/unsubscribe/' . $flag_suffix . '/' . $entity_id . '/' . $hash,
+    $options
+  );
+}
+
+/**
+ * Helper function.
+ *
+ * Returns a url that is used to manage your settings.
+ *
+ * @param Message $message
+ *   The Message entity.
+ *
+ * @return string
+ *   Settings url.
+ */
+function _c4m_message_format_user_settings_url(Message $message) {
+  $uid = $message->uid;
+
+  $options = [
+    'absolute' => TRUE,
+    'purl' => ['disabled' => TRUE],
+  ];
+
+  return url(
+    'user/' . $uid . '/settings',
     $options
   );
 }
@@ -3406,6 +3473,12 @@ function c4m_message_load_homepage_activity_stream() {
         $hide_articles = TRUE;
         break;
 
+      case 'organisation':
+        // Gets all the project IDs that the user belongs to.
+        $groups = c4m_og_get_user_group_ids_by_bundle('organisation');
+        $hide_articles = TRUE;
+        break;
+
       case 'interests':
         // Get user's interests.
         $user_wrapper = entity_metadata_wrapper('user', $user->uid);
@@ -3816,7 +3889,7 @@ function c4m_message_views_query_alter(&$view, &$query) {
 
   $filter_by = filter_input(INPUT_GET, 'filter', FILTER_SANITIZE_STRING);
 
-  if ($filter_by == 'groups' || $filter_by == 'projects' || $filter_by == 'event_sites') {
+  if ($filter_by == 'groups' || $filter_by == 'projects' || $filter_by == 'event_sites' || $filter_by == 'organisations') {
     // `rtrim` removes plural 's' from the query string value to get the bundle.
     $groups = c4m_og_get_user_group_ids_by_bundle(rtrim($filter_by, 's'));
     $condition = c4m_message_get_query_condition_index_by_field_name(
@@ -3898,18 +3971,13 @@ function c4m_message_delete_message_confirm_submit($form, &$form_state) {
  *   Message object.
  */
 function c4m_message_delete_message_access($message) {
-  if (!($group = c4m_og_current_group())) {
-    // No group in context. User should be SA.
+  if (!isset($message->field_group_node[LANGUAGE_NONE][0]['target_id'])) {
+    // No group for the message. User should be SA.
     return c4m_user_is_site_admin();
   }
   else {
-    // Group in context should be the same as message's group.
-    if ($group->nid != $message->field_group_node[LANGUAGE_NONE][0]['target_id']) {
-      return FALSE;
-    }
-    else {
-      // User should be GA or GO or SA.
-      return c4m_features_og_members_is_power_user($group);
-    }
+    $group = node_load($message->field_group_node[LANGUAGE_NONE][0]['target_id']);
+    // User should be GA or GO or SA.
+    return c4m_features_og_members_is_power_user($group);
   }
 }

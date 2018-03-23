@@ -2,7 +2,36 @@
 
 /**
  * @file
- * Code for the Admin Organisations feature.
+ * Code for the Admin organisations feature.
  */
 
 include_once 'c4m_admin_organisations.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function c4m_admin_organisations_menu() {
+  $items = array();
+
+  $items['admin/c4m/organisations'] = array(
+    'title' => 'Organisations',
+    'description' => 'Administration interface to manage organisations & their status.',
+    'page callback' => 'views_embed_view',
+    'page arguments' => array('c4m_admin_organisations_pending', 'page'),
+    'access arguments' => array('administer nodes'),
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'management',
+  );
+
+  $items['admin/c4m/organisations/export'] = array(
+    'title' => 'Export',
+    'description' => 'Capacity4more organisations export.',
+    'page callback' => 'c4m_admin_organisations_organisations_export_page',
+    'access arguments' => array('administer nodes'),
+    'file' => 'c4m_admin_organisations.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
+  );
+
+  return $items;
+}

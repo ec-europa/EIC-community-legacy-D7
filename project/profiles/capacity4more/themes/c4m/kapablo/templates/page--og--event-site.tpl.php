@@ -22,7 +22,16 @@
   <?php endif; ?>
 
   <div id="header-ec-wrapper" class="c4m-project-page">
-    <?php if ($image_banner_background): ?>
+    <?php if (!empty($breadcrumb)) : ?>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 header-breadcrumb">
+            <?php print $breadcrumb; ?>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
+      <?php if ($image_banner_background): ?>
       <div class="background-banner">
         <?php print $image_banner_background; ?>
       </div>
@@ -77,13 +86,6 @@
           <i class="pull-right fa fa-chevron-right"></i>
         </div>
       </div>
-
-      <header role="banner" id="page-header">
-        <?php if (!empty($site_slogan)): ?>
-          <p class="lead"><?php print $site_slogan; ?></p>
-        <?php endif; ?>
-      </header>
-      <!-- /#page-header -->
 
       <?php if (!empty($page['sidebar_first']) || !empty($page['sidebar_first_top'])): ?>
         <aside class="col-sm-4 offCanvasNavigation--left" role="complementary">
