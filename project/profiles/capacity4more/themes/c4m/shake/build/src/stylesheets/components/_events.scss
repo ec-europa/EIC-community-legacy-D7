@@ -1,0 +1,8 @@
+.event-views-links a {
+  &:hover {
+    color: $color-white;
+  }
+  &:before {
+    color: $color-blue !important;
+  }
+}
