@@ -417,6 +417,12 @@ function c4m_content_event_site_c4m_cta_block() {
     $items['follow'] = $item;
   }
 
+  // Add the print functionality.
+  $items['print_event_site'] = [
+    '#theme' => 'c4m_helper_entity_actions_print',
+    '#weight' => 100,
+  ];
+
   return $items;
 }
 
