@@ -289,7 +289,10 @@ function _set_og_breadcrumbs() {
       }
       // Breadcrumb element linking to the group page.
       $breadcrumb[] = l($group->title, $path_elements[0]);
-      $breadcrumb[] = $trail[1]['link_title'];
+
+      if (isset($trail[1]['link_title'])) {
+        $breadcrumb[] = $trail[1]['link_title'];
+      }
     }
 
     drupal_set_breadcrumb($breadcrumb);

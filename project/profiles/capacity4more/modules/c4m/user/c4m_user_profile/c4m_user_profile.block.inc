@@ -72,6 +72,23 @@ function _c4m_user_profile_block_user_menu() {
     ];
   }
 
+  if (isset($_SESSION['masquerading'])) {
+    $menu_list['masquerade_switch'] = [
+      'title' => t('Switch back'),
+      'url' => 'masquerade/unswitch',
+      'options' => [
+        'absolute' => TRUE,
+        'purl' => [
+          'disabled' => TRUE,
+        ],
+        'query' => [
+          'destination' => request_path(),
+          'token' => drupal_get_token('masquerade/unswitch'),
+        ],
+      ],
+    ];
+  }
+
   $menu = [
     '#theme' => 'c4m_user_profile_menu',
     '#menu_items' => $menu_list,
@@ -536,7 +553,7 @@ function _c4m_user_profile_block_user_is_invalid_email() {
   $block['content'] = t('<div class="well alert"><h3>Your email is no longer valid</h3><p>It seems that the email you used to register on !site !mail is no longer valid.</p><p>Please update your profile accordingly.</p><p>Please !contact_us if you think this is a mistake.</div>', [
     '!site' => variable_get('site_name'),
     '!mail' => l($user->mail, 'mailto:' . $user->mail, ['absolute' => TRUE]),
-    '!contact_us' => l(t('contact us'), 'mailto:capacity4dev@ec.europa.eu', ['absolute' => TRUE]),
+    '!contact_us' => l(t('contact us'), 'mailto:EASME-SME-HELPDESK@ec.europa.eu', ['absolute' => TRUE]),
   ]);
 
   return $block;

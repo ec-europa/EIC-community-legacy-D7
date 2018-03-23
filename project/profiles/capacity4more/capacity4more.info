@@ -154,6 +154,9 @@ dependencies[] = c4m_content_share
 dependencies[] = c4m_content_topic
 dependencies[] = c4m_content_wiki_page
 
+; Site Settings
+dependencies[] = c4m_features_site_settings
+
 ; Content Actions
 dependencies[] = c4m_content_actions
 dependencies[] = c4m_features_social
@@ -213,9 +216,6 @@ dependencies[] = c4m_document_widget
 dependencies[] = c4m_og_purl
 dependencies[] = c4m_og_invite_users
 dependencies[] = c4m_og_invite_visitors
-
-; Email Domains
-dependencies[] = c4m_domain
 
 ; Contact
 dependencies[] = c4m_contact

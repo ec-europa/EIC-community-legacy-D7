@@ -2,6 +2,11 @@
   background-color: transparent;
   border-top-color: $color-gray-light;
   overflow: visible;
+
+
+  .group-banner {
+    margin-top: 1rem;
+  }
 }
 
 #ecl-page-header {
@@ -14,7 +19,7 @@
 
 .logo {
   margin-right: 10px;
-  width: 140px;
+  width: 120px;
 }
 
 .header-breadcrumb {
