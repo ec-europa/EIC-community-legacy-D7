@@ -29,4 +29,24 @@ footer {
       text-decoration: underline;
     }
   }
+  .c4m-social-media-item {
+    a:hover {
+      color: $color-white;
+      span {
+        text-decoration: underline;
+      }
+    }
+    span {
+      display: inline-block;
+    }
+    i {
+      background: none !important;
+      border-radius: 0;
+      display: inline-block;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
 }
