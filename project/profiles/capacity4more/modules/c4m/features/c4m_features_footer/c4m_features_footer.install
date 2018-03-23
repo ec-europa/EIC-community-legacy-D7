@@ -64,6 +64,13 @@ function c4m_features_footer_update_7005() {
 }
 
 /**
+ * Update links for EASME.
+ */
+function c4m_features_footer_update_7006() {
+  c4m_features_footer_set_social_media();
+}
+
+/**
  * Add the c4m_footer menu.
  */
 function c4m_features_footer_c4m_footer_menu() {
@@ -119,19 +126,19 @@ function c4m_features_footer_set_social_media() {
   $socialmedia_links = array(
     'twitter' => array(
       'title' => 'Twitter',
-      'url'   => 'https://twitter.com/capacity4dev',
+      'url'   => 'https://twitter.com/H2020SME',
     ),
-    'facebook' => array(
-      'title' => 'Facebook',
-      'url'   => 'https://www.facebook.com/capacity4dev.eu/',
-    ),
-    'rss' => array(
-      'title' => 'Rss',
-      'url' => 'feeds',
+    'linkedin' => array(
+      'title' => 'LinkedIn',
+      'url'   => 'https://www.linkedin.com/groups/8294580',
     ),
     'youtube' => array(
       'title' => 'Youtube',
-      'url'   => 'https://www.youtube.com/user/capacity4dev',
+      'url'   => 'https://www.youtube.com/playlist?list=PLXP2yyGajWaY6mCKMIjcSnQ4lLiMJ4FMC',
+    ),
+    'rss' => array(
+      'title' => 'RSS',
+      'url' => 'feeds',
     ),
   );
 
