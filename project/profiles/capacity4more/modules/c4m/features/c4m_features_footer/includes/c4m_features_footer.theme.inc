@@ -16,9 +16,7 @@
  */
 function theme_c4m_footer_bar(array $variables) {
 
-  if (c4m_og_is_of_group_type('project')
-    || c4m_og_is_of_group_type('event_site')
-    || c4m_og_is_of_group_type('organisation')) {
+  if (c4m_og_is_of_group_type('project')) {
     // The template of the project page is different from the other pages on
     // the site (by design).
     return theme_c4m_footer_bar_project();
