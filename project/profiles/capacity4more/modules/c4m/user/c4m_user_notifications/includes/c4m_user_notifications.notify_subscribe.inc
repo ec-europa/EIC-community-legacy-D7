@@ -297,6 +297,9 @@ function _c4m_user_notifications_notify_subscribe_content_of_interest($node, $ac
   global $user;
 
   $message = message_create('c4m_notify_subscribe_content_of_interest');
+  if ($node->type == 'event_site') {
+    $message = message_create('c4m_notify_event_site_subscribe_content_of_interest');
+  }
   // Define functions with which to resolve email template tokens.
   c4m_message_load_tokens__c4m_content_of_interest($message);
 
