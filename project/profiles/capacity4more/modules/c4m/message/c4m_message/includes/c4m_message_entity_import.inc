@@ -1332,36 +1332,17 @@ function _c4m_message_get_messages_event_site_published() {
         "safe_value" : "\u003Cp\u003ENew @content_type_name about @term_name\u003C\/p\u003E\n"
       },
       {
-        "value" : "\u003Cp\u003EDear @user_full_name, a new Event Site was published related to the topic(s) [topics in common]. Visit now: \u003Cstrong\u003E\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E\u003C\/strong\u003E.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou\u0027re receiving this e-mail because you\u0027re subscribed to \u003Cstrong\u003E@term_name\u003C\/strong\u003E - if you no longer wish to receive notifications related to this topic, please \u003Ca href=\u0022!unsubscribe_term_url\u0022\u003Eunsubscribe.\u003C\/a\u003E\u003C\/pz",
+        "value" : "\u003Cp\u003EDear @user_full_name, a new Event Site was published related to the topic(s): @term_name. Visit now: \u003Cstrong\u003E\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E\u003C\/strong\u003E.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou\u0027re receiving this e-mail because you\u0027re subscribed to \u003Cstrong\u003E@term_name\u003C\/strong\u003E - if you no longer wish to receive notifications related to this topic, please \u003Ca href=\u0022!unsubscribe_term_url\u0022\u003Eunsubscribe.\u003C\/a\u003E\u003C\/pz",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EDear @user_full_name, a new Event Site was published related to the topic(s) [topics in common]. Visit now: \u003Cstrong\u003E\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E\u003C\/strong\u003E.\u003C\/p\u003E\n\n\u003Cp\u003EYou\u0027re receiving this e-mail because you\u0027re subscribed to \u003Cstrong\u003E@term_name\u003C\/strong\u003E - if you no longer wish to receive notifications related to this topic, please \u003Ca href=\u0022!unsubscribe_term_url\u0022\u003Eunsubscribe.\u003C\/a\u003E\u003C\/pz"
-      },
-      {
-        "value" : "\u003Cp\u003EDear @user_full_name, a new Event Site was published related to the topic(s) [topics in common]. Visit now: \u003Cstrong\u003E\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E\u003C\/strong\u003E.\u003C\/p\u003E\r\n",
-        "format" : "mail",
-        "safe_value" : "\u003Cp\u003EDear @user_full_name, a new Event Site was published related to the topic(s) [topics in common]. Visit now: \u003Cstrong\u003E\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E\u003C\/strong\u003E.\u003C\/p\u003E\n"
+        "safe_value" : "\u003Cp\u003EDear @user_full_name, a new Event Site was published related to the topic(s): @term_name. Visit now: \u003Cstrong\u003E\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E\u003C\/strong\u003E.\u003C\/p\u003E\n\n\u003Cp\u003EYou\u0027re receiving this e-mail because you\u0027re subscribed to \u003Cstrong\u003E@term_name\u003C\/strong\u003E - if you no longer wish to receive notifications related to this topic, please \u003Ca href=\u0022!unsubscribe_term_url\u0022\u003Eunsubscribe.\u003C\/a\u003E\u003C\/pz"
       }
     ]
   },
-  "message_footer" : { "und" : [
-      {
-        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to easme\u0027s notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
-        "format" : "mail",
-        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to easme\u0027s notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
-      }
-    ]
-  },
-  "message_header" : { "und" : [
-      {
-        "value" : "\u003Cp\u003EDear @user_full_name,\u003C\/p\u003E\r\n  \r\n\u003Cp\u003EDiscover the latest updates you\u0027re subscribed to!\u003C\/p\u003E",
-        "format" : "mail",
-        "safe_value" : "\u003Cp\u003EDear @user_full_name,\u003C\/p\u003E\n  \n\u003Cp\u003EDiscover the latest updates you\u0027re subscribed to!\u003C\/p\u003E"
-      }
-    ]
-  },
+  "message_footer" : [],
+  "message_header" : [],
   "entity_type" : "message_type",
   "rdf_mapping" : []
-  }';
+}';
 }
 
 /**
