@@ -160,7 +160,7 @@ function c4m_user_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '38',
+            'weight' => '43',
             'visible' => FALSE,
           ),
           'member_overview' => array(
@@ -202,11 +202,21 @@ function c4m_user_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '34',
+            'weight' => '39',
             'visible' => FALSE,
           ),
           'member_overview' => array(
             'weight' => '46',
+            'visible' => FALSE,
+          ),
+        ),
+        'masquerade' => array(
+          'full' => array(
+            'weight' => '50',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '56',
             'visible' => FALSE,
           ),
         ),

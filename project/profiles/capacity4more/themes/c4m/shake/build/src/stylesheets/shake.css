@@ -170,4 +170,14 @@ header a {
 #user-profile-form .form-group .form-group {
   margin-bottom: 0; }
 
+.user-profile .c4m-social-media-item {
+  margin: 10px 0; }
+  .user-profile .c4m-social-media-item i.fa {
+    margin-right: 0.5rem; }
+
+.view-mode-teaser .fa {
+  color: #FFFFFF !important; }
+  .view-mode-teaser .fa a {
+    color: #347C98; }
+
 /*# sourceMappingURL=shake.css.map */
