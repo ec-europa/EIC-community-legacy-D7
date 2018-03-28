@@ -19,8 +19,12 @@
 @media (min-width: 1202px) {
   .container {
     width: 1206px; } }
+#main-wrapper {
+  padding: 0; }
+
 #footer-top-wrapper {
   background-color: #4073af;
+  border: none;
   color: #fff; }
 
 #footer-bottom-wrapper {
@@ -39,9 +43,22 @@ footer a {
   color: #FFFFFF; }
   footer a:hover {
     text-decoration: underline; }
+footer .c4m-social-media-item a:hover {
+  color: #FFFFFF; }
+  footer .c4m-social-media-item a:hover span {
+    text-decoration: underline; }
+footer .c4m-social-media-item span {
+  display: inline-block; }
+footer .c4m-social-media-item i {
+  background: none !important;
+  border-radius: 0;
+  display: inline-block; }
+  footer .c4m-social-media-item i:hover {
+    box-shadow: none; }
 
 #header-ec-wrapper {
   background-color: transparent;
+  border-top-color: #E5E5E5;
   overflow: visible; }
 
 #ecl-page-header {
@@ -51,7 +68,8 @@ footer a {
     color: #FFFFFF; }
 
 .logo {
-  width: 120px; }
+  margin-right: 10px;
+  width: 140px; }
 
 .header-breadcrumb {
   margin-top: 0; }
@@ -71,7 +89,8 @@ footer a {
   line-height: 21px; }
 
 .navigation--primary {
-  background-color: #bfd0e4; }
+  background-color: #bfd0e4;
+  border-bottom: none; }
   .navigation--primary .navbar {
     max-width: 100%;
     width: 1170px; }
@@ -98,7 +117,10 @@ header a {
     color: #FFFFFF; }
 
 #user-bar {
-  background-color: transparent; }
+  background-color: #FFFFFF;
+  box-shadow: none;
+  height: 50px;
+  padding: 10px 0; }
   #user-bar .user-groups,
   #user-bar .user-projects {
     background: #bfd0e4; }
@@ -124,9 +146,7 @@ header a {
     color: #004494; }
   #user-bar .text-muted {
     color: #004494; }
-  #user-bar .fa-chevron-down {
-    color: #004494; }
-  #user-bar .fa-users, #user-bar .fa-flag-checkered, #user-bar .fa-calendar, #user-bar .fa-flag, #user-bar .fa-building {
+  #user-bar .fullname-picture-wrapper .fullname-picture .fa-users, #user-bar .fullname-picture-wrapper .fullname-picture .fa-flag-checkered, #user-bar .fullname-picture-wrapper .fullname-picture .fa-calendar, #user-bar .fullname-picture-wrapper .fullname-picture .fa-flag, #user-bar .fullname-picture-wrapper .fullname-picture .fa-building, #user-bar .fullname-picture-wrapper .fullname-picture .fa-chevron-down {
     color: #004494; }
 
 /*# sourceMappingURL=shake.css.map */

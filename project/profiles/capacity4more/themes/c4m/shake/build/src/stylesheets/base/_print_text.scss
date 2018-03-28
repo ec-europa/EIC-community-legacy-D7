@@ -1,0 +1,7 @@
+@media print {
+  body.text-only-print {
+    #page-header, .field-name-c4m-banner {
+      display: none;
+    }
+  }
+}

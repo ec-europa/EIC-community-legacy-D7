@@ -624,3 +624,18 @@ function capacity4more_update_7012() {
   $view = views_get_view($view_name);
   ctools_export_crud_set_status("views_view", $view, TRUE);
 }
+
+/**
+ * Enable site settings module.
+ */
+function capacity4more_update_7013() {
+  module_enable(['c4m_features_site_settings']);
+}
+
+/**
+ * Uninstall c4m_domain module.
+ */
+function capacity4more_update_7014() {
+  module_disable(['c4m_domain']);
+  drupal_uninstall_modules(['c4m_domain']);
+}
