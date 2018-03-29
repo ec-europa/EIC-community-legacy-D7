@@ -639,3 +639,10 @@ function capacity4more_update_7014() {
   module_disable(['c4m_domain']);
   drupal_uninstall_modules(['c4m_domain']);
 }
+
+/**
+ * Enable c4m_web_services.
+ */
+function capacity4more_update_7015() {
+  module_enable(['c4m_web_services']);
+}
