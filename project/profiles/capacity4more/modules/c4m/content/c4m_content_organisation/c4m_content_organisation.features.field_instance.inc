@@ -83,7 +83,7 @@ function c4m_content_organisation_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'c4m_banner',
     'label' => 'Banner Image',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -94,6 +94,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'min_resolution' => '940x300',
       'title_field' => 0,
       'user_register_form' => FALSE,
+      'wysiwyg_insert' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -468,98 +469,6 @@ function c4m_content_organisation_field_default_field_instances() {
       ),
       'type' => 'date_popup',
       'weight' => 22,
-    ),
-  );
-
-  // Exported field_instance: 'node-organisation-c4m_domain'.
-  $field_instances['node-organisation-c4m_domain'] = array(
-    'bundle' => 'organisation',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'activity_global' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'activity_group' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'block_list' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 33,
-      ),
-      'c4m_related' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'c4m_content_organisation',
-        'settings' => array(),
-        'type' => 'c4m_domain_icon',
-        'weight' => 3,
-      ),
-      'featured_block' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'group_dashboard' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 52,
-      ),
-      'inthe_picture_block' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'library' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 56,
-      ),
-      'upcoming_event' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'node',
-    'field_name' => 'c4m_domain',
-    'label' => 'Domain',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'c4m_content_organisation',
-      'settings' => array(),
-      'type' => 'c4m_domain_field',
-      'weight' => 20,
     ),
   );
 
@@ -1396,7 +1305,7 @@ function c4m_content_organisation_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'c4m_media',
     'label' => 'Thumbnail image',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -1407,13 +1316,14 @@ function c4m_content_organisation_field_default_field_instances() {
       'min_resolution' => '',
       'title_field' => 0,
       'user_register_form' => FALSE,
+      'wysiwyg_insert' => 0,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          'private' => 0,
+          'private' => 'private',
           'public' => 'public',
         ),
         'allowed_types' => array(
@@ -2511,7 +2421,6 @@ function c4m_content_organisation_field_default_field_instances() {
   t('Date of establishment');
   t('Describe the organisation	');
   t('Determine if this is an OG group.');
-  t('Domain');
   t('Domain(s) of activity');
   t('Email');
   t('Facebook');
