@@ -7,4 +7,5 @@ dependencies[] = services
 features[ctools][] = services:services:3
 features[features_api][] = api:2
 features[services_endpoint][] = easme_dashboard
+features_exclude[dependencies][c4m_web_services] = c4m_web_services
 project path = profiles/capacity4more/modules/c4m/features

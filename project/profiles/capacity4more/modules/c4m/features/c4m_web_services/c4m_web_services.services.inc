@@ -15,10 +15,13 @@ function c4m_web_services_default_services_endpoint() {
   $endpoint->disabled = FALSE; /* Edit this to true to make a default endpoint disabled initially */
   $endpoint->api_version = 3;
   $endpoint->name = 'easme_dashboard';
-  $endpoint->server = 'rest_server';
+  $endpoint->server = 'c4m_web_services';
   $endpoint->path = 'easme_dashboard/rest';
   $endpoint->authentication = array(
-    'services' => 'services',
+    'c4m_web_services' => array(
+      'authorization_token_name' => 'AuthorizationToken',
+      'authorization_token_key' => '',
+    ),
   );
   $endpoint->server_settings = array(
     'formatters' => array(
@@ -39,13 +42,13 @@ function c4m_web_services_default_services_endpoint() {
   $endpoint->resources = array(
     'node' => array(
       'operations' => array(
+        'c4m_update' => array(
+          'enabled' => '1',
+        ),
         'retrieve' => array(
           'enabled' => '1',
         ),
         'create' => array(
-          'enabled' => '1',
-        ),
-        'update' => array(
           'enabled' => '1',
         ),
       ),
