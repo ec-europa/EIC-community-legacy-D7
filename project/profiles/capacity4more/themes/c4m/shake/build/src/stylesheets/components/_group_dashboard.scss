@@ -1,0 +1,7 @@
+.sidebarblock .sidebarblock__content--multiple:not(:last-child) {
+  border-bottom: 1px solid $color-gray;
+}
+
+.view-mode-group_dashboard .control-label {
+  color: $color-text;
+}

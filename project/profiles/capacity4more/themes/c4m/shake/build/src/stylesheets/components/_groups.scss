@@ -1,0 +1,27 @@
+.group-navigation {
+  nav {
+    li {
+      &:before, a {
+        color: $color-link;
+      }
+      a:hover {
+        color: $color-blue-light;
+        text-decoration: underline;
+      }
+    }
+    li.active {
+      &:before, a {
+        color: $color-gray;
+      }
+    }
+  }
+}
+
+.og-context .pane-c4m-content-group {
+  color: $color-text;
+
+  .c4m-created-on-date {
+    border-bottom: 1px solid $color-gray;
+    border-top: 1px solid $color-gray;
+  }
+}

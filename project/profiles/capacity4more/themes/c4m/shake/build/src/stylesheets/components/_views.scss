@@ -1,0 +1,24 @@
+.view-items-with-dashed-separator {
+  .view-header,
+  .views-row-last {
+    border-bottom: 1px solid $color-gray;
+  }
+}
+
+.views-row+.views-row:not(.no-border) {
+  border-top: 1px solid $color-gray;
+}
+
+.view-header {
+  a {
+    &.node-create-news,
+    &.node-create-discussion,
+    &.node-create-event,
+    &.node-create-document,
+    &.node-create-photoalbum,
+    &.node-create-photo {
+      background-color: $color-blue;
+      color: $color-white;
+    }
+  }
+}
