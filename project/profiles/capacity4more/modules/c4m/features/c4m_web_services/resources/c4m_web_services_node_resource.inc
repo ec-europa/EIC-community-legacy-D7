@@ -109,7 +109,6 @@ function _c4m_organisation_load_by_dashboard_id($dashboard_id) {
  * @see node_access()
  */
 function _c4m_node_resource_access($op = 'view', $args = array()) {
-  $a = 0;
   // Adds backwards compatability with regression fixed in #1083242
   if (isset($args[0])) {
     $args[0] = _services_access_value($args[0], 'node');

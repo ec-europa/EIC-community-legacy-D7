@@ -59,7 +59,10 @@ function _c4m_web_services_authenticate_call($settings, $method, $args) {
   global $user;
   $original_user = $user;
   drupal_save_session(FALSE);
-  $user = user_load(1);
+  $user = user_load_by_name('dashboard_user');
+  if (empty($user)) {
+    return t('Dashboard user not available, contact site administrator.');
+  }
 }
 
 

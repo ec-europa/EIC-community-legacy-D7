@@ -11,6 +11,13 @@
 function c4m_user_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'access administration menu'.
+  $permissions['access administration menu'] = array(
+    'name' => 'access administration menu',
+    'roles' => array(),
+    'module' => 'admin_menu',
+  );
+
   // Exported permission: 'access administration pages'.
   $permissions['access administration pages'] = array(
     'name' => 'access administration pages',
@@ -53,6 +60,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'access content overview',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -64,6 +72,15 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'contextual',
+  );
+
+  // Exported permission: 'access devel information'.
+  $permissions['access devel information'] = array(
+    'name' => 'access devel information',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'devel',
   );
 
   // Exported permission: 'access draggableviews'.
@@ -142,6 +159,15 @@ function c4m_user_user_default_permissions() {
     'module' => 'statistics',
   );
 
+  // Exported permission: 'access toolbar'.
+  $permissions['access toolbar'] = array(
+    'name' => 'access toolbar',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'toolbar',
+  );
+
   // Exported permission: 'access user contact forms'.
   $permissions['access user contact forms'] = array(
     'name' => 'access user contact forms',
@@ -162,15 +188,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: 'add JS snippets for piwik'.
-  $permissions['add JS snippets for piwik'] = array(
-    'name' => 'add JS snippets for piwik',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
-  );
-
   // Exported permission: 'add content to books'.
   $permissions['add content to books'] = array(
     'name' => 'add content to books',
@@ -179,6 +196,15 @@ function c4m_user_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'book',
+  );
+
+  // Exported permission: 'admin queue_ui'.
+  $permissions['admin queue_ui'] = array(
+    'name' => 'admin queue_ui',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'queue_ui',
   );
 
   // Exported permission: 'admin_display_suite'.
@@ -240,6 +266,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer ckeditor',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'ckeditor',
   );
@@ -325,11 +352,19 @@ function c4m_user_user_default_permissions() {
     'module' => 'field_group',
   );
 
+  // Exported permission: 'administer fields'.
+  $permissions['administer fields'] = array(
+    'name' => 'administer fields',
+    'roles' => array(),
+    'module' => 'field',
+  );
+
   // Exported permission: 'administer filters'.
   $permissions['administer filters'] = array(
     'name' => 'administer filters',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'filter',
   );
@@ -359,6 +394,15 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'image',
+  );
+
+  // Exported permission: 'administer lazyloader'.
+  $permissions['administer lazyloader'] = array(
+    'name' => 'administer lazyloader',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'lazyloader',
   );
 
   // Exported permission: 'administer mailsystem'.
@@ -415,6 +459,16 @@ function c4m_user_user_default_permissions() {
     'module' => 'system',
   );
 
+  // Exported permission: 'administer nexteuropa_piwik'.
+  $permissions['administer nexteuropa_piwik'] = array(
+    'name' => 'administer nexteuropa_piwik',
+    'roles' => array(
+      'PIWIK administrator' => 'PIWIK administrator',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'nexteuropa_piwik',
+  );
+
   // Exported permission: 'administer node gallery'.
   $permissions['administer node gallery'] = array(
     'name' => 'administer node gallery',
@@ -429,6 +483,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer nodes',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -451,12 +506,33 @@ function c4m_user_user_default_permissions() {
     'module' => 'panels',
   );
 
+  // Exported permission: 'administer panels display styles'.
+  $permissions['administer panels display styles'] = array(
+    'name' => 'administer panels display styles',
+    'roles' => array(),
+    'module' => 'panels',
+  );
+
   // Exported permission: 'administer panels layouts'.
   $permissions['administer panels layouts'] = array(
     'name' => 'administer panels layouts',
     'roles' => array(
       'administrator' => 'administrator',
     ),
+    'module' => 'panels',
+  );
+
+  // Exported permission: 'administer panels pane styles'.
+  $permissions['administer panels pane styles'] = array(
+    'name' => 'administer panels pane styles',
+    'roles' => array(),
+    'module' => 'panels',
+  );
+
+  // Exported permission: 'administer panels region styles'.
+  $permissions['administer panels region styles'] = array(
+    'name' => 'administer panels region styles',
+    'roles' => array(),
     'module' => 'panels',
   );
 
@@ -485,15 +561,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'user',
-  );
-
-  // Exported permission: 'administer piwik'.
-  $permissions['administer piwik'] = array(
-    'name' => 'administer piwik',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
   );
 
   // Exported permission: 'administer redirects'.
@@ -564,6 +631,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer taxonomy',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'taxonomy',
   );
@@ -582,6 +650,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer url aliases',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'path',
   );
@@ -591,6 +660,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer users',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'user',
   );
@@ -631,11 +701,21 @@ function c4m_user_user_default_permissions() {
     'module' => 'panels',
   );
 
+  // Exported permission: 'bypass email confirmation'.
+  $permissions['bypass email confirmation'] = array(
+    'name' => 'bypass email confirmation',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'email_confirm',
+  );
+
   // Exported permission: 'bypass maxlength'.
   $permissions['bypass maxlength'] = array(
     'name' => 'bypass maxlength',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'maxlength',
   );
@@ -645,6 +725,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'bypass node access',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -673,6 +754,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'change own username',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'user',
   );
@@ -833,6 +915,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'create organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -889,6 +972,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'create url aliases',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'path',
   );
@@ -1040,6 +1124,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'delete any organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -1203,6 +1288,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'delete own organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -1279,6 +1365,20 @@ function c4m_user_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete terms in c4m_vocab_category_5'.
+  $permissions['delete terms in c4m_vocab_category_5'] = array(
+    'name' => 'delete terms in c4m_vocab_category_5',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'delete terms in c4m_vocab_category_6'.
+  $permissions['delete terms in c4m_vocab_category_6'] = array(
+    'name' => 'delete terms in c4m_vocab_category_6',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'delete terms in c4m_vocab_date'.
   $permissions['delete terms in c4m_vocab_date'] = array(
     'name' => 'delete terms in c4m_vocab_date',
@@ -1307,6 +1407,34 @@ function c4m_user_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'delete terms in c4m_vocab_nace'.
+  $permissions['delete terms in c4m_vocab_nace'] = array(
+    'name' => 'delete terms in c4m_vocab_nace',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'delete terms in c4m_vocab_organisation_types'.
+  $permissions['delete terms in c4m_vocab_organisation_types'] = array(
+    'name' => 'delete terms in c4m_vocab_organisation_types',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'delete terms in c4m_vocab_tag_5'.
+  $permissions['delete terms in c4m_vocab_tag_5'] = array(
+    'name' => 'delete terms in c4m_vocab_tag_5',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'delete terms in c4m_vocab_tag_6'.
+  $permissions['delete terms in c4m_vocab_tag_6'] = array(
+    'name' => 'delete terms in c4m_vocab_tag_6',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'delete terms in c4m_vocab_theme'.
   $permissions['delete terms in c4m_vocab_theme'] = array(
     'name' => 'delete terms in c4m_vocab_theme',
@@ -1321,6 +1449,13 @@ function c4m_user_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'delete terms in c4m_vocab_tr'.
+  $permissions['delete terms in c4m_vocab_tr'] = array(
+    'name' => 'delete terms in c4m_vocab_tr',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'delete user revisions'.
   $permissions['delete user revisions'] = array(
     'name' => 'delete user revisions',
@@ -1328,6 +1463,13 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'user_revision',
+  );
+
+  // Exported permission: 'display drupal links'.
+  $permissions['display drupal links'] = array(
+    'name' => 'display drupal links',
+    'roles' => array(),
+    'module' => 'admin_menu',
   );
 
   // Exported permission: 'edit any article content'.
@@ -1434,6 +1576,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'edit any organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -1608,6 +1751,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'edit own organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -1667,6 +1811,20 @@ function c4m_user_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit terms in c4m_vocab_category_5'.
+  $permissions['edit terms in c4m_vocab_category_5'] = array(
+    'name' => 'edit terms in c4m_vocab_category_5',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in c4m_vocab_category_6'.
+  $permissions['edit terms in c4m_vocab_category_6'] = array(
+    'name' => 'edit terms in c4m_vocab_category_6',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'edit terms in c4m_vocab_date'.
   $permissions['edit terms in c4m_vocab_date'] = array(
     'name' => 'edit terms in c4m_vocab_date',
@@ -1695,6 +1853,34 @@ function c4m_user_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'edit terms in c4m_vocab_nace'.
+  $permissions['edit terms in c4m_vocab_nace'] = array(
+    'name' => 'edit terms in c4m_vocab_nace',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in c4m_vocab_organisation_types'.
+  $permissions['edit terms in c4m_vocab_organisation_types'] = array(
+    'name' => 'edit terms in c4m_vocab_organisation_types',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in c4m_vocab_tag_5'.
+  $permissions['edit terms in c4m_vocab_tag_5'] = array(
+    'name' => 'edit terms in c4m_vocab_tag_5',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in c4m_vocab_tag_6'.
+  $permissions['edit terms in c4m_vocab_tag_6'] = array(
+    'name' => 'edit terms in c4m_vocab_tag_6',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'edit terms in c4m_vocab_theme'.
   $permissions['edit terms in c4m_vocab_theme'] = array(
     'name' => 'edit terms in c4m_vocab_theme',
@@ -1709,6 +1895,13 @@ function c4m_user_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'edit terms in c4m_vocab_tr'.
+  $permissions['edit terms in c4m_vocab_tr'] = array(
+    'name' => 'edit terms in c4m_vocab_tr',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'execute elysia_cron'.
   $permissions['execute elysia_cron'] = array(
     'name' => 'execute elysia_cron',
@@ -1716,6 +1909,15 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'elysia_cron',
+  );
+
+  // Exported permission: 'execute php code'.
+  $permissions['execute php code'] = array(
+    'name' => 'execute php code',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'devel',
   );
 
   // Exported permission: 'flag c4m_og_content_highlight'.
@@ -1734,6 +1936,13 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'flag',
+  );
+
+  // Exported permission: 'flush caches'.
+  $permissions['flush caches'] = array(
+    'name' => 'flush caches',
+    'roles' => array(),
+    'module' => 'admin_menu',
   );
 
   // Exported permission: 'generate features'.
@@ -1923,15 +2132,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'pathauto',
-  );
-
-  // Exported permission: 'opt-in or out of tracking'.
-  $permissions['opt-in or out of tracking'] = array(
-    'name' => 'opt-in or out of tracking',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
   );
 
   // Exported permission: 'perform unlimited index queries'.
@@ -2196,6 +2396,15 @@ function c4m_user_user_default_permissions() {
     'module' => 'better_formats',
   );
 
+  // Exported permission: 'switch users'.
+  $permissions['switch users'] = array(
+    'name' => 'switch users',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'devel',
+  );
+
   // Exported permission: 'unflag c4m_og_content_highlight'.
   $permissions['unflag c4m_og_content_highlight'] = array(
     'name' => 'unflag c4m_og_content_highlight',
@@ -2221,15 +2430,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node_gallery_api',
-  );
-
-  // Exported permission: 'use PHP for tracking visibility'.
-  $permissions['use PHP for tracking visibility'] = array(
-    'name' => 'use PHP for tracking visibility',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
   );
 
   // Exported permission: 'use ctools import'.
@@ -2339,6 +2539,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'use text format full_html',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'filter',
   );
@@ -2348,6 +2549,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'use text format mail',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'filter',
   );
@@ -2359,6 +2561,15 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'elysia_cron',
+  );
+
+  // Exported permission: 'view overridden file entities in wysiwyg'.
+  $permissions['view overridden file entities in wysiwyg'] = array(
+    'name' => 'view overridden file entities in wysiwyg',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'media_ckeditor',
   );
 
   // Exported permission: 'view own unpublished content'.

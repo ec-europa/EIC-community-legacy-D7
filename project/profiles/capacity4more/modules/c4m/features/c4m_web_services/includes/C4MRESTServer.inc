@@ -95,12 +95,24 @@ class C4MRESTServer extends RESTServer
       $operation = $canonical_path_array[1];
     }
 
-    // 'custom update'
+    // 'update'
     // First path element should be not empty.
     if ($request_method == 'PUT'
       && $canon_path_count >= 1
       && isset($resource['operations']['update'])
       && $this->checkNumberOfArguments($canon_path_count, $resource['operations']['update'])
+      && !empty($canonical_path_array[0])
+    ) {
+      $operation_type = 'operations';
+      $operation = 'update';
+    }
+
+    // 'custom update'
+    // First path element should be not empty.
+    if ($request_method == 'PUT'
+      && $canon_path_count >= 1
+      && isset($resource['operations']['c4m_update'])
+      && $this->checkNumberOfArguments($canon_path_count, $resource['operations']['c4m_update'])
       && !empty($canonical_path_array[0])
     ) {
       $operation_type = 'operations';
