@@ -6,9 +6,11 @@
 
 $color-black: #000000;
 $color-white: #FFFFFF;
+$color-gray: #404040;
 $color-gray-light: #E5E5E5;
 $color-gray-lightTwo: #F1F6F9;
-$color-green: #B0C35A;
+$color-green: #467A39;
+$color-yellow: #ffd617;
 
 // -- Background colors -- //
 
@@ -20,9 +22,9 @@ $color-background: #F1F6F9;
 $color-gray-lighter: #767676;
 
 // WCAG AAA Pass
-$color-blue-dark: #2C4A59;
+$color-blue-dark: #003776;
 // WCAG AA Pass, AAA FAIL
-$color-blue-darkTwo: #53757d;
+$color-blue-darkTwo: #003776;
 
 // WCAG AAA Pass
 $color-gray-dark: #515151;
@@ -36,16 +38,16 @@ $color-blue: #004494;
 $color-blue-light: #bfd0e4;
 
 // WCAG AA Pass, AAA FAIL
-$color-red: #D0021B;
+$color-red: #DA2131;
 
 // WCAG AA FAIL
-$color-accent: #FFBB6D;
+$color-accent: #ffd617;
 // WCAG AA FAIL
-$color-highlight: #EE6A32;
+$color-highlight: #F29527;
 // WCAG AA Pass, AAA FAIL
-$color-link: #347C98;
+$color-link: $color-blue;
 // WCAG AAA Pass
-$color-text: #4A4A4A;
+$color-text: $color-black;
 // WCAG AA FAIL
 $color-text-alternative: #6E969F;
 // WCAG AA Pass, AAA FAIL
@@ -72,6 +74,7 @@ $base-spacing-tiny: 6px;
 /*
  * FONT STACKS
  */
+$font-arial: Arial, sans-serif;
 $font-gill: "GillSans-Light", Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-verdana: Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
 

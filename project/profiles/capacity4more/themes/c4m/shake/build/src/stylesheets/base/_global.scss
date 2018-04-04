@@ -3,7 +3,104 @@
     width: 1170px + $grid-gutter-width;
   }
 }
+body {
+  color: $color-black;
+  font-family: Arial, sans-serif;
+}
 
 #main-wrapper {
   padding: 0
+}
+
+a {
+  color: $color-blue;
+  &:hover, &:focus {
+    color: $color-blue-light;
+  }
+}
+
+.label-primary {
+  background-color: $color-blue;
+}
+
+.text-danger {
+  color: $color-red;
+}
+
+.label {
+
+  &.label-default {
+    background: none;
+    border: 1px solid $color-gray;
+    color: $color-text;
+    font-weight: normal;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
+
+  &.label-access {
+    color: $color-white;
+    border: 1px solid $color-white;
+    font-weight: normal;
+    text-transform: uppercase;
+
+    &.public {
+      background-color: $color-green;
+      border-color: $color-green;
+    }
+
+    &.private {
+      background-color: $color-red;
+      border-color: $color-red;
+    }
+
+    &.restricted {
+      background-color: $color-accent;
+      border-color: $color-accent;
+    }
+  }
+
+  &.label-stage {
+    color: $color-white;
+    border: 1px solid $color-white;
+    font-weight: normal;
+    text-transform: uppercase;
+
+    &.notstarted {
+      background-color: $color-blue-darkTwo;
+      border-color: $color-blue-darkTwo;
+    }
+
+    &.ongoing {
+      background-color: $color-blue;
+      border-color: $color-blue;
+    }
+
+    &.completed {
+      background-color: $color-blue;
+      border-color: $color-blue;
+    }
+  }
+}
+
+.text-muted {
+  color: $color-text;
+}
+
+.sidebarblock, .panel-pane {
+  &:not(:last-child) {
+    &:not(.pane-activity-stream) {
+      &:not(.pane-featured-block) {
+        &:not(.pane-voices-views-carousel) {
+          &:not(.pane--more) {
+            &:not(.pane-c4m-search-og-c4m-search-group-form) {
+              &:not(:last-child) {
+                border-bottom: 1px solid $color-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

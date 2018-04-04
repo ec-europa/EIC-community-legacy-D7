@@ -1,0 +1,23 @@
+.pane-quick-form {
+  background-color: $color-blue-light;
+
+  a:hover {
+    color: $color-blue;
+  }
+}
+.btn-group-discussion_type .discussion_type {
+  border: 1px solid $color-white;
+
+  &.active, &.active:hover, &:hover {
+    border: 1px solid $color-blue;
+    color: $color-blue;
+  }
+}
+
+.quickpost-btn {
+  color: $color-blue;
+
+  &.btn-primary {
+    color: $color-white;
+  }
+}

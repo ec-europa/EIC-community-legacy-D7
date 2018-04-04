@@ -1,0 +1,11 @@
+.view-mode-full {
+  &:not(.node-wiki-page) > .content > .group-right,
+  &.node-wiki-page > .content > .group-left {
+    > section, > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) {
+      border-bottom: 1px solid $color-gray;
+      .views-row, .detail-element, .view-mode-block_list {
+        border-bottom: 1px solid $color-gray;
+      }
+    }
+  }
+}
