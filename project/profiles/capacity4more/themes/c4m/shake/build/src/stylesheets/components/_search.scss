@@ -1,0 +1,45 @@
+#c4m-search-filter-search-filter-form, #c4m-features-homepage-filter-form-create,
+.block-facetapi {
+  border-bottom: 1px solid $color-gray;
+  border-top: none;
+
+  a:hover {
+    color: $color-white;
+  }
+  a:before {
+    color: $color-blue !important;
+  }
+}
+
+
+.view-mode-teaser:not(.user-profile) .user-name a,
+.view-mode-teaser .fa,
+.view-mode-teaser .posted-by,
+.view-mode-teaser .creation-date,
+.view-mode-teaser .row-entity-count,
+.view-mode-teaser .group-iconbar-comments-views,
+.view-mode-member_overview:not(.user-profile) .user-name a,
+.view-mode-member_overview .fa,
+.view-mode-member_overview .posted-by,
+.view-mode-member_overview .creation-date,
+.view-mode-member_overview .row-entity-count,
+.view-mode-member_overview .group-iconbar-comments-views {
+  color: $color-text !important;
+}
+
+.views-submit-button button,
+.form-item-search-within-results label span::before {
+  background: $color-blue;
+}
+
+.region-sidebar-first {
+  background: $color-blue-light;
+}
+
+.views-widget-search label {
+  color: $color-text;
+}
+
+.search-api-sort button.dropdown-toggle, .search-api-sort.open button.dropdown-toggle {
+  color: $color-blue;
+}

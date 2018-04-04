@@ -1,0 +1,20 @@
+.activity-stream {
+  .activities {
+    &:not(.last) {
+      border-bottom: 1px solid $color-gray;
+    }
+  }
+}
+.activity-stream--operator {
+  color: $color-black;
+
+  a {
+    color: $color-blue;
+  }
+}
+
+.view-mode-activity_global {
+  .field-name-c4m-ds-content-footer-stats {
+    color: $color-text;
+  }
+}

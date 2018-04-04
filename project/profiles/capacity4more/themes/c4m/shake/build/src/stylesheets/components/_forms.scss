@@ -1,0 +1,11 @@
+.btn-primary {
+  background-color: $color-blue;
+  &:hover {
+    background-color: $color-blue;
+  }
+}
+
+.btn-primary[disabled]:hover {
+  background-color: $color-blue-light;
+  border-color: $color-blue-light;
+}
