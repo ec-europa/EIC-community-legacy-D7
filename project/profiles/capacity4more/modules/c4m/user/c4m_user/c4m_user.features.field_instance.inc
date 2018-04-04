@@ -11,8 +11,8 @@
 function c4m_user_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'user-user-field_c4m_vocab_job_title'.
-  $field_instances['user-user-field_c4m_vocab_job_title'] = array(
+  // Exported field_instance: 'user-user-c4m_vocab_job_title'.
+  $field_instances['user-user-c4m_vocab_job_title'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
@@ -58,7 +58,7 @@ function c4m_user_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'user',
-    'field_name' => 'field_c4m_vocab_job_title',
+    'field_name' => 'c4m_vocab_job_title',
     'label' => 'Job title',
     'required' => 0,
     'settings' => array(

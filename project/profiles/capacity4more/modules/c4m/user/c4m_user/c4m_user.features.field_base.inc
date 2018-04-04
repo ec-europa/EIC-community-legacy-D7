@@ -11,13 +11,13 @@
 function c4m_user_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_c4m_vocab_job_title'.
-  $field_bases['field_c4m_vocab_job_title'] = array(
+  // Exported field_base: 'c4m_vocab_job_title'.
+  $field_bases['c4m_vocab_job_title'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_c4m_vocab_job_title',
+    'field_name' => 'c4m_vocab_job_title',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
