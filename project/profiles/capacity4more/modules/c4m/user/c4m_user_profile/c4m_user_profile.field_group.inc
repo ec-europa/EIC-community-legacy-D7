@@ -54,8 +54,10 @@ function c4m_user_profile_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'c4m_first_name',
-      1 => 'c4m_job_title',
-      2 => 'c4m_last_name',
+      1 => 'c4m_last_name',
+      2 => 'c4m_user_types',
+      3 => 'c4m_vocab_language',
+      4 => 'c4m_vocab_job_title',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

@@ -221,7 +221,7 @@ function c4m_user_profile_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 28,
+      'weight' => 7,
     ),
   );
 
@@ -305,7 +305,7 @@ function c4m_user_profile_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 25,
+      'weight' => 4,
     ),
   );
 
@@ -494,7 +494,7 @@ function c4m_user_profile_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 9,
+      'weight' => 12,
     ),
   );
 
@@ -561,7 +561,7 @@ function c4m_user_profile_field_default_field_instances() {
         'display_label' => 0,
       ),
       'type' => 'options_onoff',
-      'weight' => 10,
+      'weight' => 13,
     ),
   );
 
@@ -636,7 +636,7 @@ function c4m_user_profile_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 11,
+      'weight' => 15,
     ),
   );
 
@@ -704,7 +704,7 @@ function c4m_user_profile_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 15,
+      'weight' => 19,
     ),
   );
 
@@ -772,7 +772,7 @@ function c4m_user_profile_field_default_field_instances() {
         'display_label' => 0,
       ),
       'type' => 'options_onoff',
-      'weight' => 14,
+      'weight' => 18,
     ),
   );
 
@@ -868,7 +868,7 @@ function c4m_user_profile_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 12,
+      'weight' => 16,
     ),
   );
 
@@ -1045,7 +1045,7 @@ function c4m_user_profile_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 31,
+      'weight' => 6,
     ),
   );
 
@@ -1125,7 +1125,7 @@ function c4m_user_profile_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 23,
+      'weight' => 3,
     ),
   );
 
@@ -1305,7 +1305,7 @@ function c4m_user_profile_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 21,
+      'weight' => 25,
     ),
   );
 
@@ -1380,7 +1380,7 @@ function c4m_user_profile_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 20,
+      'weight' => 24,
     ),
   );
 
@@ -1455,7 +1455,7 @@ function c4m_user_profile_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 18,
+      'weight' => 22,
     ),
   );
 
@@ -1530,7 +1530,7 @@ function c4m_user_profile_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 19,
+      'weight' => 23,
     ),
   );
 
@@ -1614,7 +1614,7 @@ function c4m_user_profile_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 27,
+      'weight' => 5,
     ),
   );
 
@@ -1707,7 +1707,7 @@ function c4m_user_profile_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 21,
     ),
   );
 
@@ -1776,7 +1776,7 @@ function c4m_user_profile_field_default_field_instances() {
       'module' => 'c4m_vocab_widget',
       'settings' => array(),
       'type' => 'c4m_taxonomy_reference',
-      'weight' => 32,
+      'weight' => 5,
     ),
   );
 
@@ -1944,7 +1944,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
       'module' => 'c4m_vocab_widget',
       'settings' => array(),
       'type' => 'c4m_taxonomy_reference',
-      'weight' => 30,
+      'weight' => 6,
     ),
   );
 
