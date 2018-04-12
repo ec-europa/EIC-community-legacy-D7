@@ -512,3 +512,100 @@ function c4m_content_event_site_cron() {
   module_load_include('inc', 'c4m_content_event_site', 'c4m_content_event_site.cron');
   _c4m_content_event_site_cron();
 }
+
+/**
+ * Implements hook_clone_node_alter().
+ */
+function c4m_content_event_site_clone_node_alter(&$node, $context) {
+  $node->changed = null;
+//  unset($node->book);
+  $orig_nid = $context['original_node']->nid;
+  if ($clone_counter = c4m_content_event_site_update_clone_table($orig_nid)) {
+    $node->title .= ' - ' . $clone_counter;
+  }
+  unset($node->last_comment_timestamp);
+  unset($node->last_comment_uid);
+  unset($node->purl);
+  node_object_prepare($node);
+  node_save($node);
+
+  // Get group content.
+  $og_contents = db_select('og_membership', 'ogm')
+    ->fields('ogm', array('etid'))
+    ->condition('ogm.gid', $orig_nid, '=')
+    ->condition('ogm.entity_type', 'node', '=')
+    ->execute()
+    ->fetchAll();
+
+  // Duplicate group content into the cloned group.
+  if (!empty($og_contents)) {
+    foreach ($og_contents as $one) {
+      if (!empty($one->etid)) {
+        $new_node = node_load($one->etid);
+        $new_node->is_new = true;
+        unset($new_node->nid);
+        unset($new_node->vid);
+        unset($new_node->tnid);
+        $new_node->og_group_ref['und'][0]['target_id'] = $node->nid;
+        node_save($new_node);
+      }
+    }
+  }
+
+  // Get all members from old group.
+  $members = c4m_og_get_users_from_group($context['original_node']->nid);
+
+  // Load user entities for retrieved members.
+  $users = user_load_multiple(array_keys($members));
+  // Assign the users to the cloned group.
+  foreach ($members as $uid => $rid) {
+    og_group('node', $node->nid, ['entity' => $users[$uid]]);
+    if (!empty($rid)) {
+      og_role_grant('node', $node->nid, $uid, $rid);
+    }
+  }
+
+  return;
+}
+
+/**
+ * Update custom table for event sites clone functionality.
+ *
+ * @param int $nid
+ *   Id of the event site that is being cloned.
+ *
+ * @return int|bool
+ *   Returns the current counter if there are multiple clones for the same node.
+ *
+ * @throws \Exception
+ */
+function c4m_content_event_site_update_clone_table($nid) {
+  $index = db_select('c4m_clone_event_sites', 'ces')
+    ->fields('ces', array('clone_counter'))
+    ->condition('nid', $nid, '=')
+    ->execute()->fetchField();
+  if (!empty($index) || ($index === "0")) {
+    $index++;
+    db_update('c4m_clone_event_sites')
+      ->fields(array(
+        'clone_counter' => $index,
+      ))
+      ->condition('nid', $nid)
+      ->execute();
+  }
+  else {
+    try {
+      db_insert('c4m_clone_event_sites')
+        ->fields(array(
+          'nid' => $nid,
+          'clone_counter' => 0,
+        ))
+        ->execute();
+    }
+    catch (PDOException $e) {
+      watchdog('c4m_clone_event_sites', $e->getMessage(), NULL, WATCHDOG_ERROR);
+      return FALSE;
+    }
+  }
+  return $index;
+}

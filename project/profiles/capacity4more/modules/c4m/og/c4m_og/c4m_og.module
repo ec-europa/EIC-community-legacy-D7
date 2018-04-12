@@ -4293,3 +4293,39 @@ function c4m_og_path_breadcrumbs_view($path_breadcrumbs, $contexts) {
     }
   }
 }
+
+/**
+ * Returns all users with their roles from a group.
+ *
+ * @param int $gid
+ *   Group id.
+ *
+ * @return array
+ *   Returns an array with user ids and role ids.
+ */
+function c4m_og_get_users_from_group($gid) {
+  if (empty($gid)) {
+    return array();
+  }
+  $uids = array();
+
+  $query = db_select('og_membership', 'ogm');
+  $query->leftJoin('og_users_roles', 'ogur', 'ogur.gid = ogm.gid AND ogur.uid = ogm.etid');
+  $query->fields('ogur', array('rid'));
+  $query->fields('ogm', array('etid'))
+    ->condition('ogm.entity_type', 'user', '=')
+    ->condition('ogm.gid', $gid, '=');
+  $results = $query->execute()->fetchAll();
+
+  if (empty($results)) {
+    return array();
+  }
+
+  foreach ($results as $item) {
+    if (!empty($item->etid)) {
+      $uids[$item->etid] = $item->rid;
+    }
+  }
+
+  return $uids;
+}
