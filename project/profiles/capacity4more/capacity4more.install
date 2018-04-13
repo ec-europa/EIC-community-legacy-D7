@@ -651,3 +651,11 @@ function capacity4more_update_7015() {
     field_purge_batch(1);
   }
 }
+
+/**
+ * Delete everything related to c4m_domain.
+ */
+function capacity4more_update_7016() {
+  field_delete_field('c4m_domain');
+  db_drop_table('c4m_domain');
+}
