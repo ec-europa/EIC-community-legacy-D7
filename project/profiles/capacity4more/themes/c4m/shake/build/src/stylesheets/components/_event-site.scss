@@ -9,3 +9,15 @@
     }
   }
 }
+
+// Display body field for News in Latest News Block.
+.pane-c4m-content-event-site-left, .pane-c4m-content-event-site-right {
+  .view-mode-full {
+    .node-news {
+      .field-name-c4m-body {
+        display: block;
+        margin-top: 0;
+      }
+    }
+  }
+}
