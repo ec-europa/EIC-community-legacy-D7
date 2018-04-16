@@ -13,3 +13,39 @@ function c4m_content_event_site_install() {
   // It can then be overridden without interfere the feature settings.
   variable_set('pathauto_node_event_site_pattern', 'event_site/[node:title]');
 }
+
+/**
+ * Implements hook_schema().
+ */
+function c4m_content_event_site_schema() {
+  $schema['c4m_clone_event_sites'] = array(
+    'description' => 'Counter for event site clones.',
+    'fields' => array(
+      'nid'       => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE),
+      'clone_counter'       => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE),
+    ),
+    'primary key' => array(
+      'nid',
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Create c4m_clone_event_sites table.
+ */
+function c4m_content_event_site_update_7001() {
+  if (!db_table_exists('c4m_clone_event_sites')) {
+    $table = array(
+      'description' => 'Counter for event site clones.',
+      'fields' => array(
+        'nid'       => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE),
+        'clone_counter'       => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE),
+      ),
+      'primary key' => array(
+        'nid',
+      ),
+    );
+    db_create_table('c4m_clone_event_sites', $table);
+  }
+}
