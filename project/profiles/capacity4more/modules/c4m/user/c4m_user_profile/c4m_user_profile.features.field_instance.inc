@@ -1785,7 +1785,7 @@ function c4m_user_profile_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The Regions & Countries you are interested in.
+    'description' => 'Select all countries and/or regions which you are targetting.
 You can select maximum 3 regions and an unlimited number of subregions or countries.',
     'display' => array(
       'block_list' => array(
@@ -1865,7 +1865,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
     'ds_extras_field_template' => '',
     'entity_type' => 'user',
     'field_name' => 'c4m_vocab_geo',
-    'label' => 'Regions & Countries',
+    'label' => 'Target Region & Countries',
     'required' => 0,
     'settings' => array(
       'user_register_form' => 1,
@@ -2165,15 +2165,15 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
   t('Last Name');
   t('LinkedIn');
   t('Picture');
-  t('Regions & Countries');
+  t('Select all countries and/or regions which you are targetting.
+You can select maximum 3 regions and an unlimited number of subregions or countries.');
   t('Select one or more topics you are interested in.
 You can select maximum 3 topics and an unlimited number of subtopics.');
   t('Select your area(s) of expertise.
 You can select maximum 3 topics and an unlimited number of subtopics.');
   t('Set if the user lost his LDAP validation.');
   t('Set if the user\'s email address has a domain mentioned in one of the "Organisation" nodes. ');
-  t('The Regions & Countries you are interested in.
-You can select maximum 3 regions and an unlimited number of subregions or countries.');
+  t('Target Region & Countries');
   t('Topics of Expertise');
   t('Topics of Interest');
   t('Twitter');
