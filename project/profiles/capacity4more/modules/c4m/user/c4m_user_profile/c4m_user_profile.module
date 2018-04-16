@@ -483,12 +483,6 @@ function c4m_user_profile_alter_user_form(array &$form, array &$form_state, $is_
   // Add wrappers for AJAX replacement.
   $form['mail']['#prefix'] = '<div id="edit-mail-wrapper">';
   $form['mail']['#suffix'] = '</div>';
-  $form['c4m_country']['#prefix'] = '<div id="edit-c4m-country-wrapper">';
-  $form['c4m_country']['#suffix'] = '</div>';
-  $form['c4m_organisation']['#prefix'] = '<div id="edit-c4m-organisation-wrapper">';
-  $form['c4m_organisation']['#suffix'] = '</div>';
-  $form['c4m_organisation_type']['#prefix'] = '<div id="edit-c4m-organisation-type-wrapper">';
-  $form['c4m_organisation_type']['#suffix'] = '</div>';
 
   if (isset($form_state['values']['mail'])) {
     // Trim whitespace from mail, to prevent confusing 'e-mail not valid'
@@ -552,17 +546,6 @@ function c4m_user_profile_form_user_profile_form_alter(&$form, &$form_state, $fo
   $account = $form['#user'];
   $account_wrapper = entity_metadata_wrapper('user', $account);
 
-  // Disable fields if the user is an organisation user and the field has a
-  // default value.
-  if ($account_wrapper->c4m_is_organisation_user->value()) {
-    if (!empty($form['c4m_organisation'][LANGUAGE_NONE][0]['value']['#default_value'])) {
-      $form['c4m_organisation'][LANGUAGE_NONE][0]['value']['#attributes']['disabled'] = 'disabled';
-    }
-    if (!empty($form['c4m_organisation_type'][LANGUAGE_NONE]['#default_value'])) {
-      $form['c4m_organisation_type'][LANGUAGE_NONE]['#attributes']['disabled'] = 'disabled';
-    }
-  }
-
   c4m_user_profile_alter_user_form($form, $form_state, FALSE);
 
   // Hide Overlay, Email, Locale and Contact settings. They are moved to
@@ -608,7 +591,7 @@ function c4m_user_profile_form_user_profile_form_alter(&$form, &$form_state, $fo
   if(!empty($c4m_user_dashboard_link)) {
     $form["c4m_user_types"]['#disabled'] = TRUE;
     $edit_link = l('(' . t('edit here') . ')', $c4m_user_dashboard_link);
-    $form['c4m_user_types']["#suffix"] .= '<small class="disabled-text disabled--user-type">'
+    $form['c4m_user_types']["#suffix"] = '<small class="disabled-text disabled--user-type">'
       . t('The User Type is managed through dashboard. ')
       . ' ' . $edit_link . '</small>';
 
@@ -633,9 +616,6 @@ function c4m_user_profile_element_validate_mail_ajax($form, $form_state) {
     '#type' => 'ajax',
     '#commands' => [
       ajax_command_replace('#edit-mail-wrapper', render($form['mail'])),
-      ajax_command_replace('#edit-c4m-country-wrapper', render($form['c4m_country'])),
-      ajax_command_replace('#edit-c4m-organisation-wrapper', render($form['c4m_organisation'])),
-      ajax_command_replace('#edit-c4m-organisation-type-wrapper', render($form['c4m_organisation_type'])),
     ],
   ];
   return $ajax;
@@ -917,21 +897,6 @@ function c4m_user_profile_c4m_user_profile_validate_email_alter(&$data) {
         'type' => C4M_USER_PROFILE_VALIDATION_MESSAGE_TYPE_MESSAGE,
         '#weight' => 4,
       ];
-    }
-  }
-
-  if ($data['alter_form']) {
-    if ($country) {
-      $data['form']['c4m_country'][LANGUAGE_NONE]['#attributes']['disabled'] = 'disabled';
-      $data['form']['c4m_country'][LANGUAGE_NONE]['#value'] = $country;
-    }
-    if ($organisation_name) {
-      $data['form']['c4m_organisation'][LANGUAGE_NONE][0]['value']['#attributes']['disabled'] = 'disabled';
-      $data['form']['c4m_organisation'][LANGUAGE_NONE][0]['value']['#value'] = $organisation_name;
-    }
-    if ($organisation_type) {
-      $data['form']['c4m_organisation_type'][LANGUAGE_NONE]['#attributes']['disabled'] = 'disabled';
-      $data['form']['c4m_organisation_type'][LANGUAGE_NONE]['#value'] = $organisation_type;
     }
   }
 

@@ -162,15 +162,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: 'add JS snippets for piwik'.
-  $permissions['add JS snippets for piwik'] = array(
-    'name' => 'add JS snippets for piwik',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
-  );
-
   // Exported permission: 'add content to books'.
   $permissions['add content to books'] = array(
     'name' => 'add content to books',
@@ -485,15 +476,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'user',
-  );
-
-  // Exported permission: 'administer piwik'.
-  $permissions['administer piwik'] = array(
-    'name' => 'administer piwik',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
   );
 
   // Exported permission: 'administer redirects'.
@@ -1279,6 +1261,13 @@ function c4m_user_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete terms in c4m_job_titles'.
+  $permissions['delete terms in c4m_job_titles'] = array(
+    'name' => 'delete terms in c4m_job_titles',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'delete terms in c4m_vocab_date'.
   $permissions['delete terms in c4m_vocab_date'] = array(
     'name' => 'delete terms in c4m_vocab_date',
@@ -1667,6 +1656,13 @@ function c4m_user_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit terms in c4m_job_titles'.
+  $permissions['edit terms in c4m_job_titles'] = array(
+    'name' => 'edit terms in c4m_job_titles',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'edit terms in c4m_vocab_date'.
   $permissions['edit terms in c4m_vocab_date'] = array(
     'name' => 'edit terms in c4m_vocab_date',
@@ -1923,15 +1919,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'pathauto',
-  );
-
-  // Exported permission: 'opt-in or out of tracking'.
-  $permissions['opt-in or out of tracking'] = array(
-    'name' => 'opt-in or out of tracking',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
   );
 
   // Exported permission: 'perform unlimited index queries'.
@@ -2221,15 +2208,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node_gallery_api',
-  );
-
-  // Exported permission: 'use PHP for tracking visibility'.
-  $permissions['use PHP for tracking visibility'] = array(
-    'name' => 'use PHP for tracking visibility',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'piwik',
   );
 
   // Exported permission: 'use ctools import'.
