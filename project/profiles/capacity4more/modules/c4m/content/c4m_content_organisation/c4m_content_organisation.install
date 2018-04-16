@@ -6,47 +6,6 @@
  */
 
 /**
- * Implements hook_field_schema().
- */
-function c4m_content_organisation_field_schema($field) {
-  switch ($field['type']) {
-    case 'c4m_domain':
-      $columns = array(
-        'domain' => array(
-          'type'      => 'varchar',
-          'length'    => 255,
-          'not null'  => TRUE,
-        ),
-        'icon' => array(
-          'type'      => 'int',
-          'not null'  => FALSE,
-          'default'   => 0,
-        ),
-      );
-      break;
-  }
-  $columns += array(
-    'format' => array(
-      'type' => 'varchar',
-      'length' => 255,
-      'not null' => FALSE,
-    ),
-  );
-  return array(
-    'columns' => $columns,
-    'indexes' => array(
-      'format' => array('format'),
-    ),
-    'foreign keys' => array(
-      'format' => array(
-        'table' => 'filter_format',
-        'columns' => array('format' => 'format'),
-      ),
-    ),
-  );
-}
-
-/**
  * Implements hook_install().
  */
 function c4m_content_organisation_install() {
