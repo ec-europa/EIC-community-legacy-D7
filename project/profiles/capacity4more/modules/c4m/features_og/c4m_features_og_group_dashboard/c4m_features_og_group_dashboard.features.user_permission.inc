@@ -11,16 +11,15 @@
 function c4m_features_og_group_dashboard_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: 'flag subscribe_c4m_follow_comment'.
-  $permissions['flag subscribe_c4m_follow_comment'] = array(
-    'name' => 'flag subscribe_c4m_follow_comment',
+  // Exported permission: 'flag subscribe_c4m_follow_content'.
+  $permissions['flag subscribe_c4m_follow_content'] = array(
+    'name' => 'flag subscribe_c4m_follow_content',
     'roles' => array(
-      'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'flag',
   );
-
+  
   // Exported permission: 'flag subscribe_c4m_follow_group'.
   $permissions['flag subscribe_c4m_follow_group'] = array(
     'name' => 'flag subscribe_c4m_follow_group',
