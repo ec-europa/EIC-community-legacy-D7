@@ -17,7 +17,7 @@ index f17b494..f51219a 100755
    }
  
    // See if the author of the entity gets notified.
--  if (!$notify_message_owner && array_key_exists ($entity->uid , $uids)) {
+-  if (isset($entity->uid) && !$notify_message_owner && array_key_exists($entity->uid, $uids)) {
 -    unset($uids[$entity->uid]);
 +  if (!empty($entity->uid)) {
 +    if (!$notify_message_owner && array_key_exists ($entity->uid , $uids)) {
