@@ -20,6 +20,9 @@ function c4m_content_book_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
 
+  //Remove this item for EASME.
+  unset($items['admin/config/c4m/help_and_guidance']);
+
   $items['admin/config/c4m/book'] = array(
     'access arguments' => array('administer site configuration'),
     'description' => 'Manage general book settings',
