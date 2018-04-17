@@ -54,7 +54,7 @@ function c4m_content_event_site_c4m_content_statistics_info() {
           'class' => array('projects'),
         ),
         'link' => array(
-          'path' => 'event_sites',
+          'path' => 'events',
         ),
       ),
     ),
