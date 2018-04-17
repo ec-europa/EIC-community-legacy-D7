@@ -45,3 +45,6 @@ projects[og_context_access_callback][version] = "1.x-dev"
 
 projects[og_menu][subdir] = "contrib"
 projects[og_menu][version] = "3.1"
+
+projects[node_clone][subdir] = "contrib"
+projects[node_clone][version] = "1.0"
