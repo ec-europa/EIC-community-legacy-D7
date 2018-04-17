@@ -527,7 +527,8 @@ media/ajax/*
 media/browser*
 node/*/edit
 node/add/*
-overlay-file/*');
+overlay-file/*
+book/*/print');
   variable_set('lazyloader_placeholder', '');
 }
 
@@ -626,24 +627,38 @@ function capacity4more_update_7012() {
 }
 
 /**
- * Enable site settings module.
+ * Adjust Lazyloader settings. Add book/*\/print path.
  */
 function capacity4more_update_7013() {
-  module_enable(['c4m_features_site_settings']);
+  _capacity4more_add_lazyloader_settings();
 }
 
 /**
  * Uninstall c4m_domain module.
  */
 function capacity4more_update_7014() {
+  module_enable(['c4m_features_site_settings']);
+}
+
+/**
+ * Uninstall c4m_domain module.
+ */
+function capacity4more_update_7015() {
   module_disable(['c4m_domain']);
   drupal_uninstall_modules(['c4m_domain']);
 }
 
 /**
+ * Set statistics_count_content_views_ajax variable to TRUE.
+ */
+function capacity4more_update_7016() {
+  variable_set('statistics_count_content_views_ajax', TRUE);
+}
+
+/**
  * Delete field field_c4m_vocab_job_title.
  */
-function capacity4more_update_7015() {
+function capacity4more_update_7017() {
   $field_name = 'field_c4m_vocab_job_title';
   $job_title_field = field_info_field($field_name);
   if (!empty($job_title_field)) {
@@ -655,7 +670,7 @@ function capacity4more_update_7015() {
 /**
  * Delete everything related to c4m_domain.
  */
-function capacity4more_update_7016() {
+function capacity4more_update_7018() {
   field_delete_field('c4m_domain');
   db_drop_table('c4m_domain');
 }
