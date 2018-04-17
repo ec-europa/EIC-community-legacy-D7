@@ -30,6 +30,9 @@ function c4m_moodle_menu() {
     'file' => 'c4m_moodle.admin.inc',
   );
 
+  //Remove this item for EASME.
+  unset($items['admin/config/c4m/moodle'] );
+
   return $items;
 }
 

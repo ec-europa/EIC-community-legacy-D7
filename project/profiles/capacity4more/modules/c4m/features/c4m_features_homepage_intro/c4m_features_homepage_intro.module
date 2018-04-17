@@ -20,6 +20,9 @@ function c4m_features_homepage_intro_menu() {
     'file' => 'c4m_features_homepage_intro.admin.inc',
   );
 
+  //Remove this item for EASME.
+  unset($items['admin/config/c4m/homepage-intro-video']);
+
   return $items;
 }
 
