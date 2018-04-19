@@ -91,6 +91,7 @@ class C4mOrganisationUser {
    *   Array of Organisation node objects.
    */
   protected function getOrganisations($brand = FALSE) {
+    return;
     if (!$this->validEmail) {
       return FALSE;
     }
