@@ -190,7 +190,7 @@ function c4m_content_construct_path_to_content_page($content_type) {
     $types_path = [
       'group' => 'groups',
       'project' => 'projects',
-      'event_site' => 'event_sites',
+      'event_site' => 'events',
       'organisation' => 'organisations',
     ];
     if (in_array($content_type, array_keys($types_path))) {

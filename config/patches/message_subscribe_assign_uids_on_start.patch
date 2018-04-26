@@ -6,7 +6,7 @@ index 0e9f058..22fd989 100755
      return $message;
    }
  
-+  if ($message->type === 'c4m_notify_subscribe_content_of_interest') {
++  if (in_array($message->type, ['c4m_notify_subscribe_content_of_interest','c4m_notify_event_site_subscribe_content_of_interest'])) {
 +    $message->field_taxonomy_term[LANGUAGE_NONE][0]['target_id'] = $id;
 +  }
 +

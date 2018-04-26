@@ -45,6 +45,7 @@ features[ds_layout_settings][] = node|event_site|documents
 features[ds_layout_settings][] = node|event_site|group_dashboard
 features[ds_layout_settings][] = node|event_site|teaser
 features[elysia_cron][] = c4m_content_event_site_cron
+features[elysia_cron][] = queue_c4m_event_site_email_subscribers
 features[features_api][] = api:2
 features[field_base][] = c4m_publish_date
 features[field_group][] = group_c4m_documents|node|event_site|form

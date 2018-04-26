@@ -620,6 +620,9 @@ function c4m_user_menu() {
     'file' => 'c4m_user.admin.inc',
   );
 
+  // Remove this item for EASME.
+  unset ($items['admin/config/c4m/organisation-validator']);
+
   // Callbacks to provide tailored access denied behaviour.
   $items['access-denied'] = array(
     'title' => 'Please log in to continue',
