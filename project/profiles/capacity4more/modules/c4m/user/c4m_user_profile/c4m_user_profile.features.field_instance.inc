@@ -90,7 +90,7 @@ function c4m_user_profile_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'c4m_body',
     'label' => 'About You',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
