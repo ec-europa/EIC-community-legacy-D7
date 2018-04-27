@@ -23,6 +23,11 @@ function c4m_user_profile_install() {
       )
     )
     ->execute();
+
+  // Create and add terms to the Job titles Vocabulary.
+  $vocabulary = _c4m_user_profile_c4m_vocab_user_types_install_vocabulary();
+  $terms = _c4m_user_profile_c4m_vocab_user_types_install_get_terms();
+  _c4m_user_profile_c4m_vocab_user_types_install_terms($vocabulary, $terms);
 }
 
 /**
@@ -129,4 +134,100 @@ function c4m_user_profile_update_7003() {
     field_delete_field($field_name);
     field_purge_batch(1);
   }
+}
+
+/**
+ * Create User types vocabulary.
+ *
+ * @return object
+ *   The User types vocabulary.
+ */
+function _c4m_user_profile_c4m_vocab_user_types_install_vocabulary() {
+  // Check if vocabulary already exists.
+  if ($vocab = taxonomy_vocabulary_machine_name_load('c4m_vocab_user_types')) {
+    return $vocab;
+  }
+  $vocabulary = (object) array(
+    'name'         => st('User types'),
+    'description'  => st('List of user types'),
+    'machine_name' => 'c4m_vocab_user_types',
+  );
+  taxonomy_vocabulary_save($vocabulary);
+
+  variable_set(
+    'pathauto_taxonomy_term_c4m_vocab_user_types_pattern',
+    'user-type/[term:name]'
+  );
+
+  return $vocabulary;
+}
+
+/**
+ * Get a list of user type terms to use during the install.
+ *
+ * @return array
+ *    List of type of users.
+ *
+ */
+function _c4m_user_profile_c4m_vocab_user_types_install_get_terms() {
+  $terms = array(
+    st('Community Manager') => array(),
+    st('Event Manager') => array(),
+    st('Coach') => array(),
+    st('EEN KAM') => array(),
+    st('H2020 NCPs') => array(),
+    st('EIC Project Officer') => array(),
+  );
+
+  return $terms;
+}
+
+/**
+ * Create default taxonomy terms for the User types vocabulary.
+ *
+ * @param object $vocabulary
+ *   The vocabulary to which the terms should be added.
+ * @param array $terms
+ *   Array of terms.
+ * @param object $parent
+ *   (optional) Parent term.
+ */
+function _c4m_user_profile_c4m_vocab_user_types_install_terms($vocabulary, array $terms, $parent = NULL) {
+  $weight = -10;
+  foreach ($terms as $name => $children) {
+    $term              = new stdClass();
+    $term->name        = $name;
+    $term->description = 'User type ' . $name;
+    $term->vid         = $vocabulary->vid;
+    $term->weight      = $weight;
+    if (!empty($parent)) {
+      $term->parent = $parent->tid;
+    }
+    taxonomy_term_save($term);
+
+    if (!empty($children)) {
+      _c4m_user_profile_c4m_vocab_user_types_install_terms($vocabulary, $children, $term);
+    }
+    $weight++;
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function c4m_user_profile_uninstall() {
+  $vocab = taxonomy_vocabulary_machine_name_load('c4m_vocab_user_types');
+
+  if (!empty($vocab)) {
+    taxonomy_vocabulary_delete($vocab->vid);
+  }
+}
+
+/**
+ * Add terms to User types vocabulary.
+ */
+function c4m_user_profile_update_7004() {
+  $vocabulary = _c4m_user_profile_c4m_vocab_user_types_install_vocabulary();
+  $terms = _c4m_user_profile_c4m_vocab_user_types_install_get_terms();
+  _c4m_user_profile_c4m_vocab_user_types_install_terms($vocabulary, $terms);
 }

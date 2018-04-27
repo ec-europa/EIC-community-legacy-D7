@@ -10,6 +10,12 @@
  */
 function c4m_user_install() {
   c4m_user_force_revoke_anonymous_user_text_format_permissions();
+
+  // Create and add terms to the Job titles Vocabulary.
+  $vocabulary = _c4m_user_c4m_job_titles_install_vocabulary();
+  $terms = _c4m_user_c4m_job_titles_install_get_terms();
+  _c4m_user_c4m_job_titles_install_terms($vocabulary, $terms);
+
 }
 
 /**
@@ -23,4 +29,106 @@ function c4m_user_force_revoke_anonymous_user_text_format_permissions() {
   );
   $role = user_role_load_by_name('anonymous user');
   user_role_revoke_permissions($role->rid, array($permissions));
+}
+
+/**
+ * Create Job titles vocabulary.
+ *
+ * @return object
+ *   The Job titles vocabulary.
+ */
+function _c4m_user_c4m_job_titles_install_vocabulary() {
+  // Check if vocabulary already exists.
+  if ($vocab = taxonomy_vocabulary_machine_name_load('c4m_job_titles')) {
+    return $vocab;
+  }
+  $vocabulary = (object) array(
+    'name'         => st('Job titles'),
+    'description'  => st('List of job titles'),
+    'machine_name' => 'c4m_job_titles',
+  );
+  taxonomy_vocabulary_save($vocabulary);
+
+  variable_set(
+    'pathauto_taxonomy_term_c4m_job_titles_pattern',
+    'job-title/[term:name]'
+  );
+
+  return $vocabulary;
+}
+
+/**
+ * Get a list of type of job titles terms to use during the install.
+ *
+ * @return array
+ *    List of type of documents.
+ *
+ */
+function _c4m_user_c4m_job_titles_install_get_terms() {
+  $terms = array(
+    st('Company CEO') => array(),
+    st('Company representative') => array(),
+    st('Adviser') => array(),
+    st('Researcher') => array(),
+    st('Consultant') => array(),
+    st('Staff') => array(),
+    st('Project Officer') => array(),
+    st('Dir') => array(),
+    st('HoD') => array(),
+    st('HoU') => array(),
+    st('HoS') => array(),
+    st('Other') => array(),
+  );
+
+  return $terms;
+}
+
+/**
+ * Create default taxonomy terms for the Job titles vocabulary.
+ *
+ * @param object $vocabulary
+ *   The vocabulary to which the terms should be added.
+ * @param array $terms
+ *   Array of terms.
+ * @param object $parent
+ *   (optional) Parent term.
+ */
+function _c4m_user_c4m_job_titles_install_terms($vocabulary, array $terms, $parent = NULL) {
+  $weight = -10;
+  foreach ($terms as $name => $children) {
+    $term              = new stdClass();
+    $term->name        = $name;
+    $term->description = 'Job title ' . $name;
+    $term->vid         = $vocabulary->vid;
+    $term->weight      = $weight;
+    if (!empty($parent)) {
+      $term->parent = $parent->tid;
+    }
+    taxonomy_term_save($term);
+
+    if (!empty($children)) {
+      _c4m_user_c4m_job_titles_install_terms($vocabulary, $children, $term);
+    }
+    $weight++;
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function c4m_user_uninstall() {
+  $vocab = taxonomy_vocabulary_machine_name_load('c4m_job_titles');
+
+  if (!empty($vocab)) {
+    taxonomy_vocabulary_delete($vocab->vid);
+  }
+}
+
+/**
+ * Add terms to Job titles vocabulary.
+ */
+function c4m_user_update_7001() {
+  $vocabulary = _c4m_user_c4m_job_titles_install_vocabulary();
+  $terms = _c4m_user_c4m_job_titles_install_get_terms();
+  _c4m_user_c4m_job_titles_install_terms($vocabulary, $terms);
 }
