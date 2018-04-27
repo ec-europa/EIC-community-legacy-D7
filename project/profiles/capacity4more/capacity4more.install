@@ -674,3 +674,12 @@ function capacity4more_update_7018() {
   field_delete_field('c4m_domain');
   db_drop_table('c4m_domain');
 }
+
+/**
+ * Disable Kapablo theme and enable and set as default Shake theme.
+ */
+function capacity4more_update_7019() {
+  theme_disable(['kapablo']);
+  theme_enable(['shake']);
+  variable_set('theme_default', 'shake');
+}
