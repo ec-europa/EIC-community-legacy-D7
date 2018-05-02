@@ -345,7 +345,7 @@ function c4m_document_widget_custom_theme() {
 
   $intersect = array_intersect($overlay_paths, $args);
   if (0 < count($intersect)) {
-    $theme = variable_get('theme_default', 'kapablo');
+    $theme = variable_get('theme_default', 'shake');
     return $theme;
   }
 }

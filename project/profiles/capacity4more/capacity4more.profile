@@ -68,7 +68,7 @@ function capacity4more_setup_set_variables(&$install_state) {
     'site_frontpage' => 'dashboard',
 
     // Theme.
-    'theme_default' => 'kapablo',
+    'theme_default' => 'shake',
     'admin_theme' => 'seven',
     'node_admin_theme' => 0,
     'jquery_update_jquery_version' => '1.8',

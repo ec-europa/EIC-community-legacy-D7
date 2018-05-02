@@ -49,7 +49,7 @@ function capacity4more_install() {
   variable_set('node_admin_theme', TRUE);
 
   // Custom theme (subtheme of bootstrap).
-  $theme_capacity4more = 'kapablo';
+  $theme_capacity4more = 'shake';
   _capacity4more_install_save_theme($theme_capacity4more, 1);
   variable_set('theme_default', $theme_capacity4more);
   // Disable Bartik.
