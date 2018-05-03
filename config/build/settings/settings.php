@@ -30,11 +30,11 @@ $conf['file_default_scheme'] = 'public';
 /**
  * Cache settings.
  */
-$conf['cache'] = TRUE;
-$conf['block_cache'] = TRUE;
-$conf['page_compression'] = TRUE;
-$conf['preprocess_css'] = TRUE;
-$conf['preprocess_js'] = TRUE;
+$conf['cache'] = FALSE;
+$conf['block_cache'] = FALSE;
+$conf['page_compression'] = FALSE;
+$conf['preprocess_css'] = FALSE;
+$conf['preprocess_js'] = FALSE;
 $conf['cache_lifetime'] = 5 * 60;
 // 10 minutes.
 $conf['page_cache_maximum_age'] = 10 * 60;
