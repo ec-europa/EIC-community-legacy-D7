@@ -386,7 +386,7 @@ function c4m_search_form($form, &$form_state) {
     '#maxlength' => 255,
     '#attributes' => array(
       'title' => t('Enter the terms you wish to search for.'),
-      'placeholder' => t('search capacity4dev...'),
+      'placeholder' => t('search EIC community...'),
     ),
   );
 
@@ -456,7 +456,7 @@ function c4m_search_redirect_form($form, &$form_state, $redirect_url, $title = N
     '#maxlength' => 255,
     '#attributes' => array(
       'title' => $title ? $title : t('Enter the terms you wish to search for.'),
-      'placeholder' => $placeholder ? $placeholder : t('search capacity4dev...'),
+      'placeholder' => $placeholder ? $placeholder : t('search EIC community...'),
     ),
   );
 
