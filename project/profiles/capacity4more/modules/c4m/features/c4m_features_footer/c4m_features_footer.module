@@ -66,6 +66,17 @@ function c4m_features_footer_theme() {
     'file' => 'c4m_features_footer.theme.inc',
     'path' => drupal_get_path('module', 'c4m_features_footer') . '/includes',
   );
+
+  $theme['c4m_footer_bar_template'] = array(
+    'variables' => array(
+      'left_column' => '',
+      'social_media' => '',
+      'right_column' => '',
+    ),
+    'path' => drupal_get_path('module', 'c4m_features_footer') . '/theme',
+    'template' => 'c4m-features-footer-bar-template',
+  );
+
   $theme['c4m_footer_menu'] = array(
     'variables' => array(
       'data' => array(),

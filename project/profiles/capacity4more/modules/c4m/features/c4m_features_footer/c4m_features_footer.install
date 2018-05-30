@@ -96,21 +96,33 @@ function c4m_features_footer_c4m_footer_menu() {
 function c4m_features_footer_set_navigation_links() {
   $navigation_links_1 = array(
     array(
-      'title'       => 'EuropeAid website',
-      'url'         => 'https://ec.europa.eu/europeaid/home_en',
+      'title'       => 'Commission and its priorities',
+      'url'         => 'https://ec.europa.eu/commission/index_en',
       'attributes'  => array(
-        'class'   => array('text-uppercase'),
-        'target'  => '_blank',
+        'class'   => array('ecl-link ecl-link--inverted ecl-footer__link'),
+      ),
+    ),
+    array(
+      'title'       => 'Policies information and services',
+      'url'         => 'https://ec.europa.eu/info/index_en',
+      'attributes'  => array(
+        'class'   => array('ecl-link ecl-link--inverted ecl-footer__link'),
       ),
     ),
   );
   $navigation_links_2 = array(
     array(
-      'title'       => 'Visit the commissioner\'s blog',
-      'url'         => 'https://ec.europa.eu/commission/commissioners/2014-2019/mimica/blog_en?',
+      'title'       => 'EU institutions',
+      'url'         => 'https://europa.eu/european-union/about-eu_en',
       'attributes'  => array(
-        'class'   => array('text-uppercase'),
-        'target'  => '_blank',
+        'class'   => array('ecl-link ecl-link--inverted ecl-footer__link'),
+      ),
+    ),
+    array(
+      'title'       => 'European Union',
+      'url'         => 'https://europa.eu/',
+      'attributes'  => array(
+        'class'   => array('ecl-link ecl-link--inverted ecl-footer__link'),
       ),
     ),
   );
@@ -135,12 +147,16 @@ function c4m_features_footer_set_social_media() {
     'youtube' => array(
       'title' => 'Youtube',
       'url'   => 'https://www.youtube.com/playlist?list=PLXP2yyGajWaY6mCKMIjcSnQ4lLiMJ4FMC',
-    ),
-    'rss' => array(
-      'title' => 'RSS',
-      'url' => 'feeds',
-    ),
+    )
   );
 
   variable_set('c4m_social_media', $socialmedia_links);
+}
+
+/**
+ * Set Doormat Menu new links.
+ */
+function c4m_features_footer_update_7007() {
+  c4m_features_footer_set_social_media();
+  c4m_features_footer_set_navigation_links();
 }

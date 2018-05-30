@@ -101,6 +101,64 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(config.dist + '/css'));
 });
 
+/**
+ * Task to parse sass files and generate minimized CSS files.
+ */
+gulp.task('eslint', function() {
+    return gulp.src('src/javascripts/shake.js')
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
+
+
+/**
+ * Task to concatenate the scripts.
+ */
+gulp.task('concat', ['eslint'], function() {
+    var files = {
+        "shake.concat.js": [
+            'src/javascripts/shake.js',
+            'src/ec-preset-website/ecl-ec-preset-website.js'
+        ]
+    };
+    for (var file in files) {
+        // @see https://eslint.org/docs/rules/guard-for-in
+        if (Object.prototype.hasOwnProperty.call(files, file)) {
+            gulp.src(files[file])
+                .pipe(plumber({
+                    errorHandler: function (error) {
+                        console.log(error.message);
+                        this.emit('end');
+                    }}))
+                .pipe(gulpif(config.stripBanners, strip({ safe : true })))
+                .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
+                .pipe(concat(file))
+                .pipe(gulpif(config.uglify, uglify()))
+                .pipe(gulpif(config.sourceMaps, sourcemaps.write('.')))
+                .pipe(gulp.dest(config.dist + '/js/'));
+        }
+    }
+});
+
+/**
+ * Task to uglify the scripts.
+ */
+gulp.task('uglify', ['concat'], function(cb) {
+    pump(
+        [
+            gulp.src([config.dist + '/js/*.concat.js']),
+            plumber({
+                errorHandler: function (error) {
+                    console.log(error.message);
+                    this.emit('end');
+                }}),
+            gulpif(config.uglify, uglify()),
+            gulp.dest(config.dist + '/js/')
+        ],
+        cb
+    );
+});
 
 /**
  * Watch.
@@ -114,11 +172,12 @@ gulp.task('dev-watch', function() {
 // Aliases.
 gulp.task('images', ['imagemin']);
 gulp.task('styles', ['sass']);
+gulp.task('scripts', ['eslint', 'concat']);
 
 // Main task.
 gulp.task('default', ['build']);
 gulp.task('build', function() {
-  sequence('clean', ['images', 'styles']);
+  sequence('clean', ['images', 'styles', 'scripts']);
 });
 
 // Dev task.
