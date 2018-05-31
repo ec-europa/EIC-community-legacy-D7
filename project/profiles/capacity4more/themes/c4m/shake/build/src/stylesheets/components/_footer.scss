@@ -21,11 +21,11 @@ ul.c4m-footer-bar {
 }
 
 footer {
-  font-size: 0.875rem;
   h2 {
     font-family: $font-arial;
   }
   a {
+    font-size: 0.875rem;
     color: $color-white;
 
     &:hover {
@@ -44,6 +44,7 @@ footer {
     span {
       display: inline-block;
       text-decoration: underline;
+      font-size: 0.875rem;
     }
     i {
       background: none !important;

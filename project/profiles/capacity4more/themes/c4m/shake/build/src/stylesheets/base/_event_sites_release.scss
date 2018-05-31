@@ -1,0 +1,28 @@
+/**
+ Hide unused sections of the page.
+ Header block, search bar, main menu, homepage blocks for anonymous users.
+*/
+
+.block-c4m-user-profile {
+  display: none;
+}
+
+#header-ec-wrapper {
+  #search {
+    display: none;
+  }
+}
+
+.navigation--primary {
+  .navbar-collapse  {
+    ul.menu {
+      display: none;
+    }
+  }
+}
+
+.not-logged-in {
+  .offCanvasNavigation--left, .block-c4m-features-overview-events {
+    display: none;
+  }
+}
