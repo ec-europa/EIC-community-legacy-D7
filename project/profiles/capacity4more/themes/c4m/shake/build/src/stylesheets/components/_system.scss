@@ -1,0 +1,12 @@
+// Fix draggable elements.
+.draggable {
+  a {
+    &.tabledrag-handle {
+      height: auto;
+      .handle {
+        height: auto;
+        width: auto;
+      }
+    }
+  }
+}
