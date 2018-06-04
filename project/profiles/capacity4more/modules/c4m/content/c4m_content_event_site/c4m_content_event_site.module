@@ -357,6 +357,7 @@ function c4m_content_event_site_theme() {
       'type' => '',
       'status' => '',
       'flag' => '',
+      'publish_link' => '',
     ),
     'path' => drupal_get_path('module', 'c4m_content_event_site') . '/theme',
     'template' => 'c4m-content-event-site-header-title',
@@ -608,4 +609,59 @@ function c4m_content_event_site_update_clone_table($nid) {
     }
   }
   return $index;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function c4m_content_event_site_menu() {
+  $items = array();
+
+  $items['c4m/%node/publish_event_site'] = array(
+    'title' => 'Publish current event site',
+    'page callback' => 'c4m_content_event_site_publish_event_site',
+    'page arguments' => [1],
+    'access callback' => 'c4m_content_event_site_publish_event_site_access',
+    'access arguments' => [1],
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Check access to change the status of the node.
+ *
+ * @param object $node
+ *   The node with to promote value.
+ *
+ * @return bool
+ *   TRUE|FALSE
+ */
+function c4m_content_event_site_publish_event_site_access($node) {
+  if (empty($node)) {
+    return FALSE;
+  }
+
+  // Verify the type of the node.
+  if (!in_array($node->type, ['event_site'])) {
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
+/**
+ * Change the status in a node to Published.
+ *
+ * @param object $node
+ *   The node to be changed.
+ */
+function c4m_content_event_site_publish_event_site($node) {
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  $wrapper->c4m_og_status = 'published';
+  $wrapper->save();
+
+  drupal_set_message(t('Event site @name was published.', ['@name' => $node->title]));
+  drupal_goto($node->purl);
 }

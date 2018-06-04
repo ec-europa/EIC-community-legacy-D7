@@ -15,7 +15,7 @@ function c4m_features_homepage_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_frontpage';
-  $strongarm->value = 'events';
+  $strongarm->value = 'dashboard';
   $export['site_frontpage'] = $strongarm;
 
   return $export;

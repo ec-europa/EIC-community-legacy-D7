@@ -50,8 +50,8 @@ function _c4m_content_event_site_block_c4m_block_create_event_site() {
  */
 function _c4m_content_event_site_block_header_name_banner_event_site() {
   // First establish the current project.
-  $project = c4m_og_current_group();
-  $wrapper = entity_metadata_wrapper('node', $project);
+  $event_site = c4m_og_current_group();
+  $wrapper = entity_metadata_wrapper('node', $event_site);
   $markup = '';
 
   $title = $wrapper->title->value();
@@ -62,6 +62,13 @@ function _c4m_content_event_site_block_header_name_banner_event_site() {
   ) : 'published';
 
   $label_type = ($status == 'pending') ? "label-danger" : "label-default";
+  $options = [
+    'attributes' => [
+      'class' => ['es-publish-link', 'ecl-button', 'ecl-button--primary'],
+    ],
+  ];
+  $publish_link = ($status != 'published') ?
+    l(t('Publish Event Site'), 'c4m/'. $event_site->nid . '/publish_event_site', $options) : '';
 
   $variables = [
     'title' => check_plain($title),
@@ -69,6 +76,7 @@ function _c4m_content_event_site_block_header_name_banner_event_site() {
     'type' => 'event site',
     'status' => $status,
     'label_type' => $label_type,
+    'publish_link' => $publish_link,
   ];
   $markup .= theme('c4m_content_event_site_header_title', $variables);
 
