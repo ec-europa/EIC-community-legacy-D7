@@ -109,8 +109,10 @@
               <img src="<?php print $logo; ?>" alt="<?php print t('capacity4dev logo'); ?>" title="<?php print t('capacity4dev logo'); ?>"/>
             </a>
           <?php endif; ?>
-          <h1><?php print (!empty($site_name)) ? $site_name : ''; ?></h1>
-          <h2><?php print (!empty($site_slogan)) ? $site_slogan : ''; ?></h2>
+            <div class="site-name-slogan">
+              <h1><?php print (!empty($site_name)) ? $site_name : ''; ?></h1>
+              <h2><?php print (!empty($site_slogan)) ? $site_slogan : ''; ?></h2>
+            </div>
         </div>
 
         <div class="col-xs-3 col-sm-4 col-md-3">

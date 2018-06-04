@@ -3,7 +3,7 @@
   border-top-color: $color-gray-light;
   overflow: visible;
 
-
+  padding-bottom: 31px;
   .group-banner {
     margin-top: 1rem;
   }
@@ -27,20 +27,28 @@
 }
 
 .header-logo {
+  margin-top: 40px;
+  .site-name-slogan {
+    margin-top: 10px;
+  }
   h1 {
-    color: rgb(45,45,45);
+    color: $color-gray;
     display: table-row;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1.6em !important;
+    font-family: $font-arial;
+    font-size: 1.5rem !important;
     font-weight: bold;
     line-height: 28px !important;
   }
   h2 {
-    color: rgb(45,45,45);
+    color: $color-gray;;
     display: table-row;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1.2em !important;
+    font-family: $font-arial;
+    font-size: 1.25rem !important;
+    font-weight: normal;
     line-height: 21px;
+  }
+  img {
+    max-width: 105px;
   }
 }
 
