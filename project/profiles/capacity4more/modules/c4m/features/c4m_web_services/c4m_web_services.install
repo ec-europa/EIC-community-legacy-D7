@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Create new user role and user to be used for accessing from Dashboard.
+ */
+function c4m_web_services_update_7001() {
+
+  $role = user_role_load_by_name('dashboard');
+  if (empty($role)){
+    $role = new stdClass();
+    $role->name = 'dashboard';
+    user_role_save($role);
+  }
+
+  $new_user = array(
+    'name' => 'dashboard_user',
+    'pass' => md5('dashboard_user_pass'), // note: do not md5 the password
+    'mail' => 'dashboard_user@easme.com',
+    'status' => 1,
+    'init' => 'dashboard_user@easme.com',
+    'roles' => array(
+      DRUPAL_AUTHENTICATED_RID => 'authenticated user',
+      $role->rid => 'dashboard',
+    ),
+  );
+
+  user_save('', $new_user);
+}

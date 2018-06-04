@@ -690,3 +690,17 @@ function capacity4more_update_7019() {
 function capacity4more_update_7020() {
   variable_set('lazyloader_distance', '100');
 }
+
+/**
+ * Enable c4m_web_services.
+ */
+function capacity4more_update_7021() {
+  module_enable(['c4m_web_services']);
+}
+
+/**
+ * Enable c4m_web_services and c4m_content_organisation.
+ */
+function capacity4more_update_7022() {
+  module_enable(['c4m_web_services', 'c4m_content_organisation']);
+}
