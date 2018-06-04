@@ -694,13 +694,13 @@ function capacity4more_update_7020() {
 /**
  * Enable c4m_web_services.
  */
-function capacity4more_update_7015() {
+function capacity4more_update_7021() {
   module_enable(['c4m_web_services']);
 }
 
 /**
  * Enable c4m_web_services and c4m_content_organisation.
  */
-function capacity4more_update_7016() {
+function capacity4more_update_7022() {
   module_enable(['c4m_web_services', 'c4m_content_organisation']);
 }
