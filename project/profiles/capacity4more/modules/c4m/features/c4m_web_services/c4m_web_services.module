@@ -1,0 +1,208 @@
+<?php
+
+/**
+ * @file
+ * Code for the Web Services feature.
+ */
+
+include_once 'c4m_web_services.features.inc';
+
+/**
+ * Implements hook_services_authentication_info().
+ */
+function c4m_web_services_services_authentication_info() {
+  return array(
+    'title' => t('C4M - Request-specific token authorisation'),
+    'description' => t('Request-specific token is sent in each request.'),
+    'authenticate_call' => '_c4m_web_services_authenticate_call',
+    'security_settings' => '_c4m_web_services_security_settings',
+    'default_security_settings' => '_c4m_web_services_default_security_settings',
+  );
+}
+
+/**
+ * Authorises a call using request-specific token to verify the request.
+ *
+ * @param array $settings
+ *   The settings for the authorisation module.
+ * @param array $method
+ *   The method that's being called.
+ * @param array $args
+ *   The arguments that are being used to call the method.
+ *
+ * @return void|string
+ *   Returns nothing, or a error message if authorisation fails.
+ *
+ * @see c4m_web_services_services_authentication_info()
+ */
+function _c4m_web_services_authenticate_call($settings, $method, $args) {
+  // Get the original request body.
+  $endpoint_path = services_get_server_info('endpoint_path', '');
+  $context = new ServicesContext($endpoint_path);
+  $context->buildFromGlobals();
+  $request_body = $context->getRequestBody();
+
+  $arguments = _c4m_web_services_array_flatten($args);
+
+  $valid_token = FALSE;
+  foreach ($arguments as $key => $one) {
+    if ($key == $settings["authorization_token_name"] && $one == $settings["authorization_token_key"]) {
+      $valid_token = TRUE;
+      break;
+    }
+  }
+  if (!$valid_token) {
+    return t('Invalid token value.');
+  }
+
+  // Open session for Admin user to edit/create content.
+  global $user;
+  $original_user = $user;
+  drupal_save_session(FALSE);
+  $user = user_load_by_name('dashboard_user');
+  if (empty($user)) {
+    return t('Dashboard user not available, contact site administrator.');
+  }
+}
+
+
+/**
+ * Returns an associative array of Form API elements for a settings form.
+ *
+ * @see c4m_web_services_services_authentication_info()
+ */
+function _c4m_web_services_default_security_settings() {
+  return array(
+    'authorization_token_name' => 'AuthorizationToken',
+    'authorization_token_key' => '',
+  );
+}
+
+/**
+ * Returns an array with the default settings for the auth module.
+ *
+ * @see c4m_web_services_services_authentication_info()
+ */
+function _c4m_web_services_security_settings($settings, &$form_state) {
+  $form = array();
+
+  $form['authorization_token_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Authorization Token Name'),
+    '#required' => TRUE,
+    '#default_value' => $settings['authorization_token_name'],
+  );
+
+  $form['authorization_token_key'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Authorization Token Key'),
+    '#required' => TRUE,
+    '#default_value' => $settings['authorization_token_key'],
+  );
+
+  return $form;
+}
+
+
+/**
+ * Helper function for flattening an array.
+ */
+function _c4m_web_services_array_flatten($array = null) {
+  $result = array();
+
+  if (!is_array($array)) {
+    $array = func_get_args();
+  }
+
+  foreach ($array as $key => $value) {
+    if (is_array($value)) {
+      $result = array_merge($result, _c4m_web_services_array_flatten($value));
+    } else {
+      $result = array_merge($result, array($key => $value));
+    }
+  }
+
+  return $result;
+}
+
+/**
+ * Implements hook_services_resources().
+ */
+function c4m_web_services_services_resources() {
+  $node_resource = array(
+    'node' => array(
+      'operations' => array(
+        'c4m_update' => array(
+          'file' => array('type' => 'inc', 'module' => 'c4m_web_services', 'name' => 'resources/c4m_web_services_node_resource'),
+          'callback' => '_c4m_web_services_node_resource_update',
+          'args' => array(
+            array(
+              'name' => 'dashboard_id',
+              'optional' => FALSE,
+              'source' => array('path' => 0),
+              'type' => 'text',
+              'description' => 'The dashboard id of the node to update',
+            ),
+            array(
+              'name' => 'node',
+              'optional' => FALSE,
+              'source' => 'data',
+              'description' => 'The node data to update',
+              'type' => 'array',
+            ),
+          ),
+          'access callback' => '_c4m_node_resource_access',
+          'access arguments' => array('update'),
+          'access arguments append' => TRUE,
+        ),
+      ),
+    ),
+  );
+
+  return $node_resource;
+}
+
+/**
+ * Implements hook_server_info().
+ */
+function c4m_web_services_server_info() {
+  return array(
+    'name' => 'C4M REST',
+    'path' => 'rest',
+    'settings' => array(
+      'file' => array('inc', 'rest_server'),
+      'form' => '_rest_server_settings',
+      'submit' => '_rest_server_settings_submit',
+    ),
+  );
+}
+
+/**
+ * Starting point of the REST server.
+ *
+ * @return type
+ */
+function c4m_web_services_server() {
+  module_load_include('inc', 'c4m_web_services', 'includes/C4MServicesRESTServerFactory');
+  module_load_include('inc', 'c4m_web_services', 'includes/C4MRESTServer');
+  $endpoint_path = services_get_server_info('endpoint_path', 'services/rest');
+
+  $services_rest_server_factory = 'C4MServicesRESTServerFactory';
+  $rest_server_factory = new $services_rest_server_factory(array('endpoint_path' => $endpoint_path));
+  /* @var $rest_server C4MRESTServer */
+  $rest_server = $rest_server_factory->getRESTServer();
+
+  $canonical_path = $rest_server->getCanonicalPath();
+  if (empty($canonical_path)) {
+    $endpoint_name = services_get_server_info('endpoint', '');
+    $endpoint = services_endpoint_load($endpoint_name);
+    return t('Services Endpoint "@name" has been setup successfully.', array('@name' => $endpoint->name));
+  }
+
+  try {
+    return $rest_server->handle();
+  }
+  catch (Exception $e) {
+    $rest_server->handleException($e);
+  }
+}

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_field_media.features.user_permission.inc
@@ -33,6 +34,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'bypass file access',
     'roles' => array(
       'administrator' => 'administrator',
+      'dashboard' => 'dashboard',
     ),
     'module' => 'file_entity',
   );

@@ -83,7 +83,7 @@ function c4m_content_organisation_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'c4m_banner',
     'label' => 'Banner Image',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -94,6 +94,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'min_resolution' => '940x300',
       'title_field' => 0,
       'user_register_form' => FALSE,
+      'wysiwyg_insert' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -1304,7 +1305,7 @@ function c4m_content_organisation_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'c4m_media',
     'label' => 'Thumbnail image',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -1315,13 +1316,14 @@ function c4m_content_organisation_field_default_field_instances() {
       'min_resolution' => '',
       'title_field' => 0,
       'user_register_form' => FALSE,
+      'wysiwyg_insert' => 0,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          'private' => 0,
+          'private' => 'private',
           'public' => 'public',
         ),
         'allowed_types' => array(
@@ -2330,6 +2332,87 @@ function c4m_content_organisation_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-organisation-c4m_organisation_dashboard_id'.
+  $field_instances['node-organisation-c4m_organisation_dashboard_id'] = array(
+    'bundle' => 'organisation',
+    'default_value' => array(),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'block_list' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 36,
+      ),
+      'group_dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'c4m_organisation_dashboard_id',
+    'label' => 'Dashboard ID',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'mail' => 'mail',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'mail' => array(
+              'weight' => 0,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 40,
+    ),
+  );
+
   // Exported field_instance: 'node-organisation-group_group'.
   $field_instances['node-organisation-group_group'] = array(
     'bundle' => 'organisation',
@@ -2416,10 +2499,10 @@ function c4m_content_organisation_field_default_field_instances() {
   t('Country(ies) the organisation is selling to');
   t('Customers');
   t('Customers of the organisation');
+  t('Dashboard ID');
   t('Date of establishment');
   t('Describe the organisation	');
   t('Determine if this is an OG group.');
-  t('Domain');
   t('Domain(s) of activity');
   t('Email');
   t('Facebook');

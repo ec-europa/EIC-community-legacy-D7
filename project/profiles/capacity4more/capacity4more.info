@@ -179,6 +179,7 @@ dependencies[] = c4m_features_learning_space
 ; RESTful
 dependencies[] = c4m_restful_quick_post
 dependencies[] = c4m_restful
+dependencies[] = c4m_web_services
 
 ; Overview content within groups
 dependencies[] = c4m_og_group_menu
