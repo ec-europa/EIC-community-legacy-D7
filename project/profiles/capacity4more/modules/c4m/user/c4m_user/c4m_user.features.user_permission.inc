@@ -1372,6 +1372,13 @@ function c4m_user_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'delete terms in c4m_job_titles'.
+  $permissions['delete terms in c4m_job_titles'] = array(
+    'name' => 'delete terms in c4m_job_titles',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+  
   // Exported permission: 'delete terms in c4m_vocab_category_6'.
   $permissions['delete terms in c4m_vocab_category_6'] = array(
     'name' => 'delete terms in c4m_vocab_category_6',
@@ -1817,7 +1824,14 @@ function c4m_user_user_default_permissions() {
     'roles' => array(),
     'module' => 'taxonomy',
   );
-
+  
+  // Exported permission: 'edit terms in c4m_job_titles'.
+  $permissions['edit terms in c4m_job_titles'] = array(
+    'name' => 'edit terms in c4m_job_titles',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+  
   // Exported permission: 'edit terms in c4m_vocab_category_6'.
   $permissions['edit terms in c4m_vocab_category_6'] = array(
     'name' => 'edit terms in c4m_vocab_category_6',

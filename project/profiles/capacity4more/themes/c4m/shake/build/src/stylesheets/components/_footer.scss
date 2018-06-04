@@ -21,6 +21,10 @@ ul.c4m-footer-bar {
 }
 
 footer {
+  font-size: 0.875rem;
+  h2 {
+    font-family: $font-arial;
+  }
   a {
     color: $color-white;
 
@@ -30,6 +34,7 @@ footer {
     }
   }
   .c4m-social-media-item {
+    padding: 0 1rem 0 0;
     a:hover {
       color: $color-white;
       span {
@@ -38,6 +43,7 @@ footer {
     }
     span {
       display: inline-block;
+      text-decoration: underline;
     }
     i {
       background: none !important;

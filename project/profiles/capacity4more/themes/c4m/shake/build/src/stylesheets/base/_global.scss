@@ -5,7 +5,13 @@
 }
 body {
   color: $color-black;
-  font-family: Arial, sans-serif;
+  font-family: $font_arial;
+}
+
+#scroll-top {
+  i {
+    font-size: 3.125rem;
+  }
 }
 
 #main-wrapper {

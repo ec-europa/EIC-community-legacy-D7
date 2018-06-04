@@ -69,3 +69,21 @@
     }
   }
 }
+
+.user-profile {
+  .c4m-social-media-item {
+    margin: 10px 0;
+
+    i.fa {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.view-mode-teaser .fa {
+  color: $color-white !important;
+
+  a {
+    color: $color-link;
+  }
+}

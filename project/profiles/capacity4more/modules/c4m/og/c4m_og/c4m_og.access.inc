@@ -18,18 +18,12 @@ function c4m_og_organisations_info() {
   ]);
   foreach ($nodes as $organisation) {
     $wrapper = entity_metadata_wrapper('node', $organisation);
-    $domains = $wrapper->c4m_domain->getIterator();
-    $domains_list = [];
-    foreach ($domains as $domain) {
-      $domains_list[] = $domain->domain->value();
-    }
 
     $default_info[$organisation->nid] = [
       'title' => $organisation->title,
       'nid' => $wrapper->nid,
       'description' => $wrapper->c4m_body->value(),
       'icon' => c4m_content_organisation_get_icon($organisation),
-      'domains' => $domains_list,
     ];
   }
 

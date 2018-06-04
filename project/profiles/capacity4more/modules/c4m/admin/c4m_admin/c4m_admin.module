@@ -61,7 +61,7 @@ function c4m_admin_menu_alter(&$items) {
  *   The machine name of the kapablo theme.
  */
 function c4m_admin_set_kapablo_theme() {
-  return 'kapablo';
+  return 'shake';
 }
 
 /**

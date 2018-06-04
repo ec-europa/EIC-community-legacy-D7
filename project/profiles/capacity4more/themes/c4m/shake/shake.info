@@ -39,3 +39,9 @@ overlay_regions[] = content_bottom
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 stylesheets[all][] = css/shake.concat.css
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Scripts
+;;;;;;;;;;;;;;;;;;;;;
+
+scripts[] = js/shake.concat.js

@@ -1311,7 +1311,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'default_image' => 0,
       'file_directory' => 'images/organisation',
       'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '512 KB',
+      'max_filesize' => '2 MB',
       'max_resolution' => '',
       'min_resolution' => '',
       'title_field' => 0,

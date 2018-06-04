@@ -102,6 +102,7 @@ function _c4m_message_format_from_user_first_last($message) {
   $message_entity = $message['params']['message_entity'];
 
   $valid_message_types = [
+    'c4m_content_updated' => TRUE,
     'c4m_notify_admins_membership_approved' => TRUE,
     'c4m_group_published' => TRUE,
     'c4m_group_archived' => TRUE,
@@ -122,6 +123,7 @@ function _c4m_message_format_from_user_first_last($message) {
     'c4m_welcome_to_group' => TRUE,
     'c4m_new_content_share_published' => TRUE,
     'c4m_notify_subscribe_content_of_interest' => TRUE,
+    'c4m_notify_event_site_subscribe_content_of_interest' => TRUE,
   ];
 
   if (!empty($valid_message_types[$message_entity->type])) {
@@ -449,11 +451,6 @@ function c4m_message_load_tokens__c4m_new_membership_request(Message $message) {
     'pass message' => TRUE,
   ];
 
-  $message->arguments['@new_member_country'] = [
-    'callback' => 'c4m_message_format_new_member_country',
-    'pass message' => TRUE,
-  ];
-
   $message->arguments['@new_member_expertise'] = [
     'callback' => 'c4m_message_format_new_member_expertise',
     'pass message' => TRUE,
@@ -556,11 +553,6 @@ function c4m_message_load_tokens__c4m_new_member_joined(Message $message) {
 
   $message->arguments['@new_member_organisation_type'] = [
     'callback' => 'c4m_message_format_new_member_organisation_type',
-    'pass message' => TRUE,
-  ];
-
-  $message->arguments['@new_member_country'] = [
-    'callback' => 'c4m_message_format_new_member_country',
     'pass message' => TRUE,
   ];
 
@@ -806,11 +798,6 @@ function c4m_message_load_tokens__c4m_notify_admins_membership_accepted(
     'pass message' => TRUE,
   ];
 
-  $message->arguments['@related_user_country'] = [
-    'callback' => 'c4m_message_format_new_member_country',
-    'pass message' => TRUE,
-  ];
-
   $message->arguments['@related_user_expertise'] = [
     'callback' => 'c4m_message_format_new_member_expertise',
     'pass message' => TRUE,
@@ -916,7 +903,7 @@ function c4m_message_load_tokens__c4m_notify_content_recommendation(
   ];
 
   $message->arguments['!user_unsubscribe_recommend_url'] = [
-    'callback' => 'c4m_message_format_unsubscribe_content_url',
+    'callback' => 'c4m_message_format_unsubscribe_node_url',
     'pass message' => TRUE,
   ];
 
@@ -937,17 +924,15 @@ function c4m_message_load_tokens__c4m_notify_content_recommendation(
 }
 
 /**
- * Add callbacks to c4m_new_content_published message arguments.
+ * Add callbacks to group content inserts or updates messages arguments.
  *
- * For each token at email template, assigns a function that will be used
- * to resolve token value.
+ * For each token at email template, assigns a function that will be used to
+ * resolve token value.
  *
  * @param Message $message
  *   The Message entity.
  */
-function c4m_message_load_tokens__c4m_content_inserted_or_updated(
-  Message $message
-) {
+function c4m_message_load_tokens__c4m_group_content_inserted_or_updated(Message $message) {
   $message->arguments['@user_full_name'] = [
     'callback' => 'c4m_message_format_addressee_full_name',
     'pass message' => TRUE,
@@ -1004,6 +989,57 @@ function c4m_message_load_tokens__c4m_content_inserted_or_updated(
   ];
 
   $message->arguments['!unsubscribe_content_url'] = [
+    'callback' => 'c4m_message_format_unsubscribe_node_url',
+    'pass message' => TRUE,
+  ];
+}
+
+/**
+ * Add callbacks to content inserts or updates messages arguments.
+ *
+ * For each token at email template, assigns a function that will be used to
+ * resolve token value.
+ *
+ * @param Message $message
+ *   The Message entity.
+ */
+function c4m_message_load_tokens__c4m_content_inserted_or_updated(Message $message) {
+  $message->arguments['@user_full_name'] = [
+    'callback' => 'c4m_message_format_addressee_full_name',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['@content_node_title'] = [
+    'callback' => 'c4m_message_format_node_title',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['@content_type_name'] = [
+    'callback' => 'c4m_message_format_node_type',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['!content_node_url'] = [
+    'callback' => 'c4m_message_format_node_url',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['!user_settings_url'] = [
+    'callback' => 'c4m_message_format_user_settings_url',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['@event_user_full_name'] = [
+    'callback' => 'c4m_message_format_event_user_full_name',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['!event_user_url'] = [
+    'callback' => 'c4m_message_format_event_user_url',
+    'pass message' => TRUE,
+  ];
+
+  $message->arguments['!unsubscribe_url'] = [
     'callback' => 'c4m_message_format_unsubscribe_content_url',
     'pass message' => TRUE,
   ];
@@ -1159,7 +1195,7 @@ function c4m_message_load_tokens__c4m_notify_subscribers_new_comment(
   ];
 
   $message->arguments['!unsubscribe_content_comments_url'] = [
-    'callback' => 'c4m_message_format_unsubscribe_content_comments_url',
+    'callback' => 'c4m_message_format_unsubscribe_content_url',
     'pass message' => TRUE,
   ];
 
@@ -1314,7 +1350,7 @@ function c4m_message_load_tokens__c4m_notify_content_followers_new_comment(
   ];
 
   $message->arguments['!unsubscribe_content_comments_url'] = [
-    'callback' => 'c4m_message_format_unsubscribe_content_comments_url',
+    'callback' => 'c4m_message_format_unsubscribe_content_url',
     'pass message' => TRUE,
   ];
 
@@ -1522,54 +1558,6 @@ function c4m_message_format_new_member_full_name(Message $message) {
   $new_member = $wrapper->field_related_user->value();
 
   return c4m_user_name($new_member);
-}
-
-/**
- * Returns new member organisation.
- *
- * @param Message $message
- *   The Message entity.
- *
- * @return string
- *   Returns member's organisation.
- */
-function c4m_message_format_new_member_organisation(Message $message) {
-  $wrapper = entity_metadata_wrapper('message', $message);
-
-  return $wrapper->field_related_user->c4m_organisation->value();
-}
-
-/**
- * Returns new member organisation type.
- *
- * @param Message $message
- *   The Message entity.
- *
- * @return string
- *   Returns member's organisation type.
- */
-function c4m_message_format_new_member_organisation_type(Message $message) {
-  $wrapper = entity_metadata_wrapper('message', $message);
-
-  return $wrapper->field_related_user->c4m_organisation_type->label();
-}
-
-/**
- * Returns new member country.
- *
- * @param Message $message
- *   The Message entity.
- *
- * @return string
- *   Returns member's country.
- */
-function c4m_message_format_new_member_country(Message $message) {
-  $wrapper = entity_metadata_wrapper('message', $message);
-  $field = field_info_field('c4m_country');
-  $allowed_values = list_allowed_values($field);
-  $index = $wrapper->field_related_user->c4m_country->value();
-
-  return empty($index) ? '' : $allowed_values[$index];
 }
 
 /**
@@ -2152,7 +2140,7 @@ function c4m_message_format_comment_body_teaser(Message $message) {
 }
 
 /**
- * Returns a url that is used to unsubscribe from following flagged node.
+ * Returns a url that is used to unsubscribe from following node.
  *
  * @param Message $message
  *   The Message entity.
@@ -2160,7 +2148,7 @@ function c4m_message_format_comment_body_teaser(Message $message) {
  * @return string
  *   Unsubscribe url.
  */
-function c4m_message_format_unsubscribe_content_url(Message $message) {
+function c4m_message_format_unsubscribe_node_url(Message $message) {
   return _c4m_message_format_unsubscribe_url($message, 'node');
 }
 
@@ -2178,7 +2166,7 @@ function c4m_message_format_user_settings_url(Message $message) {
 }
 
 /**
- * Returns a url that is used to unsubscribe from following content comments.
+ * Returns a url that is used to unsubscribe from following content.
  *
  * @param Message $message
  *   The Message entity.
@@ -2186,8 +2174,8 @@ function c4m_message_format_user_settings_url(Message $message) {
  * @return string
  *   Unsubscribe url.
  */
-function c4m_message_format_unsubscribe_content_comments_url(Message $message) {
-  return _c4m_message_format_unsubscribe_url($message, 'comment');
+function c4m_message_format_unsubscribe_content_url(Message $message) {
+  return _c4m_message_format_unsubscribe_url($message, 'content');
 }
 
 /**
@@ -2220,15 +2208,21 @@ function c4m_message_format_unsubscribe_group_url(Message $message) {
 function _c4m_message_format_unsubscribe_url(Message $message, $flag_suffix) {
   $wrapper = entity_metadata_wrapper('message', $message);
 
-  // Group field at message is 'field_group_node'.
-  $field_suffix = $flag_suffix == 'group' ? 'group_node' : $flag_suffix;
-  $field = "field_{$field_suffix}";
-  $entity_id = $wrapper->$field->value(['identifier' => TRUE]);
-  if ($flag_suffix == 'comment') {
-    // The identifier we got is actually cid. Need to get the correct one.
-    $comment = comment_load($entity_id);
-    $entity_id = $comment->nid;
+  switch ($flag_suffix) {
+    case 'group':
+      $field = 'field_group_node';
+      break;
+
+    case 'content':
+      $field = 'field_node';
+      break;
+
+    default:
+      $field = "field_{$flag_suffix}";
+      break;
   }
+
+  $entity_id = $wrapper->$field->value(['identifier' => TRUE]);
 
   $uid = $message->uid;
   $hash = c4m_user_profile_get_unsubscribe_hash($uid, $flag_suffix, $entity_id);

@@ -273,6 +273,7 @@ function _c4m_user_profile_settings_form_interests(array &$form, array $digest_o
 
   $button_interest = l('<i class="fa fa-plus"></i> ' . t('Subscribe to topics'), url('user/' . $account->uid . '/edit'), [
     'html' => TRUE,
+    'absolute' => TRUE,
     'attributes' => [
       'class' => [
         'btn',
@@ -283,6 +284,7 @@ function _c4m_user_profile_settings_form_interests(array &$form, array $digest_o
   ]);
   $button_geography = l('<i class="fa fa-plus"></i> ' . t('Subscribe to regions & countries'), url('user/' . $account->uid . '/edit'), [
     'html' => TRUE,
+    'absolute' => TRUE,
     'attributes' => [
       'class' => [
         'btn',
@@ -358,7 +360,7 @@ function _c4m_user_profile_settings_form_interests(array &$form, array $digest_o
 function _c4m_user_profile_settings_form_groups(array &$form, array $digest_options, &$original_values, $account) {
   $form['subscribe_c4m_follow_group'] = [
     '#type' => 'fieldset',
-    '#title' => t('Your group/project notifications'),
+    '#title' => t('Your groups notifications'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   ];
@@ -398,7 +400,7 @@ function _c4m_user_profile_settings_form_groups(array &$form, array $digest_opti
     }
     else {
       $entity_wrapper = entity_metadata_wrapper('node', $group);
-      $project_type = $entity_wrapper->c4m_project_type->value();
+      $project_type = !empty($entity_wrapper->c4m_project_type)? $entity_wrapper->c4m_project_type->value() : '';
 
       $icon_tag = [
         '#type' => 'html_tag',

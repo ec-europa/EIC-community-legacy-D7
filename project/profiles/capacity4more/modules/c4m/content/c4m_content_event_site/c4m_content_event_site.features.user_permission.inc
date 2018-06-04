@@ -11,6 +11,24 @@
 function c4m_content_event_site_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'clone node'.
+  $permissions['clone node'] = array(
+    'name' => 'clone node',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'clone',
+  );
+
+  // Exported permission: 'clone own nodes'.
+  $permissions['clone own nodes'] = array(
+    'name' => 'clone own nodes',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'clone',
+  );
+
   // Exported permission: 'create event_site content'.
   $permissions['create event_site content'] = array(
     'name' => 'create event_site content',

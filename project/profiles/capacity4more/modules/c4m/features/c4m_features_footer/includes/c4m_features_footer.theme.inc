@@ -28,40 +28,42 @@ function theme_c4m_footer_bar(array $variables) {
   $footer_navigation_1 = variable_get('c4m_footer_navigation_links_1');
   $footer_navigation_2 = variable_get('c4m_footer_navigation_links_2');
 
-  $navigation_html_1 = '<li class="c4m-footer-navigation-1 first">';
+  $navigation_html_1 = '<ul class="ecl-list ecl-list--unstyled ecl-footer__list" aria-labelledby="footer-corporate-about-ec">';
+
   foreach ($footer_navigation_1 as $link) {
-    $navigation_html_1 .= '<div class="c4m-footer-nav-link">';
+    $navigation_html_1 .= '<li class="ecl-footer__list-item">';
     $navigation_html_1 .= l(
       t('@title', array('@title' => $link['title'])),
       $link['url'],
       array('attributes' => $link['attributes'])
     );
-    $navigation_html_1 .= '</div>';
+    $navigation_html_1 .= '</li>';
   }
-  $navigation_html_1 .= '</li>';
+  $navigation_html_1 .= '</ul>';
 
-  // Get c4m social media.
-  $social_media = variable_get('c4m_social_media');
-  $social_media_html = theme_c4m_social_media($social_media);
-
-  $navigation_html_2 = '<li class="c4m-footer-navigation-2 last">';
+  $navigation_html_2 = '<ul class="ecl-list ecl-list--unstyled ecl-footer__list" aria-labelledby="footer-corporate-about-eu">';
   foreach ($footer_navigation_2 as $link) {
-    $navigation_html_2 .= '<div class="c4m-footer-nav-link">';
+    $navigation_html_2 .= '<li class="ecl-footer__list-item">';
     $navigation_html_2 .= l(
       t('@title', array('@title' => $link['title'])),
       $link['url'],
       array('attributes' => $link['attributes'], 'html' => TRUE)
     );
-    $navigation_html_2 .= '</div>';
+    $navigation_html_2 .= '</li>';
   }
-  $navigation_html_2 .= '</li>';
+  $navigation_html_2 .= '</ul>';
 
-  // Output elements in correct order.
-  $output .= $navigation_html_1;
-  $output .= $social_media_html;
-  $output .= $navigation_html_2;
 
-  $output .= '</ul>';
+  // Get c4m social media.
+  $footer_left_column =
+  $social_media = variable_get('c4m_social_media');
+
+  $variables = array(
+    'left_column' => $navigation_html_1,
+    'social_media' => theme_c4m_social_media($social_media),
+    'right_column' => $navigation_html_2,
+  );
+  $output = theme('c4m_footer_bar_template', $variables);
 
   return $output;
 }
@@ -165,9 +167,13 @@ function theme_c4m_footer_logo(array $variables) {
  *   Rendered html of social media.
  */
 function theme_c4m_social_media(array $social_media) {
-  $output = '<li class="c4m-social-media">';
+  $output = '<ul class="ecl-list ecl-list--unstyled ecl-list--inline 
+      ecl-footer__list ecl-footer__list--inline  ecl-footer__social-links" 
+      aria-labelledby="footer-corporate-social-media">
+    <li class="c4m-social-media">';
   foreach ($social_media as $key => $link) {
     $link_classes = array('fa', 'fa-' . $key);
+    $specific_link_classes = ['ecl-icon ecl-icon--facebook ecl-footer__social-icon'];
     $output .= '<div class="c4m-social-media-item c4m-social-media-' . $key . '">';
     $output .= l(
       t(
@@ -180,12 +186,12 @@ function theme_c4m_social_media(array $social_media) {
       $link['url'],
       array(
         'html' => TRUE,
-        'attributes' => array('target' => '_blank', 'classes' => $link_classes),
+        'attributes' => array('target' => '_blank', 'classes' => array_merge($link_classes, $specific_link_classes)),
       )
     );
     $output .= '</div>';
   }
   $output .= '</li>';
-
+  $output .= '</ul>';
   return $output;
 }
