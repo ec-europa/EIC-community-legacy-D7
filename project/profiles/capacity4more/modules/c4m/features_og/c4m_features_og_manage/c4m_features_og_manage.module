@@ -1127,16 +1127,13 @@ function c4m_features_og_manage_group_status_statistics_and_thumbnail() {
       'attributes' => array(
         'class' => array(
           'edit-thumbnail',
-          'es--edit-link',
-          'ecl-button',
-          'ecl-button--primary',
         ),
       ),
     );
     $edit_link['element'] = array(
       '#tag' => 'span',
       '#attributes' => array(
-        'class' => array('edit-link'),
+        'class' => array('es--edit-link ecl-button ecl-button--primary'),
       ),
       '#value' => t('Edit'),
     );
@@ -1208,16 +1205,13 @@ function c4m_features_og_manage_project_thumbnail() {
       'attributes' => array(
         'class' => array(
           'edit-thumbnail',
-          'es--edit-link',
-          'ecl-button',
-          'ecl-button--primary',
         ),
       ),
     );
     $edit_link['element'] = array(
       '#tag' => 'span',
       '#attributes' => array(
-        'class' => array('edit-link'),
+        'class' => array('es--edit-link ecl-button ecl-button--primary'),
       ),
       '#value' => t('Edit'),
     );
@@ -1286,9 +1280,6 @@ function c4m_features_og_manage_event_site_thumbnail() {
       'attributes' => array(
         'class' => array(
           'edit-thumbnail',
-          'es--edit-link',
-          'ecl-button',
-          'ecl-button--primary',
         ),
       ),
     );
@@ -1357,16 +1348,13 @@ function c4m_features_og_manage_organisation_thumbnail() {
       'attributes' => array(
         'class' => array(
           'edit-thumbnail',
-          'es--edit-link',
-          'ecl-button',
-          'ecl-button--primary',
         ),
       ),
     );
     $edit_link['element'] = array(
       '#tag' => 'span',
       '#attributes' => array(
-        'class' => array('edit-link'),
+      'class' => array('es--edit-link ecl-button ecl-button--primary'),
       ),
       '#value' => t('Edit'),
     );
