@@ -27,4 +27,18 @@
   a {
     font-size: 0.875rem;
   }
+  .es-publish-link {
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+}
+
+// Manage page styles.
+.es--edit-link {
+  text-transform: uppercase;
+  &.ecl-button {
+    font-size: 0.8rem;
+    font-weight: 100;
+    padding: 0.4rem 0.4rem;
+  }
 }

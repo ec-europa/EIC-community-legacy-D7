@@ -2,37 +2,45 @@
 
 /**
  * @file
- * Template for the project management dashboard.
+ * Template for the event-site management dashboard.
  */
 ?>
 
-<div class="row project-management-dashboard">
-  <div class="col-md-12 project-management-wrapper">
-    <div class="project-administration">
+<div class="row event-site-management-dashboard">
+  <div class="col-md-12 event-site-management-wrapper">
+    <div class="event-site-administration">
       <div class="title">
         <h2><?php print t('Event site administration') ?></h2>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Owner') ?> (<a
-            href="<?php print $details['owner_edit']; ?>"><?php print t(
-              'Edit'
-            ) ?></a>)
+        <div class="col-md-3"><?php print t('Owner') ?>
+            <a href="<?php print $details['owner_edit']; ?>">
+                <span class="es--edit-link ecl-button ecl-button--primary">
+                    <?php print t('Edit'); ?>
+                </span>
+            </a>
         </div>
         <div class="col-md-9"><?php print $details['owner']; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Administrators') ?> (<a
-            href="<?php print $details['admins_edit']; ?>"><?php print t(
-              'Edit'
-            ) ?></a>)
+        <div class="col-md-3"><?php print t('Administrators') ?> <a
+            href="<?php print $details['admins_edit']; ?>">
+                <span class="es--edit-link ecl-button ecl-button--primary">
+                    <?php print t('Edit'); ?>
+                </span>
+            </a>
         </div>
         <div class="col-md-9"><?php print $details['admins']; ?></div>
       </div>
     </div>
-    <div class="project-details">
+    <div class="event-site-details">
       <div class="title">
         <h2><?php print t('Event site details') ?></h2>
-        <a href="<?php print $details['edit_link'] ?>#edit-details"><?php print t('Edit'); ?></a>
+        <a href="<?php print $details['edit_link'] ?>#edit-details">
+            <span class="es--edit-link ecl-button ecl-button--primary">
+                    <?php print t('Edit'); ?>
+            </span>
+        </a>
       </div>
       <div class="row">
         <div class="col-md-3"><?php print t('Event site name') ?></div>
@@ -99,27 +107,28 @@
         <div class="col-md-9"><div class="c4m-taxonomy-tree"><?php print (isset($details['locations'])) ? $details['locations'] : ''; ?></div></div>
       </div>
     </div>
-    <div class="project-related-content">
+    <div class="event-site-related-content">
       <div class="title">
         <h2><?php print t('Related content') ?></h2>
-        <a
-          href="<?php print $details['edit_link'] ?>#edit-related-content"><?php print t(
-            'Edit'
-          ) ?> </a>
+        <a href="<?php print $details['edit_link'] ?>#edit-related-content">
+            <span class="es--edit-link ecl-button ecl-button--primary">
+              <?php print t('Edit'); ?>
+            </span>
+        </a>
       </div>
       <div class="row">
         <div class="col-md-3"><?php print t('Related Groups') ?></div>
         <div class="col-md-9"><?php print (isset($details['related_groups'])) ? $details['related_groups'] : ''; ?></div>
       </div>
     </div>
-    <div class="project-related-content">
+    <div class="event-site-related-content">
       <div class="title">
         <h2><?php print t('Categories') ?></h2>
         <?php print $details['taxonomy_manage_link'] ?>
       </div>
       <div class="row">
         <div class="col-md-12"><?php print t(
-            'This project has <strong>@cat_count Categories</strong> and <strong>@term_count Terms</strong>',
+            'This event-site has <strong>@cat_count Categories</strong> and <strong>@term_count Terms</strong>',
             array(
               '@cat_count' => $details['categories_count'],
               '@term_count' => $details['terms_count'],
@@ -127,7 +136,7 @@
           ) ?></div>
       </div>
     </div>
-    <div class="project-features">
+    <div class="event-site-features">
       <div class="title">
         <h2><?php print t('Features') ?></h2>
         <?php print $details['features_manage_link'] ?>
@@ -142,12 +151,14 @@
         </div>
       <?php endforeach; ?>
     </div>
-    <div class="project-navigation">
+    <div class="event-site-navigation">
       <div class="title">
         <h2><?php print t('Event site Navigation') ?></h2>
-        <a href="<?php print $details['menu_link']; ?>"><?php print t(
-            'Edit'
-          ) ?></a>
+        <a href="<?php print $details['menu_link']; ?>">
+            <span class="es--edit-link ecl-button ecl-button--primary">
+                <?php print t('Edit'); ?>
+            </span>
+        </a>
       </div>
     </div>
   </div>

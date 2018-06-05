@@ -414,7 +414,8 @@ function c4m_features_og_manage_list_taxonomy($group, array &$details) {
   );
   $details['taxonomy_manage_link'] = l(
     t('Edit'),
-    url('manage/categories', array('absolute' => TRUE))
+    url('manage/categories', array('absolute' => TRUE)),
+    ['attributes' => ['class' => 'es--edit-link ecl-button ecl-button--primary']]
   );
   $categories = taxonomy_get_tree($og_vocab[0]->vid);
   $categories_count = 0;
@@ -440,7 +441,8 @@ function c4m_features_og_manage_list_taxonomy($group, array &$details) {
   $details['features_available'] = $available_features;
   $details['features_manage_link'] = l(
     t('Edit'),
-    url('manage/features', array('absolute' => TRUE))
+    url('manage/features', array('absolute' => TRUE)),
+    ['attributes' => ['class' => 'es--edit-link ecl-button ecl-button--primary']]
   );
   $details['features_enabled'] = variable_get('c4m_og_features_group', array());
 }
