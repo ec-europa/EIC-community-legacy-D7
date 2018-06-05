@@ -1,6 +1,6 @@
 #header-ec-wrapper {
   background-color: transparent;
-  border-top-color: $color-gray-light;
+  border-top: none;
   overflow: visible;
 
   padding-bottom: 31px;
@@ -27,12 +27,16 @@
 
 .header-breadcrumb {
   margin-top: 0;
+
+  ol {
+    margin: 0.8rem 0;
+  }
 }
 
 .header-logo {
   margin-top: 40px;
   .site-name-slogan {
-    margin-top: 10px;
+    margin-top: 8px;
   }
   h1 {
     color: $color-gray;
@@ -40,7 +44,7 @@
     font-family: $font-arial;
     font-size: 1.5rem !important;
     font-weight: bold;
-    line-height: 28px !important;
+    line-height: 32px !important;
   }
   h2 {
     color: $color-gray;;
