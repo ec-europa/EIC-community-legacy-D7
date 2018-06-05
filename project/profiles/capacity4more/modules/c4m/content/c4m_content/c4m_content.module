@@ -576,7 +576,7 @@ function c4m_content_get_og_image_markup($group) {
         $edit_link['element'] = [
           '#tag' => 'span',
           '#attributes' => [
-            'class' => ['edit-link'],
+            'class' => ['es--edit-link ecl-button ecl-button--primary'],
           ],
           '#value' => t('Edit'),
         ];
@@ -589,7 +589,7 @@ function c4m_content_get_og_image_markup($group) {
           ],
         ];
         $markup .= l(
-          theme_html_tag($edit_link) . theme_image_style($file),
+           theme_image_style($file) . theme_html_tag($edit_link),
           url(
             'node/' . $group->nid . '/edit',
             [

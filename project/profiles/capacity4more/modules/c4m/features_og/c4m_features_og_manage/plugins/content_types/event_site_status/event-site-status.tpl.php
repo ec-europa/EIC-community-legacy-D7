@@ -17,6 +17,14 @@
       </div>
     </div>
     <div class="thumbnail-image panel-pane">
+
+      <div class="title">
+        <h2><?php print t('Banner image') ?></h2>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><?php print $info['banner_image'] ?></div>
+      </div>
+
       <div class="title">
         <h2><?php print t('Thumbnail image') ?></h2>
       </div>
