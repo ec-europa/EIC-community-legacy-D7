@@ -1286,7 +1286,7 @@ function c4m_features_og_manage_event_site_thumbnail() {
     $edit_link['element'] = array(
       '#tag' => 'span',
       '#attributes' => array(
-        'class' => array('edit-link'),
+        'class' => array('es--edit-link ecl-button ecl-button--primary'),
       ),
       '#value' => t('Edit'),
     );
@@ -1301,6 +1301,7 @@ function c4m_features_og_manage_event_site_thumbnail() {
       ),
       $options
     );
+    $info['banner_image'] = c4m_content_get_og_image_markup($event_site);
   }
   return $info;
 }
