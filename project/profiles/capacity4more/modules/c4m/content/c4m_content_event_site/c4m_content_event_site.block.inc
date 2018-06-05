@@ -68,7 +68,7 @@ function _c4m_content_event_site_block_header_name_banner_event_site() {
     ],
   ];
   $publish_link = ($status != 'published') ?
-    l(t('Publish Event Site'), 'c4m/'. $event_site->nid . '/publish_event_site', $options) : '';
+    l(t('Publish now'), 'c4m/'. $event_site->nid . '/publish_event_site', $options) : '';
 
   $variables = [
     'title' => check_plain($title),
