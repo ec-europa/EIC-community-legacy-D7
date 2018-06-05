@@ -588,8 +588,8 @@ function c4m_content_get_og_image_markup($group) {
             ],
           ],
         ];
-        $markup .= l(
-           theme_image_style($file) . theme_html_tag($edit_link),
+        $markup .= theme_image_style($file) . l(
+          theme_html_tag($edit_link),
           url(
             'node/' . $group->nid . '/edit',
             [
