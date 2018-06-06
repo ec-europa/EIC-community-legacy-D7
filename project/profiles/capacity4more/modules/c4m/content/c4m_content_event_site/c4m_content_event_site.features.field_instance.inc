@@ -905,7 +905,7 @@ function c4m_content_event_site_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'c4m_location_address',
-    'label' => 'Location Address',
+    'label' => 'Event Location',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -2014,12 +2014,12 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Describe the event in a few words.	');
   t('Description');
   t('Determine if this is an OG group.');
+  t('Event Location');
   t('Facebook page');
   t('Group');
   t('Group welcome message');
   t('Language');
   t('Left column content');
-  t('Location Address');
   t('Location Map');
   t('Organised by');
   t('Presentations');
