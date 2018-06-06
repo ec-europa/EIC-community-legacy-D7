@@ -156,8 +156,13 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
       ),
     );
   }
-  if ($form['c4m_location_address']) {
+  if ($form['c4m_location_address'] &&
+    $form["c4m_location_address"][LANGUAGE_NONE][0]['name_block'] &&
+    $form["c4m_location_address"][LANGUAGE_NONE][0]['street_block']
+  ) {
     $form["c4m_location_address"][LANGUAGE_NONE][0]['name_block']['name_line']['#title'] = t('Name of the Venue');
+    $form["c4m_location_address"][LANGUAGE_NONE][0]['street_block']['thoroughfare']['#title'] = t('Address of the venue');
+    $form["c4m_location_address"][LANGUAGE_NONE][0]['street_block']['premise']['#access'] = FALSE;
   }
 
 }
