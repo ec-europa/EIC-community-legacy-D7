@@ -22,17 +22,6 @@
   }
 }
 
-.publish-link {
-  float: right;
-  a {
-    font-size: 0.875rem;
-  }
-  .es-publish-link {
-    font-weight: 100;
-    text-transform: uppercase;
-  }
-}
-
 // Manage page styles.
 .es--edit-link {
   text-transform: uppercase;
@@ -43,6 +32,69 @@
 
     &:hover {
       text-decoration: none;
+    }
+  }
+}
+
+// Status labels and publish link.
+.project-indications {
+  .top-buffer {
+    float: right;
+  }
+  .status-controller {
+    float: right;
+    font-size: 0.8rem;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+  .btn-group {
+    ul {
+      &.dropdown-menu {
+        background: transparent;
+        border: none;
+        float: none;
+        min-width: 100px;
+        position: relative;
+        li {
+          a {
+            color: $color-white;
+            font-size: 0.8rem;
+            margin-top: 60px;
+            text-transform: uppercase;
+          }
+          a:hover {
+            color: $color-blue;
+          }
+        }
+      }
+    }
+  }
+  .es-no-publish-link {
+    float: none;
+  }
+}
+
+// Mobile for Status labels and publish link.
+@media (max-width: 768px) {
+  .project-indications {
+    .top-buffer {
+      float: none;
+      margin-left: 0;
+    }
+    .status-controller {
+      float: none;
+    }
+    .btn-group {
+      ul {
+        &.dropdown-menu {
+          max-width: 135px;
+          li {
+            a {
+              margin-top: 0;
+            }
+          }
+        }
+      }
     }
   }
 }

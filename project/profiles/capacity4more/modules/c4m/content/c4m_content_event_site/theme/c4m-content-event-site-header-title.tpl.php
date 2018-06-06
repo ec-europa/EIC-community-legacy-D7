@@ -7,11 +7,24 @@
 ?>
 <div class="project-indications">
   <?php if ($type): ?>
-    <span class="top-buffer indication label label-default project-type"><?php print $type; ?></span>
+    <span class="top-buffer indication label label-default project-type <?php print (empty($publish_link)) ? 'es-no-publish-link' : ''; ?>"><?php print $type; ?></span>
   <?php endif; ?>
 
   <?php if ($status): ?>
-    <span class="top-buffer indication label project-status <?php print (!empty($label_type)) ? $label_type : ''; ?>"><?php print $status; ?></span>
+    <?php if ($publish_link): ?>
+      <div class="btn-group">
+          <button type="button" class="btn btn-danger dropdown-toggle status-controller" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php print $status; ?> <span class="caret"></span>
+          </button>
+            <ul class="dropdown-menu">
+                <li><?php print $publish_link; ?></li>
+            </ul>
+      </div>
+    <?php else:?>
+      <?php if ($status): ?>
+          <span class="top-buffer indication label project-status <?php print (!empty($label_type)) ? $label_type : ''; ?> es-no-publish-link"><?php print $status; ?></span>
+      <?php endif; ?>
+    <?php endif; ?>
   <?php endif; ?>
 </div>
 
@@ -25,11 +38,4 @@
   <h2 class="project-subtitle">
     <?php print $tagline; ?>
   </h2>
-<?php endif; ?>
-
-
-<?php if ($publish_link): ?>
-    <div class="publish-link">
-      <span> <?php print $publish_link; ?></span>
-    </div>
 <?php endif; ?>
