@@ -1133,15 +1133,15 @@ function c4m_features_og_manage_group_status_statistics_and_thumbnail() {
     $edit_link['element'] = array(
       '#tag' => 'span',
       '#attributes' => array(
-        'class' => array('edit-link'),
+        'class' => array('es--edit-link ecl-button ecl-button--primary'),
       ),
       '#value' => t('Edit'),
     );
     $file['style_name'] = 'medium';
     $file['path'] = $file['uri'];
     $file['attributes'] = array('class' => 'group-thumbnail');
-    $info['thumbnail_image'] = l(
-      theme_image_style($file) . theme_html_tag($edit_link),
+    $info['thumbnail_image'] = theme_image_style($file) . l(
+      theme_html_tag($edit_link),
       url(
         'node/' . $group->nid . '/edit',
         array('absolute' => TRUE, 'fragment' => 'edit-image-list')
@@ -1211,15 +1211,15 @@ function c4m_features_og_manage_project_thumbnail() {
     $edit_link['element'] = array(
       '#tag' => 'span',
       '#attributes' => array(
-        'class' => array('edit-link'),
+        'class' => array('es--edit-link ecl-button ecl-button--primary'),
       ),
       '#value' => t('Edit'),
     );
     $file['style_name'] = 'medium';
     $file['path'] = $file['uri'];
     $file['attributes'] = array('class' => 'group-thumbnail');
-    $info['thumbnail_image'] = l(
-      theme_image_style($file) . theme_html_tag($edit_link),
+    $info['thumbnail_image'] = theme_image_style($file) . l(
+      theme_html_tag($edit_link),
       url(
         'node/' . $project->nid . '/edit',
         array('absolute' => TRUE, 'fragment' => 'edit-image-list')
@@ -1293,8 +1293,8 @@ function c4m_features_og_manage_event_site_thumbnail() {
     $file['style_name'] = 'medium';
     $file['path'] = $file['uri'];
     $file['attributes'] = array('class' => 'group-thumbnail');
-    $info['thumbnail_image'] = l(
-      theme_image_style($file) . theme_html_tag($edit_link),
+    $info['thumbnail_image'] = theme_image_style($file) . l(
+      theme_html_tag($edit_link),
       url(
         'node/' . $event_site->nid . '/edit',
         array('absolute' => TRUE, 'fragment' => 'edit-image-list')
@@ -1354,15 +1354,15 @@ function c4m_features_og_manage_organisation_thumbnail() {
     $edit_link['element'] = array(
       '#tag' => 'span',
       '#attributes' => array(
-        'class' => array('edit-link'),
+      'class' => array('es--edit-link ecl-button ecl-button--primary'),
       ),
       '#value' => t('Edit'),
     );
     $file['style_name'] = 'medium';
     $file['path'] = $file['uri'];
     $file['attributes'] = array('class' => 'group-thumbnail');
-    $info['thumbnail_image'] = l(
-      theme_image_style($file) . theme_html_tag($edit_link),
+    $info['thumbnail_image'] = theme_image_style($file) . l(
+      theme_html_tag($edit_link),
       url(
         'node/' . $organisation->nid . '/edit',
         array('absolute' => TRUE, 'fragment' => 'edit-image-list')
