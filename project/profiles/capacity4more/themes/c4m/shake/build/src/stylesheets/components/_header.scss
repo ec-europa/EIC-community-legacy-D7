@@ -34,6 +34,9 @@
 
 .header-logo {
   margin-top: 40px;
+  @media (min-width: 768px) {
+    margin-bottom: 31px;
+  }
   .site-name-slogan {
     float: left;
     margin-top: 8px;

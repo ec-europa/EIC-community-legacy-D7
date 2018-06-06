@@ -7,23 +7,3 @@
 
 include_once 'c4m_features_site_settings.features.inc';
 
-/**
- * Implements hook_init().
- */
-function c4m_features_site_settings_init() {
-  $menu_item = menu_get_item();
-  global $user;
-  // For logged in users except administrators, redirect to /events when visiting user pages.
-  if (in_array($menu_item['path'], ['user/%', 'user'])) {
-    if (user_is_anonymous() || in_array('administrator', $user->roles)) {
-      return;
-    }
-    drupal_goto('/events');
-  }
-  // For logged in users except administrators, redirect to /events when visiting homepage.
-  if (user_is_logged_in()
-    && in_array($menu_item['path'], ['dashboard'])
-    && !in_array('administrator', $user->roles)) {
-    drupal_goto('/events');
-  }
-}
