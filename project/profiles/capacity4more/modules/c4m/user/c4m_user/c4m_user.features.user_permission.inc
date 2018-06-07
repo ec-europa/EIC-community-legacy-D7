@@ -14,7 +14,9 @@ function c4m_user_user_default_permissions() {
   // Exported permission: 'access administration menu'.
   $permissions['access administration menu'] = array(
     'name' => 'access administration menu',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'admin_menu',
   );
 
