@@ -1,10 +1,63 @@
 .navigation--primary {
-  .navbar-collapse ul.menu li {
-    border-right: 1px solid white;
-    a:hover {
-      text-decoration: underline;
-      color: $color-white;
+  background-color: $color-blue-light;
+  border-bottom: none;
+
+  .navbar {
+    max-width: 100%;
+    padding: 0 12px;
+    width: 1170px;
+
+    .navbar-collapse {
+      ul {
+        &.navbar-nav {
+          li {
+            border: 0;
+            padding: 0 1rem;
+            font-size: 1.125rem;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            &.first {
+              border-left: none;
+              padding-left: 0;
+            }
+            a {
+              text-transform: none;
+              color: $color-dark-blue;
+              &.active {
+                color: $color-darkTwo-blue;
+              }
+            }
+            a:hover {
+              color: $color-darkTwo-blue;
+            }
+          }
+        }
+      }
     }
   }
+}
 
+// Menu offcanvas.
+.offCanvasNavigation {
+  &.animation--push {
+    background-color: $color-blue-light;
+  }
+  ul {
+    li {
+      a {
+        color: $color-dark-blue;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        &.active {
+          color: $color-darkTwo-blue;
+        }
+      }
+    }
+  }
 }

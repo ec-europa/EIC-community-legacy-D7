@@ -71,6 +71,17 @@
 }
 
 // Search bar.
-.form-submit {
-  padding-right: 20px;
+
+
+@media (min-width: 860px) {
+  .header-search {
+    .search-form {
+      .form-submit {
+        padding-right: 50px;
+      }
+    }
+    .form-text {
+      width: 15rem;
+    }
+  }
 }

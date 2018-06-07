@@ -1,3 +1,12 @@
+#page-header {
+  #user-bar, #header-ec-wrapper, #ecl-page-header {
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
 #header-ec-wrapper {
   background-color: transparent;
   border-top: none;
@@ -62,21 +71,6 @@
   }
 }
 
-.navigation--primary {
-  background-color: $color-blue-light;
-  border-bottom: none;
-
-  .navbar {
-    max-width: 100%;
-    width: 1170px;
-    .navbar-nav li {
-      a {
-        color: $color-white;
-      }
-    }
-  }
-}
-
 header {
   a {
     color: $color-white;
@@ -89,13 +83,4 @@ header {
 
 .header-actions {
   background-color: $color-blue;
-}
-
-.offCanvasNavigation {
-  &.animation--push {
-    background-color: $color-blue-light;
-  }
-  ul li a {
-    color: $color-white;
-  }
 }
