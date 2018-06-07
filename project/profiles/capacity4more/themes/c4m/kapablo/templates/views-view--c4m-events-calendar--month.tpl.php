@@ -15,10 +15,10 @@
   <div class="view-header">
     <ul class="events-calendar-tabs">
       <?php if (!empty($list_view_url)): ?>
-          <li><?php print $list_view_url; ?></li>
+          <li class="switch-view list-calendar"><span><?php print t('View as'); ?></span><?php print $list_view_url; ?></li>
       <?php endif; ?>
       <?php if (!empty($week_view_url)): ?>
-          <li class="tab-calendar"><span><?php print t('View as'); ?></span><?php print $week_view_url; ?></li>
+          <li class="switch-view tab-calendar"><span><?php print t('View as'); ?></span><?php print $week_view_url; ?></li>
       <?php endif; ?>
     </ul>
     <?php if ($header): ?>
