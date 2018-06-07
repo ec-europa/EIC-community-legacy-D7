@@ -6,3 +6,31 @@
     color: $color-blue !important;
   }
 }
+.events-calendar-tabs {
+  //margin-top: 18px;
+  .switch-view {
+    span {
+      font-size: 10px;
+      font-weight: bold;
+      float: left;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    a {
+      color: $color-blue;
+    }
+  }
+  .tab-calendar {
+    background: transparent;
+    margin-top: 0;
+  }
+}
+
+
+.view-c4m-events-calendar {
+  .calendar-calendar {
+    th, tr.holder {
+      font-family: $font-arial;
+    }
+  }
+}
