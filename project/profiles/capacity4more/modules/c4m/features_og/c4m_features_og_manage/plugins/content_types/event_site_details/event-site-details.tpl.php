@@ -128,7 +128,7 @@
       </div>
       <div class="row">
         <div class="col-md-12"><?php print t(
-            'This event-site has <strong>@cat_count Categories</strong> and <strong>@term_count Terms</strong>',
+            'This event site has <strong>@cat_count Categories</strong> and <strong>@term_count Terms</strong>',
             array(
               '@cat_count' => $details['categories_count'],
               '@term_count' => $details['terms_count'],
