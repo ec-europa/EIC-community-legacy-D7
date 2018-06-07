@@ -3224,7 +3224,7 @@ function c4m_message__update__node($node, $account = NULL) {
   // does not change.
   // We know that current status is NODE_PUBLISHED, so it's enough to
   // verify that original status was NODE_PUBLISHED as well.
-  if (empty($node->revision) && $node->original->status == NODE_PUBLISHED) {
+  if (empty($node->revision) && isset($node->original) && $node->original->status == NODE_PUBLISHED) {
     return FALSE;
   }
 
