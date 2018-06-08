@@ -7,7 +7,7 @@
 ?>
 <div class="project-indications">
   <?php if ($type): ?>
-    <span class="top-buffer indication label label-default project-type <?php print (empty($publish_link)) ? 'es-no-publish-link' : ''; ?>"><?php print $type; ?></span>
+    <span class="top-buffer indication label label-default project-type <?php print (!empty($publish_link)) ? 'es-right' : ''; ?>"><?php print $type; ?></span>
   <?php endif; ?>
 
   <?php if ($status): ?>
@@ -22,7 +22,7 @@
       </div>
     <?php else:?>
       <?php if ($status): ?>
-          <span class="top-buffer indication label project-status <?php print (!empty($label_type)) ? $label_type : ''; ?> es-no-publish-link"><?php print $status; ?></span>
+          <span class="top-buffer indication label project-status label-default "><?php print $status; ?></span>
       <?php endif; ?>
     <?php endif; ?>
   <?php endif; ?>

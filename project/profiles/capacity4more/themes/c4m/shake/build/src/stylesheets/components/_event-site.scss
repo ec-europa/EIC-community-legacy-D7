@@ -38,8 +38,9 @@
 
 // Status labels and publish link.
 .project-indications {
+  max-width: 250px;
   .top-buffer {
-    float: right;
+    margin-left: 5px;
   }
   .status-controller {
     float: right;
@@ -69,8 +70,8 @@
       }
     }
   }
-  .es-no-publish-link {
-    float: none;
+  .es-right {
+    float: right;
   }
 }
 
