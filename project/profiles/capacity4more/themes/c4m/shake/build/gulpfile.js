@@ -72,14 +72,14 @@ gulp.task('clean', function() {
  */
 gulp.task('imagemin', function() {
   gulp.src('src/images/**/*.{png,jpg,gif,svg}')
-    .pipe(cache(
+    .pipe(
       imagemin({
         optimizationLevel: 3,
         svgoPlugins: [{removeViewBox: false}],
         progressive: true,
         interlaced: true
       })
-    ))
+    )
     .pipe(gulp.dest(config.dist + '/images'));
 });
 
