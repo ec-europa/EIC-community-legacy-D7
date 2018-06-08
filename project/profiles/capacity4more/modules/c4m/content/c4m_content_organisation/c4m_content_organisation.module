@@ -339,6 +339,7 @@ function c4m_content_organisation_form_organisation_node_form_alter(array &$form
   $form["c4m_icon"]["#access"] = FALSE;
   $form["c4m_domain"]["#access"] = FALSE;
 
+  $form['c4m_organisation_dashboard_id']['#disabled'] = TRUE;
   // Disable fields managed through dashboard.
   _c4m_content_organisation_alter_organisation_form($form, $form_state);
 }
