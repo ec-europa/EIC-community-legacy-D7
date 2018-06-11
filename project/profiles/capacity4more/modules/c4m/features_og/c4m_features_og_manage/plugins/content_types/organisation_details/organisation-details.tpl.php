@@ -13,18 +13,22 @@
         <h2><?php print t('Organisation administration') ?></h2>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Owner') ?> (<a
-            href="<?php print $details['owner_edit']; ?>"><?php print t(
-              'Edit'
-            ) ?></a>)
+        <div class="col-md-3"><?php print t('Owner') ?>
+            <a href="<?php print $details['owner_edit']; ?>">
+                <span class="es--edit-link ecl-button ecl-button--primary">
+                    <?php print t('Edit'); ?>
+                </span>
+            </a>
         </div>
         <div class="col-md-9"><?php print $details['owner']; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Administrators') ?> (<a
-            href="<?php print $details['admins_edit']; ?>"><?php print t(
-              'Edit'
-            ) ?></a>)
+        <div class="col-md-3"><?php print t('Administrators') ?>
+            <a href="<?php print $details['admins_edit']; ?>">
+                <span class="es--edit-link ecl-button ecl-button--primary">
+                    <?php print t('Edit'); ?>
+                </span>
+            </a>
         </div>
         <div class="col-md-9"><?php print $details['admins']; ?></div>
       </div>
@@ -32,7 +36,11 @@
     <div class="project-details">
       <div class="title">
         <h2><?php print t('Organisation details') ?></h2>
-        <a href="<?php print $details['edit_link'] ?>#edit-details"><?php print t('Edit'); ?></a>
+          <a href="<?php print $details['edit_link'] ?>#edit-details">
+            <span class="es--edit-link ecl-button ecl-button--primary">
+                    <?php print t('Edit'); ?>
+            </span>
+          </a>
       </div>
       <div class="row">
         <div class="col-md-3"><?php print t('Organisation name') ?></div>
@@ -167,9 +175,11 @@
     <div class="project-navigation">
       <div class="title">
         <h2><?php print t('Organisation Navigation') ?></h2>
-        <a href="<?php print $details['menu_link']; ?>"><?php print t(
-            'Edit'
-          ) ?></a>
+          <a href="<?php print $details['menu_link']; ?>">
+            <span class="es--edit-link ecl-button ecl-button--primary">
+                <?php print t('Edit'); ?>
+            </span>
+          </a>
       </div>
     </div>
   </div>
