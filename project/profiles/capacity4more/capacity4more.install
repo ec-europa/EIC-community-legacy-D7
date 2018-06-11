@@ -517,7 +517,7 @@ function _capacity4more_install_set_default_mail_messages() {
  */
 function _capacity4more_add_lazyloader_settings() {
   variable_set('lazyloader_distance', '100');
-  variable_set('lazyloader_enabled', 1);
+  variable_set('lazyloader_enabled', 0);
   variable_set('lazyloader_exclude_option', 'exclude');
   variable_set('lazyloader_icon', '0');
   variable_set('lazyloader_paths', 'admin/*
@@ -703,4 +703,11 @@ function capacity4more_update_7021() {
  */
 function capacity4more_update_7022() {
   module_enable(['c4m_web_services', 'c4m_content_organisation']);
+}
+
+/**
+ * Disable image lazyloading.
+ */
+function capacity4more_update_7023() {
+  variable_set('lazyloader_enabled', 0);
 }
