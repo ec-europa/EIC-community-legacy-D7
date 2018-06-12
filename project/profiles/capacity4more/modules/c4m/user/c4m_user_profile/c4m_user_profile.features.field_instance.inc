@@ -147,7 +147,7 @@ function c4m_user_profile_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a link (URL) to your full CV. This can for example be a web page or an online PDF document.',
     'display' => array(
       'block_list' => array(
         'label' => 'above',
@@ -230,7 +230,7 @@ function c4m_user_profile_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a link (URL) to your public Facebook profile.',
     'display' => array(
       'block_list' => array(
         'label' => 'above',
@@ -970,7 +970,7 @@ function c4m_user_profile_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a link (URL) to your public LinkedIn profile.',
     'display' => array(
       'block_list' => array(
         'label' => 'above',
@@ -1539,7 +1539,7 @@ function c4m_user_profile_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a link (URL) to your public Twitter profile.',
     'display' => array(
       'block_list' => array(
         'label' => 'above',
