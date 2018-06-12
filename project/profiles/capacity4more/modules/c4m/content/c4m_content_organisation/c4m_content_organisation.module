@@ -300,6 +300,10 @@ function c4m_content_organisation_block_info() {
     'info' => t('Organisation: Organisation\'s groups'),
     'cache' => DRUPAL_NO_CACHE,
   );
+  $blocks['c4m_block_organisation_customers'] = array(
+    'info' => t('Organisation: Customers'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
 
   return $blocks;
 }
@@ -522,6 +526,12 @@ function c4m_content_organisation_c4m_content_project_blockreference_whitelist($
       ),
       'c4m_content_organisation:c4m_block_organisation_as' => array(
         'label' => t('Organisation\'s Activity Stream'),
+      ),
+      'c4m_content_project:c4m_block_project_partners' => array(
+        'label' => t('Partners'),
+      ),
+      'c4m_content_organisation:c4m_block_organisation_customers' => array(
+        'label' => t('Customers'),
       ),
       'views:c4m_project_news-block' => array(
         'label' => t('Latest news'),

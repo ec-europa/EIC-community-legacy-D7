@@ -219,3 +219,22 @@ function _c4m_content_organisation_get_groups_of_members($uids) {
 
   return array_unique($nids);
 }
+
+/**
+ * Callback for the c4m_block_organisation_customers block.
+ */
+function _c4m_content_organisation_block_c4m_block_organisation_customers() {
+    $block = array();
+
+    if ($node = c4m_og_current_group()) {
+        $block['subject'] = '';
+        $block['content'] = field_view_field(
+            'node',
+            $node,
+            'c4m_customers',
+            array('label' => 'hidden')
+        );
+    }
+
+    return $block;
+}
