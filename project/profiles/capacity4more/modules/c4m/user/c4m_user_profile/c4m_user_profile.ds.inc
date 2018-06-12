@@ -29,12 +29,7 @@ function c4m_user_profile_ds_field_settings_info() {
       'format' => 'user_with_icon',
     ),
     'c4m_user_contact_link' => array(
-      'weight' => '6',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'c4m_ds_article_notable_contribution' => array(
-      'weight' => '4',
+      'weight' => '11',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -43,42 +38,30 @@ function c4m_user_profile_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'c4m_ds_user_my_projects' => array(
-      'weight' => '6',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
     'c4m_ds_user_my_event_sites' => array(
       'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
-    ),
-    'c4m_vocab_geo' => array(
-      'formatter_settings' => array(
-        'ft' => array(
-          'lb' => 'Regions',
-        ),
-      ),
-    ),
-    'c4m_vocab_topic' => array(
-      'formatter_settings' => array(
-        'ft' => array(
-          'lb' => 'Topics',
-        ),
-      ),
-    ),
-    'c4m_vocab_topic_expertise' => array(
-      'formatter_settings' => array(
-        'ft' => array(
-          'lb' => 'Topics & subtopics',
-        ),
-      ),
     ),
     'c4m_facebook' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
           'prefix' => '<i class="fa fa-facebook"></i>',
+          'ow' => TRUE,
+          'ow-el' => 'div',
+          'ow-cl' => 'c4m-social-media-item',
+          'ow-def-cl' => TRUE,
+          'ow-at' => '',
+          'ow-def-at' => TRUE,
+        ),
+      ),
+    ),
+    'c4m_linkedin' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
+          'prefix' => '<i class="fa fa-linkedin"></i>',
           'ow' => TRUE,
           'ow-el' => 'div',
           'ow-cl' => 'c4m-social-media-item',
@@ -102,17 +85,24 @@ function c4m_user_profile_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_linkedin' => array(
+    'c4m_vocab_geo' => array(
       'formatter_settings' => array(
         'ft' => array(
-          'func' => 'theme_ds_field_expert',
-          'prefix' => '<i class="fa fa-linkedin"></i>',
-          'ow' => TRUE,
-          'ow-el' => 'div',
-          'ow-cl' => 'c4m-social-media-item',
-          'ow-def-cl' => TRUE,
-          'ow-at' => '',
-          'ow-def-at' => TRUE,
+          'lb' => 'Regions',
+        ),
+      ),
+    ),
+    'c4m_vocab_topic' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'lb' => 'Topics',
+        ),
+      ),
+    ),
+    'c4m_vocab_topic_expertise' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'lb' => 'Topics & subtopics',
         ),
       ),
     ),
@@ -139,54 +129,50 @@ function c4m_user_profile_ds_layout_settings_info() {
     'regions' => array(
       'left' => array(
         0 => 'c4m_user_picture',
-        2 => 'group_user_meta',
+        1 => 'group_user_meta',
         3 => 'group_user_interests',
-        4 => 'group_user_expertise',
+        4 => 'group_user_data',
         5 => 'c4m_vocab_topic',
-        6 => 'group_user_data',
+        6 => 'group_user_expertise',
         7 => 'c4m_vocab_geo',
-        8 => 'group_user_about',
-        9 => 'c4m_vocab_geo',
+        8 => 'c4m_user_first_and_last_name',
+        9 => 'group_user_about',
         10 => 'c4m_vocab_topic_expertise',
-        11 => 'c4m_ds_article_notable_contribution',
-        12 => 'c4m_job_title',
-        13 => 'group_user_contributions',
-        15 => 'c4m_body',
-        16 => 'c4m_user_types',
-        18 => 'c4m_vocab_language',
+        12 => 'c4m_user_types',
+        13 => 'c4m_body',
+        14 => 'c4m_vocab_language',
+        15 => 'c4m_facebook',
+        16 => 'c4m_twitter',
+        17 => 'c4m_linkedin',
+        18 => 'c4m_cv_link',
         19 => 'c4m_user_contact_link',
-        20 => 'c4m_facebook',
-        21 => 'c4m_twitter',
-        22 => 'c4m_linkedin',
-        23 => 'c4m_cv_link',
       ),
       'right' => array(
-        1 => 'c4m_ds_user_my_event_sites',
-        14 => 'c4m_ds_user_my_groups',
-        17 => 'c4m_ds_user_my_projects',
+        2 => 'c4m_ds_user_my_event_sites',
+        11 => 'c4m_ds_user_my_groups',
       ),
     ),
     'fields' => array(
       'c4m_user_picture' => 'left',
-      'c4m_ds_user_my_event_sites' => 'right',
       'group_user_meta' => 'left',
+      'c4m_ds_user_my_event_sites' => 'right',
       'group_user_interests' => 'left',
-      'group_user_expertise' => 'left',
+      'group_user_data' => 'left',
       'c4m_vocab_topic' => 'left',
-      'c4m_user_first_and_last_name' => 'left',
+      'group_user_expertise' => 'left',
       'c4m_vocab_geo' => 'left',
+      'c4m_user_first_and_last_name' => 'left',
       'group_user_about' => 'left',
       'c4m_vocab_topic_expertise' => 'left',
-      'c4m_job_title' => 'left',
       'c4m_ds_user_my_groups' => 'right',
-      'c4m_body' => 'left',
       'c4m_user_types' => 'left',
+      'c4m_body' => 'left',
       'c4m_vocab_language' => 'left',
-      'c4m_user_contact_link' => 'left',
       'c4m_facebook' => 'left',
       'c4m_twitter' => 'left',
       'c4m_linkedin' => 'left',
       'c4m_cv_link' => 'left',
+      'c4m_user_contact_link' => 'left',
     ),
     'classes' => array(
       'layout_class' => array(

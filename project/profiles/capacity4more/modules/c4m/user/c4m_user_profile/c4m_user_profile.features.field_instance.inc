@@ -167,7 +167,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 11,
+        'weight' => 10,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -250,7 +250,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 8,
+        'weight' => 7,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -990,7 +990,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 10,
+        'weight' => 9,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1075,10 +1075,10 @@ function c4m_user_profile_field_default_field_instances() {
         'weight' => 26,
       ),
       'full' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1559,7 +1559,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 9,
+        'weight' => 8,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1742,7 +1742,7 @@ function c4m_user_profile_field_default_field_instances() {
           'wrap' => 'none',
         ),
         'type' => 'term_reference_tree_children_expanded',
-        'weight' => 6,
+        'weight' => 5,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1900,17 +1900,13 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
       ),
       'full' => array(
         'label' => 'inline',
-        'module' => 'c4m_content_topic',
+        'module' => 'ds',
         'settings' => array(
-          'display' => 'all',
-          'exclude_top_parent' => FALSE,
-          'link' => '',
-          'link_organisations' => '',
-          'separator' => ' » ',
-          'wrap' => 'none',
+          'taxonomy_term_link' => 0,
+          'taxonomy_term_separator' => ', ',
         ),
-        'type' => 'term_reference_tree_children_expanded',
-        'weight' => 7,
+        'type' => 'ds_taxonomy_separator',
+        'weight' => 6,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -2152,6 +2148,10 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
   // Included for use with string extractors like potx.
   t('About You');
   t('Address');
+  t('Enter a link (URL) to your full CV. This can for example be a web page or an online PDF document.');
+  t('Enter a link (URL) to your public Facebook profile.');
+  t('Enter a link (URL) to your public LinkedIn profile.');
+  t('Enter a link (URL) to your public Twitter profile.');
   t('Facebook');
   t('First Name');
   t('Full CV');
