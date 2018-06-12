@@ -138,7 +138,6 @@ function c4m_features_og_group_dashboard_flag_default_flags() {
     ),
     'api_version' => 3,
   );
-
   // Exported flag: "C4M Follow Content".
   $flags['subscribe_c4m_follow_content'] = array(
     'entity_type' => 'node',
@@ -189,7 +188,6 @@ function c4m_features_og_group_dashboard_flag_default_flags() {
     ),
     'api_version' => 3,
   );
-
   // Exported flag: "C4M Follow Group".
   $flags['subscribe_c4m_follow_group'] = array(
     'entity_type' => 'node',

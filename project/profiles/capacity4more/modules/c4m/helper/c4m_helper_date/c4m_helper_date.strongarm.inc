@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_helper_date.strongarm.inc

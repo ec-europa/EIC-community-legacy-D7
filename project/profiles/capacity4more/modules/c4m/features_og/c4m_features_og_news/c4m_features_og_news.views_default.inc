@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_features_og_news.views_default.inc
