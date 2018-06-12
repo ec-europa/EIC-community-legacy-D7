@@ -397,7 +397,7 @@ function ecas_login_check() {
       // @codingStandardsIgnoreEnd
 
       // Try to log into Drupal.
-      // Update for EASME: match on mail instead of username.
+      // AMPLEXOR update for EASME: match on mail instead of username.
       // $account = user_load_by_name($ecas_name);
       $account = user_load_by_mail($ecas_email);
 
