@@ -395,8 +395,11 @@ function ecas_login_check() {
       $ecas_groups = $ecas_attributes['cas:groups'];
       $ecas_email = $ecas_attributes['cas:email'];
       // @codingStandardsIgnoreEnd
+
       // Try to log into Drupal.
-      $account = user_load_by_name($ecas_name);
+      // Update for EASME: match on mail instead of username.
+      // $account = user_load_by_name($ecas_name);
+      $account = user_load_by_mail($ecas_email);
 
       // Extra process to filter ECAS user.
       drupal_alter('ecas_extra_filter', $ecas_name, $account, $_SESSION['ecas_goto']);
