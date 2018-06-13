@@ -167,7 +167,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -250,7 +250,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -362,7 +362,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 36,
+        'weight' => 39,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -459,7 +459,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 38,
+        'weight' => 41,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -525,7 +525,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 26,
+        'weight' => 34,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -593,7 +593,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 25,
+        'weight' => 32,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -668,7 +668,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 31,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -736,7 +736,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 29,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -833,7 +833,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 40,
+        'weight' => 42,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -925,7 +925,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 37,
+        'weight' => 40,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -990,7 +990,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1075,10 +1075,16 @@ function c4m_user_profile_field_default_field_instances() {
         'weight' => 26,
       ),
       'full' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
+        'label' => 'inline',
+        'module' => 'c4m_user',
+        'settings' => array(
+          'format_handlers' => array(
+            'address' => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'c4m_addressfield_based_in',
+        'weight' => 6,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1185,7 +1191,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 30,
+        'weight' => 38,
       ),
       'member_overview' => array(
         'label' => 'hidden',
@@ -1262,7 +1268,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 30,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1337,7 +1343,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 27,
+        'weight' => 35,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1412,7 +1418,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 28,
+        'weight' => 36,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1487,7 +1493,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 29,
+        'weight' => 37,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1559,7 +1565,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1642,7 +1648,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 27,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1731,17 +1737,13 @@ function c4m_user_profile_field_default_field_instances() {
         'weight' => 32,
       ),
       'full' => array(
-        'label' => 'hidden',
-        'module' => 'c4m_content_topic',
+        'label' => 'inline',
+        'module' => 'ds',
         'settings' => array(
-          'display' => 'all',
-          'exclude_top_parent' => 0,
-          'link' => 0,
-          'link_organisations' => '',
-          'separator' => ', ',
-          'wrap' => 'none',
+          'taxonomy_term_link' => 0,
+          'taxonomy_term_separator' => ', ',
         ),
-        'type' => 'term_reference_tree_children_expanded',
+        'type' => 'ds_taxonomy_separator',
         'weight' => 5,
       ),
       'member_overview' => array(
@@ -1906,7 +1908,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
           'taxonomy_term_separator' => ', ',
         ),
         'type' => 'ds_taxonomy_separator',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'member_overview' => array(
         'label' => 'above',

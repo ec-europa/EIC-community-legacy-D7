@@ -62,7 +62,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'access content overview',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -268,7 +267,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer ckeditor',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'ckeditor',
   );
@@ -366,7 +364,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer filters',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'filter',
   );
@@ -485,7 +482,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer nodes',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -633,7 +629,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer taxonomy',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'taxonomy',
   );
@@ -652,7 +647,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer url aliases',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'path',
   );
@@ -662,7 +656,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer users',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'user',
   );
@@ -717,7 +710,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'bypass maxlength',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'maxlength',
   );
@@ -727,7 +719,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'bypass node access',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -756,7 +747,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'change own username',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'user',
   );
@@ -917,7 +907,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'create organisation content',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -974,7 +963,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'create url aliases',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'path',
   );
@@ -1126,7 +1114,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'delete any organisation content',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -1290,7 +1277,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'delete own organisation content',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -1367,6 +1353,13 @@ function c4m_user_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete terms in c4m_job_titles'.
+  $permissions['delete terms in c4m_job_titles'] = array(
+    'name' => 'delete terms in c4m_job_titles',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'delete terms in c4m_vocab_category_5'.
   $permissions['delete terms in c4m_vocab_category_5'] = array(
     'name' => 'delete terms in c4m_vocab_category_5',
@@ -1374,13 +1367,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: 'delete terms in c4m_job_titles'.
-  $permissions['delete terms in c4m_job_titles'] = array(
-    'name' => 'delete terms in c4m_job_titles',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-  
   // Exported permission: 'delete terms in c4m_vocab_category_6'.
   $permissions['delete terms in c4m_vocab_category_6'] = array(
     'name' => 'delete terms in c4m_vocab_category_6',
@@ -1585,7 +1571,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'edit any organisation content',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -1760,7 +1745,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'edit own organisation content',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'node',
   );
@@ -1820,20 +1804,20 @@ function c4m_user_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit terms in c4m_vocab_category_5'.
-  $permissions['edit terms in c4m_vocab_category_5'] = array(
-    'name' => 'edit terms in c4m_vocab_category_5',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-  
   // Exported permission: 'edit terms in c4m_job_titles'.
   $permissions['edit terms in c4m_job_titles'] = array(
     'name' => 'edit terms in c4m_job_titles',
     'roles' => array(),
     'module' => 'taxonomy',
   );
-  
+
+  // Exported permission: 'edit terms in c4m_vocab_category_5'.
+  $permissions['edit terms in c4m_vocab_category_5'] = array(
+    'name' => 'edit terms in c4m_vocab_category_5',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'edit terms in c4m_vocab_category_6'.
   $permissions['edit terms in c4m_vocab_category_6'] = array(
     'name' => 'edit terms in c4m_vocab_category_6',
@@ -2555,7 +2539,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'use text format full_html',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'filter',
   );
@@ -2565,7 +2548,6 @@ function c4m_user_user_default_permissions() {
     'name' => 'use text format mail',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
     ),
     'module' => 'filter',
   );

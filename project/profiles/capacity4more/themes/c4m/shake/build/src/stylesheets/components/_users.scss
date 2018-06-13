@@ -87,3 +87,17 @@
     color: $color-link;
   }
 }
+
+// User profile page.
+.user-profile {
+  &.view-mode-full {
+    .group-user-data {
+      .field-label-inline {
+        font-size: 0.9rem;
+        .field-items {
+          font-style: italic;
+        }
+      }
+    }
+  }
+}

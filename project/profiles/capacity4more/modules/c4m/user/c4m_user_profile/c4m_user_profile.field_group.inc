@@ -148,7 +148,7 @@ function c4m_user_profile_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Notable Contributions',
-    'weight' => '4',
+    'weight' => '25',
     'children' => array(
       0 => 'c4m_ds_article_notable_contribution',
     ),
@@ -185,11 +185,13 @@ function c4m_user_profile_field_group_info() {
       0 => 'c4m_cv_link',
       1 => 'c4m_facebook',
       2 => 'c4m_linkedin',
-      3 => 'c4m_twitter',
-      4 => 'c4m_user_types',
-      5 => 'c4m_vocab_language',
-      6 => 'c4m_user_first_and_last_name',
-      7 => 'c4m_user_contact_link',
+      3 => 'c4m_location_address',
+      4 => 'c4m_twitter',
+      5 => 'c4m_user_types',
+      6 => 'c4m_vocab_language',
+      7 => 'c4m_vocab_job_title',
+      8 => 'c4m_user_first_and_last_name',
+      9 => 'c4m_user_contact_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(
