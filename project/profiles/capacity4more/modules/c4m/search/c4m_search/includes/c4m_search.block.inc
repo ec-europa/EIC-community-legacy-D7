@@ -28,13 +28,18 @@ function _c4m_search_block_facetapi_view_alter(&$data, $block) {
 
     // Geographical.
     'JQeEQzhfJJBhHcXpX4531H7GTXL1viNU' => (strpos(current_path(), 'organisations') !== FALSE) ? t('Countries based in') : t('Regions & Countries'),
+    'O8mTVZgvB4vQXVOP4FQE0yR9tc0ehTp0' => t('Regions & Countries'),
 
     // Topics.
     'SpfB5FmHUHWhgc7eyjZ86g8LsNjQHx8E' => t('Topics'),
     'fzBPY1BAj0MTas5AQbIbJMNKqcb06xVW' => t('Topics'),
     'LCbhPBaJpwKclgI7jHQ9adTa9YUbXAO1' => t('Topics'),
-    'bg1wyxiiqobnrzn1exkukcw9arm3on07' => t('Topics of Interest'),
     'okbRObcVrcftlQAKnMx7ns16BYwkgQpC' => t('Topics of Expertise'),
+    'Bg1WyXIiqObnRZN1Exkukcw9Arm3On07' => t('Topics of Interest'),
+
+    // User specific.
+    'MJe3SI01iJ8jYhG6kFms00hM769g1rl9' => t('User type'),
+    'IWLkW0zcCgq8VdQhLlbJ7YLxOyz4zXTl' => t('Languages spoken'),
 
     // Content type.
     'QjdXjCmQyf1I4MYpAXp20tgcG7rR8PKS' => t('Type'),

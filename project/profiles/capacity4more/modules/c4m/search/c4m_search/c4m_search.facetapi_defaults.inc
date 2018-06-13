@@ -2104,6 +2104,35 @@ function c4m_search_facetapi_default_facet_settings() {
   $facet = new stdClass();
   $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
   $facet->api_version = 1;
+  $facet->name = 'search_api@c4m_search_users::c4m_user_types';
+  $facet->searcher = 'search_api@c4m_search_users';
+  $facet->realm = '';
+  $facet->facet = 'c4m_user_types';
+  $facet->enabled = FALSE;
+  $facet->settings = array(
+    'operator' => 'and',
+    'hard_limit' => '50',
+    'dependencies' => array(
+      'facets' => array(),
+      'reverse_dependency' => FALSE,
+      'force_deactivation' => TRUE,
+      'regex' => FALSE,
+    ),
+    'facet_mincount' => '1',
+    'facet_missing' => '0',
+    'flatten' => '0',
+    'individual_parent' => '0',
+    'query_type' => 'term',
+    'limit_active_items' => 0,
+    'default_true' => '1',
+    'facet_search_ids' => array(),
+    'exclude' => 0,
+  );
+  $export['search_api@c4m_search_users::c4m_user_types'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
   $facet->name = 'search_api@c4m_search_users::c4m_vocab_geo';
   $facet->searcher = 'search_api@c4m_search_users';
   $facet->realm = '';
@@ -2130,6 +2159,42 @@ function c4m_search_facetapi_default_facet_settings() {
     'exclude' => 0,
   );
   $export['search_api@c4m_search_users::c4m_vocab_geo'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
+  $facet->name = 'search_api@c4m_search_users:block:c4m_body:value';
+  $facet->searcher = 'search_api@c4m_search_users';
+  $facet->realm = 'block';
+  $facet->facet = 'c4m_body:value';
+  $facet->enabled = FALSE;
+  $facet->settings = array(
+    'weight' => 0,
+    'widget' => 'facetapi_links',
+    'filters' => array(),
+    'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
+      'display' => 'display',
+    ),
+    'sort_weight' => array(
+      'active' => -50,
+      'count' => -49,
+      'display' => -48,
+    ),
+    'sort_order' => array(
+      'active' => 3,
+      'count' => 3,
+      'display' => 4,
+    ),
+    'empty_behavior' => 'none',
+    'facet_more_text' => 'Show more',
+    'facet_fewer_text' => 'Show fewer',
+    'soft_limit' => 20,
+    'nofollow' => 1,
+    'show_expanded' => 0,
+  );
+  $export['search_api@c4m_search_users:block:c4m_body:value'] = $facet;
 
   $facet = new stdClass();
   $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
@@ -2715,6 +2780,91 @@ function c4m_search_facetapi_default_facet_settings() {
   $facet = new stdClass();
   $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
   $facet->api_version = 1;
+  $facet->name = 'search_api@c4m_search_users:block:c4m_user_contributions';
+  $facet->searcher = 'search_api@c4m_search_users';
+  $facet->realm = 'block';
+  $facet->facet = 'c4m_user_contributions';
+  $facet->enabled = FALSE;
+  $facet->settings = array(
+    'weight' => 0,
+    'widget' => 'facetapi_links',
+    'filters' => array(),
+    'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
+      'display' => 'display',
+    ),
+    'sort_weight' => array(
+      'active' => -50,
+      'count' => -49,
+      'display' => -48,
+    ),
+    'sort_order' => array(
+      'active' => 3,
+      'count' => 3,
+      'display' => 4,
+    ),
+    'empty_behavior' => 'none',
+    'facet_more_text' => 'Show more',
+    'facet_fewer_text' => 'Show fewer',
+    'soft_limit' => 20,
+    'nofollow' => 1,
+    'show_expanded' => 0,
+  );
+  $export['search_api@c4m_search_users:block:c4m_user_contributions'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
+  $facet->name = 'search_api@c4m_search_users:block:c4m_user_types';
+  $facet->searcher = 'search_api@c4m_search_users';
+  $facet->realm = 'block';
+  $facet->facet = 'c4m_user_types';
+  $facet->enabled = TRUE;
+  $facet->settings = array(
+    'weight' => 0,
+    'widget' => 'facetapi_links',
+    'filters' => array(),
+    'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
+      'display' => 'display',
+      'taxonomy_weight' => 0,
+      'indexed' => 0,
+      'natural' => 0,
+    ),
+    'sort_weight' => array(
+      'active' => '-50',
+      'count' => '-49',
+      'display' => '-48',
+      'taxonomy_weight' => '0',
+      'indexed' => '0',
+      'natural' => '0',
+    ),
+    'sort_order' => array(
+      'active' => '3',
+      'count' => '3',
+      'display' => '4',
+      'taxonomy_weight' => '4',
+      'indexed' => '4',
+      'natural' => '4',
+    ),
+    'empty_behavior' => 'none',
+    'facet_more_text' => 'Show more',
+    'facet_fewer_text' => 'Show fewer',
+    'soft_limit' => '20',
+    'nofollow' => 1,
+    'show_expanded' => 0,
+    'empty_text' => array(
+      'value' => '',
+      'format' => 'mail',
+    ),
+  );
+  $export['search_api@c4m_search_users:block:c4m_user_types'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
   $facet->name = 'search_api@c4m_search_users:block:c4m_vocab_geo';
   $facet->searcher = 'search_api@c4m_search_users';
   $facet->realm = 'block';
@@ -2825,6 +2975,42 @@ function c4m_search_facetapi_default_facet_settings() {
     ),
   );
   $export['search_api@c4m_search_users:block:c4m_vocab_geo'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
+  $facet->name = 'search_api@c4m_search_users:block:c4m_vocab_language';
+  $facet->searcher = 'search_api@c4m_search_users';
+  $facet->realm = 'block';
+  $facet->facet = 'c4m_vocab_language';
+  $facet->enabled = TRUE;
+  $facet->settings = array(
+    'weight' => 0,
+    'widget' => 'facetapi_links',
+    'filters' => array(),
+    'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
+      'display' => 'display',
+    ),
+    'sort_weight' => array(
+      'active' => -50,
+      'count' => -49,
+      'display' => -48,
+    ),
+    'sort_order' => array(
+      'active' => 3,
+      'count' => 3,
+      'display' => 4,
+    ),
+    'empty_behavior' => 'none',
+    'facet_more_text' => 'Show more',
+    'facet_fewer_text' => 'Show fewer',
+    'soft_limit' => 20,
+    'nofollow' => 1,
+    'show_expanded' => 0,
+  );
+  $export['search_api@c4m_search_users:block:c4m_vocab_language'] = $facet;
 
   $facet = new stdClass();
   $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
@@ -3047,6 +3233,42 @@ function c4m_search_facetapi_default_facet_settings() {
     ),
   );
   $export['search_api@c4m_search_users:block:c4m_vocab_topic_expertise'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
+  $facet->name = 'search_api@c4m_search_users:block:created';
+  $facet->searcher = 'search_api@c4m_search_users';
+  $facet->realm = 'block';
+  $facet->facet = 'created';
+  $facet->enabled = FALSE;
+  $facet->settings = array(
+    'weight' => 0,
+    'widget' => 'facetapi_links',
+    'filters' => array(),
+    'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
+      'display' => 'display',
+    ),
+    'sort_weight' => array(
+      'active' => -50,
+      'count' => -49,
+      'display' => -48,
+    ),
+    'sort_order' => array(
+      'active' => 3,
+      'count' => 3,
+      'display' => 4,
+    ),
+    'empty_behavior' => 'none',
+    'facet_more_text' => 'Show more',
+    'facet_fewer_text' => 'Show fewer',
+    'soft_limit' => 20,
+    'nofollow' => 1,
+    'show_expanded' => 0,
+  );
+  $export['search_api@c4m_search_users:block:created'] = $facet;
 
   $facet = new stdClass();
   $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */

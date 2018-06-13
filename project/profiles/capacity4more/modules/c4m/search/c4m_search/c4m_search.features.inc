@@ -360,17 +360,15 @@ function c4m_search_default_search_api_index() {
       "cron_limit" : "50",
       "fields" : {
         "c4m_body:value" : { "type" : "text" },
-        "c4m_country" : { "type" : "string" },
         "c4m_first_name" : { "type" : "string" },
         "c4m_is_deleted" : { "type" : "boolean" },
         "c4m_is_spammer" : { "type" : "boolean" },
-        "c4m_job_title" : { "type" : "text" },
         "c4m_last_name" : { "type" : "string" },
         "c4m_og_membership_type" : { "type" : "list\\u003Cstring\\u003E" },
-        "c4m_organisation" : { "type" : "string" },
-        "c4m_organisation_type" : { "type" : "string" },
         "c4m_user_contributions" : { "type" : "integer" },
+        "c4m_user_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "c4m_vocab_geo" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "c4m_vocab_language" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "c4m_vocab_topic" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "c4m_vocab_topic_expertise" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "created" : { "type" : "date" },
@@ -585,7 +583,7 @@ function c4m_search_default_search_api_sort() {
     "default_sort" : "0",
     "default_sort_no_terms" : "0",
     "default_order" : "desc",
-    "options" : { "field_name" : "The flag count of type c4m_og_content_recommend for an inthe_picture entity" },
+    "options" : { "field_name" : "The flag count of type c4m_og_content_recommend for an organisation entity" },
     "entity_type" : "search_api_sort",
     "rdf_mapping" : []
   }');
