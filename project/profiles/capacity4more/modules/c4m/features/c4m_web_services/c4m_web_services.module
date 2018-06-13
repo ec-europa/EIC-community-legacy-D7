@@ -211,7 +211,6 @@ function c4m_web_services_server() {
  * Implements hook_services_request_postprocess_alter().
  */
 function c4m_web_services_services_request_postprocess_alter($controller, $args, &$result) {
-  $a = 0;
   foreach ($args as $arg) {
     if (is_array($arg)) {
       if (!empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])

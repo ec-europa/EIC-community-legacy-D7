@@ -1767,7 +1767,7 @@ function c4m_user_profile_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'c4m_user_types',
     'label' => 'User type',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'user_register_form' => 1,
     ),
