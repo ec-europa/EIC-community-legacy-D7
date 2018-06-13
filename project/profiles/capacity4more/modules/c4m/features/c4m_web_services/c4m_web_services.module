@@ -270,7 +270,7 @@ function c4m_web_services_add_contact_persons($contact_persons, $nid) {
  * @return void|mixed
  *   Shouldn't return anyting.
  */
-function c4m_web_services_add_organisation_members ($c4m_organisation_members, $nid) {
+function c4m_web_services_add_organisation_members($c4m_organisation_members, $nid) {
   if (empty($c4m_organisation_members) && empty($nid)) {
     return;
   }
@@ -330,8 +330,7 @@ function c4m_web_services_get_or_add_user($rest_users) {
     else {
       // Otherwise, new user needs to be created and set the authmap for them.
       $new_user_data = [
-        'name' => (!empty($rest_user['ecas_id']))? $rest_user['ecas_id'] :
-          _c4m_web_services_return_valid_name($rest_user['first_name']  . ' ' . $rest_user['last_name']),
+        'name' => _c4m_web_services_return_valid_name($rest_user['first_name']  . ' ' . $rest_user['last_name']),
         'pass' => user_password(),
         'mail' => $rest_user['email'],
         'c4m_first_name' => [LANGUAGE_NONE => [['value' => $rest_user['first_name']]]],
