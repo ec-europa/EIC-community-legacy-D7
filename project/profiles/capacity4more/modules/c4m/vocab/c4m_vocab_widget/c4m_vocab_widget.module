@@ -79,7 +79,7 @@ function c4m_vocab_widget_field_widget_form(&$form, &$form_state, $field, $insta
     'vocabulary_label' => $field_label,
     'vocabulary_machine_name' => $field_name,
     'required' => $element['#required'],
-    'disabled' => _c4m_vocab_widget_check_disabled($element),
+    'access' => _c4m_vocab_widget_check_access($element),
   );
   $directive = theme('c4m_vocab_widget_taxonomy_widget', $variables);
   $form['directive-' . $field_name] = array(
@@ -332,7 +332,7 @@ function c4m_vocab_widget_field_formatter_view(
  * @return bool
  *  Return TRUE if field disabled.
  */
-function _c4m_vocab_widget_check_disabled($element) {
+function _c4m_vocab_widget_check_access($element) {
   $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
   if (empty($c4m_organisation_dashboard_fields)
   || $element["#entity_type"] != 'node'

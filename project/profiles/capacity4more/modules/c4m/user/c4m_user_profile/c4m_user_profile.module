@@ -588,7 +588,7 @@ function c4m_user_profile_form_user_profile_form_alter(&$form, &$form_state, $fo
   // Dashboard managed fields.
   $c4m_user_dashboard_link = variable_get('c4m_user_dashboard_link', '');
   if(!empty($c4m_user_dashboard_link)) {
-    $form["c4m_user_types"]['#disabled'] = TRUE;
+
     $edit_link = l('(' . t('edit here') . ')', $c4m_user_dashboard_link);
     $form['c4m_user_types']["#suffix"] = '<small class="disabled-text disabled--user-type">'
       . t('The User Type is managed through dashboard. ')

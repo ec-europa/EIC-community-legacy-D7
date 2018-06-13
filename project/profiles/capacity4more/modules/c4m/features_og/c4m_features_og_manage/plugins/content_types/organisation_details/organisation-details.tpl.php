@@ -43,6 +43,9 @@
           </a>
       </div>
       <div class="row">
+          <div class="col-md-12"><?php print (isset($details['dashboard_fields_text'])) ? $details['dashboard_fields_text'] : ''; ?></div>
+      </div>
+      <div class="row">
         <div class="col-md-3"><?php print t('Organisation name') ?></div>
         <div class="col-md-9"><?php print (isset($details['title'])) ? $details['title'] : ''; ?></div>
       </div>

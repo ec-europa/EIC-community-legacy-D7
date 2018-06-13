@@ -206,3 +206,188 @@ function c4m_web_services_server() {
     $rest_server->handleException($e);
   }
 }
+
+/**
+ * Implements hook_services_request_postprocess_alter().
+ */
+function c4m_web_services_services_request_postprocess_alter($controller, $args, &$result) {
+  foreach ($args as $arg) {
+    if (is_array($arg)) {
+      if (!empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])
+        && !empty($nid = $result['nid'])) {
+        c4m_web_services_add_contact_persons($c4m_contact_persons, $nid);
+      }
+      if (!empty($c4m_organisation_members = $arg['c4m_organisation_members'][LANGUAGE_NONE])
+        && !empty($nid = $result['nid'])) {
+        c4m_web_services_add_organisation_members($c4m_organisation_members, $nid);
+      }
+    }
+  }
+
+}
+
+/**
+ * Helper function for adding users to the c4m_contact_persons field.
+ *
+ * @param array $contact_persons
+ *   The array of users to be set as contact persons.
+ *
+ * @param array $nid
+ *   The nid of the created organisation.
+ *
+ * @return void|mixed
+ *   Shouldn't return anyting.
+ */
+function c4m_web_services_add_contact_persons($contact_persons, $nid) {
+  if (empty($contact_persons) && empty($nid)) {
+    return;
+  }
+
+  $users = c4m_web_services_get_or_add_user($contact_persons);
+
+  // Add these users to the c4m_contact_persons field.
+  if (empty($users)) {
+    return;
+  }
+  $node = node_load($nid);
+
+  // Create an array with the new uids.
+  foreach ($users as $user) {
+    $node->c4m_contact_persons[LANGUAGE_NONE][] = ['target_id' => $user->uid];
+  }
+  node_save($node);
+}
+
+/**
+ * Helper function for adding users as members to a Group - Organisation.
+ *
+ * @param array $c4m_organisation_members
+ *   The array of users to be set as members of the organisation.
+ *
+ * @param array $nid
+ *   The nid of the created organisation.
+ *
+ * @return void|mixed
+ *   Shouldn't return anyting.
+ */
+function c4m_web_services_add_organisation_members($c4m_organisation_members, $nid) {
+  if (empty($c4m_organisation_members) && empty($nid)) {
+    return;
+  }
+
+  $users = c4m_web_services_get_or_add_user($c4m_organisation_members);
+
+  // Add these users as members of the Group.
+  if (empty($users)) {
+    return;
+  }
+
+  // Remove old members of a group - in case of updating the organisation.
+  $old_member_ids = c4m_og_get_group_member_ids($nid);
+  foreach ($old_member_ids as $one) {
+    og_ungroup('node', $nid, 'user', $one);
+  }
+
+  foreach ($users as $user) {
+    // Check if the user is already a member.
+    if (og_is_member('node', $nid, 'user', $user)) {
+      continue;
+    }
+    // Add the user to the group
+    $membership = og_group('node', $nid, ['entity' => $user->uid]);
+    if (!empty($membership)) {
+      og_role_grant('node', $nid, $user->uid, 2);
+    }
+  }
+}
+
+/**
+ * Helper function for getting or creating new users that are sent through the WS.
+ *
+ * @param array $rest_users
+ *   The array of users sent through the WS.
+ *
+ * @return array
+ *   List of users, existing and new ones.
+ */
+function c4m_web_services_get_or_add_user($rest_users) {
+  if (empty($rest_users)) {
+    return [];
+  }
+  $users = [];
+  foreach ($rest_users as $key => $rest_user) {
+    // First check if all the mandatory data is in the user array.
+    // $rest_user['ecas_id'] can be empty when users are pushed through the WS.
+    // If it's not empty, we use it as the username in Drupal.
+    if (empty($rest_user['first_name'])
+      || empty($rest_user['last_name']) || empty($rest_user['email'])) {
+      continue;
+    }
+    // Check if the user already exists by searching for his email.
+    if ($user = user_load_by_mail($rest_user['email'])) {
+      $users[] = $user;
+    }
+    else {
+      // Otherwise, new user needs to be created and set the authmap for them.
+      $new_user_data = [
+        'name' => _c4m_web_services_return_valid_name($rest_user['first_name']  . ' ' . $rest_user['last_name']),
+        'pass' => user_password(),
+        'mail' => $rest_user['email'],
+        'c4m_first_name' => [LANGUAGE_NONE => [['value' => $rest_user['first_name']]]],
+        'c4m_last_name' => [LANGUAGE_NONE => [['value' => $rest_user['last_name']]]],
+        'init' => $rest_user['email'],
+        'created' => time(),
+        'status' => TRUE,
+      ];
+      // Create new user.
+      $new_user = user_save(drupal_anonymous_user(), $new_user_data);
+
+      if (empty($new_user)) {
+        continue;
+      }
+      // Set Authmap record for this newly created user.
+      user_set_authmaps($new_user, array("authname_ecas"=> $rest_user['email']));
+
+      $users[] = $new_user;
+    }
+  }
+  return $users;
+}
+
+/**
+ * Helper function that returns a valid username.
+ *
+ * @param string $name
+ *   The full name.
+ *
+ * @return string
+ *   A valid username.
+ */
+function _c4m_web_services_return_valid_name($name) {
+  $counter = 1;
+  $name_to_check = $name;
+
+  while (_c4m_web_services_check_unique_name($name_to_check)) {
+    $name_to_check = $name . $counter;
+    $counter++;
+  }
+
+  return $name_to_check;
+}
+
+/**
+ * Helper function that checks for unique username.
+ *
+ * @param string $name
+ *   The full name.
+ *
+ * @return bool
+ *   True if the username is unique.
+ */
+function _c4m_web_services_check_unique_name($name) {
+  $query = db_select('users')
+    ->fields('users', array('name'))
+    ->condition('name', $name, '=');
+
+  return (bool) $query->execute()->fetchAssoc();
+}

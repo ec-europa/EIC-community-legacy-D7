@@ -343,13 +343,13 @@ function c4m_content_organisation_form_organisation_node_form_alter(array &$form
   $form["c4m_icon"]["#access"] = FALSE;
   $form["c4m_domain"]["#access"] = FALSE;
 
-  $form['c4m_organisation_dashboard_id']['#disabled'] = TRUE;
-  // Disable fields managed through dashboard.
+  // Hide fields managed through dashboard.
+  $form['c4m_organisation_dashboard_id']['#attributes']['class'][] = 'organisation-edit-hide';
   _c4m_content_organisation_alter_organisation_form($form, $form_state);
 }
 
 /**
- * Alters the add/edit form for organisation content type. Disable fields managed in Dashboard.
+ * Alters the add/edit form for organisation content type. Hide fields managed in Dashboard.
  *
  * @param array $form
  *   Form array.
@@ -358,24 +358,12 @@ function c4m_content_organisation_form_organisation_node_form_alter(array &$form
  */
 function _c4m_content_organisation_alter_organisation_form(array &$form, array &$form_state) {
   $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
-  $c4m_organisation_dashboard_link =variable_get('c4m_organisation_dashboard_link', '');
-  if (empty($c4m_organisation_dashboard_fields) || empty($c4m_organisation_dashboard_link)) {
+  if (empty($c4m_organisation_dashboard_fields)) {
     return;
   }
-
   foreach ($form as $form_item_name => &$form_item) {
     if (in_array($form_item_name, array_keys($c4m_organisation_dashboard_fields))) {
-      $edit_link = l( '(' . t('edit in SMEi Dashboard') . ')', $c4m_organisation_dashboard_link);
-      !empty($form_item["und"]["#suffix"])?
-        $form_item["und"]["#suffix"] .= '<small class="disabled-text disabled--'
-          . $form_item_name . '">'
-          . $c4m_organisation_dashboard_fields[$form_item_name]
-          . ' ' . $edit_link . '</small>'
-        : $form_item['#suffix'] = '<small class="disabled-text disabled--'
-        . $form_item_name . '">'
-        . $c4m_organisation_dashboard_fields[$form_item_name]
-        . ' ' . $edit_link . '</small>';
-      $form_item['#disabled'] = TRUE;
+      $form_item['#attributes']['class'][] = 'organisation-edit-hide';
     }
   }
 }

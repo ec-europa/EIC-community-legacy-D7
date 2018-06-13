@@ -5,6 +5,7 @@
  * Template to render the Vocabulary widget.
  */
 ?>
+<?php if (!$access) :?>
 <div class="c4m-vocab-description"
   ng-show="data.field_info.<?php print $vocabulary_machine_name ?>.description">
   {{data.field_info.<?php print $vocabulary_machine_name ?>.description}}
@@ -13,7 +14,6 @@
   <div class="checkboxes-wrapper">
     <div>
       <button name="<?php print $vocabulary_machine_name ?>"
-              <?php ($disabled)? print "disabled=TRUE" : ''; ?>
               type="button"
               ng-click="togglePopover('<?php print $vocabulary_machine_name; ?>', $event)"
               class="btn btn-primary fa fa-plus"
@@ -123,3 +123,4 @@
     </div>
   </div>
 </div>
+<?php endif;?>
