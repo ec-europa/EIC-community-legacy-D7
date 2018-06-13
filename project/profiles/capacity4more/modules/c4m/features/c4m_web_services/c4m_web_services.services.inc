@@ -77,6 +77,7 @@ function c4m_web_services_default_services_endpoint() {
       ),
     ),
   );
+  $endpoint->debug = 0;
   $export['easme_dashboard'] = $endpoint;
 
   return $export;

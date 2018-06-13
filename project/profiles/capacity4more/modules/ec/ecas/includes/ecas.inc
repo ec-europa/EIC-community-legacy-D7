@@ -306,6 +306,9 @@ function ecas_sync_profile_core(&$user, array $user_info) {
     }
   }
 
+  // AMPLEXOR update: overwrite any temporary Drupal username with ECAS id.
+  $edit['name'] = $user_info['cas:user'];
+
   // Save changes.
   user_save($user, $edit);
 }
@@ -395,8 +398,11 @@ function ecas_login_check() {
       $ecas_groups = $ecas_attributes['cas:groups'];
       $ecas_email = $ecas_attributes['cas:email'];
       // @codingStandardsIgnoreEnd
+
       // Try to log into Drupal.
-      $account = user_load_by_name($ecas_name);
+      // AMPLEXOR update for EASME: match on mail instead of username.
+      // $account = user_load_by_name($ecas_name);
+      $account = user_load_by_mail($ecas_email);
 
       // Extra process to filter ECAS user.
       drupal_alter('ecas_extra_filter', $ecas_name, $account, $_SESSION['ecas_goto']);
@@ -408,9 +414,9 @@ function ecas_login_check() {
     }
 
     // If we don't have a user register them.
-    if (!$account && !empty($ecas_name)) {
+    if (!$account && (!empty($ecas_name) && !empty($ecas_email))) {
 
-      $account = ecas_create_user($ecas_name);
+      $account = ecas_create_user($ecas_name, $ecas_email);
 
       if ($account && $account->uid > 0) {
         $_SESSION['ecas_goto'] = sprintf('user/%d/edit', $account->uid);
@@ -700,16 +706,16 @@ function _ecas_init_phpcas_client() {
  * @return false|\stdClass
  *   The user object, or FALSE if the user could not be created.
  */
-function ecas_create_user($ecas_name, $defaults = array()) {
+function ecas_create_user($ecas_name, $ecas_email, $defaults = array()) {
   $user_default = array_merge(array(
     'name' => $ecas_name,
     'pass' => user_password(),
-    'init' => $ecas_name,
+    'init' => $ecas_email,
     'status' => variable_get('ecas_account_option', 1),
     // @todo Use REQUEST_TIME instead of time().
     'access' => time(),
-    'auth_ecas' => 'ecas_' . $ecas_name,
-    'mail' => variable_get('ecas_default_mail_address', ECAS_DEFAULT_MAIL_ADDRESS),
+    'auth_ecas' => 'ecas_' . $ecas_email,
+    'mail' => $ecas_email,
   ), $defaults);
 
   // Now save the user.
@@ -718,7 +724,7 @@ function ecas_create_user($ecas_name, $defaults = array()) {
   // Register the user has ECAS authentication.
   db_insert('authmap')
     ->fields(array(
-      'authname' => $ecas_name,
+      'authname' => $account->mail,
       'uid' => $account->uid,
       'module' => 'ecas',
     ))
@@ -727,7 +733,7 @@ function ecas_create_user($ecas_name, $defaults = array()) {
   watchdog('user', 'new user: %n (ECAS)', array('%n' => $account->name), WATCHDOG_NOTICE, l(t('edit user'), sprintf('admin/user/edit/%d', $account->uid)));
 
   if ($account) {
-    $account = user_load_by_name($account->name);
+    $account = user_load_by_mail($account->mail);
   }
 
   return $account;

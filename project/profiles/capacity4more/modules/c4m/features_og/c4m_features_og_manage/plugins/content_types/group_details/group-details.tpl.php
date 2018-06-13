@@ -13,18 +13,34 @@
         <h2><?php print t('Group administration') ?></h2>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Owner') ?> (<a href="<?php print $details['owner_edit']; ?>"><?php print t('Edit') ?></a>)</div>
+        <div class="col-md-3"><?php print t('Owner') ?>
+            <a href="<?php print $details['owner_edit']; ?>">
+                <span class="es--edit-link ecl-button ecl-button--primary">
+                    <?php print t('Edit'); ?>
+                </span>
+            </a>
+        </div>
         <div class="col-md-9"><?php print $details['owner']; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Administrators') ?> (<a href="<?php print $details['admins_edit']; ?>"><?php print t('Edit') ?></a>)</div>
+        <div class="col-md-3"><?php print t('Administrators') ?>
+            <a href="<?php print $details['admins_edit']; ?>">
+                <span class="es--edit-link ecl-button ecl-button--primary">
+                    <?php print t('Edit'); ?>
+                </span>
+            </a>
+        </div>
         <div class="col-md-9"><?php print $details['admins']; ?></div>
       </div>
     </div>
     <div class="group-details">
       <div class="title">
         <h2><?php print t('Group details') ?></h2>
-        <a href="<?php print $details['edit_link'] ?>#edit-details"><?php print t('Edit') ?></a>
+          <a href="<?php print $details['edit_link'] ?>#edit-details">
+            <span class="es--edit-link ecl-button ecl-button--primary">
+                    <?php print t('Edit'); ?>
+            </span>
+          </a>
       </div>
       <div class="row">
         <div class="col-md-3"><?php print t('Group name') ?></div>
@@ -52,7 +68,11 @@
     <div class="group-permissions">
       <div class="title">
         <h2><?php print t('Group permissions') ?></h2>
-        <a href="<?php print $details['edit_link'] ?>#edit-permissions"><?php print t('Edit') ?> </a>
+        <a href="<?php print $details['edit_link'] ?>#edit-permissions">
+          <span class="es--edit-link ecl-button ecl-button--primary">
+            <?php print t('Edit'); ?>
+          </span>
+        </a>
       </div>
       <div class="row">
         <div class="col-md-3"><?php print t('Group access') ?></div>
@@ -73,7 +93,11 @@
     <div class="group-related-content">
       <div class="title">
         <h2><?php print t('Related content') ?></h2>
-        <a href="<?php print $details['edit_link'] ?>#edit-related-content"><?php print t('Edit') ?> </a>
+          <a href="<?php print $details['edit_link'] ?>#edit-related-content">
+            <span class="es--edit-link ecl-button ecl-button--primary">
+              <?php print t('Edit'); ?>
+            </span>
+          </a>
       </div>
       <div class="row">
         <div class="col-md-3"><?php print t('Related Groups') ?></div>

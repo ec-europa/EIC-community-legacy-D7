@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_vocab_widget.features.inc

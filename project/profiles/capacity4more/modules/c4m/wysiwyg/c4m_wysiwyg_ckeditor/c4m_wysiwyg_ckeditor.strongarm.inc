@@ -22,14 +22,14 @@ function c4m_wysiwyg_ckeditor_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'file_entity_default_allowed_extensions';
-  $strongarm->value = 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm';
+  $strongarm->value = 'jpg jpeg gif png bmp txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm';
   $export['file_entity_default_allowed_extensions'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'file_entity_max_filesize';
-  $strongarm->value = '2 MB';
+  $strongarm->value = '10 MB';
   $export['file_entity_max_filesize'] = $strongarm;
 
   $strongarm = new stdClass();

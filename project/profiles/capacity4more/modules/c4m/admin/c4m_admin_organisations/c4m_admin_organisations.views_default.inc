@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_admin_organisations.views_default.inc
@@ -64,7 +65,7 @@ function c4m_admin_organisations_views_default_views() {
   $handler->display->display_options['fields']['group_purl']['field'] = 'group_purl';
   $handler->display->display_options['fields']['group_purl']['label'] = 'URL';
   $handler->display->display_options['fields']['group_purl']['element_label_colon'] = FALSE;
-  /* Field: Content: Type */
+  /* Field: : c4m_organisation_type */
   $handler->display->display_options['fields']['c4m_organisation_type']['id'] = 'c4m_organisation_type';
   $handler->display->display_options['fields']['c4m_organisation_type']['table'] = 'field_data_c4m_organisation_type';
   $handler->display->display_options['fields']['c4m_organisation_type']['field'] = 'c4m_organisation_type';

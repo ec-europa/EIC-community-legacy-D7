@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_content_feed.features.field_instance.inc
@@ -159,6 +160,7 @@ function c4m_content_feed_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',

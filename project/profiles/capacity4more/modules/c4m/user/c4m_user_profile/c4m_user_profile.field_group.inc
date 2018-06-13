@@ -119,13 +119,6 @@ function c4m_user_profile_field_group_info() {
     'weight' => '3',
     'children' => array(
       0 => 'c4m_body',
-      1 => 'c4m_job_title',
-      2 => 'c4m_facebook',
-      3 => 'c4m_twitter',
-      4 => 'c4m_vocab_language',
-      5 => 'c4m_cv_link',
-      6 => 'c4m_linkedin',
-      7 => 'c4m_user_types',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -186,16 +179,21 @@ function c4m_user_profile_field_group_info() {
   $field_group->mode = 'full';
   $field_group->parent_name = 'group_user_meta';
   $field_group->data = array(
-    'label' => '',
-    'weight' => '2',
+    'label' => 'Data',
+    'weight' => '1',
     'children' => array(
-      0 => 'masquerade',
-      1 => 'c4m_user_first_and_last_name',
-      2 => 'c4m_user_contact_link',
+      0 => 'c4m_cv_link',
+      1 => 'c4m_facebook',
+      2 => 'c4m_linkedin',
+      3 => 'c4m_twitter',
+      4 => 'c4m_user_types',
+      5 => 'c4m_vocab_language',
+      6 => 'c4m_user_first_and_last_name',
+      7 => 'c4m_user_contact_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => '',
+      'label' => 'Data',
       'instance_settings' => array(
         'id' => '',
         'classes' => 'group-user-data field-group-div',
@@ -285,7 +283,7 @@ function c4m_user_profile_field_group_info() {
   $field_group->mode = 'full';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => '',
+    'label' => 'Meta',
     'weight' => '0',
     'children' => array(
       0 => 'c4m_user_picture',
@@ -293,7 +291,7 @@ function c4m_user_profile_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => '',
+      'label' => 'Meta',
       'instance_settings' => array(
         'id' => '',
         'classes' => 'group-user-meta clearfix',
@@ -374,7 +372,9 @@ function c4m_user_profile_field_group_info() {
   // Translatables
   // Included for use with string extractors like potx.
   t('About');
+  t('Data');
   t('Expertise');
+  t('Meta');
   t('Notable Contributions');
   t('Professional Interests');
   t('Your account');

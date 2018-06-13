@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_vocab_document_type.strongarm.inc

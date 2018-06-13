@@ -177,8 +177,6 @@ function c4m_features_og_documents_views_default_views() {
   $handler->display->display_options['header']['c4m_views_search_api_sorts']['field'] = 'c4m_views_search_api_sorts';
   $handler->display->display_options['header']['c4m_views_search_api_sorts']['ui_name'] = 'Sort results';
   $handler->display->display_options['header']['c4m_views_search_api_sorts']['empty'] = TRUE;
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Header: Number of items */
   $handler->display->display_options['header']['c4m_views_result']['id'] = 'c4m_views_result';
   $handler->display->display_options['header']['c4m_views_result']['table'] = 'views';
@@ -186,6 +184,8 @@ function c4m_features_og_documents_views_default_views() {
   $handler->display->display_options['header']['c4m_views_result']['ui_name'] = 'Number of items';
   $handler->display->display_options['header']['c4m_views_result']['empty'] = TRUE;
   $handler->display->display_options['header']['c4m_views_result']['content'] = '<span class="total-items">@total items</span>';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Node is published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_c4m_search_nodes';

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_content_featured.features.field_instance.inc
@@ -345,12 +346,13 @@ function c4m_content_featured_field_default_field_instances() {
       'alt_field' => 1,
       'default_image' => 0,
       'file_directory' => 'images/featured',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '2 MB',
+      'file_extensions' => 'png gif jpg jpeg bmp',
+      'max_filesize' => '10 MB',
       'max_resolution' => '',
       'min_resolution' => '300x225',
       'title_field' => 1,
       'user_register_form' => FALSE,
+      'wysiwyg_insert' => 0,
     ),
     'widget' => array(
       'active' => 1,

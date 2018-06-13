@@ -319,7 +319,6 @@ function c4m_comment_views_default_views() {
   $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
   $handler->display->display_options['filters']['status']['expose']['remember'] = TRUE;
   $handler->display->display_options['path'] = 'admin/content/comment/approval';
-
   $export['c4m_admin_views_comment'] = $view;
 
   return $export;

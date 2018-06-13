@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * c4m_admin_event_sites.views_default.inc
@@ -113,7 +114,6 @@ function c4m_admin_event_sites_views_default_views() {
     'multiple_to' => '',
     'show_remaining_days' => 0,
   );
-
   /* Field: Field: Topics */
   $handler->display->display_options['fields']['c4m_vocab_topic']['id'] = 'c4m_vocab_topic';
   $handler->display->display_options['fields']['c4m_vocab_topic']['table'] = 'field_data_c4m_vocab_topic';

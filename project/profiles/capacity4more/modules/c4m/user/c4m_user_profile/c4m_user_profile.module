@@ -27,7 +27,6 @@ function c4m_user_profile_permission() {
  */
 function c4m_user_profile_user_logout() {
   if (!user_access('access logout')) {
-    drupal_set_message(t("This operation is not permitted"), "error");
     drupal_goto('<front>');
   }
 }

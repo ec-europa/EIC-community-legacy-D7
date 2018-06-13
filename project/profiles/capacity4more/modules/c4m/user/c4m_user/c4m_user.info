@@ -19,7 +19,6 @@ dependencies[] = contextual
 dependencies[] = ctools
 dependencies[] = currency
 dependencies[] = current_search
-dependencies[] = devel
 dependencies[] = draggableviews
 dependencies[] = ds
 dependencies[] = ecas

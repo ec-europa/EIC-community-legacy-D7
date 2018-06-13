@@ -645,25 +645,30 @@ function _c4m_user_profile_settings_form_extra_settings(array &$form, array &$fo
  *   Flagging ID's for the user/flag.
  */
 function c4m_user_profile_get_flag_flaggings($flag, $user) {
-  $flags = &drupal_static(__FUNCTION__);
+  if (isset($flag->name)) {
+    $flags = &drupal_static(__FUNCTION__);
 
-  // We check to see if the flag count is already in the cache,
-  // if it's not, run the query.
-  if (!isset($flags[$flag->name][$user->uid])) {
-    $flags[$flag->name][$user->uid] = [];
-    $query = db_select('flagging', 'f');
+    // We check to see if the flag count is already in the cache,
+    // if it's not, run the query.
+    if (!isset($flags[$flag->name][$user->uid])) {
+      $flags[$flag->name][$user->uid] = [];
+      $query = db_select('flagging', 'f');
 
-    $query->fields('f', ['flagging_id'])
-      ->orderBy('fid')
-      ->orderBy('entity_id')
-      ->condition('fid', $flag->fid)
-      ->condition('uid', $user->uid);
+      $query->fields('f', ['flagging_id'])
+          ->orderBy('fid')
+          ->orderBy('entity_id')
+          ->condition('fid', $flag->fid)
+          ->condition('uid', $user->uid);
 
-    $result = $query->execute()
-      ->fetchCol();
+      $result = $query->execute()
+          ->fetchCol();
 
-    $flags[$flag->name][$user->uid] = $result;
+      $flags[$flag->name][$user->uid] = $result;
+    }
+
+    return $flags[$flag->name][$user->uid];
   }
-
-  return $flags[$flag->name][$user->uid];
+  else {
+    return array();
+  }
 }

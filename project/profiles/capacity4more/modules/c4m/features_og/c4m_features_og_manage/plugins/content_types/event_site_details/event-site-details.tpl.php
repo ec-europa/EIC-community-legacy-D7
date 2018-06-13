@@ -23,8 +23,8 @@
         <div class="col-md-9"><?php print $details['owner']; ?></div>
       </div>
       <div class="row">
-        <div class="col-md-3"><?php print t('Administrators') ?> <a
-            href="<?php print $details['admins_edit']; ?>">
+        <div class="col-md-3"><?php print t('Administrators') ?>
+            <a href="<?php print $details['admins_edit']; ?>">
                 <span class="es--edit-link ecl-button ecl-button--primary">
                     <?php print t('Edit'); ?>
                 </span>
