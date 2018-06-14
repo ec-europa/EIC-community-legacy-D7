@@ -48,18 +48,37 @@ function c4m_vocab_language_install_terms() {
   $vocab = taxonomy_vocabulary_machine_name_load('c4m_vocab_language');
 
   $terms = array(
+    st('Bulgarian'),
+    st('Croatian'),
+    st('Czech'),
+    st('Danish'),
+    st('Dutch'),
     st('English'),
+    st('Estonian'),
+    st('Finnish'),
     st('French'),
-    st('Spanish'),
     st('German'),
+    st('Greek'),
+    st('Hungarian'),
+    st('Irish'),
+    st('Italian'),
+    st('Latvian'),
+    st('Lithuanian'),
+    st('Maltese'),
+    st('Polish'),
     st('Portuguese'),
+    st('Romanian'),
+    st('Slovak'),
+    st('Slovenian'),
+    st('Spanish'),
+    st('Swedish'),
+    st('Russian'),
     st('Arabic'),
     st('Chinese'),
-    st('Russian'),
     st('Others'),
-  );
+    );
 
-  $weight = -20;
+  $weight = -40;
   foreach ($terms as $term) {
     $term_object              = new stdClass();
     $term_object->name        = $term;
@@ -70,4 +89,15 @@ function c4m_vocab_language_install_terms() {
 
     $weight++;
   }
+}
+
+/**
+ * Delete old terms and add all the new ones.
+ */
+function c4m_vocab_language_update_7001() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('c4m_vocab_language');
+  foreach (taxonomy_get_tree($vocabulary->vid) as $term) {
+    taxonomy_term_delete($term->tid);
+  }
+  c4m_vocab_language_install_terms();
 }
