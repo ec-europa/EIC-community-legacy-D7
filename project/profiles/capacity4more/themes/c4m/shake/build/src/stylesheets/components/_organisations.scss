@@ -8,6 +8,24 @@
     margin: 0;
     margin-bottom: 40px;
   }
+  // Hide "Partner type: Partner" and "Partner type: Customer" labels.
+  .field-name-c4m-customers, .field-name-c4m-partners {
+    table {
+      .paragraphs-item-type-c4m-paragraph-partner {
+        td:not(.field-multiple-drag) {
+          > :first-child:not(.ajax-new-content) {
+            display: none;
+          }
+        }
+        .ajax-new-content{
+          > :first-child {
+          display: none;
+          }
+        }
+      }
+    }
+  }
+
 }
 .pane-c4m-content-organisation-left, .pane-c4m-content-organisation-right {
   .paragraphs-items-c4m-left-column, .paragraphs-items-c4m-right-column {
