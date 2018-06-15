@@ -952,10 +952,14 @@ function c4m_features_og_manage_organisation_details() {
   $organisations_type = $wrapper->c4m_organisations_type->value();
   if ($organisations_type) {
     foreach ($organisations_type as $one) {
-      $types[] = $one->name;
+      if (isset($one->name)) {
+        $types[] = $one->name;
+      }
     }
-    $types = implode(', ', $types);
-    $details['c4m_organisations_type'] = $types;
+    if (isset($types)) {
+      $types = implode(', ', $types);
+      $details['c4m_organisations_type'] = $types;
+    }
   }
 
   // The organisation size.
