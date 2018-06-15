@@ -1,8 +1,9 @@
 #user-bar {
   background-color: $color-header-grey;
   box-shadow: none;
-  height: 50px;
+  height: auto;
   padding: 10px 0;
+
   .user-groups,
   .user-projects {
     background: $color-blue-light;
@@ -14,6 +15,12 @@
     }
   }
   .user-profile-menu {
+    &.dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: auto;
+      right: 0;
+    }
     background: $color-blue-light;
     li {
       a {
@@ -52,6 +59,26 @@
   #block-c4m-user-profile-user-menu {
     .dropdown {
       margin: 0 0.5rem;
+
+      // Mobile view.
+      @media (max-width: 320px) {
+        .dropdown-menu {
+          position: fixed;
+          top: 120px;
+          left: 15px;
+          max-width: 285px;
+          height: auto;
+        }
+      }
+      @media (min-width: 321px) and (max-width: 425px) {
+        .dropdown-menu {
+          position: fixed;
+          top: 90px;
+          left: 80px;
+          max-width: 300px;
+          height: auto;
+        }
+      }
     }
   }
 }
