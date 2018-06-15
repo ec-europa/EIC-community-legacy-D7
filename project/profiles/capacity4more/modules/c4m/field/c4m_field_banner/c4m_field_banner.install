@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions.
+ *
+ * Install, update and uninstall functions for the
+ * c4m_field_banner module.
+ */
+
+/**
+* Enable manualcrop module.
+*/
+function c4m_field_banner_update_7001() {
+  module_enable(['manualcrop']);
+}

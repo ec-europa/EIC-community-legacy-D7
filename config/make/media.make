@@ -23,3 +23,16 @@ projects[exif_orientation]version] = "1.1"
 
 projects[stage_file_proxy][subdir] = "contrib"
 projects[stage_file_proxy]version] = "1.7"
+
+projects[manualcrop][subdir] = "contrib"
+projects[manualcrop]version] = "1.7"
+
+libraries[jquery.imagesloaded][download][type]= "get"
+libraries[jquery.imagesloaded][download][url] = "https://github.com/desandro/imagesloaded/archive/v2.1.2.tar.gz"
+libraries[jquery.imagesloaded][directory_name] = "jquery.imagesloaded"
+libraries[jquery.imagesloaded][destination] = "libraries"
+
+libraries[jquery.imgareaselect][download][type]= "get"
+libraries[jquery.imgareaselect][download][url] = "https://github.com/odyniec/imgareaselect/archive/v0.9.11-rc.1.tar.gz"
+libraries[jquery.imgareaselect][directory_name] = "jquery.imgareaselect"
+libraries[jquery.imgareaselect][destination] = "libraries"

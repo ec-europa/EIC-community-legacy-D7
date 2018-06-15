@@ -29,6 +29,12 @@ function c4m_message_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 2,
       ),
+      'message_notify_daily_digest' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'message_notify_email_body' => array(
         'label' => 'above',
         'settings' => array(),
@@ -36,6 +42,18 @@ function c4m_message_field_default_field_instances() {
         'weight' => 0,
       ),
       'message_notify_email_subject' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'message_notify_monthly_digest' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'message_notify_weekly_digest' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -79,6 +97,12 @@ function c4m_message_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 0,
       ),
+      'message_notify_daily_digest' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'message_notify_email_body' => array(
         'label' => 'above',
         'settings' => array(),
@@ -86,6 +110,18 @@ function c4m_message_field_default_field_instances() {
         'weight' => 0,
       ),
       'message_notify_email_subject' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'message_notify_monthly_digest' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'message_notify_weekly_digest' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
