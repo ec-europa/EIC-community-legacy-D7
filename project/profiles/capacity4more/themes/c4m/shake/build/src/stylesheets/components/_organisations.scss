@@ -8,3 +8,15 @@
     margin: 0;
   }
 }
+.pane-c4m-content-organisation-left, .pane-c4m-content-organisation-right {
+  .paragraphs-items-c4m-left-column, .paragraphs-items-c4m-right-column {
+    .user-profile {
+      &.view-mode-teaser {
+        margin-bottom: 10px;
+        .c4m-social-media-item {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
