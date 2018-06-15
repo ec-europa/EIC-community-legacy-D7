@@ -248,11 +248,10 @@ function c4m_content_organisation_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'micro' => 'Micro',
-        'small' => 'Small',
-        'medium' => 'Medium',
-        'large' => 'Large',
-        'other' => 'Other',
+        'micro' => 'Micro (1-9)',
+        'small' => 'Small (10-49)',
+        'medium' => 'Medium (50-250)',
+        'large' => 'Large (>250)',
       ),
       'allowed_values_function' => '',
     ),
