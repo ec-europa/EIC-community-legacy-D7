@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * @file
+ * Installation hooks for Organisation Types vocabulary.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function c4m_vocab_organisation_types_install() {
+  c4m_vocab_organisation_types_install_vocabulary();
+  c4m_vocab_organisation_types_install_terms();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function c4m_vocab_organisation_types_uninstall() {
+  $vocab = taxonomy_vocabulary_machine_name_load('c4m_vocab_organisation_types');
+
+  if (!empty($vocab)) {
+    taxonomy_vocabulary_delete($vocab->vid);
+  }
+}
+
+/**
+ * Create Organisation Types vocabulary.
+ */
+function c4m_vocab_organisation_types_install_vocabulary() {
+  $language_vocab = (object) array(
+    'name' => 'Languages',
+    'description' => 'Language indication for content',
+    'machine_name' => 'c4m_vocab_organisation_types',
+  );
+  taxonomy_vocabulary_save($language_vocab);
+
+  variable_set(
+    'pathauto_taxonomy_term_c4m_vocab_organisation_types_pattern',
+    'content-language/[term:name]'
+  );
+}
+
+/**
+ * Add terms.
+ */
+function c4m_vocab_organisation_types_install_terms() {
+  $vocab = taxonomy_vocabulary_machine_name_load('c4m_vocab_organisation_types');
+
+  $terms = array(
+    st('SME Beneficiary'),
+    st('Investor'),
+    st('EEN Partner'),
+    st('Corporate/Large company'),
+    st('Procurer'),
+    st('EIC Service provider'),
+    );
+
+  $weight = -10;
+  foreach ($terms as $term) {
+    $term_object              = new stdClass();
+    $term_object->name        = $term;
+    $term_object->description = 'Organisation Type ' . $term;
+    $term_object->vid         = $vocab->vid;
+    $term_object->weight      = $weight;
+    taxonomy_term_save($term_object);
+
+    $weight++;
+  }
+}
+
+/**
+ * Delete old terms and add all the new ones.
+ */
+function c4m_vocab_organisation_types_update_7001() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('c4m_vocab_organisation_types');
+  foreach (taxonomy_get_tree($vocabulary->vid) as $term) {
+    if (!empty($term)) {
+      taxonomy_term_delete($term->tid);
+    }
+  }
+  c4m_vocab_organisation_types_install_terms();
+}
