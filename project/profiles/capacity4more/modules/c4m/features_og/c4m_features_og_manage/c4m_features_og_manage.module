@@ -906,7 +906,7 @@ function c4m_features_og_manage_organisation_details() {
     'tagline' => t('No tag line'),
     'c4m_organisations_type' => t('No organisation type'),
     'c4m_organisation_size' => t('No organisation size'),
-    'description' => !empty($wrapper->c4m_body->value())? $wrapper->c4m_body->value()['value'] : t('No text about this organisation.'),
+    'description' => t('No text about this organisation.'),
     'c4m_link' => t('No organisation website.'),
     'c4m_facebook' => t('No Facebook URL.'),
     'c4m_twitter' => t('No TwitterURL.'),
@@ -926,6 +926,12 @@ function c4m_features_og_manage_organisation_details() {
     'c4m_vocab_topic' => t('No group topics.'),
     'c4m_qualitative_attributes' => !empty($wrapper->c4m_qualitative_attributes->value())? $wrapper->c4m_qualitative_attributes->value() : t('No qualitative attributes.'),
   );
+  // Description.
+  if (!empty($wrapper->c4m_body->value())) {
+    $description = field_view_field('node', $organisation, 'c4m_body');
+    $details['description'] = $description[0]['#markup'];
+  }
+
   // Dashboard edit link and text.
   $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
   $c4m_organisation_dashboard_link =variable_get('c4m_organisation_dashboard_link', '');
