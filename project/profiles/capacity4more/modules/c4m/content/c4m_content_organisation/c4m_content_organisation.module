@@ -357,13 +357,17 @@ function c4m_content_organisation_form_organisation_node_form_alter(array &$form
  *   Form state array.
  */
 function _c4m_content_organisation_alter_organisation_form(array &$form, array &$form_state) {
-  $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
-  if (empty($c4m_organisation_dashboard_fields)) {
-    return;
-  }
-  foreach ($form as $form_item_name => &$form_item) {
-    if (in_array($form_item_name, array_keys($c4m_organisation_dashboard_fields))) {
-      $form_item['#attributes']['class'][] = 'organisation-edit-hide';
+  global $user;
+
+  if (!in_array('administrator', $user->roles)) {
+    $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
+    if (empty($c4m_organisation_dashboard_fields)) {
+      return;
+    }
+    foreach ($form as $form_item_name => &$form_item) {
+      if (in_array($form_item_name, array_keys($c4m_organisation_dashboard_fields))) {
+        $form_item['#attributes']['class'][] = 'organisation-edit-hide';
+      }
     }
   }
 }
