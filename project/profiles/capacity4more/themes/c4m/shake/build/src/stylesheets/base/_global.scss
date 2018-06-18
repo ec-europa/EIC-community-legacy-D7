@@ -25,7 +25,7 @@ body {
 a {
   color: $color-blue;
   &:hover, &:focus {
-    color: $color-blue-light;
+    color: $color-black;
   }
 }
 
@@ -77,8 +77,8 @@ a {
     text-transform: uppercase;
 
     &.notstarted {
-      background-color: $color-blue-darkTwo;
-      border-color: $color-blue-darkTwo;
+      background-color: $color-blue-dark;
+      border-color: $color-blue-dark;
     }
 
     &.ongoing {

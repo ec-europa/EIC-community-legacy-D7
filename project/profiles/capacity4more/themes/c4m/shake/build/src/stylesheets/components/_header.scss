@@ -23,7 +23,7 @@
 #ecl-page-header {
   background-color: $color-blue;
   color: #fff;
-  a {
+  a , i {
     color: $color-white;
   }
 }
@@ -38,6 +38,12 @@
 
   ol {
     margin: 0.8rem 0;
+    li {
+      i {
+        color: $color-blue;
+        padding: 0 0.5rem;
+      }
+    }
   }
 }
 

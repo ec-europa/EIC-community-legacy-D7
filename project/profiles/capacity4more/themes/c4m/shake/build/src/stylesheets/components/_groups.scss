@@ -5,7 +5,7 @@
         color: $color-link;
       }
       a:hover {
-        color: $color-blue-light;
+        color: $color-black;
         text-decoration: underline;
       }
     }
@@ -28,4 +28,20 @@
 
 .project-status {
   text-transform: uppercase;
+}
+
+.system-block-title, .map-title {
+  .field-name-c4m-left-column & {
+    color: $color-black;
+    font-size: 1.875rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.block-c4m-search-og {
+  form {
+    input {
+      width: 100%;
+    }
+  }
 }

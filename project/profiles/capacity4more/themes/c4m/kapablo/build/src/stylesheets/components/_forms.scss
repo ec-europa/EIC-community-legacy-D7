@@ -178,7 +178,7 @@
     font-family: Arial;
     color: white;
     border-radius: 90px;
-    background-color: $color-blue-darkTwo;
+    background-color: $color-blue;
     cursor: pointer;
 
     &:hover {
@@ -226,7 +226,10 @@
   }
 
   .btn-primary {
-    background-color: $color-blue-darkTwo;
+    background-color: $color-blue;
+    :active:hover, active:focus, :hover, :focus {
+      background-color: $color-darkTwo-blue;
+    }
   }
 }
 

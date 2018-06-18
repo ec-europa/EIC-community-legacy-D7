@@ -33,6 +33,7 @@ $color-logo-blue: #1172ab;
 
 // WCAG AAA Pass
 $color-blue: #004494;
+$color-darkTwo-blue: #022b58;
 
 // WCAG AA Pass, AAA FAIL
 $color-red: #D0021B;
@@ -46,7 +47,7 @@ $color-link: #347C98;
 // WCAG AAA Pass
 $color-text: #4A4A4A;
 // WCAG AA FAIL
-$color-text-alternative: #6E969F;
+$color-text-alternative: $color-blue;
 // WCAG AA Pass, AAA FAIL
 $color-form-input-error: #A94442;
 
@@ -71,6 +72,7 @@ $base-spacing-tiny: 6px;
 /*
  * FONT STACKS
  */
+$font-arial: Arial, sans-serif;
 $font-gill: "GillSans-Light", Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-verdana: Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
 

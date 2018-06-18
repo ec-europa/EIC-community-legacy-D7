@@ -122,11 +122,11 @@
 .activity-stream--operator {
     @extend .text-normal;
     color: $color-gray-lighter;
-    font-family: $font-verdana;
+    font-family: $font-arial;
     a {
         @extend .text-normal;
         color: $color-gray-lighter;
-        font-family: $font-verdana;
+        font-family: $font-arial;
     }
     margin-bottom: $base-spacing-medium;
 }

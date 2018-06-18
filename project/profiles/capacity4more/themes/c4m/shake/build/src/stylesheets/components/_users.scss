@@ -111,16 +111,17 @@
   }
 }
 
-.view-mode-teaser .fa {
-  color: $color-white !important;
 
-  a {
-    color: $color-link;
-  }
-}
 
 // User profile page.
 .user-profile {
+  &.view-mode-teaser .fa {
+    color: $color-white !important;
+    a {
+      color: $color-link;
+    }
+  }
+
   &.view-mode-full {
     .group-user-data {
       .field-label-inline {

@@ -13,7 +13,7 @@
         <h2><?php print $info['event_site_title']; ?></h2>
       </div>
       <div class="row">
-        <div class="col-md-12 text-justify"><?php print $info['manage_members_link'] ?></div>
+        <div class="col-md-12"><?php print $info['manage_members_link'] ?></div>
       </div>
     </div>
     <div class="thumbnail-image panel-pane">
