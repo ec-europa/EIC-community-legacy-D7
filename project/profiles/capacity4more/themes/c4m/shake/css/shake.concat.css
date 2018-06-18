@@ -407,6 +407,10 @@ footer .c4m-social-media-item i:hover {
   color: #000000;
 }
 
+.node-organisation.view-mode-group_dashboard > .content > .field h3.label-above {
+  margin-bottom: 1rem;
+}
+
 .group-navigation nav li:before, .group-navigation nav li a {
   color: #004494;
 }
@@ -600,7 +604,7 @@ header a:hover {
 }
 
 .pane-c4m-content-organisation-left .paragraphs-items-c4m-left-column .user-profile.view-mode-teaser, .pane-c4m-content-organisation-left .paragraphs-items-c4m-right-column .user-profile.view-mode-teaser, .pane-c4m-content-organisation-right .paragraphs-items-c4m-left-column .user-profile.view-mode-teaser, .pane-c4m-content-organisation-right .paragraphs-items-c4m-right-column .user-profile.view-mode-teaser {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .pane-c4m-content-organisation-left .paragraphs-items-c4m-left-column .user-profile.view-mode-teaser .c4m-social-media-item, .pane-c4m-content-organisation-left .paragraphs-items-c4m-right-column .user-profile.view-mode-teaser .c4m-social-media-item, .pane-c4m-content-organisation-right .paragraphs-items-c4m-left-column .user-profile.view-mode-teaser .c4m-social-media-item, .pane-c4m-content-organisation-right .paragraphs-items-c4m-right-column .user-profile.view-mode-teaser .c4m-social-media-item {
