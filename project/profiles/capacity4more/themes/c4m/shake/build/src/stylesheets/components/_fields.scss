@@ -8,3 +8,35 @@
 {
   color: $color-text;
 }
+
+.field-name-c4m-ds-event-start-icon {
+  .fa-stack {
+    .calendar-text {
+      margin-top: 0.45em;
+    }
+  }
+}
+
+.field-name-c4m-ds-content-footer-stats {
+  margin-top: 0.3em;
+
+  > .field-items {
+    > .field-item {
+      span:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.node-event-site.node-teaser {
+  .field-name-c4m-ds-content-footer-stats {
+    > .field-items {
+      > .field-item {
+        span:first-child {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
