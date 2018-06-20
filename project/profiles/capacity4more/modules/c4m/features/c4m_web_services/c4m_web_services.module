@@ -208,6 +208,85 @@ function c4m_web_services_server() {
 }
 
 /**
+ * Search for the taxonomy terms and update the arguments array for organisations.
+ *
+ * @param $controller
+ *   Controller definition
+ * @param $args
+ *   Array of arguments
+ * @param $options
+ *
+ * @see services_controller_execute()
+ * @see services.runtime.inc
+ */
+function c4m_web_services_services_request_preprocess_alter($controller, &$args, $options) {
+  // Get all Taxonomy Fields of Organisation CT.
+  $organisation_taxonomy_fields = field_read_fields([
+    'entity_type' => 'node',
+    'bundle' => 'organisation',
+    'type' => 'taxonomy_term_reference']
+  );
+
+  if (empty($organisation_taxonomy_fields)) {
+    return;
+  }
+
+  // Override the Taxonomy Term Names with Term ids.
+  foreach ($args as &$arg) {
+    if (is_array($arg)) {
+      foreach ($arg as $field_name => &$item) {
+        if (is_array($item) &&
+          isset($organisation_taxonomy_fields[$field_name])
+          && isset($item[LANGUAGE_NONE])) {
+          $new_terms = [];
+          foreach ($item[LANGUAGE_NONE] as $term_name) {
+            if (!empty($term_name)) {
+              // If term cannot be found, throw error and stop the process.
+              if ($loaded = taxonomy_get_term_by_name($term_name)) {
+                foreach ($loaded as $tid => $term) {
+                  // Check if the term is from the same Vocab as the Field is configured.
+                  // Might have 2 terms with the same name from different vocabularies.
+                  if (isset($organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
+                    && isset($term->vocabulary_machine_name)
+                    && $term->vocabulary_machine_name == $organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary']) {
+                    // Check if the term has parents and add them aswell.
+                    // taxonomy_get_parents_all will always return at least the current taxonomy term.
+                    if (!empty($term_and_or_parents = taxonomy_get_parents_all($tid))) {
+                      foreach ($term_and_or_parents as $term_and_or_parent) {
+                        // Only add the new tid if not existing already.
+                        if (!empty($term_and_or_parent->tid)
+                          && !in_array($term_and_or_parent->tid, $new_terms)) {
+                          $new_terms[] = $term_and_or_parent->tid;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                // Term with name not found, throw error.
+                // Indicate the field they tried to populate with the term
+                // that was not found.
+                $message = t('Error when searching for taxonomy term name: @term_name.
+                 Term was intended for field @field_name.', [
+                  '@field_name' => $field_name,
+                  '@term_name' => $term_name,
+                ]);
+                throw new ServicesException($message, 404);
+              }
+            }
+          }
+          if (empty($new_terms)) {
+            continue;
+          }
+          $item[LANGUAGE_NONE] = $new_terms;
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_services_request_postprocess_alter().
  */
 function c4m_web_services_services_request_postprocess_alter($controller, $args, &$result) {
