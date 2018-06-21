@@ -239,25 +239,22 @@ function c4m_web_services_services_request_preprocess_alter($controller, &$args,
           isset($organisation_taxonomy_fields[$field_name])
           && isset($item[LANGUAGE_NONE])) {
           $new_terms = [];
-          foreach ($item[LANGUAGE_NONE] as $term_name) {
-            if (!empty($term_name)) {
+          foreach ($item[LANGUAGE_NONE] as $term_key) {
+            if (!empty($term_key)) {
               // If term cannot be found, throw error and stop the process.
-              if ($loaded = taxonomy_get_term_by_name($term_name)) {
+              if (isset($organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
+              && $loaded = c4m_web_services_taxonomy_get_term_by_key
+                ($term_key, $organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
+              ) {
                 foreach ($loaded as $tid => $term) {
-                  // Check if the term is from the same Vocab as the Field is configured.
-                  // Might have 2 terms with the same name from different vocabularies.
-                  if (isset($organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
-                    && isset($term->vocabulary_machine_name)
-                    && $term->vocabulary_machine_name == $organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary']) {
-                    // Check if the term has parents and add them aswell.
-                    // taxonomy_get_parents_all will always return at least the current taxonomy term.
-                    if (!empty($term_and_or_parents = taxonomy_get_parents_all($tid))) {
-                      foreach ($term_and_or_parents as $term_and_or_parent) {
-                        // Only add the new tid if not existing already.
-                        if (!empty($term_and_or_parent->tid)
-                          && !in_array($term_and_or_parent->tid, $new_terms)) {
-                          $new_terms[] = $term_and_or_parent->tid;
-                        }
+                  // Check if the term has parents and add them aswell.
+                  // taxonomy_get_parents_all will always return at least the current taxonomy term.
+                  if (!empty($term_and_or_parents = taxonomy_get_parents_all($tid))) {
+                    foreach ($term_and_or_parents as $term_and_or_parent) {
+                      // Only add the new tid if not existing already.
+                      if (!empty($term_and_or_parent->tid)
+                        && !in_array($term_and_or_parent->tid, $new_terms)) {
+                        $new_terms[] = $term_and_or_parent->tid;
                       }
                     }
                   }
@@ -267,10 +264,10 @@ function c4m_web_services_services_request_preprocess_alter($controller, &$args,
                 // Term with name not found, throw error.
                 // Indicate the field they tried to populate with the term
                 // that was not found.
-                $message = t('Error when searching for taxonomy term name: @term_name.
+                $message = t('Error when searching for taxonomy term with key: @term_name.
                  Term was intended for field @field_name.', [
                   '@field_name' => $field_name,
-                  '@term_name' => $term_name,
+                  '@term_key' => $term_key,
                 ]);
                 throw new ServicesException($message, 404);
               }
@@ -469,4 +466,31 @@ function _c4m_web_services_check_unique_name($name) {
     ->condition('name', $name, '=');
 
   return (bool) $query->execute()->fetchAssoc();
+}
+
+/**
+ * Try to map a dashboard key to an existing term..
+ *
+ * @param $dashboard_key
+ *   Dashboard key of the term to search for.
+ * @param $vocabulary
+ *   (optional) Vocabulary machine name to limit the search. Defaults to NULL.
+ *
+ * @return
+ *   An array of matching term objects.
+ */
+function c4m_web_services_taxonomy_get_term_by_key($dashboard_key, $vocabulary) {
+  $terms = [];
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'taxonomy_term')
+    ->entityCondition('bundle', $vocabulary)
+    ->fieldCondition('c4m_dashboard_key', 'value', $dashboard_key, '=')
+    ->range(0, 10)
+    ->addMetaData('account', user_load_by_name('dashboard_user'));
+
+  $result = $query->execute();
+  if (isset($result['taxonomy_term'])) {
+    $terms = taxonomy_term_load_multiple(array_keys($result["taxonomy_term"]));
+  }
+  return $terms;
 }
