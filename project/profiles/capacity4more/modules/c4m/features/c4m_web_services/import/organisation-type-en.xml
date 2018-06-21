@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalInformation>
+	<Description Lang="en">
+		<Selector Name="OrganisationTypes">
+			<Version>20180620-0</Version>
+			<Title>Organisation types</Title>
+			<Note>classification of the organisation based on their role they have on the platform.</Note>
+			<Option>
+				<Value>1</Value>
+				<Name>SME Beneficiary</Name>
+			</Option>
+			<Option>
+				<Value>3</Value>
+				<Name>Investor</Name>
+			</Option>
+			<Option>
+				<Value>4</Value>
+				<Name>EEN Partner</Name>
+			</Option>
+			<Option>
+				<Value>5</Value>
+				<Name>Corporate/Large company</Name>
+			</Option>
+			<Option>
+				<Value>6</Value>
+				<Name>EIC Service provider</Name>
+			</Option>
+			<Option>
+				<Value>7</Value>
+				<Name>European Institution</Name>
+			</Option>
+		</Selector>
+	</Description>
+</GlobalInformation>

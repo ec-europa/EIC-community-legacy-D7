@@ -11,6 +11,7 @@
 function c4m_web_services_drush_command() {
   $items = array();
 
+  // Organisation's Taxonomies.
   $items['import-reuters'] = [
     'description' => 'Import reuters codes - c4m_vocab_tr',
     'aliases' => ['ir'],
@@ -36,6 +37,18 @@ function c4m_web_services_drush_command() {
     'aliases' => ['ic'],
   ];
 
+  // User's Taxonomies.
+  $items['import-user-types'] = [
+    'description' => 'Import user types - c4m_vocab_user_types',
+    'aliases' => ['iut'],
+  ];
+
+  $items['import-jobtitles'] = [
+    'description' => 'Import job titles - c4m_job_titles',
+    'aliases' => ['ij'],
+  ];
+
+  // Import all command.
   $items['import-all'] = [
     'description' => 'Import all taxonomies and Update keys for countries vocabulary.',
     'aliases' => ['iall'],
@@ -49,6 +62,7 @@ function c4m_web_services_drush_command() {
  */
 function c4m_web_services_drush_help($section) {
   switch ($section) {
+    // Organisation's Taxonomies.
     case 'drush:import-reuters':
       return dt('Import Reuters Codes into Vocabulary Thomson-Reuters codes (c4m_vocab_tr).');
     case 'drush:import-topics':
@@ -59,6 +73,14 @@ function c4m_web_services_drush_help($section) {
       return dt('Import Organisation Types into Vocabulary Organisation Types (c4m_vocab_organisation_types).');
     case 'drush:import-countries':
       return dt('Update keys for Countries into Vocabulary Regions & Countries (c4m_vocab_geo).');
+
+    // User's Taxonomies.
+    case 'drush:import-user-types':
+      return dt('Import User Types into Vocabulary User Type (c4m_vocab_user_types).');
+    case 'drush:import-jobtitles':
+      return dt('Import Job titles into Vocabulary Job titles (c4m_job_titles).');
+
+    // Import all command.
     case 'drush:import-all':
       return dt('Import Reuters Codes, Topics, Nace Codes, Organisation Types, Update keys for Countries.');
 
@@ -76,6 +98,8 @@ function drush_c4m_web_services_import_all() {
   drush_c4m_web_services_import_naces();
   drush_c4m_web_services_import_organisation_types();
   drush_c4m_web_services_import_countries();
+  drush_c4m_web_services_import_user_types();
+  drush_c4m_web_services_import_jobtitles();
 }
 
 /**
@@ -106,7 +130,7 @@ function drush_c4m_web_services_import_naces() {
  * Remove all old terms and create new terms from XML file.
  */
 function drush_c4m_web_services_import_organisation_types() {
-  $file = drupal_get_path('module', 'c4m_web_services') . '/import/organisation-types-en.xml';
+  $file = drupal_get_path('module', 'c4m_web_services') . '/import/organisation-type-en.xml';
   _c4m_web_services_import_vocabulary($file, 'c4m_vocab_organisation_types');
 }
 
@@ -116,6 +140,22 @@ function drush_c4m_web_services_import_organisation_types() {
 function drush_c4m_web_services_import_countries() {
   $file = drupal_get_path('module', 'c4m_web_services') . '/import/iso-3166-countries-en.xml';
   _c4m_web_services_update_countries_keys($file, 'c4m_vocab_geo');
+}
+
+/**
+ * Remove all old terms and create new terms from XML file.
+ */
+function drush_c4m_web_services_import_user_types() {
+  $file = drupal_get_path('module', 'c4m_web_services') . '/import/user-type-en.xml';
+  _c4m_web_services_import_vocabulary($file, 'c4m_vocab_user_types');
+}
+
+/**
+ * Remove all old terms and create new terms from XML file.
+ */
+function drush_c4m_web_services_import_jobtitles() {
+  $file = drupal_get_path('module', 'c4m_web_services') . '/import/corporate-functions-en.xml';
+  _c4m_web_services_import_vocabulary($file, 'c4m_job_titles');
 }
 
 /**

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalInformation>
+	<Description Lang="en">
+		<Selector Name="Sizes">
+			<Version>20180620-0</Version>
+			<Title>Organisation size</Title>
+			<Note>The number of employees the company has at the point of the application</Note>
+			<Option>
+				<Value>1</Value>
+				<!-- Variant="1" -->
+				<Alt Variant="1">micro</Alt>
+				<Name>Micro (1-9 employees)</Name>
+			</Option>
+			<Option>
+				<Value>2</Value>
+				<Alt Variant="1">small</Alt>
+				<Name>Small (10-49 employees)</Name>
+			</Option>
+			<Option>
+				<Value>3</Value>
+				<Alt Variant="1">medium</Alt>
+				<Name>Medium (50-249 employees)</Name>
+			</Option>
+			<Option>
+				<Value>4</Value>
+				<Alt Variant="1">large</Alt>
+				<Name>Large (250 employees and more)</Name>
+			</Option>
+			<!-- skip="1": Means this option is not defined in variant="1" -->
+			<Option Skip="1">
+				<Value>5</Value>
+				<Alt Variant="1">other</Alt>
+				<Name>Other</Name>
+			</Option>				
+		</Selector>
+	</Description>
+</GlobalInformation>

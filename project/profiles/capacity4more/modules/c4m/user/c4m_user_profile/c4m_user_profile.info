@@ -76,6 +76,7 @@ features[field_group][] = group_user_interests|user|user|full
 features[field_group][] = group_user_meta|user|user|full
 features[field_group][] = group_your_expertise|user|user|form
 features[field_group][] = group_your_interests|user|user|form
+features[field_instance][] = taxonomy_term-c4m_vocab_user_types-c4m_dashboard_key
 features[field_instance][] = user-user-c4m_body
 features[field_instance][] = user-user-c4m_cv_link
 features[field_instance][] = user-user-c4m_facebook
