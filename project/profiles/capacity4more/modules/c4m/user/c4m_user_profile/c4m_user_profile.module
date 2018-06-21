@@ -431,6 +431,8 @@ function c4m_user_profile_form_user_register_form_alter(&$form, &$form_state, $f
       ]),
     ]),
   ];
+  // EASME-202 - Remove newsletter subscription for EASME.
+  unset($form['subscribe_to_mailinglist']);
   $form['#submit'][] = 'c4m_user_profile_form_user_register_form_submit';
 
   // If user is administrator.
