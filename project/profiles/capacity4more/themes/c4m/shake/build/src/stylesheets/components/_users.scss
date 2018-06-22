@@ -133,3 +133,21 @@
     }
   }
 }
+
+// Fix on user profile page the double admin-menu
+body {
+  &.page-user {
+    #toolbar {
+      display: none;
+    }
+  }
+}
+@media (min-width: $screen-sm) {
+  body {
+    &.page-user.admin-menu.adminimal-menu {
+       .page-content {
+        padding-top: 0;
+      }
+    }
+  }
+}

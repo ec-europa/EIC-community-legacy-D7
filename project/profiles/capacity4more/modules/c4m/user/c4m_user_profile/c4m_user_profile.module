@@ -416,23 +416,24 @@ function c4m_user_profile_form_user_register_form_alter(&$form, &$form_state, $f
   $form['legal']['#type'] = 'markup';
   $form['legal']['#markup'] = '<p>' . $form['legal']['#title'] . '</p>';
 
-  $form['subscribe_to_mailinglist'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Send me the monthly capacity4dev newsletter (see !samples)', [
-      '!samples' => l(t('samples'), 'newsletters', ['attributes' => ['target' => '_blank']]),
-    ]),
-    '#weight' => 50,
-    '#description' => t('Capacity4dev.eu uses a third-party service for newsletter delivery and administration. All your data is safe and subject to European Data protection and privacy legislation. Read the !privacy_statement_link of the newsletter platform for more information.', [
-      '!privacy_statement_link' => l(t('Privacy Statement'), 'https://www.campaignmonitor.com/policies', [
-        'attributes' => [
-          'absolute' => TRUE,
-          'target' => '_blank',
-        ],
-      ]),
-    ]),
-  ];
-  // EASME-202 - Remove newsletter subscription for EASME.
-  unset($form['subscribe_to_mailinglist']);
+//  EASME-202 - Remove newsletter subscription for EASME.
+//  Only comment it for now, probably need it later.
+//  $form['subscribe_to_mailinglist'] = [
+//    '#type' => 'checkbox',
+//    '#title' => t('Send me the monthly capacity4dev newsletter (see !samples)', [
+//      '!samples' => l(t('samples'), 'newsletters', ['attributes' => ['target' => '_blank']]),
+//    ]),
+//    '#weight' => 50,
+//    '#description' => t('Capacity4dev.eu uses a third-party service for newsletter delivery and administration. All your data is safe and subject to European Data protection and privacy legislation. Read the !privacy_statement_link of the newsletter platform for more information.', [
+//      '!privacy_statement_link' => l(t('Privacy Statement'), 'https://www.campaignmonitor.com/policies', [
+//        'attributes' => [
+//          'absolute' => TRUE,
+//          'target' => '_blank',
+//        ],
+//      ]),
+//    ]),
+//  ];
+
   $form['#submit'][] = 'c4m_user_profile_form_user_register_form_submit';
 
   // If user is administrator.
@@ -662,16 +663,18 @@ function c4m_user_profile_form_user_register_form_submit($form, &$form_state) {
     _user_mail_notify('status_activated', $form['#user']);
   }
 
-  // Process subscription to mailing list.
-  if (!empty($form_state['values']['subscribe_to_mailinglist'])) {
-    $email = $form_state['values']['mail'];
-    if (c4m_user_profile_subscribe_to_mailing_list($email, $name)) {
-      drupal_set_message(t("Successfully subscribed to the newsletter."));
-    }
-    else {
-      drupal_set_message(t("We couldn't subscribe you to the mailing list. Please try again later."));
-    }
-  }
+//  EASME-202 - Remove newsletter subscription for EASME.
+//  Only comment it for now, probably need it later.
+//  Process subscription to mailing list.
+//  if (!empty($form_state['values']['subscribe_to_mailinglist'])) {
+//    $email = $form_state['values']['mail'];
+//    if (c4m_user_profile_subscribe_to_mailing_list($email, $name)) {
+//      drupal_set_message(t("Successfully subscribed to the newsletter."));
+//    }
+//    else {
+//      drupal_set_message(t("We couldn't subscribe you to the mailing list. Please try again later."));
+//    }
+//  }
 }
 
 /**
