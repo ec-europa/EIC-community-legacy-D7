@@ -11,6 +11,7 @@ dependencies[] = c4m_contact
 dependencies[] = c4m_og
 dependencies[] = c4m_user_profile
 dependencies[] = c4m_vocab_topic
+dependencies[] = c4m_vocab_widget
 dependencies[] = campaignmonitor
 dependencies[] = ckeditor
 dependencies[] = contact

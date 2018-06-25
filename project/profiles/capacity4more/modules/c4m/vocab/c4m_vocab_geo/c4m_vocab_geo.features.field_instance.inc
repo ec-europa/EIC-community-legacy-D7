@@ -11,8 +11,7 @@
 function c4m_vocab_geo_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance:
-  // 'taxonomy_term-c4m_vocab_geo-c4m_dashboard_key'.
+  // Exported field_instance: 'taxonomy_term-c4m_vocab_geo-c4m_dashboard_key'.
   $field_instances['taxonomy_term-c4m_vocab_geo-c4m_dashboard_key'] = array(
     'bundle' => 'c4m_vocab_geo',
     'default_value' => NULL,

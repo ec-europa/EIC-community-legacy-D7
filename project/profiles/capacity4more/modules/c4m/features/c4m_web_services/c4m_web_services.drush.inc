@@ -48,6 +48,11 @@ function c4m_web_services_drush_command() {
     'aliases' => ['ij'],
   ];
 
+  $items['import-languages'] = [
+    'description' => 'Import spoken languages - c4m_vocab_language',
+    'aliases' => ['il'],
+  ];
+
   // Import all command.
   $items['import-all'] = [
     'description' => 'Import all taxonomies and Update keys for countries vocabulary.',
@@ -79,6 +84,8 @@ function c4m_web_services_drush_help($section) {
       return dt('Import User Types into Vocabulary User Type (c4m_vocab_user_types).');
     case 'drush:import-jobtitles':
       return dt('Import Job titles into Vocabulary Job titles (c4m_job_titles).');
+    case 'drush:import-languages':
+      return dt('Import Spoken languages into Vocabulary Languages (c4m_vocab_language).');
 
     // Import all command.
     case 'drush:import-all':
@@ -100,6 +107,7 @@ function drush_c4m_web_services_import_all() {
   drush_c4m_web_services_import_countries();
   drush_c4m_web_services_import_user_types();
   drush_c4m_web_services_import_jobtitles();
+  drush_c4m_web_services_import_languages();
 }
 
 /**
@@ -156,6 +164,14 @@ function drush_c4m_web_services_import_user_types() {
 function drush_c4m_web_services_import_jobtitles() {
   $file = drupal_get_path('module', 'c4m_web_services') . '/import/corporate-functions-en.xml';
   _c4m_web_services_import_vocabulary($file, 'c4m_job_titles');
+}
+
+/**
+ * Remove all old terms and create new terms from XML file.
+ */
+function drush_c4m_web_services_import_languages() {
+  $file = drupal_get_path('module', 'c4m_web_services') . '/import/spoken-languages-en.xml';
+  _c4m_web_services_import_vocabulary($file, 'c4m_vocab_language');
 }
 
 /**

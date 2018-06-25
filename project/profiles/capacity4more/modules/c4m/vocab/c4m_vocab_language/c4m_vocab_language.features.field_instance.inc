@@ -2,18 +2,19 @@
 
 /**
  * @file
- * c4m_vocab_nace.features.field_instance.inc
+ * c4m_vocab_language.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function c4m_vocab_nace_field_default_field_instances() {
+function c4m_vocab_language_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'taxonomy_term-c4m_vocab_nace-c4m_dashboard_key'.
-  $field_instances['taxonomy_term-c4m_vocab_nace-c4m_dashboard_key'] = array(
-    'bundle' => 'c4m_vocab_nace',
+  // Exported field_instance:
+  // 'taxonomy_term-c4m_vocab_language-c4m_dashboard_key'.
+  $field_instances['taxonomy_term-c4m_vocab_language-c4m_dashboard_key'] = array(
+    'bundle' => 'c4m_vocab_language',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',

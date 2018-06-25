@@ -77,7 +77,7 @@ function c4m_user_field_default_field_instances() {
   // Exported field_instance: 'user-user-c4m_vocab_job_title'.
   $field_instances['user-user-c4m_vocab_job_title'] = array(
     'bundle' => 'user',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Your current job title',
     'display' => array(
@@ -133,11 +133,11 @@ function c4m_user_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'c4m_vocab_widget',
       'settings' => array(
         'content_taxonomy_opt_groups' => 0,
       ),
-      'type' => 'options_select',
+      'type' => 'c4m_taxonomy_reference',
       'weight' => 4,
     ),
   );
