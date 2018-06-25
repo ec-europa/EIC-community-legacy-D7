@@ -333,6 +333,11 @@ function c4m_vocab_widget_field_formatter_view(
  *  Return TRUE if field disabled.
  */
 function _c4m_vocab_widget_check_access($element) {
+  // If user is administrator, show field.
+  global $user;
+  if (in_array('administrator', $user->roles)) {
+    return FALSE;
+  }
   $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
   if (empty($c4m_organisation_dashboard_fields)
   || $element["#entity_type"] != 'node'
