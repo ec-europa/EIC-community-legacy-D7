@@ -222,9 +222,9 @@ function c4m_web_services_server() {
 function c4m_web_services_services_request_preprocess_alter($controller, &$args, $options) {
   // Get all Taxonomy Fields of Organisation CT.
   $organisation_taxonomy_fields = field_read_fields([
-    'entity_type' => 'node',
-    'bundle' => 'organisation',
-    'type' => 'taxonomy_term_reference']
+      'entity_type' => 'node',
+      'bundle' => 'organisation',
+      'type' => 'taxonomy_term_reference']
   );
 
   if (empty($organisation_taxonomy_fields)) {
@@ -243,7 +243,7 @@ function c4m_web_services_services_request_preprocess_alter($controller, &$args,
             if (!empty($term_key)) {
               // If term cannot be found, throw error and stop the process.
               if (isset($organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
-              && $loaded = c4m_web_services_taxonomy_get_term_by_key
+                && $loaded = c4m_web_services_taxonomy_get_term_by_key
                 ($term_key, $organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
               ) {
                 foreach ($loaded as $tid => $term) {
@@ -328,8 +328,12 @@ function c4m_web_services_add_contact_persons($contact_persons, $nid) {
   $node = node_load($nid);
 
   // Create an array with the new uids.
+  $new_users = [];
   foreach ($users as $user) {
-    $node->c4m_contact_persons[LANGUAGE_NONE][] = ['target_id' => $user->uid];
+    $new_users[] = ['target_id' => $user->uid];
+  }
+  if (!empty($new_users)) {
+    $node->c4m_contact_persons[LANGUAGE_NONE] = $new_users;
   }
   node_save($node);
 }
