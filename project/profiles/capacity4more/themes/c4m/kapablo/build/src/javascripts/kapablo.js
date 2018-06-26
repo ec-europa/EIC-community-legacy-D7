@@ -635,7 +635,7 @@ var jQuery = jQuery || {};
                 // Initialize fields when fields get replaced, eg email field on
                 // registration form. Otherwise, for image fields, the tagName is FORM
                 // or the id is empty.
-                if ($(context).prop('tagName').toLowerCase() === 'div' && $(context).attr('id')) {
+                if ($(context).prop('tagName') && $(context).prop('tagName').toLowerCase() === 'div' && $(context).attr('id')) {
                     $.each(Drupal.behaviors.disableSubmitUntilAllRequired.forms, function () {
                         this.initializeFields();
                     });
