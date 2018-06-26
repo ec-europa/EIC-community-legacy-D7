@@ -2,7 +2,7 @@
 <GlobalInformation>
 	<Description Lang="en">
 		<Selector Name="CorporateFunctions">
-			<Version>20180620-0</Version>
+			<Version>20180626-0</Version>
 			<Title>Business titles of a user</Title>
 			<Note>Corporate functions / job title of a team member</Note>
 			<Option>
@@ -11,11 +11,11 @@
 			</Option>
 			<Option>
 				<Value>2</Value>
-				<Name>Accounting / Finance / CFO</Name>
+				<Name>Accounting/Finance / CFO</Name>
 			</Option>
 			<Option>
 				<Value>3</Value>
-				<Name>Research &amp; Development / CRO</Name>
+				<Name>Research &amp; development / CRO</Name>
 			</Option>
 			<Option>
 				<Value>4</Value>
