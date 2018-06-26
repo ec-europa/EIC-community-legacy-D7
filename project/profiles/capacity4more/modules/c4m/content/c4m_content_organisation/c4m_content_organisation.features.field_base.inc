@@ -74,10 +74,10 @@ function c4m_content_organisation_field_default_field_bases() {
       'cache_count' => 4,
       'cache_enabled' => 0,
       'granularity' => array(
-        'day' => 'day',
+        'day' => 0,
         'hour' => 0,
         'minute' => 0,
-        'month' => 'month',
+        'month' => 0,
         'second' => 0,
         'year' => 'year',
       ),

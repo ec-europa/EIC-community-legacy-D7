@@ -407,6 +407,7 @@ function c4m_content_organisation_field_default_field_instances() {
   // Exported field_instance: 'node-organisation-c4m_date_est'.
   $field_instances['node-organisation-c4m_date_est'] = array(
     'bundle' => 'organisation',
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Period in which the organisation is active.',
     'display' => array(
