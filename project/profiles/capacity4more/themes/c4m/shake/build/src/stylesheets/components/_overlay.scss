@@ -5,3 +5,23 @@
     }
   }
 }
+
+// Adding existing media/document - Style Submit link to look like a button.
+.media-browser-tab {
+  font-size: 0.8rem;
+  .form-actions {
+    a.fake-submit {
+      background-color: $color-blue;
+      border: 2px solid transparent;
+      border-radius: 2px;
+      color: $color-white;
+      padding: 10px;
+      &:hover {
+        background-color: transparent;
+        border-color: $color-blue;
+        color: $color-blue;
+        text-decoration: underline;
+      }
+    }
+  }
+}
