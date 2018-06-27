@@ -289,11 +289,13 @@ function c4m_web_services_services_request_preprocess_alter($controller, &$args,
 function c4m_web_services_services_request_postprocess_alter($controller, $args, &$result) {
   foreach ($args as $arg) {
     if (is_array($arg)) {
-      if (!empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])
+      if (isset($arg['c4m_contact_persons'])
+        && !empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])
         && !empty($nid = $result['nid'])) {
         c4m_web_services_add_contact_persons($c4m_contact_persons, $nid);
       }
-      if (!empty($c4m_organisation_members = $arg['c4m_organisation_members'][LANGUAGE_NONE])
+      if (isset($arg['c4m_organisation_members'])
+        &&!empty($c4m_organisation_members = $arg['c4m_organisation_members'][LANGUAGE_NONE])
         && !empty($nid = $result['nid'])) {
         c4m_web_services_add_organisation_members($c4m_organisation_members, $nid);
       }
@@ -424,7 +426,8 @@ function c4m_web_services_get_or_add_user($rest_users) {
       ];
 
       // Check and add Job Title based on Dashboard Id.
-      if (isset($rest_user['c4m_vocab_job_title'][LANGUAGE_NONE])) {
+      if (isset($rest_user['c4m_vocab_job_title'])
+        && isset($rest_user['c4m_vocab_job_title'][LANGUAGE_NONE])) {
         foreach ($rest_user['c4m_vocab_job_title'][LANGUAGE_NONE] as $job_title) {
           if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($job_title, 'c4m_job_titles'))) {
             $new_user_data['c4m_vocab_job_title'][LANGUAGE_NONE][] = [
@@ -435,7 +438,8 @@ function c4m_web_services_get_or_add_user($rest_users) {
       }
 
       // Check and add User Type based on Dashboard Id.
-      if (isset($rest_user['c4m_user_types'][LANGUAGE_NONE])) {
+      if (isset($rest_user['c4m_user_types'])
+        && isset($rest_user['c4m_user_types'][LANGUAGE_NONE])) {
         foreach ($rest_user['c4m_user_types'][LANGUAGE_NONE] as $user_type) {
           if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($user_type, 'c4m_vocab_user_types'))) {
             $new_user_data['c4m_user_types'][LANGUAGE_NONE][] = [
@@ -446,7 +450,8 @@ function c4m_web_services_get_or_add_user($rest_users) {
       }
 
       // Check and add Spoken Languages based on Dashboard Id.
-      if (isset($rest_user['c4m_vocab_language'][LANGUAGE_NONE])) {
+      if (isset($rest_user['c4m_vocab_language'])
+        && isset($rest_user['c4m_vocab_language'][LANGUAGE_NONE])) {
         foreach ($rest_user['c4m_vocab_language'][LANGUAGE_NONE] as $language) {
           if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($language, 'c4m_vocab_language'))) {
             $new_user_data['c4m_vocab_language'][LANGUAGE_NONE][] = [
