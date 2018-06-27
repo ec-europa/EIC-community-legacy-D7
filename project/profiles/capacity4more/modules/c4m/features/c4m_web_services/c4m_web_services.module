@@ -230,15 +230,12 @@ function c4m_web_services_services_request_preprocess_alter($controller, &$args,
           if (empty($node)) {
             continue;
           }
-          // Node already exists with matching dashboard id.
-          $message = t('Organisation @organisation_name already exists.
-                   With nid: @nid, c4m_organisation_dashboard_id: @c4m_organisation_dashboard_id, uri: @uri.', [
-            '@organisation_name' => $node->title,
-            '@nid' => $node->nid,
-            '@c4m_organisation_dashboard_id' => $arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value'],
-            '@uri' => url($node->purl, ['absolute' => TRUE]),
-          ]);
-          throw new ServicesException($message, 302);
+          $xml = new SimpleXMLElement('<organisation_node_exists/>');
+          $xml->addChild('organisation_name', $node->title);
+          $xml->addChild('nid', $node->nid);
+          $xml->addChild('c4m_organisation_dashboard_id', $arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
+          $xml->addChild('uri',  url($node->purl, ['absolute' => TRUE]));
+          throw new ServicesException($xml->asXML(), 302);
       }
     }
   }
