@@ -220,6 +220,28 @@ function c4m_web_services_server() {
  * @see services.runtime.inc
  */
 function c4m_web_services_services_request_preprocess_alter($controller, &$args, $options) {
+  // Check by dashboard_id when Creating a new Organisation if already exists.
+  if (isset($controller["callback"]) && $controller["callback"] === '_node_resource_create') {
+    foreach ($args as &$arg) {
+      if (is_array($arg)
+        && isset($arg['c4m_organisation_dashboard_id'])
+        && isset($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value'])) {
+          $node = c4m_web_services_get_existing_node($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
+          if (empty($node)) {
+            continue;
+          }
+          // Node already exists with matching dashboard id.
+          $message = t('Organisation @organisation_name already exists.
+                   With nid: @nid, c4m_organisation_dashboard_id: @c4m_organisation_dashboard_id, uri: @uri.', [
+            '@organisation_name' => $node->title,
+            '@nid' => $node->nid,
+            '@c4m_organisation_dashboard_id' => $arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value'],
+            '@uri' => url($node->purl, ['absolute' => TRUE]),
+          ]);
+          throw new ServicesException($message, 302);
+      }
+    }
+  }
   // Get all Taxonomy Fields of Organisation CT.
   $organisation_taxonomy_fields = field_read_fields([
       'entity_type' => 'node',
@@ -540,4 +562,29 @@ function c4m_web_services_taxonomy_get_term_by_key($dashboard_key, $vocabulary) 
     $terms = taxonomy_term_load_multiple(array_keys($result["taxonomy_term"]));
   }
   return $terms;
+}
+
+/**
+ * Try to map a dashboard id to an existing node.
+ *
+ * @param $organisation_dashboard_id
+ *   Dashboard id of the node.
+ *
+ * @return
+ *   A node objects.
+ */
+function c4m_web_services_get_existing_node($organisation_dashboard_id) {
+  $node = [];
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'organisation')
+    ->fieldCondition('c4m_organisation_dashboard_id', 'value', $organisation_dashboard_id, '=')
+    ->range(0, 1)
+    ->addMetaData('account', user_load_by_name('dashboard_user'));
+
+  $result = $query->execute();
+  if (isset($result['node'])) {
+    $node = node_load(array_pop(array_keys($result['node'])));
+  }
+  return $node;
 }
