@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Create new user role and user to be used for accessing from Dashboard.
+ * Helper function for creating the new user and role.
  */
-function c4m_web_services_update_7001() {
-
+function c4m_web_services_create_dashboad_user(){
   $role = user_role_load_by_name('dashboard');
   if (empty($role)){
     $role = new stdClass();
@@ -24,5 +23,28 @@ function c4m_web_services_update_7001() {
     ),
   );
 
-  user_save('', $new_user);
+  return user_save('', $new_user);
+}
+
+/**
+ * Create new user role and user to be used for accessing from Dashboard.
+ */
+function c4m_web_services_update_7001() {
+  c4m_web_services_create_dashboad_user();
+}
+
+/**
+ * Change first name and last name for dashboard user.
+ */
+function c4m_web_services_update_7002() {
+  $dashboard_user = user_load_by_name('dashboard_user');
+
+  if (empty($dashboard_user)) {
+    $dashboard_user = c4m_web_services_create_dashboad_user();
+  }
+
+  $dashboard_user->c4m_first_name["und"][0]["value"] = 'Community';
+  $dashboard_user->c4m_last_name["und"][0]["value"] = 'Manager';
+
+  user_save($dashboard_user);
 }

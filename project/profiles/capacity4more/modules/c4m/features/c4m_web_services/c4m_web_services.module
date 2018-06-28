@@ -340,7 +340,7 @@ function c4m_web_services_add_contact_persons($contact_persons, $nid) {
     return;
   }
 
-  $users = c4m_web_services_get_or_add_user($contact_persons);
+  $users = c4m_web_services_get_or_add_user($contact_persons, $nid);
 
   // Add these users to the c4m_contact_persons field.
   if (empty($users)) {
@@ -376,7 +376,27 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
     return;
   }
 
-  $users = c4m_web_services_get_or_add_user($c4m_organisation_members);
+  $users = c4m_web_services_get_or_add_user($c4m_organisation_members, $nid);
+
+  // Get the user that is the manager of the Organisation and assign membership.
+  $manager_users = [];
+  foreach ($c4m_organisation_members as $c4m_organisation_member) {
+    // Check and add Job Title based on Dashboard Id.
+    if (isset($c4m_organisation_member['c4m_vocab_job_title'])
+      && isset($c4m_organisation_member['c4m_vocab_job_title'][LANGUAGE_NONE])
+      && $term_owners = taxonomy_get_term_by_name('Account owner')
+    ) {
+      foreach ($term_owners as $term_owner) {
+        if (isset($term_owner->c4m_dashboard_key[LANGUAGE_NONE])
+          && isset($term_owner->c4m_dashboard_key[LANGUAGE_NONE][0]['value'])
+          && in_array($term_owner->c4m_dashboard_key[LANGUAGE_NONE][0]['value'],
+            $c4m_organisation_member['c4m_vocab_job_title'][LANGUAGE_NONE])
+        ) {
+          $manager_users[] = $c4m_organisation_member['email'];
+        }
+      }
+    }
+  }
 
   // Add these users as members of the Group.
   if (empty($users)) {
@@ -390,14 +410,17 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
   }
 
   foreach ($users as $user) {
-    // Check if the user is already a member.
-    if (og_is_member('node', $nid, 'user', $user)) {
-      continue;
-    }
     // Add the user to the group
     $membership = og_group('node', $nid, ['entity' => $user->uid]);
     if (!empty($membership)) {
-      og_role_grant('node', $nid, $user->uid, 2);
+      $role = c4m_og_user_role_load_by_name('member', 'organisation');
+      og_role_grant('node', $nid, $user->uid, $role->rid);
+    }
+
+    // Add administrators.
+    if (in_array($user->mail, $manager_users)) {
+      $role = c4m_og_user_role_load_by_name('administrator member', 'organisation');
+      og_role_grant('node', $nid, $user->uid, $role->rid);
     }
   }
 }
@@ -407,11 +430,13 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
  *
  * @param array $rest_users
  *   The array of users sent through the WS.
+ * @param array $nid
+ *   The node created - used for adding paragraphs on Users.
  *
  * @return array
  *   List of users, existing and new ones.
  */
-function c4m_web_services_get_or_add_user($rest_users) {
+function c4m_web_services_get_or_add_user($rest_users, $nid) {
   if (empty($rest_users)) {
     return [];
   }
