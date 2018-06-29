@@ -4,7 +4,7 @@
  * Helper function for creating the new user and role.
  */
 function c4m_web_services_create_dashboad_user(){
-  $role = user_role_load_by_name('dashboard');
+  $role = user_role_load_by_name('service-authentication');
   if (empty($role)){
     $role = new stdClass();
     $role->name = 'dashboard';
