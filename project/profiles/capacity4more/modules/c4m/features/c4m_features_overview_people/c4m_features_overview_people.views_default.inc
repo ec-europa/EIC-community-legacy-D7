@@ -209,6 +209,12 @@ function c4m_features_overview_people_views_default_views() {
   $handler->display->display_options['filters']['uid']['field'] = 'uid';
   $handler->display->display_options['filters']['uid']['operator'] = '<>';
   $handler->display->display_options['filters']['uid']['value'] = '1';
+  /* Filter criterion: Indexed User: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'search_api_index_c4m_search_users';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['operator'] = '<>';
+  $handler->display->display_options['filters']['name']['value'] = 'dashboard_user';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

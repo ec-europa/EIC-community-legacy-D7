@@ -656,6 +656,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer users',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'user',
   );
@@ -907,6 +908,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'create organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
@@ -1114,6 +1116,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'delete any organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
@@ -1277,6 +1280,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'delete own organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
@@ -1571,6 +1575,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'edit any organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
@@ -1745,6 +1750,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'edit own organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
