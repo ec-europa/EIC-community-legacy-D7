@@ -909,7 +909,7 @@ function c4m_features_og_manage_organisation_details() {
     'description' => t('No text about this organisation.'),
     'c4m_link' => t('No organisation website.'),
     'c4m_facebook' => t('No Facebook URL.'),
-    'c4m_twitter' => t('No TwitterURL.'),
+    'c4m_twitter' => t('No Twitter URL.'),
     'c4m_youtube' => t('No YouTube URL.'),
     'c4m_linkedin' => t('No LinkedIn URL.'),
     'c4m_location_address' => t('No location address.'),
