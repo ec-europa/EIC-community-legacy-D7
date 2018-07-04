@@ -214,19 +214,7 @@ function _c4m_web_services_import_vocabulary($file, $vocab_machine_name) {
         if (taxonomy_term_save($parent_object) &&
           !empty(($option_or_group = $group->Selector->Option) || $option_or_group = $group->Selector->Group)) {
           // Get children aswell.
-          foreach ($option_or_group as $child) {
-            if (!empty($child->Value) && !empty($child->Name)) {
-              $key = (string)$child->Value;
-              $name = (string)$child->Name;
-              $child_object = new stdClass();
-              $child_object->name = $name;
-              $child_object->description = $vocabulary->name . ' ' . $name;
-              $child_object->vid = $vocabulary->vid;
-              $child_object->c4m_dashboard_key[LANGUAGE_NONE][]['value'] = $key;
-              $child_object->parent = $parent_object->tid;
-              taxonomy_term_save($child_object);
-            }
-          }
+          c4m_web_services_add_child_term($option_or_group, $parent_object, $vocabulary);
         }
       }
     }
@@ -248,6 +236,28 @@ function _c4m_web_services_import_vocabulary($file, $vocab_machine_name) {
     }
   }
   drupal_set_message("Vocabulary " . $vocab_machine_name . " was imported with success.");
+}
+
+/**
+ * Helper function for adding children recursive.
+ */
+function c4m_web_services_add_child_term($option_or_group, $parent_object, $vocabulary) {
+  foreach ($option_or_group as $child) {
+    if (!empty($child->Value) && !empty($child->Name)) {
+      $key = (string)$child->Value;
+      $name = (string)$child->Name;
+      $child_object = new stdClass();
+      $child_object->name = $name;
+      $child_object->description = $vocabulary->name . ' ' . $name;
+      $child_object->vid = $vocabulary->vid;
+      $child_object->c4m_dashboard_key[LANGUAGE_NONE][]['value'] = $key;
+      $child_object->parent = $parent_object->tid;
+      taxonomy_term_save($child_object);
+      if (!empty(($option_or_group_child = $child->Selector->Option) || $option_or_group_child = $child->Selector->Group)) {
+        c4m_web_services_add_child_term($option_or_group_child, $child_object, $vocabulary);
+      }
+    }
+  }
 }
 
 /**
