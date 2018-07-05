@@ -9,6 +9,12 @@
 
 .view-mode-teaser {
   &.node-topic {
-    background-color: #4073af;;
+    background: #4073af;
+
+    .field-name-title {
+      h3 {
+        font-size: 1.1rem;
+      }
+    }
   }
 }
