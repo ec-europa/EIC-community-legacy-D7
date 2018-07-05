@@ -276,6 +276,7 @@ function _c4m_web_services_update_countries_keys($file, $vocab_machine_name) {
   }
 
   $not_found = [];
+  $vocab = taxonomy_vocabulary_machine_name_load($vocab_machine_name);
   foreach ($loaded->Description->Selector->Option as $country) {
     $key_dashboard = 'code-3166-1-alpha-3';
     if (!empty($country->$key_dashboard) && !empty($country->Name)) {
@@ -291,6 +292,13 @@ function _c4m_web_services_update_countries_keys($file, $vocab_machine_name) {
       }
       else {
         $not_found[] = $name;
+        $term              = new stdClass();
+        $term->name        = $name;
+        $term->description = 'Geo: ' . $name;
+        $term->vid         =  $vocab->vid;
+        $term->weight      = -100;
+        $term->c4m_dashboard_key[LANGUAGE_NONE][0]['value'] = $key;
+        taxonomy_term_save($term);
       }
     }
   }
