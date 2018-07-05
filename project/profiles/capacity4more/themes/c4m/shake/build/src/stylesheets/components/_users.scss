@@ -115,6 +115,12 @@
 
 // User profile page.
 .user-profile {
+  .organisations--user-types--job-titles {
+    font-size: 0.9em;
+    .user-types, .job-titles {
+      font-style: italic;
+    }
+  }
   &.view-mode-teaser .fa {
     color: $color-white !important;
     a {

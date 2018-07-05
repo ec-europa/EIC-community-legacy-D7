@@ -231,7 +231,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -314,7 +314,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1054,7 +1054,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1148,7 +1148,7 @@ function c4m_user_profile_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'c4m_addressfield_based_in',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1641,7 +1641,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1814,13 +1814,9 @@ function c4m_user_profile_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'inline',
-        'module' => 'ds',
-        'settings' => array(
-          'taxonomy_term_link' => 0,
-          'taxonomy_term_separator' => ', ',
-        ),
-        'type' => 'ds_taxonomy_separator',
-        'weight' => 5,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1978,7 +1974,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
           'taxonomy_term_separator' => ', ',
         ),
         'type' => 'ds_taxonomy_separator',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'member_overview' => array(
         'label' => 'above',

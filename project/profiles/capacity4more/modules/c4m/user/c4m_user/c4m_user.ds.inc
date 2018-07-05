@@ -128,7 +128,7 @@ function c4m_user_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'teaser';
   $ds_fieldsetting->settings = array(
     'c4m_user_member_since' => array(
-      'weight' => '2',
+      'weight' => '3',
       'label' => 'inline',
       'format' => 'default',
       'formatter_settings' => array(
@@ -160,13 +160,18 @@ function c4m_user_ds_field_settings_info() {
         ),
       ),
     ),
+    'c4m_user_user_type_and_job_title' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'c4m_user_contact_link' => array(
-      'weight' => '4',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'c4m_ds_user_footer_stats' => array(
-      'weight' => '3',
+      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -184,11 +189,11 @@ function c4m_user_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_twitter' => array(
+    'c4m_linkedin' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
-          'prefix' => '<i class="fa fa-twitter"></i>',
+          'prefix' => '<i class="fa fa-linkedin"></i>',
           'ow' => TRUE,
           'ow-el' => 'div',
           'ow-cl' => 'c4m-social-media-item',
@@ -198,11 +203,11 @@ function c4m_user_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_linkedin' => array(
+    'c4m_twitter' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
-          'prefix' => '<i class="fa fa-linkedin"></i>',
+          'prefix' => '<i class="fa fa-twitter"></i>',
           'ow' => TRUE,
           'ow-el' => 'div',
           'ow-cl' => 'c4m-social-media-item',
@@ -338,17 +343,19 @@ function c4m_user_ds_layout_settings_info() {
       ),
       'right' => array(
         1 => 'c4m_user_first_and_last_name',
-        2 => 'c4m_user_member_since',
-        3 => 'c4m_ds_user_footer_stats',
-        4 => 'c4m_user_contact_link',
-        5 => 'c4m_facebook',
-        6 => 'c4m_twitter',
-        7 => 'c4m_linkedin',
+        2 => 'c4m_user_user_type_and_job_title',
+        3 => 'c4m_user_member_since',
+        4 => 'c4m_ds_user_footer_stats',
+        5 => 'c4m_user_contact_link',
+        6 => 'c4m_facebook',
+        7 => 'c4m_twitter',
+        8 => 'c4m_linkedin',
       ),
     ),
     'fields' => array(
       'c4m_user_picture' => 'left',
       'c4m_user_first_and_last_name' => 'right',
+      'c4m_user_user_type_and_job_title' => 'right',
       'c4m_user_member_since' => 'right',
       'c4m_ds_user_footer_stats' => 'right',
       'c4m_user_contact_link' => 'right',

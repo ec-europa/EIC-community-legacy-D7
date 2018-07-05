@@ -121,6 +121,14 @@ function c4m_user_ds_fields_info($entity_type) {
     ),
   );
 
+  $fields['user']['c4m_user_user_type_and_job_title'] = array(
+    'title' => t('C4M User type and job title'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('*|*'),
+    'file' => $path . '/includes/c4m_user.theme.inc',
+    'function' => 'theme_c4m_user_user_type_and_job_title',
+  );
+
   $fields['user']['c4m_user_contact_link'] = array(
     'title' => t('C4M User contact link'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,

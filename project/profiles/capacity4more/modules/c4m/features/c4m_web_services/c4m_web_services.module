@@ -308,21 +308,39 @@ function c4m_web_services_services_request_preprocess_alter($controller, &$args,
 function c4m_web_services_services_request_postprocess_alter($controller, $args, &$result) {
   foreach ($args as $arg) {
     if (is_array($arg)) {
-      if (isset($arg['c4m_contact_persons'])
-        && !empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])
-        && !empty($nid = $result['nid'])) {
-        c4m_web_services_add_contact_persons($c4m_contact_persons, $nid);
-      }
+      // First create the organisation members.
       if (isset($arg['c4m_organisation_members'])
         &&!empty($c4m_organisation_members = $arg['c4m_organisation_members'][LANGUAGE_NONE])
         && !empty($nid = $result['nid'])) {
+        $c4m_organisation_members = c4m_web_services_process_users_array($c4m_organisation_members);
         c4m_web_services_add_organisation_members($c4m_organisation_members, $nid);
+      }
+      // Second add the contact persons.
+      if (isset($arg['c4m_contact_persons'])
+        && !empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])
+        && !empty($nid = $result['nid'])) {
+        $c4m_contact_persons = c4m_web_services_process_users_array($c4m_contact_persons);
+        c4m_web_services_add_contact_persons($c4m_contact_persons, $nid);
       }
     }
   }
 
 }
 
+/**
+ * Helper function for adding emails as keys for every user.
+ */
+function c4m_web_services_process_users_array($rest_users){
+  if (!$rest_users) {
+    return;
+  }
+  $nre = [];
+  foreach ($rest_users as $rest_user) {
+    $nre[$rest_user['email']] = $rest_user;
+  }
+  unset($rest_users);
+  return $nre;
+}
 /**
  * Helper function for adding users to the c4m_contact_persons field.
  *
@@ -351,6 +369,10 @@ function c4m_web_services_add_contact_persons($contact_persons, $nid) {
   // Create an array with the new uids.
   $new_users = [];
   foreach ($users as $user) {
+    // Update job title, user type and language fields that areon the user Entity.
+    // These are kept on user for facets.
+    c4m_web_services_update_user_taxonomies($user, $contact_persons[$user->mail]);
+
     $new_users[] = ['target_id' => $user->uid];
   }
   if (!empty($new_users)) {
@@ -378,6 +400,10 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
 
   $users = c4m_web_services_get_or_add_user($c4m_organisation_members, $nid);
 
+  if (empty($users)) {
+    return;
+  }
+
   // Get the user that is the manager of the Organisation and assign membership.
   $manager_users = [];
   foreach ($c4m_organisation_members as $c4m_organisation_member) {
@@ -398,11 +424,6 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
     }
   }
 
-  // Add these users as members of the Group.
-  if (empty($users)) {
-    return;
-  }
-
   // Remove old members of a group - in case of updating the organisation.
   $old_member_ids = c4m_og_get_group_member_ids($nid);
   foreach ($old_member_ids as $one) {
@@ -410,18 +431,57 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
   }
 
   foreach ($users as $user) {
+
     // Add the user to the group
     $membership = og_group('node', $nid, ['entity' => $user->uid]);
+
     if (!empty($membership)) {
+      // Add jobtitle and user type for user in Organisation to Membership.
+
+      // Check and add Job Title based on Dashboard Id.
+      if (isset($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'])
+        && isset($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'][LANGUAGE_NONE])) {
+        $c4m_vocab_job_title = [];
+        foreach ($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'][LANGUAGE_NONE] as $job_title) {
+          if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($job_title, 'c4m_job_titles'))) {
+            $c4m_vocab_job_title[] = ['tid' => array_keys($terms)[0]];
+          }
+        }
+        // Update membership with specific job title to this Organisation.
+        $membership->c4m_vocab_job_title = array(
+          LANGUAGE_NONE => $c4m_vocab_job_title,
+        );
+      }
+
+      // Check and add User Type based on Dashboard Id.
+      if (isset($c4m_organisation_members[$user->mail]['c4m_user_types'])
+        && isset($c4m_organisation_members[$user->mail]['c4m_user_types'][LANGUAGE_NONE])) {
+        $c4m_user_types = [];
+        foreach ($c4m_organisation_members[$user->mail]['c4m_user_types'][LANGUAGE_NONE] as $user_type) {
+          if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($user_type, 'c4m_vocab_user_types'))) {
+            $c4m_user_types[] = ['tid' => array_keys($terms)[0]];
+          }
+        }
+        $membership->c4m_user_types = array(
+          LANGUAGE_NONE => $c4m_user_types,
+        );
+      }
+      $membership->save();
+
+      // Add membership role.
       $role = c4m_og_user_role_load_by_name('member', 'organisation');
       og_role_grant('node', $nid, $user->uid, $role->rid);
-    }
 
-    // Add administrators.
-    if (in_array($user->mail, $manager_users)) {
-      $role = c4m_og_user_role_load_by_name('administrator member', 'organisation');
-      og_role_grant('node', $nid, $user->uid, $role->rid);
+
+      // Add administrator role.
+      if (in_array($user->mail, $manager_users)) {
+        $role = c4m_og_user_role_load_by_name('administrator member', 'organisation');
+        og_role_grant('node', $nid, $user->uid, $role->rid);
+      }
     }
+    // Update job title, user type and language fields that areon the user Entity.
+    // These are kept on user for facets.
+    c4m_web_services_update_user_taxonomies($user, $c4m_organisation_members[$user->mail]);
   }
 }
 
@@ -461,49 +521,11 @@ function c4m_web_services_get_or_add_user($rest_users, $nid) {
         'mail' => $rest_user['email'],
         'c4m_first_name' => [LANGUAGE_NONE => [['value' => $rest_user['first_name']]]],
         'c4m_last_name' => [LANGUAGE_NONE => [['value' => $rest_user['last_name']]]],
-        'c4m_vocab_job_title' => [],
-        'c4m_user_types' => [],
-        'c4m_vocab_language' => [],
         'init' => $rest_user['email'],
         'created' => time(),
         'status' => TRUE,
       ];
 
-      // Check and add Job Title based on Dashboard Id.
-      if (isset($rest_user['c4m_vocab_job_title'])
-        && isset($rest_user['c4m_vocab_job_title'][LANGUAGE_NONE])) {
-        $c4m_vocab_job_title = [];
-        foreach ($rest_user['c4m_vocab_job_title'][LANGUAGE_NONE] as $job_title) {
-          if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($job_title, 'c4m_job_titles'))) {
-            $c4m_vocab_job_title[] = ['tid' => array_keys($terms)[0]];
-          }
-        }
-        $new_user_data['c4m_vocab_job_title'][LANGUAGE_NONE] = $c4m_vocab_job_title;
-      }
-
-      // Check and add User Type based on Dashboard Id.
-      if (isset($rest_user['c4m_user_types'])
-        && isset($rest_user['c4m_user_types'][LANGUAGE_NONE])) {
-        $c4m_user_types = [];
-        foreach ($rest_user['c4m_user_types'][LANGUAGE_NONE] as $user_type) {
-          if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($user_type, 'c4m_vocab_user_types'))) {
-            $c4m_user_types[] = ['tid' => array_keys($terms)[0]];
-          }
-        }
-        $new_user_data['c4m_user_types'][LANGUAGE_NONE] = $c4m_user_types;
-      }
-
-      // Check and add Spoken Languages based on Dashboard Id.
-      if (isset($rest_user['c4m_vocab_language'])
-        && isset($rest_user['c4m_vocab_language'][LANGUAGE_NONE])) {
-        $c4m_vocab_language = [];
-        foreach ($rest_user['c4m_vocab_language'][LANGUAGE_NONE] as $language) {
-          if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($language, 'c4m_vocab_language'))) {
-            $c4m_vocab_language[] = ['tid' => array_keys($terms)[0]];
-          }
-        }
-        $new_user_data['c4m_vocab_language'][LANGUAGE_NONE] = $c4m_vocab_language;
-      }
 
       // Create new user.
       $new_user = user_save(drupal_anonymous_user(), $new_user_data);
@@ -519,6 +541,66 @@ function c4m_web_services_get_or_add_user($rest_users, $nid) {
     }
   }
   return $users;
+}
+
+/**
+ * Helper function for updating taxonomies on user - kept for facets.
+ */
+function c4m_web_services_update_user_taxonomies($user, $rest_user) {
+  if (empty($user) || empty($rest_user)) {
+    return;
+  }
+  // Check and add Spoken Languages based on Dashboard Id.
+  if (isset($rest_user['c4m_vocab_language'])
+    && isset($rest_user['c4m_vocab_language'][LANGUAGE_NONE])) {
+    $c4m_vocab_language = [];
+    foreach ($rest_user['c4m_vocab_language'][LANGUAGE_NONE] as $language) {
+      if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($language, 'c4m_vocab_language'))) {
+        $c4m_vocab_language[] = ['tid' => array_keys($terms)[0]];
+      }
+    }
+    $user->c4m_vocab_language[LANGUAGE_NONE] = $c4m_vocab_language;
+  }
+
+  // Get user group memberships and create an array with all user types and job titles the user has.
+  $user_types = [];
+  $job_titles = [];
+  foreach (c4m_user_og_get_groups($user, 'organisation') as $organisation) {
+    $membership = og_get_membership('node', $organisation->nid, 'user', $user->uid);
+    if (!empty($membership->c4m_user_types)
+      && !empty($membership->c4m_user_types[LANGUAGE_NONE])
+    ) {
+      // Override duplicates with samekey in array.
+      foreach ($membership->c4m_user_types[LANGUAGE_NONE] as $user_type) {
+        $user_types[$user_type['tid']] = $user_type['tid'];
+      }
+    }
+    if (!empty($membership->c4m_vocab_job_title)
+      && !empty($membership->c4m_vocab_job_title[LANGUAGE_NONE])
+    ) {
+      // Override duplicates with samekey in array.
+      foreach ($membership->c4m_vocab_job_title[LANGUAGE_NONE] as $job_title) {
+        $job_titles[$job_title['tid']] = $job_title['tid'];
+      }
+    }
+  }
+
+  if (!empty($user_types)) {
+    $c4m_user_types = [];
+    foreach ($user_types as $ut) {
+      $c4m_user_types[] = ['tid' => $ut];
+    }
+    $user->c4m_user_types[LANGUAGE_NONE] = $c4m_user_types;
+  }
+
+  if (!empty($job_titles)) {
+    $c4m_vocab_job_title = [];
+    foreach ($job_titles as $jt) {
+      $c4m_vocab_job_title[] = ['tid' => $jt];
+    }
+    $user->c4m_vocab_job_title[LANGUAGE_NONE] = $c4m_vocab_job_title;
+  }
+  user_save($user);
 }
 
 /**

@@ -213,6 +213,89 @@ function theme_c4m_user_first_and_last_name(array $field) {
 }
 
 /**
+ * DS function field.
+ *
+ * Render User type, Job title and the name of the organisation for each user.
+ *
+ * @param array $field
+ *   The field info.
+ *
+ * @return mixed
+ *   The rendered field.
+ */
+function theme_c4m_user_user_type_and_job_title(array $field) {
+  if (empty($field['entity'])) {
+    return;
+  }
+
+  $markup = '';
+  $output = [];
+
+  $entity = $field['entity'];
+  if (!empty($entity->uid) && $entity->uid != 1) {
+    foreach (c4m_user_og_get_groups($entity, 'organisation') as $organisation) {
+      $membership = og_get_membership('node', $organisation->nid, 'user', $entity->uid);
+
+      $one_line = '<div class="organisation--user-types--job-titles">';
+      if ($membership
+        && (!empty($membership->c4m_user_types[LANGUAGE_NONE])
+          || !empty($membership->c4m_vocab_job_title[LANGUAGE_NONE]))) {
+        $one_line .=  '<span class="organisation">' . t('In ') . $organisation->title . '</span>' .': ';
+      }
+      // Take care of user types.
+      $user_types = '';
+      if (!empty($membership->c4m_user_types)
+        && !empty($membership->c4m_user_types[LANGUAGE_NONE])
+      ) {
+        $ut_titles = [];
+        foreach ($membership->c4m_user_types[LANGUAGE_NONE] as $user_type) {
+          $user_type = taxonomy_term_load($user_type['tid']);
+          $ut_titles[] = $user_type->name;
+        }
+        if ($ut_titles) {
+          $user_types = '<span class="user-types">' . implode(', ', $ut_titles) . '</span>';
+        }
+      }
+
+      // Take care of job titles.
+      $job_titles = '';
+      if (!empty($membership->c4m_vocab_job_title)
+        && !empty($membership->c4m_vocab_job_title[LANGUAGE_NONE])
+      ) {
+        $jt_titles = [];
+        foreach ($membership->c4m_vocab_job_title[LANGUAGE_NONE] as $job_title) {
+          $job_title = taxonomy_term_load($job_title['tid']);
+          $jt_titles[] = $job_title->name;
+        }
+        if ($jt_titles) {
+          $job_titles = '<span class="job-titles">' . implode(', ', $jt_titles) . '</span>';
+        }
+      }
+
+      if (!empty($user_types) || !empty($job_titles)) {
+        if (empty($user_types)) {
+          $one_line .= $job_titles . '.';
+        }
+        if (empty($job_titles)) {
+          $one_line .= $user_types . '.';
+        }
+        if (!empty($user_types) && !empty($job_titles)) {
+          $one_line .= $user_types . ' - ' . $job_titles . '.';
+        }
+      }
+      $one_line .= '</div>';
+      $output[] = $one_line;
+    }
+  }
+
+  if ($output) {
+    $markup = '<div class="organisations--user-types--job-titles">' . implode('', $output) . '</div>';
+  }
+
+  return $markup;
+}
+
+/**
 
  * Callback for c4m_user_contact_link DS field.
  *
