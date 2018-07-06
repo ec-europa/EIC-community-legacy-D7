@@ -244,6 +244,9 @@ function _c4m_user_notifications_og_role_revoke($gid, $uid, $rid) {
  *   Drupal node entity object.
  */
 function _c4m_user_notifications_node_insert($node) {
+  if ($node->type == 'organisation') {
+    return;
+  }
   if (_c4m_user_notifications_is_cli()) {
     return;
   }

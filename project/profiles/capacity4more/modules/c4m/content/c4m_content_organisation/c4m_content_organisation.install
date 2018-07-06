@@ -55,3 +55,25 @@ function c4m_content_organisation_update_7003() {
   ];
   variable_set('c4m_organisation_dashboard_fields', $conf_array);
 }
+
+/**
+ * Delete all unneeded vocabularies related to organisations.
+ */
+function c4m_content_organisation_update_7004() {
+  $nids = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->fields('n', array('type'))
+    ->condition('n.type', 'organisation')
+    ->execute()
+    ->fetchCol();
+  foreach ($nids as $nid) {
+    $categ_vocab = 'c4m_vocab_category_' . $nid;
+    if ($categ_vocab = taxonomy_vocabulary_machine_name_load($categ_vocab)) {
+      taxonomy_vocabulary_delete($categ_vocab->vid);
+    }
+    $tag_vocab = 'c4m_vocab_tag_' . $nid;
+    if ($tag_vocab = taxonomy_vocabulary_machine_name_load($tag_vocab)) {
+      taxonomy_vocabulary_delete($tag_vocab->vid);
+    }
+  }
+}

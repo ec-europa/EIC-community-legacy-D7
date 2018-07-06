@@ -210,10 +210,7 @@ function c4m_content_organisation_ctools_plugin_directory($module, $plugin_type)
  */
 function c4m_content_organisation_c4m_og_vocab_info_groups() {
   return array(
-    'organisation' => array(
-      'c4m_vocab_category',
-      'c4m_vocab_tag',
-    ),
+    'organisation' => [],
   );
 }
 
