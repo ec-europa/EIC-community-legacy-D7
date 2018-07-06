@@ -59,14 +59,23 @@ function c4m_content_organisation_update_7003() {
 /**
  * Delete all unneeded vocabularies related to organisations.
  */
-function c4m_content_organisation_update_7004() {
-  $nids = db_select('node', 'n')
-    ->fields('n', array('nid'))
-    ->fields('n', array('type'))
-    ->condition('n.type', 'organisation')
-    ->execute()
-    ->fetchCol();
-  foreach ($nids as $nid) {
+function c4m_content_organisation_update_7005() {
+  global $user;
+  $original_user = $user;
+  $old_state = drupal_save_session(FALSE);
+  $user = user_load(1);
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'organisation')
+    ->addMetaData('account', user_load(1));
+
+  $result = $query->execute();
+  if (!isset($result['node'])) {
+    return;
+  }
+  $organisation_nids = array_keys($result['node']);
+
+  foreach ($organisation_nids as $nid) {
     $categ_vocab = 'c4m_vocab_category_' . $nid;
     if ($categ_vocab = taxonomy_vocabulary_machine_name_load($categ_vocab)) {
       taxonomy_vocabulary_delete($categ_vocab->vid);
@@ -76,4 +85,7 @@ function c4m_content_organisation_update_7004() {
       taxonomy_vocabulary_delete($tag_vocab->vid);
     }
   }
+  // Get back to original user state.
+  $user = $original_user;
+  drupal_save_session($old_state);
 }
