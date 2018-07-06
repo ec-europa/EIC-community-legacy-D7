@@ -3,17 +3,35 @@
     li {
       &:before, a {
         color: $color-link;
+        @media (max-width: $screen-sm) {
+          color: $color-white;
+        }
       }
       a:hover {
         color: $color-black;
         text-decoration: underline;
+        @media (max-width: $screen-sm) {
+          color: $color-white;
+        }
       }
     }
     li.active {
       &:before, a {
         color: $color-gray;
+        @media (max-width: $screen-sm) {
+          color: $color-white;
+        }
       }
     }
+  }
+}
+.og-context .header-actions--navigation {
+
+  .icon-bar {
+    background-color: $color-blue;
+  }
+  &:focus {
+    outline: none;
   }
 }
 
