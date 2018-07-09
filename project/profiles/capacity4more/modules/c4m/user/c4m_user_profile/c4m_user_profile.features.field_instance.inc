@@ -2069,9 +2069,12 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
       ),
       'full' => array(
         'label' => 'inline',
-        'module' => 'c4m_vocab_widget',
-        'settings' => array(),
-        'type' => 'term_reference_tree_hierarchical',
+        'module' => 'ds',
+        'settings' => array(
+          'taxonomy_term_link' => 1,
+          'taxonomy_term_separator' => ', ',
+        ),
+        'type' => 'ds_taxonomy_separator',
         'weight' => 2,
       ),
       'member_overview' => array(
@@ -2163,9 +2166,12 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
       ),
       'full' => array(
         'label' => 'inline',
-        'module' => 'c4m_vocab_widget',
-        'settings' => array(),
-        'type' => 'term_reference_tree_hierarchical',
+        'module' => 'ds',
+        'settings' => array(
+          'taxonomy_term_link' => TRUE,
+          'taxonomy_term_separator' => ', ',
+        ),
+        'type' => 'ds_taxonomy_separator',
         'weight' => 4,
       ),
       'member_overview' => array(
