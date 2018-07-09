@@ -12,6 +12,13 @@ body {
   font-family: $font_arial;
 }
 
+body.toolbar-drawer {
+  padding-top: 0 !important;
+  .page-content {
+    padding-top: 30px;
+  }
+}
+
 #scroll-top {
   i {
     font-size: 3.125rem;
