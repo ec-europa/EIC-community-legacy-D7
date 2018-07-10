@@ -432,7 +432,7 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
   foreach ($users as $user) {
 
     // Add the user to the group
-    $membership = og_group('node', $nid, ['entity' => $user->uid]);
+    $membership = og_group('node', $nid, ['entity' => $user]);
 
     if (!empty($membership)) {
       // Add jobtitle and user type for user in Organisation to Membership.
@@ -480,7 +480,7 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
     }
     // Update job title, user type and language fields that areon the user Entity.
     // These are kept on user for facets.
-    c4m_web_services_update_user_taxonomies($user, $c4m_organisation_members[$user->mail]);
+    c4m_web_services_update_user_taxonomies($user, $c4m_organisation_members[$user->mail], $nid);
   }
 }
 
@@ -545,10 +545,11 @@ function c4m_web_services_get_or_add_user($rest_users, $nid) {
 /**
  * Helper function for updating taxonomies on user - kept for facets.
  */
-function c4m_web_services_update_user_taxonomies($user, $rest_user) {
-  if (empty($user) || empty($rest_user)) {
+function c4m_web_services_update_user_taxonomies($user, $rest_user, $nid = 0) {
+  if (empty($user) || empty($rest_user) || empty($nid)) {
     return;
   }
+  (!empty($nid))? $user->og_user_node[LANGUAGE_NONE][] = ['target_id' => $nid] : '';
   // Check and add Spoken Languages based on Dashboard Id.
   if (isset($rest_user['c4m_vocab_language'])
     && isset($rest_user['c4m_vocab_language'][LANGUAGE_NONE])) {
@@ -599,7 +600,9 @@ function c4m_web_services_update_user_taxonomies($user, $rest_user) {
     }
     $user->c4m_vocab_job_title[LANGUAGE_NONE] = $c4m_vocab_job_title;
   }
+
   user_save($user);
+
 }
 
 /**
