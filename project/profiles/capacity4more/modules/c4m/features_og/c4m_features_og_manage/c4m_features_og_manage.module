@@ -417,6 +417,18 @@ function c4m_features_og_manage_list_taxonomy($group, array &$details) {
     url('manage/categories', array('absolute' => TRUE)),
     ['attributes' => ['class' => 'es--edit-link ecl-button ecl-button--primary']]
   );
+
+  // Create the taxonomy when visiting the manage page for Organisations.
+  // We didn't create the categories and tags vocabularies until for performance reasons for WS.
+  if (empty($og_vocab) && $group->type == 'organisation') {
+    module_load_include('inc', 'c4m_og_vocab');
+    c4m_og_vocab_trigger_create_group_vocabularies($group);
+    $og_vocab = c4m_restful_get_og_vocab_by_name(
+      'node',
+      $group->nid,
+      'Categories'
+    );
+  }
   $categories = taxonomy_get_tree($og_vocab[0]->vid);
   $categories_count = 0;
   $terms_count = 0;
