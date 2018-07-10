@@ -3,10 +3,6 @@
     width: 1170px + $grid-gutter-width;
   }
 }
-.row {
-  margin-left: 0;
-  margin-right: 0;
-}
 body {
   color: $color-black;
   font-family: $font_arial;
@@ -129,4 +125,8 @@ a {
 
 .fa-print {
   width: 25px;
+}
+
+.project-title {
+  margin: 1rem 0 0 0;
 }

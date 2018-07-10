@@ -25,11 +25,6 @@
   }
 }
 
-.row {
-  margin-left: 0;
-  margin-right: 0;
-}
-
 body {
   color: #000000;
   font-family: Arial, sans-serif;
@@ -135,6 +130,10 @@ a:hover, a:focus {
 
 .fa-print {
   width: 25px;
+}
+
+.project-title {
+  margin: 1rem 0 0 0;
 }
 
 h1 {
@@ -264,7 +263,11 @@ html {
 }
 
 .project-indications {
-  max-width: 250px;
+  text-align: right;
+}
+
+.project-indications .indication {
+  float: none;
 }
 
 .project-indications .top-buffer {
@@ -469,6 +472,11 @@ footer .c4m-social-media-item i:hover {
   }
 }
 
+.og-context .header-actions--navigation {
+  margin-bottom: 0;
+  top: -70px;
+}
+
 .og-context .header-actions--navigation .icon-bar {
   background-color: #004494;
 }
@@ -505,16 +513,10 @@ footer .c4m-social-media-item i:hover {
   margin-top: 0;
 }
 
-#page-header #user-bar .row, #page-header #header-ec-wrapper .row, #page-header #ecl-page-header .row {
-  margin-left: 0;
-  margin-right: 0;
-}
-
 #header-ec-wrapper {
   background-color: transparent;
   border-top: none;
   overflow: visible;
-  padding: 0 18px 10px 18px;
 }
 
 #header-ec-wrapper .group-banner {
