@@ -474,7 +474,6 @@ footer .c4m-social-media-item i:hover {
 
 .og-context .header-actions--navigation {
   margin-bottom: 0;
-  top: -70px;
 }
 
 .og-context .header-actions--navigation .icon-bar {
@@ -483,6 +482,14 @@ footer .c4m-social-media-item i:hover {
 
 .og-context .header-actions--navigation:focus {
   outline: none;
+}
+
+.og-context .block-c4m-content-organisation .header-actions--navigation {
+  top: -70px;
+}
+
+.og-context .block-c4m-content-event-site .header-actions--navigation {
+  top: -27px;
 }
 
 .og-context .pane-c4m-content-group {
