@@ -26,12 +26,24 @@
   }
 }
 .og-context .header-actions--navigation {
+  margin-bottom: 0;
 
   .icon-bar {
     background-color: $color-blue;
   }
   &:focus {
     outline: none;
+  }
+}
+
+.og-context .block-c4m-content-organisation {
+  .header-actions--navigation {
+    top: -70px;
+  }
+}
+.og-context .block-c4m-content-event-site {
+  .header-actions--navigation {
+    top: -27px;
   }
 }
 
@@ -68,5 +80,20 @@
   .field-name-c4m-vocab-topic {
     margin-bottom: $base-spacing-tiny;
     margin-top: 0;
+  }
+}
+
+.group-title {
+  margin: 20px 0 10px;
+}
+
+.group-indications {
+  float: left;
+  margin: 0;
+
+  @media (min-width: $screen-sm) {
+    float: right;
+    margin: 20px 0 0;
+    position: relative;
   }
 }

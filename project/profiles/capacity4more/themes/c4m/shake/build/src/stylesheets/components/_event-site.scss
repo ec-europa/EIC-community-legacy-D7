@@ -38,7 +38,11 @@
 
 // Status labels and publish link.
 .project-indications {
-  max-width: 250px;
+  text-align: right;
+  
+  .indication {
+    float: none;
+  }
   .top-buffer {
     margin-left: 5px;
   }

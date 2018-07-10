@@ -230,7 +230,6 @@
 <div id="main-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-12">
                 <div class="trigger trigger--groupInfo js-navigationButton"
                      data-effect="animation--slideOn">
           <span class="trigger-label circle circle--green">
@@ -309,7 +308,6 @@
                     <?php print render($page['sidebar_second']); ?>
                   </aside>  <!-- /#sidebar-second -->
               <?php endif; ?>
-            </div>
         </div>
     </div>
 

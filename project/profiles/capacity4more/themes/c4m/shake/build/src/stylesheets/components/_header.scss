@@ -1,17 +1,8 @@
-#page-header {
-  #user-bar, #header-ec-wrapper, #ecl-page-header {
-    .row {
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
-}
-
 #header-ec-wrapper {
   background-color: transparent;
   border-top: none;
   overflow: visible;
-  padding: 0 18px 10px 18px;
+
   .group-banner {
     margin-top: 1rem;
   }
@@ -48,9 +39,10 @@
 }
 
 .header-logo {
-  margin-top: 40px;
-  @media (min-width: 768px) {
+  margin-top: 25px;
+  @media (min-width: $screen-sm) {
     margin-bottom: 31px;
+    margin-top: 40px;
   }
   .site-name-slogan {
     float: left;
@@ -60,20 +52,32 @@
     color: $color-gray;
     display: table-row;
     font-family: $font-arial;
-    font-size: 1.5rem !important;
+    font-size: 1rem !important;
     font-weight: bold;
-    line-height: 32px !important;
+
+    @media (min-width: $screen-xs) {
+      font-size: 1.5rem !important;
+      line-height: 32px !important;
+    }
   }
   h2 {
     color: $color-gray;;
     display: table-row;
     font-family: $font-arial;
-    font-size: 1.25rem !important;
+    font-size: 0.75rem !important;
     font-weight: normal;
-    line-height: 21px;
+
+    @media (min-width: $screen-xs) {
+      font-size: 1.25rem !important;
+      line-height: 21px;
+    }
   }
   img {
-    max-width: 105px;
+    max-width: 70px;
+
+    @media (min-width: $screen-sm) {
+      max-width: 105px;
+    }
   }
 }
 
@@ -89,4 +93,5 @@ header {
 
 .header-actions {
   background-color: $color-blue;
+  margin-top: 25px;
 }
