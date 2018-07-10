@@ -16,16 +16,14 @@ include_once 'c4m_content_organisation.features.inc';
  * Implements hook_menu().
  */
 function c4m_content_organisation_menu() {
-  $items = array();
-
-  $items['admin/config/c4m/dashboard'] = array(
+  $items['admin/config/c4m/smei-dashboard'] = array(
     'title' => 'Manage dashboard links',
     'description' => 'Manage links to edit Organisation/User fields.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('c4m_content_organisation_admin_settings'),
     'access arguments' => array('administer site configuration'),
     'file' => 'c4m_content_organisation.admin.inc',
-    'weight' => -10,
+    'type' => MENU_NORMAL_ITEM,
   );
   return $items;
 }
