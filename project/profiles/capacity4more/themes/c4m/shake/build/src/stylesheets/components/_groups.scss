@@ -71,3 +71,18 @@
     margin-top: 0;
   }
 }
+
+.group-title {
+  margin: 20px 0 10px;
+}
+
+.group-indications {
+  float: left;
+  margin: 0;
+
+  @media (min-width: $screen-sm) {
+    float: right;
+    margin: 20px 0 0;
+    position: relative;
+  }
+}

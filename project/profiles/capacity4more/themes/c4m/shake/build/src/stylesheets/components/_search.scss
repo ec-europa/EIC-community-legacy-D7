@@ -73,7 +73,7 @@
 // Search bar.
 
 
-@media (min-width: 860px) {
+@media (min-width: $screen-sm) {
   .header-search {
     .search-form {
       .form-submit {

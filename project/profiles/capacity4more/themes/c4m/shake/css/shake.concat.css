@@ -513,6 +513,23 @@ footer .c4m-social-media-item i:hover {
   margin-top: 0;
 }
 
+.group-title {
+  margin: 20px 0 10px;
+}
+
+.group-indications {
+  float: left;
+  margin: 0;
+}
+
+@media (min-width: 860px) {
+  .group-indications {
+    float: right;
+    margin: 20px 0 0;
+    position: relative;
+  }
+}
+
 #header-ec-wrapper {
   background-color: transparent;
   border-top: none;
@@ -574,22 +591,40 @@ footer .c4m-social-media-item i:hover {
   color: #404040;
   display: table-row;
   font-family: Arial, sans-serif;
-  font-size: 1.5rem !important;
+  font-size: 1rem !important;
   font-weight: bold;
-  line-height: 32px !important;
+}
+
+@media (min-width: 480px) {
+  .header-logo h1 {
+    font-size: 1.5rem !important;
+    line-height: 32px !important;
+  }
 }
 
 .header-logo h2 {
   color: #404040;
   display: table-row;
   font-family: Arial, sans-serif;
-  font-size: 1.25rem !important;
+  font-size: 0.75rem !important;
   font-weight: normal;
-  line-height: 21px;
+}
+
+@media (min-width: 480px) {
+  .header-logo h2 {
+    font-size: 1.25rem !important;
+    line-height: 21px;
+  }
 }
 
 .header-logo img {
-  max-width: 105px;
+  max-width: 70px;
+}
+
+@media (min-width: 860px) {
+  .header-logo img {
+    max-width: 105px;
+  }
 }
 
 header a {
