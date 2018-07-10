@@ -48,9 +48,10 @@
 }
 
 .header-logo {
-  margin-top: 40px;
-  @media (min-width: 768px) {
+  margin-top: 25px;
+  @media (min-width: 860px) {
     margin-bottom: 31px;
+    margin-top: 40px;
   }
   .site-name-slogan {
     float: left;
@@ -89,4 +90,5 @@ header {
 
 .header-actions {
   background-color: $color-blue;
+  margin-top: 25px;
 }
