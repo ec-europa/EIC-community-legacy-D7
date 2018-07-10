@@ -711,3 +711,10 @@ function capacity4more_update_7022() {
 function capacity4more_update_7023() {
   variable_set('lazyloader_enabled', 0);
 }
+
+/**
+ * Disable admin_menu modules.
+ */
+function capacity4more_update_7024() {
+  module_disable(['admin_menu', 'admin_menu_toolbar', 'adminimal_admin_menu']);
+}

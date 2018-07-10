@@ -250,11 +250,6 @@ iframe[allowfullscreen|allowscriptaccess|frameborder|height|scrolling|src|width]
           ),
         ),
       ),
-      'c4m_wysiwyg_ckeditor_iframe_cck' => array(
-        'weight' => -46,
-        'status' => 1,
-        'settings' => array(),
-      ),
       'media_filter' => array(
         'weight' => -45,
         'status' => 1,

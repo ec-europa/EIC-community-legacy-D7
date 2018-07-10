@@ -324,7 +324,6 @@ function c4m_web_services_services_request_postprocess_alter($controller, $args,
       }
     }
   }
-
 }
 
 /**
