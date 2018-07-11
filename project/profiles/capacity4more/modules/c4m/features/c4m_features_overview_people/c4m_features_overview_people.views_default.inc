@@ -149,7 +149,7 @@ function c4m_features_overview_people_views_default_views() {
   $handler->display->display_options['header']['c4m_views_result']['id'] = 'c4m_views_result';
   $handler->display->display_options['header']['c4m_views_result']['table'] = 'views';
   $handler->display->display_options['header']['c4m_views_result']['field'] = 'c4m_views_result';
-  $handler->display->display_options['header']['c4m_views_result']['content'] = '<span class="total-items">@total members</span>';
+  $handler->display->display_options['header']['c4m_views_result']['content'] = '<span class="total-items">@total in total</span>';
   /* Header: Items per page */
   $handler->display->display_options['header']['c4m_views_items_per_page']['id'] = 'c4m_views_items_per_page';
   $handler->display->display_options['header']['c4m_views_items_per_page']['table'] = 'views';

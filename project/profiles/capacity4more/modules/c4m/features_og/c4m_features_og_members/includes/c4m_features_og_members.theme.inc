@@ -15,6 +15,21 @@
  *   The rendered admin actions.
  */
 function theme_c4m_features_og_members_admin_actions(array $field) {
+
+  $context = og_context();
+  if ($context) {
+    if (($group_type = c4m_og_get_group_type($context))) {
+      if ($group_type == 'event_site' && current_path() == 'members') {
+        return theme(
+          'c4m_administer_member_level',
+          array(
+            'membership_level' => 'Attendee',
+          )
+        );
+      }
+    }
+  }
+
   if (empty($field['entity'])) {
     return;
   }
