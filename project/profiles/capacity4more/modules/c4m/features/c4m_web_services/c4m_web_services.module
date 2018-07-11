@@ -407,15 +407,15 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
   $manager_users = [];
   foreach ($c4m_organisation_members as $c4m_organisation_member) {
     // Check and add Job Title based on Dashboard Id.
-    if (isset($c4m_organisation_member['c4m_vocab_job_title'])
-      && isset($c4m_organisation_member['c4m_vocab_job_title'][LANGUAGE_NONE])
+    if (isset($c4m_organisation_member['c4m_user_types'])
+      && isset($c4m_organisation_member['c4m_user_types'][LANGUAGE_NONE])
       && $term_owners = taxonomy_get_term_by_name('Account owner')
     ) {
       foreach ($term_owners as $term_owner) {
         if (isset($term_owner->c4m_dashboard_key[LANGUAGE_NONE])
           && isset($term_owner->c4m_dashboard_key[LANGUAGE_NONE][0]['value'])
           && in_array($term_owner->c4m_dashboard_key[LANGUAGE_NONE][0]['value'],
-            $c4m_organisation_member['c4m_vocab_job_title'][LANGUAGE_NONE])
+            $c4m_organisation_member['c4m_user_types'][LANGUAGE_NONE])
         ) {
           $manager_users[] = $c4m_organisation_member['email'];
         }
@@ -549,7 +549,20 @@ function c4m_web_services_update_user_taxonomies($user, $rest_user, $nid = 0) {
   if (empty($user) || empty($rest_user) || empty($nid)) {
     return;
   }
-  (!empty($nid))? $user->og_user_node[LANGUAGE_NONE][] = ['target_id' => $nid] : '';
+  $other_groups = [];
+  if (!empty($user->og_user_node[LANGUAGE_NONE])) {
+    foreach ($user->og_user_node[LANGUAGE_NONE] as $one) {
+      if ($one['target_id']) {
+        $other_groups[] = $one['target_id'];
+      }
+    }
+  }
+  if (empty($other_groups)) {
+    (!empty($nid))? $user->og_user_node[LANGUAGE_NONE][] = ['target_id' => $nid] : '';
+  } elseif(!empty($nid) && !in_array($nid, $other_groups)) {
+    (!empty($nid))? $user->og_user_node[LANGUAGE_NONE][] = ['target_id' => $nid] : '';
+  }
+
   // Check and add Spoken Languages based on Dashboard Id.
   if (isset($rest_user['c4m_vocab_language'])
     && isset($rest_user['c4m_vocab_language'][LANGUAGE_NONE])) {
