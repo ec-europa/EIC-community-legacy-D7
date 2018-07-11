@@ -20,7 +20,8 @@ function c4m_features_og_members_c4m_og_feature_info() {
       'machine_name' => 'c4m_features_og_members',
       'weight' => 6,
       'default' => TRUE,
-      'group_types' => array('group', 'organisation'),
+      // Not needed for projects.
+      'group_types' => array('group', 'organisation', 'event_site'),
       'content_types' => array(),
     ),
   );

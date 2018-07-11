@@ -48,7 +48,7 @@ Wiki|wiki
 Library|documents
 News|news
 Media|media
-Members|members';
+Attendees|members';
   $export['og_menu_default_links_node_event_site'] = $strongarm;
 
   $strongarm = new stdClass();
