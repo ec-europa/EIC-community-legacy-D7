@@ -320,6 +320,14 @@ function c4m_web_services_services_request_postprocess_alter($controller, $args,
       }
     }
   }
+  //When adding through the WS, organisation should be Approved and Published.
+  if (!empty($nid = $result['nid'])) {
+    $organisation_wrapper = entity_metadata_wrapper('node', $nid);
+    if ($organisation_wrapper) {
+      $organisation_wrapper->c4m_og_status->set('published');
+      $organisation_wrapper->save();
+    }
+  }
 }
 
 /**
