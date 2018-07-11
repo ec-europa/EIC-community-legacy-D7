@@ -324,6 +324,12 @@ function c4m_web_services_services_request_postprocess_alter($controller, $args,
       }
     }
   }
+  // When creating a new node, publish it and set default paragraphs.
+  if (!empty($controller["callback"]) && $controller["callback"] === '_node_resource_create') {
+    if (!empty($nid = $result['nid'])) {
+      c4m_web_services_publish_organisation_set_paragraphs($nid);
+    }
+  }
 }
 
 /**
@@ -706,4 +712,98 @@ function c4m_web_services_get_existing_node($organisation_dashboard_id) {
     $node = node_load(array_pop(array_keys($result['node'])));
   }
   return $node;
+}
+
+/**
+ * Alter the newly created node, publish it and set default paragraphs.
+ *
+ * @param $nid
+ *   The organisation node id.
+ */
+function c4m_web_services_publish_organisation_set_paragraphs($nid) {
+  if (empty($nid)) {
+    return;
+  }
+
+  $node = node_load($nid);
+  if (empty($node)) {
+    return;
+  }
+
+  // When adding through the WS, organisation should be Approved and Published.
+  $node->c4m_og_status[LANGUAGE_NONE][0]['value'] = 'published';
+
+  // Add default text to the About us field.
+  $node->field_c4m_about_us[LANGUAGE_NONE][0]['format'] = 'filtered_html';
+  $node->field_c4m_about_us[LANGUAGE_NONE][0]['value'] =
+   '<p>' . t('You will find here a description of our company soon. Please visit our website in the meanwhile.') . '</p>';
+
+  // Set paragraphs for left column.
+  $node_field = 'c4m_left_column';
+  $paragraph_bundle = 'c4m_paragraph_system_block';
+  $base_block_name = '';
+  // About us block.
+  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_about_us';
+  $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('About us');
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save();
+
+  // Latest news block.
+  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'views:c4m_project_news-block';
+  $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('Latest news');
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save();
+
+  // Latest activity block.
+  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_as';
+  $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('Latest activity');
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save();
+
+
+  // Set paragraphs for right column.
+  $node_field = 'c4m_right_column';
+  // About this organisation block.
+  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_about';
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save();
+
+  // Customers block.
+  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_customers';
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save();
+
+  // Partners block.
+  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_partners';
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save();
+
+  // Organisation's groups.
+  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_groups';
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save();
+
+  // Save the node.
+  node_save($node);
 }

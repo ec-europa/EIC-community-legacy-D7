@@ -238,3 +238,42 @@ function _c4m_content_organisation_block_c4m_block_organisation_customers() {
 
     return $block;
 }
+
+/**
+ * Callback for the c4m_block_organisation_partners block.
+ */
+function _c4m_content_organisation_block_c4m_block_organisation_partners() {
+  $block = array();
+
+  if ($node = c4m_og_current_group()) {
+    $block['subject'] = '';
+    $block['content'] = field_view_field(
+      'node',
+      $node,
+      'c4m_partners',
+      array('label' => 'hidden')
+    );
+  }
+
+  return $block;
+}
+
+/**
+ * Callback for the c4m_block_organisation_about_us block.
+ */
+function _c4m_content_organisation_block_c4m_block_organisation_about_us() {
+  $block = array();
+
+  if ($node = c4m_og_current_group()) {
+    $block['subject'] = '';
+    $block['content'] = field_view_field(
+      'node',
+      $node,
+      'field_c4m_about_us',
+      array('label' => 'hidden')
+    );
+  }
+
+  return $block;
+}
+

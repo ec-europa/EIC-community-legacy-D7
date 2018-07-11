@@ -142,16 +142,16 @@ function c4m_content_organisation_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '33',
+          'weight' => '34',
         ),
         'redirect' => array(
-          'weight' => '36',
+          'weight' => '37',
         ),
         'og_menu' => array(
           'weight' => '0',
         ),
         'og_purl' => array(
-          'weight' => '34',
+          'weight' => '35',
         ),
       ),
       'display' => array(),

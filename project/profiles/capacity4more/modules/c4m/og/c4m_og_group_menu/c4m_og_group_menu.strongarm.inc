@@ -69,12 +69,10 @@ Members|members';
   $strongarm->api_version = 1;
   $strongarm->name = 'og_menu_default_links_node_organisation';
   $strongarm->value = 'Home|node/[node:nid]
-Wiki|wiki
-Library|documents
 News|news
 Media|media
 Events|calendar
-Members|members';
+Team|members';
   $export['og_menu_default_links_node_organisation'] = $strongarm;
 
   $strongarm = new stdClass();

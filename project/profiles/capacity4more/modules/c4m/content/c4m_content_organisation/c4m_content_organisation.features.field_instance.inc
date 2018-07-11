@@ -118,7 +118,7 @@ function c4m_content_organisation_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -213,7 +213,7 @@ function c4m_content_organisation_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'c4m_body',
-    'label' => 'About',
+    'label' => 'Teaser',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -262,7 +262,7 @@ function c4m_content_organisation_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -330,7 +330,7 @@ function c4m_content_organisation_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 21,
+      'weight' => 22,
     ),
   );
 
@@ -400,14 +400,13 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'paragraphs',
       'settings' => array(),
       'type' => 'paragraphs_embed',
-      'weight' => 29,
+      'weight' => 30,
     ),
   );
 
   // Exported field_instance: 'node-organisation-c4m_date_est'.
   $field_instances['node-organisation-c4m_date_est'] = array(
     'bundle' => 'organisation',
-    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Period in which the organisation is active.',
     'display' => array(
@@ -469,7 +468,7 @@ function c4m_content_organisation_field_default_field_instances() {
         'year_range' => '-200:+1',
       ),
       'type' => 'date_popup',
-      'weight' => 22,
+      'weight' => 23,
     ),
   );
 
@@ -523,7 +522,7 @@ function c4m_content_organisation_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 19,
+      'weight' => 20,
     ),
   );
 
@@ -594,7 +593,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -677,7 +676,7 @@ function c4m_content_organisation_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 38,
+      'weight' => 39,
     ),
   );
 
@@ -797,7 +796,7 @@ function c4m_content_organisation_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -867,7 +866,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'paragraphs',
       'settings' => array(),
       'type' => 'paragraphs_embed',
-      'weight' => 31,
+      'weight' => 32,
     ),
   );
 
@@ -938,7 +937,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -1009,7 +1008,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -1077,7 +1076,7 @@ function c4m_content_organisation_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -1199,7 +1198,7 @@ function c4m_content_organisation_field_default_field_instances() {
         ),
       ),
       'type' => 'geocoder',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -1256,7 +1255,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'c4m_vocab_widget',
       'settings' => array(),
       'type' => 'c4m_taxonomy_reference',
-      'weight' => 26,
+      'weight' => 27,
     ),
   );
 
@@ -1342,7 +1341,7 @@ function c4m_content_organisation_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -1399,7 +1398,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'c4m_vocab_widget',
       'settings' => array(),
       'type' => 'c4m_taxonomy_reference',
-      'weight' => 25,
+      'weight' => 26,
     ),
   );
 
@@ -1457,7 +1456,7 @@ function c4m_content_organisation_field_default_field_instances() {
         'content_taxonomy_opt_groups' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 37,
+      'weight' => 38,
     ),
   );
 
@@ -1591,7 +1590,7 @@ function c4m_content_organisation_field_default_field_instances() {
         'content_taxonomy_opt_groups' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -1642,7 +1641,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -1712,7 +1711,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'paragraphs',
       'settings' => array(),
       'type' => 'paragraphs_embed',
-      'weight' => 30,
+      'weight' => 31,
     ),
   );
 
@@ -1767,7 +1766,7 @@ function c4m_content_organisation_field_default_field_instances() {
         'placeholder' => '',
       ),
       'type' => 'telephone_default',
-      'weight' => 20,
+      'weight' => 21,
     ),
   );
 
@@ -1817,7 +1816,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 23,
+      'weight' => 24,
     ),
   );
 
@@ -1994,7 +1993,7 @@ function c4m_content_organisation_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 28,
+      'weight' => 29,
     ),
   );
 
@@ -2064,7 +2063,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'paragraphs',
       'settings' => array(),
       'type' => 'paragraphs_embed',
-      'weight' => 32,
+      'weight' => 33,
     ),
   );
 
@@ -2113,7 +2112,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'c4m_vocab_widget',
       'settings' => array(),
       'type' => 'c4m_taxonomy_reference',
-      'weight' => 24,
+      'weight' => 25,
     ),
   );
 
@@ -2184,7 +2183,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -2233,7 +2232,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'c4m_vocab_widget',
       'settings' => array(),
       'type' => 'c4m_taxonomy_reference',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -2282,7 +2281,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'c4m_vocab_widget',
       'settings' => array(),
       'type' => 'c4m_taxonomy_reference',
-      'weight' => 18,
+      'weight' => 19,
     ),
   );
 
@@ -2340,7 +2339,7 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'c4m_vocab_widget',
       'settings' => array(),
       'type' => 'c4m_taxonomy_reference',
-      'weight' => 27,
+      'weight' => 28,
     ),
   );
 
@@ -2411,7 +2410,90 @@ function c4m_content_organisation_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 10,
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'node-organisation-field_c4m_about_us'.
+  $field_instances['node-organisation-field_c4m_about_us'] = array(
+    'bundle' => 'organisation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'block_list' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 37,
+      ),
+      'group_dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_c4m_about_us',
+    'label' => 'About us',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'mail' => 0,
+          'plain_text' => 0,
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 1,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'filtered_html' => array(
+              'weight' => -50,
+            ),
+            'full_html' => array(
+              'weight' => -49,
+            ),
+            'mail' => array(
+              'weight' => -47,
+            ),
+            'plain_text' => array(
+              'weight' => -48,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 4,
     ),
   );
 
@@ -2481,13 +2563,13 @@ function c4m_content_organisation_field_default_field_instances() {
         'og_hide' => TRUE,
       ),
       'type' => 'options_onoff',
-      'weight' => 35,
+      'weight' => 36,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('About');
+  t('About us');
   t('Banner Image');
   t('Banner to be used on organisation landing page	');
   t('Comment');
@@ -2544,6 +2626,7 @@ function c4m_content_organisation_field_default_field_instances() {
   t('Status');
   t('Tag line');
   t('Target markets');
+  t('Teaser');
   t('The unique ID of the organisation in the SME Dashboard');
   t('Thumbnail image');
   t('Topic(s)');
