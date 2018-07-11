@@ -203,7 +203,7 @@ function c4m_user_profile_theme() {
     'path' => drupal_get_path('module', 'c4m_user_profile') . '/includes',
   ];
 
-  
+
   $theme['c4m_user_profile_event_sites_top_bar'] = [
     'variables' => [
       'projects' => [],
@@ -573,7 +573,7 @@ function c4m_user_profile_form_user_profile_form_alter(&$form, &$form_state, $fo
 
     $edit_link = l('(' . t('edit here') . ')', $c4m_user_dashboard_link);
     $form['c4m_user_types']["#suffix"] = '<small class="disabled-text disabled--user-type">'
-      . t('The User Type is managed through dashboard. ')
+      . t('The User Type and Job titles are managed through dashboard. ')
       . ' ' . $edit_link . '</small>';
 
   }

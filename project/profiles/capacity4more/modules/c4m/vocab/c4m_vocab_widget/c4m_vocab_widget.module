@@ -338,6 +338,16 @@ function _c4m_vocab_widget_check_access($element) {
   if (in_array('administrator', $user->roles)) {
     return FALSE;
   }
+
+  // User entities.
+  if ($element["#entity_type"] == 'user') {
+    if (isset($element["#field_name"])
+      && in_array($element["#field_name"], ['c4m_user_types', 'c4m_vocab_job_title'])) {
+      return TRUE;
+    }
+  }
+
+  // Node entities.
   $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
   if (empty($c4m_organisation_dashboard_fields)
   || $element["#entity_type"] != 'node'
