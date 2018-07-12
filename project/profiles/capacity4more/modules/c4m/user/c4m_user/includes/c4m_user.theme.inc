@@ -240,7 +240,7 @@ function theme_c4m_user_user_type_and_job_title(array $field) {
       if ($membership
         && (!empty($membership->c4m_user_types[LANGUAGE_NONE])
           || !empty($membership->c4m_vocab_job_title[LANGUAGE_NONE]))) {
-        $one_line .=  '<span class="organisation">' . t('In ') . $organisation->title . '</span>' .': ';
+        $one_line .=  '<span class="organisation">' . t('In ') . l($organisation->title, 'node/' . $organisation->nid) . '</span>' .': ';
       }
       // Take care of user types.
       $user_types = '';
