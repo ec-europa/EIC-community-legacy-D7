@@ -302,6 +302,10 @@ function c4m_content_organisation_block_info() {
     'info' => t('Organisation: Customers'),
     'cache' => DRUPAL_NO_CACHE,
   );
+  $blocks['c4m_block_organisation_partners'] = array(
+    'info' => t('Organisation: Customers'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
   $blocks['c4m_block_organisation_about_us'] = array(
     'info' => t('Organisation: About Us'),
     'cache' => DRUPAL_NO_CACHE,
