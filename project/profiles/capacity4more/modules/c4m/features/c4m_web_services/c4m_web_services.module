@@ -709,7 +709,8 @@ function c4m_web_services_get_existing_node($organisation_dashboard_id) {
 
   $result = $query->execute();
   if (isset($result['node'])) {
-    $node = node_load(array_pop(array_keys($result['node'])));
+    $node_item = array_pop(array_keys($result['node']));
+    $node = node_load($node_item);
   }
   return $node;
 }
