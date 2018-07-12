@@ -394,6 +394,7 @@ features[user_permission][] = view post access counter
 features[user_permission][] = view revisions
 features[user_permission][] = view the administration theme
 features[user_permission][] = view user revisions
+features[variable][] = ecas_account_option
 features[variable][] = ecas_default_mail_address
 features[variable][] = ecas_login_message
 features[variable][] = ecas_profile_core_ecas_email_field

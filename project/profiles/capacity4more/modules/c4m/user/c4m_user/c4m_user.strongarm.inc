@@ -14,6 +14,13 @@ function c4m_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'ecas_account_option';
+  $strongarm->value = '0';
+  $export['ecas_account_option'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'ecas_default_mail_address';
   $strongarm->value = 'unknown.mail@nomail.nodomain.tld';
   $export['ecas_default_mail_address'] = $strongarm;
