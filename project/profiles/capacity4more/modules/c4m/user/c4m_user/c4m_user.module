@@ -719,7 +719,7 @@ function c4m_user_access_denied() {
 /**
  * Callback providing tailored access denied behaviour with ECAS authentication.
  *
- * @return array|null
+ * @return array|mixed
  *   Return login form if user is visitor, access denied if user is logged in.
  */
 function c4m_user_access_denied_ecas() {
@@ -736,7 +736,21 @@ function c4m_user_access_denied_ecas() {
         )
       )
     );
-    return theme('kapablo_anonymous_welcome', array('welcome_message' => $welcome_message, 'cta' => $cta));
+
+    $warning_message = '';
+    if (strpos(request_uri(), 'ecas_warning_page') !== FALSE) {
+      // Access denied message for authenticated users.
+      $warning_message .= '<div class="alert alert-warning"><h2 class="ecl-heading ecl-heading--h2">' . t('Account not approved') . '</h2>';
+      $warning_message .= '<p>' . variable_get('ecas_warning_message', t('Your account is not yet approved')) . '</p></div>';
+    }
+    return theme(
+      'kapablo_anonymous_welcome',
+      array(
+        'welcome_message' => $welcome_message,
+        'cta' => $cta,
+        'warning_message' => $warning_message
+      )
+    );
   }
   else {
     // Access denied message for authenticated users.

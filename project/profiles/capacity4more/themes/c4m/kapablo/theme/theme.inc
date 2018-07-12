@@ -50,6 +50,7 @@ function kapablo_theme() {
     'variables' => array(
       'welcome_message' => NULL,
       'cta' => NULL,
+      'warning_message' => NULL,
     ),
   );
 
