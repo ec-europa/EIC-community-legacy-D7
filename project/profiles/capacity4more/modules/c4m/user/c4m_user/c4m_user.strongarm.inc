@@ -57,7 +57,7 @@ function c4m_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ecas_warning_message';
-  $strongarm->value = 'Your account is not yet approved';
+  $strongarm->value = 'Your account is not yet approved. If you need to have access, please contact a site administrator.';
   $export['ecas_warning_message'] = $strongarm;
 
   $strongarm = new stdClass();

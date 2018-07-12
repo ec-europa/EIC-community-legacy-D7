@@ -738,8 +738,8 @@ function c4m_user_access_denied_ecas() {
     );
 
     $warning_message = '';
-    if (strpos(request_uri(), 'ecas_warning_page') !== FALSE) {
-      // Access denied message for authenticated users.
+    if (!empty(request_uri())
+      && strpos(request_uri(), 'ecas_warning_page') !== FALSE) {
       $warning_message .= '<div class="alert alert-warning"><h2 class="ecl-heading ecl-heading--h2">' . t('Account not approved') . '</h2>';
       $warning_message .= '<p>' . variable_get('ecas_warning_message', t('Your account is not yet approved')) . '</p></div>';
     }
