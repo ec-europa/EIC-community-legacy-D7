@@ -227,7 +227,7 @@ function _c4m_content_organisation_block_c4m_block_organisation_customers() {
     $block = array();
 
     if ($node = c4m_og_current_group()) {
-        $block['subject'] = '';
+        $block['subject'] = 'Our customers';
         $block['content'] = field_view_field(
             'node',
             $node,
@@ -246,7 +246,7 @@ function _c4m_content_organisation_block_c4m_block_organisation_partners() {
   $block = array();
 
   if ($node = c4m_og_current_group()) {
-    $block['subject'] = '';
+    $block['subject'] = 'Our partners';
     $block['content'] = field_view_field(
       'node',
       $node,
