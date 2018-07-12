@@ -15,21 +15,6 @@
  *   The rendered admin actions.
  */
 function theme_c4m_features_og_members_admin_actions(array $field) {
-
-  $context = og_context();
-  if ($context) {
-    if (($group_type = c4m_og_get_group_type($context))) {
-      if ($group_type == 'event_site' && current_path() == 'members') {
-        return theme(
-          'c4m_administer_member_level',
-          array(
-            'membership_level' => 'Attendee',
-          )
-        );
-      }
-    }
-  }
-
   if (empty($field['entity'])) {
     return;
   }
@@ -41,6 +26,28 @@ function theme_c4m_features_og_members_admin_actions(array $field) {
 
   $entity = $field['entity'];
   $user = user_load($entity->uid);
+
+  $context = og_context();
+  if ($context) {
+    if (($group_type = c4m_og_get_group_type($context))) {
+      if ($group_type == 'event_site' && current_path() == 'members') {
+        if ($group->uid == $user->uid) {
+          return theme('c4m_administer_member_level', array('membership_level' => 'Owner'));
+        }
+        if (c4m_user_og_get_role_in_group($user, $group) == 'administrator') {
+          return theme('c4m_administer_member_level', array('membership_level' => 'Administrator'));
+        }
+        if ($role = c4m_og_user_role_load_by_name('attendee', 'event_site')) {
+          if (!empty(og_get_user_roles('node', $group->nid, $user->uid)[$role->rid])) {
+            return theme('c4m_administer_member_level', array('membership_level' => 'Attendee'));
+          }
+        } else {
+          return theme('c4m_administer_member_level', array('membership_level' => 'Member'));
+        }
+      }
+    }
+  }
+
   $membership_level = NULL;
 
   if ('membership_level' == $field['formatter']) {
