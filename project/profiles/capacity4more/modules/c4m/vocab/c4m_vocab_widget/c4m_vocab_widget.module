@@ -35,7 +35,12 @@ function c4m_vocab_widget_field_widget_form(&$form, &$form_state, $field, $insta
   }
 
   // Get taxonomy vocabulary and send it to the app.
-  $vocabulary = taxonomy_vocabulary_machine_name_load($field['settings']['allowed_values'][0]['vocabulary']);
+  $machine_name = $field['settings']['allowed_values'][0]['vocabulary'];
+  $array_of_vocabs = entity_load('taxonomy_vocabulary', [], ['machine_name' => $machine_name]);
+  $vocabulary = array_pop($array_of_vocabs);
+  if (!$vocabulary) {
+    $vocabulary = taxonomy_vocabulary_machine_name_load($machine_name);
+  }
 
   // Send field info.
   $field_info = field_info_instance($element['#entity_type'], $field['field_name'], $element['#bundle']);
