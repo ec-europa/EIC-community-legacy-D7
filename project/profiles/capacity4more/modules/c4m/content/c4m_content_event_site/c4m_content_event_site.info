@@ -142,6 +142,7 @@ features[og_features_permission][] = node:event_site:update own photoalbum conte
 features[og_features_permission][] = node:event_site:update own share content
 features[og_features_permission][] = node:event_site:update own wiki_page content
 features[og_features_permission][] = node:event_site:view unpublished group content
+features[og_features_role][] = node:event_site:attendee
 features[page_manager_pages][] = event_site_dashboard
 features[user_permission][] = clone node
 features[user_permission][] = clone own nodes
