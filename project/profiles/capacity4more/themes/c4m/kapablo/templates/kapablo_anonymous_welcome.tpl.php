@@ -17,14 +17,11 @@
 ?>
 
 <?php if ($variables['warning_message']): ?>
-  <h1><?php print $variables['warning_message']; ?></h1>
-
-  <?php else: ?>
-
+  <?php print $variables['warning_message']; ?>
+<?php else: ?>
   <?php if ($variables['welcome_message']): ?>
         <h1><?php print $variables['welcome_message']; ?></h1>
   <?php endif; ?>
-
 <?php endif; ?>
 
 <?php if ($variables['cta']): ?>
