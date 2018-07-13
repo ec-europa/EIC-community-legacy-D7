@@ -335,6 +335,7 @@ function c4m_content_organisation_block_view($delta) {
  * Alter the Organisation creation form.
  */
 function c4m_content_organisation_form_organisation_node_form_alter(array &$form, array &$form_state) {
+  global $user;
   $type = 'organisation';
 
   _c4m_og_alter_group_form($form, $form_state, $type);
@@ -350,10 +351,12 @@ function c4m_content_organisation_form_organisation_node_form_alter(array &$form
   $form["c4m_domain"]["#access"] = FALSE;
 
   // Hide fields managed through dashboard.
-  $form['c4m_organisation_dashboard_id']['#attributes']['class'][] = 'organisation-edit-hide';
-  // Hide paragraph fields.
-  $form['c4m_left_column']['#attributes']['class'][] = 'organisation-edit-hide';
-  $form['c4m_right_column']['#attributes']['class'][] = 'organisation-edit-hide';
+  if (!in_array('administrator', $user->roles)) {
+      $form['c4m_organisation_dashboard_id']['#attributes']['class'][] = 'organisation-edit-hide';
+      // Hide paragraph fields.
+      $form['c4m_left_column']['#attributes']['class'][] = 'organisation-edit-hide';
+      $form['c4m_right_column']['#attributes']['class'][] = 'organisation-edit-hide';
+  }
   _c4m_content_organisation_alter_organisation_form($form, $form_state);
 }
 
