@@ -85,7 +85,7 @@ function c4m_content_feed_articles_format_rss($articles) {
     $item_file = isset($item->c4m_media) ? $item->c4m_media->value() : FALSE;
 
     $args = array(
-      'category'       => t('Voices & views'),
+      'category'       => t('Stories'),
       'pubDate'        => format_date($item->created->value(), 'custom', 'r'),
       'count_views'    => $item->views->value(),
       'comments'       => $item->comment_count->value(),

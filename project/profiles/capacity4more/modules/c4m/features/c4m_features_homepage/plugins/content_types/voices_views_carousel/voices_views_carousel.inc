@@ -2,15 +2,15 @@
 
 /**
  * @file
- * Voices & Views carousel panels plugin.
+ * Stories carousel panels plugin.
  */
 
 /**
  * Plugin definition.
  */
 $plugin = array(
-  'title' => t('Voices & views carousel'),
-  'description' => t('Renders Voices & views carousel.'),
+  'title' => t('Stories carousel'),
+  'description' => t('Renders Stories carousel.'),
   'category' => t('C4M'),
 );
 

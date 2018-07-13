@@ -458,7 +458,7 @@ function c4m_content_topic_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'c4m_related_articles_unlimited',
-    'label' => 'Related Voices & Views',
+    'label' => 'Related Stories',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -845,7 +845,7 @@ function c4m_content_topic_field_default_field_instances() {
   t('List Image');
   t('Related Groups');
   t('Related Projects');
-  t('Related Voices & Views');
+  t('Related Stories');
   t('The image is used on the topics overview pages.');
   t('The theme related to this topic.');
   t('The topic related to this topic.');

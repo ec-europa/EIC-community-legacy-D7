@@ -8,6 +8,42 @@ body {
   font-family: $font_arial;
 }
 
+// Add padding between header and main content of the page except following.
+@media (min-width: $screen-sm) {
+  body {
+    #page-header {
+      padding-bottom: 20px;
+    }
+  }
+  body {
+      // Homepage, Group detail page.
+      // Organisation detail page, Event site detail page.
+    &.page-dashboard,
+      // Overview articles.
+    &.page-articles,
+      // Single article.
+    &.node-type-article,
+      // Overview topics, leave padding for single topic.
+    &.page-topics,
+    &.page-groups,
+      // All overview pages inside a Group -  Wiki, Library, Discussion, Media, Events, Members.
+      // All single nodes inside a Group - Wiki, Document, Discussion, Photo, Photoalbum, Event.
+    &.og-context,
+      // Organisations overview.
+    &.page-organisations,
+      // Basic pages.
+    &.node-type-book,
+      // Events overview.
+    &.page-events,
+      // People overview.
+    &.page-people {
+      #page-header {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
 body.toolbar-drawer {
   padding-top: 0 !important;
   .page-content {

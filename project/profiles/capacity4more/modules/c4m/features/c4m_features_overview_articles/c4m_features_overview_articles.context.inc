@@ -15,8 +15,8 @@ function c4m_features_overview_articles_context_default_contexts() {
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
   $context->name = 'c4m_detail_articles';
-  $context->description = 'Detail page of Voices & Views';
-  $context->tag = 'cap4more - Voices & Views';
+  $context->description = 'Detail page of Stories';
+  $context->tag = 'cap4more - Stories';
   $context->conditions = array(
     'node' => array(
       'values' => array(
@@ -36,16 +36,16 @@ function c4m_features_overview_articles_context_default_contexts() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Detail page of Voices & Views');
-  t('cap4more - Voices & Views');
+  t('Detail page of Stories');
+  t('cap4more - Stories');
   $export['c4m_detail_articles'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
   $context->name = 'c4m_overview_articles';
-  $context->description = 'Overview page of all Voices & Views';
-  $context->tag = 'cap4more - Voices & Views';
+  $context->description = 'Overview page of all Stories';
+  $context->tag = 'cap4more - Stories';
   $context->conditions = array(
     'views' => array(
       'values' => array(
@@ -105,8 +105,8 @@ function c4m_features_overview_articles_context_default_contexts() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Overview page of all Voices & Views');
-  t('cap4more - Voices & Views');
+  t('Overview page of all Stories');
+  t('cap4more - Stories');
   $export['c4m_overview_articles'] = $context;
 
   return $export;

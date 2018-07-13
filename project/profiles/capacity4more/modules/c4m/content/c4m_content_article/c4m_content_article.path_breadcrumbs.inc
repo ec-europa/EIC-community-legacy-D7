@@ -18,7 +18,7 @@ function c4m_content_article_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'node/%nodeidnumber';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Voices &amp; Views',
+      0 => 'Stories',
       1 => '%nodeidnumber:title',
     ),
     'paths' => array(
@@ -58,11 +58,11 @@ function c4m_content_article_path_breadcrumbs_settings_info() {
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'voices_views';
-  $path_breadcrumb->name = 'Voices & Views';
+  $path_breadcrumb->name = 'Stories';
   $path_breadcrumb->path = 'articles';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Voices & Views',
+      0 => 'Stories',
     ),
     'paths' => array(
       0 => '<none>',
