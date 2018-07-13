@@ -48,7 +48,7 @@ function c4m_content_inthe_picture_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'Voices & Views' => 'Voices & Views',
+        'Stories' => 'Stories',
         'Groups' => 'Groups',
         'Projects' => 'Projects',
         'Events' => 'Events',

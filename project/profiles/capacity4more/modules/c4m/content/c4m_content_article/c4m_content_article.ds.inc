@@ -184,6 +184,11 @@ function c4m_content_article_ds_field_settings_info() {
       'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
+      'formatter_settings' => array(
+        'ft' => array(
+          'lb' => 'Story Disclaimer',
+        ),
+      ),
     ),
     'c4m_ds_content_actions' => array(
       'weight' => '15',
@@ -217,7 +222,7 @@ function c4m_content_article_ds_field_settings_info() {
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
-          'lb' => 'Related Voices & Views',
+          'lb' => 'Related Stories',
           'lb-el' => 'h3',
           'lb-col' => TRUE,
           'ow' => TRUE,

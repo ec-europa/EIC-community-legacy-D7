@@ -263,7 +263,7 @@ function c4m_content_topic_ds_custom_fields_info() {
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
   $ds_field->field = 'related_articles_by_topic';
-  $ds_field->label = 'Related Articles by Topic';
+  $ds_field->label = 'Related Stories by Topic';
   $ds_field->field_type = 6;
   $ds_field->entities = array(
     'node' => 'node',

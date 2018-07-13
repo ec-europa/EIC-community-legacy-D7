@@ -122,8 +122,8 @@ function c4m_features_inthe_picture_views_default_views() {
     'Groups' => 'Groups',
   );
 
-  /* Display: Voices & Views */
-  $handler = $view->new_display('block', 'Voices & Views', 'block');
+  /* Display: Stories */
+  $handler = $view->new_display('block', 'Stories', 'block');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -145,7 +145,7 @@ function c4m_features_inthe_picture_views_default_views() {
   $handler->display->display_options['filters']['c4m_overview_page_value']['table'] = 'field_data_c4m_overview_page';
   $handler->display->display_options['filters']['c4m_overview_page_value']['field'] = 'c4m_overview_page_value';
   $handler->display->display_options['filters']['c4m_overview_page_value']['value'] = array(
-    'Voices & Views' => 'Voices & Views',
+    'Stories' => 'Stories',
   );
 
   /* Display: Groups */

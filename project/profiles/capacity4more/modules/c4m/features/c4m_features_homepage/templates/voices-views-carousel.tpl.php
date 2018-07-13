@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Prints out the Voices & Views carousel.
+ * Prints out the Stories carousel.
  */
 ?>
 
 <div id="articles-panel">
   <div class="row carousel">
-    <h3><?php print t('Latest Articles'); ?></h3>
+    <h3><?php print t('Latest Story'); ?></h3>
     <div class="col-md-12">
       <div class="owl-carousel">
         <?php foreach ($carousels as $carousel): ?>
@@ -25,5 +25,5 @@
     </div>
   </div>
 
-  <span class="block-title"><?php print l(t('Read more articles') . ' <i class="fa fa-chevron-right"></i>', 'articles', array('html' => TRUE)); ?></span>
+  <span class="block-title"><?php print l(t('Read more stories') . ' <i class="fa fa-chevron-right"></i>', 'articles', array('html' => TRUE)); ?></span>
 </div>

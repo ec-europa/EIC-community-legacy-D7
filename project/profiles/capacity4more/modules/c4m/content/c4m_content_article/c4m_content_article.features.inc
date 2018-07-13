@@ -36,9 +36,9 @@ function c4m_content_article_views_api($module = NULL, $api = NULL) {
 function c4m_content_article_node_info() {
   $items = array(
     'article' => array(
-      'name' => t('Article'),
+      'name' => t('Story'),
       'base' => 'node_content',
-      'description' => t('An article is a sitewide piece of content that can contain text and images.'),
+      'description' => t('A story is a sitewide piece of content that can contain text and images.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
