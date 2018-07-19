@@ -16,6 +16,22 @@ include_once 'c4m_features_homepage.features.inc';
 define('C4M_FEATURES_HOMEPAGE_MAX_GROUPS_PER_BLOCK', 3);
 
 /**
+ * Implements hook_menu().
+ */
+function c4m_features_homepage_menu() {
+  $items['admin/config/c4m/video-embed'] = array(
+    'title' => 'Manage Homepage - video block',
+    'description' => 'Manage description and video link for homepage right sidebar block.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('c4m_features_homepage_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'c4m_features_homepage.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
  * Implements hook_menu_alter().
  *
  * Remove access to certain standard Drupal paths.
