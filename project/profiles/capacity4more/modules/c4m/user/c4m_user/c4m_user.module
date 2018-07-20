@@ -1488,8 +1488,8 @@ function c4m_user_is_site_admin($user = NULL) {
   }
 
   $site_admin_role = user_role_load_by_name('administrator');
-
-  return user_has_role($site_admin_role->rid, $user);
+  $site_content_admin = user_role_load_by_name('content administrator');
+  return user_has_role($site_admin_role->rid, $user) || user_has_role($site_content_admin->rid, $user);
 }
 
 /**

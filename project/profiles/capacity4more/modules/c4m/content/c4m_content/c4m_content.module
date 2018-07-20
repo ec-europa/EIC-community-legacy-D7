@@ -1368,6 +1368,9 @@ function c4m_content_menu_alter(&$items) {
   ];
 
   $items['node/add']['access callback'] = 'c4m_content_add_access';
+  $items['admin/structure']['access callback'] = 'c4m_content_restrict_menu_items';
+  $items['admin/config']['access callback'] = 'c4m_content_restrict_menu_items';
+  $items['admin/statistics']['access callback'] = 'c4m_content_restrict_menu_items';
 
   return $items;
 }
@@ -1377,6 +1380,15 @@ function c4m_content_menu_alter(&$items) {
  */
 function c4m_content_add_access() {
   return c4m_user_is_site_admin();
+}
+
+/**
+ * Access Callback; /admin/structure and /admin/config /admin/statistics should not be visible.
+ */
+function c4m_content_restrict_menu_items() {
+  global $user;
+  $site_content_admin = user_role_load_by_name('content administrator');
+  return !user_has_role($site_content_admin->rid, $user);
 }
 
 /**
