@@ -1,48 +1,56 @@
-$col--ec-grey-100: #404040;
-$col--ec-blue-100: #004494;
-$col--ec-blue-110: #003776;
-$col--ec-yellow-100: #ffd617;
-$col--ec-yellow-110: #fbc11d;
-$col--ec-cyan-100: #4d6d90;
-$col--ec-cyan-110: #022b58;
-$col--ec-grey-75: #707070;
-$col--ec-grey-50: #9f9f9f;
-$col--ec-grey-25: #cfcfcf;
-$col--ec-blue-25: #bfd0e4;
-$col--ec-grey-15: #e3e3e3;
-$col--ec-grey-10: #ebebeb;
-$col--ec-grey-5: #f5f5f5;
-$col--ec-blue-n: #006fb4;
-$col--ec-orange-n: #f29527;
-$col--ec-green-n: #467a39;
-$col--ec-red-n: #da2131;
+$colors: (
+    ec-grey-100: #404040,
+    ec-blue-100: #004494,
+    ec-blue-110: #003776,
+    ec-yellow-100: #ffd617,
+    ec-yellow-110: #fbc11d,
+    ec-cyan-100: #4d6d90,
+    ec-cyan-110: #022b58,
+    ec-grey-75: #707070,
+    ec-grey-50: #9f9f9f,
+    ec-grey-25: #cfcfcf,
+    ec-blue-25: #bfd0e4,
+    ec-grey-15: #e3e3e3,
+    ec-grey-10: #ebebeb,
+    ec-grey-5: #f5f5f5,
+    ec-blue-n: #006fb4,
+    ec-orange-n: #f29527,
+    ec-green-n: #467a39,
+    ec-red-n: #da2131
+);
 
 :root {
-    --ec-grey-100: $col--ec-grey-100;
-    --ec-blue-100: $col--ec-blue-100;
-    --ec-blue-110: $col--ec-blue-110;
-    --ec-yellow-100: $col--ec-yellow-100;
-    --ec-yellow-110: $col--ec-yellow-110;
-    --ec-cyan-100: $col--ec-cyan-100;
-    --ec-cyan-110: $col--ec-cyan-110;
-    --ec-grey-75: $col--ec-grey-75;
-    --ec-grey-50: $col--ec-grey-50;
-    --ec-grey-25: $col--ec-grey-25;
-    --ec-blue-25: $col--ec-blue-25;
-    --ec-grey-15: $col--ec-grey-15;
-    --ec-grey-10: $col--ec-grey-10;
-    --ec-grey-5: $col--ec-grey-5;
-    --ec-blue-n: $col--ec-blue-n;
-    --ec-orange-n: $col--ec-orange-n;
-    --ec-green-n: $col--ec-green-n;
-    --ec-red-n: $col--ec-red-n;
+    --ec-grey-100: #{map-get($colors, "ec-grey-100")};
+    --ec-blue-100: #{map-get($colors, "ec-blue-100")};
+    --ec-blue-110: #{map-get($colors, "ec-blue-110")};
+    --ec-yellow-100: #{map-get($colors, "ec-yellow-100")};
+    --ec-yellow-110: #{map-get($colors, "ec-yellow-110")};
+    --ec-cyan-100: #{map-get($colors, "ec-cyan-100")};
+    --ec-cyan-110: #{map-get($colors, "ec-cyan-110")};
+    --ec-grey-75: #{map-get($colors, "ec-grey-75")};
+    --ec-grey-50: #{map-get($colors, "ec-grey-50")};
+    --ec-grey-25: #{map-get($colors, "ec-grey-25")};
+    --ec-blue-25: #{map-get($colors, "ec-blue-25")};
+    --ec-grey-15: #{map-get($colors, "ec-grey-15")};
+    --ec-grey-10: #{map-get($colors, "ec-grey-10")};
+    --ec-grey-5: #{map-get($colors, "ec-grey-5")};
+    --ec-blue-n: #{map-get($colors, "ec-blue-n")};
+    --ec-orange-n: #{map-get($colors, "ec-orange-n")};
+    --ec-green-n: #{map-get($colors, "ec-green-n")};
+    --ec-red-n: #{map-get($colors, "ec-red-n")};
 }
+
+@mixin css-var($property, $value, $prefix:"", $suffix:"") {
+    #{$property}: unquote($prefix) map-get($colors, $value) unquote($suffix);
+    #{$property}: unquote($prefix) var(--#{$value}) unquote($suffix);
+}
+
 
 body {
     text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: var(--ec-grey-100);
+    @include css-var("color", "ec-grey-100");
 }
 
 .text-normal, .header-4, .text-copy, .text-nav--selected, .topic-subtopics, .text-copy--inverse, .text-copy--muted, .field-name-c4m-ds-content-footer-stats, .field-name-c4m-content-article-disclaimer, .view-mode-activity_global .field-name-c4m-field-og-group, .view-mode-activity_group .field-name-c4m-field-og-group, .view-mode-activity_global .user-name, .view-mode-activity_group .user-name, .view-mode-activity_global .field-name-c4m-field-og-group a, .view-mode-activity_group .field-name-c4m-field-og-group a, .view-mode-activity_global .user-name a, .view-mode-activity_group .user-name a, .view-mode-block_list .field-name-c4m-field-og-group, .view-mode-block_list .field-name-c4m-field-og-group a, .text-link, .text-link--bold, .text-nav--unselected, .text-placeholder, .activity-stream--operator, .activity-stream--operator a, .field-name-c4m-ds-event-start-icon .fa-stack .calendar-text
@@ -63,7 +71,7 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 }
 
 h1, h2, h3, h4, h5 {
-    color: var(--ec-grey-100);
+    @include css-var("color", "ec-grey-100");
 }
 
 h1, h2 {
@@ -88,7 +96,7 @@ h5 {
 
 .header-2, .sidebarblock__title, .panel-pane__title, h2, .view-mode-group_dashboard .control-label,
 .header-1, h1, .group-title, .view-mode-full.user-profile .group-left .user-name, {
-    color: var(--ec-grey-100);
+    @include css-var("color", "ec-grey-100");
 }
 
 h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view-mode-group_dashboard .control-label, h3, .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
@@ -103,21 +111,21 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view
 
 .view-mode-member_overview:not(.node-group):not(.user-profile) .fa, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name a, .view-mode-member_overview:not(.node-group):not(.user-profile) .creation-date, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by a, .view-mode-member_overview:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group, .view-mode-member_overview:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group a, .view-mode-teaser:not(.node-group):not(.user-profile) .fa, .view-mode-teaser:not(.node-group):not(.user-profile) .user-name, .view-mode-teaser:not(.node-group):not(.user-profile) .user-name a, .view-mode-teaser:not(.node-group):not(.user-profile) .creation-date, .view-mode-teaser:not(.node-group):not(.user-profile) .posted-by, .view-mode-teaser:not(.node-group):not(.user-profile) .posted-by a, .view-mode-teaser:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group, .view-mode-teaser:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group a
 {
-    color: var(--ec-grey-75);
+    @include css-var("color", "ec-grey-75");
 }
 
 .view-mode-teaser .fa, .view-mode-teaser .posted-by, .view-mode-teaser .creation-date, .view-mode-teaser .row-entity-count, .view-mode-teaser .group-iconbar-comments-views, .view-mode-member_overview .fa, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views, .view-mode-teaser_group .posted-by
 {
-    color: var(--ec-grey-75) !important;
+    @include css-var("color", "ec-grey-75", "", "!important");
 }
 
 .view-mode-teaser:not(.user-profile) .user-name a, .view-mode-member_overview:not(.user-profile) .user-name a {
-    color: var(--ec-blue-100) !important;
+    @include css-var("color", "ec-blue-100", "", "!important");
 }
 
 .view-mode-full.node-article .field-name-c4m-ds-type-posted-by, .view-mode-full.node-article .field-name-c4m-ds-creation-date
 {
-    color: var(--ec-grey-50);
+    @include css-var("color", "ec-grey-50");
 }
 
 .view-mode-member_overview.node-event .icon-wrapper .fa, .view-mode-member_overview.node-event-site .icon-wrapper .fa, .view-mode-teaser.node-event .icon-wrapper .fa, .node-event.view-mode-teaser_group .icon-wrapper .fa, .view-mode-teaser.node-event-site .icon-wrapper .fa, .node-event-site.view-mode-teaser_group .icon-wrapper .fa, .view-mode-teaser_group .fa
@@ -128,16 +136,16 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view
 .view-mode-member_overview:not(.node-group):not(.user-profile) .fa, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name a, .view-mode-member_overview:not(.node-group):not(.user-profile) .creation-date, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by a, .view-mode-member_overview:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group, .view-mode-teaser_group:not(.node-group):not(.user-profile) .user-name,
 .view-mode-teaser:not(.user-profile) .user-name a, .view-mode-teaser_group:not(.user-profile) .user-name a, .view-mode-teaser .fa, .view-mode-teaser_group .fa, .view-mode-teaser .posted-by, .view-mode-teaser_group .posted-by, .view-mode-teaser .creation-date, .view-mode-teaser_group .creation-date, .view-mode-teaser .row-entity-count, .view-mode-teaser_group .row-entity-count, .view-mode-teaser .group-iconbar-comments-views, .view-mode-teaser_group .group-iconbar-comments-views, .view-mode-member_overview:not(.user-profile) .user-name a, .view-mode-member_overview .fa, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views
 {
-    color: var(--ec-grey-50) !important;
+    @include css-var("color", "ec-grey-50", "", "!important");
 }
 
 .view-mode-teaser:not(.user-profile) .user-name a, .view-mode-teaser_group:not(.user-profile) .user-name a, .view-mode-member_overview:not(.user-profile) .user-name a, .view-mode-member_overview .fa, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views
 {
-    color: var(--ec-blue-100) !important;
+    @include css-var("color", "ec-blue-100", "", "!important");
 }
 
 .text-muted {
-    color: var(--ec-grey-75);
+    @include css-var("color", "ec-grey-75");
 }
 
 b, strong, label {
@@ -157,7 +165,7 @@ b, strong, label {
 }
 
 blockquote {
-    border-left: solid 8px var(--ec-yellow-100);
+    @include css-var("border-left", "ec-yellow-100", "solid 8px");
     margin: 0;
     padding: .66rem 0 .66rem 1.66rem;
 }
@@ -167,7 +175,7 @@ blockquote {
 }
 
 a:focus, a:focus:active {
-    outline: solid 3px var(--ec-yellow-100);
+    @include css-var("outline", "ec-yellow-100", "solid 3px");
     outline-offset: 2px;
 }
 
@@ -219,9 +227,9 @@ a:focus, a:focus:active {
 #user-bar .fullname-picture-wrapper .fullname-picture .initials {
     width: 18px;
     height: 18px;
-    background-color: var(--ec-grey-100);
+    @include css-var("background-color", "ec-grey-100");
     color: #fff;
-    border-color: var(--ec-grey-100);
+    @include css-var("border-color", "ec-grey-100");
     overflow: hidden;
 }
 
@@ -256,12 +264,12 @@ a:focus, a:focus:active {
 }
 
 .form-control:focus {
-    outline: solid 2px var(--ec-yellow-100);
+    @include css-var("outline", "ec-yellow-100", "solid 2px");
     outline-offset: -3px;
 }
 
 .form-control:not(.form-file) {
-    border-color: var(--ec-grey-50);
+    @include css-var("border-color", "ec-grey-50");
     box-shadow: none;
     border-radius: 0;
     font-size: 18px;
@@ -275,7 +283,7 @@ a:focus, a:focus:active {
 
 .form-submit:focus,
 .form-submit:active {
-    outline: solid 2px var(--ec-yellow-100) !important;
+    @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
     outline-offset: -2px !important;
 }
 
@@ -291,8 +299,8 @@ a:focus, a:focus:active {
     bottom: auto;
     height: calc(100% - 2px);
     min-height: 0;
-    background-color: var(--ec-grey-15);
-    color: var(--ec-blue-100);
+    @include css-var("background-color", "ec-grey-15");
+    @include css-var("color", "ec-blue-100");
     transition: none;
     padding: 0 16px;
 }
@@ -300,14 +308,14 @@ a:focus, a:focus:active {
 #c4m-search-form .form-submit:hover,
 #c4m-search-redirect-form .form-submit:hover,
 #c4m-search-redirect-form--2 .form-submit:hover {
-    color: var(--ec-grey-100) !important;
-    background: var(--ec-grey-15) !important;
+    @include css-var("color", "ec-grey-100", "", "!important");
+    @include css-var("background", "ec-grey-15", "", "!important");
 }
 
 #c4m-search-form .form-submit:focus,
 #c4m-search-redirect-form .form-submit:focus,
 #c4m-search-redirect-form--2 .form-submit:focus {
-    background-color: var(--ec-blue-100) !important;
+    @include css-var("background-color", "ec-blue-100", "", "!important");
     color: #fff !important;
 }
 
@@ -350,11 +358,11 @@ a:focus, a:focus:active {
 }
 
 .owl-theme .owl-controls .owl-page span {
-    background-color: var(--ec-blue-25);
+    @include css-var("background-color", "ec-blue-25");
 }
 
 .row.carousel h3, .row.carousel .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, .view-mode-highlight_list .row.carousel .field-name-c4m-ds-content-type-icon {
-    color: var(--ec-grey-100);
+    @include css-var("color", "ec-grey-100");
 }
 
 .block-title .fa {
@@ -367,7 +375,7 @@ a:focus, a:focus:active {
 
 .pane-filter, .block-c4m-search-filter {
     position: relative;
-    background-color: var(--ec-grey-5);
+    @include css-var("background-color", "ec-grey-5");
     font-size: 14px;
 }
 
@@ -379,7 +387,7 @@ a:focus, a:focus:active {
     top: 0;
     width: 50vw;
     height: 100%;
-    background-color: var(--ec-grey-5);
+    @include css-var("background-color", "ec-grey-5");
     z-index: -1;
     visibility: visible;
 }
@@ -421,16 +429,16 @@ a:focus, a:focus:active {
 }
 
 .activity-stream .activities:not(.last) {
-    border-bottom: solid 1px var(--ec-grey-10);
+    @include css-var("border-bottom", "ec-grey-10", "solid 1px");
 }
 
 .activity-stream--operator {
     font-size: 14px;
-    color: var(--ec-grey-75);
+    @include css-var("color", "ec-grey-75");
 }
 
 .action-delete {
-    color: var(--ec-red-n);
+    @include css-var("color", "ec-red-n");
 }
 
 .activity-stream .action-delete {
@@ -446,12 +454,12 @@ a:focus, a:focus:active {
 .field-name-c4m-ds-event-start-icon,
 .view-mode-activity_global .field-name-c4m-ds-content-footer-stats {
     font-size: 14px;
-    color: var(--ec-grey-50);
+    @include css-var("color", "ec-grey-50");
 }
 
 .view-mode-activity_global .field-name-c4m-field-og-group {
     font-size: 14px;
-    color: var(--ec-grey-75);
+    @include css-var("color", "ec-grey-75");
 }
 
 .view-mode-activity_global .field-name-c4m-field-og-group a {
@@ -481,13 +489,13 @@ a:focus, a:focus:active {
 }
 
 .contextual-links-region > .row > .col-sm-4 {
-    background-color: var(--ec-grey-5);
+    @include css-var("background-color", "ec-grey-5");
     padding-top: 16px;
     padding-bottom: 16px;
 }
 
 .contextual-links-region > .row > .col-sm-4 .panel-separator {
-    background-color: var(--ec-grey-10);
+    @include css-var("background-color", "ec-grey-10");
 }
 
 .sidebarblock h2, .offCanvasNavigation--right h2, .contextual-links-region > .row > .col-sm-4 h2 {
@@ -563,71 +571,71 @@ a:focus, a:focus:active {
 }
 
 .btn:focus {
-    outline: solid 2px var(--ec-yellow-100) !important;
+    @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
     outline-offset: -2px;
 }
 
 .btn-primary {
-    border-color: var(--ec-blue-100);
+    @include css-var("border-color", "ec-blue-100");
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active,
 .btn-info:active:hover, .btn-info:active:focus, .btn-info:active.focus, .btn-info.active:hover, .btn-info.active:focus, .btn-info.active.focus, .open>.btn-info.dropdown-toggle:hover, .open>.btn-info.dropdown-toggle:focus, .open>.btn-info.dropdown-toggle.focus
 {
     background-color: transparent !important;
-    border-color: var(--ec-blue-100);
-    color: var(--ec-blue-100) !important;
+    @include css-var("border-color", "ec-blue-100");
+    @include css-var("color", "ec-blue-100", "", "!important");
 }
 
 .btn-default {
     background-color: transparent;
-    border-color: var(--ec-blue-100);
-    color: var(--ec-blue-100);
+    @include css-var("border-color", "ec-blue-100");
+    @include css-var("color", "ec-blue-100");
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:focus {
-    background-color: var(--ec-blue-100);
-    border-color: var(--ec-blue-100);
+    @include css-var("background-color", "ec-blue-100");
+    @include css-var("border-color", "ec-blue-100");
     color: #fff;
 }
 
 .btn-warning {
-    background-color: var(--ec-yellow-100);
-    border-color: var(--ec-yellow-100);
-    color: var(--ec-grey-100);
+    @include css-var("background-color", "ec-yellow-100");
+    @include css-var("border-color", "ec-yellow-100");
+    @include css-var("color", "ec-grey-100");
 }
 
 .btn-warning:hover, .btn-warning:focus, .btn-active:focus {
-    background-color: var(--ec-yellow-100) !important;
-    border-color: var(--ec-yellow-100) !important;
-    color: var(--ec-grey-100) !important;
+    @include css-var("background-color", "ec-yellow-100", "", "!important");
+    @include css-var("border-color", "ec-yellow-100", "", "!important");
+    @include css-var("color", "ec-grey-100", "", "!important");
 }
 
 .btn-warning:focus {
-    outline-color: var(--ec-blue-100) !important;
+    @include css-var("outline-color", "ec-blue-100", "", "!important");
 }
 
 .btn.disabled, .disabled.button.browse, .btn[disabled], [disabled].button.browse, fieldset[disabled] .btn, fieldset[disabled] .button.browse {
-    background-color: var(--ec-grey-15);
-    border-color: var(--ec-grey-15);
-    color: var(--ec-blue-100);
+    @include css-var("background-color", "ec-grey-15");
+    @include css-var("border-color", "ec-grey-15");
+    @include css-var("color", "ec-blue-100");
     opacity: 1;
 }
 
 .btn-primary[disabled]:hover {
-    background-color: var(--ec-grey-15) !important;
-    border-color: var(--ec-grey-15);
+    @include css-var("background-color", "ec-grey-15", "", "!important");
+    @include css-var("border-color", "ec-grey-15");
 }
 
 .alert-info {
-    background-color: var(--ec-blue-n);
-    border-color: var(--ec-blue-75);
+    @include css-var("background-color", "ec-blue-n");
+    @include css-var("border-color", "ec-blue-75");
     color: #fff;
 }
 
 .alert-success {
-    background-color: var(--ec-green-n);
-    border-color: var(--ec-green-n);
+    @include css-var("background-color", "ec-green-n");
+    @include css-var("border-color", "ec-green-n");
     color: #fff;
 }
 
@@ -662,7 +670,7 @@ a:focus, a:focus:active {
 }
 
 .view-mode-block_list.node-event .field-name-c4m-field-og-group .field-item a {
-    color: var(--ec-blue-100);
+    @include css-var("color", "ec-blue-100");
 }
 
 .fa-stack-2x.fa-calendar-o {
@@ -718,7 +726,7 @@ a:focus, a:focus:active {
 }
 
 #scroll-top:hover {
-    background-color: var(--ec-grey-75);
+    @include css-var("background-color", "ec-grey-75");
 }
 
 #scroll-top i {
@@ -751,7 +759,7 @@ ul.statistics-list li {
     justify-content: center;
     padding: 20px 10px;
     font-size: 14px;
-    color: var(--ec-cyan-100);
+    @include css-var("color", "ec-cyan-100");
 }
 
 ul.statistics-list li a {
@@ -817,7 +825,7 @@ footer a:focus, footer a:active {
     border: none;
     border-radius: 0;
     box-shadow: none;
-    color: var(--ec-blue-100);
+    @include css-var("color", "ec-blue-100");
 }
 
 #user-bar .userbar-userprofile.right-menu-section .dropdown-menu li,
@@ -862,7 +870,7 @@ footer a:focus, footer a:active {
 }
 
 .field-name-c4m-ds-content-footer-stats, .field-name-c4m-ds-node-highlight, .field-name-c4m-ds-node-promote {
-    color: var(--ec-grey-50);
+    @include css-var("color", "ec-grey-50");
 }
 
 .view-mode-full:not(.node-wiki-page)>.content>.group-right>section:not(:last-child), .view-mode-full:not(.node-wiki-page)>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>section:not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child),
@@ -870,7 +878,7 @@ footer a:focus, footer a:active {
 #comments .comment,
 .node-project.view-mode-group_dashboard>.content>.field, .node-event-site.view-mode-group_dashboard>.content>.field, .node-organisation.view-mode-group_dashboard>.content>.field
 {
-    border-bottom: solid 1px var(--ec-grey-10);
+    @include css-var("border-bottom", "ec-grey-10", "solid 1px");
     padding-bottom: 20px;
 }
 
@@ -899,7 +907,7 @@ footer a:focus, footer a:active {
 
 .view .node .fa-newspaper-o, .view .node .user-name, .view .node .posted-by, .view .node .creation-date {
     font-size: 14px;
-    color: var(--ec-grey-75);
+    @include css-var("color", "ec-grey-75");
 }
 
 .page-container + .cke_screen_reader_only {
@@ -908,13 +916,13 @@ footer a:focus, footer a:active {
 }
 
 .view-mode-teaser.node-topic {
-    background-color: var(--ec-grey-10);
+    @include css-var("background-color", "ec-grey-10");
     border-radius: 0;
     padding: 10px;
 }
 
 .view-mode-member_overview.node-topic, .view-mode-teaser.node-topic, .node-topic.view-mode-teaser_group {
-    color: var(--ec-grey-100) !important;
+    @include css-var("color", "ec-grey-100", "", "!important");
 }
 
 .view-mode-member_overview.node-topic a, .view-mode-teaser.node-topic a, .node-topic.view-mode-teaser_group a {
@@ -929,11 +937,11 @@ footer a:focus, footer a:active {
 
 .group-c4m-header-meta {
     border-radius: 0;
-    border-color: var(--ec-grey-10);
+    @include css-var("border-color", "ec-grey-10");
 }
 
 .region-sidebar-first {
-    background-color: var(--ec-grey-5);
+    @include css-var("background-color", "ec-grey-5");
     border: none;
     padding: 10px 15px;
 }
@@ -969,7 +977,7 @@ footer a:focus, footer a:active {
 .view-items-with-dashed-separator .view-header,
 .view-items-with-dashed-separator .views-row-last {
     padding-bottom: 20px;
-    border-bottom: solid 1px var(--ec-grey-10);
+    @include css-var("border-bottom", "ec-grey-10", "solid 1px");
 }
 
 .search-api-sort {
@@ -1010,7 +1018,7 @@ footer a:focus, footer a:active {
 }
 
 .group-statistic {
-    color: var(--ec-grey-50);
+    @include css-var("color", "ec-grey-50");
 }
 
 .node-teaser .group-left, .node-photo .group-left {
@@ -1023,18 +1031,18 @@ footer a:focus, footer a:active {
 }
 
 .view-mode-teaser .row-entity-count, .view-mode-teaser:not(.node-group):not(.user-profile) .fa {
-    color: var(--ec-grey-50) !important;
+    @include css-var("color", "ec-grey-50", "", "!important");
 }
 
 .views-row + .views-row:not(.no-border) {
     margin-top: 20px;
     padding-top: 20px;
-    border-top: solid 1px var(--ec-grey-10);
+    @include css-var("border-top", "ec-grey-10", "solid 1px");
 }
 
 .c4m-group-cta:not(:last-child), .c4m-group-visitor-cta:not(:last-child),
 .view-mode-full .content .group-right div.field-name-c4m-related-user .view-mode-block_list {
-    border-bottom: solid 1px var(--ec-grey-10);
+    @include css-var("border-bottom", "ec-grey-10", "solid 1px");
     padding-bottom: 20px;
 }
 
@@ -1065,13 +1073,13 @@ footer a:focus, footer a:active {
 }
 
 .field-name-c4m-related-user + .field-name-c4m-link-multiple {
-    border-top: solid 1px var(--ec-grey-10);
+    @include css-var("border-top", "ec-grey-10", "solid 1px");
     padding-top: 20px;
     margin-top: 20px;
 }
 
 .region-sidebar-first-top {
-    background: var(--ec-grey-5);
+    @include css-var("background", "ec-grey-5");
     padding: 10px 15px;
 }
 
@@ -1080,13 +1088,13 @@ footer a:focus, footer a:active {
     font-size: inherit;
 }
 
-.group-footer .highlight-link, .group-footer .flag-link-confirm {
+.group-footer .highlight-link, .group-footer .flag-link-confirm, .c4m-organisation-node-highlight .highlight-link {
     opacity: 0.5;
 }
 
 .view-mode-teaser:not(.node-group):not(.user-profile) .group-footer .highlight-link .fa,
 .view-mode-teaser:not(.node-group):not(.user-profile) .group-footer .flag-link-confirm .fa {
-    color: var(--ec-grey-75) !important;
+    @include css-var("color", "ec-grey-75", "", "!important");
 }
 
 .highlight-link:hover, .highlight-link:focus, .flag-link-confirm:hover, .flag-link-confirm:focus {
@@ -1184,7 +1192,7 @@ footer a:focus, footer a:active {
     display: inline-block;
     margin: 0;
     padding: .33rem .66rem;
-    color: var(--ec-grey-100);
+    @include css-var("color", "ec-grey-100");
     font-size: 14px;
     line-height: 1;
     font-weight: bold;
@@ -1199,21 +1207,21 @@ footer a:focus, footer a:active {
 }
 
 .label-primary {
-    background-color: var(--ec-yellow-100);
+    @include css-var("background-color", "ec-yellow-100");
 }
 
 .label-default, .label.label-default {
-    background-color: var(--ec-grey-15);
+    @include css-var("background-color", "ec-grey-15");
 }
 
 .label.label-access, .label.label-access.private, .field-name-c4m-og-status .label-access.private.field-item, .field-name-c4m-project-stage .label-access.private.field-item {
-    background-color: var(--ec-red-n);
+    @include css-var("background-color", "ec-red-n");
     border: none;
     font-weight: bold;
 }
 
 .event-views-links a:hover {
-    color: var(--ec-grey-100);
+    @include css-var("color", "ec-grey-100");
 }
 
 .node-event h1, .node-event h2 {
@@ -1230,7 +1238,7 @@ footer a:focus, footer a:active {
 .node-event-site .icon-col,
 .view-mode-full.node-event .field-name-c4m-ds-event-start-icon {
     width: 30px;
-    color: var(--ec-grey-50);
+    @include css-var("color", "ec-grey-50");
 }
 
 .node-event .icon-col + .content-col,
@@ -1269,7 +1277,7 @@ footer a:focus, footer a:active {
 
 .node-event .addtocal {
     font-family: Arial, sans-serif;
-    color: var(--ec-blue-100);
+    @include css-var("color", "ec-blue-100");
 }
 
 .node-event .addtocal::before {
@@ -1295,7 +1303,7 @@ footer a:focus, footer a:active {
 
 .nav-tabs:not(.vertical-tabs-list) {
     display: flex;
-    border-bottom: solid 2px var(--ec-grey-50);
+    @include css-var("border-bottom", "ec-grey-50", "solid 2px");
 }
 
 .nav-tabs:not(.vertical-tabs-list) > li {
@@ -1323,9 +1331,9 @@ footer a:focus, footer a:active {
 .nav-tabs:not(.vertical-tabs-list) > li.active > a,
 .nav-tabs:not(.vertical-tabs-list) > li.active > a:hover,
 .nav-tabs:not(.vertical-tabs-list) > li.active > a:focus {
-    border: solid 2px var(--ec-grey-50);
+    @include css-var("border", "ec-grey-50", "solid 2px");
     border-bottom-color: #fff;
-    color: var(--ec-grey-100);
+    @include css-var("color", "ec-grey-100");
 }
 
 .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
@@ -1336,13 +1344,13 @@ footer a:focus, footer a:active {
 .nav-tabs > li > a:focus,
 .nav-tabs > li > a:focus:active,
 .nav-tabs > li.active > a:focus {
-    background-color: var(--ec-yellow-100);
-    outline: solid 2px var(--ec-yellow-100);
+    @include css-var("background-color", "ec-yellow-100");
+    @include css-var("outline", "ec-yellow-100", "solid 2px");
     outline-offset: 2px;
 }
 
 .view-mode-activity_group .field-name-c4m-ds-content-footer-stats {
-    color: var(--ec-grey-50);
+    @include css-var("color", "ec-grey-50");
 }
 
 #header-ec-wrapper .group-banner {
@@ -1387,7 +1395,7 @@ footer a:focus, footer a:active {
     .offCanvasNavigation--left,
     .dashboard.group-right,
     .offCanvasNavigation--right {
-        background: var(--ec-grey-5);
+        @include css-var("background", "ec-grey-5");
         border: none;
         box-shadow: none;
     }
