@@ -16,6 +16,7 @@ function c4m_content_event_site_user_default_permissions() {
     'name' => 'clone node',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'clone',
   );
@@ -25,6 +26,7 @@ function c4m_content_event_site_user_default_permissions() {
     'name' => 'clone own nodes',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'clone',
   );

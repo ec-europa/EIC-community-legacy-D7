@@ -7,7 +7,7 @@ index 37fce10..c69c99c 100644
    RewriteEngine on
  
 +  RewriteCond %{HTTPS} !=on
-+  RewriteCond %{HTTP_HOST} !^(dev|smeic-test|community-accp-smei)\. [NC]
++  RewriteCond %{HTTP_HOST} !^(dev|smeic-test)\. [NC]
 +  RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 +
    # Set "protossl" to "s" if we were accessed via https://.  This is used later

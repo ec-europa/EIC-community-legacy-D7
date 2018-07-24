@@ -24,6 +24,10 @@ $plugin = array(
  * Render callback.
  */
 function c4m_features_homepage_video_embed_content_type_render($subtype, $conf, $args, $context) {
+  // Build new $conf array.
+  $conf['video'] = variable_get('c4m_features_homepage_video');
+  $conf['title'] = variable_get('c4m_features_homepage_title');
+  $conf['description'] = variable_get('c4m_features_homepage_description');
   if (!$conf['video']) {
     return FALSE;
   }
@@ -73,48 +77,6 @@ function c4m_features_homepage_video_embed_content_type_render($subtype, $conf, 
   $block->title = '';
   $block->content = theme('video_embed', $variables);
   return $block;
-}
-
-/**
- * Edit form.
- */
-function c4m_features_homepage_video_embed_content_type_edit_form($form, &$form_state) {
-  $conf = $form_state['conf'];
-
-  $form['title'] = array(
-    '#title' => t('Video block title'),
-    '#type' => 'textfield',
-    '#default_value' => $conf['title'],
-    '#required' => 1,
-    '#description' => t('Title of the video.'),
-  );
-
-  $form['description'] = array(
-    '#title' => t('Video block description'),
-    '#type' => 'textfield',
-    '#default_value' => $conf['description'],
-    '#required' => 1,
-    '#description' => t('Description of the video.'),
-  );
-
-  $form['video'] = array(
-    '#title' => t('Video URL'),
-    '#type' => 'textfield',
-    '#default_value' => $conf['video'],
-    '#required' => 1,
-    '#description' => t('Provide the "Share" url of the video you want to embed.'),
-  );
-
-  return $form;
-}
-
-/**
- * Edit form submit callback.
- */
-function c4m_features_homepage_video_embed_content_type_edit_form_submit($form, &$form_state) {
-  $form_state['conf']['title'] = $form_state['values']['title'];
-  $form_state['conf']['description'] = $form_state['values']['description'];
-  $form_state['conf']['video'] = $form_state['values']['video'];
 }
 
 /**

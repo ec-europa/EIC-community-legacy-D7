@@ -16,6 +16,7 @@ function c4m_og_group_menu_user_default_permissions() {
     'name' => 'administer og menu',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'og_menu',
   );

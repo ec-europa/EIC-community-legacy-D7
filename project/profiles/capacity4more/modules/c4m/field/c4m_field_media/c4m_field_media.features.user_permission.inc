@@ -25,6 +25,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'administer files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -34,7 +35,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'bypass file access',
     'roles' => array(
       'administrator' => 'administrator',
-      'dashboard' => 'dashboard',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -54,6 +55,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'delete any audio files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -63,6 +65,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'delete any document files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -72,6 +75,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'delete any image files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -81,6 +85,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'delete any video files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -174,6 +179,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'download own audio files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -183,6 +189,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'download own document files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -192,6 +199,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'download own image files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -201,6 +209,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'download own video files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -210,6 +219,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'edit any audio files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -219,6 +229,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'edit any document files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -228,6 +239,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'edit any image files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -237,6 +249,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'edit any video files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
@@ -317,6 +330,7 @@ function c4m_field_media_user_default_permissions() {
     'name' => 'view private files',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'file_entity',
   );
