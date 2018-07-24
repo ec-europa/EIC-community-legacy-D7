@@ -1398,7 +1398,7 @@
     }
 
     .header .container {
-      background: #f1f6f9;
+      background: #c0d0e4;
       padding-top: 16px;
       padding-bottom: 16px;
       border: 1px solid #C5C7C8;
@@ -1416,7 +1416,7 @@
     }
 
     th.large-12.mail-body {
-      border-bottom: 12px solid #6E969F;
+      border-bottom: 12px solid #004494;
       padding-top: 40px;
       padding-bottom: 40px;
       padding-left: 64px;
@@ -1443,7 +1443,7 @@
                     <th class="small-12 large-12">
                       <table>
                         <tr>
-                          <th> <img src="https://europa.eu/capacity4dev/profiles/capacity4more/themes/c4m/kapablo/logo_2.png"> </th>
+                          <th> <img src="https://community-smei.easme-web.eu/profiles/capacity4more/themes/c4m/shake/logo.png" style="max-width: 105px;"> </th>
                         </tr>
                       </table>
                     </th>
