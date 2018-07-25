@@ -641,7 +641,7 @@ function c4m_content_organisation_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'c4m_group_welcome_message',
-    'label' => 'Group welcome message',
+    'label' => 'Organisation welcome message',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -2605,7 +2605,7 @@ function c4m_content_organisation_field_default_field_instances() {
   t('Facebook');
   t('Facebook page for the organisation');
   t('Group');
-  t('Group welcome message');
+  t('Organisation welcome message');
   t('Icon');
   t('Indicate the size of the organisation	');
   t('Indicate the type(s) of the organisation	');
