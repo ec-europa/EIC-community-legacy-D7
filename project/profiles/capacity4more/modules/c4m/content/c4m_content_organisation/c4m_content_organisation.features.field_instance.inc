@@ -2600,12 +2600,10 @@ function c4m_content_organisation_field_default_field_instances() {
   t('Date of establishment');
   t('Describe the organisation	');
   t('Determine if this is an OG group.');
-  t('Topics');
   t('Email');
   t('Facebook');
   t('Facebook page for the organisation');
   t('Group');
-  t('Organisation welcome message');
   t('Icon');
   t('Indicate the size of the organisation	');
   t('Indicate the type(s) of the organisation	');
@@ -2624,6 +2622,7 @@ function c4m_content_organisation_field_default_field_instances() {
   t('Organisation main location');
   t('Organisation size');
   t('Organisation type(s)');
+  t('Organisation welcome message');
   t('Partners');
   t('Partners of the organisation');
   t('Period in which the organisation is active.');
@@ -2643,6 +2642,7 @@ function c4m_content_organisation_field_default_field_instances() {
   t('The unique ID of the organisation in the SME Dashboard');
   t('Thumbnail image');
   t('Topic(s)');
+  t('Topics');
   t('Twitter');
   t('Twitter profile for the organisation');
   t('Website');

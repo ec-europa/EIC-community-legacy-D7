@@ -460,7 +460,7 @@ function c4m_content_organisation_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_ds_group_members_count' => array(
+    'c4m_ds_organisation_members_count' => array(
       'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
@@ -510,26 +510,12 @@ function c4m_content_organisation_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(
-          'func' => 'theme_ds_field_reset',
-        ),
-      ),
-    ),
     'c4m_looking_for' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
           'prefix' => '<div>',
           'suffix' => '</div>',
-        ),
-      ),
-    ),
-    'c4m_media' => array(
-      'formatter_settings' => array(
-        'ft' => array(
-          'func' => 'theme_ds_field_expert',
         ),
       ),
     ),
@@ -546,6 +532,20 @@ function c4m_content_organisation_ds_field_settings_info() {
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_reset',
+        ),
+      ),
+    ),
+    'c4m_body' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_reset',
+        ),
+      ),
+    ),
+    'c4m_media' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_expert',
         ),
       ),
     ),
@@ -693,11 +693,17 @@ function c4m_content_organisation_ds_layout_settings_info() {
   $ds_layout->layout = 'c4m_ds_3_9_fluid_stacked';
   $ds_layout->settings = array(
     'regions' => array(
+      'header' => array(
+        0 => 'group_teaser_header_inline',
+        14 => 'c4m_ds_organisation_type_icon',
+        15 => 'c4m_og_status',
+        16 => 'title',
+      ),
       'right' => array(
-        0 => 'c4m_ds_group_members_count',
-        3 => 'c4m_ds_group_posts_count',
-        4 => 'c4m_ds_group_recommendation_count',
-        5 => 'c4m_body',
+        1 => 'c4m_ds_organisation_members_count',
+        2 => 'c4m_ds_group_posts_count',
+        4 => 'c4m_body',
+        5 => 'c4m_ds_group_recommendation_count',
         6 => 'c4m_ds_node_highlight',
         7 => 'c4m_email',
         8 => 'group_metadata',
@@ -707,23 +713,17 @@ function c4m_content_organisation_ds_layout_settings_info() {
         12 => 'c4m_qualitative_attributes',
         13 => 'group_iconbar_comments_views',
       ),
-      'header' => array(
-        1 => 'group_teaser_header_inline',
-        14 => 'c4m_ds_organisation_type_icon',
-        15 => 'c4m_og_status',
-        16 => 'title',
-      ),
       'left' => array(
-        2 => 'c4m_media',
+        3 => 'c4m_media',
       ),
     ),
     'fields' => array(
-      'c4m_ds_group_members_count' => 'right',
       'group_teaser_header_inline' => 'header',
-      'c4m_media' => 'left',
+      'c4m_ds_organisation_members_count' => 'right',
       'c4m_ds_group_posts_count' => 'right',
-      'c4m_ds_group_recommendation_count' => 'right',
+      'c4m_media' => 'left',
       'c4m_body' => 'right',
+      'c4m_ds_group_recommendation_count' => 'right',
       'c4m_ds_node_highlight' => 'right',
       'c4m_email' => 'right',
       'group_metadata' => 'right',
