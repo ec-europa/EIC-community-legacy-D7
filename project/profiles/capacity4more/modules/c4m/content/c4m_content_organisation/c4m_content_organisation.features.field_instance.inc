@@ -2302,7 +2302,7 @@ function c4m_content_organisation_field_default_field_instances() {
   $field_instances['node-organisation-c4m_vocab_topic'] = array(
     'bundle' => 'organisation',
     'deleted' => 0,
-    'description' => 'Domain(s) of activity',
+    'description' => 'Topics',
     'display' => array(
       'block_list' => array(
         'label' => 'above',
@@ -2600,7 +2600,7 @@ function c4m_content_organisation_field_default_field_instances() {
   t('Date of establishment');
   t('Describe the organisation	');
   t('Determine if this is an OG group.');
-  t('Domain(s) of activity');
+  t('Topics');
   t('Email');
   t('Facebook');
   t('Facebook page for the organisation');
