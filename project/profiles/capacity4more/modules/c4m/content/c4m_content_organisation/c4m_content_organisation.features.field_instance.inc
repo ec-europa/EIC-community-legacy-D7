@@ -218,8 +218,8 @@ function c4m_content_organisation_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
+          'filtered_html' => 0,
+          'full_html' => 0,
           'mail' => 0,
           'plain_text' => 'plain_text',
         ),
