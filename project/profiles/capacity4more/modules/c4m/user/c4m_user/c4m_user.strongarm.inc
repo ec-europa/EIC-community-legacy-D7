@@ -64,7 +64,7 @@ function c4m_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ecas_warning_message';
-  $strongarm->value = 'Your account is not yet approved. If you need to have access, please contact a site administrator.';
+  $strongarm->value = 'You are not authorised to access this page. To gain access or for more information please contact us at the following address: <a href="mailto:EASME-SME-HELPDESK@ec.europa.eu">EASME-SME-HELPDESK@ec.europa.eu</a>';
   $export['ecas_warning_message'] = $strongarm;
 
   $strongarm = new stdClass();
