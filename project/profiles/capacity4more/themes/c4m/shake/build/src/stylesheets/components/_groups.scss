@@ -97,3 +97,33 @@
     position: relative;
   }
 }
+
+.group-indications {
+  .group-icon.as-group-restricted {
+    border: 1px solid $color-yellow;
+  }
+  .restricted-organisation-icons {
+    border: 1px solid $color-yellow;
+
+    .group-organisation--more {
+      span {
+        background: $color-blue;
+      }
+    }
+
+    &::before, &::after {
+      background: $color-yellow;
+    }
+
+    &.no-icons {
+      height: 10px;
+      .group-organisation--more {
+        padding-top: 2px;
+      }
+    }
+
+  }
+  .restricted-organisation-icons>span:not(:first-child) {
+    border-left: 1px solid $color-yellow;
+  }
+}
