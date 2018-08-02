@@ -1388,6 +1388,12 @@ function c4m_content_add_access() {
 function c4m_content_restrict_menu_items() {
   global $user;
   $site_content_admin = user_role_load_by_name('content administrator');
+  if (!$site_content_admin) {
+    $site_content_admin = new stdClass();
+    $site_content_admin->name = 'content administrator';
+    user_role_save($site_content_admin);
+    $site_content_admin = user_role_load_by_name('content administrator');
+  }
   return !user_has_role($site_content_admin->rid, $user);
 }
 
