@@ -1589,7 +1589,7 @@ function c4m_content_organisation_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'c4m_organisation_size',
     'label' => 'Organisation size',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
