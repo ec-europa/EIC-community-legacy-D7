@@ -70,8 +70,9 @@ function c4m_features_homepage_my_organisations_content_type_render($subtype, $c
   $output = '';
   if ($rendered_organisations) {
     $output .= theme('c4m_features_homepage_my_organisations', $variables);
-    $renderable_array = c4m_features_homepage_node_creation_button_cta('organisation');
-    $output .= render($renderable_array);
+//    EASME-288 - don't create Organisations through the homepage block.
+//    $renderable_array = c4m_features_homepage_node_creation_button_cta('organisation');
+//    $output .= render($renderable_array);
   }
 
   $block->content = $output;
