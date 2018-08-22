@@ -48,8 +48,8 @@ $colors: (
 
 body {
     text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     @include css-var("color", "ec-grey-100");
 }
 
@@ -58,7 +58,8 @@ body {
     font-size: inherit;
 }
 
-h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view-mode-group_dashboard .control-label, h3, .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view-mode-group_dashboard .control-label, h3, .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
+.btn.fa {
     font-family: Arial,sans-serif;
 }
 
@@ -68,6 +69,9 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 
 .fa {
     font-weight: normal !important;
+    &::before {
+        font-family: "fontawesome";
+    }
 }
 
 h1, h2, h3, h4, h5 {
@@ -174,11 +178,6 @@ blockquote {
     font-family: inherit !important;
 }
 
-a:focus, a:focus:active {
-    @include css-var("outline", "ec-yellow-100", "solid 3px");
-    outline-offset: 2px;
-}
-
 
 #user-bar {
     display: flex;
@@ -221,6 +220,15 @@ a:focus, a:focus:active {
 .initials {
     padding: 0;
     font-size: 0;
+    a,
+    .inner-initials {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+    }
 }
 
 #user-bar .fullname-picture-wrapper .fullname-picture .profile-picture,
@@ -1339,14 +1347,6 @@ footer a:focus, footer a:active {
 .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     color: #000;
     text-decoration: none;
-}
-
-.nav-tabs > li > a:focus,
-.nav-tabs > li > a:focus:active,
-.nav-tabs > li.active > a:focus {
-    @include css-var("background-color", "ec-yellow-100");
-    @include css-var("outline", "ec-yellow-100", "solid 2px");
-    outline-offset: 2px;
 }
 
 .view-mode-activity_group .field-name-c4m-ds-content-footer-stats {
