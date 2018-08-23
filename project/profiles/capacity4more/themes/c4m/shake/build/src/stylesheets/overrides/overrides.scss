@@ -371,6 +371,36 @@ blockquote {
     color: #fff !important;
 }
 
+.media-item {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.media-widget {
+    @include css-var("border", "ec-grey-100", "solid 1px");
+
+    .preview {
+        margin-right: 0;
+        .media-item {
+            margin-right: 10px;
+        }
+    }
+
+    .button, .btn {
+        float: right;
+        margin: -1px;
+        margin-left: 10px;
+    }
+}
+
+.checkboxes-wrapper {
+    .btn {
+        margin-top: 10px;
+    }
+}
+
 .header-actions {
     border-radius: 0;
 }
@@ -573,7 +603,7 @@ blockquote {
     border-radius: 0;
 }
 
-.btn, .button.browse, .ecl-button {
+.btn, .button.browse, .button.edit, .ecl-button {
     max-width: 100%;
     padding: 13px 20px;
     min-height: 48px;
@@ -596,7 +626,7 @@ blockquote {
     text-decoration: underline;
 }
 
-.btn:focus {
+.btn:focus, .button.browse:focus {
     @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
     outline-offset: -2px;
 }
@@ -606,14 +636,8 @@ blockquote {
     @include css-var("border-color", "ec-blue-100");
 }
 
-.button.browse {
-    @include css-var("background-color", "ec-blue-100");
-    @include css-var("border-color", "ec-blue-100");
-}
-
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active,
 .btn-info:active:hover, .btn-info:active:focus, .btn-info:active.focus, .btn-info.active:hover, .btn-info.active:focus, .btn-info.active.focus, .open>.btn-info.dropdown-toggle:hover, .open>.btn-info.dropdown-toggle:focus, .open>.btn-info.dropdown-toggle.focus,
-.button.browse:hover, .button.browse:focus, .button.browse:active,
 .ecl-button--primary:hover, .ecl-button--primary:focus, .ecl-button--primary:active
 {
     background-color: transparent !important;
@@ -621,13 +645,27 @@ blockquote {
     @include css-var("color", "ec-blue-100", "", "!important");
 }
 
-.btn-default {
+.button.browse {
+    margin: 0;
+    @include css-var("background-color", "ec-grey-100");
+    @include css-var("border-color", "ec-grey-100");
+}
+
+.button.browse:hover, .button.browse:focus, .button.browse:active,
+.button.browse:active:focus, .button.browse:active.focus, .active.button.browse:hover, .active.button.browse:focus, .active.focus.button.browse, .open>.dropdown-toggle.button.browse:hover, .open>.dropdown-toggle.button.browse:focus, .open>.dropdown-toggle.focus.button.browse {
+    background-color: transparent;
+    @include css-var("border-color", "ec-grey-100");
+    @include css-var("color", "ec-grey-100");
+}
+
+.btn-default, .button.edit {
     background-color: transparent;
     @include css-var("border-color", "ec-blue-100");
     @include css-var("color", "ec-blue-100");
 }
 
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:focus {
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:focus,
+.button.edit:hover, .button.edit:focus, .button.edit:active, .button.edit:active:focus {
     @include css-var("background-color", "ec-blue-100");
     @include css-var("border-color", "ec-blue-100");
     color: #fff;
@@ -920,17 +958,30 @@ footer a:focus, footer a:active {
     border: none;
     border-radius: 0;
     box-shadow: none;
+    @include css-var("background-color", "ec-grey-5");
     @include css-var("color", "ec-blue-100");
 }
 
 .dropdown-menu {
+    border-radius: 0;
+    border: none;
     @include css-var("background-color", "ec-grey-10");
 
     > li {
+        display: block;
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
         > a {
+            color: currentColor;
+            line-height: 1;
+            &:hover, &:focus {
+                background: none;
+                color: currentColor;
+                text-decoration: underline;
+            }
             &.ecl-button {
                 padding: 13px 20px;
-                line-height: 1;
                 font-weight: bold;
             }
         }
@@ -1529,6 +1580,24 @@ footer a:focus, footer a:active {
         font-size: 1rem;
         margin-top: 0;
         text-transform: none;
+    }
+}
+
+.view-header a.node-create-news, .view-header a.node-create-discussion, .view-header a.node-create-event, .view-header a.node-create-document, .view-header a.node-create-photoalbum, .view-header a.node-create-photo {
+    text-transform: none;
+    &:hover,
+    &:focus {
+        background-color: transparent;
+        @include css-var("border-color", "ec-blue-100");
+        @include css-var("color", "ec-blue-100");
+        text-decoration: underline;
+    }
+}
+
+.search-api-sort {
+    .dropdown-menu {
+        left: auto;
+        max-width: 200px;
     }
 }
 
