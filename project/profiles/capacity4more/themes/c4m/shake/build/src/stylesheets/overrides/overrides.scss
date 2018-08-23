@@ -68,9 +68,23 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 }
 
 .fa {
-    font-weight: normal !important;
+    &:not(.btn) {
+        font-weight: normal !important;
+    }
     &::before {
         font-family: "fontawesome";
+    }
+}
+
+.btn.fa {
+    font-weight: bold !important;
+    &::before {
+        font-weight: normal !important;
+    }
+    &:hover, &:focus {
+        &::before {
+            text-decoration: none;
+        }
     }
 }
 
@@ -185,7 +199,7 @@ b, strong, label {
     color: inherit;
 }
 
-.control-label:hover span {
+.control-label:hover span:not(.form-required) {
     text-decoration: underline;
 }
 
@@ -305,8 +319,11 @@ blockquote {
     font-style: normal;
 }
 
-.node-form .form-control:not(.form-file):focus {
-    box-shadow: none;
+.node-form .form-control:not(.form-file) {
+    border-radius: 0;
+    &:focus {
+        box-shadow: none;
+    }
 }
 
 .form-submit:focus,
@@ -550,15 +567,6 @@ blockquote {
 }
 
 .btn, .button.browse {
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.btn:active, .button.browse:active, .btn.active, .active.button.browse {
-    box-shadow: none;
-}
-
-.btn {
     max-width: 100%;
     padding: 13px 20px;
     min-height: 48px;
@@ -569,9 +577,15 @@ blockquote {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border-radius: 0;
+    box-shadow: none;
 }
 
-.btn:hover, .btn:focus {
+.btn:active, .button.browse:active, .btn.active, .active.button.browse {
+    box-shadow: none;
+}
+
+.btn:hover, .btn:focus, .button.browse:hover, .button.browse:focus {
     text-decoration: underline;
 }
 
@@ -584,8 +598,14 @@ blockquote {
     @include css-var("border-color", "ec-blue-100");
 }
 
+.button.browse {
+    @include css-var("background-color", "ec-blue-100");
+    @include css-var("border-color", "ec-blue-100");
+}
+
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active,
-.btn-info:active:hover, .btn-info:active:focus, .btn-info:active.focus, .btn-info.active:hover, .btn-info.active:focus, .btn-info.active.focus, .open>.btn-info.dropdown-toggle:hover, .open>.btn-info.dropdown-toggle:focus, .open>.btn-info.dropdown-toggle.focus
+.btn-info:active:hover, .btn-info:active:focus, .btn-info:active.focus, .btn-info.active:hover, .btn-info.active:focus, .btn-info.active.focus, .open>.btn-info.dropdown-toggle:hover, .open>.btn-info.dropdown-toggle:focus, .open>.btn-info.dropdown-toggle.focus,
+.button.browse:hover, .button.browse:focus, .button.browse:active
 {
     background-color: transparent !important;
     @include css-var("border-color", "ec-blue-100");
@@ -620,7 +640,43 @@ blockquote {
     @include css-var("outline-color", "ec-blue-100", "", "!important");
 }
 
-.btn.disabled, .disabled.button.browse, .btn[disabled], [disabled].button.browse, fieldset[disabled] .btn, fieldset[disabled] .button.browse {
+.btn-success {
+    @include css-var("background-color", "ec-green-n");
+    @include css-var("border-color", "ec-green-n");
+}
+
+.btn-success:hover, .btn-success:focus {
+    background-color: transparent;
+    @include css-var("border-color", "ec-green-n");
+    @include css-var("color", "ec-green-n");
+}
+
+.btn-danger {
+    @include css-var("background-color", "ec-red-n");
+    @include css-var("border-color", "ec-red-n");
+}
+
+.btn-danger:hover, .btn-danger:focus {
+    background-color: transparent;
+    @include css-var("border-color", "ec-red-n");
+    @include css-var("color", "ec-red-n");
+}
+
+.btn-info {
+    @include css-var("background-color", "ec-orange-n");
+    @include css-var("border-color", "ec-orange-n");
+}
+
+.btn-info:hover, .btn-info:focus {
+    background-color: transparent;
+    @include css-var("border-color", "ec-orange-n");
+    @include css-var("color", "ec-orange-n");
+}
+
+.btn.disabled, .disabled.button.browse, .btn[disabled], [disabled].button.browse, fieldset[disabled] .btn, fieldset[disabled] .button.browse,
+.btn-danger.disabled:hover, .btn-danger.disabled:focus, .btn-danger.disabled.focus, .btn-danger[disabled]:hover, .btn-danger[disabled]:focus, .btn-danger[disabled].focus, fieldset[disabled] .btn-danger:hover, fieldset[disabled] .btn-danger:focus, fieldset[disabled] .btn-danger.focus,
+.btn-success.disabled:hover, .disabled.button.browse:hover, .btn-success.disabled:focus, .disabled.button.browse:focus, .btn-success.disabled.focus, .disabled.focus.button.browse, .btn-success[disabled]:hover, [disabled].button.browse:hover, .btn-success[disabled]:focus, [disabled].button.browse:focus, .btn-success[disabled].focus, [disabled].focus.button.browse, fieldset[disabled] .btn-success:hover, fieldset[disabled] .button.browse:hover, fieldset[disabled] .btn-success:focus, fieldset[disabled] .button.browse:focus, fieldset[disabled] .btn-success.focus, fieldset[disabled] .focus.button.browse,
+.btn-info.disabled:hover, .btn-info.disabled:focus, .btn-info.disabled.focus, .btn-info[disabled]:hover, .btn-info[disabled]:focus, .btn-info[disabled].focus, fieldset[disabled] .btn-info:hover, fieldset[disabled] .btn-info:focus, fieldset[disabled] .btn-info.focus {
     @include css-var("background-color", "ec-grey-15");
     @include css-var("border-color", "ec-grey-15");
     @include css-var("color", "ec-blue-100");
@@ -656,6 +712,19 @@ blockquote {
 .alert-success .close:hover {
     color: currentColor;
     opacity: 1;
+}
+
+.text-info {
+    @include css-var("color", "ec-orange-n");
+}
+
+.text-success {
+    @include css-var("color", "ec-green-n");
+}
+
+.text-danger,
+.form-required {
+    @include css-var("color", "ec-red-n");
 }
 
 .panel-separator {
