@@ -46,6 +46,7 @@ function c4m_og_group_menu_strongarm() {
   $strongarm->value = 'Home|node/[node:nid]
 Wiki|wiki
 Library|documents
+Discussions|discussions
 News|news
 Media|media
 Attendees|members';
