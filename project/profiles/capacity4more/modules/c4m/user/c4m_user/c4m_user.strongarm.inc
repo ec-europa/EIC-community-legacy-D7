@@ -29,7 +29,7 @@ function c4m_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ecas_login_message';
-  $strongarm->value = 'Logged in via EU Login as %ecas_username.';
+  $strongarm->value = '';
   $export['ecas_login_message'] = $strongarm;
 
   $strongarm = new stdClass();
