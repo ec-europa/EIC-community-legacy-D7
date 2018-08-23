@@ -98,6 +98,27 @@ h5 {
     line-height: 25px;
 }
 
+.text-small, .text-copy--small, .text-copy--inverse--small, .text-copy--emphasized, .text-link--cta, .text-link--small, .text-link--ec, .text-breadcrumb, .text-tooltip, .text-link--blue, .field-name-c4m-ds-event-start-icon .calendar-text-month, .topic-subtopics, #user-bar .fullname-picture-wrapper .fullname-picture .initials .inner-initials, .view-mode-block_list .field-name-c4m-ds-submitted-by-and-on, .view-mode-block_list .field-name-c4m-field-og-group, .view-mode-block_list .field-name-c4m-field-og-group a, .view-mode-member_overview, .view-mode-teaser, .view-mode-teaser_group
+{
+    font-size: 16px;
+}
+
+.view-mode-teaser .row-entity-count,
+.view-mode-teaser .field-name-c4m-ds-node-promote .fa,
+.view-mode-teaser_group .field-name-c4m-ds-node-promote .fa,
+.view-mode-teaser .field-name-c4m-ds-node-highlight .fa,
+.view-mode-teaser_group .field-name-c4m-ds-node-highlight .fa,
+.view-mode-teaser .field-name-c4m-ds-content-footer-stats .fa,
+.view-mode-teaser_group .field-name-c4m-ds-content-footer-stats .fa,
+.view-mode-teaser .form-type-item .fa,
+.view-mode-teaser_group .form-type-item .fa,
+.field-name-c4m-ds-content-footer-stats .row-entity-count,
+.group-statistic,
+.c4m-node-highlight,
+.header-breadcrumb ol li, .header-breadcrumb ol li a {
+    font-size: 14px;
+}
+
 .header-2, .sidebarblock__title, .panel-pane__title, h2, .view-mode-group_dashboard .control-label,
 .header-1, h1, .group-title, .view-mode-full.user-profile .group-left .user-name, {
     @include css-var("color", "ec-grey-100");
@@ -242,9 +263,8 @@ blockquote {
 }
 
 #user-bar .fullname-picture-wrapper .fullname-picture .initials .inner-initials {
-    display: inline-block;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
     font-size: 13px;
     line-height: 1;
 }
@@ -344,10 +364,6 @@ blockquote {
     font-size: 0;
 }
 
-.header-breadcrumb ol li a {
-    font-size: 14px;
-}
-
 .navigation--primary {
     min-height: 64px;
 }
@@ -382,26 +398,7 @@ blockquote {
 }
 
 .pane-filter, .block-c4m-search-filter {
-    position: relative;
-    @include css-var("background-color", "ec-grey-5");
     font-size: 14px;
-}
-
-.pane-filter::before, .pane-filter::after, .block-c4m-search-filter::before, .block-c4m-search-filter::after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 50vw;
-    height: 100%;
-    @include css-var("background-color", "ec-grey-5");
-    z-index: -1;
-    visibility: visible;
-}
-
-.pane-filter::before, .block-c4m-search-filter::before {
-    margin-left: -50vw;
 }
 
 #c4m-search-filter-search-filter-form, #c4m-features-homepage-filter-form-create, .block-facetapi {
@@ -1003,26 +1000,6 @@ footer a:focus, footer a:active {
 .views-row h3 {
     font-size: 18px;
     line-height: 1.2;
-}
-
-.text-small, .text-copy--small, .text-copy--inverse--small, .text-copy--emphasized, .text-link--cta, .text-link--small, .text-link--ec, .text-breadcrumb, .header-breadcrumb ol li a, .text-tooltip, .text-link--blue, .field-name-c4m-ds-event-start-icon .calendar-text-month, .topic-subtopics, .header-breadcrumb ol li, #user-bar .fullname-picture-wrapper .fullname-picture .initials .inner-initials, .view-mode-block_list .field-name-c4m-ds-submitted-by-and-on, .view-mode-block_list .field-name-c4m-field-og-group, .view-mode-block_list .field-name-c4m-field-og-group a, .view-mode-member_overview, .view-mode-teaser, .view-mode-teaser_group
-{
-    font-size: 16px;
-}
-
-.view-mode-teaser .row-entity-count,
-.view-mode-teaser .field-name-c4m-ds-node-promote .fa,
-.view-mode-teaser_group .field-name-c4m-ds-node-promote .fa,
-.view-mode-teaser .field-name-c4m-ds-node-highlight .fa,
-.view-mode-teaser_group .field-name-c4m-ds-node-highlight .fa,
-.view-mode-teaser .field-name-c4m-ds-content-footer-stats .fa,
-.view-mode-teaser_group .field-name-c4m-ds-content-footer-stats .fa,
-.view-mode-teaser .form-type-item .fa,
-.view-mode-teaser_group .form-type-item .fa,
-.field-name-c4m-ds-content-footer-stats .row-entity-count,
-.group-statistic,
-.c4m-node-highlight {
-    font-size: 14px;
 }
 
 .group-statistic {
