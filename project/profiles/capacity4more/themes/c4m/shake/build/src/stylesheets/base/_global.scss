@@ -3,13 +3,52 @@
     width: 1170px + $grid-gutter-width;
   }
 }
-.row {
-  margin-left: 0;
-  margin-right: 0;
-}
 body {
   color: $color-black;
   font-family: $font_arial;
+}
+
+// Add padding between header and main content of the page except following.
+@media (min-width: $screen-sm) {
+  body {
+    #page-header {
+      padding-bottom: 20px;
+    }
+  }
+  body {
+      // Homepage, Group detail page.
+      // Organisation detail page, Event site detail page.
+    &.page-dashboard,
+      // Overview articles.
+    &.page-articles,
+      // Single article.
+    &.node-type-article,
+      // Overview topics, leave padding for single topic.
+    &.page-topics,
+    &.page-groups,
+      // All overview pages inside a Group -  Wiki, Library, Discussion, Media, Events, Members.
+      // All single nodes inside a Group - Wiki, Document, Discussion, Photo, Photoalbum, Event.
+    &.og-context,
+      // Organisations overview.
+    &.page-organisations,
+      // Basic pages.
+    &.node-type-book,
+      // Events overview.
+    &.page-events,
+      // People overview.
+    &.page-people {
+      #page-header {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+body.toolbar-drawer {
+  padding-top: 0 !important;
+  .page-content {
+    padding-top: 30px;
+  }
 }
 
 #scroll-top {
@@ -25,7 +64,7 @@ body {
 a {
   color: $color-blue;
   &:hover, &:focus {
-    color: $color-blue-light;
+    color: $color-black;
   }
 }
 
@@ -77,8 +116,8 @@ a {
     text-transform: uppercase;
 
     &.notstarted {
-      background-color: $color-blue-darkTwo;
-      border-color: $color-blue-darkTwo;
+      background-color: $color-blue-dark;
+      border-color: $color-blue-dark;
     }
 
     &.ongoing {
@@ -122,4 +161,8 @@ a {
 
 .fa-print {
   width: 25px;
+}
+
+.project-title {
+  margin: 1rem 0 0 0;
 }

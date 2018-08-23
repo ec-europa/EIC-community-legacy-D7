@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalInformation>
+  <Description Lang="en">
+    <Selector Name="ThematicsTopics">
+      <Version>20180618-0</Version>
+      <Note>EASME home brew selector (TO BE COMPLETED)</Note>
+      <Group>
+        <Value>T</Value>
+        <Name>Topic</Name>
+        <Selector>
+          <Group>
+            <Value>T1</Value>
+            <Name>Agriculture / Rural Development / Fisheries</Name>
+          </Group>
+          <Group>
+            <Value>T2</Value>
+            <Name>Biotechnology</Name>
+          </Group>
+          <Group>
+            <Value>T3</Value>
+            <Name>Construction and Transport networks</Name>
+          </Group>
+          <Group>
+            <Value>T4</Value>
+            <Name>Consumer products and services</Name>
+          </Group>
+          <Group>
+            <Value>T5</Value>
+            <Name>Cultural and Creative Economy</Name>
+          </Group>
+          <Group>
+            <Value>T6</Value>
+            <Name>Earth and related environmental sciences</Name>
+          </Group>
+          <Group>
+            <Value>T7</Value>
+            <Name>Energy</Name>
+          </Group>
+          <Group>
+            <Value>T8</Value>
+            <Name>Engineering and technology</Name>
+          </Group>
+          <Group>
+            <Value>T9</Value>
+            <Name>Finance</Name>
+          </Group>
+          <Group>
+            <Value>T10</Value>
+            <Name>Food and Beverages</Name>
+          </Group>
+          <Group>
+            <Value>T11</Value>
+            <Name>Health</Name>
+          </Group>
+          <Group>
+            <Value>T12</Value>
+            <Name>Information and Communication Technology (ICT)</Name>
+          </Group>
+          <Group>
+            <Value>T13</Value>
+            <Name>Public sector innovation</Name>
+          </Group>
+          <Group>
+            <Value>T14</Value>
+            <Name>Security</Name>
+          </Group>
+          <Group>
+            <Value>T15</Value>
+            <Name>Space</Name>
+          </Group>
+        </Selector>
+      </Group>
+      <Group>
+        <Value>H</Value>
+        <Name>Horizontal</Name>
+        <Selector>
+          <Group>
+            <Value>H1</Value>
+            <Name>Intellectual property &amp; Licencing</Name>
+          </Group>
+          <Group>
+            <Value>H2</Value>
+            <Name>Marketing</Name>
+            <Selector>
+              <Option>
+                <Name>Branding</Name>
+                <Value>H2-1</Value>
+              </Option>
+              <Option>
+                <Name>Communication</Name>
+                <Value>H2-2</Value>
+              </Option>
+              <Option>
+                <Name>Market segmentation</Name>
+                <Value>H2-3</Value>
+              </Option>
+              <Option>
+                <Name>Value proposition</Name>
+                <Value>H2-4</Value>
+              </Option>
+            </Selector>
+          </Group>
+          <Group>
+            <Value>H3</Value>
+            <Name>Organisation development</Name>
+            <Selector>
+              <Option>
+                <Name>Recruitment</Name>
+                <Value>H3-1</Value>
+              </Option>
+              <Option>
+                <Name>Team building</Name>
+                <Value>H3-2</Value>
+              </Option>
+              <Option>
+                <Name>Use of external expertise (consultancy)</Name>
+                <Value>H3-3</Value>
+              </Option>
+            </Selector>
+          </Group>
+          <Group>
+            <Value>H4</Value>
+            <Name>Skill development</Name>
+            <Selector>
+              <Option>
+                <Name>Pitching</Name>
+                <Value>H4-1</Value>
+              </Option>
+              <Option>
+                <Name>Leadership</Name>
+                <Value>H4-2</Value>
+              </Option>
+              <Option>
+                <Name>Negociation</Name>
+                <Value>H4-3</Value>
+              </Option>
+              <Option>
+                <Name>Time management</Name>
+                <Value>H4-4</Value>
+              </Option>
+            </Selector>
+          </Group>
+          <Group>
+            <Value>H5</Value>
+            <Name>Business development</Name>
+          </Group>
+          <Group>
+            <Value>H6</Value>
+            <Name>Financial development</Name>
+          </Group>
+          <Group>
+            <Value>H7</Value>
+            <Name>Partnership development</Name>
+          </Group>
+          <Group>
+            <Value>H8</Value>
+            <Name>Life cycle stage Upscaling</Name>
+          </Group>
+          <Group>
+            <Value>H9</Value>
+            <Name>Life cycle stage Expansion</Name>
+          </Group>
+          <Group>
+            <Value>H10</Value>
+            <Name>Public procurement</Name>
+          </Group>
+        </Selector>
+      </Group>
+    </Selector>
+  </Description>
+</GlobalInformation>

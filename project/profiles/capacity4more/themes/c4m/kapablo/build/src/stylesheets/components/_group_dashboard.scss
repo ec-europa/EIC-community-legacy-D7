@@ -59,7 +59,10 @@
 }
 
 .highlight-link {
-  font-size: 1rem;
+  font-size: 0.87rem;
+  .highlight-link-text {
+    margin-left: 3px;
+  }
 }
 
 .group-right {

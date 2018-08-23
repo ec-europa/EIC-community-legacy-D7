@@ -2499,11 +2499,15 @@ function c4m_messages_group_info(Message $message) {
   ) {
     if (isset($message->field_group_node) && !empty($message->field_group_node)) {
       $wrapper = entity_metadata_wrapper('message', $message);
-      $link = l(
-        $wrapper->field_group_node->label(),
-        $wrapper->field_group_node->value()->purl
-      );
-      $group_info = t('Group: !link', ['!link' => $link]);
+      if ($group_node = $wrapper->field_group_node) {
+        if ($wrapper->field_group_node->label() && $wrapper->field_group_node->value()) {
+          $link = l(
+            $wrapper->field_group_node->label(),
+            $wrapper->field_group_node->value()->purl
+          );
+          $group_info = t('Group: !link', ['!link' => $link]);
+        }
+      }
     }
   }
 

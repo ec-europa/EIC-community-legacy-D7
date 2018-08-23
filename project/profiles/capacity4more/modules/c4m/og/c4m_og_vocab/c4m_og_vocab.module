@@ -26,7 +26,10 @@ define('C4M_OG_VOCAB_INFO_CONTENT', 'content');
  */
 function c4m_og_vocab_node_insert($node) {
   // Only for OG enabled content type.
-  if (!og_is_group_type('node', $node->type)) {
+  // Except Organisations - this has performance implications.
+  // Create the taxonomies when first trying to add a new subnode.
+  // See c4m_og_vocab_load_group_vocabulary().
+  if (!og_is_group_type('node', $node->type) || $node->type == 'organisation') {
     return;
   }
 
@@ -89,7 +92,14 @@ function c4m_og_vocab_load_group_vocabulary($group, $name) {
 
   $vocabulary = $vocabularies[$name];
   $machine_name = c4m_og_vocab_fill_string($group, $vocabulary['machine_name']);
-  return taxonomy_vocabulary_machine_name_load($machine_name);
+
+  // Create the taxonomy when first trying to add a subnode.
+  if (!$vocab = taxonomy_vocabulary_machine_name_load($machine_name)) {
+    module_load_include('inc', 'c4m_og_vocab');
+    c4m_og_vocab_trigger_create_group_vocabularies($group);
+    $vocab = taxonomy_vocabulary_machine_name_load($machine_name);
+  }
+  return $vocab;
 }
 
 /**

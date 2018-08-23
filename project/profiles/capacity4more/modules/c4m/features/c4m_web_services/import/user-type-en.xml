@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalInformation>
+	<Description Lang="en">
+		<Selector Name="UserTypes">
+			<Version>20180621-0</Version>
+			<Title>User types</Title>
+			<Note>Type of user will determine the functional role a user has. Define what he/she can do or see.</Note>
+			<!-- Currently only the 2 following roles exist:
+				Account owner = LEAR
+				member = member. -->
+			<Option>
+				<Value>1</Value>
+				<Name>Account owner</Name>
+			</Option>
+			<Option>
+				<Value>2</Value>
+				<Name>Member</Name>
+			</Option>
+			<Option>
+				<Value>3</Value>
+				<Name>Community manager</Name>
+			</Option>
+			<Option>
+				<Value>4</Value>
+				<Name>Project officer</Name>
+			</Option>
+			<Option>
+				<Value>5</Value>
+				<Name>EEN KAM</Name>
+			</Option>
+			<Option>
+				<Value>6</Value>
+				<Name>Coach</Name>
+			</Option>
+			<Option>
+				<Value>7</Value>
+				<Name>Event manager</Name>
+			</Option>
+			<Option>
+				<Value>8</Value>
+				<Name>Event supervisor</Name>
+			</Option>
+			<Option>
+				<Value>9</Value>
+				<Name>Superintendent</Name>
+			</Option>
+			<Option>
+				<Value>10</Value>
+				<Name>Investor</Name>
+			</Option>			
+		</Selector>
+	</Description>
+</GlobalInformation>

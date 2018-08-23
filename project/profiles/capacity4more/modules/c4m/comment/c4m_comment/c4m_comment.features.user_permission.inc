@@ -72,6 +72,7 @@ function c4m_comment_user_default_permissions() {
     'name' => 'delete own comments at anytime',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'c4m_comment_delete',
   );

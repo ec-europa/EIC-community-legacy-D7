@@ -148,12 +148,12 @@ function c4m_content_article_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'full';
   $ds_fieldsetting->settings = array(
     'comments' => array(
-      'weight' => '8',
+      'weight' => '6',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'c4m_ds_creation_date' => array(
-      'weight' => '3',
+      'weight' => '2',
       'label' => 'inline',
       'format' => 'j F Y',
       'formatter_settings' => array(
@@ -171,19 +171,24 @@ function c4m_content_article_ds_field_settings_info() {
       ),
     ),
     'c4m_ds_content_footer_stats' => array(
-      'weight' => '4',
+      'weight' => '3',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'c4m_ds_content_status' => array(
-      'weight' => '2',
+      'weight' => '1',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'c4m_content_article_disclaimer' => array(
-      'weight' => '7',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
+      'formatter_settings' => array(
+        'ft' => array(
+          'lb' => 'Story Disclaimer',
+        ),
+      ),
     ),
     'c4m_ds_content_actions' => array(
       'weight' => '15',
@@ -217,7 +222,7 @@ function c4m_content_article_ds_field_settings_info() {
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
-          'lb' => 'Related Voices & Views',
+          'lb' => 'Related Stories',
           'lb-el' => 'h3',
           'lb-col' => TRUE,
           'ow' => TRUE,
@@ -664,17 +669,18 @@ function c4m_content_article_ds_layout_settings_info() {
       'right' => array(
         1 => 'c4m_vocab_topic',
         2 => 'c4m_vocab_geo',
-        4 => 'c4m_related_group',
-        5 => 'c4m_related_articles',
-        11 => 'c4m_related_user',
-        12 => 'c4m_link_multiple',
-        13 => 'group_node_actions',
-        14 => 'group_node_meta',
-        15 => 'c4m_ds_content_actions',
+        5 => 'c4m_related_group',
+        6 => 'c4m_related_articles',
+        11 => 'group_node_actions',
+        12 => 'group_contributors',
+        13 => 'c4m_related_user',
+        14 => 'c4m_link_multiple',
+        15 => 'group_node_meta',
+        16 => 'c4m_ds_content_actions',
       ),
       'left' => array(
         3 => 'c4m_ds_content_status',
-        6 => 'c4m_ds_creation_date',
+        4 => 'c4m_ds_creation_date',
         7 => 'c4m_ds_content_footer_stats',
         8 => 'c4m_body',
         9 => 'c4m_content_article_disclaimer',
@@ -686,16 +692,17 @@ function c4m_content_article_ds_layout_settings_info() {
       'c4m_vocab_topic' => 'right',
       'c4m_vocab_geo' => 'right',
       'c4m_ds_content_status' => 'left',
+      'c4m_ds_creation_date' => 'left',
       'c4m_related_group' => 'right',
       'c4m_related_articles' => 'right',
-      'c4m_ds_creation_date' => 'left',
       'c4m_ds_content_footer_stats' => 'left',
       'c4m_body' => 'left',
       'c4m_content_article_disclaimer' => 'left',
       'comments' => 'left',
+      'group_node_actions' => 'right',
+      'group_contributors' => 'right',
       'c4m_related_user' => 'right',
       'c4m_link_multiple' => 'right',
-      'group_node_actions' => 'right',
       'group_node_meta' => 'right',
       'c4m_ds_content_actions' => 'right',
     ),

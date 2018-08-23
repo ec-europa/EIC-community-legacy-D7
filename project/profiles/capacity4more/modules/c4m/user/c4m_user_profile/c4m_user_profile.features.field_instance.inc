@@ -11,6 +11,70 @@
 function c4m_user_profile_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance:
+  // 'taxonomy_term-c4m_vocab_user_types-c4m_dashboard_key'.
+  $field_instances['taxonomy_term-c4m_vocab_user_types-c4m_dashboard_key'] = array(
+    'bundle' => 'c4m_vocab_user_types',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'c4m_dashboard_key',
+    'label' => 'Dashboard Key',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'mail' => 'mail',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'mail' => array(
+              'weight' => 0,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 32,
+    ),
+  );
+
   // Exported field_instance: 'user-user-c4m_body'.
   $field_instances['user-user-c4m_body'] = array(
     'bundle' => 'user',
@@ -167,7 +231,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -250,7 +314,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -990,7 +1054,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1084,7 +1148,7 @@ function c4m_user_profile_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'c4m_addressfield_based_in',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1232,6 +1296,18 @@ function c4m_user_profile_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
+        'manualcrop_crop_info' => TRUE,
+        'manualcrop_default_crop_area' => TRUE,
+        'manualcrop_enable' => FALSE,
+        'manualcrop_inline_crop' => FALSE,
+        'manualcrop_instant_crop' => FALSE,
+        'manualcrop_instant_preview' => TRUE,
+        'manualcrop_keyboard' => TRUE,
+        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => FALSE,
         'preview_image_style' => 'c4m_user_author_thumb_image',
         'progress_indicator' => 'throbber',
       ),
@@ -1565,7 +1641,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1738,13 +1814,9 @@ function c4m_user_profile_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'inline',
-        'module' => 'ds',
-        'settings' => array(
-          'taxonomy_term_link' => 0,
-          'taxonomy_term_separator' => ', ',
-        ),
-        'type' => 'ds_taxonomy_separator',
-        'weight' => 5,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1834,15 +1906,9 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
       ),
       'full' => array(
         'label' => 'inline',
-        'module' => 'c4m_content_topic',
-        'settings' => array(
-          'display' => 'all',
-          'link' => 1,
-          'link_organisations' => '',
-          'separator' => ', ',
-          'wrap' => 'none',
-        ),
-        'type' => 'term_reference_only_parents',
+        'module' => 'c4m_vocab_widget',
+        'settings' => array(),
+        'type' => 'term_reference_tree_hierarchical',
         'weight' => 3,
       ),
       'member_overview' => array(
@@ -1908,7 +1974,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
           'taxonomy_term_separator' => ', ',
         ),
         'type' => 'ds_taxonomy_separator',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1999,15 +2065,12 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
       ),
       'full' => array(
         'label' => 'inline',
-        'module' => 'c4m_content_topic',
+        'module' => 'ds',
         'settings' => array(
-          'display' => 'all',
-          'link' => 1,
-          'link_organisations' => '',
-          'separator' => ', ',
-          'wrap' => 'none',
+          'taxonomy_term_link' => 1,
+          'taxonomy_term_separator' => ', ',
         ),
-        'type' => 'term_reference_only_parents',
+        'type' => 'ds_taxonomy_separator',
         'weight' => 2,
       ),
       'member_overview' => array(
@@ -2099,15 +2162,12 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
       ),
       'full' => array(
         'label' => 'inline',
-        'module' => 'c4m_content_topic',
+        'module' => 'ds',
         'settings' => array(
-          'display' => 'all',
-          'link' => 1,
-          'link_organisations' => '',
-          'separator' => ', ',
-          'wrap' => 'none',
+          'taxonomy_term_link' => TRUE,
+          'taxonomy_term_separator' => ', ',
         ),
-        'type' => 'term_reference_only_parents',
+        'type' => 'ds_taxonomy_separator',
         'weight' => 4,
       ),
       'member_overview' => array(
@@ -2150,6 +2210,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
   // Included for use with string extractors like potx.
   t('About You');
   t('Address');
+  t('Dashboard Key');
   t('Enter a link (URL) to your full CV. This can for example be a web page or an online PDF document.');
   t('Enter a link (URL) to your public Facebook profile.');
   t('Enter a link (URL) to your public LinkedIn profile.');

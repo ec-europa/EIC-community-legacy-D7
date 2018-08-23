@@ -33,6 +33,11 @@
             a:hover {
               color: $color-darkTwo-blue;
             }
+            &.active {
+              a {
+                color: $color-darkTwo-blue !important;
+              }
+            }
           }
         }
       }

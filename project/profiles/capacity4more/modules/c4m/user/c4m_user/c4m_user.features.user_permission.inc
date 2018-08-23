@@ -11,20 +11,12 @@
 function c4m_user_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: 'access administration menu'.
-  $permissions['access administration menu'] = array(
-    'name' => 'access administration menu',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'admin_menu',
-  );
-
   // Exported permission: 'access administration pages'.
   $permissions['access administration pages'] = array(
     'name' => 'access administration pages',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'system',
   );
@@ -34,6 +26,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'access all views',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'views',
   );
@@ -62,6 +55,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'access content overview',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'node',
   );
@@ -71,17 +65,9 @@ function c4m_user_user_default_permissions() {
     'name' => 'access contextual links',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'contextual',
-  );
-
-  // Exported permission: 'access devel information'.
-  $permissions['access devel information'] = array(
-    'name' => 'access devel information',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'devel',
   );
 
   // Exported permission: 'access draggableviews'.
@@ -165,6 +151,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'access toolbar',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'toolbar',
   );
@@ -249,6 +236,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer book outlines',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'book',
   );
@@ -482,6 +470,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer nodes',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'node',
   );
@@ -656,6 +645,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer users',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'user',
   );
@@ -674,6 +664,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'answer any organic group invitation',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'og_invite',
   );
@@ -719,6 +710,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'bypass node access',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'node',
   );
@@ -907,6 +899,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'create organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
@@ -1114,6 +1107,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'delete any organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
@@ -1277,6 +1271,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'delete own organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
@@ -1349,6 +1344,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'delete revisions',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'node',
   );
@@ -1356,20 +1352,6 @@ function c4m_user_user_default_permissions() {
   // Exported permission: 'delete terms in c4m_job_titles'.
   $permissions['delete terms in c4m_job_titles'] = array(
     'name' => 'delete terms in c4m_job_titles',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in c4m_vocab_category_5'.
-  $permissions['delete terms in c4m_vocab_category_5'] = array(
-    'name' => 'delete terms in c4m_vocab_category_5',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in c4m_vocab_category_6'.
-  $permissions['delete terms in c4m_vocab_category_6'] = array(
-    'name' => 'delete terms in c4m_vocab_category_6',
     'roles' => array(),
     'module' => 'taxonomy',
   );
@@ -1416,20 +1398,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: 'delete terms in c4m_vocab_tag_5'.
-  $permissions['delete terms in c4m_vocab_tag_5'] = array(
-    'name' => 'delete terms in c4m_vocab_tag_5',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in c4m_vocab_tag_6'.
-  $permissions['delete terms in c4m_vocab_tag_6'] = array(
-    'name' => 'delete terms in c4m_vocab_tag_6',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
   // Exported permission: 'delete terms in c4m_vocab_theme'.
   $permissions['delete terms in c4m_vocab_theme'] = array(
     'name' => 'delete terms in c4m_vocab_theme',
@@ -1458,13 +1426,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'user_revision',
-  );
-
-  // Exported permission: 'display drupal links'.
-  $permissions['display drupal links'] = array(
-    'name' => 'display drupal links',
-    'roles' => array(),
-    'module' => 'admin_menu',
   );
 
   // Exported permission: 'edit any article content'.
@@ -1571,6 +1532,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'edit any organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
@@ -1745,6 +1707,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'edit own organisation content',
     'roles' => array(
       'administrator' => 'administrator',
+      'service-authentication' => 'service-authentication',
     ),
     'module' => 'node',
   );
@@ -1811,20 +1774,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: 'edit terms in c4m_vocab_category_5'.
-  $permissions['edit terms in c4m_vocab_category_5'] = array(
-    'name' => 'edit terms in c4m_vocab_category_5',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in c4m_vocab_category_6'.
-  $permissions['edit terms in c4m_vocab_category_6'] = array(
-    'name' => 'edit terms in c4m_vocab_category_6',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
   // Exported permission: 'edit terms in c4m_vocab_date'.
   $permissions['edit terms in c4m_vocab_date'] = array(
     'name' => 'edit terms in c4m_vocab_date',
@@ -1867,20 +1816,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: 'edit terms in c4m_vocab_tag_5'.
-  $permissions['edit terms in c4m_vocab_tag_5'] = array(
-    'name' => 'edit terms in c4m_vocab_tag_5',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in c4m_vocab_tag_6'.
-  $permissions['edit terms in c4m_vocab_tag_6'] = array(
-    'name' => 'edit terms in c4m_vocab_tag_6',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
   // Exported permission: 'edit terms in c4m_vocab_theme'.
   $permissions['edit terms in c4m_vocab_theme'] = array(
     'name' => 'edit terms in c4m_vocab_theme',
@@ -1911,15 +1846,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'elysia_cron',
   );
 
-  // Exported permission: 'execute php code'.
-  $permissions['execute php code'] = array(
-    'name' => 'execute php code',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'devel',
-  );
-
   // Exported permission: 'flag c4m_og_content_highlight'.
   $permissions['flag c4m_og_content_highlight'] = array(
     'name' => 'flag c4m_og_content_highlight',
@@ -1936,13 +1862,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'flag',
-  );
-
-  // Exported permission: 'flush caches'.
-  $permissions['flush caches'] = array(
-    'name' => 'flush caches',
-    'roles' => array(),
-    'module' => 'admin_menu',
   );
 
   // Exported permission: 'generate features'.
@@ -2166,6 +2085,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'revert revisions',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'node',
   );
@@ -2396,15 +2316,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'better_formats',
   );
 
-  // Exported permission: 'switch users'.
-  $permissions['switch users'] = array(
-    'name' => 'switch users',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'devel',
-  );
-
   // Exported permission: 'unflag c4m_og_content_highlight'.
   $permissions['unflag c4m_og_content_highlight'] = array(
     'name' => 'unflag c4m_og_content_highlight',
@@ -2428,6 +2339,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'upload to all galleries',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'node_gallery_api',
   );
@@ -2539,6 +2451,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'use text format full_html',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'filter',
   );
@@ -2612,6 +2525,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'view revisions',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'node',
   );
@@ -2621,6 +2535,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'view the administration theme',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'system',
   );

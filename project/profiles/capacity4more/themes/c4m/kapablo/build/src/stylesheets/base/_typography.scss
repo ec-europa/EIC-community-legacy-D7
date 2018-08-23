@@ -47,82 +47,82 @@ html {
 .header-1 {
   @extend .text-xlarge;
   color: $color-gray-dark;
-  font-family: $font-gill;
+  font-family: $font-arial;
 }
 
 .header-sidebar, .header-tagline {
   @extend .text-large;
   color: $color-text;
-  font-family: $font-gill;
+  font-family: $font-arial;
 }
 
 .header-2 {
   @extend .text-large;
   color: $color-gray-dark;
-  font-family: $font-gill;
+  font-family: $font-arial;
 }
 
 .header-3 {
   @extend .text-medium;
   color: $color-gray-dark;
-  font-family: $font-gill;
+  font-family: $font-arial;
   margin-top: 0;
 }
 
 .header-4 {
   @extend .text-normal;
   color: $color-gray-dark;
-  font-family: $font-gill;
+  font-family: $font-arial;
   margin-top: 0;
 }
 
 .header-sub {
   @extend .text-medium;
   color: $color-text;
-  font-family: $font-gill;
+  font-family: $font-arial;
 }
 
 .text-copy {
   @extend .text-normal;
   color: $color-text;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-copy--small {
   @extend .text-small;
   color: $color-text;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-copy--inverse {
   @extend .text-normal;
   color: $color-white;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-copy--inverse--small {
   @extend .text-small;
   color: $color-white;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-copy--muted {
   @extend .text-normal;
   color: $color-gray-lighter;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-copy--emphasized {
   @extend .text-small;
   color: $color-text;
-  font-family: $font-verdana;
+  font-family: $font-arial;
   font-style: italic;
 }
 
 .text-link {
   @extend .text-normal;
   color: $color-link;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-link--bold {
@@ -133,19 +133,19 @@ html {
 .text-link--cta {
   @extend .text-small;
   color: $color-highlight;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-link--small {
   @extend .text-small;
   color: $color-link;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-link--ec {
   @extend .text-small;
   color: $color-text-alternative;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-nav--selected {
@@ -155,32 +155,32 @@ html {
 .text-nav--unselected {
   @extend .text-normal;
   color: $color-text-alternative;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-placeholder {
   @extend .text-normal;
   color: $color-gray-lighter;
-  font-family: $font-verdana;
+  font-family: $font-arial;
   font-style: italic;
 }
 
 .text-breadcrumb {
   @extend .text-small;
-  color: $color-logo-blue;
-  font-family: $font-verdana;
+  color: $color-blue;
+  font-family: $font-arial;
 }
 
 .text-tooltip {
   @extend .text-small;
   color: $color-white;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text-link--blue {
   @extend .text-small;
   color: $color-logo-blue;
-  font-family: $font-verdana;
+  font-family: $font-arial;
 }
 
 .text--inline {

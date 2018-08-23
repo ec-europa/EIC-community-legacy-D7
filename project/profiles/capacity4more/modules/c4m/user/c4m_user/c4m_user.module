@@ -121,6 +121,14 @@ function c4m_user_ds_fields_info($entity_type) {
     ),
   );
 
+  $fields['user']['c4m_user_user_type_and_job_title'] = array(
+    'title' => t('C4M User type and job title'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('*|*'),
+    'file' => $path . '/includes/c4m_user.theme.inc',
+    'function' => 'theme_c4m_user_user_type_and_job_title',
+  );
+
   $fields['user']['c4m_user_contact_link'] = array(
     'title' => t('C4M User contact link'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
@@ -711,7 +719,7 @@ function c4m_user_access_denied() {
 /**
  * Callback providing tailored access denied behaviour with ECAS authentication.
  *
- * @return array|null
+ * @return array|mixed
  *   Return login form if user is visitor, access denied if user is logged in.
  */
 function c4m_user_access_denied_ecas() {
@@ -728,7 +736,21 @@ function c4m_user_access_denied_ecas() {
         )
       )
     );
-    return theme('kapablo_anonymous_welcome', array('welcome_message' => $welcome_message, 'cta' => $cta));
+
+    $warning_message = '';
+    if (!empty(request_uri())
+      && strpos(request_uri(), 'ecas_warning_page') !== FALSE) {
+      $warning_message .= '<div class="alert alert-warning"><h2 class="ecl-heading ecl-heading--h2">' . t('Account not approved') . '</h2>';
+      $warning_message .= '<p>' . variable_get('ecas_warning_message', t('Your account is not yet approved')) . '</p></div>';
+    }
+    return theme(
+      'kapablo_anonymous_welcome',
+      array(
+        'welcome_message' => $welcome_message,
+        'cta' => $cta,
+        'warning_message' => $warning_message
+      )
+    );
   }
   else {
     // Access denied message for authenticated users.
@@ -1466,8 +1488,8 @@ function c4m_user_is_site_admin($user = NULL) {
   }
 
   $site_admin_role = user_role_load_by_name('administrator');
-
-  return user_has_role($site_admin_role->rid, $user);
+  $site_content_admin = user_role_load_by_name('content administrator');
+  return user_has_role($site_admin_role->rid, $user) || user_has_role($site_content_admin->rid, $user);
 }
 
 /**

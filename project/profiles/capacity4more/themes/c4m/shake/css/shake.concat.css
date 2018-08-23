@@ -16,20 +16,35 @@
 /**
  * FORMS
  */
+/**
+ * SCREEN SIZES.
+ */
 @media (min-width: 1202px) {
   .container {
     width: 1206px;
   }
 }
 
-.row {
-  margin-left: 0;
-  margin-right: 0;
-}
-
 body {
   color: #000000;
   font-family: Arial, sans-serif;
+}
+
+@media (min-width: 860px) {
+  body #page-header {
+    padding-bottom: 20px;
+  }
+  body.page-dashboard #page-header, body.page-articles #page-header, body.node-type-article #page-header, body.page-topics #page-header, body.page-groups #page-header, body.og-context #page-header, body.page-organisations #page-header, body.node-type-book #page-header, body.page-events #page-header, body.page-people #page-header {
+    padding-bottom: 0;
+  }
+}
+
+body.toolbar-drawer {
+  padding-top: 0 !important;
+}
+
+body.toolbar-drawer .page-content {
+  padding-top: 30px;
 }
 
 #scroll-top i {
@@ -45,7 +60,7 @@ a {
 }
 
 a:hover, a:focus {
-  color: #bfd0e4;
+  color: #000000;
 }
 
 .label-primary {
@@ -124,6 +139,10 @@ a:hover, a:focus {
 
 .fa-print {
   width: 25px;
+}
+
+.project-title {
+  margin: 1rem 0 0 0;
 }
 
 h1 {
@@ -230,7 +249,7 @@ html {
 }
 
 .pane-c4m-features-og-group-dashboard-c4m-cta-block .pane-content .dropdown .action {
-  font-size: 0.9rem;
+  font-size: 0.87rem;
 }
 
 .pane-c4m-content-event-site-left .view-mode-full .node-news .field-name-c4m-body, .pane-c4m-content-event-site-right .view-mode-full .node-news .field-name-c4m-body {
@@ -253,7 +272,11 @@ html {
 }
 
 .project-indications {
-  max-width: 250px;
+  text-align: right;
+}
+
+.project-indications .indication {
+  float: none;
 }
 
 .project-indications .top-buffer {
@@ -314,6 +337,22 @@ html {
 .field-name-c4m-ds-event-start-icon,
 .view-mode-activity_global .field-name-c4m-ds-content-footer-stats {
   color: #000000;
+}
+
+.field-name-c4m-ds-event-start-icon .fa-stack .calendar-text {
+  margin-top: 0.45em;
+}
+
+.field-name-c4m-ds-content-footer-stats {
+  margin-top: 0.3em;
+}
+
+.field-name-c4m-ds-content-footer-stats > .field-items > .field-item span:first-child {
+  margin-left: 0;
+}
+
+.node-event-site.node-teaser .field-name-c4m-ds-content-footer-stats > .field-items > .field-item span:first-child {
+  margin-left: 1rem;
 }
 
 #footer-top-wrapper {
@@ -395,6 +434,10 @@ footer .c4m-social-media-item i:hover {
   border-color: #bfd0e4;
 }
 
+.form-group {
+  margin-bottom: 40px;
+}
+
 .sidebarblock .sidebarblock__content--multiple:not(:last-child) {
   border-bottom: 1px solid #404040;
 }
@@ -403,17 +446,59 @@ footer .c4m-social-media-item i:hover {
   color: #000000;
 }
 
+.node-organisation.view-mode-group_dashboard > .content > .field h3.label-above {
+  margin-bottom: 1rem;
+}
+
 .group-navigation nav li:before, .group-navigation nav li a {
   color: #004494;
 }
 
+@media (max-width: 860px) {
+  .group-navigation nav li:before, .group-navigation nav li a {
+    color: #FFFFFF;
+  }
+}
+
 .group-navigation nav li a:hover {
-  color: #bfd0e4;
+  color: #000000;
   text-decoration: underline;
+}
+
+@media (max-width: 860px) {
+  .group-navigation nav li a:hover {
+    color: #FFFFFF;
+  }
 }
 
 .group-navigation nav li.active:before, .group-navigation nav li.active a {
   color: #404040;
+}
+
+@media (max-width: 860px) {
+  .group-navigation nav li.active:before, .group-navigation nav li.active a {
+    color: #FFFFFF;
+  }
+}
+
+.og-context .header-actions--navigation {
+  margin-bottom: 0;
+}
+
+.og-context .header-actions--navigation .icon-bar {
+  background-color: #004494;
+}
+
+.og-context .header-actions--navigation:focus {
+  outline: none;
+}
+
+.og-context .block-c4m-content-organisation .header-actions--navigation {
+  top: -30px;
+}
+
+.og-context .block-c4m-content-event-site .header-actions--navigation {
+  top: -27px;
 }
 
 .og-context .pane-c4m-content-group {
@@ -425,16 +510,74 @@ footer .c4m-social-media-item i:hover {
   border-top: 1px solid #404040;
 }
 
-#page-header #user-bar .row, #page-header #header-ec-wrapper .row, #page-header #ecl-page-header .row {
-  margin-left: 0;
-  margin-right: 0;
+.project-status {
+  text-transform: uppercase;
+}
+
+.field-name-c4m-left-column .system-block-title, .field-name-c4m-left-column .map-title {
+  color: #000000;
+  font-size: 1.875rem;
+  margin-bottom: 2rem;
+}
+
+.block-c4m-search-og form input {
+  width: 100%;
+}
+
+.group-user-interests .field-name-c4m-vocab-topic {
+  margin-bottom: 6px;
+  margin-top: 0;
+}
+
+.group-title {
+  margin: 20px 0 10px;
+}
+
+.group-indications {
+  float: left;
+  margin: 0;
+}
+
+@media (min-width: 860px) {
+  .group-indications {
+    float: right;
+    margin: 20px 0 0;
+    position: relative;
+  }
+}
+
+.group-indications .group-icon.as-group-restricted {
+  border: 1px solid #ffd617;
+}
+
+.group-indications .restricted-organisation-icons {
+  border: 1px solid #ffd617;
+}
+
+.group-indications .restricted-organisation-icons .group-organisation--more span {
+  background: #004494;
+}
+
+.group-indications .restricted-organisation-icons::before, .group-indications .restricted-organisation-icons::after {
+  background: #ffd617;
+}
+
+.group-indications .restricted-organisation-icons.no-icons {
+  height: 10px;
+}
+
+.group-indications .restricted-organisation-icons.no-icons .group-organisation--more {
+  padding-top: 2px;
+}
+
+.group-indications .restricted-organisation-icons > span:not(:first-child) {
+  border-left: 1px solid #ffd617;
 }
 
 #header-ec-wrapper {
   background-color: transparent;
   border-top: none;
   overflow: visible;
-  padding: 0 18px 10px 18px;
 }
 
 #header-ec-wrapper .group-banner {
@@ -450,7 +593,7 @@ footer .c4m-social-media-item i:hover {
   color: #fff;
 }
 
-#ecl-page-header a {
+#ecl-page-header a, #ecl-page-header i {
   color: #FFFFFF;
 }
 
@@ -467,13 +610,19 @@ footer .c4m-social-media-item i:hover {
   margin: 0.8rem 0;
 }
 
-.header-logo {
-  margin-top: 40px;
+.header-breadcrumb ol li i {
+  color: #004494;
+  padding: 0 0.5rem;
 }
 
-@media (min-width: 768px) {
+.header-logo {
+  margin-top: 25px;
+}
+
+@media (min-width: 860px) {
   .header-logo {
     margin-bottom: 31px;
+    margin-top: 40px;
   }
 }
 
@@ -486,22 +635,40 @@ footer .c4m-social-media-item i:hover {
   color: #404040;
   display: table-row;
   font-family: Arial, sans-serif;
-  font-size: 1.5rem !important;
+  font-size: 1rem !important;
   font-weight: bold;
-  line-height: 32px !important;
+}
+
+@media (min-width: 480px) {
+  .header-logo h1 {
+    font-size: 1.5rem !important;
+    line-height: 32px !important;
+  }
 }
 
 .header-logo h2 {
   color: #404040;
   display: table-row;
   font-family: Arial, sans-serif;
-  font-size: 1.25rem !important;
+  font-size: 0.75rem !important;
   font-weight: normal;
-  line-height: 21px;
+}
+
+@media (min-width: 480px) {
+  .header-logo h2 {
+    font-size: 1.25rem !important;
+    line-height: 21px;
+  }
 }
 
 .header-logo img {
-  max-width: 105px;
+  max-width: 70px;
+}
+
+@media (min-width: 860px) {
+  .header-logo img {
+    max-width: 105px;
+  }
 }
 
 header a {
@@ -514,6 +681,12 @@ header a:hover {
 
 .header-actions {
   background-color: #004494;
+  margin-top: 25px;
+}
+
+.pane-voices-views-carousel {
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
 }
 
 .navigation--primary {
@@ -556,6 +729,10 @@ header a:hover {
   color: #022b58;
 }
 
+.navigation--primary .navbar .navbar-collapse ul.navbar-nav li.active a {
+  color: #022b58 !important;
+}
+
 .offCanvasNavigation.animation--push {
   background-color: #bfd0e4;
 }
@@ -576,6 +753,59 @@ header a:hover {
 .node-organisation-form .organisation-edit-hide,
 .node-organisation-form .form-item-title {
   display: none;
+}
+
+.node-organisation-form .field-name-c4m-partners, .node-organisation-form .field-name-c4m-customers {
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.node-organisation-form .field-name-c4m-customers table .paragraphs-item-type-c4m-paragraph-partner td:not(.field-multiple-drag) > :first-child:not(.ajax-new-content), .node-organisation-form .field-name-c4m-partners table .paragraphs-item-type-c4m-paragraph-partner td:not(.field-multiple-drag) > :first-child:not(.ajax-new-content) {
+  display: none;
+}
+
+.node-organisation-form .field-name-c4m-customers table .paragraphs-item-type-c4m-paragraph-partner .ajax-new-content > :first-child, .node-organisation-form .field-name-c4m-partners table .paragraphs-item-type-c4m-paragraph-partner .ajax-new-content > :first-child {
+  display: none;
+}
+
+.pane-c4m-content-organisation-left .paragraphs-items-c4m-left-column .user-profile.view-mode-teaser, .pane-c4m-content-organisation-left .paragraphs-items-c4m-right-column .user-profile.view-mode-teaser, .pane-c4m-content-organisation-right .paragraphs-items-c4m-left-column .user-profile.view-mode-teaser, .pane-c4m-content-organisation-right .paragraphs-items-c4m-right-column .user-profile.view-mode-teaser {
+  margin-bottom: 20px;
+}
+
+.pane-c4m-content-organisation-left .paragraphs-items-c4m-left-column .user-profile.view-mode-teaser .c4m-social-media-item, .pane-c4m-content-organisation-left .paragraphs-items-c4m-right-column .user-profile.view-mode-teaser .c4m-social-media-item, .pane-c4m-content-organisation-right .paragraphs-items-c4m-left-column .user-profile.view-mode-teaser .c4m-social-media-item, .pane-c4m-content-organisation-right .paragraphs-items-c4m-right-column .user-profile.view-mode-teaser .c4m-social-media-item {
+  margin-bottom: 0;
+}
+
+.pane-c4m-content-organisation-left .field-name-c4m-partners, .pane-c4m-content-organisation-left .field-name-c4m-customers, .pane-c4m-content-organisation-right .field-name-c4m-partners, .pane-c4m-content-organisation-right .field-name-c4m-customers {
+  margin: 0 -0.6em;
+}
+
+.pane-c4m-content-organisation-left .field-name-c4m-partners > .field-items .field-item, .pane-c4m-content-organisation-left .field-name-c4m-customers > .field-items .field-item, .pane-c4m-content-organisation-right .field-name-c4m-partners > .field-items .field-item, .pane-c4m-content-organisation-right .field-name-c4m-customers > .field-items .field-item {
+  display: inline-block;
+  padding: 0 0.3em 0.5em 0.3em;
+}
+
+#overlay #overlay-content form {
+  margin-bottom: 40px;
+}
+
+.media-browser-tab {
+  font-size: 0.8rem;
+}
+
+.media-browser-tab .form-actions a.fake-submit {
+  background-color: #004494;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  color: #FFFFFF;
+  padding: 10px;
+}
+
+.media-browser-tab .form-actions a.fake-submit:hover {
+  background-color: transparent;
+  border-color: #004494;
+  color: #004494;
+  text-decoration: underline;
 }
 
 .pane-quick-form {
@@ -710,7 +940,7 @@ ul.statistics-list li, ul.statistics-list li a {
   background-color: #f5f5f5;
   -webkit-box-shadow: none;
           box-shadow: none;
-  height: 50px;
+  height: auto;
   padding: 10px 0;
 }
 
@@ -731,6 +961,13 @@ ul.statistics-list li, ul.statistics-list li a {
 
 #user-bar .user-profile-menu {
   background: #bfd0e4;
+}
+
+#user-bar .user-profile-menu.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: auto;
+  right: 0;
 }
 
 #user-bar .user-profile-menu li a {
@@ -769,6 +1006,26 @@ ul.statistics-list li, ul.statistics-list li a {
   margin: 0 0.5rem;
 }
 
+@media (max-width: 320px) {
+  #user-bar #block-c4m-user-profile-user-menu .dropdown .dropdown-menu {
+    position: fixed;
+    top: 120px;
+    left: 15px;
+    max-width: 285px;
+    height: auto;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 425px) {
+  #user-bar #block-c4m-user-profile-user-menu .dropdown .dropdown-menu {
+    position: fixed;
+    top: 90px;
+    left: 80px;
+    max-width: 300px;
+    height: auto;
+  }
+}
+
 #user-profile-form small.disabled-text, #user-profile-form .help-block {
   font-size: 85%;
   display: block;
@@ -792,11 +1049,19 @@ ul.statistics-list li, ul.statistics-list li a {
   padding-left: 0;
 }
 
-.view-mode-teaser .fa {
+.user-profile .organisations--user-types--job-titles {
+  font-size: 0.9em;
+}
+
+.user-profile .organisations--user-types--job-titles .user-types, .user-profile .organisations--user-types--job-titles .job-titles {
+  font-style: italic;
+}
+
+.user-profile.view-mode-teaser .fa {
   color: #FFFFFF !important;
 }
 
-.view-mode-teaser .fa a {
+.user-profile.view-mode-teaser .fa a {
   color: #004494;
 }
 
@@ -806,6 +1071,12 @@ ul.statistics-list li, ul.statistics-list li a {
 
 .user-profile.view-mode-full .group-user-data .field-label-inline .field-items {
   font-style: italic;
+}
+
+@media (min-width: 860px) {
+  body.page-user.admin-menu.adminimal-menu .page-content {
+    padding-top: 0;
+  }
 }
 
 .view-items-with-dashed-separator .view-header,
@@ -822,13 +1093,13 @@ ul.statistics-list li, ul.statistics-list li a {
   color: #FFFFFF;
 }
 
-.view-mode-full:not(.node-wiki-page) > .content > .group-right > section, .view-mode-full:not(.node-wiki-page) > .content > .group-right > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child),
+.view-mode-full:not(.node-wiki-page, .node-article-page) > .content > .group-right > section, .view-mode-full:not(.node-wiki-page, .node-article-page) > .content > .group-right > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child),
 .view-mode-full.node-wiki-page > .content > .group-left > section,
 .view-mode-full.node-wiki-page > .content > .group-left > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) {
   border-bottom: 1px solid #404040;
 }
 
-.view-mode-full:not(.node-wiki-page) > .content > .group-right > section .views-row, .view-mode-full:not(.node-wiki-page) > .content > .group-right > section .detail-element, .view-mode-full:not(.node-wiki-page) > .content > .group-right > section .view-mode-block_list, .view-mode-full:not(.node-wiki-page) > .content > .group-right > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .views-row, .view-mode-full:not(.node-wiki-page) > .content > .group-right > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .detail-element, .view-mode-full:not(.node-wiki-page) > .content > .group-right > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .view-mode-block_list,
+.view-mode-full:not(.node-wiki-page, .node-article-page) > .content > .group-right > section .views-row, .view-mode-full:not(.node-wiki-page, .node-article-page) > .content > .group-right > section .detail-element, .view-mode-full:not(.node-wiki-page, .node-article-page) > .content > .group-right > section .view-mode-block_list, .view-mode-full:not(.node-wiki-page, .node-article-page) > .content > .group-right > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .views-row, .view-mode-full:not(.node-wiki-page, .node-article-page) > .content > .group-right > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .detail-element, .view-mode-full:not(.node-wiki-page, .node-article-page) > .content > .group-right > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .view-mode-block_list,
 .view-mode-full.node-wiki-page > .content > .group-left > section .views-row,
 .view-mode-full.node-wiki-page > .content > .group-left > section .detail-element,
 .view-mode-full.node-wiki-page > .content > .group-left > section .view-mode-block_list,
@@ -836,6 +1107,15 @@ ul.statistics-list li, ul.statistics-list li a {
 .view-mode-full.node-wiki-page > .content > .group-left > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .detail-element,
 .view-mode-full.node-wiki-page > .content > .group-left > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .view-mode-block_list {
   border-bottom: 1px solid #404040;
+}
+
+.view-mode-full .content .group-right div.field-name-c4m-related-user .view-mode-block_list {
+  border-bottom: 1px dashed #E5E5E5;
+  padding-bottom: 1.5em;
+}
+
+.view-mode-full .content .group-right div.field-name-c4m-related-user .view-mode-block_list:last-child {
+  margin-bottom: 2em !important;
 }
 
 .view-mode-member_overview:not(.node-group):not(.user-profile) .fa, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name a, .view-mode-member_overview:not(.node-group):not(.user-profile) .creation-date, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by a, .view-mode-member_overview:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group, .view-mode-member_overview:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group a,
@@ -851,7 +1131,11 @@ ul.statistics-list li, ul.statistics-list li a {
 }
 
 .view-mode-teaser.node-topic {
-  background-color: #4073af;
+  background: #4073af;
+}
+
+.view-mode-teaser.node-topic .field-name-title h3 {
+  font-size: 1.1rem;
 }
 
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */

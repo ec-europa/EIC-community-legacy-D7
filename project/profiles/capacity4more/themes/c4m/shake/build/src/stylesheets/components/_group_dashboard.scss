@@ -5,3 +5,13 @@
 .view-mode-group_dashboard .control-label {
   color: $color-text;
 }
+
+.node-organisation {
+  &.view-mode-group_dashboard {
+    > .content > .field {
+      h3.label-above {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

@@ -187,7 +187,7 @@ function c4m_content_feed_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'c4m_related_articles_unlimited',
-    'label' => 'Related Voices & Views',
+    'label' => 'Related Stories',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -438,7 +438,7 @@ function c4m_content_feed_field_default_field_instances() {
   t('Description');
   t('Related Groups');
   t('Related Topics');
-  t('Related Voices & Views');
+  t('Related Stories');
 
   return $field_instances;
 }

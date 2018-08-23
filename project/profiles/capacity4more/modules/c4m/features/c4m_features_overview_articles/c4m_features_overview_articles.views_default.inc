@@ -16,14 +16,14 @@ function c4m_features_overview_articles_views_default_views() {
   $view->description = 'Find and manage content.';
   $view->tag = 'admin';
   $view->base_table = 'node';
-  $view->human_name = 'Administration: Voices & Views';
+  $view->human_name = 'Administration: Stories';
   $view->core = 0;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
-  $handler->display->display_options['title'] = 'Voices & Views';
+  $handler->display->display_options['title'] = 'Stories';
   $handler->display->display_options['css_class'] = 'admin-views-view';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
@@ -208,7 +208,7 @@ function c4m_features_overview_articles_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['path'] = 'admin/content/voices-views';
   $handler->display->display_options['menu']['type'] = 'tab';
-  $handler->display->display_options['menu']['title'] = 'Voices & Views';
+  $handler->display->display_options['menu']['title'] = 'Stories';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
@@ -281,14 +281,14 @@ function c4m_features_overview_articles_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'search_api_index_c4m_search_nodes';
-  $view->human_name = 'Voices & Views';
+  $view->human_name = 'Stories';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Voices & Views';
+  $handler->display->display_options['title'] = 'Stories';
   $handler->display->display_options['css_class'] = 'view-items-with-dashed-separator';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -374,7 +374,7 @@ function c4m_features_overview_articles_views_default_views() {
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['path'] = 'articles';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Voices & Views';
+  $handler->display->display_options['menu']['title'] = 'Stories';
   $handler->display->display_options['menu']['weight'] = '1';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;

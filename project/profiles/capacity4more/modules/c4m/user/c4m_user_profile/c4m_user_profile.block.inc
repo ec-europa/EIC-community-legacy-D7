@@ -58,19 +58,18 @@ function _c4m_user_profile_block_user_menu() {
       ],
     ],
   ];
-  if (user_access('access logout')) {
-    $menu_list['user_logout'] = [
-      'title' => t('Log out'),
-      'url' => 'user/logout',
-      'options' => [
-        'absolute' => TRUE,
-        'purl' => [
-          'disabled' => TRUE,
-        ],
-        'query' => ['destination' => request_path()],
+
+  $menu_list['user_logout'] = [
+    'title' => t('Log out'),
+    'url' => 'user/logout',
+    'options' => [
+      'absolute' => TRUE,
+      'purl' => [
+        'disabled' => TRUE,
       ],
-    ];
-  }
+      'query' => ['destination' => request_path()],
+    ],
+  ];
 
   if (isset($_SESSION['masquerading'])) {
     $menu_list['masquerade_switch'] = [

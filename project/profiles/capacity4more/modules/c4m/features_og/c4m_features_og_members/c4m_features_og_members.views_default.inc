@@ -51,7 +51,7 @@ function c4m_features_og_members_views_default_views() {
   $handler->display->display_options['header']['c4m_views_result']['id'] = 'c4m_views_result';
   $handler->display->display_options['header']['c4m_views_result']['table'] = 'views';
   $handler->display->display_options['header']['c4m_views_result']['field'] = 'c4m_views_result';
-  $handler->display->display_options['header']['c4m_views_result']['content'] = '<span class="total-items">@total members</span>';
+  $handler->display->display_options['header']['c4m_views_result']['content'] = '<span class="total-items">@total in total</span>';
   /* Header: Items per page */
   $handler->display->display_options['header']['c4m_views_items_per_page']['id'] = 'c4m_views_items_per_page';
   $handler->display->display_options['header']['c4m_views_items_per_page']['table'] = 'views';
@@ -132,6 +132,12 @@ function c4m_features_og_members_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = array(
     1 => '1',
   );
+  /* Filter criterion: Indexed User: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'search_api_index_c4m_search_users';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['operator'] = '<>';
+  $handler->display->display_options['filters']['name']['value'] = 'dashboard_user';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

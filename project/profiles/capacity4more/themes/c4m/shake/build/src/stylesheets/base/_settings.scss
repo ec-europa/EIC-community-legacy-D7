@@ -28,8 +28,6 @@ $color-gray-lighter: #767676;
 
 // WCAG AAA Pass
 $color-blue-dark: #003776;
-// WCAG AA Pass, AAA FAIL
-$color-blue-darkTwo: #003776;
 
 // WCAG AAA Pass
 $color-gray-dark: #515151;
@@ -118,3 +116,11 @@ $grid-gutter-width: 36px;
  * FORMS
  */
 $form-item-spacing: 15px;
+
+/**
+ * SCREEN SIZES.
+ */
+$screen-xs: 480px;
+$screen-sm: 860px;
+$screen-md: 992px;
+$screen-lg: 1200px;

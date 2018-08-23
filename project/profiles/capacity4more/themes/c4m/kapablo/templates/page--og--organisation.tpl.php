@@ -152,17 +152,17 @@
     </div>
   </div>
 </div>
-
-<div id="footer-top-wrapper">
-  <div class="container">
-    <div class="row">
-      <section class="col-md-12">
-        <?php print render($page['footer_top']); ?>
-      </section>
+<footer class="ecl-footer">
+    <div id="footer-top-wrapper">
+      <div class="container">
+        <div class="row">
+          <section class="col-md-12">
+            <?php print render($page['footer_top']); ?>
+          </section>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
+</footer>
 
 <div id="footer-bottom-wrapper">
   <div class="container">

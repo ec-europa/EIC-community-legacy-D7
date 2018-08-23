@@ -284,7 +284,7 @@ function c4m_content_article_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 6,
+        'weight' => 4,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -415,7 +415,7 @@ function c4m_content_article_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 36,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -624,7 +624,7 @@ function c4m_content_article_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 29,
+        'weight' => 37,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -716,7 +716,7 @@ function c4m_content_article_field_default_field_instances() {
     'default_value' => NULL,
     'default_value_function' => '',
     'deleted' => 0,
-    'description' => 'Select related articles.',
+    'description' => 'Select related stories.',
     'display' => array(
       'activity_global' => array(
         'label' => 'above',
@@ -757,7 +757,7 @@ function c4m_content_article_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'c4m_related_articles',
-    'label' => 'Related Articles',
+    'label' => 'Related Stories',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -877,7 +877,7 @@ function c4m_content_article_field_default_field_instances() {
         'weight' => 19,
       ),
       'full' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
           'links' => 0,
@@ -1119,9 +1119,9 @@ function c4m_content_article_field_default_field_instances() {
   t('Image');
   t('Intro text');
   t('Regions & Countries');
-  t('Related Articles');
   t('Related Groups');
-  t('Select related articles.');
+  t('Related Stories');
+  t('Select related stories.');
   t('Topics');
   t('You can select up to 3 Topics and unlimited subtopics within these Topics.');
 

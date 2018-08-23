@@ -670,7 +670,7 @@ function c4m_content_event_site_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'c4m_group_welcome_message',
-    'label' => 'Group welcome message',
+    'label' => 'Message to users invited to the event',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -2041,10 +2041,10 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Event Location');
   t('Facebook page');
   t('Group');
-  t('Group welcome message');
   t('Language');
   t('Left column content');
   t('Location Map');
+  t('Message to users invited to the event');
   t('Organised by');
   t('Presentations');
   t('Publish date');

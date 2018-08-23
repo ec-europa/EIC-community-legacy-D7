@@ -53,6 +53,7 @@ projects[money][version] = "1.x-dev"
 projects[paragraphs][subdir] = "contrib"
 projects[paragraphs][version] = "1.0-rc5"
 projects[paragraphs][patch][] = "https://www.drupal.org/files/issues/paragraphs-fix_parents_access-2562463-20-7.x.patch"
+projects[paragraphs][patch][] = "../patches/rename_to_submit_new_paragraph_form.patch"
 
 projects[reldate][subdir] = "contrib"
 projects[reldate][version] = "1.x-dev"

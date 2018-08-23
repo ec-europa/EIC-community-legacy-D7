@@ -35,7 +35,12 @@ function c4m_vocab_widget_field_widget_form(&$form, &$form_state, $field, $insta
   }
 
   // Get taxonomy vocabulary and send it to the app.
-  $vocabulary = taxonomy_vocabulary_machine_name_load($field['settings']['allowed_values'][0]['vocabulary']);
+  $machine_name = $field['settings']['allowed_values'][0]['vocabulary'];
+  $array_of_vocabs = entity_load('taxonomy_vocabulary', [], ['machine_name' => $machine_name]);
+  $vocabulary = array_pop($array_of_vocabs);
+  if (!$vocabulary) {
+    $vocabulary = taxonomy_vocabulary_machine_name_load($machine_name);
+  }
 
   // Send field info.
   $field_info = field_info_instance($element['#entity_type'], $field['field_name'], $element['#bundle']);
@@ -333,6 +338,21 @@ function c4m_vocab_widget_field_formatter_view(
  *  Return TRUE if field disabled.
  */
 function _c4m_vocab_widget_check_access($element) {
+  // If user is administrator, show field.
+  global $user;
+  if (in_array('administrator', $user->roles)) {
+    return FALSE;
+  }
+
+  // User entities.
+  if ($element["#entity_type"] == 'user') {
+    if (isset($element["#field_name"])
+      && in_array($element["#field_name"], ['c4m_user_types', 'c4m_vocab_job_title'])) {
+      return TRUE;
+    }
+  }
+
+  // Node entities.
   $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
   if (empty($c4m_organisation_dashboard_fields)
   || $element["#entity_type"] != 'node'

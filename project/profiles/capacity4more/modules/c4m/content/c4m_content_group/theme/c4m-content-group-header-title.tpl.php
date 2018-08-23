@@ -30,12 +30,14 @@
     <?php endif; ?>
 
     <?php if (count($organisations) || count($emails)): ?>
-      <div class="restricted-organisation-icons">
+        <div class="restricted-organisation-icons <?php (empty($organisation_icons[0]))? print 'no-icons' : '';?>">
         <?php if ($organisation_icons): ?>
           <?php foreach ($organisation_icons as $organisation_icon): ?>
+            <?php if ($organisation_icon): ?>
             <span class="restricted-organisation-icon">
               <?php print $organisation_icon; ?>
             </span>
+            <?php endif; ?>
           <?php endforeach; ?>
         <?php endif; ?>
 
@@ -46,7 +48,7 @@
             <span></span>
           </span>
         <?php endif; ?>
-      </div>
+        </div>
 
       <div class="restricted-extra-wrapper collapse" id="group-organisations">
         <span class="extra-wrapper-close" data-toggle="collapse" data-target="#group-organisations">

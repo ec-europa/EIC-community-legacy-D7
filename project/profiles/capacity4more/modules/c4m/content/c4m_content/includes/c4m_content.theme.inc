@@ -41,6 +41,10 @@ function theme_c4m_website_statistics_summary(array $variables) {
     'photoalbum' => 'fa-picture-o',
   );
 
+  // EASME-278 Project is not used for now on the platform.
+  unset($statistics["project"]);
+  unset($icons_table['project']);
+
   foreach ($statistics as $key => $stat) {
     if (!$stat) {
       continue;

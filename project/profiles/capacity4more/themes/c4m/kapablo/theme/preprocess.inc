@@ -329,6 +329,7 @@ function kapablo_preprocess_field(&$variables, $hook) {
       break;
 
     case 'c4m_ds_group_members_count':
+    case 'c4m_ds_organisation_members_count':
       foreach ($element['#items'] as $key => $item) {
         $variables['items'][$key]['#markup'] = '<span class="group-statistic"><i class="fa fa-user"></i> ' . $variables['items'][$key]['#markup'] . '</span>';
       }

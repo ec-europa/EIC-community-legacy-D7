@@ -4,7 +4,7 @@
     .dropdown {
       margin-top: 5px;
       .action {
-        font-size: 0.9rem;
+        font-size: 0.87rem;
       }
     }
   }
@@ -38,7 +38,11 @@
 
 // Status labels and publish link.
 .project-indications {
-  max-width: 250px;
+  text-align: right;
+  
+  .indication {
+    float: none;
+  }
   .top-buffer {
     margin-left: 5px;
   }

@@ -38,3 +38,6 @@ projects[drupal][patch][] = "https://www.drupal.org/files/issues/form.inc-549020
 
 ; Error with mime mails with subjects > 46 characters.
 projects[drupal][patch][] = "../patches/300387-18-mime-encode-clutter.patch"
+
+; Add HTTPS step-up to htaccess file.
+projects[drupal][patch][] = "../patches/htaccess-https-step-up.patch"

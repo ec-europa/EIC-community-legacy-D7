@@ -3,4 +3,47 @@
   .form-item-title{
     display: none;
   }
+
+  .field-name-c4m-partners , .field-name-c4m-customers{
+    margin: 0;
+    margin-bottom: 40px;
+  }
+  // Hide "Partner type: Partner" and "Partner type: Customer" labels.
+  .field-name-c4m-customers, .field-name-c4m-partners {
+    table {
+      .paragraphs-item-type-c4m-paragraph-partner {
+        td:not(.field-multiple-drag) {
+          > :first-child:not(.ajax-new-content) {
+            display: none;
+          }
+        }
+        .ajax-new-content{
+          > :first-child {
+          display: none;
+          }
+        }
+      }
+    }
+  }
+
+}
+.pane-c4m-content-organisation-left, .pane-c4m-content-organisation-right {
+  .paragraphs-items-c4m-left-column, .paragraphs-items-c4m-right-column {
+    .user-profile {
+      &.view-mode-teaser {
+        margin-bottom: 20px;
+        .c4m-social-media-item {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  // Display the same way customers and partners of Organisations.
+  .field-name-c4m-partners, .field-name-c4m-customers{
+    margin: 0 -0.6em;
+    > .field-items .field-item {
+      display: inline-block;
+      padding: 0 0.3em 0.5em 0.3em;
+    }
+  }
 }

@@ -439,24 +439,6 @@ function c4m_content_event_site_c4m_cta_block() {
 /**
  * Implements hook_form_FORM_ID_alter().
  *
- * Implemented for og_ui_add_users form. Checks and removes the Administrator
- * role checkbox. This is required only for projects.
- */
-function c4m_content_event_site_form_og_ui_add_users_alter(&$form, &$form_state, $form_id) {
-  $group = entity_load_single($form['group_type']['#value'], $form['gid']['#value']);
-  list(,, $bundle) = entity_extract_ids($form['group_type']['#value'], $group);
-  if ($bundle !== 'event_site') {
-    return;
-  }
-
-  $role = c4m_og_user_role_load_by_name('administrator member', $bundle);
-  $form['og_user']['roles']['#default_value'] = [$role->rid];
-  $form['og_user']['roles']['#access'] = FALSE;
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- *
  * Implemented for _og_invite_answer_form form.
  */
 function c4m_content_event_site_form__og_invite_answer_form_alter(&$form, &$form_state, $form_id) {
@@ -673,4 +655,21 @@ function c4m_content_event_site_publish_event_site($node) {
 
   drupal_set_message(t('Event site @name was published.', ['@name' => $node->title]));
   drupal_goto($node->purl);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Implemented for og_ui_add_users form. Checks and removes the Administrator
+ * role checkbox. This is required only for projects.
+ */
+function c4m_content_event_site_form_og_ui_add_users_alter(&$form, &$form_state, $form_id) {
+  $group = entity_load_single($form['group_type']['#value'], $form['gid']['#value']);
+  list(,, $bundle) = entity_extract_ids($form['group_type']['#value'], $group);
+  if ($bundle !== 'event_site') {
+    return;
+  }
+
+  $role = c4m_og_user_role_load_by_name('attendee', $bundle);
+  $form['og_user']['roles']['#default_value'] = [$role->rid];
 }

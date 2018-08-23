@@ -24,7 +24,7 @@ function c4m_content_organisation_field_group_info() {
     'label' => 'Icons',
     'weight' => '9',
     'children' => array(
-      0 => 'c4m_ds_group_members_count',
+      0 => 'c4m_ds_organisation_members_count',
       1 => 'c4m_ds_group_posts_count',
       2 => 'c4m_ds_group_recommendation_count',
       3 => 'c4m_ds_node_highlight',

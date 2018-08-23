@@ -13,8 +13,8 @@ include_once 'c4m_features_overview_articles.features.inc';
 function c4m_features_overview_articles_c4m_search_page_info() {
   return array(
     'search_api_views_c4m_overview_articles' => array(
-      'name' => t('Voices & Views'),
-      'description' => t('Search Voices & Views.'),
+      'name' => t('Stories'),
+      'description' => t('Search Stories.'),
       'machine_name' => 'search_api_views_c4m_overview_articles',
       'path' => 'articles',
       'weight' => 1,

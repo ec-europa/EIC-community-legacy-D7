@@ -21,7 +21,7 @@ function c4m_content_photo_field_group_info() {
   $field_group->mode = 'full';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Do more through capacity4dev',
+    'label' => 'Do more through EIC Community',
     'weight' => '8',
     'children' => array(
       0 => 'c4m_ds_node_highlight',
@@ -29,7 +29,7 @@ function c4m_content_photo_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Do more through capacity4dev',
+      'label' => 'Do more through EIC Community',
       'instance_settings' => array(
         'id' => '',
         'classes' => 'group-node-actions',
@@ -76,7 +76,7 @@ function c4m_content_photo_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Do more through capacity4dev');
+  t('Do more through EIC Community');
   t('Group meta author');
 
   return $field_groups;

@@ -1,10 +1,28 @@
 .view-mode-full {
-  &:not(.node-wiki-page) > .content > .group-right,
+  &:not(.node-wiki-page, .node-article-page) > .content > .group-right,
   &.node-wiki-page > .content > .group-left {
     > section, > div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) {
       border-bottom: 1px solid $color-gray;
       .views-row, .detail-element, .view-mode-block_list {
         border-bottom: 1px solid $color-gray;
+      }
+    }
+  }
+}
+
+.view-mode-full {
+  .content {
+    .group-right {
+      div{
+        &.field-name-c4m-related-user {
+          .view-mode-block_list {
+            border-bottom: 1px dashed $color-gray-light;
+            padding-bottom: 1.5em;
+            &:last-child {
+              margin-bottom: 2em !important;
+            }
+          }
+        }
       }
     }
   }

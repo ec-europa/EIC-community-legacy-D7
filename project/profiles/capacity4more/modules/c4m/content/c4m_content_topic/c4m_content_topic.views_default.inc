@@ -406,9 +406,9 @@ function c4m_content_topic_views_default_views() {
   );
 
   /* Display: Articles */
-  $handler = $view->new_display('block', 'Articles', 'block_2');
+  $handler = $view->new_display('block', 'Stories', 'block_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Related Articles';
+  $handler->display->display_options['title'] = 'Related Stories';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['link_url'] = 'articles?f[0]=c4m_vocab_topic:!1';

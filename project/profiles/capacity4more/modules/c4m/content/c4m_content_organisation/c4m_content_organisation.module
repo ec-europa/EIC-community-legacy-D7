@@ -16,16 +16,14 @@ include_once 'c4m_content_organisation.features.inc';
  * Implements hook_menu().
  */
 function c4m_content_organisation_menu() {
-  $items = array();
-
-  $items['admin/config/c4m/dashboard'] = array(
+  $items['admin/config/c4m/smei-dashboard'] = array(
     'title' => 'Manage dashboard links',
     'description' => 'Manage links to edit Organisation/User fields.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('c4m_content_organisation_admin_settings'),
     'access arguments' => array('administer site configuration'),
     'file' => 'c4m_content_organisation.admin.inc',
-    'weight' => -10,
+    'type' => MENU_NORMAL_ITEM,
   );
   return $items;
 }
@@ -150,7 +148,7 @@ function c4m_content_organisation_node_view($node, $view_mode, $langcode) {
  *   Render array for the icon.
  */
 function c4m_content_organisation_get_icon($organisation) {
-  $icons = field_get_items('node', $organisation, 'c4m_icon');
+  $icons = field_get_items('node', $organisation, 'c4m_media');
 
   if (empty($icons)) {
     return array();
@@ -159,7 +157,7 @@ function c4m_content_organisation_get_icon($organisation) {
   $icon = field_view_value(
     'node',
     $organisation,
-    'c4m_icon',
+    'c4m_media',
     $icons[0],
     array(
       'type' => 'image',
@@ -304,6 +302,14 @@ function c4m_content_organisation_block_info() {
     'info' => t('Organisation: Customers'),
     'cache' => DRUPAL_NO_CACHE,
   );
+  $blocks['c4m_block_organisation_partners'] = array(
+    'info' => t('Organisation: Customers'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['c4m_block_organisation_about_us'] = array(
+    'info' => t('Organisation: About Us'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
 
   return $blocks;
 }
@@ -329,6 +335,7 @@ function c4m_content_organisation_block_view($delta) {
  * Alter the Organisation creation form.
  */
 function c4m_content_organisation_form_organisation_node_form_alter(array &$form, array &$form_state) {
+  global $user;
   $type = 'organisation';
 
   _c4m_og_alter_group_form($form, $form_state, $type);
@@ -344,7 +351,12 @@ function c4m_content_organisation_form_organisation_node_form_alter(array &$form
   $form["c4m_domain"]["#access"] = FALSE;
 
   // Hide fields managed through dashboard.
-  $form['c4m_organisation_dashboard_id']['#attributes']['class'][] = 'organisation-edit-hide';
+  if (!in_array('administrator', $user->roles)) {
+      $form['c4m_organisation_dashboard_id']['#attributes']['class'][] = 'organisation-edit-hide';
+      // Hide paragraph fields.
+      $form['c4m_left_column']['#attributes']['class'][] = 'organisation-edit-hide';
+      $form['c4m_right_column']['#attributes']['class'][] = 'organisation-edit-hide';
+  }
   _c4m_content_organisation_alter_organisation_form($form, $form_state);
 }
 
@@ -357,13 +369,17 @@ function c4m_content_organisation_form_organisation_node_form_alter(array &$form
  *   Form state array.
  */
 function _c4m_content_organisation_alter_organisation_form(array &$form, array &$form_state) {
-  $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
-  if (empty($c4m_organisation_dashboard_fields)) {
-    return;
-  }
-  foreach ($form as $form_item_name => &$form_item) {
-    if (in_array($form_item_name, array_keys($c4m_organisation_dashboard_fields))) {
-      $form_item['#attributes']['class'][] = 'organisation-edit-hide';
+  global $user;
+
+  if (!in_array('administrator', $user->roles)) {
+    $c4m_organisation_dashboard_fields = variable_get('c4m_organisation_dashboard_fields', []);
+    if (empty($c4m_organisation_dashboard_fields)) {
+      return;
+    }
+    foreach ($form as $form_item_name => &$form_item) {
+      if (in_array($form_item_name, array_keys($c4m_organisation_dashboard_fields))) {
+        $form_item['#attributes']['class'][] = 'organisation-edit-hide';
+      }
     }
   }
 }
@@ -515,11 +531,14 @@ function c4m_content_organisation_c4m_content_project_blockreference_whitelist($
       'c4m_content_organisation:c4m_block_organisation_as' => array(
         'label' => t('Organisation\'s Activity Stream'),
       ),
-      'c4m_content_project:c4m_block_project_partners' => array(
+      'c4m_content_organisation:c4m_block_organisation_partners' => array(
         'label' => t('Partners'),
       ),
       'c4m_content_organisation:c4m_block_organisation_customers' => array(
         'label' => t('Customers'),
+      ),
+      'c4m_content_organisation:c4m_block_organisation_about_us' => array(
+        'label' => t('About us'),
       ),
       'views:c4m_project_news-block' => array(
         'label' => t('Latest news'),

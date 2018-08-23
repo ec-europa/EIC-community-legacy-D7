@@ -1,0 +1,15 @@
+diff --git a/.htaccess b/.htaccess
+index 37fce10..c69c99c 100644
+--- a/.htaccess
++++ b/.htaccess
+@@ -61,6 +61,10 @@ DirectoryIndex index.php index.html index.htm
+ <IfModule mod_rewrite.c>
+   RewriteEngine on
+ 
++  RewriteCond %{HTTPS} !=on
++  RewriteCond %{HTTP_HOST} !^(dev|smeic-test)\. [NC]
++  RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
++
+   # Set "protossl" to "s" if we were accessed via https://.  This is used later
+   # if you enable "www." stripping or enforcement, in order to ensure that
+   # you don't bounce between http and https.

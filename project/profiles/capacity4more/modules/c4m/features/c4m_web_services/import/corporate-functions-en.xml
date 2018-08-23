@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalInformation>
+	<Description Lang="en">
+		<Selector Name="CorporateFunctions">
+			<Version>20180626-0</Version>
+			<Title>Business titles of a user</Title>
+			<Note>Corporate functions / job title of a team member</Note>
+			<Option>
+				<Value>1</Value>
+				<Name>General management / CEO</Name>
+			</Option>
+			<Option>
+				<Value>2</Value>
+				<Name>Accounting/Finance / CFO</Name>
+			</Option>
+			<Option>
+				<Value>3</Value>
+				<Name>Research &amp; development / CRO</Name>
+			</Option>
+			<Option>
+				<Value>4</Value>
+				<Name>Production/ Service delivery / COO</Name>
+			</Option>
+			<Option>
+				<Value>5</Value>
+				<Name>Sales / Marketing / CMO</Name>
+			</Option>
+			<Option>
+				<Value>6</Value>
+				<Name>Human Resources / CHRO</Name>
+			</Option>
+			<Option>
+				<Value>7</Value>
+				<Name>Administration / CAO</Name>
+			</Option>
+			<Option>
+				<Value>8</Value>
+				<Name>Information services / CIO</Name>
+			</Option>
+			<Option>
+				<Value>9</Value>
+				<Name>Purchasing / CPO</Name>
+			</Option>
+			<Option>
+				<Value>10</Value>
+				<Name>Other</Name>
+			</Option>
+		</Selector>
+	</Description>
+</GlobalInformation>

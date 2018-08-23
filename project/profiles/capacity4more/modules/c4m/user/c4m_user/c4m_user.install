@@ -132,3 +132,15 @@ function c4m_user_update_7001() {
   $terms = _c4m_user_c4m_job_titles_install_get_terms();
   _c4m_user_c4m_job_titles_install_terms($vocabulary, $terms);
 }
+
+/**
+ * Create "content administrator" role.
+ */
+function c4m_user_update_7002() {
+  $role = user_role_load_by_name('content administrator');
+  if (empty($role)){
+    $role = new stdClass();
+    $role->name = 'content administrator';
+    user_role_save($role);
+  }
+}

@@ -1,8 +1,9 @@
 #user-bar {
   background-color: $color-header-grey;
   box-shadow: none;
-  height: 50px;
+  height: auto;
   padding: 10px 0;
+
   .user-groups,
   .user-projects {
     background: $color-blue-light;
@@ -14,6 +15,12 @@
     }
   }
   .user-profile-menu {
+    &.dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: auto;
+      right: 0;
+    }
     background: $color-blue-light;
     li {
       a {
@@ -52,6 +59,26 @@
   #block-c4m-user-profile-user-menu {
     .dropdown {
       margin: 0 0.5rem;
+
+      // Mobile view.
+      @media (max-width: 320px) {
+        .dropdown-menu {
+          position: fixed;
+          top: 120px;
+          left: 15px;
+          max-width: 285px;
+          height: auto;
+        }
+      }
+      @media (min-width: 321px) and (max-width: 425px) {
+        .dropdown-menu {
+          position: fixed;
+          top: 90px;
+          left: 80px;
+          max-width: 300px;
+          height: auto;
+        }
+      }
     }
   }
 }
@@ -84,16 +111,23 @@
   }
 }
 
-.view-mode-teaser .fa {
-  color: $color-white !important;
 
-  a {
-    color: $color-link;
-  }
-}
 
 // User profile page.
 .user-profile {
+  .organisations--user-types--job-titles {
+    font-size: 0.9em;
+    .user-types, .job-titles {
+      font-style: italic;
+    }
+  }
+  &.view-mode-teaser .fa {
+    color: $color-white !important;
+    a {
+      color: $color-link;
+    }
+  }
+
   &.view-mode-full {
     .group-user-data {
       .field-label-inline {
@@ -101,6 +135,16 @@
         .field-items {
           font-style: italic;
         }
+      }
+    }
+  }
+}
+
+@media (min-width: $screen-sm) {
+  body {
+    &.page-user.admin-menu.adminimal-menu {
+       .page-content {
+        padding-top: 0;
       }
     }
   }

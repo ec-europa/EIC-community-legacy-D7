@@ -43,6 +43,39 @@ function c4m_content_article_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_contributors|node|article|full';
+  $field_group->group_name = 'group_contributors';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'article';
+  $field_group->mode = 'full';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Contributors',
+    'weight' => '8',
+    'children' => array(
+      0 => 'c4m_link_multiple',
+      1 => 'c4m_related_user',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Contributors',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-contributors field-group-div',
+        'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_contributors|node|article|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_node_actions|node|article|full';
   $field_group->group_name = 'group_node_actions';
   $field_group->entity_type = 'node';
@@ -50,19 +83,19 @@ function c4m_content_article_field_group_info() {
   $field_group->mode = 'full';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Do more through capacity4dev',
-    'weight' => '11',
+    'label' => 'Do more through EASME',
+    'weight' => '7',
     'children' => array(
       0 => 'c4m_ds_content_actions',
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Do more through capacity4dev',
+      'label' => 'Do more through EASME',
       'instance_settings' => array(
         'id' => '',
         'classes' => 'group-node-actions',
         'description' => '',
-        'show_label' => '1',
+        'show_label' => '0',
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
@@ -83,7 +116,7 @@ function c4m_content_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Group meta',
-    'weight' => '12',
+    'weight' => '11',
     'children' => array(
       0 => 'c4m_related_articles',
       1 => 'c4m_related_group',
@@ -104,7 +137,8 @@ function c4m_content_article_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Do more through capacity4dev');
+  t('Contributors');
+  t('Do more through EASME');
   t('Group meta');
   t('Metadata');
 

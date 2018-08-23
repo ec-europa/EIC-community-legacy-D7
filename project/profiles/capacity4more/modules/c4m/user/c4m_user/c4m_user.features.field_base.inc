@@ -14,7 +14,7 @@ function c4m_user_field_default_field_bases() {
   // Exported field_base: 'c4m_vocab_job_title'.
   $field_bases['c4m_vocab_job_title'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'c4m_vocab_job_title',
