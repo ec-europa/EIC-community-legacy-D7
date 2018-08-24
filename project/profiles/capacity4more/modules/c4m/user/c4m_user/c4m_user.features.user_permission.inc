@@ -537,6 +537,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer pathauto',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'pathauto',
   );
@@ -555,6 +556,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'administer redirects',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'redirect',
   );
@@ -956,6 +958,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'create url aliases',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'path',
   );
@@ -1851,6 +1854,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'flag c4m_og_content_highlight',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'flag',
   );
@@ -1860,6 +1864,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'flag c4m_og_content_recommend',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'flag',
   );
@@ -2321,6 +2326,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'unflag c4m_og_content_highlight',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'flag',
   );
@@ -2330,6 +2336,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'unflag c4m_og_content_recommend',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'flag',
   );
