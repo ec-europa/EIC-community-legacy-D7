@@ -118,6 +118,11 @@ function c4m_features_og_manage_menu() {
  * Access callback for manage group categories.
  */
 function c4m_features_og_manage_categories_access() {
+  global $user;
+  // Grant access if user is administrator or content-administrator
+  if (in_array('administrator', $user->roles) || in_array('content administrator', $user->roles)) {
+    return TRUE;
+  }
   if (!og_context_is_init()) {
     // OG context was not determined yet, so register the path and return early.
     // The next time this access callback will be called, it will not enter
@@ -189,6 +194,11 @@ function c4m_features_og_manage_categories_terms_access($tid) {
  * Access callback for manage features menu.
  */
 function c4m_features_og_manage_features_access() {
+  global $user;
+  // Grant access if user is administrator or content-administrator
+  if (in_array('administrator', $user->roles) || in_array('content administrator', $user->roles)) {
+    return TRUE;
+  }
   if (!og_context_is_init()) {
     // OG context was not determined yet, so register the path and return early.
     // The next time this access callback will be called, it will not enter
