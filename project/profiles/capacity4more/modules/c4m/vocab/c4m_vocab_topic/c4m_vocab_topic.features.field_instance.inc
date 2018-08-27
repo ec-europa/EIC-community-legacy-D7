@@ -11,8 +11,7 @@
 function c4m_vocab_topic_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance:
-  // 'taxonomy_term-c4m_vocab_topic-c4m_dashboard_key'.
+  // Exported field_instance: 'taxonomy_term-c4m_vocab_topic-c4m_dashboard_key'.
   $field_instances['taxonomy_term-c4m_vocab_topic-c4m_dashboard_key'] = array(
     'bundle' => 'c4m_vocab_topic',
     'default_value' => NULL,
