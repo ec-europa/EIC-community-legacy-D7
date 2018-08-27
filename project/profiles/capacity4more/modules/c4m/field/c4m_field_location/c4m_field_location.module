@@ -42,6 +42,7 @@ function c4m_field_location_ds_fields_info($entity_type) {
       'formatters' => array(
         'in @city (@country)' => t('in city (country)'),
         '@name (@country)'    => t('Name (country)'),
+        '@name - @address in @city (@country)' => t('Name - address in city (country) - linked'),
       ),
     ),
   );

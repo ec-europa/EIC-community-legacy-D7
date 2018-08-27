@@ -74,7 +74,7 @@ function c4m_content_organisation_ds_field_settings_info() {
     'c4m_field_location_city_country' => array(
       'weight' => '11',
       'label' => 'above',
-      'format' => 'in @city (@country)',
+      'format' => '@name - @address in @city (@country)',
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
