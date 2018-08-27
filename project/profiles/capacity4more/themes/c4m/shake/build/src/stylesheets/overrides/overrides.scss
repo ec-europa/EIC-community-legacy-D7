@@ -856,6 +856,10 @@ html.js fieldset.collapsed {
     a {
         color: currentColor;
     }
+
+    #main-content + & {
+        margin-top: 1em;
+    }
 }
 
 .alert-info {
@@ -1943,6 +1947,36 @@ footer a:focus, footer a:active {
 
 #quick-post-form {
     padding-bottom: 1em;
+}
+
+.cke_chrome {
+    @include css-var("border-color", "ec-grey-50", "", "!important");
+    &.cke_focus {
+        @include css-var("outline", "ec-yellow-100", "solid 2px");
+        outline-offset: -3px;
+    }
+}
+
+.cke_contents {
+    padding: 0.5em 1em !important;
+}
+
+.node-unpublished {
+    position: relative;
+    background: none;
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 100vw;
+        height: 100%;
+        margin-left: -50vw;
+        z-index: -1;
+        @include css-var("background-color", "ec-red-n");
+        opacity: 0.1;
+    }
 }
 
 
