@@ -655,7 +655,8 @@ html.js fieldset.collapsed {
     border-radius: 0;
 }
 
-.btn, .button.browse, .button.edit, .ecl-button {
+.btn, .button.browse, .button.edit, .ecl-button,
+.search-api-sort button.dropdown-toggle {
     max-width: 100%;
     padding: 13px 20px;
     min-height: 48px;
@@ -674,11 +675,23 @@ html.js fieldset.collapsed {
     box-shadow: none;
 }
 
-.btn:hover, .btn:focus, .button.browse:hover, .button.browse:focus {
+.btn:hover, .btn:focus, .button.browse:hover, .button.browse:focus,
+.search-api-sort button.dropdown-toggle:hover {
     text-decoration: underline;
 }
 
-.btn:focus, .button.browse:focus {
+.search-api-sort button.dropdown-toggle, .search-api-sort.open button.dropdown-toggle, .search-api-sort button.dropdown-toggle:hover, .search-api-sort.open button.dropdown-toggle:hover {
+    border: solid 2px;
+}
+
+.search-api-sort.open button.dropdown-toggle {
+    .fa {
+        transform: rotate(180deg);
+    }
+}
+
+.btn:focus, .button.browse:focus,
+.search-api-sort button.dropdown-toggle:focus {
     @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
     outline-offset: -2px;
 }
@@ -710,14 +723,16 @@ html.js fieldset.collapsed {
     @include css-var("color", "ec-grey-100");
 }
 
-.btn-default, .button.edit {
+.btn-default, .button.edit,
+.search-api-sort button.dropdown-toggle {
     background-color: transparent;
     @include css-var("border-color", "ec-blue-100");
     @include css-var("color", "ec-blue-100");
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:focus,
-.button.edit:hover, .button.edit:focus, .button.edit:active, .button.edit:active:focus {
+.button.edit:hover, .button.edit:focus, .button.edit:active, .button.edit:active:focus,
+.search-api-sort button.dropdown-toggle:hover, .search-api-sort button.dropdown-toggle:focus, .search-api-sort.open button.dropdown-toggle, .search-api-sort.open button.dropdown-toggle:hover {
     @include css-var("background-color", "ec-blue-100");
     @include css-var("border-color", "ec-blue-100");
     color: #fff;
@@ -823,6 +838,33 @@ html.js fieldset.collapsed {
     &:hover,
     &:focus {
         opacity: 1;
+    }
+}
+
+.caret {
+    width: auto;
+    height: auto;
+    margin-left: .66rem;
+    border: none;
+    vertical-align: top;
+    &::after {
+        content: "\e81f";
+        display: inline-block;
+        font-family: "EuropaIcons";
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 1;
+        speak: none;
+        text-decoration: none;
+        text-transform: none;
+        font-size: .875rem;
+
+        [aria-expanded="true"] & {
+            transform: rotate(180deg);
+        }
     }
 }
 
@@ -1008,16 +1050,25 @@ footer a:focus, footer a:active {
 #user-bar .user-groups,
 #user-bar .user-projects,
 #user-bar .user-profile-menu {
-    border: none;
+    margin-top: 13px;
+    padding: .33rem 0;
+    border: solid 1px rgba(0, 0, 0, 0.15);
+    border-top: none;
     border-radius: 0;
-    box-shadow: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     @include css-var("background-color", "ec-grey-5");
     @include css-var("color", "ec-blue-100");
 }
 
+#user-bar .userbar-userprofile.right-menu-section .dropdown-menu li {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.15);
+}
+
 .dropdown-menu {
+    margin: 0;
+    padding: .33rem 0;
     border-radius: 0;
-    border: none;
+    border: solid 1px rgba(0, 0, 0, 0.15);
     @include css-var("background-color", "ec-grey-10");
 
     > li {
@@ -1026,38 +1077,46 @@ footer a:focus, footer a:active {
             margin-bottom: 10px;
         }
         > a {
-            color: currentColor;
-            line-height: 1;
+            padding: 0 1rem;
+            @include css-var("color", "ec-blue-100");
+            font-size: 16px;
+            line-height: 2;
             &:hover, &:focus {
                 background: none;
-                color: currentColor;
+                @include css-var("color", "ec-grey-100");
                 text-decoration: underline;
             }
             &.ecl-button {
                 padding: 13px 20px;
                 font-weight: bold;
+                line-height: 1;
             }
         }
     }
 }
 
-#user-bar .userbar-userprofile.right-menu-section .dropdown-menu li,
-.dropdown-menu {
-    margin: 0;
-    padding: 10px;
-}
-
-#user-bar .user-profile-menu li {
-    margin: 0;
-}
-
 #user-bar .group-statistic,
 #user-bar .userbar-userprofile.open > .item-list > .dropdown-menu .group-members-count,
-#user-bar .userbar-userprofile.right-menu-section .dropdown-menu .text-muted,
-#user-bar .user-groups li a,
-#user-bar .user-projects li a,
-#user-bar .user-profile-menu li a {
+#user-bar .userbar-userprofile.right-menu-section .dropdown-menu .text-muted {
     color: currentColor;
+}
+
+#user-bar .user-groups li,
+#user-bar .user-projects li,
+#user-bar .user-profile-menu li {
+    a {
+        @include css-var("color", "ec-blue-100");
+        font-size: 1rem;
+
+        &:hover, &:focus {
+            @include css-var("color", "ec-grey-100");
+            text-decoration: underline;
+        }
+    }
+    > a {
+        padding: 0 1rem;
+        line-height: 2;
+    }
 }
 
 .view-mode-block_list .field-name-c4m-ds-group-type-icon .fa,
@@ -1066,20 +1125,6 @@ footer a:focus, footer a:active {
 .view-mode-block_list .field-name-c4m-ds-organisation-type-icon .fa {
     width: auto;
     margin: 0 8px 0 0;
-}
-
-.dropdown-menu > li > a {
-    padding: 0;
-}
-
-#user-bar .user-profile-menu li a {
-    padding-right: 0;
-}
-
-#user-bar .user-profile-menu li a:hover {
-    background: none;
-    color: currentColor;
-    text-decoration: underline;
 }
 
 .field-name-c4m-ds-content-footer-stats, .field-name-c4m-ds-node-highlight, .field-name-c4m-ds-node-promote {
@@ -1191,10 +1236,6 @@ footer a:focus, footer a:active {
 .view-items-with-dashed-separator .views-row-last {
     padding-bottom: 20px;
     @include css-var("border-bottom", "ec-grey-10", "solid 1px");
-}
-
-.search-api-sort {
-    margin-bottom: 30px;
 }
 
 .group-header {
@@ -1607,7 +1648,9 @@ footer a:focus, footer a:active {
             right: 0;
             top: 100%;
             min-width: 160px;
+            padding: .33rem;
             @include css-var("background-color", "ec-grey-10");
+            border: solid 1px rgba(0, 0, 0, 0.15);
 
             li {
                 a {
@@ -1648,6 +1691,7 @@ footer a:focus, footer a:active {
 }
 
 .search-api-sort {
+    margin-bottom: 30px;
     .dropdown-menu {
         left: auto;
         max-width: 200px;
