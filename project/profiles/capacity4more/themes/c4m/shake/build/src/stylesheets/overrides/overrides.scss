@@ -194,6 +194,10 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view
     @include css-var("color", "ec-grey-75");
 }
 
+.circle--green {
+    @include css-var("color", "ec-green-n");
+}
+
 .panel-title {
     font-size: 22px;
     line-height: 25px;
@@ -209,7 +213,7 @@ b, strong, label {
     font-weight: normal;
 }
 
-.control-label a {
+.control-label a, .text-copy--small, .og-context .pane-c4m-content-group {
     color: inherit;
 }
 
@@ -696,8 +700,31 @@ html.js fieldset.collapsed {
     outline-offset: -2px;
 }
 
+.btn-group-discussion_type {
+    .discussion_type {
+        background-color: transparent;
+        @include css-var("border-color", "ec-blue-100");
+        @include css-var("color", "ec-blue-100");
+        border-radius: 0;
+        &,
+        &.active,
+        &.active:hover,
+        &:hover {
+            border: solid 2px;
+        }
+        &:hover,
+        &.active,
+        &.active:hover {
+            @include css-var("background-color", "ec-blue-100");
+            @include css-var("border-color", "ec-blue-100");
+            color: #fff;
+        }
+    }
+}
+
 .btn-primary,
-.ecl-button--primary {
+.ecl-button--primary,
+.btn-group-discussion_type .discussion_type.active {
     @include css-var("border-color", "ec-blue-100");
 }
 
@@ -724,7 +751,8 @@ html.js fieldset.collapsed {
 }
 
 .btn-default, .button.edit,
-.search-api-sort button.dropdown-toggle {
+.search-api-sort button.dropdown-toggle,
+.btn-group-discussion_type .discussion_type {
     background-color: transparent;
     @include css-var("border-color", "ec-blue-100");
     @include css-var("color", "ec-blue-100");
@@ -803,6 +831,23 @@ html.js fieldset.collapsed {
 .btn-primary[disabled]:hover {
     @include css-var("background-color", "ec-grey-15", "", "!important");
     @include css-var("border-color", "ec-grey-15");
+}
+
+.quickpost-btn {
+    width: auto;
+    @include css-var("background-color", "ec-blue-100");
+    @include css-var("border-color", "ec-blue-100");
+    color: #fff;
+
+    &:hover,
+    &:focus {
+        background-color: transparent;
+        @include css-var("color", "ec-blue-100");
+    }
+
+    &.btn-primary {
+        //@include css-var("color", "ec-blue-100");
+    }
 }
 
 .alert {
@@ -1131,6 +1176,10 @@ footer a:focus, footer a:active {
     @include css-var("color", "ec-grey-50");
 }
 
+.view-mode-group_dashboard .field-name-c4m-ds-node-highlight {
+    @include clearfix;
+}
+
 .view-mode-full:not(.node-wiki-page)>.content>.group-right>section:not(:last-child), .view-mode-full:not(.node-wiki-page)>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>section:not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child),
 .view-mode-full:not(.node-wiki-page)>.content>.group-right>section .views-row:not(:last-child), .view-mode-full:not(.node-wiki-page)>.content>.group-right>section .detail-element:not(:last-child), .view-mode-full:not(.node-wiki-page)>.content>.group-right>section .view-mode-block_list:not(:last-child), .view-mode-full:not(.node-wiki-page)>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse) .views-row:not(:last-child), .view-mode-full:not(.node-wiki-page)>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse) .detail-element:not(:last-child), .view-mode-full:not(.node-wiki-page)>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse) .view-mode-block_list:not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>section .views-row:not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>section .detail-element:not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>section .view-mode-block_list:not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse) .views-row:not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse) .detail-element:not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse) .view-mode-block_list:not(:last-child),
 #comments .comment,
@@ -1239,6 +1288,7 @@ footer a:focus, footer a:active {
 }
 
 .group-header {
+    margin: 1em 0;
     font-size: 14px;
 }
 
@@ -1454,6 +1504,11 @@ footer a:focus, footer a:active {
     font-weight: bold;
 }
 
+.label.label-access.public {
+    @include css-var("background-color", "ec-green-n");
+    @include css-var("border-color", "ec-green-n");
+}
+
 .event-views-links a:hover {
     @include css-var("color", "ec-grey-100");
 }
@@ -1485,6 +1540,10 @@ footer a:focus, footer a:active {
 .node-document.view-mode-teaser_group .node-icon {
     width: 30px;
     height: 30px;
+}
+
+.node-icon[class*="as-group-"] {
+    margin: 0;
 }
 
 .icon-col .field-name-c4m-ds-event-start-icon {
@@ -1527,8 +1586,24 @@ footer a:focus, footer a:active {
     padding-bottom: 0;
 }
 
-.group-indications--access {
-    margin-right: 10px;
+.group-indications {
+    .label {
+        display: inline-block; 
+        vertical-align: top;
+        float: none;
+        margin-right: 0.5em;
+    }
+    .group-icon {
+        border-radius: 0;
+        &.as-group-public {
+            @include css-var("border-color", "ec-green-n");
+        }
+    }
+
+    &--access {
+        display: inline;
+        float: none;
+    }
 }
 
 .group-private {
@@ -1580,7 +1655,15 @@ footer a:focus, footer a:active {
 }
 
 #header-ec-wrapper .group-banner {
+    position: relative;
+    margin: 1em 0 0 0;
+    width: 100vw;
+    max-width: none;
+    max-height: 300px;
     box-shadow: none;
+    left: 50%;
+    transform: translateX(-50vw);
+    object-fit: cover;
 }
 
 .remove-taxonomy::before {
@@ -1589,7 +1672,8 @@ footer a:focus, footer a:active {
 
 .selected-values {
     .level-1,
-    .level-2 .ng-binding {
+    .level-2 .ng-binding,
+    > .ng-binding {
         position: relative;
         display: inline-block;
         padding: 0.33rem;
@@ -1648,7 +1732,7 @@ footer a:focus, footer a:active {
             right: 0;
             top: 100%;
             min-width: 160px;
-            padding: .33rem;
+            padding: 0.33rem;
             @include css-var("background-color", "ec-grey-10");
             border: solid 1px rgba(0, 0, 0, 0.15);
 
@@ -1696,6 +1780,52 @@ footer a:focus, footer a:active {
         left: auto;
         max-width: 200px;
     }
+}
+
+.pane-quick-form {
+    padding: 1rem;
+    @include css-var("background-color", "ec-grey-10");
+    @include css-var("color", "ec-blue-100");
+
+    a {
+        color: currentColor;
+        &:hover, &:focus {
+            @include css-var("color", "ec-grey-100");
+        }
+    }
+
+    #body-wrapper .body-attachment-link {
+        label {
+            font-weight: normal;
+        }
+        i {
+            @include css-var("color", "ec-blue-100");
+            text-shadow: none;
+        }
+    }
+}
+
+.topics-section {
+    border-top: solid 1px rgba(0, 0, 0, 0.15);
+    border-bottom: solid 1px rgba(0, 0, 0, 0.15);
+}
+
+.bootstrap-twocol-stacked > .row > .group-right {
+    @include css-var("border-left", "ec-grey-10", "solid 1px");
+}
+
+.og-context .pane-c4m-content-group .c4m-created-on-date {
+    border-top: none;
+    border-bottom: none;
+    @include css-var("background-color", "ec-yellow-100");
+}
+
+.user-name {
+    margin-bottom: 20px;
+}
+
+#quick-post-form {
+    padding-bottom: 1em;
 }
 
 
@@ -1750,6 +1880,14 @@ footer a:focus, footer a:active {
     .nav-tabs > li > a {
         padding: 10px;
         font-size: 14px;
+    }
+
+    .btn-group-discussion_type {
+        .discussion_type {
+            &:not(:last-child) {
+                margin-bottom: 20px;
+            }
+        }
     }
 }
 
@@ -1881,6 +2019,23 @@ footer a:focus, footer a:active {
 
     ul.statistics-list li {
         width: 25%;
+    }
+
+    .group-header {
+        margin: 2em 0;
+    }
+
+    .group-indications {
+        float: none;
+        margin: 0 0 1em 0;
+        &--access {
+            margin-right: 0;
+        }
+        .group-status {
+            position: relative;
+            right: auto;
+            top: auto;
+        }
     }
 }
 
