@@ -8,6 +8,7 @@ $colors: (
     ec-cyan-110: #022b58,
     ec-grey-75: #707070,
     ec-grey-50: #9f9f9f,
+    ec-blue-50: #7fa1c9,
     ec-grey-25: #cfcfcf,
     ec-blue-25: #bfd0e4,
     ec-grey-15: #e3e3e3,
@@ -29,6 +30,7 @@ $colors: (
     --ec-cyan-110: #{map-get($colors, "ec-cyan-110")};
     --ec-grey-75: #{map-get($colors, "ec-grey-75")};
     --ec-grey-50: #{map-get($colors, "ec-grey-50")};
+    --ec-blue-50: #{map-get($colors, "ec-blue-50")};
     --ec-grey-25: #{map-get($colors, "ec-grey-25")};
     --ec-blue-25: #{map-get($colors, "ec-blue-25")};
     --ec-grey-15: #{map-get($colors, "ec-grey-15")};
@@ -447,6 +449,12 @@ html.js fieldset.collapsed {
     }
 }
 
+.file-widget {
+    .btn {
+        float: right;
+    }
+}
+
 .checkboxes-wrapper {
     .btn {
         margin-top: 10px;
@@ -659,7 +667,7 @@ html.js fieldset.collapsed {
     border-radius: 0;
 }
 
-.btn, .button.browse, .button.edit, .ecl-button,
+.btn, .button.browse, .button.edit, .ecl-button, .addtocal,
 .search-api-sort button.dropdown-toggle {
     max-width: 100%;
     padding: 13px 20px;
@@ -694,7 +702,7 @@ html.js fieldset.collapsed {
     }
 }
 
-.btn:focus, .button.browse:focus,
+.btn:focus, .button.browse:focus, .addtocal:focus,
 .search-api-sort button.dropdown-toggle:focus {
     @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
     outline-offset: -2px;
@@ -724,13 +732,21 @@ html.js fieldset.collapsed {
 
 .btn-primary,
 .ecl-button--primary,
-.btn-group-discussion_type .discussion_type.active {
+.btn-group-discussion_type .discussion_type.active,
+.addtocal {
     @include css-var("border-color", "ec-blue-100");
+}
+
+.addtocal {
+    @include css-var("background-color", "ec-blue-100");
+    @include css-var("color", "ec-blue-100");
+    color: #fff;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active,
 .btn-info:active:hover, .btn-info:active:focus, .btn-info:active.focus, .btn-info.active:hover, .btn-info.active:focus, .btn-info.active.focus, .open>.btn-info.dropdown-toggle:hover, .open>.btn-info.dropdown-toggle:focus, .open>.btn-info.dropdown-toggle.focus,
-.ecl-button--primary:hover, .ecl-button--primary:focus, .ecl-button--primary:active
+.ecl-button--primary:hover, .ecl-button--primary:focus, .ecl-button--primary:active,
+.addtocal:hover, .addtocal:focus, .addtocal:active
 {
     background-color: transparent !important;
     @include css-var("border-color", "ec-blue-100");
@@ -843,10 +859,6 @@ html.js fieldset.collapsed {
     &:focus {
         background-color: transparent;
         @include css-var("color", "ec-blue-100");
-    }
-
-    &.btn-primary {
-        //@include css-var("color", "ec-blue-100");
     }
 }
 
@@ -1674,7 +1686,12 @@ footer a:focus, footer a:active {
     color: currentColor;
 }
 
+.taxonomy-term-selected {
+    margin-right: 0;
+}
+
 .select2-container-multi {
+    margin-bottom: 1em;
     .select2-choices {
         background: none;
         border-radius: 0;
@@ -1831,6 +1848,7 @@ footer a:focus, footer a:active {
 }
 
 .project-indications {
+    margin: 0;
     overflow: visible;
     .btn-group {
         position: relative;
@@ -1871,6 +1889,11 @@ footer a:focus, footer a:active {
         font-size: 1rem;
         margin-top: 0;
         text-transform: none;
+    }
+    > .label {
+        &:not(:last-child) {
+            margin-right: 1em;
+        }
     }
 }
 
@@ -2042,6 +2065,27 @@ footer a:focus, footer a:active {
     }
 }
 
+.group-navigation {
+    nav {
+        li {
+            a {
+                font-size: 1rem;
+                font-weight: bold;
+                &:hover {
+                    color: currentColor;
+                    text-decoration: none;
+                }
+            }
+            &.active {
+                &::before,
+                a {
+                    color: currentColor;
+                }
+            }
+        }
+    }
+}
+
 
 @media (min-width: 480px) {
     .logo {
@@ -2186,6 +2230,49 @@ footer a:focus, footer a:active {
             position: relative;
             right: auto;
             top: auto;
+        }
+    }
+
+    .group-navigation {
+        nav {
+            border-top: 0;
+            border-bottom: 0;
+            &::before {
+                display: block;
+                position: absolute;
+                left: 50%;
+                top: 0;
+                width: 100vw;
+                height: 100%;
+                margin-left: -50vw;
+                @include css-var("background-color", "ec-blue-25");
+                z-index: -1;
+            }
+            ul {
+                padding: 0;
+                margin-right: 0;
+                height: 50px;
+                align-items: stretch;
+            }
+            li {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                @include css-var("color", "ec-blue-110");
+                margin: 0;
+                padding: 0;
+                &:not(:last-of-type) {
+                    border-right: none;
+                }
+                &::before,
+                a {
+                    color: currentColor;
+                }
+                &.active {
+                     @include css-var("background-color", "ec-blue-50");
+                     color: #fff;
+                }
+            }
         }
     }
 }
