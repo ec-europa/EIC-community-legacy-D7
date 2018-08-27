@@ -194,6 +194,13 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view
     @include css-var("color", "ec-grey-75");
 }
 
+.panel-title {
+    font-size: 22px;
+    line-height: 25px;
+    font-weight: bold;
+    text-transform: none;
+}
+
 b, strong, label {
     font-weight: bold;
 }
@@ -324,6 +331,10 @@ blockquote {
     font-size: 18px;
     min-height: 48px;
     font-style: normal;
+
+    &.form-select {
+       border-width: 2px;
+    }
 }
 
 .node-form .form-control:not(.form-file) {
@@ -338,6 +349,43 @@ blockquote {
     @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
     outline-offset: -2px !important;
 }
+
+fieldset {
+    padding: 0;
+}
+
+legend {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+fieldset.collapsible {
+    .fieldset-legend {
+        display: flex;
+        align-items: center;
+        padding: .89rem;
+        min-height: 64px;
+        @include css-var("color", "ec-grey-100");
+        &:hover, &:not([aria-expanded="false"]) {
+            @include css-var("background-color", "ec-yellow-100");
+        }
+        &:hover, &:focus {
+            text-decoration: none;
+        }
+    }
+}
+
+html.js fieldset.collapsed {
+    height: auto;
+}
+
+.panel-collapse {
+    @include css-var("background-color", "ec-grey-5");
+    font-size: 1rem;
+    margin: 0;
+    padding: 1rem;
+}
+
 
 .header-search .form-text {
     padding-right: 50px;
@@ -469,6 +517,10 @@ blockquote {
 #c4m-search-filter-search-filter-form .form-group
 {
     margin-bottom: 0;
+}
+
+#edit-edit-buttons {
+    margin-top: 20px;
 }
 
 #c4m-features-homepage-newsletter-form .form-submit {
@@ -692,7 +744,8 @@ blockquote {
     @include css-var("border-color", "ec-green-n");
 }
 
-.btn-success:hover, .btn-success:focus {
+.btn-success:hover, .btn-success:focus,
+.btn-success:active:hover, .button.browse:active:hover, .btn-success:active:focus, .button.browse:active:focus, .btn-success:active.focus, .button.browse:active.focus, .btn-success.active:hover, .active.button.browse:hover, .btn-success.active:focus, .active.button.browse:focus, .btn-success.active.focus, .active.focus.button.browse, .open>.btn-success.dropdown-toggle:hover, .open>.dropdown-toggle.button.browse:hover, .open>.btn-success.dropdown-toggle:focus, .open>.dropdown-toggle.button.browse:focus, .open>.btn-success.dropdown-toggle.focus, .open>.dropdown-toggle.focus.button.browse {
     background-color: transparent;
     @include css-var("border-color", "ec-green-n");
     @include css-var("color", "ec-green-n");
