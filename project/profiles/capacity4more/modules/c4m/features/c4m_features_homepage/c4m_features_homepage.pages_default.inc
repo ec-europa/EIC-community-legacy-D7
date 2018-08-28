@@ -1401,6 +1401,29 @@ function c4m_features_homepage_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
+  $pane->pid = 'new-b027ca08-6ef3-433e-b2d8-7a4b5e342319';
+  $pane->panel = 'left';
+  $pane->type = 'quick_form';
+  $pane->subtype = 'quick_form';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = 'b027ca08-6ef3-433e-b2d8-7a4b5e342319';
+  $display->content['new-b027ca08-6ef3-433e-b2d8-7a4b5e342319'] = $pane;
+  $display->panels['left'][0] = 'new-b027ca08-6ef3-433e-b2d8-7a4b5e342319';
+  $pane = new stdClass();
   $pane->pid = 'new-23fe0a5f-43fb-4a81-8b7d-83cc9fdb436d';
   $pane->panel = 'left';
   $pane->type = 'c4m_content_event_site_left';
@@ -1414,11 +1437,11 @@ function c4m_features_homepage_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 0;
+  $pane->position = 1;
   $pane->locks = array();
   $pane->uuid = '23fe0a5f-43fb-4a81-8b7d-83cc9fdb436d';
   $display->content['new-23fe0a5f-43fb-4a81-8b7d-83cc9fdb436d'] = $pane;
-  $display->panels['left'][0] = 'new-23fe0a5f-43fb-4a81-8b7d-83cc9fdb436d';
+  $display->panels['left'][1] = 'new-23fe0a5f-43fb-4a81-8b7d-83cc9fdb436d';
   $pane = new stdClass();
   $pane->pid = 'new-4c0e3891-13e3-4e22-ab01-210e637aeb54';
   $pane->panel = 'right';

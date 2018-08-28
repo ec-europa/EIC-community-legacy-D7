@@ -696,6 +696,9 @@ function c4m_content_project_menu() {
     'weight' => 1000,
   );
 
+  //Remove this item for EASME.
+  unset($items['admin/config/c4m/projects-programmes-templates']);
+
   $items['c4m/autocomplete/c4m_content_project/%'] = array(
     'title' => 'Autocomplete for projects & programmes',
     'page callback' => 'c4m_content_project_autocomplete',

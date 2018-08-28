@@ -53,6 +53,10 @@ function c4m_og_c4m_og_perm_ctools_access_settings($form, &$form_state, $conf) {
 function c4m_og_c4m_og_perm_ctools_access_check($conf, $context) {
   global $user;
 
+  // Grant access if user is administrator or content-administrator
+  if (in_array('administrator', $user->roles) || in_array('content administrator', $user->roles)) {
+    return TRUE;
+  }
   $group = c4m_og_current_group();
   if (!$group) {
     return FALSE;

@@ -483,6 +483,8 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
         $role = c4m_og_user_role_load_by_name('administrator member', 'organisation');
         og_role_grant('node', $nid, $user->uid, $role->rid);
       }
+      // Send welcome to Group notification.
+      _c4m_user_notifications_notify_user_og_group_membership_accepted($membership);
     }
     // Update job title, user type and language fields that areon the user Entity.
     // These are kept on user for facets.

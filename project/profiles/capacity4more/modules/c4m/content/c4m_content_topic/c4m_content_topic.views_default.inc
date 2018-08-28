@@ -405,7 +405,7 @@ function c4m_content_topic_views_default_views() {
     'archived' => 'archived',
   );
 
-  /* Display: Articles */
+  /* Display: Stories */
   $handler = $view->new_display('block', 'Stories', 'block_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Related Stories';

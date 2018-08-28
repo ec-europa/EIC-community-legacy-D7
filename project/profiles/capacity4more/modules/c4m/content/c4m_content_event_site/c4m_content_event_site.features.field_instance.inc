@@ -122,6 +122,18 @@ function c4m_content_event_site_field_default_field_instances() {
           'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
           'upload' => 'upload',
         ),
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 0,
+        'manualcrop_enable' => 1,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => FALSE,
+        'manualcrop_instant_preview' => 0,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
       'weight' => 12,
@@ -133,7 +145,7 @@ function c4m_content_event_site_field_default_field_instances() {
     'bundle' => 'event_site',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Please note that only the first 500 characters of the description are used. The first 300 characters are displayed in the overview pages.',
     'display' => array(
       'block_list' => array(
         'label' => 'above',
@@ -1142,6 +1154,18 @@ function c4m_content_event_site_field_default_field_instances() {
           'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
           'upload' => 'upload',
         ),
+        'manualcrop_crop_info' => TRUE,
+        'manualcrop_default_crop_area' => TRUE,
+        'manualcrop_enable' => FALSE,
+        'manualcrop_inline_crop' => FALSE,
+        'manualcrop_instant_crop' => FALSE,
+        'manualcrop_instant_preview' => TRUE,
+        'manualcrop_keyboard' => TRUE,
+        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => FALSE,
       ),
       'type' => 'media_generic',
       'weight' => 11,
@@ -2022,6 +2046,7 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Location Map');
   t('Message to users invited to the event');
   t('Organised by');
+  t('Please note that only the first 500 characters of the description are used. The first 300 characters are displayed in the overview pages.');
   t('Presentations');
   t('Publish date');
   t('Regions & Countries');

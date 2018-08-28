@@ -4,7 +4,7 @@
     display: none;
   }
 
-  .field-name-c4m-partners {
+  .field-name-c4m-partners , .field-name-c4m-customers{
     margin: 0;
     margin-bottom: 40px;
   }
@@ -36,6 +36,14 @@
           margin-bottom: 0;
         }
       }
+    }
+  }
+  // Display the same way customers and partners of Organisations.
+  .field-name-c4m-partners, .field-name-c4m-customers{
+    margin: 0 -0.6em;
+    > .field-items .field-item {
+      display: inline-block;
+      padding: 0 0.3em 0.5em 0.3em;
     }
   }
 }

@@ -26,6 +26,7 @@ function c4m_comment_user_default_permissions() {
     'name' => 'administer comments',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'comment',
   );
@@ -35,6 +36,7 @@ function c4m_comment_user_default_permissions() {
     'name' => 'delete all comment replies',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'c4m_comment_delete',
   );
@@ -44,6 +46,7 @@ function c4m_comment_user_default_permissions() {
     'name' => 'delete any comment',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'c4m_comment_delete',
   );
@@ -53,6 +56,7 @@ function c4m_comment_user_default_permissions() {
     'name' => 'delete any comments at anytime',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'c4m_comment_delete',
   );
@@ -92,6 +96,7 @@ function c4m_comment_user_default_permissions() {
     'name' => 'move all replies up',
     'roles' => array(
       'administrator' => 'administrator',
+      'content administrator' => 'content administrator',
     ),
     'module' => 'c4m_comment_delete',
   );

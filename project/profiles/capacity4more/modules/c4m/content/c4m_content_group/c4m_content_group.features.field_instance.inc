@@ -160,7 +160,7 @@ function c4m_content_group_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'c4m_banner',
     'label' => 'Banner image',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'alt_field' => 1,
       'default_image' => 0,
@@ -193,6 +193,18 @@ function c4m_content_group_field_default_field_instances() {
           'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
           'upload' => 'upload',
         ),
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 0,
+        'manualcrop_enable' => 1,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => FALSE,
+        'manualcrop_instant_preview' => 0,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
       'weight' => 6,
@@ -204,7 +216,7 @@ function c4m_content_group_field_default_field_instances() {
     'bundle' => 'group',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Please note that only the first 500 characters of the description are used. The first 300 characters are displayed in the overview pages.',
     'display' => array(
       'activity_global' => array(
         'label' => 'above',
@@ -335,15 +347,19 @@ function c4m_content_group_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
+          'basic_text' => 'basic_text',
+          'filtered_html' => 0,
+          'full_html' => 0,
           'mail' => 0,
-          'plain_text' => 'plain_text',
+          'plain_text' => 0,
         ),
         'allowed_formats_toggle' => 1,
         'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
+            'basic_text' => array(
+              'weight' => 0,
+            ),
             'filtered_html' => array(
               'weight' => -48,
             ),
@@ -359,7 +375,7 @@ function c4m_content_group_field_default_field_instances() {
           ),
         ),
       ),
-      'display_summary' => 1,
+      'display_summary' => 0,
       'summary_display' => 'hidden',
       'text_processing' => 1,
       'user_register_form' => FALSE,
@@ -368,6 +384,12 @@ function c4m_content_group_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_label_summary' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_summary' => '',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 20,
         'summary_display' => 'default',
         'summary_rows' => 5,
@@ -637,6 +659,18 @@ function c4m_content_group_field_default_field_instances() {
           'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
           'upload' => 'upload',
         ),
+        'manualcrop_crop_info' => TRUE,
+        'manualcrop_default_crop_area' => TRUE,
+        'manualcrop_enable' => FALSE,
+        'manualcrop_inline_crop' => FALSE,
+        'manualcrop_instant_crop' => FALSE,
+        'manualcrop_instant_preview' => TRUE,
+        'manualcrop_keyboard' => TRUE,
+        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => FALSE,
       ),
       'type' => 'media_generic',
       'weight' => 7,
@@ -1866,6 +1900,7 @@ function c4m_content_group_field_default_field_instances() {
   t('How should membership requests be handled in this Group ?');
   t('Membership requests');
   t('Message to the site administrator');
+  t('Please note that only the first 500 characters of the description are used. The first 300 characters are displayed in the overview pages.');
   t('Please provide a brief description of the objectives and scope of this group.');
   t('Pluggable node access');
   t('Reference to Pluggable node access entities.');

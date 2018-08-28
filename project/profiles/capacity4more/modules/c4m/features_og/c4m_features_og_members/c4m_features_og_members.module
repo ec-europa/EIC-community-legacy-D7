@@ -427,6 +427,11 @@ function c4m_features_og_members_views_access_callbacks() {
  * Access callback.
  */
 function c4m_features_og_members_is_power_user_access_callback() {
+  global $user;
+  // Grant access if user is administrator or content-administrator
+  if (in_array('administrator', $user->roles) || in_array('content administrator', $user->roles)) {
+    return TRUE;
+  }
   if (!og_context_is_init()) {
     // OG context was not determined yet, so register the path and return early.
     // The next time this access callback will be called, it will not enter

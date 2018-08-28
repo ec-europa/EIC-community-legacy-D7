@@ -56,8 +56,19 @@ function theme_c4m_field_location_city_country(array $field) {
       '@name' => $name,
       '@city' => $city,
       '@country' => $country,
-    )
+      '@address' => isset($location["thoroughfare"]) ? $location["thoroughfare"] : '',
+
+)
   );
+
+
+  if ($field["formatter"] == '@name - @address in @city (@country)') {
+    $postal_code = isset($location["postal_code"]) ? $location["postal_code"] : '';
+    $thoroughfare = isset($location["thoroughfare"]) ? $location["thoroughfare"] : '';
+    $map_data = $thoroughfare . ' ' . $postal_code . ' ' . $city . ' ' . $country;
+    $map_link = url('https://www.openstreetmap.org/search', ['query' => ['query' => $map_data]]);
+    $element_value = l($element_value, $map_link);
+  }
 
   $tag['element'] = array(
     '#tag' => 'div',

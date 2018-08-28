@@ -148,7 +148,7 @@ function c4m_content_organisation_node_view($node, $view_mode, $langcode) {
  *   Render array for the icon.
  */
 function c4m_content_organisation_get_icon($organisation) {
-  $icons = field_get_items('node', $organisation, 'c4m_icon');
+  $icons = field_get_items('node', $organisation, 'c4m_media');
 
   if (empty($icons)) {
     return array();
@@ -157,7 +157,7 @@ function c4m_content_organisation_get_icon($organisation) {
   $icon = field_view_value(
     'node',
     $organisation,
-    'c4m_icon',
+    'c4m_media',
     $icons[0],
     array(
       'type' => 'image',

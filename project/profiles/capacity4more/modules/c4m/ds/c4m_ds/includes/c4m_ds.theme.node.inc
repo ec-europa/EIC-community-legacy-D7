@@ -677,6 +677,42 @@ function theme_c4m_ds_group_members_count(array $field) {
 /**
  * DS function field.
  *
+ * Render organisation members count.
+ *
+ * @param array $field
+ *   The field that needs to be rendered.
+ *
+ * @return mixed
+ *   The rendered field.
+ */
+function theme_c4m_ds_organisation_members_count(array $field) {
+  if (!isset($field['entity'])) {
+    return NULL;
+  }
+
+  $members = c4m_og_get_members_count($field['entity']);
+
+  // Remove count for dashboard_user.
+
+  if ($members >= 1) {
+    $members -= 1;
+  }
+  $tag['element'] = array(
+    '#tag' => 'span',
+    '#value' => format_plural(
+      $members,
+      '1 member',
+      '@count members',
+      array('@count' => $members)
+    ),
+  );
+
+  return theme_html_tag($tag);
+}
+
+/**
+ * DS function field.
+ *
  * Render group posts count.
  *
  * @param array $field

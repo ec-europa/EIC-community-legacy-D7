@@ -444,9 +444,9 @@ function _c4m_message_get_messages_mt22() {
   },
   "message_footer" : { "und" : [
       {
-        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
+        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
       }
     ]
   },
@@ -504,9 +504,9 @@ function _c4m_message_get_messages_mt23() {
   },
   "message_footer" : { "und" : [
       {
-        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
+        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
       }
     ]
   },
@@ -564,9 +564,9 @@ function _c4m_message_get_messages_mt25() {
   },
   "message_footer" : { "und" : [
       {
-        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
+        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
       }
     ]
   },
@@ -624,9 +624,9 @@ function _c4m_message_get_messages_mt26() {
   },
   "message_footer" : { "und" : [
       {
-        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
+        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
       }
     ]
   },
@@ -663,9 +663,9 @@ function _c4m_message_get_messages_mt28() {
         "format" : "mail"
       },
       {
-        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nCongratulations!\u0026nbsp;\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E is now published.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name updated the status of this @group_node_type from Draft to Published.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe capacity4dev team\u003C\/p\u003E\r\n",
+        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nCongratulations!\u0026nbsp;\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E is now published.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name updated the status of this @group_node_type from Draft to Published.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe EIC Community team\u003C\/p\u003E\r\n",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nCongratulations!\u0026nbsp;\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E is now published.\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name updated the status of this @group_node_type from Draft to Published.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe capacity4dev team\u003C\/p\u003E\n"
+        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nCongratulations!\u0026nbsp;\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E is now published.\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name updated the status of this @group_node_type from Draft to Published.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe EIC Community team\u003C\/p\u003E\n"
       }
     ]
   },
@@ -702,9 +702,9 @@ function _c4m_message_get_messages_mt29() {
         "format" : "mail"
       },
       {
-        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E\u0026nbsp;reverted back to Draft status.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name\u0026nbsp;updated the status of this @group_node_type from @group_former_status to Draft.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe capacity4dev team\u003C\/p\u003E\r\n",
+        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E\u0026nbsp;reverted back to Draft status.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name\u0026nbsp;updated the status of this @group_node_type from @group_former_status to Draft.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe EIC Community team\u003C\/p\u003E\r\n",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E\u0026nbsp;reverted back to Draft status.\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name\u0026nbsp;updated the status of this @group_node_type from @group_former_status to Draft.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe capacity4dev team\u003C\/p\u003E\n"
+        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E\u0026nbsp;reverted back to Draft status.\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name\u0026nbsp;updated the status of this @group_node_type from @group_former_status to Draft.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe EIC Community team\u003C\/p\u003E\n"
       }
     ]
   },
@@ -741,9 +741,9 @@ function _c4m_message_get_messages_mt30() {
         "format" : "mail"
       },
       {
-        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E is now archived.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name updated the status of this @group_node_type from @group_former_status to Archived.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe capacity4dev team\u003C\/p\u003E\r\n",
+        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E is now archived.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name updated the status of this @group_node_type from @group_former_status to Archived.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe EIC Community team\u003C\/p\u003E\r\n",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E is now archived.\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name updated the status of this @group_node_type from @group_former_status to Archived.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe capacity4dev team\u003C\/p\u003E\n"
+        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E is now archived.\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name updated the status of this @group_node_type from @group_former_status to Archived.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe EIC Community team\u003C\/p\u003E\n"
       }
     ]
   },
@@ -780,9 +780,9 @@ function _c4m_message_get_messages_mt31() {
         "format" : "mail"
       },
       {
-        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E was published once again.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name\u0026nbsp;updated the status of this @group_node_type from @group_former_status to Published.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe capacity4dev team\u003C\/p\u003E\r\n",
+        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E was published once again.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name\u0026nbsp;updated the status of this @group_node_type from @group_former_status to Published.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe EIC Community team\u003C\/p\u003E\r\n",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E was published once again.\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name\u0026nbsp;updated the status of this @group_node_type from @group_former_status to Published.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe capacity4dev team\u003C\/p\u003E\n"
+        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\n\u003Ca href=\u0022!group_dashboard_url\u0022 rel=\u0022nofollow\u0022\u003E@group_node_title\u003C\/a\u003E was published once again.\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name\u0026nbsp;updated the status of this @group_node_type from @group_former_status to Published.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about @group_node_type statuses and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe EIC Community team\u003C\/p\u003E\n"
       }
     ]
   },
@@ -858,9 +858,9 @@ function _c4m_message_get_messages_mt34() {
         "format" : "mail"
       },
       {
-        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name updated the permissions of this @group_node_type to @group_permissions.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about Group permissions and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe capacity4dev team\u003C\/p\u003E\r\n",
+        "value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E@event_user_full_name updated the permissions of this @group_node_type to @group_permissions.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about Group permissions and what they imply.\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cbr \/\u003E\r\nThe EIC Community team\u003C\/p\u003E\r\n",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name updated the permissions of this @group_node_type to @group_permissions.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about Group permissions and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe capacity4dev team\u003C\/p\u003E\n"
+        "safe_value" : "\u003Cp\u003EDear @group_admin_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E@event_user_full_name updated the permissions of this @group_node_type to @group_permissions.\u003C\/p\u003E\n\n\u003Cp\u003EYou can consult \u003Ca href=\u0022!help_section_url\u0022 rel=\u0022nofollow\u0022\u003Ethis help section\u003C\/a\u003E to find out more about Group permissions and what they imply.\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cbr \/\u003E\nThe EIC Community team\u003C\/p\u003E\n"
       }
     ]
   },
@@ -1035,9 +1035,9 @@ function _c4m_message_get_messages_mt46() {
   },
   "message_footer" : { "und" : [
       {
-        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
+        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
       }
     ]
   },
@@ -1173,9 +1173,9 @@ function _c4m_message_get_messages_mt51() {
   },
   "message_footer" : { "und" : [
       {
-        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
+        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
       }
     ]
   },
@@ -1233,9 +1233,9 @@ function _c4m_message_get_messages_mt53() {
   },
   "message_footer" : { "und" : [
       {
-        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
+        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
       }
     ]
   },
@@ -1294,9 +1294,9 @@ function _c4m_message_get_messages_mt54() {
   },
   "message_footer" : { "und" : [
       {
-        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
+        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
         "format" : "mail",
-        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to capacity4dev notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
       }
     ]
   },
