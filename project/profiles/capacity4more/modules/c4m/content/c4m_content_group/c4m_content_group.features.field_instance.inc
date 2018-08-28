@@ -216,7 +216,7 @@ function c4m_content_group_field_default_field_instances() {
     'bundle' => 'group',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Please note that only the first 500 characters of the description are used. The first 300 characters are displayed in the overview pages.',
     'display' => array(
       'activity_global' => array(
         'label' => 'above',
@@ -1896,6 +1896,7 @@ function c4m_content_group_field_default_field_instances() {
   t('How should membership requests be handled in this Group ?');
   t('Membership requests');
   t('Message to the site administrator');
+  t('Please note that only the first 500 characters of the description are used. The first 300 characters are displayed in the overview pages.');
   t('Please provide a brief description of the objectives and scope of this group.');
   t('Pluggable node access');
   t('Reference to Pluggable node access entities.');

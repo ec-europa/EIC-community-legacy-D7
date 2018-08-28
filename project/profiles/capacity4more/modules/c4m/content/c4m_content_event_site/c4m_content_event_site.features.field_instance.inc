@@ -145,7 +145,7 @@ function c4m_content_event_site_field_default_field_instances() {
     'bundle' => 'event_site',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Please note that only the first 500 characters of the description are used. The first 300 characters are displayed in the overview pages.',
     'display' => array(
       'block_list' => array(
         'label' => 'above',
@@ -2046,6 +2046,7 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Location Map');
   t('Message to users invited to the event');
   t('Organised by');
+  t('Please note that only the first 500 characters of the description are used. The first 300 characters are displayed in the overview pages.');
   t('Presentations');
   t('Publish date');
   t('Regions & Countries');
