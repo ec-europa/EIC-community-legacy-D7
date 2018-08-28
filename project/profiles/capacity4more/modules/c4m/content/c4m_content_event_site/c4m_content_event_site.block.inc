@@ -74,7 +74,7 @@ function _c4m_content_event_site_block_header_name_banner_event_site() {
     'title' => check_plain($title),
     'tagline' => check_plain($tagline),
     'type' => 'event site',
-    'status' => $status,
+    'status' => ucfirst($status),
     'label_type' => $label_type,
     'publish_link' => $publish_link,
   ];
