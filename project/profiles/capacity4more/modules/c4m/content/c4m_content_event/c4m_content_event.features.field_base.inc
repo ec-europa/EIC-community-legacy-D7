@@ -98,8 +98,15 @@ function c4m_content_event_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         'event' => 'Event',
-        'learning' => 'Learning',
+        'learning' => 'Learning / Training',
         'meeting' => 'Meeting',
+        'overseas_trade_fairs' => 'Overseas Trade Fairs',
+        'academy' => 'Academy',
+        'coordinators_welcome_day' => 'Coordinators Welcome Day',
+        'eic_summit' => 'EIC Summit',
+        'corporate_days' => 'Corporate days',
+        'pitching_event' => 'Pitching event',
+        'combined_corporate_and_pitching' => 'Combined Corporate and Pitching',
       ),
       'allowed_values_function' => '',
     ),

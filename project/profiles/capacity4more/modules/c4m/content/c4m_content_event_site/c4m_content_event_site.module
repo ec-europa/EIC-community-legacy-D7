@@ -165,6 +165,14 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
     $form["c4m_location_address"][LANGUAGE_NONE][0]['street_block']['premise']['#access'] = FALSE;
   }
 
+  // Remove options that are only needed for Group Events in the event_type field.
+  if (!empty($form['c4m_event_type'][LANGUAGE_NONE]['#options'])) {
+    foreach ($form['c4m_event_type'][LANGUAGE_NONE]['#options'] as $key => $option) {
+      if (in_array($key, ['event', 'learning', 'meeting'])) {
+        unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+      }
+    }
+  }
 }
 
 /**
@@ -297,6 +305,55 @@ function c4m_content_event_site_c4m_helper_entity_label_info() {
       'insert action' => t('created a new learning event site'),
       'update action' => t('updated the learning event site'),
       'icon' => 'fa-university',
+    ),
+    'event_site-overseas_trade_fairs' => array(
+      'article' => t('an'),
+      'singular' => t('overseas trade fairs event site'),
+      'plural' => t('overseas trade fairs event sites'),
+      'insert action' => t('created a new overseas trade fairs event site'),
+      'update action' => t('updated the overseas trade fairs event site'),
+    ),
+    'event_site-academy' => array(
+      'article' => t('an'),
+      'singular' => t('academy event site'),
+      'plural' => t('academy event sites'),
+      'insert action' => t('created a new academy event site'),
+      'update action' => t('updated the academy event site'),
+    ),
+    'event_site-coordinators_welcome_day' => array(
+      'article' => t('an'),
+      'singular' => t('coordinators welcome day event site'),
+      'plural' => t('coordinators welcome day event sites'),
+      'insert action' => t('created a new coordinators welcome day event site'),
+      'update action' => t('updated the coordinators welcome day event site'),
+    ),
+    'event_site-eic_summit' => array(
+      'article' => t('an'),
+      'singular' => t('eic summit event site'),
+      'plural' => t('eic summit event sites'),
+      'insert action' => t('created a new eic summit event site'),
+      'update action' => t('updated the eic summit event site'),
+    ),
+    'event_site-corporate_days' => array(
+      'article' => t('an'),
+      'singular' => t('corporate days event site'),
+      'plural' => t('corporate days event sites'),
+      'insert action' => t('created a new corporate days event site'),
+      'update action' => t('updated the corporate days event site'),
+    ),
+    'event_site-pitching_event' => array(
+      'article' => t('an'),
+      'singular' => t('pitching event event site'),
+      'plural' => t('pitching event event sites'),
+      'insert action' => t('created a new pitching event event site'),
+      'update action' => t('updated the pitching event event site'),
+    ),
+    'event_site-combined_corporate_and_pitching' => array(
+      'article' => t('an'),
+      'singular' => t('combined corporate and pitching event site'),
+      'plural' => t('combined corporate and pitching event sites'),
+      'insert action' => t('created a new combined corporate and pitching event site'),
+      'update action' => t('updated the combined corporate and pitching event site'),
     ),
   );
 }

@@ -277,6 +277,55 @@ function c4m_content_event_c4m_helper_entity_label_info() {
       'update action' => t('updated the learning event'),
       'icon' => 'fa-university',
     ),
+    'event-overseas_trade_fairs' => array(
+      'article' => t('an'),
+      'singular' => t('overseas trade fairs event'),
+      'plural' => t('overseas trade fairs event'),
+      'insert action' => t('created a new overseas trade fairs event'),
+      'update action' => t('updated the overseas trade fairs event'),
+    ),
+    'event-academy' => array(
+      'article' => t('an'),
+      'singular' => t('academy event'),
+      'plural' => t('academy event'),
+      'insert action' => t('created a new academy event'),
+      'update action' => t('updated the academy event'),
+    ),
+    'event-coordinators_welcome_day' => array(
+      'article' => t('an'),
+      'singular' => t('coordinators welcome day event'),
+      'plural' => t('coordinators welcome day event'),
+      'insert action' => t('created a new coordinators welcome day event'),
+      'update action' => t('updated the coordinators welcome day event'),
+    ),
+    'event-eic_summit' => array(
+      'article' => t('an'),
+      'singular' => t('eic summit event'),
+      'plural' => t('eic summit event'),
+      'insert action' => t('created a new eic summit event'),
+      'update action' => t('updated the eic summit event'),
+    ),
+    'event-corporate_days' => array(
+      'article' => t('an'),
+      'singular' => t('corporate days event'),
+      'plural' => t('corporate days event'),
+      'insert action' => t('created a new corporate days event'),
+      'update action' => t('updated the corporate days event'),
+    ),
+    'event-pitching_event' => array(
+      'article' => t('an'),
+      'singular' => t('pitching event event'),
+      'plural' => t('pitching event event'),
+      'insert action' => t('created a new pitching event event'),
+      'update action' => t('updated the pitching event event'),
+    ),
+    'event-combined_corporate_and_pitching' => array(
+      'article' => t('an'),
+      'singular' => t('combined corporate and pitching event'),
+      'plural' => t('combined corporate and pitching event'),
+      'insert action' => t('created a new combined corporate and pitching event'),
+      'update action' => t('updated the combined corporate and pitching event'),
+    ),
   );
 }
 
@@ -299,6 +348,14 @@ function c4m_content_event_c4m_offcanvas_trigger_label_left_alter(&$trigger_labe
  * Add author information to the edit event form.
  */
 function c4m_content_event_form_event_node_form_alter(array &$form, array $form_state) {
+  // Remove options that are only needed for Event Siotes in the event_type field.
+  if (!empty($form['c4m_event_type'][LANGUAGE_NONE]['#options'])) {
+    foreach ($form['c4m_event_type'][LANGUAGE_NONE]['#options'] as $key => $option) {
+      if (!in_array($key, ['event', 'learning', 'meeting'])) {
+        unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+      }
+    }
+  }
   c4m_content_create_group_content_access();
   c4m_og_add_content_author_options_to_power_users($form);
 }

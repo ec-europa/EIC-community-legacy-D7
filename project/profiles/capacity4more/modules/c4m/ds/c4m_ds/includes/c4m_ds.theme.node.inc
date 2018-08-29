@@ -225,7 +225,7 @@ function theme_c4m_ds_content_type_icon(array $field) {
   $tag['element'] = array(
     '#tag' => 'i',
     '#attributes' => array(
-      'class' => array('fa', $info['icon']),
+      'class' => array('fa', isset($info['icon'])? $info['icon'] : ''),
     ),
     '#value' => '',
   );
