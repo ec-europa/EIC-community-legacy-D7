@@ -35,9 +35,11 @@
 
 
 .nav-tabs {
+    border-bottom: none;
     > li {
         > a {
             margin-right: 0;
+            border: none;
             border-radius: 0;
             @include css-var("color", "ec-blue-100");
         }

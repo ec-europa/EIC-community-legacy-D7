@@ -1,0 +1,132 @@
+#ui-datepicker-div {
+    font-family: Arial,sans-serif;
+    @include css-var("background-color", "ec-grey-10");
+    @include css-var("color", "ec-grey-100");
+    border: none;
+    border-radius: 0;
+}
+
+.ui-datepicker {
+    padding: 0;
+
+    table {
+        margin: 0.4em;
+    }
+
+    th {
+        font-weight: normal;
+    }
+
+    .ui-state-hover {
+        background: none;
+        border: none;
+    }
+
+    .ui-state-default {
+        border: none;
+        color: currentColor;
+        text-align: center;
+    }
+
+    .ui-state-default,
+    .ui-state-hover {
+        @include css-var("background", "ec-grey-5");
+    }
+
+    .ui-state-active {
+        @include css-var("background", "ec-yellow-100");
+    }
+
+    .ui-widget-header {
+        padding: 0;
+        height: 40px;
+        @include css-var("background", "ec-grey-100");
+        color: #fff;
+        border-radius: 0;
+
+        a {
+            border-radius: 0;
+            &,
+            &:hover,
+            &:focus {
+                color: currentColor;
+            }
+        }
+    }
+
+    .ui-datepicker-prev,
+    .ui-datepicker-next {
+        height: 40px;
+        cursor: pointer;
+
+        &::before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: inline-block;
+            font-family: "fontawesome";
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 1;
+            speak: none;
+            text-decoration: none;
+            text-transform: none;
+            font-size: .875rem;
+            transform: translate(-50%, -50%);
+        }
+
+        span {
+            display: none;
+        }
+
+        &.ui-state-hover {
+            background: none;
+        }
+
+        &,
+        &-hover {
+            top: 0;
+        }
+    }
+
+    .ui-datepicker-prev {
+        &::before {
+            content: "\f053";
+        }
+        &,
+        &-hover {
+            left: 0;
+        }
+    }
+
+    .ui-datepicker-next {
+        &::before {
+            content: "\f054";
+        }
+        &,
+        &-hover {
+            right: 0;
+        }
+    }
+
+    .ui-datepicker-title {
+        select {
+            margin: 0;
+        }
+    }
+
+    &.ui-widget {
+        select {
+            font-family: Arial,sans-serif;
+            font-weight: normal;
+            background-color: rgba(#fff, 0.1);
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            height: 40px;
+        }
+    }
+}

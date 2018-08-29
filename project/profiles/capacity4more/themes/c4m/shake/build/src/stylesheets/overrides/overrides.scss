@@ -18,6 +18,7 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 @import "components/breadcrumb";
 @import "components/button";
 @import "components/carousel";
+@import "components/datepicker";
 @import "components/event";
 @import "components/form";
 @import "components/group";
@@ -190,7 +191,7 @@ footer a:focus, footer a:active {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(#000, 0.25);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     pointer-events: none;
@@ -201,7 +202,7 @@ footer a:focus, footer a:active {
     margin: 0;
     padding: .33rem 0;
     border-radius: 0;
-    border: solid 1px rgba(0, 0, 0, 0.15);
+    border: solid 1px rgba(#000, 0.15);
     @include css-var("background-color", "ec-grey-10");
 
     > li {
@@ -503,7 +504,7 @@ footer a:focus, footer a:active {
             min-width: 160px;
             padding: 0.33rem;
             @include css-var("background-color", "ec-grey-10");
-            border: solid 1px rgba(0, 0, 0, 0.15);
+            border: solid 1px rgba(#000, 0.15);
 
             li {
                 a {
@@ -590,8 +591,8 @@ footer a:focus, footer a:active {
 }
 
 .topics-section {
-    border-top: solid 1px rgba(0, 0, 0, 0.15);
-    border-bottom: solid 1px rgba(0, 0, 0, 0.15);
+    border-top: solid 1px rgba(#000, 0.15);
+    border-bottom: solid 1px rgba(#000, 0.15);
 }
 
 .bootstrap-twocol-stacked > .row > .group-right {

@@ -29,34 +29,45 @@
     outline-offset: -2px !important;
 }
 
-fieldset {
-    padding: 0;
-}
-
 legend {
     border-bottom: none;
     margin-bottom: 0;
 }
 
-fieldset.collapsible {
-    .fieldset-legend {
-        display: flex;
-        align-items: center;
-        padding: .89rem;
-        min-height: 64px;
-        @include css-var("color", "ec-grey-100");
-        &:hover, &:not([aria-expanded="false"]) {
-            @include css-var("background-color", "ec-yellow-100");
+fieldset {
+    padding: 0;
+
+    &.collapsible {
+        .fieldset-legend {
+            display: flex;
+            align-items: center;
+            padding: .89rem;
+            min-height: 64px;
+            @include css-var("color", "ec-grey-100");
+            &:hover, &:not([aria-expanded="false"]) {
+                @include css-var("background-color", "ec-yellow-100");
+            }
+            &:hover, &:focus {
+                text-decoration: none;
+            }
         }
-        &:hover, &:focus {
-            text-decoration: none;
+    }
+
+    &.collapsed {
+        html.js & {
+            height: auto;
+        }
+    }
+
+    &.date-combo {
+        .container-inline-date {
+            .date-padding {
+                padding: 0;
+            }
         }
     }
 }
 
-html.js fieldset.collapsed {
-    height: auto;
-}
 
 .panel-collapse {
     @include css-var("background-color", "ec-grey-5");
@@ -152,4 +163,48 @@ html.js fieldset.collapsed {
 
 .cke_contents {
     padding: 0.5em 1em !important;
+}
+
+.node-form {
+    .cfm-file-upload {
+        flex-direction: row;
+        align-items: stretch;
+        background-color: transparent;
+        @include css-var("border", "ec-grey-100", "solid 1px");
+        border-radius: 0;
+        @include css-var("color", "ec-grey-100");
+        margin-bottom: 1em;
+        font-weight: bold;
+        cursor: copy;
+
+        .fa {
+            margin: 0 1em;
+        }
+        a {
+            margin-left: auto;
+            flex-shrink: 0;
+            padding: 1em;
+            @include css-var("background-color", "ec-grey-100");
+            color: #fff;
+            &:hover,
+            &:focus {
+                text-decoration: none;
+                @include css-var("background-color", "ec-blue-100");
+            }
+            &:focus {
+                @include css-var("outline", "ec-yellow-100", "solid 2px");
+                outline-offset: -2px;
+            }
+        }
+        > *:not(.document_file) {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        &:hover {
+            background-color: transparent;
+            @include css-var("border-color", "ec-grey-100");
+            @include css-var("color", "ec-grey-100");
+        }
+    }
 }
