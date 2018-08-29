@@ -1,3 +1,8 @@
+.form-select {
+    display: inline-block;
+}
+
+
 .form-control:focus {
     @include css-var("outline", "ec-yellow-100", "solid 2px");
     outline-offset: -3px;
@@ -12,7 +17,8 @@
     font-style: normal;
 
     &.form-select {
-       border-width: 2px;
+        width: auto;
+        border-width: 2px;
     }
 }
 

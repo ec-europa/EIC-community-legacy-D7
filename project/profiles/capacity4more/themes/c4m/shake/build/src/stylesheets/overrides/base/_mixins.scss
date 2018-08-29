@@ -10,3 +10,12 @@
         clear: both;
     }
 }
+
+@mixin visually-hidden() {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    overflow: hidden;
+    height: 0;
+    width: 0;
+    word-wrap: normal;
+}
