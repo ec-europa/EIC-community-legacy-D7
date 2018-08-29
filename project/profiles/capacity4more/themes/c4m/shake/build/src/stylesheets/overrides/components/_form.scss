@@ -66,6 +66,10 @@ fieldset {
             }
         }
     }
+
+    &.filter-wrapper {
+        margin-top: 1em;
+    }
 }
 
 
@@ -118,9 +122,6 @@ fieldset {
     color: inherit;
 }
 
-
-
-
 #c4m-search-form .form-submit,
 #c4m-search-redirect-form .form-submit,
 #c4m-search-redirect-form--2 .form-submit {
@@ -147,6 +148,12 @@ fieldset {
 #c4m-search-redirect-form--2 .form-submit:focus {
     @include css-var("background-color", "ec-blue-100", "", "!important");
     color: #fff !important;
+}
+
+#c4m-features-og-manage-categories-overview-form {
+    > div > * {
+        margin-bottom: 2em;
+    }
 }
 
 #quick-post-form {
@@ -207,4 +214,15 @@ fieldset {
             @include css-var("color", "ec-grey-100");
         }
     }
+}
+
+
+.form-group {
+    margin-bottom: 1em;
+}
+
+
+.text-summary-wrapper,
+.field-name-c4m-location-address .panel-body > *, .field-name-c4m-location-address .panel-body > .form-group, .field-name-c4m-location-address .panel-body > * > .form-group {
+    margin-bottom: 1em;
 }

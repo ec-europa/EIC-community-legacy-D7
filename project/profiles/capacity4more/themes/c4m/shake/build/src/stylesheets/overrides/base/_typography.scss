@@ -96,7 +96,7 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view
     @include css-var("color", "ec-grey-75");
 }
 
-.view-mode-teaser .fa, .view-mode-teaser .posted-by, .view-mode-teaser .creation-date, .view-mode-teaser .row-entity-count, .view-mode-teaser .group-iconbar-comments-views, .view-mode-member_overview .fa, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views, .view-mode-teaser_group .posted-by
+.view-mode-teaser .fa, .view-mode-teaser .posted-by, .view-mode-teaser .creation-date, .view-mode-teaser .row-entity-count, .view-mode-teaser .group-iconbar-comments-views, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views, .view-mode-teaser_group .posted-by
 {
     @include css-var("color", "ec-grey-75", "", "!important");
 }
@@ -110,18 +110,22 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view
     @include css-var("color", "ec-grey-50");
 }
 
+.view-mode-member_overview .fa {
+    color: currentColor;
+}
+
 .view-mode-member_overview.node-event .icon-wrapper .fa, .view-mode-member_overview.node-event-site .icon-wrapper .fa, .view-mode-teaser.node-event .icon-wrapper .fa, .node-event.view-mode-teaser_group .icon-wrapper .fa, .view-mode-teaser.node-event-site .icon-wrapper .fa, .node-event-site.view-mode-teaser_group .icon-wrapper .fa, .view-mode-teaser_group .fa
 {
     color: currentColor !important;
 }
 
 .view-mode-member_overview:not(.node-group):not(.user-profile) .fa, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name a, .view-mode-member_overview:not(.node-group):not(.user-profile) .creation-date, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by a, .view-mode-member_overview:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group, .view-mode-teaser_group:not(.node-group):not(.user-profile) .user-name,
-.view-mode-teaser:not(.user-profile) .user-name a, .view-mode-teaser_group:not(.user-profile) .user-name a, .view-mode-teaser .fa, .view-mode-teaser_group .fa, .view-mode-teaser .posted-by, .view-mode-teaser_group .posted-by, .view-mode-teaser .creation-date, .view-mode-teaser_group .creation-date, .view-mode-teaser .row-entity-count, .view-mode-teaser_group .row-entity-count, .view-mode-teaser .group-iconbar-comments-views, .view-mode-teaser_group .group-iconbar-comments-views, .view-mode-member_overview:not(.user-profile) .user-name a, .view-mode-member_overview .fa, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views
+.view-mode-teaser:not(.user-profile) .user-name a, .view-mode-teaser_group:not(.user-profile) .user-name a, .view-mode-teaser .fa, .view-mode-teaser_group .fa, .view-mode-teaser .posted-by, .view-mode-teaser_group .posted-by, .view-mode-teaser .creation-date, .view-mode-teaser_group .creation-date, .view-mode-teaser .row-entity-count, .view-mode-teaser_group .row-entity-count, .view-mode-teaser .group-iconbar-comments-views, .view-mode-teaser_group .group-iconbar-comments-views, .view-mode-member_overview:not(.user-profile) .user-name a, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views
 {
     @include css-var("color", "ec-grey-50", "", "!important");
 }
 
-.view-mode-teaser:not(.user-profile) .user-name a, .view-mode-teaser_group:not(.user-profile) .user-name a, .view-mode-member_overview:not(.user-profile) .user-name a, .view-mode-member_overview .fa, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views
+.view-mode-teaser:not(.user-profile) .user-name a, .view-mode-teaser_group:not(.user-profile) .user-name a, .view-mode-member_overview:not(.user-profile) .user-name a, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views
 {
     @include css-var("color", "ec-blue-100", "", "!important");
 }
@@ -190,6 +194,19 @@ blockquote {
 .text-danger,
 .form-required {
     @include css-var("color", "ec-red-n");
+}
+
+.project-title {
+    color: #000;
+}
+
+.project-subtitle {
+    font-size: 24px;
+    line-height: 27px;
+
+    .project-title + & {
+        margin-top: 1rem;
+    }
 }
 
 

@@ -19,6 +19,7 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 @import "components/button";
 @import "components/carousel";
 @import "components/datepicker";
+@import "components/dropdown";
 @import "components/event";
 @import "components/form";
 @import "components/group";
@@ -27,6 +28,7 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 @import "components/media";
 @import "components/navigation";
 @import "components/pager";
+@import "components/project";
 @import "components/sidebar";
 @import "components/statistics";
 @import "components/tags";
@@ -125,7 +127,9 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 
 
 
-
+.groupNavigation-divider {
+    @include css-var("border-top", "ec-grey-10", "solid 1px");
+}
 
 
 
@@ -198,36 +202,7 @@ footer a:focus, footer a:active {
 }
 
 
-.dropdown-menu {
-    margin: 0;
-    padding: .33rem 0;
-    border-radius: 0;
-    border: solid 1px rgba(#000, 0.15);
-    @include css-var("background-color", "ec-grey-10");
 
-    > li {
-        display: block;
-        &:not(:last-child) {
-            margin-bottom: 10px;
-        }
-        > a {
-            padding: 0 1rem;
-            @include css-var("color", "ec-blue-100");
-            font-size: 16px;
-            line-height: 2;
-            &:hover, &:focus {
-                background: none;
-                @include css-var("color", "ec-grey-100");
-                text-decoration: underline;
-            }
-            &.ecl-button {
-                padding: 13px 20px;
-                font-weight: bold;
-                line-height: 1;
-            }
-        }
-    }
-}
 
 .view-mode-block_list .field-name-c4m-ds-group-type-icon .fa,
 .view-mode-block_list .field-name-c4m-ds-project-type-icon .fa,
@@ -484,59 +459,6 @@ footer a:focus, footer a:active {
 }
 
 
-
-
-
-
-.project-indications {
-    margin: 0;
-    overflow: visible;
-    .btn-group {
-        position: relative;
-        display: inline-block;
-        vertical-align: top;
-        margin-left: 10px;
-        ul.dropdown-menu {
-            position: absolute;
-            left: auto;
-            right: 0;
-            top: 100%;
-            min-width: 160px;
-            padding: 0.33rem;
-            @include css-var("background-color", "ec-grey-10");
-            border: solid 1px rgba(#000, 0.15);
-
-            li {
-                a {
-                    margin-top: 0;
-                    font-size: inherit;
-                    color: currentColor;
-                    &.ecl-button {
-                        font-size: 16px;
-                        text-transform: none;
-                        &--primary {
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    .es-right {
-        float: none;
-    }
-    .status-controller {
-        float: none;
-        font-size: 1rem;
-        margin-top: 0;
-        text-transform: none;
-    }
-    > .label {
-        &:not(:last-child) {
-            margin-right: 1em;
-        }
-    }
-}
 
 .view-header a.node-create-news, .view-header a.node-create-discussion, .view-header a.node-create-event, .view-header a.node-create-document, .view-header a.node-create-photoalbum, .view-header a.node-create-photo {
     text-transform: none;

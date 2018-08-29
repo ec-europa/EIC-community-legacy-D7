@@ -90,13 +90,6 @@
     @include css-var("border-color", "ec-grey-100");
 }
 
-.button.browse:hover, .button.browse:focus, .button.browse:active,
-.button.browse:active:focus, .button.browse:active.focus, .active.button.browse:hover, .active.button.browse:focus, .active.focus.button.browse, .open>.dropdown-toggle.button.browse:hover, .open>.dropdown-toggle.button.browse:focus, .open>.dropdown-toggle.focus.button.browse {
-    background-color: transparent;
-    @include css-var("border-color", "ec-grey-100");
-    @include css-var("color", "ec-grey-100");
-}
-
 .btn-default, .button.edit,
 .search-api-sort button.dropdown-toggle,
 .btn-group-discussion_type .discussion_type {
@@ -108,6 +101,14 @@
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:focus,
 .button.edit:hover, .button.edit:focus, .button.edit:active, .button.edit:active:focus,
 .search-api-sort button.dropdown-toggle:hover, .search-api-sort button.dropdown-toggle:focus, .search-api-sort.open button.dropdown-toggle, .search-api-sort.open button.dropdown-toggle:hover {
+    @include css-var("background-color", "ec-blue-100");
+    @include css-var("border-color", "ec-blue-100");
+    color: #fff;
+}
+
+.button.browse:hover, .button.browse:focus, .button.browse:active,
+.button.browse:active:focus, .button.browse:active.focus, .active.button.browse:hover, .active.button.browse:focus, .active.focus.button.browse, .open>.dropdown-toggle.button.browse:hover, .open>.dropdown-toggle.button.browse:focus, .open>.dropdown-toggle.focus.button.browse,
+.button.browse:active:focus, .button.browse:active.focus {
     @include css-var("background-color", "ec-blue-100");
     @include css-var("border-color", "ec-blue-100");
     color: #fff;
@@ -135,7 +136,7 @@
 }
 
 .btn-success:hover, .btn-success:focus,
-.btn-success:active:hover, .button.browse:active:hover, .btn-success:active:focus, .button.browse:active:focus, .btn-success:active.focus, .button.browse:active.focus, .btn-success.active:hover, .active.button.browse:hover, .btn-success.active:focus, .active.button.browse:focus, .btn-success.active.focus, .active.focus.button.browse, .open>.btn-success.dropdown-toggle:hover, .open>.dropdown-toggle.button.browse:hover, .open>.btn-success.dropdown-toggle:focus, .open>.dropdown-toggle.button.browse:focus, .open>.btn-success.dropdown-toggle.focus, .open>.dropdown-toggle.focus.button.browse {
+.btn-success:active:hover, .btn-success:active:focus, .btn-success:active.focus, .btn-success.active:hover, .btn-success.active:focus, .btn-success.active.focus, .open>.btn-success.dropdown-toggle:hover, .open>.btn-success.dropdown-toggle:focus, .open>.btn-success.dropdown-toggle.focus {
     background-color: transparent;
     @include css-var("border-color", "ec-green-n");
     @include css-var("color", "ec-green-n");
@@ -180,6 +181,7 @@
     @include css-var("border-color", "ec-grey-15");
 }
 
+
 .quickpost-btn {
     width: auto;
     @include css-var("background-color", "ec-blue-100");
@@ -191,4 +193,12 @@
         background-color: transparent;
         @include css-var("color", "ec-blue-100");
     }
+}
+
+
+.es--edit-link.ecl-button {
+    padding: 0.3em;
+    font-size: 0.75rem;
+    border-width: 1px;
+    min-height: 0;
 }

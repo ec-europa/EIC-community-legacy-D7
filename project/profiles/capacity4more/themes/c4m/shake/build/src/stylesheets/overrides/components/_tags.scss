@@ -145,6 +145,9 @@
                 height: 100%;
                 cursor: pointer;
             }
+            &-chevron-right {
+                display: none;
+            }
         }
 
         &:hover {

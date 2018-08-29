@@ -37,6 +37,7 @@
 .nav-tabs {
     border-bottom: none;
     > li {
+        margin-bottom: 0;
         > a {
             margin-right: 0;
             border: none;
@@ -167,14 +168,15 @@
                     &::after {
                         content: "";
                         display: block;
+                        box-sizing: content-box;
                         position: absolute;
                         left: 50%;
                         top: 0;
                         width: 100vw;
                         height: 100%;
+                        padding-bottom: 1px;
                         margin-left: -50vw;
                         @include css-var("background-color", "ec-blue-75");
-                        @include css-var("border-bottom", "ec-blue-75", "solid 1px");
                         z-index: 1;
                     }
                 }

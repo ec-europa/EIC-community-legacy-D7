@@ -40,3 +40,8 @@
 .field-name-c4m-project-stage .field-item {
     background: #fff;
 }
+
+.label-danger {
+    @include css-var("background-color", "ec-red-n");
+    color: #fff;
+}

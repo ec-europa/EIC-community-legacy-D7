@@ -1,0 +1,91 @@
+.project-indications {
+    margin: 0;
+    overflow: visible;
+    .btn-group {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 10px;
+        ul.dropdown-menu {
+            position: absolute;
+            left: auto;
+            right: 0;
+            top: 100%;
+            min-width: 160px;
+            padding: 0.33rem;
+            @include css-var("background-color", "ec-grey-10");
+            border: solid 1px rgba(#000, 0.15);
+
+            li {
+                a {
+                    margin-top: 0;
+                    font-size: inherit;
+                    color: currentColor;
+                    &.ecl-button {
+                        font-size: 16px;
+                        text-transform: none;
+                        &--primary {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .es-right {
+        float: none;
+    }
+    .status-controller {
+        float: none;
+        font-size: 1rem;
+        margin-top: 0;
+        text-transform: none;
+    }
+    > .label {
+        &:not(:last-child) {
+            margin-right: 1em;
+        }
+    }
+}
+
+
+.pane-organisation-details .project-management-wrapper {
+    h2 {
+        font-size: 18px;
+        line-height: 1.2;
+        color: #000;
+    }
+
+    .es--edit-link {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    > * {
+        position: relative;
+        margin-bottom: 2em;
+        &:not(:last-child) {
+            padding-bottom: 2em;
+            @include css-var("border-bottom", "ec-grey-10", "solid 1px");
+        }
+    }
+}
+
+
+.project-administration,
+.project-details,
+.project-features {
+    > .row {
+        > .col-md-3 {
+            font-size: .875rem;
+            font-weight: 600;
+            margin-bottom: .33rem;
+            > a {
+                .es--edit-link {
+                    right: 18px;
+                }
+            }
+        }
+    }
+}
