@@ -6,6 +6,7 @@
     border: none;
 }
 
+
 .offCanvasNavigation {
     box-shadow: none;
 }
@@ -20,49 +21,91 @@
     line-height: 1.2;
 }
 
-.nav-tabs:not(.vertical-tabs-list) {
-    display: flex;
-    @include css-var("border-bottom", "ec-grey-50", "solid 2px");
+
+.nav {
+    > li {
+        > a {
+            &:hover,
+            &:focus {
+                @include css-var("background-color", "ec-yellow-100");
+            }
+        }
+    }
 }
 
-.nav-tabs:not(.vertical-tabs-list) > li {
-    display: flex;
-    margin-bottom: -2px;
+
+.nav-tabs {
+    > li {
+        > a {
+            margin-right: 0;
+            border-radius: 0;
+            @include css-var("color", "ec-blue-100");
+        }
+
+        &.active {
+            > a {
+                &,
+                &:hover,
+                &:focus {
+                    @include css-var("border-color", "ec-grey-50");
+                    @include css-var("color", "ec-grey-100");
+                }
+            }
+        }
+    }
+
+    &:not(.vertical-tabs-list) {
+        display: flex;
+        @include css-var("border-bottom", "ec-grey-50", "solid 2px");
+
+        > li {
+            display: flex;
+            margin-bottom: -2px;
+
+            > a {
+                display: block;
+                padding: .89rem 1rem;
+                margin-right: 0;
+                border-bottom: solid 2px transparent;
+                border-radius: 0;
+                font-size: 16px;
+                font-weight: bold;
+
+                &:hover {
+                    background-color: transparent;
+                    border-color: transparent;
+                    color: #000;
+                    text-decoration: underline;
+                }
+            }
+
+            &.active {
+                > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        @include css-var("border", "ec-grey-50", "solid 2px");
+                        border-bottom-color: #fff;
+                        @include css-var("color", "ec-grey-100");
+                    }
+                    &:focus {
+                        color: #000;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
 }
 
-.nav-tabs:not(.vertical-tabs-list) > li > a {
-    display: block;
-    padding: .89rem 1rem;
-    margin-right: 0;
-    border-bottom: solid 2px transparent;
-    border-radius: 0;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.nav-tabs:not(.vertical-tabs-list) > li > a:hover {
-    background-color: transparent;
-    border-color: transparent;
-    color: #000;
-    text-decoration: underline;
-}
-
-.nav-tabs:not(.vertical-tabs-list) > li.active > a,
-.nav-tabs:not(.vertical-tabs-list) > li.active > a:hover,
-.nav-tabs:not(.vertical-tabs-list) > li.active > a:focus {
-    @include css-var("border", "ec-grey-50", "solid 2px");
-    border-bottom-color: #fff;
-    @include css-var("color", "ec-grey-100");
-}
-
-.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    color: #000;
-    text-decoration: none;
-}
 
 .group-navigation {
     nav {
+        @include css-var("background-color", "ec-blue-25");
+        box-shadow: none;
+
         li {
+            @include css-var("color", "ec-blue-110");
             a {
                 font-size: 1rem;
                 font-weight: bold;
@@ -72,10 +115,15 @@
                 }
             }
             &.active {
+                color: #fff;
+                @include css-var("background-color", "ec-blue-75");
                 &::before,
                 a {
                     color: currentColor;
                 }
+            }
+            &:not(:last-of-type) {
+                @include css-var("border-bottom", "ec-blue-75", "solid 1px");
             }
         }
     }
@@ -100,9 +148,42 @@
         box-shadow: none;
     }
 
-    .nav-tabs > li > a {
-        padding: 10px;
-        font-size: 14px;
+    .nav-tabs {
+        > li {
+            > a {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    }
+
+    .group-navigation {
+        nav {
+            overflow: hidden;
+            li {
+                &.active {
+                    &::after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        left: 50%;
+                        top: 0;
+                        width: 100vw;
+                        height: 100%;
+                        margin-left: -50vw;
+                        @include css-var("background-color", "ec-blue-75");
+                        @include css-var("border-bottom", "ec-blue-75", "solid 1px");
+                        z-index: 1;
+                    }
+                }
+                &::before,
+                a {
+                    position: relative;
+                    z-index: 2;
+                    color: currentColor;
+                }
+            }
+        }
     }
 }
 
@@ -177,25 +258,41 @@
                 padding: 0;
                 margin-right: 0;
                 height: 50px;
+                justify-content: flex-start;
                 align-items: stretch;
             }
             li {
                 display: inline-flex;
                 justify-content: center;
                 align-items: center;
+                flex-grow: 0;
                 @include css-var("color", "ec-blue-110");
                 margin: 0;
-                padding: 0;
+                padding: 1em;
                 &:not(:last-of-type) {
                     border-right: none;
+                    border-bottom: none;
                 }
                 &::before,
                 a {
                     color: currentColor;
                 }
+                a {
+                    position: static;
+                    &::before {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
                 &.active {
-                     @include css-var("background-color", "ec-blue-50");
-                     color: #fff;
+                    @include css-var("background-color", "ec-blue-75");
+                    color: #fff;
                 }
             }
         }
