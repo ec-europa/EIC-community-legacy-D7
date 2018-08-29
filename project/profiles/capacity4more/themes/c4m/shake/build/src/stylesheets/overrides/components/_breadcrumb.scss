@@ -1,0 +1,21 @@
+.header-breadcrumb {
+    min-height: 48px;
+    font-weight: bold;
+}
+
+.breadcrumb .fa {
+    font-size: 10px;
+}
+
+.header-breadcrumb ol {
+    font-size: 0;
+}
+
+
+
+@media (min-width: 860px) {
+    .header-breadcrumb ol {
+        margin: 0;
+        padding: 14px 0 15px 0;
+    }
+}

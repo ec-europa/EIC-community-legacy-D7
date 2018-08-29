@@ -1,0 +1,68 @@
+.activity-stream .activities:not(.last) {
+    @include css-var("border-bottom", "ec-grey-10", "solid 1px");
+}
+
+.activity-stream--operator {
+    font-size: 14px;
+    @include css-var("color", "ec-grey-75");
+}
+
+.action-delete {
+    @include css-var("color", "ec-red-n");
+}
+
+.activity-stream .action-delete {
+    font-size: 24px;
+}
+
+.teaser-date {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.teaser-date,
+.field-name-c4m-ds-event-start-icon,
+.view-mode-activity_global .field-name-c4m-ds-content-footer-stats {
+    font-size: 14px;
+    @include css-var("color", "ec-grey-50");
+}
+
+.view-mode-activity_global .field-name-c4m-field-og-group {
+    font-size: 14px;
+    @include css-var("color", "ec-grey-75");
+}
+
+.view-mode-activity_global .field-name-c4m-field-og-group a {
+    color: currentColor;
+}
+
+.activity-stream--content .node-event .icon-col + .icon-content,
+.activity-stream--content .node-event .icon-col + .content-col {
+    margin-left: 0;
+}
+
+.view-mode-activity_global .group-header,
+.view-mode-activity_group .group-header {
+    display: none;
+}
+
+.activity-stream .message-c4m-insert--comment h2, .activity-stream .message-c4m-insert--comment .view-mode-group_dashboard .control-label, .view-mode-group_dashboard .activity-stream .message-c4m-insert--comment .control-label,
+.activity-stream h2, .activity-stream .view-mode-group_dashboard .control-label, .view-mode-group_dashboard .activity-stream .control-label,
+.node-document h3
+{
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.view-mode-activity_group .field-name-c4m-ds-content-footer-stats {
+    @include css-var("color", "ec-grey-50");
+}
+
+
+
+@media (min-width: 860px) {
+    .activity-stream--content .node-event .icon-col + .icon-content,
+    .activity-stream--content .node-event .icon-col + .content-col {
+        margin-left: 50px;
+    }
+}

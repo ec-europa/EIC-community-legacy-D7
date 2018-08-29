@@ -1,0 +1,207 @@
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @include css-var("color", "ec-grey-100");
+}
+
+.text-normal, .header-4, .text-copy, .text-nav--selected, .topic-subtopics, .text-copy--inverse, .text-copy--muted, .field-name-c4m-ds-content-footer-stats, .field-name-c4m-content-article-disclaimer, .view-mode-activity_global .field-name-c4m-field-og-group, .view-mode-activity_group .field-name-c4m-field-og-group, .view-mode-activity_global .user-name, .view-mode-activity_group .user-name, .view-mode-activity_global .field-name-c4m-field-og-group a, .view-mode-activity_group .field-name-c4m-field-og-group a, .view-mode-activity_global .user-name a, .view-mode-activity_group .user-name a, .view-mode-block_list .field-name-c4m-field-og-group, .view-mode-block_list .field-name-c4m-field-og-group a, .text-link, .text-link--bold, .text-nav--unselected, .text-placeholder, .activity-stream--operator, .activity-stream--operator a, .field-name-c4m-ds-event-start-icon .fa-stack .calendar-text
+{
+    font-size: inherit;
+}
+
+h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view-mode-group_dashboard .control-label, h3, .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
+.btn.fa {
+    font-family: Arial,sans-serif;
+}
+
+.fa {
+    &:not(.btn) {
+        font-weight: normal !important;
+    }
+    &::before {
+        font-family: "fontawesome";
+    }
+}
+
+.btn.fa {
+    font-weight: bold !important;
+    &::before {
+        font-weight: normal !important;
+    }
+    &:hover, &:focus {
+        &::before {
+            text-decoration: none;
+        }
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    @include css-var("color", "ec-grey-100");
+}
+
+h1, h2 {
+    font-size: 33px;
+    line-height: 37px;
+}
+
+h3 {
+    font-size: 30px;
+    line-height: 33px;
+}
+
+h4 {
+    font-size: 24px;
+    line-height: 27px;
+}
+
+h5 {
+    font-size: 22px;
+    line-height: 25px;
+}
+
+.text-small, .text-copy--small, .text-copy--inverse--small, .text-copy--emphasized, .text-link--cta, .text-link--small, .text-link--ec, .text-breadcrumb, .text-tooltip, .text-link--blue, .field-name-c4m-ds-event-start-icon .calendar-text-month, .topic-subtopics, #user-bar .fullname-picture-wrapper .fullname-picture .initials .inner-initials, .view-mode-block_list .field-name-c4m-ds-submitted-by-and-on, .view-mode-block_list .field-name-c4m-field-og-group, .view-mode-block_list .field-name-c4m-field-og-group a, .view-mode-member_overview, .view-mode-teaser, .view-mode-teaser_group
+{
+    font-size: 16px;
+}
+
+.view-mode-teaser .row-entity-count,
+.view-mode-teaser .field-name-c4m-ds-node-promote .fa,
+.view-mode-teaser_group .field-name-c4m-ds-node-promote .fa,
+.view-mode-teaser .field-name-c4m-ds-node-highlight .fa,
+.view-mode-teaser_group .field-name-c4m-ds-node-highlight .fa,
+.view-mode-teaser .field-name-c4m-ds-content-footer-stats .fa,
+.view-mode-teaser_group .field-name-c4m-ds-content-footer-stats .fa,
+.view-mode-teaser .form-type-item .fa,
+.view-mode-teaser_group .form-type-item .fa,
+.field-name-c4m-ds-content-footer-stats .row-entity-count,
+.group-statistic,
+.c4m-node-highlight,
+.header-breadcrumb ol li, .header-breadcrumb ol li a {
+    font-size: 14px;
+}
+
+.header-2, .sidebarblock__title, .panel-pane__title, h2, .view-mode-group_dashboard .control-label,
+.header-1, h1, .group-title, .view-mode-full.user-profile .group-left .user-name, {
+    @include css-var("color", "ec-grey-100");
+}
+
+h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view-mode-group_dashboard .control-label, h3, .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
+{
+    font-weight: bold;
+}
+
+.view-mode-member_overview:not(.node-group):not(.user-profile) .fa, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name a, .view-mode-member_overview:not(.node-group):not(.user-profile) .creation-date, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by a, .view-mode-member_overview:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group, .view-mode-member_overview:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group a, .view-mode-teaser:not(.node-group):not(.user-profile) .fa, .view-mode-teaser:not(.node-group):not(.user-profile) .user-name, .view-mode-teaser:not(.node-group):not(.user-profile) .user-name a, .view-mode-teaser:not(.node-group):not(.user-profile) .creation-date, .view-mode-teaser:not(.node-group):not(.user-profile) .posted-by, .view-mode-teaser:not(.node-group):not(.user-profile) .posted-by a, .view-mode-teaser:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group, .view-mode-teaser:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group a
+{
+    @include css-var("color", "ec-grey-75");
+}
+
+.view-mode-teaser .fa, .view-mode-teaser .posted-by, .view-mode-teaser .creation-date, .view-mode-teaser .row-entity-count, .view-mode-teaser .group-iconbar-comments-views, .view-mode-member_overview .fa, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views, .view-mode-teaser_group .posted-by
+{
+    @include css-var("color", "ec-grey-75", "", "!important");
+}
+
+.view-mode-teaser:not(.user-profile) .user-name a, .view-mode-member_overview:not(.user-profile) .user-name a {
+    @include css-var("color", "ec-blue-100", "", "!important");
+}
+
+.view-mode-full.node-article .field-name-c4m-ds-type-posted-by, .view-mode-full.node-article .field-name-c4m-ds-creation-date
+{
+    @include css-var("color", "ec-grey-50");
+}
+
+.view-mode-member_overview.node-event .icon-wrapper .fa, .view-mode-member_overview.node-event-site .icon-wrapper .fa, .view-mode-teaser.node-event .icon-wrapper .fa, .node-event.view-mode-teaser_group .icon-wrapper .fa, .view-mode-teaser.node-event-site .icon-wrapper .fa, .node-event-site.view-mode-teaser_group .icon-wrapper .fa, .view-mode-teaser_group .fa
+{
+    color: currentColor !important;
+}
+
+.view-mode-member_overview:not(.node-group):not(.user-profile) .fa, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name, .view-mode-member_overview:not(.node-group):not(.user-profile) .user-name a, .view-mode-member_overview:not(.node-group):not(.user-profile) .creation-date, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by, .view-mode-member_overview:not(.node-group):not(.user-profile) .posted-by a, .view-mode-member_overview:not(.node-group):not(.user-profile) .field-name-c4m-field-og-group, .view-mode-teaser_group:not(.node-group):not(.user-profile) .user-name,
+.view-mode-teaser:not(.user-profile) .user-name a, .view-mode-teaser_group:not(.user-profile) .user-name a, .view-mode-teaser .fa, .view-mode-teaser_group .fa, .view-mode-teaser .posted-by, .view-mode-teaser_group .posted-by, .view-mode-teaser .creation-date, .view-mode-teaser_group .creation-date, .view-mode-teaser .row-entity-count, .view-mode-teaser_group .row-entity-count, .view-mode-teaser .group-iconbar-comments-views, .view-mode-teaser_group .group-iconbar-comments-views, .view-mode-member_overview:not(.user-profile) .user-name a, .view-mode-member_overview .fa, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views
+{
+    @include css-var("color", "ec-grey-50", "", "!important");
+}
+
+.view-mode-teaser:not(.user-profile) .user-name a, .view-mode-teaser_group:not(.user-profile) .user-name a, .view-mode-member_overview:not(.user-profile) .user-name a, .view-mode-member_overview .fa, .view-mode-member_overview .posted-by, .view-mode-member_overview .creation-date, .view-mode-member_overview .row-entity-count, .view-mode-member_overview .group-iconbar-comments-views
+{
+    @include css-var("color", "ec-blue-100", "", "!important");
+}
+
+.text-muted {
+    @include css-var("color", "ec-grey-75");
+}
+
+.circle--green {
+    @include css-var("color", "ec-green-n");
+}
+
+.panel-title {
+    font-size: 22px;
+    line-height: 25px;
+    font-weight: bold;
+    text-transform: none;
+}
+
+b, strong, label {
+    font-weight: bold;
+}
+
+.node-teaser strong {
+    font-weight: normal;
+}
+
+.control-label a, .text-copy--small, .og-context .pane-c4m-content-group {
+    color: inherit;
+}
+
+.control-label:hover span:not(.form-required) {
+    text-decoration: underline;
+}
+
+blockquote {
+    @include css-var("border-left", "ec-yellow-100", "solid 8px");
+    margin: 0;
+    padding: .66rem 0 .66rem 1.66rem;
+}
+
+.field-name-c4m-body p * {
+    font-family: inherit !important;
+}
+
+.block-title .fa {
+    font-size: 12px;
+}
+
+#articles-panel .block-title {
+    margin: 10px 0;
+}
+
+.pane-activity-stream .pane-title {
+    text-transform: none;
+}
+
+.text-info {
+    @include css-var("color", "ec-orange-n");
+}
+
+.text-success {
+    @include css-var("color", "ec-green-n");
+}
+
+.text-danger,
+.form-required {
+    @include css-var("color", "ec-red-n");
+}
+
+
+
+@media (min-width: 1202px) {
+    .text-medium, .header-3, .sidebarblock--small .sidebarblock__title, .panel-pane--small .sidebarblock__title, .sidebarblock--small .panel-pane__title, .panel-pane--small .panel-pane__title, h3, .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, .header-sub, .field-name-c4m-ds-content-footer-stats .row-entity-count i, .view-mode-activity_global .row-entity-count i, .view-mode-activity_group .row-entity-count i
+    {
+        font-size: inherit;
+    }
+
+    .text-xlarge, .header-1, h1, .group-title, .view-mode-full.user-profile .group-left .user-name {
+        font-size: 33px;
+        line-height: 37px;
+    }
+}

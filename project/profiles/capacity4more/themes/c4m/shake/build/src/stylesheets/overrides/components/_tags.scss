@@ -1,0 +1,164 @@
+.remove-taxonomy::before {
+    color: currentColor;
+}
+
+.taxonomy-term-selected {
+    margin-right: 0;
+}
+
+.select2-container-multi {
+    margin-bottom: 1em;
+    .select2-choices {
+        background: none;
+        border-radius: 0;
+        padding: 0.5em;
+        .select2-search-choice {
+            position: relative;
+            display: inline-block;
+            padding: 0.33rem;
+            margin: 0 1rem 0.33rem 0;
+            border-radius: 5px;
+            @include css-var("background", "ec-grey-10");
+            @include css-var("color", "ec-grey-100");
+            font-size: 0.875rem;
+            line-height: 1;
+            white-space: nowrap;
+            @include clearfix;
+            box-shadow: none;
+            &::after {
+                background: none;
+                border: none;
+            }
+            div {
+                display: inline-block;
+            }
+            a {
+                position: static;
+                left: auto;
+                top: auto;
+                float: right;
+                margin-left: 0.33rem;
+                color: currentColor;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+                &:hover,
+                &:focus {
+                    text-decoration: none;
+                }
+            }
+
+            &:hover {
+                @include css-var("background", "ec-grey-100");
+                color: #fff;
+            }
+        }
+    }
+
+    &.select2-container-active {
+        .select2-choices {
+            box-shadow: none;
+            @include css-var("outline", "ec-yellow-100", "solid 2px");
+            outline-offset: -2px;
+        }
+    }
+}
+
+.select2-drop-active {
+    @include css-var("border-color", "ec-grey-50");
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.select2-results {
+    margin: 0;
+    padding: 0.5em;
+    li,
+    .select2-no-results,
+    .select2-searching,
+    .select2-selection-limit {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .select2-highlighted {
+        @include css-var("background", "ec-grey-10");
+        @include css-var("color", "ec-grey-100");
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .select2-result-label {
+        padding: 0.33rem;
+        min-height: 0;
+        font-size: 0.875rem;
+        line-height: 1;
+    }
+}
+
+.select2-result-selectable .select2-match,
+.select2-result-unselectable .select2-match {
+    text-decoration: none;
+}
+
+.form-control.select2-container {
+    .select2-choices {
+        border-radius: 0;
+    }
+    &.select2-dropdown-open {
+        @include css-var("border-color", "ec-grey-50");
+    }
+}
+
+.selected-values {
+    .level-1,
+    .level-2 .ng-binding,
+    > .ng-binding {
+        position: relative;
+        display: inline-block;
+        padding: 0.33rem;
+        margin: 0 1rem 0.33rem 0;
+        border-radius: 5px;
+        @include css-var("background", "ec-grey-10");
+        @include css-var("color", "ec-grey-100");
+        font-size: 0.875rem;
+        line-height: 1;
+        white-space: nowrap;
+        @include clearfix;
+        &::after {
+            background: none;
+            border: none;
+        }
+        .fa {
+            float: right;
+            margin-left: 0.33rem;
+            color: currentColor;
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
+        }
+
+        &:hover {
+            @include css-var("background", "ec-grey-100");
+            color: #fff;
+        }
+    }
+    .level-2,
+    .level-3 {
+        margin: 0 0 0.5rem 0;
+        padding-left: 0.5rem;
+        @include css-var("border-left", "ec-grey-10", "solid 1px");
+        &::empty {
+            display: none;
+        }
+    }
+}

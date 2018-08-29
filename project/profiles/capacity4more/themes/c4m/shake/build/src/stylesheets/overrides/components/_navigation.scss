@@ -1,0 +1,217 @@
+.navigation--primary {
+    min-height: 64px;
+}
+
+.navbar {
+    border: none;
+}
+
+.offCanvasNavigation {
+    box-shadow: none;
+}
+
+.offCanvasNavigation ul li {
+    border-bottom: none;
+    text-transform: none;
+}
+
+.offCanvasNavigation--left h2 {
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.nav-tabs:not(.vertical-tabs-list) {
+    display: flex;
+    @include css-var("border-bottom", "ec-grey-50", "solid 2px");
+}
+
+.nav-tabs:not(.vertical-tabs-list) > li {
+    display: flex;
+    margin-bottom: -2px;
+}
+
+.nav-tabs:not(.vertical-tabs-list) > li > a {
+    display: block;
+    padding: .89rem 1rem;
+    margin-right: 0;
+    border-bottom: solid 2px transparent;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nav-tabs:not(.vertical-tabs-list) > li > a:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: #000;
+    text-decoration: underline;
+}
+
+.nav-tabs:not(.vertical-tabs-list) > li.active > a,
+.nav-tabs:not(.vertical-tabs-list) > li.active > a:hover,
+.nav-tabs:not(.vertical-tabs-list) > li.active > a:focus {
+    @include css-var("border", "ec-grey-50", "solid 2px");
+    border-bottom-color: #fff;
+    @include css-var("color", "ec-grey-100");
+}
+
+.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.group-navigation {
+    nav {
+        li {
+            a {
+                font-size: 1rem;
+                font-weight: bold;
+                &:hover {
+                    color: currentColor;
+                    text-decoration: none;
+                }
+            }
+            &.active {
+                &::before,
+                a {
+                    color: currentColor;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media (max-width: 860px) {
+    .container--push::after, .page-container.offCanvasNavigation--visible::after {
+        content: none;
+    }
+
+    .offCanvasNavigation--visible .page-content::after {
+        opacity: 1;
+    }
+
+    .offCanvasNavigation--left,
+    .dashboard.group-right,
+    .offCanvasNavigation--right {
+        @include css-var("background", "ec-grey-5");
+        border: none;
+        box-shadow: none;
+    }
+
+    .nav-tabs > li > a {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+
+@media (min-width: 860px) {
+    .offCanvasNavigation--visible.animation--push .container--push {
+        transform: none;
+    }
+
+    .navigation--primary .navbar {
+        width: 756px;
+        padding: 0 18px;
+    }
+
+    .navigation--primary .navbar-collapse {
+        padding: 0;
+    }
+
+    .navigation--primary .navbar-collapse ul.menu {
+        margin: 0 -12px;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    .navigation--primary .navbar-collapse ul.menu li {
+        flex-grow: 0;
+        margin: 0;
+    }
+
+    .navigation--primary .navbar .navbar-collapse ul.navbar-nav li {
+        display: flex;
+        padding: 0;
+        font-size: 18px;
+    }
+
+    .navigation--primary .navbar .navbar-collapse ul.navbar-nav li a {
+        position: relative;
+        padding: 23px 12px;
+        min-height: 64px;
+        background: none;
+    }
+
+    .navigation--primary .navbar .navbar-collapse ul.navbar-nav li a.active::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        border-left: inset 8px transparent;
+        border-right: inset 8px transparent;
+        border-bottom: solid 8px #fff;
+        margin-left: -8px;
+    }
+
+    .group-navigation {
+        nav {
+            border-top: 0;
+            border-bottom: 0;
+            &::before {
+                display: block;
+                position: absolute;
+                left: 50%;
+                top: 0;
+                width: 100vw;
+                height: 100%;
+                margin-left: -50vw;
+                @include css-var("background-color", "ec-blue-25");
+                z-index: -1;
+            }
+            ul {
+                padding: 0;
+                margin-right: 0;
+                height: 50px;
+                align-items: stretch;
+            }
+            li {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                @include css-var("color", "ec-blue-110");
+                margin: 0;
+                padding: 0;
+                &:not(:last-of-type) {
+                    border-right: none;
+                }
+                &::before,
+                a {
+                    color: currentColor;
+                }
+                &.active {
+                     @include css-var("background-color", "ec-blue-50");
+                     color: #fff;
+                }
+            }
+        }
+    }
+}
+
+
+@media (min-width: 992px) {
+    .navigation--primary .navbar {
+        width: 996px;
+    }
+}
+
+
+@media (min-width: 1202px) {
+    .navigation--primary .navbar {
+        width: 1206px;
+    }
+}

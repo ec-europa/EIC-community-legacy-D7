@@ -1,0 +1,77 @@
+.group-c4m-header-meta {
+    border-radius: 0;
+    @include css-var("border-color", "ec-grey-10");
+}
+
+.group-header {
+    margin: 1em 0;
+    font-size: 14px;
+}
+
+.group-user-meta {
+    margin-bottom: 20px;
+}
+
+.group-indications {
+    .label {
+        display: inline-block; 
+        vertical-align: top;
+        float: none;
+        margin-right: 0.5em;
+    }
+    .group-icon {
+        border-radius: 0;
+        &.as-group-public {
+            @include css-var("border-color", "ec-green-n");
+        }
+    }
+
+    &--access {
+        display: inline;
+        float: none;
+    }
+}
+
+.group-private {
+    margin-top: 40px;
+}
+
+
+#header-ec-wrapper .group-banner {
+    position: relative;
+    margin: 1em 0 0 0;
+    width: 100vw;
+    max-width: none;
+    max-height: 300px;
+    box-shadow: none;
+    left: 50%;
+    transform: translateX(-50vw);
+    object-fit: cover;
+}
+
+
+@media (max-width: 768px) {
+    .project-indications .btn-group ul.dropdown-menu {
+        max-width: none;
+    }
+}
+
+
+@media (min-width: 860px) {
+    .group-header {
+        margin: 2em 0;
+    }
+
+    .group-indications {
+        float: none;
+        margin: 0 0 1em 0;
+        &--access {
+            margin-right: 0;
+        }
+        .group-status {
+            position: relative;
+            right: auto;
+            top: auto;
+        }
+    }
+}

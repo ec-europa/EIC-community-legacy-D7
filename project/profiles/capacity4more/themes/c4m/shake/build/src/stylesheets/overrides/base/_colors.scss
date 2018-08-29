@@ -1,0 +1,43 @@
+$colors: (
+    ec-grey-100: #404040,
+    ec-blue-100: #004494,
+    ec-blue-110: #003776,
+    ec-yellow-100: #ffd617,
+    ec-yellow-110: #fbc11d,
+    ec-cyan-100: #4d6d90,
+    ec-cyan-110: #022b58,
+    ec-grey-75: #707070,
+    ec-grey-50: #9f9f9f,
+    ec-blue-50: #7fa1c9,
+    ec-grey-25: #cfcfcf,
+    ec-blue-25: #bfd0e4,
+    ec-grey-15: #e3e3e3,
+    ec-grey-10: #ebebeb,
+    ec-grey-5: #f5f5f5,
+    ec-blue-n: #006fb4,
+    ec-orange-n: #f29527,
+    ec-green-n: #467a39,
+    ec-red-n: #da2131
+);
+
+:root {
+    --ec-grey-100: #{map-get($colors, "ec-grey-100")};
+    --ec-blue-100: #{map-get($colors, "ec-blue-100")};
+    --ec-blue-110: #{map-get($colors, "ec-blue-110")};
+    --ec-yellow-100: #{map-get($colors, "ec-yellow-100")};
+    --ec-yellow-110: #{map-get($colors, "ec-yellow-110")};
+    --ec-cyan-100: #{map-get($colors, "ec-cyan-100")};
+    --ec-cyan-110: #{map-get($colors, "ec-cyan-110")};
+    --ec-grey-75: #{map-get($colors, "ec-grey-75")};
+    --ec-grey-50: #{map-get($colors, "ec-grey-50")};
+    --ec-blue-50: #{map-get($colors, "ec-blue-50")};
+    --ec-grey-25: #{map-get($colors, "ec-grey-25")};
+    --ec-blue-25: #{map-get($colors, "ec-blue-25")};
+    --ec-grey-15: #{map-get($colors, "ec-grey-15")};
+    --ec-grey-10: #{map-get($colors, "ec-grey-10")};
+    --ec-grey-5: #{map-get($colors, "ec-grey-5")};
+    --ec-blue-n: #{map-get($colors, "ec-blue-n")};
+    --ec-orange-n: #{map-get($colors, "ec-orange-n")};
+    --ec-green-n: #{map-get($colors, "ec-green-n")};
+    --ec-red-n: #{map-get($colors, "ec-red-n")};
+}

@@ -1,0 +1,50 @@
+.sidebarblock h2, .offCanvasNavigation--right h2, .contextual-links-region > .row > .col-sm-4 h2 {
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.sidebarblock h3, .offCanvasNavigation--right h3, .contextual-links-region > .row > .col-sm-4 h3 {
+    font-size: 17px;
+    line-height: 1.2;
+}
+
+.sidebarblock h4, .offCanvasNavigation--right h4, .contextual-links-region > .row > .col-sm-4 h4 {
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.sidebarblock__content--multiple:not(:last-child),
+.sidebarblock--small .panel-pane__content--multiple:not(:last-child),
+.panel-pane--small .panel-pane__content--multiple:not(:last-child),
+.panel-pane__content--multiple:not(:last-child),
+.sidebarblock:not(:last-child):not(.pane-activity-stream):not(.pane-featured-block):not(.pane-voices-views-carousel):not(.pane--more):not(.pane-c4m-search-og-c4m-search-group-form):not(:last-child), .panel-pane:not(:last-child):not(.pane-activity-stream):not(.pane-featured-block):not(.pane-voices-views-carousel):not(.pane--more):not(.pane-c4m-search-og-c4m-search-group-form):not(:last-child) {
+    padding-bottom: 0;
+}
+
+.sidebarblock .sidebarblock__content--multiple:not(:last-child),
+.sidebarblock:not(:last-child):not(.pane-activity-stream):not(.pane-featured-block):not(.pane-voices-views-carousel):not(.pane--more):not(.pane-c4m-search-og-c4m-search-group-form):not(:last-child), .panel-pane:not(:last-child):not(.pane-activity-stream):not(.pane-featured-block):not(.pane-voices-views-carousel):not(.pane--more):not(.pane-c4m-search-og-c4m-search-group-form):not(:last-child) {
+    border-bottom: none;
+}
+
+.sidebarblock .node {
+    font-size: 14px;
+}
+
+.sidebarblock .node:not(.last-child) {
+    margin-bottom: 18px;
+}
+
+.sidebarblock__viewmore {
+    display: none;
+}
+
+.region-sidebar-first {
+    @include css-var("background-color", "ec-grey-5");
+    border: none;
+    padding: 10px 15px;
+}
+
+.region-sidebar-first-top {
+    @include css-var("background", "ec-grey-5");
+    padding: 10px 15px;
+}

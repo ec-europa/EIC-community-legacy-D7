@@ -1,0 +1,23 @@
+.media-item {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.media-widget {
+    @include css-var("border", "ec-grey-100", "solid 1px");
+
+    .preview {
+        margin-right: 0;
+        .media-item {
+            margin-right: 10px;
+        }
+    }
+
+    .button, .btn {
+        float: right;
+        margin: -1px;
+        margin-left: 10px;
+    }
+}

@@ -1,0 +1,42 @@
+.label, .field-name-c4m-og-status .field-item, .field-name-c4m-project-stage .field-item, .label.label-default {
+    display: inline-block;
+    margin: 0;
+    padding: .33rem .66rem;
+    @include css-var("color", "ec-grey-100");
+    font-size: 14px;
+    line-height: 1;
+    font-weight: bold;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0;
+}
+
+.view-mode-teaser:not(.node-group):not(.user-profile) .label .fa {
+    color: currentColor !important;
+}
+
+.label-primary {
+    @include css-var("background-color", "ec-yellow-100");
+}
+
+.label-default, .label.label-default {
+    @include css-var("background-color", "ec-grey-15");
+}
+
+.label.label-access, .label.label-access.private, .field-name-c4m-og-status .label-access.private.field-item, .field-name-c4m-project-stage .label-access.private.field-item {
+    @include css-var("background-color", "ec-red-n");
+    border: none;
+    font-weight: bold;
+}
+
+.label.label-access.public {
+    @include css-var("background-color", "ec-green-n");
+    @include css-var("border-color", "ec-green-n");
+}
+
+.label.label-default,
+.field-name-c4m-og-status .field-item,
+.field-name-c4m-project-stage .field-item {
+    background: #fff;
+}

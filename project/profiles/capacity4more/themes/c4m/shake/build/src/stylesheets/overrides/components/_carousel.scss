@@ -1,0 +1,34 @@
+.owl-theme .owl-item img {
+    border: none;
+}
+
+.owl-theme .owl-controls .owl-page span {
+    @include css-var("background-color", "ec-blue-25");
+}
+
+.row.carousel h3, .row.carousel .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, .view-mode-highlight_list .row.carousel .field-name-c4m-ds-content-type-icon {
+    @include css-var("color", "ec-grey-100");
+}
+
+
+
+@media (max-width: 860px) {
+    .owl-theme {
+        background: none;
+        border: none;
+    }
+
+    .row.carousel .owl-carousel {
+        margin: 0 -18px;
+        width: calc(100% + 36px);
+    }
+}
+
+
+@media (min-width: 860px) {
+    .row.carousel {
+        background: none;
+        border: none;
+        padding: 0;
+    }
+}

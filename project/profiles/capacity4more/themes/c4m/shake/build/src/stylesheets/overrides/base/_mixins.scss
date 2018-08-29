@@ -1,0 +1,12 @@
+@mixin css-var($property, $value, $prefix:"", $suffix:"") {
+    #{$property}: unquote($prefix) map-get($colors, $value) unquote($suffix);
+    #{$property}: unquote($prefix) var(--#{$value}) unquote($suffix);
+}
+
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}

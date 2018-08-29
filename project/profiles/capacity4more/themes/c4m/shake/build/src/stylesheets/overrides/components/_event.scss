@@ -1,0 +1,88 @@
+.view-mode-block_list.node-event .field-name-c4m-field-og-group .field-item a {
+    @include css-var("color", "ec-blue-100");
+}
+
+.fa-stack-2x.fa-calendar-o {
+    font-size: 32px;
+}
+
+.event-date {
+    text-align: center;
+    margin-right: 16px;
+}
+
+.icon-col .fa-stack,
+.event-date .fa-stack,
+.field-name-c4m-ds-event-start-icon .fa-stack {
+    width: 32px;
+    height: 32px;
+}
+
+.icon-col .field-name-c4m-ds-event-start-icon .fa-stack .calendar-text,
+.event-date .field-name-c4m-ds-event-start-icon .fa-stack .calendar-text,
+.field-name-c4m-ds-event-start-icon .fa-stack .calendar-text {
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.field-name-c4m-ds-event-start-icon .calendar-text-month {
+    font-size: 12px;
+    margin-left: 0;
+}
+
+.event-views-links a:hover {
+    @include css-var("color", "ec-grey-100");
+}
+
+.node-event h1, .node-event h2 {
+    font-size: 24px;
+    line-height: 27px;
+}
+
+.node-event h3 {
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.node-event .icon-col,
+.node-event-site .icon-col,
+.view-mode-full.node-event .field-name-c4m-ds-event-start-icon {
+    width: 30px;
+    @include css-var("color", "ec-grey-50");
+}
+
+.node-event .icon-col + .content-col,
+.node-event-site .icon-col + .content-col {
+    margin-left: 50px;
+}
+
+.icon-col .field-name-c4m-ds-event-start-icon {
+    color: currentColor;
+}
+
+.field-name-c4m-ds-event-start-icon + .date {
+    margin-left: 20px;
+}
+
+.view-mode-full.node-event .date {
+    max-width: calc(100% - 50px);
+    color: currentColor;
+    vertical-align: top;
+}
+
+.node-event .group-footer, .node-event-site .group-footer {
+    text-align: right;
+}
+
+.node-event .date-display-range {
+    margin: 0 10px 10px 0;
+}
+
+.node-event .addtocal {
+    font-family: Arial, sans-serif;
+    @include css-var("color", "ec-blue-100");
+}
+
+.node-event .addtocal::before {
+    font-family: FontAwesome;
+}

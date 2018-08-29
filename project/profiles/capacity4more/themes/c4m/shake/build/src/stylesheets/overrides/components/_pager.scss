@@ -1,0 +1,43 @@
+.pager {
+    font-size: 0;
+    text-align: center;
+}
+
+.pager li {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 34px;
+    height: 34px;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 16px;
+}
+
+.pager li:not(:first-child) {
+    margin-left: 8px;
+}
+
+.pager li a {
+    display: block;
+    width: 100%;
+    line-height: 34px;
+}
+
+.pager-current {
+    color: #000;
+    border: solid 2px #000;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.pager-first, .pager-previous, .pager-next, .pager-last {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.pager-first a, .pager-previous a, .pager-next a, .pager-last a {
+    display: block;
+    line-height: 34px;
+    font-weight: bold;
+}

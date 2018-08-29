@@ -1,0 +1,29 @@
+.alert {
+    border-radius: 0;
+    border-width: 2px;
+    a {
+        color: currentColor;
+    }
+
+    #main-content + & {
+        margin-top: 1em;
+    }
+}
+
+.alert-info {
+    background: none;
+    @include css-var("color", "ec-blue-n");
+    @include css-var("border-color", "ec-blue-n");
+}
+
+.alert-success {
+    background: none;
+    @include css-var("color", "ec-green-n");
+    @include css-var("border-color", "ec-green-n");
+}
+
+.alert-danger {
+    background: none;
+    @include css-var("color", "ec-red-n");
+    @include css-var("border-color", "ec-red-n");
+}

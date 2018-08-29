@@ -1,0 +1,155 @@
+.form-control:focus {
+    @include css-var("outline", "ec-yellow-100", "solid 2px");
+    outline-offset: -3px;
+}
+
+.form-control:not(.form-file) {
+    @include css-var("border-color", "ec-grey-50");
+    box-shadow: none;
+    border-radius: 0;
+    font-size: 18px;
+    min-height: 48px;
+    font-style: normal;
+
+    &.form-select {
+       border-width: 2px;
+    }
+}
+
+.node-form .form-control:not(.form-file) {
+    border-radius: 0;
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.form-submit:focus,
+.form-submit:active {
+    @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
+    outline-offset: -2px !important;
+}
+
+fieldset {
+    padding: 0;
+}
+
+legend {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+fieldset.collapsible {
+    .fieldset-legend {
+        display: flex;
+        align-items: center;
+        padding: .89rem;
+        min-height: 64px;
+        @include css-var("color", "ec-grey-100");
+        &:hover, &:not([aria-expanded="false"]) {
+            @include css-var("background-color", "ec-yellow-100");
+        }
+        &:hover, &:focus {
+            text-decoration: none;
+        }
+    }
+}
+
+html.js fieldset.collapsed {
+    height: auto;
+}
+
+.panel-collapse {
+    @include css-var("background-color", "ec-grey-5");
+    font-size: 1rem;
+    margin: 0;
+    padding: 1rem;
+}
+
+.checkboxes-wrapper {
+    .btn {
+        margin-top: 10px;
+    }
+}
+
+.pane-filter, .block-c4m-search-filter {
+    font-size: 14px;
+}
+
+#c4m-search-filter-search-filter-form, #c4m-features-homepage-filter-form-create, .block-facetapi {
+    border-bottom: none;
+}
+
+#c4m-search-filter-search-filter-form, #c4m-features-homepage-filter-form-create {
+    padding: 16px 0;
+}
+
+#c4m-features-homepage-filter-form-create .form-group,
+#c4m-features-homepage-newsletter-form .form-group,
+#block-c4m-search-filter-search-filter-interests .form-group,
+#c4m-search-filter-search-filter-form .form-group
+{
+    margin-bottom: 0;
+}
+
+#edit-edit-buttons {
+    margin-top: 20px;
+}
+
+#c4m-features-homepage-newsletter-form .form-submit {
+    margin-top: 20px;
+}
+
+#c4m-search-filter-search-filter-form .control-label {
+    font-weight: normal;
+}
+
+#c4m-search-filter-search-filter-form a:hover, #c4m-features-homepage-filter-form-create a:hover, .block-facetapi a:hover {
+    color: inherit;
+}
+
+
+
+
+#c4m-search-form .form-submit,
+#c4m-search-redirect-form .form-submit,
+#c4m-search-redirect-form--2 .form-submit {
+    right: 1px;
+    top: 1px;
+    bottom: auto;
+    height: calc(100% - 2px);
+    min-height: 0;
+    @include css-var("background-color", "ec-grey-15");
+    @include css-var("color", "ec-blue-100");
+    transition: none;
+    padding: 0 16px;
+}
+
+#c4m-search-form .form-submit:hover,
+#c4m-search-redirect-form .form-submit:hover,
+#c4m-search-redirect-form--2 .form-submit:hover {
+    @include css-var("color", "ec-grey-100", "", "!important");
+    @include css-var("background", "ec-grey-15", "", "!important");
+}
+
+#c4m-search-form .form-submit:focus,
+#c4m-search-redirect-form .form-submit:focus,
+#c4m-search-redirect-form--2 .form-submit:focus {
+    @include css-var("background-color", "ec-blue-100", "", "!important");
+    color: #fff !important;
+}
+
+#quick-post-form {
+    padding-bottom: 1em;
+}
+
+.cke_chrome {
+    @include css-var("border-color", "ec-grey-50", "", "!important");
+    &.cke_focus {
+        @include css-var("outline", "ec-yellow-100", "solid 2px");
+        outline-offset: -3px;
+    }
+}
+
+.cke_contents {
+    padding: 0.5em 1em !important;
+}
