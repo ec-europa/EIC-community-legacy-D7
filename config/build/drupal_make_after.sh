@@ -48,4 +48,8 @@ markup_h2 "Settings file"
 cp -a "$DIR_ROOT/config/build/settings/settings.php" "$DIR_WEB/sites/default"
 message_success "Master Settings file copied to build"
 
+markup_h2 "Remove extra libraries module"
+rm -Rf "$DIR_WEB/sites/all/modules/libraries"
+message_success "Removed extra libraries module."
+
 echo
