@@ -532,7 +532,7 @@ function _c4m_user_profile_settings_form_comments(array &$form, array $digest_op
   ];
 
   // Comments are also treated as node follows.
-  $flag = flag_get_flag('subscribe_c4m_follow_comment');
+  $flag = flag_get_flag('subscribe_c4m_follow_content');
   $flaggings = c4m_user_profile_get_flag_flaggings($flag, $account);
 
   foreach ($flaggings as $flagging_id) {
