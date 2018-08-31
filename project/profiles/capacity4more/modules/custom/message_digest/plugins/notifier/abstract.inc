@@ -184,6 +184,7 @@ class MessageDigest extends MessageNotifierBase {
    */
   public function deliverDigest($uid, $formatted_message) {
     $account = user_load($uid);
+    $languages = language_list();
     $lang = !empty($account->language) && $account->language != LANGUAGE_NONE ? $languages[$account->language] : language_default();
     $params = [
       'body' => $formatted_message,
