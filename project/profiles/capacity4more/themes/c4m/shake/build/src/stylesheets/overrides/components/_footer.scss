@@ -1,0 +1,43 @@
+#footer-top-wrapper {
+    margin-top: 20px;
+}
+
+footer {
+    a {
+        &,
+        &:focus,
+        &:active {
+            color: #fff;
+        }
+        &:focus {
+            @include css-var("outline", "ec-yellow-100", "solid 3px");
+            outline-offset: 2px;
+        }
+    }
+}
+
+#footer-bottom-wrapper {
+    @include css-var("background-color", "ec-blue-100");
+    padding: 21px 0 24px 0;
+}
+
+.c4m-footer-menu {
+    min-height: 19px;
+    text-align: left;
+    ul {
+        font-size: 14px;
+        li {
+            padding: 0;
+            border-right: none;
+            line-height: 19px;
+            &:not(:last-child) {
+                margin-right: 16px;
+            }
+            a {
+                display: block;
+                font-size: inherit;
+                color: #fff;
+            }
+        }
+    }
+}

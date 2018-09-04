@@ -21,6 +21,7 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 @import "components/datepicker";
 @import "components/dropdown";
 @import "components/event";
+@import "components/footer";
 @import "components/form";
 @import "components/group";
 @import "components/header";
@@ -177,15 +178,6 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 .row.features .panel-separator {
     border-bottom: none;
     background: none;
-}
-
-
-#footer-top-wrapper {
-    margin-top: 20px;
-}
-
-footer a:focus, footer a:active {
-    color: #fff;
 }
 
 
