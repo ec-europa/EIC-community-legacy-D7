@@ -129,7 +129,7 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 
 
 
-.groupNavigation-divider {
+.groupNavigation-divider, .view .see-more-link, .view .more-link {
     @include css-var("border-top", "ec-grey-10", "solid 1px");
 }
 
@@ -222,7 +222,8 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
     padding-bottom: 20px;
 }
 
-.view-mode-full:not(.node-wiki-page)>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse) .view-mode-block_lis:last-child {
+.view-mode-full:not(.node-wiki-page)>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse) .view-mode-block_lis:last-child,
+.view-mode-full>.content>.group-right>section .views-row, .view-mode-full>.content>.group-right>section .detail-element, .view-mode-full>.content>.group-right>section .view-mode-block_list, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .views-row, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .detail-element, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .view-mode-block_list, .view-mode-full.node-wiki-page>.content>.group-left>section .views-row, .view-mode-full.node-wiki-page>.content>.group-left>section .detail-element, .view-mode-full.node-wiki-page>.content>.group-left>section .view-mode-block_list, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .views-row, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .detail-element, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .view-mode-block_list {
     border-bottom: none;
 }
 
@@ -323,7 +324,9 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 }
 
 .field-name-c4m-intro-text {
-    margin-bottom: 20px;
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
 }
 
 .view-mode-teaser .row-entity-count, .view-mode-teaser:not(.node-group):not(.user-profile) .fa {
