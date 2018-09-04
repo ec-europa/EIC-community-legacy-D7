@@ -18,7 +18,7 @@ footer {
 
 #footer-bottom-wrapper {
     @include css-var("background-color", "ec-blue-100");
-    padding: 21px 0 24px 0;
+    padding: 21px 0 5px 0;
 }
 
 .c4m-footer-menu {
@@ -26,7 +26,11 @@ footer {
     text-align: left;
     ul {
         font-size: 14px;
+        margin-bottom: 0;
         li {
+            display: inline-block;
+            vertical-align: top;
+            margin-bottom: 14px;
             padding: 0;
             border-right: none;
             line-height: 19px;
@@ -38,6 +42,17 @@ footer {
                 font-size: inherit;
                 color: #fff;
             }
+        }
+    }
+}
+
+
+@media (min-width: 480px) {
+    #footer-top-wrapper {
+        .ecl-container {
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 }
