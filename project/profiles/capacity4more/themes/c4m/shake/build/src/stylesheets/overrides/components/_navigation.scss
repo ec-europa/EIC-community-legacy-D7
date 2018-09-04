@@ -197,50 +197,65 @@
         transform: none;
     }
 
-    .navigation--primary .navbar {
-        width: 756px;
-        padding: 0 18px;
+    .offCanvasNavigation--left {
+        .row > & {
+            left: 18px;
+            + .col-sm-8 {
+                padding-left: 18px * 2;
+            }
+        }
     }
 
-    .navigation--primary .navbar-collapse {
-        padding: 0;
-    }
+    .navigation--primary {
+        .navbar {
+            width: 756px;
+            padding: 0 18px;
 
-    .navigation--primary .navbar-collapse ul.menu {
-        margin: 0 -12px;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-    }
+            &-collapse {
+                padding: 0;
 
-    .navigation--primary .navbar-collapse ul.menu li {
-        flex-grow: 0;
-        margin: 0;
-    }
+                ul.menu {
+                    margin: 0 -12px;
+                    justify-content: flex-start;
+                    flex-wrap: nowrap;
 
-    .navigation--primary .navbar .navbar-collapse ul.navbar-nav li {
-        display: flex;
-        padding: 0;
-        font-size: 18px;
-    }
+                    li {
+                        flex-grow: 0;
+                        margin: 0;
+                    }
+                }
+            }
 
-    .navigation--primary .navbar .navbar-collapse ul.navbar-nav li a {
-        position: relative;
-        padding: 23px 12px;
-        min-height: 64px;
-        background: none;
-    }
+            .navbar-collapse {
+                ul.navbar-nav {
+                    li {
+                        display: flex;
+                        padding: 0;
+                        font-size: 18px;
 
-    .navigation--primary .navbar .navbar-collapse ul.navbar-nav li a.active::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-        width: 0;
-        height: 0;
-        border-left: inset 8px transparent;
-        border-right: inset 8px transparent;
-        border-bottom: solid 8px #fff;
-        margin-left: -8px;
+                        a {
+                            position: relative;
+                            padding: 23px 12px;
+                            min-height: 64px;
+                            background: none;
+
+                            &.active::before {
+                                content: "";
+                                position: absolute;
+                                left: 50%;
+                                bottom: 0;
+                                width: 0;
+                                height: 0;
+                                border-left: inset 8px transparent;
+                                border-right: inset 8px transparent;
+                                border-bottom: solid 8px #fff;
+                                margin-left: -8px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .group-navigation {
