@@ -26,25 +26,33 @@
     border-bottom: none;
 }
 
-.sidebarblock .node {
-    font-size: 14px;
-}
+.sidebarblock {
+    .node {
+        font-size: 14px;
 
-.sidebarblock .node:not(.last-child) {
-    margin-bottom: 18px;
-}
+        &:not(.last-child) {
+            margin-bottom: 18px;
+        }
+    }
 
-.sidebarblock__viewmore {
-    display: none;
+    &__viewmore {
+        display: none;
+    }
+
+    &__content {
+        > .btn {
+            margin-top: 1em;
+        }
+    }
 }
 
 .region-sidebar-first {
     @include css-var("background-color", "ec-grey-5");
     border: none;
     padding: 10px 15px;
-}
 
-.region-sidebar-first-top {
-    @include css-var("background", "ec-grey-5");
-    padding: 10px 15px;
+    &-top {
+        @include css-var("background", "ec-grey-5");
+        padding: 10px 15px;
+    }
 }

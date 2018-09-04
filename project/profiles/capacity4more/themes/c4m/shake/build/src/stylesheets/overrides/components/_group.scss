@@ -1,11 +1,30 @@
-.group-c4m-header-meta {
-    border-radius: 0;
-    @include css-var("border-color", "ec-grey-10");
-}
-
 .group-header {
     margin: 1em 0;
     font-size: 14px;
+
+    .field-name-c4m-banner {
+        position: relative;
+        width: 100vw;
+        max-height: 300px;
+        box-shadow: none;
+        left: 50%;
+        transform: translateX(-50vw);
+        margin-top: -1em;
+        img {
+            width: 100%;
+            max-height: 300px;
+            padding: 0;
+            object-fit: cover;
+        }
+    }
+}
+
+.group-c4m-header-meta {
+    width: calc(100% + 36px);
+    margin-left: -18px;
+    margin-right: -18px;
+    border-radius: 0;
+    @include css-var("border-color", "ec-grey-10");
 }
 
 .group-user-meta {
@@ -60,6 +79,10 @@
 @media (min-width: 860px) {
     .group-header {
         margin: 2em 0;
+
+        .field-name-c4m-banner {
+            margin-top: -2em;
+        }
     }
 
     .group-indications {

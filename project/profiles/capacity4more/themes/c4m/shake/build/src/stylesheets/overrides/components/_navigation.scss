@@ -9,16 +9,20 @@
 
 .offCanvasNavigation {
     box-shadow: none;
-}
 
-.offCanvasNavigation ul li {
-    border-bottom: none;
-    text-transform: none;
-}
+    ul {
+        li {
+            border-bottom: none;
+            text-transform: none;
+        }
+    }
 
-.offCanvasNavigation--left h2 {
-    font-size: 16px;
-    line-height: 1.2;
+    &--left {
+        h2 {
+            font-size: 16px;
+            line-height: 1.2;
+        }
+    }
 }
 
 
@@ -277,6 +281,7 @@
                 padding: 0;
                 margin-right: 0;
                 height: 50px;
+                flex-wrap: nowrap;
                 justify-content: flex-start;
                 align-items: stretch;
             }
@@ -285,6 +290,7 @@
                 justify-content: center;
                 align-items: center;
                 flex-grow: 0;
+                flex-shrink: 0;
                 @include css-var("color", "ec-blue-110");
                 margin: 0;
                 padding: 1em;
