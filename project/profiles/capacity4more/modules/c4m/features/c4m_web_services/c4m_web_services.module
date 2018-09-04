@@ -30,17 +30,16 @@ function c4m_web_services_services_authentication_info() {
  * @param array $args
  *   The arguments that are being used to call the method.
  *
- * @return void|string
+ * @return null|string
  *   Returns nothing, or a error message if authorisation fails.
  *
  * @see c4m_web_services_services_authentication_info()
  */
-function _c4m_web_services_authenticate_call($settings, $method, $args) {
+function _c4m_web_services_authenticate_call(array $settings, array $method, array $args) {
   // Get the original request body.
   $endpoint_path = services_get_server_info('endpoint_path', '');
   $context = new ServicesContext($endpoint_path);
   $context->buildFromGlobals();
-  $request_body = $context->getRequestBody();
 
   $arguments = _c4m_web_services_array_flatten($args);
 
@@ -57,14 +56,12 @@ function _c4m_web_services_authenticate_call($settings, $method, $args) {
 
   // Open session for Admin user to edit/create content.
   global $user;
-  $original_user = $user;
   drupal_save_session(FALSE);
   $user = user_load_by_name('dashboard_user');
   if (empty($user)) {
     return t('Dashboard user not available, contact site administrator.');
   }
 }
-
 
 /**
  * Returns an associative array of Form API elements for a settings form.
@@ -103,11 +100,10 @@ function _c4m_web_services_security_settings($settings, &$form_state) {
   return $form;
 }
 
-
 /**
  * Helper function for flattening an array.
  */
-function _c4m_web_services_array_flatten($array = null) {
+function _c4m_web_services_array_flatten($array = NULL) {
   $result = array();
 
   if (!is_array($array)) {
@@ -117,7 +113,8 @@ function _c4m_web_services_array_flatten($array = null) {
   foreach ($array as $key => $value) {
     if (is_array($value)) {
       $result = array_merge($result, _c4m_web_services_array_flatten($value));
-    } else {
+    }
+    else {
       $result = array_merge($result, array($key => $value));
     }
   }
@@ -133,7 +130,11 @@ function c4m_web_services_services_resources() {
     'node' => array(
       'operations' => array(
         'c4m_update' => array(
-          'file' => array('type' => 'inc', 'module' => 'c4m_web_services', 'name' => 'resources/c4m_web_services_node_resource'),
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'c4m_web_services',
+            'name' => 'resources/c4m_web_services_node_resource',
+          ),
           'callback' => '_c4m_web_services_node_resource_update',
           'args' => array(
             array(
@@ -179,8 +180,6 @@ function c4m_web_services_server_info() {
 
 /**
  * Starting point of the REST server.
- *
- * @return type
  */
 function c4m_web_services_server() {
   module_load_include('inc', 'c4m_web_services', 'includes/C4MServicesRESTServerFactory');
@@ -208,42 +207,44 @@ function c4m_web_services_server() {
 }
 
 /**
- * Search for the taxonomy terms and update the arguments array for organisations.
+ * Look for the taxonomy terms and update the arguments array for organisations.
  *
- * @param $controller
- *   Controller definition
- * @param $args
- *   Array of arguments
- * @param $options
+ * @param array $controller
+ *   Controller definition.
+ * @param array $args
+ *   Array of arguments.
+ * @param array $options
+ *   Options.
  *
  * @see services_controller_execute()
  * @see services.runtime.inc
  */
-function c4m_web_services_services_request_preprocess_alter($controller, &$args, $options) {
+function c4m_web_services_services_request_preprocess_alter(array $controller, array &$args, array $options) {
   // Check by dashboard_id when Creating a new Organisation if already exists.
   if (isset($controller["callback"]) && $controller["callback"] === '_node_resource_create') {
     foreach ($args as &$arg) {
       if (is_array($arg)
         && isset($arg['c4m_organisation_dashboard_id'])
         && isset($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value'])) {
-          $node = c4m_web_services_get_existing_node($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
-          if (empty($node)) {
-            continue;
-          }
-          $xml = new SimpleXMLElement('<organisation_node_exists/>');
-          $xml->addChild('organisation_name', $node->title);
-          $xml->addChild('nid', $node->nid);
-          $xml->addChild('c4m_organisation_dashboard_id', $arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
-          $xml->addChild('uri',  url($node->purl, ['absolute' => TRUE]));
-          throw new ServicesException($xml->asXML(), 302);
+        $node = c4m_web_services_get_existing_node($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
+        if (empty($node)) {
+          continue;
+        }
+        $xml = new SimpleXMLElement('<organisation_node_exists/>');
+        $xml->addChild('organisation_name', $node->title);
+        $xml->addChild('nid', $node->nid);
+        $xml->addChild('c4m_organisation_dashboard_id', $arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
+        $xml->addChild('uri', url($node->purl, ['absolute' => TRUE]));
+        throw new ServicesException($xml->asXML(), 302);
       }
     }
   }
   // Get all Taxonomy Fields of Organisation CT.
   $organisation_taxonomy_fields = field_read_fields([
-      'entity_type' => 'node',
-      'bundle' => 'organisation',
-      'type' => 'taxonomy_term_reference']
+    'entity_type' => 'node',
+    'bundle' => 'organisation',
+    'type' => 'taxonomy_term_reference',
+  ]
   );
 
   if (empty($organisation_taxonomy_fields)) {
@@ -262,12 +263,12 @@ function c4m_web_services_services_request_preprocess_alter($controller, &$args,
             if (!empty($term_key)) {
               // If term cannot be found, throw error and stop the process.
               if (isset($organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
-                && $loaded = c4m_web_services_taxonomy_get_term_by_key
-                ($term_key, $organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
+                && $loaded = c4m_web_services_taxonomy_get_term_by_key($term_key, $organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
               ) {
                 foreach ($loaded as $tid => $term) {
                   // Check if the term has parents and add them aswell.
-                  // taxonomy_get_parents_all will always return at least the current taxonomy term.
+                  // taxonomy_get_parents_all will always return at least the
+                  // current taxonomy term.
                   if (!empty($term_and_or_parents = taxonomy_get_parents_all($tid))) {
                     foreach ($term_and_or_parents as $term_and_or_parent) {
                       // Only add the new tid if not existing already.
@@ -285,9 +286,9 @@ function c4m_web_services_services_request_preprocess_alter($controller, &$args,
                 // that was not found.
                 $message = t('Error when searching for taxonomy term with key: @term_name.
                  Term was intended for field @field_name.', [
-                  '@field_name' => $field_name,
-                  '@term_key' => $term_key,
-                ]);
+                   '@field_name' => $field_name,
+                   '@term_key' => $term_key,
+                 ]);
                 throw new ServicesException($message, 404);
               }
             }
@@ -335,7 +336,7 @@ function c4m_web_services_services_request_postprocess_alter($controller, $args,
 /**
  * Helper function for adding emails as keys for every user.
  */
-function c4m_web_services_process_users_array($rest_users){
+function c4m_web_services_process_users_array($rest_users) {
   if (!$rest_users) {
     return;
   }
@@ -346,24 +347,21 @@ function c4m_web_services_process_users_array($rest_users){
   unset($rest_users);
   return $nre;
 }
+
 /**
  * Helper function for adding users to the c4m_contact_persons field.
  *
  * @param array $contact_persons
  *   The array of users to be set as contact persons.
- *
- * @param array $nid
+ * @param int $nid
  *   The nid of the created organisation.
- *
- * @return void|mixed
- *   Shouldn't return anyting.
  */
-function c4m_web_services_add_contact_persons($contact_persons, $nid) {
+function c4m_web_services_add_contact_persons(array $contact_persons, $nid) {
   if (empty($contact_persons) && empty($nid)) {
     return;
   }
 
-  $users = c4m_web_services_get_or_add_user($contact_persons, $nid);
+  $users = c4m_web_services_get_or_add_user($contact_persons);
 
   // Add these users to the c4m_contact_persons field.
   if (empty($users)) {
@@ -374,8 +372,8 @@ function c4m_web_services_add_contact_persons($contact_persons, $nid) {
   // Create an array with the new uids.
   $new_users = [];
   foreach ($users as $user) {
-    // Update job title, user type and language fields that areon the user Entity.
-    // These are kept on user for facets.
+    // Update job title, user type and language fields that areon the user
+    // Entity. These are kept on user for facets.
     c4m_web_services_update_user_taxonomies($user, $contact_persons[$user->mail]);
 
     $new_users[] = ['target_id' => $user->uid];
@@ -391,19 +389,15 @@ function c4m_web_services_add_contact_persons($contact_persons, $nid) {
  *
  * @param array $c4m_organisation_members
  *   The array of users to be set as members of the organisation.
- *
- * @param array $nid
+ * @param int $nid
  *   The nid of the created organisation.
- *
- * @return void|mixed
- *   Shouldn't return anyting.
  */
-function c4m_web_services_add_organisation_members($c4m_organisation_members, $nid) {
+function c4m_web_services_add_organisation_members(array $c4m_organisation_members, $nid) {
   if (empty($c4m_organisation_members) && empty($nid)) {
     return;
   }
 
-  $users = c4m_web_services_get_or_add_user($c4m_organisation_members, $nid);
+  $users = c4m_web_services_get_or_add_user($c4m_organisation_members);
 
   if (empty($users)) {
     return;
@@ -436,13 +430,11 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
   }
 
   foreach ($users as $user) {
-
-    // Add the user to the group
+    // Add the user to the group.
     $membership = og_group('node', $nid, ['entity' => $user]);
 
     if (!empty($membership)) {
       // Add jobtitle and user type for user in Organisation to Membership.
-
       // Check and add Job Title based on Dashboard Id.
       if (isset($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'])
         && isset($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'][LANGUAGE_NONE])) {
@@ -477,7 +469,6 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
       $role = c4m_og_user_role_load_by_name('member', 'organisation');
       og_role_grant('node', $nid, $user->uid, $role->rid);
 
-
       // Add administrator role.
       if (in_array($user->mail, $manager_users)) {
         $role = c4m_og_user_role_load_by_name('administrator member', 'organisation');
@@ -486,24 +477,22 @@ function c4m_web_services_add_organisation_members($c4m_organisation_members, $n
       // Send welcome to Group notification.
       _c4m_user_notifications_notify_user_og_group_membership_accepted($membership);
     }
-    // Update job title, user type and language fields that areon the user Entity.
-    // These are kept on user for facets.
+    // Update job title, user type and language fields that areon the user
+    // Entity. These are kept on user for facets.
     c4m_web_services_update_user_taxonomies($user, $c4m_organisation_members[$user->mail], $nid);
   }
 }
 
 /**
- * Helper function for getting or creating new users that are sent through the WS.
+ * Gets or creates new users that are sent through the WS.
  *
  * @param array $rest_users
  *   The array of users sent through the WS.
- * @param array $nid
- *   The node created - used for adding paragraphs on Users.
  *
  * @return array
  *   List of users, existing and new ones.
  */
-function c4m_web_services_get_or_add_user($rest_users, $nid) {
+function c4m_web_services_get_or_add_user(array $rest_users) {
   if (empty($rest_users)) {
     return [];
   }
@@ -523,7 +512,7 @@ function c4m_web_services_get_or_add_user($rest_users, $nid) {
     else {
       // Otherwise, new user needs to be created and set the authmap for them.
       $new_user_data = [
-        'name' => _c4m_web_services_return_valid_name($rest_user['first_name']  . ' ' . $rest_user['last_name']),
+        'name' => _c4m_web_services_return_valid_name($rest_user['first_name'] . ' ' . $rest_user['last_name']),
         'pass' => user_password(),
         'mail' => $rest_user['email'],
         'c4m_first_name' => [LANGUAGE_NONE => [['value' => $rest_user['first_name']]]],
@@ -533,7 +522,6 @@ function c4m_web_services_get_or_add_user($rest_users, $nid) {
         'status' => TRUE,
       ];
 
-
       // Create new user.
       $new_user = user_save(drupal_anonymous_user(), $new_user_data);
 
@@ -542,7 +530,7 @@ function c4m_web_services_get_or_add_user($rest_users, $nid) {
       }
 
       // Set Authmap record for this newly created user.
-      user_set_authmaps($new_user, array("authname_ecas"=> $rest_user['email']));
+      user_set_authmaps($new_user, array("authname_ecas" => $rest_user['email']));
 
       $users[] = $new_user;
     }
@@ -566,9 +554,10 @@ function c4m_web_services_update_user_taxonomies($user, $rest_user, $nid = 0) {
     }
   }
   if (empty($other_groups)) {
-    (!empty($nid))? $user->og_user_node[LANGUAGE_NONE][] = ['target_id' => $nid] : '';
-  } elseif(!empty($nid) && !in_array($nid, $other_groups)) {
-    (!empty($nid))? $user->og_user_node[LANGUAGE_NONE][] = ['target_id' => $nid] : '';
+    (!empty($nid)) ? $user->og_user_node[LANGUAGE_NONE][] = ['target_id' => $nid] : '';
+  }
+  elseif (!empty($nid) && !in_array($nid, $other_groups)) {
+    (!empty($nid)) ? $user->og_user_node[LANGUAGE_NONE][] = ['target_id' => $nid] : '';
   }
 
   // Check and add Spoken Languages based on Dashboard Id.
@@ -583,7 +572,8 @@ function c4m_web_services_update_user_taxonomies($user, $rest_user, $nid = 0) {
     $user->c4m_vocab_language[LANGUAGE_NONE] = $c4m_vocab_language;
   }
 
-  // Get user group memberships and create an array with all user types and job titles the user has.
+  // Get user group memberships and create an array with all user types and job
+  // titles the user has.
   $user_types = [];
   $job_titles = [];
   foreach (c4m_user_og_get_groups($user, 'organisation') as $organisation) {
@@ -623,7 +613,6 @@ function c4m_web_services_update_user_taxonomies($user, $rest_user, $nid = 0) {
   }
 
   user_save($user);
-
 }
 
 /**
@@ -667,12 +656,12 @@ function _c4m_web_services_check_unique_name($name) {
 /**
  * Try to map a dashboard key to an existing term..
  *
- * @param $dashboard_key
+ * @param string $dashboard_key
  *   Dashboard key of the term to search for.
- * @param $vocabulary
- *   (optional) Vocabulary machine name to limit the search. Defaults to NULL.
+ * @param string $vocabulary
+ *   Vocabulary machine name to limit the search.
  *
- * @return
+ * @return array
  *   An array of matching term objects.
  */
 function c4m_web_services_taxonomy_get_term_by_key($dashboard_key, $vocabulary) {
@@ -694,10 +683,10 @@ function c4m_web_services_taxonomy_get_term_by_key($dashboard_key, $vocabulary) 
 /**
  * Try to map a dashboard id to an existing node.
  *
- * @param $organisation_dashboard_id
+ * @param int $organisation_dashboard_id
  *   Dashboard id of the node.
  *
- * @return
+ * @return object
  *   A node object.
  */
 function c4m_web_services_get_existing_node($organisation_dashboard_id) {
@@ -720,7 +709,7 @@ function c4m_web_services_get_existing_node($organisation_dashboard_id) {
 /**
  * Alter the newly created node, publish it and set default paragraphs.
  *
- * @param $nid
+ * @param int $nid
  *   The organisation node id.
  */
 function c4m_web_services_publish_organisation_set_paragraphs($nid) {
@@ -744,7 +733,6 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid) {
   // Set paragraphs for left column.
   $node_field = 'c4m_left_column';
   $paragraph_bundle = 'c4m_paragraph_system_block';
-  $base_block_name = '';
   // About us block.
   $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
   $paragraph->is_new = TRUE;
@@ -771,7 +759,6 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid) {
   $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('Latest activity');
   $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
   $paragraph->save();
-
 
   // Set paragraphs for right column.
   $node_field = 'c4m_right_column';

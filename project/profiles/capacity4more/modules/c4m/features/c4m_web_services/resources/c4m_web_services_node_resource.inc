@@ -1,23 +1,29 @@
 <?php
 
 /**
+ * @file
+ * Node resource file.
+ */
+
+/**
  * Updates a new node based on submitted values.
  *
  * Note that this function uses drupal_form_submit() to create new nodes,
  * which may require very specific formatting. The full implications of this
  * are beyond the scope of this comment block. The Googles are your friend.
  *
- * @param $dashboard_id
+ * @param string $dashboard_id
  *   Dashboard id of the node we're editing.
- * @param $node
+ * @param array $node
  *   Array representing the attributes a node edit form would submit.
- * @return
+ *
+ * @return int
  *   The node's nid.
  *
  * @see drupal_form_submit()
  */
-function _c4m_web_services_node_resource_update($dashboard_id, $node) {
-  // Adds backwards compatability with regression fixed in #1083242
+function _c4m_web_services_node_resource_update($dashboard_id, array $node) {
+  // Adds backwards compatibility with regression fixed in #1083242.
   $node = _services_arg_value($node, 'node');
 
   $old_node = _c4m_organisation_load_by_dashboard_id($dashboard_id);
@@ -41,7 +47,7 @@ function _c4m_web_services_node_resource_update($dashboard_id, $node) {
   // so code below won't be executed.
   _node_resource_validate_type($node);
 
-  // Load the required includes for drupal_form_submit
+  // Load the required includes for drupal_form_submit.
   module_load_include('inc', 'node', 'node.pages');
 
   $node_type = $node['type'];
@@ -73,17 +79,21 @@ function _c4m_web_services_node_resource_update($dashboard_id, $node) {
   return $node;
 }
 
-
 /**
- * @param $dashboard_id
- * @return bool|mixed|void
+ * Get node by dashboard id.
+ *
+ * @param string $dashboard_id
+ *   Dashboard id.
+ *
+ * @return null|object
+ *   Node object.
  */
 function _c4m_organisation_load_by_dashboard_id($dashboard_id) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'organisation')
     ->fieldCondition('c4m_organisation_dashboard_id', 'value', $dashboard_id, '=')
-    ->range(0,1);
+    ->range(0, 1);
 
   $result = $query->execute();
   if (empty($result['node'])) {
@@ -100,16 +110,18 @@ function _c4m_organisation_load_by_dashboard_id($dashboard_id) {
 /**
  * Determine whether the current user can access a node resource.
  *
- * @param $op
+ * @param string $op
  *   One of view, update, create, delete per node_access().
- * @param $args
+ * @param array $args
  *   Resource arguments passed through from the original request.
+ *
  * @return bool
+ *   Access.
  *
  * @see node_access()
  */
-function _c4m_node_resource_access($op = 'view', $args = array()) {
-  // Adds backwards compatability with regression fixed in #1083242
+function _c4m_node_resource_access($op = 'view', array $args = []) {
+  // Adds backwards compatability with regression fixed in #1083242.
   if (isset($args[0])) {
     $args[0] = _services_access_value($args[0], 'node');
   }
@@ -119,11 +131,12 @@ function _c4m_node_resource_access($op = 'view', $args = array()) {
   if (is_array($args[0])) {
     $args[0] = (object) $args[0];
   }
-  elseif (!is_array($args[0]) && !is_object($args[0])) {  //This is to determine if it is just a string happens on node/%NID
+  // This is to determine if it is just a string happens on node/%NID.
+  elseif (!is_array($args[0]) && !is_object($args[0])) {
     if (empty($node = _c4m_organisation_load_by_dashboard_id($args[0]))) {
       services_error(t('Node type is required'), 406);
     }
-    $args[0] = (object)array('nid' => $node->nid);
+    $args[0] = (object) array('nid' => $node->nid);
   }
 
   if ($op != 'create' && !empty($args)) {
