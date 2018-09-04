@@ -138,6 +138,10 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view
     @include css-var("color", "ec-green-n");
 }
 
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
+    @include css-var("color", "ec-red-n");
+}
+
 .panel-title {
     font-size: 22px;
     line-height: 25px;

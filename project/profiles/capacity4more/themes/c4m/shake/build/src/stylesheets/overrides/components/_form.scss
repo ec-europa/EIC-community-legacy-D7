@@ -3,31 +3,44 @@
 }
 
 
-.form-control:focus {
-    @include css-var("outline", "ec-yellow-100", "solid 2px");
-    outline-offset: -3px;
-}
-
-.form-control:not(.form-file) {
-    @include css-var("border-color", "ec-grey-50");
-    box-shadow: none;
-    border-radius: 0;
-    font-size: 18px;
-    min-height: 48px;
-    font-style: normal;
-
-    &.form-select {
-        width: auto;
-        border-width: 2px;
-    }
-}
-
-.node-form .form-control:not(.form-file) {
-    border-radius: 0;
+.form-control {
     &:focus {
+        @include css-var("outline", "ec-yellow-100", "solid 2px");
+        outline-offset: -3px;
+    }
+
+    &:not(.form-file) {
+        @include css-var("border-color", "ec-grey-50");
         box-shadow: none;
+        border-radius: 0;
+        font-size: 18px;
+        min-height: 48px;
+        font-style: normal;
+
+        &.form-select {
+            width: auto;
+            border-width: 2px;
+        }
+
+        .node-form & {
+            border-radius: 0;
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+
+    .has-error & {
+        &,
+        &:focus {
+            @include css-var("border-color", "ec-red-n");
+        }
+        &:focus {
+            box-shadow: none;
+        }
     }
 }
+
 
 .form-submit:focus,
 .form-submit:active {
