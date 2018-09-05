@@ -2,6 +2,14 @@
     .label {
         cursor: pointer;
     }
+
+    &.open {
+        .dropdown-toggle {
+            .fa-chevron-down {
+                transform: rotate(180deg);
+            }
+        }
+    }
 }
 
 

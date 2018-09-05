@@ -42,10 +42,12 @@
 }
 
 
-.form-submit:focus,
-.form-submit:active {
-    @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
-    outline-offset: -2px !important;
+.form-submit {
+    &:focus,
+    &:active {
+        @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
+        outline-offset: -2px !important;
+    }
 }
 
 legend {

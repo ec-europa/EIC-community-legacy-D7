@@ -47,3 +47,14 @@
         }
     }
 }
+
+
+@media (max-width: 768px) {
+    .project-indications {
+        .btn-group {
+            ul.dropdown-menu {
+                max-width: none;
+            }
+        }
+    }
+}

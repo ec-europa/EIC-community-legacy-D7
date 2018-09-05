@@ -56,22 +56,17 @@
 }
 
 
-#header-ec-wrapper .group-banner {
-    position: relative;
-    margin: 1em 0 0 0;
-    width: 100vw;
-    max-width: none;
-    max-height: 300px;
-    box-shadow: none;
-    left: 50%;
-    transform: translateX(-50vw);
-    object-fit: cover;
-}
-
-
-@media (max-width: 768px) {
-    .project-indications .btn-group ul.dropdown-menu {
+#header-ec-wrapper {
+    .group-banner {
+        position: relative;
+        margin: 1em 0 0 0;
+        width: 100vw;
         max-width: none;
+        max-height: 300px;
+        box-shadow: none;
+        left: 50%;
+        transform: translateX(-50vw);
+        object-fit: cover;
     }
 }
 
