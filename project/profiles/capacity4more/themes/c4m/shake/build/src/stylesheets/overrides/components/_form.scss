@@ -50,6 +50,39 @@
     }
 }
 
+.form-managed-file {
+    @include css-var("border", "ec-grey-100", "solid 1px");
+}
+
+.input-group {
+    width: 100%;
+    .form-control {
+        &.form-file {
+            opacity: 0;
+        }
+    }
+
+    &-addon,
+    &-btn {
+        width: auto;
+        .btn {
+            font-size: 16px;
+        }
+    }
+    &-btn {
+        white-space: normal;
+        text-align: right;
+        &:last-child {
+            > .btn,
+            > .button.browse,
+            > .btn-group {
+                z-index: auto;
+                margin: -1px;
+            }
+        }
+    }
+}
+
 legend {
     border-bottom: none;
     margin-bottom: 0;
@@ -181,16 +214,23 @@ fieldset {
     padding-bottom: 1em;
 }
 
-.cke_chrome {
-    @include css-var("border-color", "ec-grey-50", "", "!important");
-    &.cke_focus {
-        @include css-var("outline", "ec-yellow-100", "solid 2px");
-        outline-offset: -3px;
+.cke {
+    &_chrome {
+        @include css-var("border-color", "ec-grey-50", "", "!important");
+        &.cke_focus {
+            @include css-var("outline", "ec-yellow-100", "solid 2px");
+            outline-offset: -3px;
+        }
     }
-}
 
-.cke_contents {
-    padding: 0.5em 1em !important;
+    &_contents {
+        padding: 0.5em 1em !important;
+    }
+
+    &_wysiwyg_frame {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 }
 
 .node-form {

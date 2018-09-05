@@ -1,3 +1,13 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    &:not([prefix]) {
+        height: auto;
+    }
+}
+
 body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -29,7 +39,8 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, h2, .view
     &::before {
         font-weight: normal !important;
     }
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         &::before {
             text-decoration: none;
         }
@@ -211,6 +222,11 @@ blockquote {
     .project-title + & {
         margin-top: 1rem;
     }
+}
+
+.help-block {
+    margin: 2em 0;
+    color: currentColor;
 }
 
 

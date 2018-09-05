@@ -35,7 +35,9 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 @import "components/statistics";
 @import "components/table";
 @import "components/tags";
+@import "components/ui";
 @import "components/user";
+@import "components/view";
 
 
 
@@ -178,17 +180,19 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 }
 
 
-.page-content::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(#000, 0.25);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
+.page-content {
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(#000, 0.25);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+    }
 }
 
 

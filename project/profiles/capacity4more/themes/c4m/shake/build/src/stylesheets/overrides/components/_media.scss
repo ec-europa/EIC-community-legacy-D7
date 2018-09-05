@@ -15,9 +15,35 @@
         }
     }
 
+    .manualcrop-preview {
+        float: left;
+    }
+
     .button, .btn {
         float: right;
         margin: -1px;
         margin-left: 10px;
+    }
+}
+
+.media-browser-tab {
+    font-size: 1rem;
+
+    .form-actions {
+        margin-top: 1em;
+        a.fake-submit {
+            display: inline-block;
+        }
+    }
+}
+
+#media-tabs-wrapper {
+    float: none;
+    margin-bottom: 1em;
+}
+
+#media-browser-tabset {
+    #branding {
+        padding: 0;
     }
 }
