@@ -723,14 +723,13 @@ function c4m_user_access_denied() {
  */
 function c4m_user_access_denied_ecas() {
   if (user_is_anonymous()) {
-    $welcome_message = t('Welcome to EIC Community! To get started, please authenticate.');
-    $cta = l(t('Authenticate using EU Login'), 'ecas', [
-      'attributes' => [
-        'class' => [
-          'btn',
-          'btn-warning',
-        ],
-      ],
+    $header = t('Welcome to EIC Community! To get started, please authenticate.');
+    $sub_header = t('<p>The EIC pilot supports market-creating innovation in small and medium-sized businesses that have significant growth potential and global ambitions.</p>');
+    $cta_1 = l(t('Login / Register using EU login'), 'ecas', [
+      'attributes' => ['class' => ['btn', 'btn-primary']],
+    ]);
+    $cta_2 = l(t('Create EU login account'), 'ecas', [
+      'attributes' => ['class' => ['btn', 'btn-warning']],
     ]);
 
     $warning_message = '';
@@ -740,9 +739,11 @@ function c4m_user_access_denied_ecas() {
       $warning_message .= '<p>' . variable_get('ecas_warning_message', t('Your account is not yet approved')) . '</p></div>';
     }
     return theme('kapablo_anonymous_welcome', [
-      'welcome_message' => $welcome_message,
-      'cta' => $cta,
       'warning_message' => $warning_message,
+      'header' => $header,
+      'sub_header' => $sub_header,
+      'cta_1' => $cta_1,
+      'cta_2' => $cta_2,
     ]);
   }
   else {

@@ -8,22 +8,33 @@
  * Available variables:
  *
  * Available variables:
- * - $variables['welcome_message']: Message to show in heading 1 to visitors.
- * - $variables['cta']: Call-to-action to accompany the welcome text.
+ * - $variables['header']: Message to show in an h1 to visitors.
+ * - $variables['cta_1']: Call-to-action to accompany the welcome text.
+ * - $variables['cta-2']: Call-to-action to accompany the welcome text.
  *
  * @see kapablo_preprocess_page()
  * @ingroup themeable
  */
 ?>
 
-<?php if ($variables['warning_message']): ?>
-  <?php print $variables['warning_message']; ?>
-<?php else: ?>
-  <?php if ($variables['welcome_message']): ?>
-        <h1><?php print $variables['welcome_message']; ?></h1>
+<div class="anonymous-welcome">
+  <?php if ($variables['warning_message']): ?>
+    <?php print $variables['warning_message']; ?>
+  <?php else: ?>
+    <?php if ($variables['header']): ?>
+      <h1><?php print $variables['header']; ?></h1>
+    <?php endif; ?>
+    <?php if ($variables['sub_header']): ?>
+      <?php print $variables['sub_header']; ?>
+    <?php endif; ?>
   <?php endif; ?>
-<?php endif; ?>
 
-<?php if ($variables['cta']): ?>
-  <div class="welcome-cta"><?php print $variables['cta']; ?></div>
-<?php endif; ?>
+  <div class="cta">
+    <?php if ($variables['cta_1']): ?>
+      <?php print $variables['cta_1']; ?>
+    <?php endif; ?>
+    <?php if ($variables['cta_2']): ?>
+      <?php print $variables['cta_2']; ?>
+    <?php endif; ?>
+  </div>
+</div>

@@ -48,8 +48,10 @@ function kapablo_theme() {
     'path' => drupal_get_path('theme', 'kapablo') . '/templates',
     'type' => 'theme',
     'variables' => array(
-      'welcome_message' => NULL,
-      'cta' => NULL,
+      'header' => NULL,
+      'sub_header' => NULL,
+      'cta_1' => NULL,
+      'cta_2' => NULL,
       'warning_message' => NULL,
     ),
   );
