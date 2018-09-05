@@ -308,27 +308,29 @@ function c4m_web_services_services_request_preprocess_alter(array $controller, a
  */
 function c4m_web_services_services_request_postprocess_alter($controller, $args, &$result) {
   foreach ($args as $arg) {
-    if (is_array($arg)) {
-      // First create the organisation members.
-      if (isset($arg['c4m_organisation_members'])
-        &&!empty($c4m_organisation_members = $arg['c4m_organisation_members'][LANGUAGE_NONE])
-        && !empty($nid = $result['nid'])) {
-        $c4m_organisation_members = c4m_web_services_process_users_array($c4m_organisation_members);
-        c4m_web_services_add_organisation_members($c4m_organisation_members, $nid);
-      }
-      // Second add the contact persons.
-      if (isset($arg['c4m_contact_persons'])
-        && !empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])
-        && !empty($nid = $result['nid'])) {
-        $c4m_contact_persons = c4m_web_services_process_users_array($c4m_contact_persons);
-        c4m_web_services_add_contact_persons($c4m_contact_persons, $nid);
-      }
+    if (!is_array($arg)) {
+      continue;
     }
-  }
-  // When creating a new node, publish it and set default paragraphs.
-  if (!empty($controller["callback"]) && $controller["callback"] === '_node_resource_create') {
-    if (!empty($nid = $result['nid'])) {
-      c4m_web_services_publish_organisation_set_paragraphs($nid);
+    if (empty($nid = $result['nid'])) {
+      continue;
+    }
+
+    // When creating a new node, publish it and set default paragraphs.
+    if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create') {
+      c4m_web_services_publish_organisation_set_paragraphs($nid, $arg);
+    }
+
+    // Create the organisation members.
+    if (isset($arg['c4m_organisation_members']) &&!empty($c4m_organisation_members = $arg['c4m_organisation_members'][LANGUAGE_NONE])) {
+      $c4m_organisation_members = c4m_web_services_process_users_array($c4m_organisation_members);
+      c4m_web_services_add_organisation_members($c4m_organisation_members, $nid);
+    }
+
+    // Add the contact persons.
+    if (isset($arg['c4m_contact_persons'])
+      && !empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])) {
+      $c4m_contact_persons = c4m_web_services_process_users_array($c4m_contact_persons);
+      c4m_web_services_add_contact_persons($c4m_contact_persons, $nid);
     }
   }
 }
@@ -711,12 +713,10 @@ function c4m_web_services_get_existing_node($organisation_dashboard_id) {
  *
  * @param int $nid
  *   The organisation node id.
+ * @param array $arg
+ *   The organisation info.
  */
-function c4m_web_services_publish_organisation_set_paragraphs($nid) {
-  if (empty($nid)) {
-    return;
-  }
-
+function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) {
   $node = node_load($nid);
   if (empty($node)) {
     return;
@@ -726,9 +726,14 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid) {
   $node->c4m_og_status[LANGUAGE_NONE][0]['value'] = 'published';
 
   // Add default text to the About us field.
-  $node->field_c4m_about_us[LANGUAGE_NONE][0]['format'] = 'filtered_html';
-  $node->field_c4m_about_us[LANGUAGE_NONE][0]['value'] =
-   '<p>' . t('You will find here a description of our company soon. Please visit our website in the meanwhile.') . '</p>';
+  if (!empty($arg['c4m_about_us'])) {
+    $node->field_c4m_about_us[LANGUAGE_NONE][0]['format'] = $arg['c4m_about_us'][LANGUAGE_NONE][0]['format'];
+    $node->field_c4m_about_us[LANGUAGE_NONE][0]['value'] = $arg['c4m_about_us'][LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    $node->field_c4m_about_us[LANGUAGE_NONE][0]['format'] = 'filtered_html';
+    $node->field_c4m_about_us[LANGUAGE_NONE][0]['value'] = '<p>' . t('You will find here a description of our company soon. Please visit our website in the meanwhile.') . '</p>';
+  }
 
   // Set paragraphs for left column.
   $node_field = 'c4m_left_column';
