@@ -209,7 +209,6 @@ function c4m_user_field_formatter_view($entity_type, $entity, $field, $instance,
   return $element;
 }
 
-
 /**
  * Helper function to render C4M user image based on a user entity.
  *
@@ -681,7 +680,7 @@ function c4m_user_menu() {
   );
 
   // Remove this item for EASME.
-  unset ($items['admin/config/c4m/organisation-validator']);
+  unset($items['admin/config/c4m/organisation-validator']);
 
   // Callbacks to provide tailored access denied behaviour.
   $items['access-denied'] = array(
@@ -725,17 +724,14 @@ function c4m_user_access_denied() {
 function c4m_user_access_denied_ecas() {
   if (user_is_anonymous()) {
     $welcome_message = t('Welcome to EIC Community! To get started, please authenticate.');
-    $cta = l(
-      t('Authenticate using EU Login'),
-      'ecas', array(
-        'attributes' => array(
-          'class' => array(
-            'btn',
-            'btn-warning',
-          )
-        )
-      )
-    );
+    $cta = l(t('Authenticate using EU Login'), 'ecas', [
+      'attributes' => [
+        'class' => [
+          'btn',
+          'btn-warning',
+        ],
+      ],
+    ]);
 
     $warning_message = '';
     if (!empty(request_uri())
@@ -743,14 +739,11 @@ function c4m_user_access_denied_ecas() {
       $warning_message .= '<div class="alert alert-warning"><h2 class="ecl-heading ecl-heading--h2">' . t('Account not approved') . '</h2>';
       $warning_message .= '<p>' . variable_get('ecas_warning_message', t('Your account is not yet approved')) . '</p></div>';
     }
-    return theme(
-      'kapablo_anonymous_welcome',
-      array(
-        'welcome_message' => $welcome_message,
-        'cta' => $cta,
-        'warning_message' => $warning_message
-      )
-    );
+    return theme('kapablo_anonymous_welcome', [
+      'welcome_message' => $welcome_message,
+      'cta' => $cta,
+      'warning_message' => $warning_message,
+    ]);
   }
   else {
     // Access denied message for authenticated users.
@@ -826,7 +819,6 @@ function c4m_user_contact_form_access($account) {
  * Create 'Contact User' form.
  */
 function c4m_user_contact_form($form, &$form_state, $account) {
-  global $user;
   $form_state['addressee_user'] = $account;
 
   $form['c4m_contact_user_from'] = array(
@@ -1329,8 +1321,7 @@ function c4m_user_get_node_metric($uid, array $bundles) {
  *
  * Using hook_c4m_offcanvas_trigger_label_left_alter().
  */
-function c4m_user_c4m_offcanvas_trigger_label_left_alter(array &$trigger_label
-) {
+function c4m_user_c4m_offcanvas_trigger_label_left_alter(array &$trigger_label) {
   if (arg(0) == 'people' && empty(arg(1))) {
     $trigger_label['label'] = t('Filter results');
     $trigger_label['icon'] = 'filter';
@@ -1372,11 +1363,7 @@ function c4m_user_module_implements_alter(&$implementations, $hook) {
  *
  * Updates value of submit button and remove the header.
  */
-function c4m_user_form_views_form_c4m_overview_og_members_page_alter(
-  &$form,
-  &$form_state,
-  $form_id
-) {
+function c4m_user_form_views_form_c4m_overview_og_members_page_alter(&$form, &$form_state, $form_id) {
   // Remove the 'Operations' header.
   $form['select']['#title'] = '';
 
