@@ -1,6 +1,7 @@
-.btn, .button.browse, .button.edit, .ecl-button, .addtocal,
+.btn, .button.browse, .button.edit, .ecl-button, .addtocal, .button-no,
 .search-api-sort button.dropdown-toggle,
-.media-browser-tab .form-actions a.fake-submit {
+.media-browser-tab .form-actions a.fake-submit,
+input.form-submit {
     max-width: 100%;
     padding: 13px 20px;
     min-height: 48px;
@@ -24,6 +25,11 @@
     text-decoration: underline;
 }
 
+.button-no, input.form-submit {
+    display: inline-block;
+    vertical-align: top;
+}
+
 .search-api-sort button.dropdown-toggle, .search-api-sort.open button.dropdown-toggle, .search-api-sort button.dropdown-toggle:hover, .search-api-sort.open button.dropdown-toggle:hover {
     border: solid 2px;
 }
@@ -34,9 +40,10 @@
     }
 }
 
-.btn:focus, .button.browse:focus, .addtocal:focus,
+.btn:focus, .button.browse:focus, .addtocal:focus, .button-no:focus,
 .search-api-sort button.dropdown-toggle:focus,
-.media-browser-tab .form-actions a.fake-submit:focus {
+.media-browser-tab .form-actions a.fake-submit:focus,
+input.form-submit:focus {
     @include css-var("outline", "ec-yellow-100", "solid 2px", "!important");
     outline-offset: -2px;
 }
@@ -67,13 +74,14 @@
 .ecl-button--primary,
 .btn-group-discussion_type .discussion_type.active,
 .addtocal,
-.media-browser-tab .form-actions a.fake-submit {
+.media-browser-tab .form-actions a.fake-submit,
+input.form-submit
+{
     @include css-var("border-color", "ec-blue-100");
 }
 
-.addtocal {
+.addtocal, input.form-submit {
     @include css-var("background-color", "ec-blue-100");
-    @include css-var("color", "ec-blue-100");
     color: #fff;
 }
 
@@ -81,7 +89,8 @@
 .btn-info:active:hover, .btn-info:active:focus, .btn-info:active.focus, .btn-info.active:hover, .btn-info.active:focus, .btn-info.active.focus, .open>.btn-info.dropdown-toggle:hover, .open>.btn-info.dropdown-toggle:focus, .open>.btn-info.dropdown-toggle.focus,
 .ecl-button--primary:hover, .ecl-button--primary:focus, .ecl-button--primary:active,
 .addtocal:hover, .addtocal:focus, .addtocal:active,
-.media-browser-tab .form-actions a.fake-submit:hover, .media-browser-tab .form-actions a.fake-submit:focus, .media-browser-tab .form-actions a.fake-submit:active
+.media-browser-tab .form-actions a.fake-submit:hover, .media-browser-tab .form-actions a.fake-submit:focus, .media-browser-tab .form-actions a.fake-submit:active,
+input.form-submit:hover, input.form-submit:focus, input.form-submit:active
 {
     background-color: transparent !important;
     @include css-var("border-color", "ec-blue-100");
@@ -96,7 +105,9 @@
 
 .btn-default, .button.edit,
 .search-api-sort button.dropdown-toggle,
-.btn-group-discussion_type .discussion_type {
+.btn-group-discussion_type .discussion_type,
+.button-no
+{
     background-color: transparent;
     @include css-var("border-color", "ec-blue-100");
     @include css-var("color", "ec-blue-100");
@@ -104,7 +115,9 @@
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:focus,
 .button.edit:hover, .button.edit:focus, .button.edit:active, .button.edit:active:focus,
-.search-api-sort button.dropdown-toggle:hover, .search-api-sort button.dropdown-toggle:focus, .search-api-sort.open button.dropdown-toggle, .search-api-sort.open button.dropdown-toggle:hover {
+.search-api-sort button.dropdown-toggle:hover, .search-api-sort button.dropdown-toggle:focus, .search-api-sort.open button.dropdown-toggle, .search-api-sort.open button.dropdown-toggle:hover,
+.button-no:hover, .button-no:focus, .button-no:active
+{
     @include css-var("background-color", "ec-blue-100");
     @include css-var("border-color", "ec-blue-100");
     color: #fff;

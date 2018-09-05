@@ -2,7 +2,6 @@
     display: inline-block;
 }
 
-
 .form-control {
     &:focus {
         @include css-var("outline", "ec-yellow-100", "solid 2px");
@@ -41,6 +40,31 @@
     }
 }
 
+.form-text {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 6px 12px;
+    @include css-var("border", "ec-grey-50", "solid 1px");
+    font-size: 18px;
+    line-height: 1.42857;
+    font-style: normal;
+
+    &:focus {
+        @include css-var("outline", "ec-yellow-100", "solid 2px");
+        outline-offset: -3px;
+    }
+}
+
+.form-text {
+    + .description {
+        margin-top: 0.5em;
+    }
+}
+
+.form-group {
+    margin-bottom: 1em;
+}
 
 .form-submit {
     &:focus,
@@ -50,8 +74,26 @@
     }
 }
 
+.form-actions {
+    input, a, button {
+        &:not(:last-child) {
+            margin-right: 1em;
+        }
+    }
+}
+
 .form-managed-file {
     @include css-var("border", "ec-grey-100", "solid 1px");
+}
+
+.file-form {
+    div[class*="form-type"] {
+        margin-bottom: 1em;
+    }
+
+    .manualcrop-style-button-holder {
+        margin-bottom: 1em;
+    }
 }
 
 .input-group {
@@ -67,6 +109,18 @@
         width: auto;
         .btn {
             font-size: 16px;
+        }
+    }
+    &-addon {
+        border-radius: 0;
+        @include css-var("border-color", "ec-grey-50");
+        @include css-var("background-color", "ec-grey-15");
+        @include css-var("color", "ec-blue-100");
+        &:hover,
+        &:focus {
+            @include css-var("border-color", "ec-blue-100");
+            @include css-var("background-color", "ec-blue-100");
+            color: #fff;
         }
     }
     &-btn {
@@ -275,11 +329,6 @@ fieldset {
             @include css-var("color", "ec-grey-100");
         }
     }
-}
-
-
-.form-group {
-    margin-bottom: 1em;
 }
 
 

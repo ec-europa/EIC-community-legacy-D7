@@ -1,38 +1,68 @@
-.media-item {
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-}
+.media {
+    &-item {
+        background: none;
+        border: none;
+        box-shadow: none;
+        padding: 0;
 
-.media-widget {
-    @include css-var("border", "ec-grey-100", "solid 1px");
-
-    .preview {
-        margin-right: 0;
-        .media-item {
-            margin-right: 10px;
+        .label-wrapper {
+            label {
+                display: block;
+                padding: 5px;
+                margin-bottom: 0;
+                font-size: 12px;
+                font-weight: normal;
+            }
         }
     }
 
-    .manualcrop-preview {
-        float: left;
+    &-widget {
+        @include css-var("border", "ec-grey-100", "solid 1px");
+
+        .preview {
+            margin-right: 0;
+            font-size: 0;
+            line-height: 1;
+            .media-item {
+                margin-right: 10px;
+            }
+        }
+
+        .manualcrop-preview {
+            float: left;
+        }
+
+        .button, .btn {
+            float: right;
+            margin: -1px;
+            margin-left: 10px;
+        }
     }
 
-    .button, .btn {
-        float: right;
-        margin: -1px;
-        margin-left: 10px;
+    &-browser-tab {
+        font-size: 1rem;
+
+        .form-actions {
+            margin-top: 1em;
+            a.fake-submit {
+                display: inline-block;
+            }
+        }
     }
-}
 
-.media-browser-tab {
-    font-size: 1rem;
+    &-thumbnail {
+        img {
+            padding: 0;
+        }
+    }
 
-    .form-actions {
-        margin-top: 1em;
-        a.fake-submit {
-            display: inline-block;
+    &-list-thumbnails {
+        .media-item {
+            .label-wrapper {
+                label {
+                    @include css-var("color", "ec-blue-100");
+                }
+            }
         }
     }
 }
@@ -46,4 +76,9 @@
     #branding {
         padding: 0;
     }
+}
+
+#media-browser-library-list {
+    font-size: 0;
+    line-height: 1;
 }
