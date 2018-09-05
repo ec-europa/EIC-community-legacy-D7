@@ -137,8 +137,23 @@
 }
 
 
-.vertical-tabs-panes {
-    margin-bottom: 1em;
+.vertical-tabs {
+    .form-type-textfield {
+        input {
+            box-sizing: border-box;
+        }
+    }
+
+    &-panes {
+        margin-bottom: 1em;
+    }
+}
+
+
+div.vertical-tabs {
+    .vertical-tabs-list {
+        border-bottom: none;
+    }
 }
 
 

@@ -18,7 +18,6 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 @import "components/breadcrumb";
 @import "components/button";
 @import "components/carousel";
-@import "components/datepicker";
 @import "components/dropdown";
 @import "components/event";
 @import "components/footer";
@@ -39,6 +38,8 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 @import "components/ui";
 @import "components/user";
 @import "components/view";
+
+@import "components/datepicker";
 
 
 
@@ -523,6 +524,18 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 
 .redirect-list {
     width: 100%;
+}
+
+.loading-spinner {
+    .progress {
+        margin-bottom: 0;
+    }
+}
+
+.admin-list {
+    dd {
+        margin-bottom: 1em;
+    }
 }
 
 

@@ -39,6 +39,9 @@
         padding: 1em;
         overflow-x: hidden;
         overflow-y: auto;
+        &.ctools-modal-loading {
+            min-height: 200px;
+        }
     }
 }
 

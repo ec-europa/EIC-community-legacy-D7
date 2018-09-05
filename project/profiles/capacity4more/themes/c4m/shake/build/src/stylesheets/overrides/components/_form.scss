@@ -9,6 +9,8 @@
     }
 
     &:not(.form-file) {
+        box-sizing: border-box;
+        width: 100%;
         @include css-var("border-color", "ec-grey-50");
         box-shadow: none;
         border-radius: 0;
@@ -57,7 +59,8 @@
 }
 
 .form-text {
-    + .description {
+    + .description,
+    + small {
         margin-top: 0.5em;
     }
 }
