@@ -284,7 +284,7 @@ function c4m_web_services_services_request_preprocess_alter(array $controller, a
                 // Term with name not found, throw error.
                 // Indicate the field they tried to populate with the term
                 // that was not found.
-                $message = t('Error when searching for taxonomy term with key: @term_name.
+                $message = t('Error when searching for taxonomy term with key: @term_key.
                  Term was intended for field @field_name.', [
                    '@field_name' => $field_name,
                    '@term_key' => $term_key,
