@@ -13,3 +13,22 @@ function c4m_content_group_install() {
   // It can then be overridden without interfere the feature settings.
   variable_set('pathauto_node_group_pattern', 'group/[node:title]');
 }
+
+/**
+ * Update the format of the c4m_body field for groups.
+ */
+function c4m_content_group_update_7001() {
+  db_update('field_data_c4m_body')
+    ->fields([
+      'c4m_body_format' => 'basic_text',
+    ])
+    ->condition('bundle', 'group')
+    ->execute();
+
+  db_update('field_revision_c4m_body')
+    ->fields([
+      'c4m_body_format' => 'basic_text',
+    ])
+    ->condition('bundle', 'group')
+    ->execute();
+}
