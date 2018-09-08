@@ -688,11 +688,11 @@ function c4m_web_services_taxonomy_get_term_by_key($dashboard_key, $vocabulary) 
  * @param int $organisation_dashboard_id
  *   Dashboard id of the node.
  *
- * @return object
- *   A node object.
+ * @return bool|object
+ *   A node object. FALSE if no node found.
  */
 function c4m_web_services_get_existing_node($organisation_dashboard_id) {
-  $node = [];
+  $node = FALSE;
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'organisation')
@@ -702,8 +702,8 @@ function c4m_web_services_get_existing_node($organisation_dashboard_id) {
 
   $result = $query->execute();
   if (isset($result['node'])) {
-    $node_item = array_pop(array_keys($result['node']));
-    $node = node_load($node_item);
+    $node = array_shift($result['node']);
+    $node = node_load($node->nid);
   }
   return $node;
 }
