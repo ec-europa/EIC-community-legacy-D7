@@ -745,7 +745,7 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_about_us';
   $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('About us');
   $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
-  $paragraph->save();
+  $paragraph->save(TRUE);
 
   // Latest news block.
   $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
@@ -754,7 +754,7 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'views:c4m_project_news-block';
   $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('Latest news');
   $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
-  $paragraph->save();
+  $paragraph->save(TRUE);
 
   // Latest activity block.
   $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
@@ -763,7 +763,7 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_as';
   $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('Latest activity');
   $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
-  $paragraph->save();
+  $paragraph->save(TRUE);
 
   // Set paragraphs for right column.
   $node_field = 'c4m_right_column';
@@ -773,7 +773,7 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_about';
   $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
-  $paragraph->save();
+  $paragraph->save(TRUE);
 
   // Customers block.
   $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
@@ -781,7 +781,7 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_customers';
   $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
-  $paragraph->save();
+  $paragraph->save(TRUE);
 
   // Partners block.
   $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
@@ -789,7 +789,7 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_partners';
   $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
-  $paragraph->save();
+  $paragraph->save(TRUE);
 
   // Organisation's groups.
   $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
@@ -797,7 +797,7 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_groups';
   $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
-  $paragraph->save();
+  $paragraph->save(TRUE);
 
   // Save the node.
   node_save($node);
