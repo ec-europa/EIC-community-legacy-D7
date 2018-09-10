@@ -45,3 +45,21 @@
     @include css-var("background-color", "ec-red-n");
     color: #fff;
 }
+
+.label-warning {
+    @include css-var("background-color", "ec-orange-n");
+    color: #fff;
+}
+
+.label-success {
+    @include css-var("background-color", "ec-green-n");
+    color: #fff;
+}
+
+.has-warning .help-block, .has-warning .control-label, .has-warning .radio, .has-warning .checkbox, .has-warning .radio-inline, .has-warning .checkbox-inline, .has-warning.radio label, .has-warning.checkbox label, .has-warning.radio-inline label, .has-warning.checkbox-inline label {
+    @include css-var("color", "ec-orange-n");
+}
+
+.has-success .help-block, .has-success .control-label, .has-success .radio, .has-success .checkbox, .has-success .radio-inline, .has-success .checkbox-inline, .has-success.radio label, .has-success.checkbox label, .has-success.radio-inline label, .has-success.checkbox-inline label {
+    @include css-var("color", "ec-green-n");
+}

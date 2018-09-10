@@ -1,0 +1,24 @@
+.progress {
+    border-radius: 0;
+    box-shadow: none;
+    @include css-var("background-color", "ec-grey-5");
+
+    .loading-spinner & {
+        margin-bottom: 0;
+    }
+
+    &-bar {
+        box-shadow: none;
+        @include css-var("background-color", "ec-blue-100");
+
+        &-danger {
+            @include css-var("background-color", "ec-red-n");
+        }
+        &-warning {
+            @include css-var("background-color", "ec-orange-n");
+        }
+        &-success {
+            @include css-var("background-color", "ec-green-n");
+        }
+    }
+}

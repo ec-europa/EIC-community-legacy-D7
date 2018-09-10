@@ -1,0 +1,26 @@
+#user-profile-form {
+    .form-group {
+        .form-group {
+            margin-bottom: 1em;
+        }
+
+        .draggable {
+            .form-group {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 860px) {
+    #user-register-form,
+    #user-profile-form {
+        .form-control {
+            &:not(.form-select),
+            &.form-select[multiple] {
+                width: 100%;
+            }
+        }
+    }
+}

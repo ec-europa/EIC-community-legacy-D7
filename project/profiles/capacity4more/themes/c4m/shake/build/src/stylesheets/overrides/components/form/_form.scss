@@ -11,6 +11,7 @@
     &:not(.form-file) {
         box-sizing: border-box;
         width: 100%;
+        max-width: 100%;
         @include css-var("border-color", "ec-grey-50");
         box-shadow: none;
         border-radius: 0;
@@ -19,8 +20,9 @@
         font-style: normal;
 
         &.form-select {
-            width: auto;
-            border-width: 2px;
+            &:not([multiple]) {
+                width: auto;
+            }
         }
 
         .node-form & {
@@ -35,6 +37,24 @@
         &,
         &:focus {
             @include css-var("border-color", "ec-red-n");
+        }
+        &:focus {
+            box-shadow: none;
+        }
+    }
+    .has-warning & {
+        &,
+        &:focus {
+            @include css-var("border-color", "ec-orange-n");
+        }
+        &:focus {
+            box-shadow: none;
+        }
+    }
+    .has-success & {
+        &,
+        &:focus {
+            @include css-var("border-color", "ec-green-n");
         }
         &:focus {
             box-shadow: none;
@@ -60,7 +80,8 @@
 
 .form-text {
     + .description,
-    + small {
+    + small,
+    + .help-block {
         margin-top: 0.5em;
     }
 }
@@ -334,8 +355,41 @@ fieldset {
     }
 }
 
-
 .text-summary-wrapper,
 .field-name-c4m-location-address .panel-body > *, .field-name-c4m-location-address .panel-body > .form-group, .field-name-c4m-location-address .panel-body > * > .form-group {
     margin-bottom: 1em;
+}
+
+.help-block {
+    margin: 1em 0 2em 0;
+    color: currentColor;
+
+    .row > & {
+        width: 100%;
+        float: left;
+        clear: both;
+    }
+}
+
+div.addressfield-container-inline > div.form-item {
+    float: none;
+    margin-right: 0;
+}
+
+.control-label {
+    .form-type-select > & {
+        margin-right: 1em;
+    }
+}
+
+
+
+@media (min-width: 860px) {
+    .form-inline,
+    #c4m-search-filter-search-filter-form,
+    #c4m-features-homepage-filter-form-create {
+        .form-item {
+            margin-left: 1em;
+        }
+    }
 }

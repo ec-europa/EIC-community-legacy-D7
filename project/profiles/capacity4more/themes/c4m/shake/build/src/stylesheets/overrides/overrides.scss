@@ -21,7 +21,8 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 @import "components/dropdown";
 @import "components/event";
 @import "components/footer";
-@import "components/form";
+@import "components/form/form";
+@import "components/form/user";
 @import "components/group";
 @import "components/header";
 @import "components/label";
@@ -30,16 +31,17 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 @import "components/navigation";
 @import "components/pager";
 @import "components/pane";
+@import "components/progress";
 @import "components/project";
 @import "components/sidebar";
 @import "components/statistics";
 @import "components/table";
 @import "components/tags";
-@import "components/ui";
+@import "components/ui/ui";
+@import "components/ui/datepicker";
 @import "components/user";
 @import "components/view";
 
-@import "components/datepicker";
 
 
 
@@ -524,12 +526,6 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 
 .redirect-list {
     width: 100%;
-}
-
-.loading-spinner {
-    .progress {
-        margin-bottom: 0;
-    }
 }
 
 .admin-list {
