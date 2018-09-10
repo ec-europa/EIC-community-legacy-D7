@@ -88,6 +88,10 @@
 
 .form-group {
     margin-bottom: 1em;
+
+    .draggable & {
+        margin-bottom: 0;
+    }
 }
 
 .form-submit {
@@ -381,6 +385,39 @@ div.addressfield-container-inline > div.form-item {
         margin-right: 1em;
     }
 }
+
+.date-no-float {
+    width: 100%;
+}
+
+.container-inline-date {
+    max-width: 400px;
+    .date-padding {
+        float: none;
+    }
+    .form-item {
+        input,
+        select,
+        option {
+            margin-right: 0;
+        }
+        input {
+            width: 100%;
+        }
+        .form-item {
+            width: calc(50% - 0.5em);
+            &:nth-child(2n+1) {
+                margin-right: 1em;
+            }
+        }
+    }
+    > .form-item {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
 
 
 
