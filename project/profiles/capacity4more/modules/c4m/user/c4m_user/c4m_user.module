@@ -1494,26 +1494,3 @@ function c4m_user_login_administrator_validate($form, &$form_state) {
   form_set_error('', t('Only site administrators can login.'));
   return FALSE;
 }
-
-/**
- * Implements hook_node_access().
- *
- * Allow anonymous users to view the "/conditions" page.
- */
-function c4m_user_node_access($node, $op, $account) {
-  if ($account->uid !== 0) {
-    return NODE_ACCESS_IGNORE;
-  }
-  if (!is_object($node)) {
-    return NODE_ACCESS_IGNORE;
-  }
-  if ($node->type !== 'book') {
-    return NODE_ACCESS_IGNORE;
-  }
-  if ($op !== 'view') {
-    return NODE_ACCESS_IGNORE;
-  }
-  if (request_path() === 'conditions') {
-    return NODE_ACCESS_ALLOW;
-  }
-}
