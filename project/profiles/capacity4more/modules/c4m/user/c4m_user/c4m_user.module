@@ -723,12 +723,13 @@ function c4m_user_access_denied() {
  */
 function c4m_user_access_denied_ecas() {
   if (user_is_anonymous()) {
+    $sign_up_url = variable_get('c4m_user_sign_up_url', 'https://entrypoint-smei.easme-web.eu/admissions/entry');
     $header = t('Welcome to EIC Community! To get started, please authenticate.');
     $sub_header = t('<p>The EIC pilot supports market-creating innovation in small and medium-sized businesses that have significant growth potential and global ambitions.</p>');
-    $cta_1 = l(t('Login / Register using EU login'), 'ecas', [
+    $cta_1 = l(t('Access via EU login'), 'ecas', [
       'attributes' => ['class' => ['btn', 'btn-primary']],
     ]);
-    $cta_2 = l(t('Create EU login account'), 'ecas', [
+    $cta_2 = l(t('Sign up'), $sign_up_url, [
       'attributes' => ['class' => ['btn', 'btn-warning']],
     ]);
 
