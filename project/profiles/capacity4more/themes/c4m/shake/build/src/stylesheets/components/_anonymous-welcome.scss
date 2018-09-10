@@ -8,7 +8,17 @@
   .cta {
     margin-top: 3em;
   }
-  .btn-warning {
-    margin-left: 2em;
+  .btn {
+    @media (max-width: 859px) {
+      display: block;
+    }
+    &:not(:last-child) {
+      @media (max-width: 859px) {
+        margin-bottom: 2em;
+      }
+      @media (min-width: 860px) {
+        margin-right: 2em;
+      }
+    }
   }
 }
