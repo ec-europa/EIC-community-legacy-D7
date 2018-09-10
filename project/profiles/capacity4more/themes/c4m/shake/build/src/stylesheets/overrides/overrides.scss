@@ -3,16 +3,6 @@
 @import "base/typography";
 
 
-h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, .view-mode-group_dashboard .control-label, .h2, h3, .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, .h3 {
-    margin-top: 0;
-}
-
-.closely+h1, .closely+.group-title, .view-mode-full.user-profile .group-left .closely+.user-name, .closely+h2, .view-mode-group_dashboard .closely+.control-label, .closely+h3, .view-mode-highlight_list .closely+.field-name-c4m-ds-content-type-icon, .closely+h4, .closely+h5, .closely+h6
-{
-    margin: 10px 0 20px 0;
-}
-
-
 @import "components/activity";
 @import "components/alert";
 @import "components/breadcrumb";
@@ -80,9 +70,14 @@ h1, .group-title, .view-mode-full.user-profile .group-left .user-name, .h1, h2, 
 
 
 .close {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
     opacity: 1;
     text-shadow: none;
-    color: currentColor;
+    color: #000;
+    border: solid 1px;
+    text-align: center;
     &:hover,
     &:focus {
         opacity: 1;
