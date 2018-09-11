@@ -37,6 +37,5 @@ features[variable][] = smtp_previous_mail_system
 features[variable][] = smtp_protocol
 features[variable][] = smtp_queue
 features[variable][] = smtp_queue_fail
-features[variable][] = smtp_reroute_address
 features[variable][] = smtp_username
 files[] = inc/messages.inc

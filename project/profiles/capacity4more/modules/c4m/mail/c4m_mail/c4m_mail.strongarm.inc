@@ -206,13 +206,6 @@ function c4m_mail_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'smtp_reroute_address';
-  $strongarm->value = 'eic.community@gmail.com';
-  $export['smtp_reroute_address'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'smtp_username';
   $strongarm->value = 'apikey';
   $export['smtp_username'] = $strongarm;
