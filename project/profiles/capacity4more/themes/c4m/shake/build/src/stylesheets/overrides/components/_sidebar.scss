@@ -1,14 +1,20 @@
-.sidebarblock h2, .offCanvasNavigation--right h2, .contextual-links-region > .row > .col-sm-4 h2 {
+.sidebarblock h2, .offCanvasNavigation--right h2,
+.contextual-links-region > .row > .col-sm-4 h2,
+.node-wiki-page .group-left h2 {
     font-size: 18px;
     line-height: 1.2;
 }
 
-.sidebarblock h3, .offCanvasNavigation--right h3, .contextual-links-region > .row > .col-sm-4 h3 {
+.sidebarblock h3, .offCanvasNavigation--right h3,
+.contextual-links-region > .row > .col-sm-4 h3,
+.node-wiki-page .group-left h3 {
     font-size: 17px;
     line-height: 1.2;
 }
 
-.sidebarblock h4, .offCanvasNavigation--right h4, .contextual-links-region > .row > .col-sm-4 h4 {
+.sidebarblock h4, .offCanvasNavigation--right h4,
+.contextual-links-region > .row > .col-sm-4 h4,
+.node-wiki-page .group-left h4 {
     font-size: 16px;
     line-height: 1.2;
 }
@@ -54,5 +60,19 @@
     &-top {
         @include css-var("background", "ec-grey-5");
         padding: 10px 15px;
+    }
+}
+
+
+.node-wiki-page {
+    .group-left {
+        @include css-var("background-color", "ec-grey-5");
+        border: none;
+        padding: 10px 15px;
+
+        &.sidebar-collapsed {
+            background: none;
+            padding: 0;
+        }
     }
 }

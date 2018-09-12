@@ -231,7 +231,8 @@
 }
 
 .view-mode-full:not(.node-wiki-page)>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse) .view-mode-block_lis:last-child,
-.view-mode-full>.content>.group-right>section .views-row, .view-mode-full>.content>.group-right>section .detail-element, .view-mode-full>.content>.group-right>section .view-mode-block_list, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .views-row, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .detail-element, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .view-mode-block_list, .view-mode-full.node-wiki-page>.content>.group-left>section .views-row, .view-mode-full.node-wiki-page>.content>.group-left>section .detail-element, .view-mode-full.node-wiki-page>.content>.group-left>section .view-mode-block_list, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .views-row, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .detail-element, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .view-mode-block_list {
+.view-mode-full>.content>.group-right>section .views-row, .view-mode-full>.content>.group-right>section .detail-element, .view-mode-full>.content>.group-right>section .view-mode-block_list, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .views-row, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .detail-element, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .view-mode-block_list, .view-mode-full.node-wiki-page>.content>.group-left>section .views-row, .view-mode-full.node-wiki-page>.content>.group-left>section .detail-element, .view-mode-full.node-wiki-page>.content>.group-left>section .view-mode-block_list, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .views-row, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .detail-element, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) .view-mode-block_list,
+.view-mode-full>.content>.group-right>section, .view-mode-full>.content>.group-right>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child), .view-mode-full.node-wiki-page>.content>.group-left>section, .view-mode-full.node-wiki-page>.content>.group-left>div:not(.field-name-c4m-content-wiki-page-collapse):not(:last-child) {
     border-bottom: none;
 }
 
@@ -531,6 +532,11 @@
 
 .preview .node {
     @include css-var("background-color", "ec-yellow-25");
+}
+
+
+.wiki-add-links {
+    @include css-var("border-top", "ec-grey-25", "solid 1px");
 }
 
 
