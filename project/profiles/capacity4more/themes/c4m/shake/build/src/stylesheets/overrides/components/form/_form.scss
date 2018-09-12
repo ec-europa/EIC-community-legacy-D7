@@ -294,6 +294,10 @@ fieldset {
     color: #fff !important;
 }
 
+#c4m-search-filter-search-filter-form .form-item input, #c4m-features-homepage-filter-form-create .form-item input {
+    margin-right: 0;
+}
+
 #c4m-features-og-manage-categories-overview-form {
     > div > * {
         margin-bottom: 2em;
@@ -436,5 +440,9 @@ div.addressfield-container-inline > div.form-item {
         .form-item {
             margin-left: 1em;
         }
+    }
+
+    .form-inline .radio input[type="radio"], #c4m-search-filter-search-filter-form .radio input[type="radio"], #c4m-features-homepage-filter-form-create .radio input[type="radio"], .form-inline .checkbox input[type="checkbox"], #c4m-search-filter-search-filter-form .checkbox input[type="checkbox"], #c4m-features-homepage-filter-form-create .checkbox input[type="checkbox"] {
+        position: absolute;
     }
 }

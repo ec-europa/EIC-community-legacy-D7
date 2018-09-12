@@ -8,6 +8,12 @@
         line-height: 1;
         font-weight: bold;
         cursor: default;
+
+        #c4m-features-homepage-filter-form-create &,
+        #c4m-search-filter-search-filter-form & {
+            font-size: 14px;
+            font-weight: normal;
+        }
     }
     .control-label {
         display: block;
@@ -33,6 +39,7 @@
         + span {
             display: block;
             padding: 2px 0 0 30px;
+            min-height: 22px;
             overflow: hidden;
             word-wrap: break-word;
             &::before {
