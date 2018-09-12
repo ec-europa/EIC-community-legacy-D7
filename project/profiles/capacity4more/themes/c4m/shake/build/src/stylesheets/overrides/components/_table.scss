@@ -49,6 +49,11 @@ a.tabledrag-handle {
         height: 100%;
         margin-left: 0;
         float: none;
+
+        + a {
+            position: relative;
+            z-index: 1;
+        }
     }
 
     &,
@@ -66,5 +71,9 @@ form .field-multiple-table td.field-multiple-drag {
 .draggable {
     .control-label {
         @include visually-hidden;
+    }
+
+    td {
+        position: relative;
     }
 }
