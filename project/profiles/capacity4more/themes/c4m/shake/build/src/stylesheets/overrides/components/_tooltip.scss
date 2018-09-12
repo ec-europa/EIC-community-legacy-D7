@@ -1,0 +1,40 @@
+.tooltip {
+    font-family: Arial, sans-serif;
+    line-height: 1.2;
+
+    &-inner {
+        min-width: 150px;
+        padding: 5px;
+        @include css-var("background-color", "ec-yellow-100");
+        @include css-var("color", "ec-grey-100");
+        border-radius: 0;
+    }
+
+    &.top {
+        .tooltip-arrow {
+            @include css-var("border-top-color", "ec-yellow-100");
+        }
+    }
+
+    &.bottom {
+        .tooltip-arrow {
+            @include css-var("border-bottom-color", "ec-yellow-100");
+        }
+    }
+
+    &.left {
+        .tooltip-arrow {
+            @include css-var("border-left-color", "ec-yellow-100");
+        }
+    }
+
+    &.right {
+        .tooltip-arrow {
+            @include css-var("border-right-color", "ec-yellow-100");
+        }
+    }
+
+    &.in {
+        opacity: 1;
+    }
+}
