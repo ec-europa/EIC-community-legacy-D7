@@ -99,6 +99,10 @@
         }
     }
 
+    + .radio {
+        margin-top: 1em;
+    }
+
     &.has-error {
         label {
             @include css-var("color", "ec-grey-100");
@@ -109,6 +113,22 @@
                     @include css-var("outline", "ec-red-n", "solid 2px");
                 }
             }
+        }
+    }
+
+    #edit-pluggable-group-access & {
+        display: inline-block;
+        vertical-align: top;
+        &:not(:last-child) {
+            margin-right: 1em;
+        }
+    }
+
+    .popover & {
+        margin: 0.5em 0;
+        label {
+            font-size: 1em;
+            font-weight: normal;
         }
     }
 }

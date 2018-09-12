@@ -24,6 +24,7 @@
 @import "components/navigation";
 @import "components/pager";
 @import "components/pane";
+@import "components/popover";
 @import "components/progress";
 @import "components/project";
 @import "components/sidebar";
@@ -491,7 +492,7 @@
         .c4m-created-on-date {
             border-top: none;
             border-bottom: none;
-            @include css-var("background-color", "ec-yellow-100");
+            @include css-var("background-color", "ec-yellow-25");
         }
     }
 }

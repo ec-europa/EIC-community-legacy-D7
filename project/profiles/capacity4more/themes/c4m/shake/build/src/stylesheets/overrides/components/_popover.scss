@@ -1,0 +1,12 @@
+.popover {
+    padding: 0;
+    font-family: Arial, sans-serif;
+    @include css-var("background-color", "ec-grey-5");
+    @include css-var("border-color", "ec-grey-50");
+    border-radius: 0;
+    box-shadow: none;
+
+    &-content {
+        color: inherit;
+    }
+}
