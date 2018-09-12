@@ -113,9 +113,16 @@
 
         li {
             @include css-var("color", "ec-blue-110");
+            &::before {
+                position: absolute;
+                left: 0;
+                top: 10px;
+            }
             a {
+                display: block;
                 font-size: 1rem;
                 font-weight: bold;
+                padding-left: 2em;
                 &:hover {
                     color: currentColor;
                     text-decoration: none;
@@ -131,6 +138,25 @@
             }
             &:not(:last-of-type) {
                 @include css-var("border-bottom", "ec-blue-75", "solid 1px");
+            }
+
+            .dropdown-menu {
+                a {
+                    padding: 10px 15px 10px 2em;
+                    font-weight: normal;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    .dropdown-menu {
+        ul {
+            padding-left: 0;
+            li {
+                padding: 0;
             }
         }
     }
@@ -156,6 +182,23 @@ div.vertical-tabs {
     }
 }
 
+
+@media (max-width: 859px) {
+    .group-navigation {
+        .dropdown-menu {
+            margin: 0 -18px;
+            padding: 0 18px;
+        }
+    }
+
+    .navbar-nav {
+        .open {
+            .dropdown-menu {
+                @include css-var("background-color", "ec-grey-5");
+            }
+        }
+    }
+}
 
 
 @media (max-width: 860px) {
@@ -204,7 +247,9 @@ div.vertical-tabs {
                         z-index: 1;
                     }
                 }
-                &::before,
+                &::before {
+                    color: currentColor;
+                }
                 a {
                     position: relative;
                     z-index: 2;
@@ -319,12 +364,14 @@ div.vertical-tabs {
                     border-right: none;
                     border-bottom: none;
                 }
-                &::before,
-                a {
+                &::before {
+                    left: 1em;
+                    top: 16px;
                     color: currentColor;
                 }
                 a {
                     position: static;
+                    color: currentColor;
                     &::before {
                         content: "";
                         display: block;
@@ -339,6 +386,24 @@ div.vertical-tabs {
                 &.active {
                     @include css-var("background-color", "ec-blue-75");
                     color: #fff;
+                }
+            }
+        }
+
+        .dropdown-menu {
+            ul {
+                display: block;
+                margin-left: 0;
+                height: auto;
+                li {
+                    display: block;
+                    &:first-of-type {
+                        padding-top: 0;
+                    }
+                    a {
+                        text-align: left;
+                        padding-left: 15px;
+                    }
                 }
             }
         }
