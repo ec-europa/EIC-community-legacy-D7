@@ -40,6 +40,7 @@
                 width: 20px;
                 height: 20px;
                 margin-right: 10px;
+                background: #fff;
                 @include css-var("border", "ec-grey-25", "solid 2px");
                 border-radius: 3px;
             }
@@ -107,6 +108,34 @@
             + span {
                 &::before {
                     @include css-var("outline", "ec-red-n", "solid 2px");
+                }
+            }
+        }
+    }
+}
+
+
+.form-item-search-within-results {
+    label {
+        span {
+            padding: 0;
+            &::before {
+                position: static;
+                left: auto;
+                top: auto;
+                display: inline-flex;
+                width: 20px;
+                height: 20px;
+                background: #fff;
+            }
+        }
+    }
+    input[type="checkbox"] {
+        display: block;
+        &:checked {
+            ~ span {
+                &::before {
+                    content: "";
                 }
             }
         }

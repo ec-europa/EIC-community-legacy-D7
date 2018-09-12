@@ -90,7 +90,8 @@ input.form-submit
 .ecl-button--primary:hover, .ecl-button--primary:focus, .ecl-button--primary:active,
 .addtocal:hover, .addtocal:focus, .addtocal:active,
 .media-browser-tab .form-actions a.fake-submit:hover, .media-browser-tab .form-actions a.fake-submit:focus, .media-browser-tab .form-actions a.fake-submit:active,
-input.form-submit:hover, input.form-submit:focus, input.form-submit:active
+input.form-submit:hover, input.form-submit:focus, input.form-submit:active,
+.views-submit-button button:hover, .views-submit-button button:focus, .views-submit-button button:active, .views-submit-button button:active:hover
 {
     background-color: transparent !important;
     @include css-var("border-color", "ec-blue-100");
