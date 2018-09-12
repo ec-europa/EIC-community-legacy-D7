@@ -723,7 +723,7 @@ function c4m_user_access_denied() {
  */
 function c4m_user_access_denied_ecas() {
   if (user_is_anonymous()) {
-    $header = t('<h1>Welcome to EIC Community! To get started, please authenticate.<h1>');
+    $header = t('<h1>Welcome to EIC Community! To get started, please authenticate.</h1>');
     $sub_header = t('<p>The EIC pilot supports market-creating innovation in small and medium-sized businesses that have significant growth potential and global ambitions.</p>');
     $alias = 'welcome-page';
     if ($path = drupal_lookup_path('source', $alias)) {
