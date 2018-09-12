@@ -157,6 +157,13 @@
             padding-left: 0;
             li {
                 padding: 0;
+                &.active {
+                    background: none;
+                    @include css-var("color", "ec-blue-110");
+                    a {
+                        font-weight: bold;
+                    }
+                }
             }
         }
     }
@@ -194,7 +201,9 @@ div.vertical-tabs {
     .navbar-nav {
         .open {
             .dropdown-menu {
+                position: relative;
                 @include css-var("background-color", "ec-grey-5");
+                z-index: 2;
             }
         }
     }
@@ -249,11 +258,22 @@ div.vertical-tabs {
                 }
                 &::before {
                     color: currentColor;
+                    z-index: 2;
                 }
                 a {
                     position: relative;
                     z-index: 2;
                     color: currentColor;
+                }
+            }
+        }
+
+        .dropdown-menu {
+            li {
+                &.active {
+                    &::after {
+                        content: none;
+                    }
                 }
             }
         }
