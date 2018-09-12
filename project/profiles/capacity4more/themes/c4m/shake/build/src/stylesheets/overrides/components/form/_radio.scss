@@ -1,4 +1,4 @@
-.checkbox {
+.radio {
     margin: 1em 0;
     label {
         display: block;
@@ -10,6 +10,7 @@
         cursor: default;
     }
     .control-label {
+        display: block;
         &:hover {
             span:not(.form-required) {
                 text-decoration: none;
@@ -26,7 +27,7 @@
         opacity: 0;
         z-index: 1;
 
-        &[type="checkbox"] {
+        &[type="radio"] {
             margin: 0;
         }
         + span {
@@ -45,30 +46,19 @@
                 margin-right: 10px;
                 background: #fff;
                 @include css-var("border", "ec-grey-25", "solid 2px");
-                border-radius: 3px;
+                border-radius: 50%;
             }
             &::after {
-                content: "\e816";
+                content: "";
                 display: block;
                 position: absolute;
-                left: 0;
+                left: 10px;
                 top: 10px;
-                width: 20px;
-                height: 20px;
-                margin-top: -10px;
-                font-family: "EuropaIcons";
-                -moz-osx-font-smoothing: grayscale;
-                -webkit-font-smoothing: antialiased;
-                font-style: normal;
-                font-variant: normal;
-                font-weight: 400;
-                line-height: 20px;
-                speak: none;
-                text-decoration: none;
-                text-transform: none;
-                font-size: 8px;
-                text-align: center;
-                color: #fff;
+                width: 6px;
+                height: 6px;
+                margin: -3px 0 0 -3px;
+                background: #fff;
+                border-radius: 50%;
                 opacity: 0;
             }
         }
@@ -97,7 +87,6 @@
                 @include css-var("color", "ec-grey-75");
                 &::before {
                     @include css-var("border-color", "ec-grey-15");
-                    @include css-var("background-color", "ec-grey-5");
                 }
             }
         }
@@ -118,29 +107,10 @@
 }
 
 
-.form-item-search-within-results {
-    label {
-        span {
-            padding: 0;
-            &::before {
-                position: static;
-                left: auto;
-                top: auto;
-                display: inline-flex;
-                width: 20px;
-                height: 20px;
-                background: #fff;
-            }
-        }
-    }
-    input[type="checkbox"] {
-        display: block;
-        &:checked {
-            ~ span {
-                &::before {
-                    content: "";
-                }
-            }
+.node-form {
+    .form-item-c4m-event-type-und {
+        .form-type-radio {
+            margin: 0.5em 0;
         }
     }
 }
