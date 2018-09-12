@@ -206,6 +206,14 @@ fieldset {
     &.filter-wrapper {
         margin-top: 1em;
     }
+
+    + .form-submit {
+        margin-top: 2em;
+    }
+
+    p + & {
+        margin-top: 2em;
+    }
 }
 
 
