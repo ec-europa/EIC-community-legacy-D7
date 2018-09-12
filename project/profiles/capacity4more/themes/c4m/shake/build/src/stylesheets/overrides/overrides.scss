@@ -10,6 +10,7 @@
 @import "components/carousel";
 @import "components/dropdown";
 @import "components/event";
+@import "components/field";
 @import "components/footer";
 @import "components/form/form";
 @import "components/form/checkbox";
@@ -523,6 +524,11 @@
     dd {
         margin-bottom: 1em;
     }
+}
+
+
+.preview .node {
+    @include css-var("background-color", "ec-yellow-25");
 }
 
 
