@@ -22,7 +22,7 @@
     <?php print $variables['warning_message']; ?>
   <?php else: ?>
     <?php if ($variables['header']): ?>
-      <h1><?php print $variables['header']; ?></h1>
+      <?php print $variables['header']; ?>
     <?php endif; ?>
     <?php if ($variables['sub_header']): ?>
       <?php print $variables['sub_header']; ?>

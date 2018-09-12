@@ -723,9 +723,20 @@ function c4m_user_access_denied() {
  */
 function c4m_user_access_denied_ecas() {
   if (user_is_anonymous()) {
-    $sign_up_url = variable_get('c4m_user_sign_up_url', 'https://entrypoint-smei.easme-web.eu/admissions/entry');
-    $header = t('Welcome to EIC Community! To get started, please authenticate.');
+    $header = t('<h1>Welcome to EIC Community! To get started, please authenticate.<h1>');
     $sub_header = t('<p>The EIC pilot supports market-creating innovation in small and medium-sized businesses that have significant growth potential and global ambitions.</p>');
+    $alias = 'welcome-page';
+    if ($path = drupal_lookup_path('source', $alias)) {
+      if ($nid = preg_replace('#^node/(\d+)$#', '$1', $path)) {
+        if ($node = node_load($nid)) {
+          node_build_content($node, 'default');
+          $header = render($node->content['title']);
+          $sub_header = render($node->content['c4m_body']);
+        }
+      }
+    }
+    $sign_up_url = variable_get('c4m_user_sign_up_url', 'https://entrypoint-smei.easme-web.eu/admissions/entry');
+
     $cta_1 = l(t('Access via EU login'), 'ecas', [
       'attributes' => ['class' => ['btn', 'btn-primary']],
     ]);
