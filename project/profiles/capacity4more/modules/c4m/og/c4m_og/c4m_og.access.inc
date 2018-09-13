@@ -211,14 +211,15 @@ function c4m_og_form_group_node_form_alter(array &$form, array &$form_state) {
   // Organisation options.
   $organisation_field_options = [];
   $organisations_info = c4m_og_organisations_info();
-  foreach ($organisations_info as $name => $organisation) {
+  foreach ($organisations_info as $nid => $organisation) {
     // Set arrays for later use.
     $organisation['icon']['#item']['attributes'] = [
       'class' => 'organisation-icon',
     ];
 
-    $organisation_field_options[$name] = drupal_render($organisation['icon']) . filter_xss($organisation['title']) . '<span class="fa fa-times"></span>';
+    $organisation_field_options[$organisation['title']] = drupal_render($organisation['icon']) . filter_xss($organisation['title']) . '<span class="fa fa-times"></span>';
   }
+  ksort($organisation_field_options, SORT_NATURAL);
 
   if (!empty($form_state['node'])) {
     // Group organisations.
