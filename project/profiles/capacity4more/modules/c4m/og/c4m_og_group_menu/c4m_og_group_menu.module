@@ -64,6 +64,11 @@ function c4m_og_group_menu_block_view_alter(&$data, $block) {
     if ($value['#title'] == 'Home') {
       // Group home link.
       $value['#attributes']['class'][] = 'front';
+      if ($group = c4m_og_current_group()) {
+        $content_types = node_type_get_names();
+        $value['#title'] = $content_types[$group->type] . ' Home';
+        $value['#attributes']['class'][] = $group->type;
+      }
       if ($item['path'] == 'node' || $item['path'] == 'dashboard') {
         $value['#attributes']['class'][] = 'active';
       }

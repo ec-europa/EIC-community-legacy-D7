@@ -14,6 +14,15 @@
           color: $color-white;
         }
       }
+      &.group::before {
+        content: "\f0c0";
+      }
+      &.event_site::before {
+        content: "\f073";
+      }
+      &.organisation::before {
+        content: "\f1ad";
+      }
     }
     li.active {
       &:before, a {

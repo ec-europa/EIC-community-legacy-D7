@@ -93,7 +93,7 @@ h5 {
 }
 
 .header-2, .sidebarblock__title, .panel-pane__title, h2, .view-mode-group_dashboard .control-label,
-.header-1, h1, .group-title, .view-mode-full.user-profile .group-left .user-name, {
+.header-1, h1, .group-title, .view-mode-full.user-profile .group-left .user-name {
     @include css-var("color", "ec-grey-100");
 }
 
