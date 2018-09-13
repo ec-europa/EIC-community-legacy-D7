@@ -145,10 +145,14 @@ function c4m_content_form_node_form_alter(&$form, &$form_state, $form_id) {
     'event_site',
     'organisation',
   ]);
+
   // Removes Unpublish button from forms.
   if ($is_unpublish && $is_og_group) {
     $form['actions']['draft']['#access'] = FALSE;
   }
+
+  $form['actions']['submit']['#attributes']['class'][] = 'btn-success';
+  $form['actions']['draft']['#attributes']['class'][] = 'btn-primary';
 }
 
 /**
