@@ -139,7 +139,12 @@ function c4m_content_form_node_form_alter(&$form, &$form_state, $form_id) {
   ];
 
   $is_unpublish = $form['actions']['draft']['#value'] == t('Unpublish');
-  $is_og_group = in_array($form['type']['#value'], array('group', 'project', 'event_site', 'organisation'));
+  $is_og_group = in_array($form['type']['#value'], [
+    'group',
+    'project',
+    'event_site',
+    'organisation',
+  ]);
   // Removes Unpublish button from forms.
   if ($is_unpublish && $is_og_group) {
     $form['actions']['draft']['#access'] = FALSE;
@@ -801,7 +806,7 @@ function c4m_content_highlightable_node_types() {
     'photoalbum',
     'news',
     'organisation',
-    ];
+  ];
 }
 
 /**
@@ -1225,7 +1230,11 @@ function c4m_content_create_group_content_access() {
   }
 
   // Discussion should not be added to a project.
-  if ($matches[1] == 'discussion' && in_array($group->type, ['project', 'event_site', 'organisation'])) {
+  if ($matches[1] == 'discussion' && in_array($group->type, [
+    'project',
+    'event_site',
+    'organisation',
+  ])) {
     c4m_content_deny_access();
   }
 
@@ -1383,7 +1392,9 @@ function c4m_content_add_access() {
 }
 
 /**
- * Access Callback; /admin/structure and /admin/config /admin/statistics should not be visible.
+ * Access Callback.
+ *
+ * /admin/structure and /admin/config /admin/statistics should not be visible.
  */
 function c4m_content_restrict_menu_items() {
   global $user;
