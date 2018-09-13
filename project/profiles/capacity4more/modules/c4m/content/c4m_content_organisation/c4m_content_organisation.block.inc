@@ -81,7 +81,6 @@ function _c4m_content_organisation_block_header_name_banner_organisation() {
   );
 }
 
-
 /**
  * Callback for the c4m_block_organisation_about block.
  */
@@ -194,10 +193,10 @@ function _c4m_content_organisation_get_organisation_members($node) {
  * @param array $uids
  *   An array of uids that represent the members of the organisation.
  *
- * @return array $nids
+ * @return array
  *   Group nids (if any).
  */
-function _c4m_content_organisation_get_groups_of_members($uids) {
+function _c4m_content_organisation_get_groups_of_members(array $uids) {
   $nids = [];
 
   if (empty($uids)) {
@@ -224,35 +223,25 @@ function _c4m_content_organisation_get_groups_of_members($uids) {
  * Callback for the c4m_block_organisation_customers block.
  */
 function _c4m_content_organisation_block_c4m_block_organisation_customers() {
-    $block = array();
+  $block = [];
 
-    if ($node = c4m_og_current_group()) {
-        $block['subject'] = 'Our customers';
-        $block['content'] = field_view_field(
-            'node',
-            $node,
-            'c4m_customers',
-            array('label' => 'hidden')
-        );
-    }
+  if ($node = c4m_og_current_group()) {
+    $block['subject'] = 'Our customers';
+    $block['content'] = field_view_field('node', $node, 'c4m_customers', ['label' => 'hidden']);
+  }
 
-    return $block;
+  return $block;
 }
 
 /**
  * Callback for the c4m_block_organisation_partners block.
  */
 function _c4m_content_organisation_block_c4m_block_organisation_partners() {
-  $block = array();
+  $block = [];
 
   if ($node = c4m_og_current_group()) {
     $block['subject'] = 'Our partners';
-    $block['content'] = field_view_field(
-      'node',
-      $node,
-      'c4m_partners',
-      array('label' => 'hidden')
-    );
+    $block['content'] = field_view_field('node', $node, 'c4m_partners', ['label' => 'hidden']);
   }
 
   return $block;
@@ -262,18 +251,12 @@ function _c4m_content_organisation_block_c4m_block_organisation_partners() {
  * Callback for the c4m_block_organisation_about_us block.
  */
 function _c4m_content_organisation_block_c4m_block_organisation_about_us() {
-  $block = array();
+  $block = [];
 
   if ($node = c4m_og_current_group()) {
     $block['subject'] = '';
-    $block['content'] = field_view_field(
-      'node',
-      $node,
-      'field_c4m_about_us',
-      array('label' => 'hidden')
-    );
+    $block['content'] = field_view_field('node', $node, 'field_c4m_about_us', ['label' => 'hidden']);
   }
 
   return $block;
 }
-

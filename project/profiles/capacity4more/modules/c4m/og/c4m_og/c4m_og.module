@@ -23,7 +23,7 @@ define('C4M_OG_PRIVATE_GROUP', 2);
 /**
  * Helper to get the current active group (based on og_context()).
  *
- * @return object|false
+ * @return object|bool
  *   The group entity, or FALSE if no context was found.
  */
 function c4m_og_current_group() {
