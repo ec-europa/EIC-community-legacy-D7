@@ -76,8 +76,10 @@ function _c4m_og_invite_users_answer($gid, $hash) {
     $membership = c4m_og_invite_users_get_membership_from_hash($hash);
 
     // Log in the invited user.
-    $account = array('uid' => $membership->etid);
-    user_login_submit(array(), $account);
+    $account = ['uid' => $membership->etid];
+    user_login_submit([], $account);
+
+    drupal_goto(current_path());
   }
 
   // Load the answer form.
