@@ -426,6 +426,10 @@ function _c4m_user_notifications_notify_user_og_group_membership_pending($member
  *   Membership entity object.
  */
 function _c4m_user_notifications_notify_user_og_group_membership_accepted($membership) {
+  // This variable is only set in the database. No settings file. No admin form.
+  if (!variable_get('c4m_user_notifications_send_c4m_welcome_to_group', TRUE)) {
+    return;
+  }
   $message = message_create('c4m_welcome_to_group', ['uid' => $membership->etid]);
 
   // Define functions with which to resolve email template tokens.
