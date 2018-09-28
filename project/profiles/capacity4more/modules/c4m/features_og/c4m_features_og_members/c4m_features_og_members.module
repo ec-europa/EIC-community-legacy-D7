@@ -590,18 +590,13 @@ function _c4m_features_og_members_membership_type_getter_callback($user) {
 
   // Retrieve user groups and retrieve the highest membership level per group.
   $wrapper = entity_metadata_wrapper('user', $user->uid);
-  $og_memberships = array_merge(
-    $wrapper->{'og_membership__' . OG_STATE_ACTIVE}->value(),
-    $wrapper->{'og_membership__' . OG_STATE_PENDING}->value());
+  $og_memberships = array_merge($wrapper->{'og_membership__' . OG_STATE_ACTIVE}->raw(), $wrapper->{'og_membership__' . OG_STATE_PENDING}->raw());
 
+  $og_memberships = db_query("SELECT n.nid, n.type, n.uid, state FROM {og_membership} og LEFT JOIN {node} n ON og.group_type = 'node' AND og.gid = n.nid WHERE og.id IN (:memberships)", [':memberships' => $og_memberships])->fetchAll();
   foreach ($og_memberships as $og_membership) {
-    if (empty($og_membership)) {
-      continue;
-    }
-
-    $values[] = $og_membership->gid
-      . '_' .
-      c4m_user_og_get_role_in_group($user, node_load($og_membership->gid));
+    // The $og_membership object already contains all the required data for
+    // group.
+    $values[] = $og_membership->nid . '_' . c4m_user_og_get_role_in_group($user, $og_membership, $og_membership->state);
   }
 
   return $values;

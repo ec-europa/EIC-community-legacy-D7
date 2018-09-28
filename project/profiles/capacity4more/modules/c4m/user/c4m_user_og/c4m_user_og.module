@@ -54,12 +54,15 @@ function c4m_user_og_has_group_permission($permission, $group = NULL) {
  * @param object $user
  *   The user for who we are collecting his role.
  * @param object $group
- *   The group where we are trying to determine the users role for.
+ *   The group where we are trying to determine the users role for. Full node
+ *   object or at least nid, uid, type properties should be available.
+ * @param string $membership_state
+ *   (optional) The membership state. Defaults to NULL.
  *
  * @return string
  *   The user role.
  */
-function c4m_user_og_get_role_in_group($user, $group) {
+function c4m_user_og_get_role_in_group($user, $group, $membership_state = NULL) {
   // Group has no owner, return early to prevent showing an "Owner" label for
   // all anonymous visitors (since their uid is 0, they falsely match the group
   // owner id).
@@ -72,14 +75,17 @@ function c4m_user_og_get_role_in_group($user, $group) {
     return 'owner';
   }
 
-  // Has the user a membership for the given group?
-  $membership = og_get_membership('node', $group->nid, 'user', $user->uid);
-  if (!$membership) {
-    return NULL;
+  if (!isset($membership_state)) {
+    // Has the user a membership for the given group?
+    $membership = og_get_membership('node', $group->nid, 'user', $user->uid);
+    if (!$membership) {
+      return NULL;
+    }
+    $membership_state = $membership->state;
   }
 
   // Check if not pending or blocked.
-  switch ($membership->state) {
+  switch ($membership_state) {
     case OG_STATE_PENDING:
       return 'pending';
 
