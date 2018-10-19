@@ -592,6 +592,10 @@ function _c4m_features_og_members_membership_type_getter_callback($user) {
   $wrapper = entity_metadata_wrapper('user', $user->uid);
   $og_memberships = array_merge($wrapper->{'og_membership__' . OG_STATE_ACTIVE}->raw(), $wrapper->{'og_membership__' . OG_STATE_PENDING}->raw());
 
+  if (empty($og_memberships)) {
+    return $values;
+  }
+
   $og_memberships = db_query("SELECT n.nid, n.type, n.uid, state FROM {og_membership} og LEFT JOIN {node} n ON og.group_type = 'node' AND og.gid = n.nid WHERE og.id IN (:memberships)", [':memberships' => $og_memberships])->fetchAll();
   foreach ($og_memberships as $og_membership) {
     // The $og_membership object already contains all the required data for
