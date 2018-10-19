@@ -3,6 +3,9 @@ api = 2
 
 ; Analytics
 
+projects[matomo][subdir] = "contrib"
+projects[matomo][version] = "2.11"
+
 projects[piwik][subdir] = "contrib"
 projects[piwik][version] = "2.9"
 
