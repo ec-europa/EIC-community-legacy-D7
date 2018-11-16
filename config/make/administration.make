@@ -82,7 +82,7 @@ projects[variable][subdir] = "contrib"
 projects[variable][version] = "2.5"
 
 projects[ds][subdir] = "contrib"
-projects[ds][version] = "2.14"
+projects[ds][version] = "2.16"
 
 projects[flag][subdir] = "contrib"
 projects[flag][version] = "3.9"
@@ -110,7 +110,7 @@ projects[smtp][subdir] = "contrib"
 projects[smtp][version] = "1.7"
 
 projects[term_reference_tree][subdir] = "contrib"
-projects[term_reference_tree][version] = "1.10"
+projects[term_reference_tree][version] = "1.11"
 
 projects[views_data_export][subdir] = "contrib"
 projects[views_data_export][version] = "3.1"
