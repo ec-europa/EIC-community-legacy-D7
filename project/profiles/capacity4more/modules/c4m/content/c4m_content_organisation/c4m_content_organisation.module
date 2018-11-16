@@ -601,7 +601,7 @@ function c4m_content_organisation_c4m_cta_block() {
   }
 
   // Prevent from 'group' nodes to run this logic.
-  if ($group->type != 'organisation' ) {
+  if ($group->type != 'organisation') {
     return;
   }
 
@@ -628,4 +628,20 @@ function c4m_content_organisation_c4m_cta_block() {
   }
 
   return $items;
+}
+
+/**
+ * Get the organizations list.
+ *
+ * @return stdClass[]
+ *   Array of stdClass objects keyed by nid.
+ *   Each object has 2 properties: nid and title.
+ */
+function c4m_content_organisation_get_list() {
+  $default_info = db_query('SELECT nid, title FROM {node} WHERE status = :status AND type = :type ORDER BY title ASC', [
+    ':status' => NODE_PUBLISHED,
+    ':type' => 'organisation',
+  ])->fetchAllAssoc('nid');
+
+  return $default_info;
 }

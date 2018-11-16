@@ -6,31 +6,6 @@
  */
 
 /**
- * Utility function; Return the organizations info from organizations.
- */
-function c4m_og_organisations_info() {
-  $default_info = [];
-
-  $type = 'organisation';
-  $nodes = node_load_multiple([], [
-    'type' => $type,
-    'status' => NODE_PUBLISHED,
-  ]);
-  foreach ($nodes as $organisation) {
-    $wrapper = entity_metadata_wrapper('node', $organisation);
-
-    $default_info[$organisation->nid] = [
-      'title' => $organisation->title,
-      'nid' => $wrapper->nid,
-      'description' => $wrapper->c4m_body->value(),
-      'icon' => c4m_content_organisation_get_icon($organisation),
-    ];
-  }
-
-  return $default_info;
-}
-
-/**
  * Get a list of all possible access types and their information.
  *
  * @todo: Convert this into a hook.
@@ -210,16 +185,10 @@ function c4m_og_form_group_node_form_alter(array &$form, array &$form_state) {
 
   // Organisation options.
   $organisation_field_options = [];
-  $organisations_info = c4m_og_organisations_info();
+  $organisations_info = c4m_content_organisation_get_list();
   foreach ($organisations_info as $nid => $organisation) {
-    // Set arrays for later use.
-    $organisation['icon']['#item']['attributes'] = [
-      'class' => 'organisation-icon',
-    ];
-
-    $organisation_field_options[$organisation['title']] = drupal_render($organisation['icon']) . filter_xss($organisation['title']) . '<span class="fa fa-times"></span>';
+    $organisation_field_options[$organisation->title] = filter_xss($organisation->title);
   }
-  ksort($organisation_field_options, SORT_NATURAL);
 
   if (!empty($form_state['node'])) {
     // Group organisations.
