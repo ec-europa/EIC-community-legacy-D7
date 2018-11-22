@@ -436,6 +436,11 @@ function c4m_web_services_add_organisation_members(array $c4m_organisation_membe
     $membership = og_group('node', $nid, ['entity' => $user]);
 
     if (!empty($membership)) {
+      // Make sure that the user is active when it's bootstrapped for an
+      // organisation.
+      if (!$user->status) {
+        user_save($user, ['status' => C4M_USER_STATUS_ACTIVE]);
+      }
       // Add jobtitle and user type for user in Organisation to Membership.
       // Check and add Job Title based on Dashboard Id.
       if (isset($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'])
