@@ -11,13 +11,13 @@ include_once 'c4m_web_services.features.inc';
  * Implements hook_services_authentication_info().
  */
 function c4m_web_services_services_authentication_info() {
-  return array(
+  return [
     'title' => t('C4M - Request-specific token authorisation'),
     'description' => t('Request-specific token is sent in each request.'),
     'authenticate_call' => '_c4m_web_services_authenticate_call',
     'security_settings' => '_c4m_web_services_security_settings',
     'default_security_settings' => '_c4m_web_services_default_security_settings',
-  );
+  ];
 }
 
 /**
@@ -69,10 +69,10 @@ function _c4m_web_services_authenticate_call(array $settings, array $method, arr
  * @see c4m_web_services_services_authentication_info()
  */
 function _c4m_web_services_default_security_settings() {
-  return array(
+  return [
     'authorization_token_name' => 'AuthorizationToken',
     'authorization_token_key' => 'dh349fh3Fh48gfdFDhsg23DFdgh',
-  );
+  ];
 }
 
 /**
@@ -81,21 +81,21 @@ function _c4m_web_services_default_security_settings() {
  * @see c4m_web_services_services_authentication_info()
  */
 function _c4m_web_services_security_settings($settings, &$form_state) {
-  $form = array();
+  $form = [];
 
-  $form['authorization_token_name'] = array(
+  $form['authorization_token_name'] = [
     '#type' => 'textfield',
     '#title' => t('Authorization Token Name'),
     '#required' => TRUE,
     '#default_value' => $settings['authorization_token_name'],
-  );
+  ];
 
-  $form['authorization_token_key'] = array(
+  $form['authorization_token_key'] = [
     '#type' => 'textfield',
     '#title' => t('Authorization Token Key'),
     '#required' => TRUE,
     '#default_value' => $settings['authorization_token_key'],
-  );
+  ];
 
   return $form;
 }
@@ -104,7 +104,7 @@ function _c4m_web_services_security_settings($settings, &$form_state) {
  * Helper function for flattening an array.
  */
 function _c4m_web_services_array_flatten($array = NULL) {
-  $result = array();
+  $result = [];
 
   if (!is_array($array)) {
     $array = func_get_args();
@@ -115,7 +115,7 @@ function _c4m_web_services_array_flatten($array = NULL) {
       $result = array_merge($result, _c4m_web_services_array_flatten($value));
     }
     else {
-      $result = array_merge($result, array($key => $value));
+      $result = array_merge($result, [$key => $value]);
     }
   }
 
@@ -126,39 +126,39 @@ function _c4m_web_services_array_flatten($array = NULL) {
  * Implements hook_services_resources().
  */
 function c4m_web_services_services_resources() {
-  $node_resource = array(
-    'node' => array(
-      'operations' => array(
-        'c4m_update' => array(
-          'file' => array(
+  $node_resource = [
+    'node' => [
+      'operations' => [
+        'c4m_update' => [
+          'file' => [
             'type' => 'inc',
             'module' => 'c4m_web_services',
             'name' => 'resources/c4m_web_services_node_resource',
-          ),
+          ],
           'callback' => '_c4m_web_services_node_resource_update',
-          'args' => array(
-            array(
+          'args' => [
+            [
               'name' => 'dashboard_id',
               'optional' => FALSE,
-              'source' => array('path' => 0),
+              'source' => ['path' => 0],
               'type' => 'text',
               'description' => 'The dashboard id of the node to update',
-            ),
-            array(
+            ],
+            [
               'name' => 'node',
               'optional' => FALSE,
               'source' => 'data',
               'description' => 'The node data to update',
               'type' => 'array',
-            ),
-          ),
+            ],
+          ],
           'access callback' => '_c4m_node_resource_access',
-          'access arguments' => array('update'),
+          'access arguments' => ['update'],
           'access arguments append' => TRUE,
-        ),
-      ),
-    ),
-  );
+        ],
+      ],
+    ],
+  ];
 
   return $node_resource;
 }
@@ -167,15 +167,15 @@ function c4m_web_services_services_resources() {
  * Implements hook_server_info().
  */
 function c4m_web_services_server_info() {
-  return array(
+  return [
     'name' => 'C4M REST',
     'path' => 'rest',
-    'settings' => array(
-      'file' => array('inc', 'rest_server'),
+    'settings' => [
+      'file' => ['inc', 'rest_server'],
       'form' => '_rest_server_settings',
       'submit' => '_rest_server_settings_submit',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -187,7 +187,7 @@ function c4m_web_services_server() {
   $endpoint_path = services_get_server_info('endpoint_path', 'services/rest');
 
   $services_rest_server_factory = 'C4MServicesRESTServerFactory';
-  $rest_server_factory = new $services_rest_server_factory(array('endpoint_path' => $endpoint_path));
+  $rest_server_factory = new $services_rest_server_factory(['endpoint_path' => $endpoint_path]);
   /* @var $rest_server C4MRESTServer */
   $rest_server = $rest_server_factory->getRESTServer();
 
@@ -195,7 +195,7 @@ function c4m_web_services_server() {
   if (empty($canonical_path)) {
     $endpoint_name = services_get_server_info('endpoint', '');
     $endpoint = services_endpoint_load($endpoint_name);
-    return t('Services Endpoint "@name" has been setup successfully.', array('@name' => $endpoint->name));
+    return t('Services Endpoint "@name" has been setup successfully.', ['@name' => $endpoint->name]);
   }
 
   try {
@@ -223,9 +223,7 @@ function c4m_web_services_services_request_preprocess_alter(array $controller, a
   // Check by dashboard_id when Creating a new Organisation if already exists.
   if (isset($controller["callback"]) && $controller["callback"] === '_node_resource_create') {
     foreach ($args as &$arg) {
-      if (is_array($arg)
-        && isset($arg['c4m_organisation_dashboard_id'])
-        && isset($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value'])) {
+      if (is_array($arg) && isset($arg['c4m_organisation_dashboard_id']) && isset($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value'])) {
         $node = c4m_web_services_get_existing_node($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
         if (empty($node)) {
           continue;
@@ -244,8 +242,7 @@ function c4m_web_services_services_request_preprocess_alter(array $controller, a
     'entity_type' => 'node',
     'bundle' => 'organisation',
     'type' => 'taxonomy_term_reference',
-  ]
-  );
+  ]);
 
   if (empty($organisation_taxonomy_fields)) {
     return;
@@ -255,16 +252,12 @@ function c4m_web_services_services_request_preprocess_alter(array $controller, a
   foreach ($args as &$arg) {
     if (is_array($arg)) {
       foreach ($arg as $field_name => &$item) {
-        if (is_array($item) &&
-          isset($organisation_taxonomy_fields[$field_name])
-          && isset($item[LANGUAGE_NONE])) {
+        if (is_array($item) && isset($organisation_taxonomy_fields[$field_name]) && isset($item[LANGUAGE_NONE])) {
           $new_terms = [];
           foreach ($item[LANGUAGE_NONE] as $term_key) {
             if (!empty($term_key)) {
               // If term cannot be found, throw error and stop the process.
-              if (isset($organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
-                && $loaded = c4m_web_services_taxonomy_get_term_by_key($term_key, $organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])
-              ) {
+              if (isset($organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary']) && $loaded = c4m_web_services_taxonomy_get_term_by_key($term_key, $organisation_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])) {
                 foreach ($loaded as $tid => $term) {
                   // Check if the term has parents and add them aswell.
                   // taxonomy_get_parents_all will always return at least the
@@ -272,8 +265,7 @@ function c4m_web_services_services_request_preprocess_alter(array $controller, a
                   if (!empty($term_and_or_parents = taxonomy_get_parents_all($tid))) {
                     foreach ($term_and_or_parents as $term_and_or_parent) {
                       // Only add the new tid if not existing already.
-                      if (!empty($term_and_or_parent->tid)
-                        && !in_array($term_and_or_parent->tid, $new_terms)) {
+                      if (!empty($term_and_or_parent->tid) && !in_array($term_and_or_parent->tid, $new_terms)) {
                         $new_terms[] = $term_and_or_parent->tid;
                       }
                     }
@@ -284,11 +276,10 @@ function c4m_web_services_services_request_preprocess_alter(array $controller, a
                 // Term with name not found, throw error.
                 // Indicate the field they tried to populate with the term
                 // that was not found.
-                $message = t('Error when searching for taxonomy term with key: @term_key.
-                 Term was intended for field @field_name.', [
-                   '@field_name' => $field_name,
-                   '@term_key' => $term_key,
-                 ]);
+                $message = t('Error when searching for taxonomy term with key: @term_key. Term was intended for field @field_name.', [
+                  '@field_name' => $field_name,
+                  '@term_key' => $term_key,
+                ]);
                 throw new ServicesException($message, 404);
               }
             }
@@ -321,14 +312,13 @@ function c4m_web_services_services_request_postprocess_alter($controller, $args,
     }
 
     // Create the organisation members.
-    if (isset($arg['c4m_organisation_members']) &&!empty($c4m_organisation_members = $arg['c4m_organisation_members'][LANGUAGE_NONE])) {
+    if (isset($arg['c4m_organisation_members']) && !empty($c4m_organisation_members = $arg['c4m_organisation_members'][LANGUAGE_NONE])) {
       $c4m_organisation_members = c4m_web_services_process_users_array($c4m_organisation_members);
       c4m_web_services_add_organisation_members($c4m_organisation_members, $nid);
     }
 
     // Add the contact persons.
-    if (isset($arg['c4m_contact_persons'])
-      && !empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])) {
+    if (isset($arg['c4m_contact_persons']) && !empty($c4m_contact_persons = $arg['c4m_contact_persons'][LANGUAGE_NONE])) {
       $c4m_contact_persons = c4m_web_services_process_users_array($c4m_contact_persons);
       c4m_web_services_add_contact_persons($c4m_contact_persons, $nid);
     }
@@ -409,16 +399,9 @@ function c4m_web_services_add_organisation_members(array $c4m_organisation_membe
   $manager_users = [];
   foreach ($c4m_organisation_members as $c4m_organisation_member) {
     // Check and add Job Title based on Dashboard Id.
-    if (isset($c4m_organisation_member['c4m_user_types'])
-      && isset($c4m_organisation_member['c4m_user_types'][LANGUAGE_NONE])
-      && $term_owners = taxonomy_get_term_by_name('Account owner')
-    ) {
+    if (isset($c4m_organisation_member['c4m_user_types']) && isset($c4m_organisation_member['c4m_user_types'][LANGUAGE_NONE]) && $term_owners = taxonomy_get_term_by_name('Account owner')) {
       foreach ($term_owners as $term_owner) {
-        if (isset($term_owner->c4m_dashboard_key[LANGUAGE_NONE])
-          && isset($term_owner->c4m_dashboard_key[LANGUAGE_NONE][0]['value'])
-          && in_array($term_owner->c4m_dashboard_key[LANGUAGE_NONE][0]['value'],
-            $c4m_organisation_member['c4m_user_types'][LANGUAGE_NONE])
-        ) {
+        if (isset($term_owner->c4m_dashboard_key[LANGUAGE_NONE]) && isset($term_owner->c4m_dashboard_key[LANGUAGE_NONE][0]['value']) && in_array($term_owner->c4m_dashboard_key[LANGUAGE_NONE][0]['value'], $c4m_organisation_member['c4m_user_types'][LANGUAGE_NONE])) {
           $manager_users[] = $c4m_organisation_member['email'];
         }
       }
@@ -443,8 +426,7 @@ function c4m_web_services_add_organisation_members(array $c4m_organisation_membe
       }
       // Add jobtitle and user type for user in Organisation to Membership.
       // Check and add Job Title based on Dashboard Id.
-      if (isset($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'])
-        && isset($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'][LANGUAGE_NONE])) {
+      if (isset($c4m_organisation_members[$user->mail]['c4m_vocab_job_title']) && isset($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'][LANGUAGE_NONE])) {
         $c4m_vocab_job_title = [];
         foreach ($c4m_organisation_members[$user->mail]['c4m_vocab_job_title'][LANGUAGE_NONE] as $job_title) {
           if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($job_title, 'c4m_job_titles'))) {
@@ -452,23 +434,22 @@ function c4m_web_services_add_organisation_members(array $c4m_organisation_membe
           }
         }
         // Update membership with specific job title to this Organisation.
-        $membership->c4m_vocab_job_title = array(
+        $membership->c4m_vocab_job_title = [
           LANGUAGE_NONE => $c4m_vocab_job_title,
-        );
+        ];
       }
 
       // Check and add User Type based on Dashboard Id.
-      if (isset($c4m_organisation_members[$user->mail]['c4m_user_types'])
-        && isset($c4m_organisation_members[$user->mail]['c4m_user_types'][LANGUAGE_NONE])) {
+      if (isset($c4m_organisation_members[$user->mail]['c4m_user_types']) && isset($c4m_organisation_members[$user->mail]['c4m_user_types'][LANGUAGE_NONE])) {
         $c4m_user_types = [];
         foreach ($c4m_organisation_members[$user->mail]['c4m_user_types'][LANGUAGE_NONE] as $user_type) {
           if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($user_type, 'c4m_vocab_user_types'))) {
             $c4m_user_types[] = ['tid' => array_keys($terms)[0]];
           }
         }
-        $membership->c4m_user_types = array(
+        $membership->c4m_user_types = [
           LANGUAGE_NONE => $c4m_user_types,
-        );
+        ];
       }
       $membership->save();
 
@@ -508,8 +489,7 @@ function c4m_web_services_get_or_add_user(array $rest_users) {
     // First check if all the mandatory data is in the user array.
     // $rest_user['ecas_id'] can be empty when users are pushed through the WS.
     // If it's not empty, we use it as the username in Drupal.
-    if (empty($rest_user['first_name'])
-      || empty($rest_user['last_name']) || empty($rest_user['email'])) {
+    if (empty($rest_user['first_name']) || empty($rest_user['last_name']) || empty($rest_user['email'])) {
       continue;
     }
     // Check if the user already exists by searching for his email.
@@ -537,7 +517,7 @@ function c4m_web_services_get_or_add_user(array $rest_users) {
       }
 
       // Set Authmap record for this newly created user.
-      user_set_authmaps($new_user, array("authname_ecas" => $rest_user['email']));
+      user_set_authmaps($new_user, ['authname_ecas' => $rest_user['email']]);
 
       $users[] = $new_user;
     }
@@ -568,8 +548,7 @@ function c4m_web_services_update_user_taxonomies($user, $rest_user, $nid = 0) {
   }
 
   // Check and add Spoken Languages based on Dashboard Id.
-  if (isset($rest_user['c4m_vocab_language'])
-    && isset($rest_user['c4m_vocab_language'][LANGUAGE_NONE])) {
+  if (isset($rest_user['c4m_vocab_language']) && isset($rest_user['c4m_vocab_language'][LANGUAGE_NONE])) {
     $c4m_vocab_language = [];
     foreach ($rest_user['c4m_vocab_language'][LANGUAGE_NONE] as $language) {
       if (!empty($terms = c4m_web_services_taxonomy_get_term_by_key($language, 'c4m_vocab_language'))) {
@@ -585,17 +564,13 @@ function c4m_web_services_update_user_taxonomies($user, $rest_user, $nid = 0) {
   $job_titles = [];
   foreach (c4m_user_og_get_groups($user, 'organisation') as $organisation) {
     $membership = og_get_membership('node', $organisation->nid, 'user', $user->uid);
-    if (!empty($membership->c4m_user_types)
-      && !empty($membership->c4m_user_types[LANGUAGE_NONE])
-    ) {
+    if (!empty($membership->c4m_user_types) && !empty($membership->c4m_user_types[LANGUAGE_NONE])) {
       // Override duplicates with samekey in array.
       foreach ($membership->c4m_user_types[LANGUAGE_NONE] as $user_type) {
         $user_types[$user_type['tid']] = $user_type['tid'];
       }
     }
-    if (!empty($membership->c4m_vocab_job_title)
-      && !empty($membership->c4m_vocab_job_title[LANGUAGE_NONE])
-    ) {
+    if (!empty($membership->c4m_vocab_job_title) && !empty($membership->c4m_vocab_job_title[LANGUAGE_NONE])) {
       // Override duplicates with samekey in array.
       foreach ($membership->c4m_vocab_job_title[LANGUAGE_NONE] as $job_title) {
         $job_titles[$job_title['tid']] = $job_title['tid'];
@@ -654,7 +629,7 @@ function _c4m_web_services_return_valid_name($name) {
  */
 function _c4m_web_services_check_unique_name($name) {
   $query = db_select('users')
-    ->fields('users', array('name'))
+    ->fields('users', ['name'])
     ->condition('name', $name, '=');
 
   return (bool) $query->execute()->fetchAssoc();
@@ -682,7 +657,7 @@ function c4m_web_services_taxonomy_get_term_by_key($dashboard_key, $vocabulary) 
 
   $result = $query->execute();
   if (isset($result['taxonomy_term'])) {
-    $terms = taxonomy_term_load_multiple(array_keys($result["taxonomy_term"]));
+    $terms = taxonomy_term_load_multiple(array_keys($result['taxonomy_term']));
   }
   return $terms;
 }
@@ -744,7 +719,10 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $node_field = 'c4m_left_column';
   $paragraph_bundle = 'c4m_paragraph_system_block';
   // About us block.
-  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
   $paragraph->is_new = TRUE;
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_about_us';
@@ -753,7 +731,10 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->save(TRUE);
 
   // Latest news block.
-  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
   $paragraph->is_new = TRUE;
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'views:c4m_project_news-block';
@@ -762,7 +743,10 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->save(TRUE);
 
   // Latest activity block.
-  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
   $paragraph->is_new = TRUE;
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_as';
@@ -773,7 +757,10 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   // Set paragraphs for right column.
   $node_field = 'c4m_right_column';
   // About this organisation block.
-  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
   $paragraph->is_new = TRUE;
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_about';
@@ -781,7 +768,10 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->save(TRUE);
 
   // Customers block.
-  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
   $paragraph->is_new = TRUE;
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_customers';
@@ -789,7 +779,10 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->save(TRUE);
 
   // Partners block.
-  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
   $paragraph->is_new = TRUE;
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_partners';
@@ -797,7 +790,10 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
   $paragraph->save(TRUE);
 
   // Organisation's groups.
-  $paragraph = new ParagraphsItemEntity(array('field_name' => $node_field, 'bundle' => $paragraph_bundle));
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
   $paragraph->is_new = TRUE;
   $paragraph->setHostEntity('node', $node);
   $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_organisation:c4m_block_organisation_groups';
