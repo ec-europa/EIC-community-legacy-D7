@@ -1,7 +1,7 @@
 [![Build Status](https://img.shields.io/travis/capacity4dev/capacity4more/develop.svg?style=flat-square)](https://travis-ci.org/capacity4dev/capacity4more)
 [![Quality Score](https://img.shields.io/scrutinizer/g/capacity4dev/capacity4more.svg?style=flat-square)](https://scrutinizer-ci.com/g/capacity4dev/capacity4more/)
 
-# capacity4more
+# EIC Community platform
 
 A Drupal 7 powered distribution providing a community platform to share
 knowledge.
@@ -15,9 +15,9 @@ knowledge.
 
 ## Installation
 
-Clone the project from [GitHub](https://github.com/capacity4dev/capacity4more).
+Clone the project from [GitHub](https://github.com/ec-europa/EIC-community.git).
 
-    $ git clone --recursive https://github.com/capacity4dev/capacity4more.git
+    $ git clone --recursive https://github.com/ec-europa/EIC-community.git
 
 ### Initialize configuration
 
