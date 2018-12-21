@@ -49,6 +49,10 @@ function c4m_og_group_menu_block_view_alter(&$data, $block) {
       case 'photoalbum':
         $active_path = 'media';
         break;
+
+      case 'wiki_page':
+        $active_path = 'wiki';
+        break;
     }
   }
 
