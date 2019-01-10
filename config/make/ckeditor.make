@@ -11,7 +11,7 @@ projects[media_ckeditor][subdir] = "contrib"
 projects[media_ckeditor][version] = "2.5"
 
 projects[wysiwyg_filter][subdir] = "contrib"
-projects[wysiwyg_filter][version] = "1.6-rc3"
+projects[wysiwyg_filter][version] = "1.6-rc9"
 
 libraries[ckeditor][download][type]= "get"
 libraries[ckeditor][download][url] = "https://download.cksource.com/CKEditor/CKEditor/CKEditor%204.9.2/ckeditor_4.9.2_full.zip"

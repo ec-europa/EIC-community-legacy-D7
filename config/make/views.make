@@ -11,9 +11,7 @@ projects[views][version] = "3.20"
 projects[views][patch][] = "https://www.drupal.org/files/issues/2018-04-27/views-undefined_index_flagging-2331209-59-D7.patch"
 
 projects[views_bulk_operations][subdir] = "contrib"
-projects[views_bulk_operations][version] = "3.3"
-projects[views_bulk_operations][patch][] = "https://www.drupal.org/files/issues/1334374-36-use_generic_entity_tables.patch"
-projects[views_bulk_operations][patch][] = "https://www.drupal.org/files/issues/2334625-6-fix-vbo-select-all-on-last-page.patch"
+projects[views_bulk_operations][version] = "3.5"
 
 projects[views_load_more][subdir] = "contrib"
 projects[views_load_more][version] = "1.5"

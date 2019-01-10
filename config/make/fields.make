@@ -4,7 +4,7 @@ api = 2
 ; Contrib field definitions
 
 projects[addressfield][subdir] = "contrib"
-projects[addressfield][version] = "1.2"
+projects[addressfield][version] = "1.3"
 
 projects[currency][subdir] = "contrib"
 projects[currency][version] = "2.6"
@@ -25,20 +25,19 @@ projects[field_group][subdir] = "contrib"
 projects[field_group][version] = "1.6"
 
 projects[geocoder][subdir] = "contrib"
-projects[geocoder][version] = "1.3"
-projects[geocoder][patch][] = "https://www.drupal.org/files/issues/geocoder-osm-nominatim-address-2682507-2.patch"
+projects[geocoder][version] = "1.4"
 
 projects[geophp][subdir] = "contrib"
 projects[geophp][version] = "1.7"
 
 projects[geofield][subdir] = "contrib"
-projects[geofield][version] = "2.3"
+projects[geofield][version] = "2.4"
 
 projects[hierarchical_taxonomy][subdir] = "contrib"
 projects[hierarchical_taxonomy][version] = "1.x-dev"
 
 projects[leaflet][subdir] = "contrib"
-projects[leaflet][version] = "1.3"
+projects[leaflet][version] = "1.4"
 
 projects[link][subdir] = "contrib"
 projects[link][version] = "1.5"

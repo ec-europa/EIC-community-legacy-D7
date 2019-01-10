@@ -22,11 +22,10 @@ projects[better_formats][subdir] = "contrib"
 projects[better_formats][version] = "1.0-beta2"
 
 projects[blockreference][subdir] = "contrib"
-projects[blockreference][version] = "2.4"
+projects[blockreference][version] = "2.7"
 
 projects[context][subdir] = "contrib"
-projects[context][version] = "3.7"
-projects[context][patch][] = https://www.drupal.org/files/issues/context-2742913-5.patch
+projects[context][version] = "3.9"
 
 projects[context_block_disable][subdir] = "contrib"
 projects[context_block_disable][version] = "2.1"
@@ -44,8 +43,7 @@ projects[eu_cookie_compliance][subdir] = "contrib"
 projects[eu_cookie_compliance][version] = "1.18"
 
 projects[elysia_cron][subdir] = "contrib"
-projects[elysia_cron][version] = "2.4"
-projects[elysia_cron][patch][] = "https://www.drupal.org/files/issues/elysia_cron-exported-code-cs-2930214-7.x-2.4_0.patch"
+projects[elysia_cron][version] = "2.6"
 
 projects[entityreference_prepopulate][subdir] = "contrib"
 projects[entityreference_prepopulate][version] = "1.7"
@@ -89,8 +87,7 @@ projects[flag][version] = "3.9"
 projects[flag][patch][] = "../patches/flag-array-check-1925922.patch"
 
 projects[node_gallery][subdir] = "contrib"
-projects[node_gallery][version] = "1.1"
-projects[node_gallery][patch][] = https://www.drupal.org/files/issues/node_gallery-entity-delete-exception-2006772-1.patch
+projects[node_gallery][version] = "1.2"
 projects[node_gallery][patch][] = "../patches/node-gallery-unpublished-frontend.patch"
 
 projects[queue_ui][subdir] = "contrib"
@@ -113,7 +110,7 @@ projects[term_reference_tree][subdir] = "contrib"
 projects[term_reference_tree][version] = "1.11"
 
 projects[views_data_export][subdir] = "contrib"
-projects[views_data_export][version] = "3.1"
+projects[views_data_export][version] = "3.2"
 projects[views_data_export][patch][] = https://www.drupal.org/files/issues/views_data_export-permanent-files-1875456-63-beta9-do-not-test.patch
 
 ; Themes to upgrade the admin backend.

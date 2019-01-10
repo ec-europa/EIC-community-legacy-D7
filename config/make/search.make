@@ -23,7 +23,7 @@ projects[search_api][patch][] = "https://www.drupal.org/files/issues/search-api-
 projects[search_api][patch][] = "https://www.drupal.org/files/issues/1123454-89--vbo_support.patch"
 
 projects[search_api_attachments][subdir] = "contrib"
-projects[search_api_attachments][version] = "1.10"
+projects[search_api_attachments][version] = "1.18"
 
 projects[search_api_solr][subdir] = "contrib"
 projects[search_api_solr][version] = "1.14"
