@@ -446,16 +446,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: 'administer nexteuropa_piwik'.
-  $permissions['administer nexteuropa_piwik'] = array(
-    'name' => 'administer nexteuropa_piwik',
-    'roles' => array(
-      'PIWIK administrator' => 'PIWIK administrator',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'nexteuropa_piwik',
-  );
-
   // Exported permission: 'administer node gallery'.
   $permissions['administer node gallery'] = array(
     'name' => 'administer node gallery',

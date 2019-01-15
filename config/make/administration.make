@@ -105,6 +105,7 @@ projects[shield][version] = "1.3"
 
 projects[smtp][subdir] = "contrib"
 projects[smtp][version] = "1.7"
+projects[smtp][patch][] = "../patches/smtp-smtp_reroute_address-default-value.patch"
 
 projects[term_reference_tree][subdir] = "contrib"
 projects[term_reference_tree][version] = "1.11"

@@ -30,10 +30,17 @@ function c4m_analytics_update_7002() {
 }
 
 /**
- * Disable Piwik, Piwik Analytics and NextEuropa Piwik Web Analytics module and enable Matomo.
+ * Disable Piwik related modules and enable Matomo.
  */
 function c4m_analytics_update_7003() {
   module_disable(['piwik'], FALSE);
   module_disable(['nexteuropa_piwik'], FALSE);
   module_enable(['matomo']);
+}
+
+/**
+ * Disable nexteuropa_piwik module.
+ */
+function c4m_analytics_update_7004() {
+  module_disable(['nexteuropa_piwik'], FALSE);
 }

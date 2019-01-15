@@ -1,0 +1,26 @@
+diff --git a/smtp.admin.inc b/smtp.admin.inc
+index ede7975..afff164 100644
+--- a/smtp.admin.inc
++++ b/smtp.admin.inc
+@@ -189,7 +189,7 @@ function smtp_admin_settings() {
+   $form['email_test']['smtp_reroute_address'] = array(
+     '#type'          => 'textfield',
+     '#title'         => t('E-mail address to reroute all emails to'),
+-    '#default_value' => variable_get('smtp_reroute_address', ''),
++    '#default_value' => variable_get('smtp_reroute_address', variable_get('smtp_reroute_address_default', '')),
+     '#description'   => t('All emails sent by the site will be rerouted to this email address; use with caution.'),
+   );
+ 
+diff --git a/smtp.mail.inc b/smtp.mail.inc
+index 4887ddc..578828c 100644
+--- a/smtp.mail.inc
++++ b/smtp.mail.inc
+@@ -67,7 +67,7 @@ class SmtpMailSystem implements MailSystemInterface {
+     $subject = $message['subject'];
+ 
+     // Optionally reroute all emails to a single address.
+-    $reroute_address = variable_get('smtp_reroute_address', '');
++    $reroute_address = variable_get('smtp_reroute_address', variable_get('smtp_reroute_address_default', ''));
+     if (!empty($reroute_address)) {
+       $to = $reroute_address;
+       // Remove any CC and BCC headers that might have been set.
