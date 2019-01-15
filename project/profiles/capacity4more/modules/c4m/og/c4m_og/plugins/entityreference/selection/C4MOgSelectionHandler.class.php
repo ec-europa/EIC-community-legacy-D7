@@ -168,4 +168,41 @@ class C4MOgSelectionHandler extends OgSelectionHandler {
     return $query;
   }
 
+  /**
+   * Overrides getReferencableEntities().
+   *
+   * @see EntityReference_SelectionHandler_Generic::getReferencableEntities()
+   */
+  public function getReferencableEntities($match = NULL, $match_operator = 'CONTAINS', $limit = 0) {
+    $options = [];
+    $entity_type = $this->field['settings']['target_type'];
+
+    $query = $this->buildEntityFieldQuery($match, $match_operator);
+    if ($limit > 0) {
+      $query->range(0, $limit);
+    }
+
+    $results = $query->execute();
+
+    if (!empty($results[$entity_type])) {
+      // Speed up the load process for nodes.
+      if ($entity_type === 'node') {
+        $query = db_query('SELECT nid, title FROM {node} WHERE nid IN (:nids)', [':nids' => array_keys($results[$entity_type])]);
+        $nodes = $query->fetchAllKeyed();
+        foreach ($nodes as $nid => $title) {
+          $options[$results['node'][$nid]->type][$nid] = check_plain($title);
+        }
+      }
+      else {
+        $entities = entity_load($entity_type, array_keys($results[$entity_type]));
+        foreach ($entities as $entity_id => $entity) {
+          list(, , $bundle) = entity_extract_ids($entity_type, $entity);
+          $options[$bundle][$entity_id] = check_plain($this->getLabel($entity));
+        }
+      }
+    }
+
+    return $options;
+  }
+
 }
