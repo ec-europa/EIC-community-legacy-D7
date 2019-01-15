@@ -18,15 +18,15 @@ function c4m_restful_quick_post_ctools_plugin_directory($module, $plugin) {
  * Implements hook_menu().
  */
 function c4m_restful_quick_post_menu() {
-  $items = array();
+  $items = [];
 
-  $items['quick-post/%/field-schema'] = array(
+  $items['quick-post/%/field-schema'] = [
     'page callback' => 'c4m_restful_quick_post_get_form_fields',
-    'page arguments' => array(1),
-    'access callback' => array('c4m_restful_quick_post_get_form_fields_access'),
-    'access arguments' => array(1),
+    'page arguments' => [1],
+    'access callback' => ['c4m_restful_quick_post_get_form_fields_access'],
+    'access arguments' => [1],
     'type' => MENU_CALLBACK,
-  );
+  ];
 
   return $items;
 }
@@ -35,13 +35,13 @@ function c4m_restful_quick_post_menu() {
  * Implements hook_theme().
  */
 function c4m_restful_quick_post_theme() {
-  $theme['c4m_restful_quick_post_angular_form'] = array(
+  $theme['c4m_restful_quick_post_angular_form'] = [
     'template' => 'quick-post-form',
     'path' => drupal_get_path('module', 'c4m_restful_quick_post') . '/templates',
-    'variables' => array(
+    'variables' => [
       'show_resources' => NULL,
-    ),
-  );
+    ],
+  ];
 
   return $theme;
 }
@@ -67,11 +67,11 @@ function c4m_restful_quick_post_get_form_fields_access($resource_name) {
     return FALSE;
   }
 
-  $resources = array(
-    'discussions' => array(
+  $resources = [
+    'discussions' => [
       'bundle' => 'discussion',
-    ),
-  );
+    ],
+  ];
 
   // Check if in a group.
   $gid = c4m_og_current_group_id();
@@ -98,26 +98,26 @@ function c4m_restful_quick_post_get_form_fields($resource_name) {
   // Get current group.
   $group_id = c4m_og_current_group_id();
   // Get fields.
-  $field_schema = array();
-  $public_fields = array();
-  $categories = array();
+  $field_schema = [];
+  $public_fields = [];
+  $categories = [];
   $handler = restful_get_restful_handler($resource_name);
   // Send the fields to the app as separate objects by resource
   // (for validation on submit).
-  $field_schema['resources'][$resource_name] = $handler->options('', array('group' => $group_id));
+  $field_schema['resources'][$resource_name] = $handler->options('', ['group' => $group_id]);
   $public_fields += $handler->getPublicFields();
 
   // Clean the categories values from the field Schema (Duplicated values).
   // Order them and assign them to a separate variable.
   foreach ($field_schema['resources'][$resource_name] as $field_name => $values) {
-    $fixed_values = array();
+    $fixed_values = [];
     $allowed_values = $field_name == 'categories' ? $values['form_element']['allowed_values']['categories'] : $values['form_element']['allowed_values'];
     if (!empty($allowed_values)) {
       foreach ($allowed_values as $id => $label) {
-        $fixed_values[] = array(
+        $fixed_values[] = [
           'id' => $id,
           'label' => $label,
-        );
+        ];
       }
     }
     if ($field_name == 'categories') {
@@ -131,11 +131,11 @@ function c4m_restful_quick_post_get_form_fields($resource_name) {
   $field_schema['categories'] = $categories;
 
   // Gathering all the fields to pass to the angular-app.
-  $entity_fields = array();
-  $skipped_fields = array(
+  $entity_fields = [];
+  $skipped_fields = [
     'id',
     'self',
-  );
+  ];
 
   foreach ($public_fields as $public_field_name => $value) {
     // Skipped fields.
@@ -152,12 +152,12 @@ function c4m_restful_quick_post_get_form_fields($resource_name) {
   }
 
   // Pass quick post form info via Drupal.settings.
-  $settings['c4m'] = array(
+  $settings['c4m'] = [
     'field_schema' => $field_schema,
-    'data' => array(
+    'data' => [
       'entity' => $entity_fields,
-    ),
-  );
+    ],
+  ];
 
   drupal_json_output($settings);
   drupal_exit();
@@ -177,73 +177,72 @@ function c4m_restful_quick_post_get_form_fields($resource_name) {
  *   A rendered form of the Quick Post.
  */
 function c4m_restful_quick_post_form($group_id) {
-  global $user;
   // Load the active features in the current group.
   $group_enabled_content_types = c4m_og_feature_enabled_content_types();
 
-  $request = array(
+  $request = [
     'group' => $group_id,
     'html' => TRUE,
     // Sort the activity stream by timestamp descending.
     'sort' => '-timestamp',
     'hide_articles' => 1,
     'group_context' => TRUE,
-  );
+  ];
 
   $activities = c4m_message_get_activities($request);
 
   // URL options.
-  $options = array(
-    'purl' => array(
+  $options = [
+    'purl' => [
       'disabled' => TRUE,
-    ),
+    ],
     'absolute' => TRUE,
-  );
+  ];
 
   // PURL options.
-  $purl_options = array(
-    'purl' => array(
+  $purl_options = [
+    'purl' => [
       'enabled' => TRUE,
-    ),
+    ],
     'absolute' => TRUE,
-  );
+  ];
 
   // Global settings for the AngularJs app.
-  $settings['c4m'] = array(
+  $settings['c4m'] = [
     'basePath' => url('', $options),
-    'purlPath' => url('', array('absolute' => TRUE, 'purl' => array('enabled' => TRUE))),
+    'purlPath' => url('', ['absolute' => TRUE, 'purl' => ['enabled' => TRUE]]),
     'csrfToken' => drupal_get_token(\RestfulInterface::TOKEN_VALUE),
     'activities' => $activities,
-    'data' => array(
+    'data' => [
       'request' => $request,
       'purl' => url('', $purl_options),
       'group' => $group_id,
-      'entity' => array(
+      'entity' => [
         'group' => $group_id,
-      ),
-      'relatedDocuments' => array(
-        'c4m-related-document' => array(),
-      ),
-    ),
-  );
+      ],
+      'relatedDocuments' => [
+        'c4m-related-document' => [],
+      ],
+    ],
+  ];
 
-  $resources = array(
-    'discussions' => array(
+  $resources = [
+    'discussions' => [
       'bundle' => 'Discussion',
       'description' => t('Discussion'),
       'quick_post' => 1,
-    ),
-    'wiki-page' => array(
+    ],
+    'wiki-page' => [
       'bundle' => 'wiki_page',
       'description' => t('Add Wiki page'),
       'quick_post' => 0,
-    ),
-    'photoalbum' => array(
+    ],
+    'photoalbum' => [
       'bundle' => 'photoalbum',
       'description' => t('Add Photo album'),
       'quick_post' => 0,
-    ),
-  );
+    ],
+  ];
 
   // Do not diaplay 'Add Wiki page' if the user isn't permitted.
   if (!og_user_access('node', $group_id, 'create wiki_page content')) {
@@ -277,10 +276,10 @@ function c4m_restful_quick_post_form($group_id) {
     $group = c4m_og_current_group();
     $group_state = c4m_og_get_group_status($group);
 
-    $user_may_create_discussion = !in_array($group_state, array(
+    $user_may_create_discussion = !in_array($group_state, [
       'pending',
       'deleted',
-    ));
+    ]);
   }
   else {
     $user_may_create_discussion = node_access('create', 'discussion');
@@ -295,13 +294,13 @@ function c4m_restful_quick_post_form($group_id) {
   }
 
   // Pass quick post form info via Drupal.settings.
-  $settings['c4m'] += array(
+  $settings['c4m'] += [
     'resources' => $show_resources,
-  );
+  ];
   drupal_add_js($settings, 'setting');
 
   // Theme function adds the Quick post form.
-  return theme('c4m_restful_quick_post_angular_form', array('show_resources' => $show_resources));
+  return theme('c4m_restful_quick_post_angular_form', ['show_resources' => $show_resources]);
 }
 
 /**
@@ -369,17 +368,17 @@ function c4m_restful_quick_post_preprocess_html(&$vars) {
   drupal_add_js($app_path . '/c4m-app.js');
 
   // URL options.
-  $options = array(
-    'purl' => array(
+  $options = [
+    'purl' => [
       'disabled' => TRUE,
-    ),
+    ],
     'absolute' => TRUE,
-  );
+  ];
 
-  $settings['c4m'] = array(
+  $settings['c4m'] = [
     'basePath' => url('', $options),
     'csrfToken' => drupal_get_token(\RestfulInterface::TOKEN_VALUE),
-  );
+  ];
   drupal_add_js($settings, 'setting');
 }
 
@@ -409,7 +408,7 @@ function c4m_restful_quick_post_needs_app() {
     }
   }
 
-  $allowed_paths = array(
+  $allowed_paths = [
     'node/%/edit',
     'node/%',
     'comment/reply/%',
@@ -419,7 +418,7 @@ function c4m_restful_quick_post_needs_app() {
     'c4m/project-template-clone/%/%',
     'c4m/programme-template-clone/%/%',
     'admin/people/create',
-  );
+  ];
   // If we are on a group edit form, the app should be loaded.
   if (in_array($path, $allowed_paths)) {
     return TRUE;
