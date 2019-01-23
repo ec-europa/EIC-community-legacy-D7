@@ -1,0 +1,59 @@
+diff --git a/status.php b/status.php
+new file mode 100644
+index 0000000000..4958945064
+--- /dev/null
++++ b/status.php
+@@ -0,0 +1,53 @@
++<?php
++
++/**
++ * @file
++ * Varnish status call.
++ */
++
++// Register our shutdown function so that no other shutdown functions run before
++// this one. This shutdown function calls exit(), immediately short-circuiting
++// any other shutdown functions, such as those registered by the devel.module
++// for statistics.
++define('DRUPAL_ROOT', getcwd());
++register_shutdown_function('status_shutdown');
++
++/**
++ * The shutdown function.
++ */
++function status_shutdown() {
++  exit();
++}
++
++// Drupal bootstrap.
++require_once './includes/bootstrap.inc';
++drupal_bootstrap(DRUPAL_BOOTSTRAP_DATABASE);
++
++// Build up our list of errors.
++$errors = array();
++
++// Check that the main database is active.
++$account = db_select('users', 'u')
++  ->fields('u', array('uid'))
++  ->condition('uid', 1, '=')
++  ->execute()
++  ->fetchObject();
++
++if (!$account->uid == 1) {
++  $errors[] = 'Master database not responding.';
++}
++
++// Print all errors.
++if ($errors) {
++  $errors[] = 'Errors on this server will cause it to be removed from the load balancer.';
++  header('HTTP/1.1 500 Internal Server Error');
++}
++else {
++  // Split up this message, to prevent the remote chance of monitoring software
++  // reading the source code if mod_php fails and then matching the string.
++  header('HTTP/1.1 200 OK');
++  print 'HTTP/1.1 200 OK';
++}
++
++// Exit immediately.
++exit();

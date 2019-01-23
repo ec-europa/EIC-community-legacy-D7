@@ -10,6 +10,7 @@ projects[drupal][patch][] = "https://drupal.org/files/911354-drupal-profile-85.p
 projects[drupal][patch][] = "../patches/book_unpublished_patch_760102-10.patch"
 projects[drupal][patch][] = "https://www.drupal.org/files/issues/cannot_create_references_tofrom_string_offsets_nor_overloaded_objects-2313517-32.patch"
 projects[drupal][patch][] = "../patches/machine-name-validate-custom-message.patch"
+projects[drupal][patch][] = "../patches/drupal-add-status-page.patch"
 
 ; Committed in Drupal 7.50
 ;projects[drupal][patch][] = "https://www.drupal.org/files/issues/1116326-overlay-method-get-forms-56-D7.patch"
