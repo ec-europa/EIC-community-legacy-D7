@@ -534,11 +534,26 @@
     @include css-var("background-color", "ec-yellow-25");
 }
 
+.group-right {
+  // Wiki add links on the right.
+  .wiki-add-links {
+    border-top: none;
+    margin-bottom: 4rem;
+    margin-top: 0;
+    padding-top: 0;
+  }
 
-.wiki-add-links {
-    @include css-var("border-top", "ec-grey-25", "solid 1px");
+  .add-links {
+    list-style: none;
+    margin-bottom: 0;
+    display: flex;
+    padding: 0;
+  }
+
+  li {
+    margin-right: 15px;
+  }
 }
-
 
 @media (max-width: 860px) {
     .video-preview-cta .link, .video-preview-cta .cta .btn, .video-preview-cta .cta .button.browse {
