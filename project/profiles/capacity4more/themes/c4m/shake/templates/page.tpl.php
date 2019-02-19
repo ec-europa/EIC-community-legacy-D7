@@ -118,7 +118,7 @@
                   <?php if ($logo): ?>
                       <a class="logo pull-left" href="<?php print $front_page; ?>"
                          title="<?php print t('Home'); ?>">
-                          <img src="<?php print $logo; ?>" alt="<?php print t('capacity4dev logo'); ?>" title="<?php print t('capacity4dev logo'); ?>"/>
+                          <img src="<?php print $logo; ?>" alt="<?php print t('EU Flag'); ?>" title="<?php print t('EU Flag'); ?>"/>
                       </a>
                   <?php endif; ?>
             <div class="site-name-slogan">
