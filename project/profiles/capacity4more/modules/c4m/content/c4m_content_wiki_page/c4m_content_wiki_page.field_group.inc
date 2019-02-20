@@ -90,6 +90,7 @@ function c4m_content_wiki_page_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'c4m_content_wiki_page_navigation',
+      1 => 'c4m_content_wiki_page_add_links',
     ),
     'format_type' => 'div',
     'format_settings' => array(

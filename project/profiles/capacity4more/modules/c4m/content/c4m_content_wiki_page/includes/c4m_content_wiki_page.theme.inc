@@ -103,20 +103,31 @@ function theme_c4m_content_wiki_page_add_links(array $field) {
   $parent_page = $book['plid'];
   $depth = $book['depth'];
 
-  $options = [
-    'attributes' => [
-      'class' => ['add-more', 'btn', 'btn-primary'],
-    ],
+  $options = array(
+    'attributes' => array(
+      'class' => 'add-more',
+    ),
     'html' => TRUE,
-  ];
+  );
 
   // Links to add new book pages.
-  $links = [
-    l('<i class="fa fa-plus"></i> ' . t('Add page on same level'), 'node/add/wiki-page', array_merge($options, ['query' => ['parent' => $parent_page]])),
-    $depth <= 5 ? l('<i class="fa fa-plus"></i> ' . t('Add child page'), 'node/add/wiki-page', array_merge($options, ['query' => ['parent' => $current_page]])) : '',
-  ];
+  $links = array(
+    l(
+      '<i class="fa fa-plus-square-o"></i> ' . t('Add page on same level'),
+      'node/add/wiki-page',
+      array_merge($options, array('query' => array('parent' => $parent_page)))
+    ),
+    $depth <= 5 ? l(
+      '<i class="fa fa-plus-square-o"></i> ' . t('Add child page'),
+      'node/add/wiki-page',
+      array_merge($options, array('query' => array('parent' => $current_page)))
+    ) : '',
+  );
 
-  $markup = theme('item_list', ['items' => $links, 'attributes' => ['class' => ['add-links']]]);
+  $markup = theme(
+    'item_list',
+    array('items' => $links, 'attributes' => array('class' => 'add-links'))
+  );
 
   return $markup;
 }
