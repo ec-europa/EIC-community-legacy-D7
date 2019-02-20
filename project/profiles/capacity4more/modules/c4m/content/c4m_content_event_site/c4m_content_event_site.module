@@ -72,7 +72,7 @@ function c4m_content_event_site_c4m_content_statistics_info() {
           'class' => array('topic-projects'),
         ),
         'link' => array(
-          'path' => 'events',
+          'path' => 'event_sites',
           'options' => array(
             'query' => array(
               'f' => array(
