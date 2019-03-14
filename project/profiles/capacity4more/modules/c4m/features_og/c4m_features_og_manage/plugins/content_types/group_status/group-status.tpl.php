@@ -37,12 +37,22 @@
       </div>
     </div>
     <div class="thumbnail-image panel-pane">
-      <div class="title">
-        <h2><?php print t('Thumbnail image') ?></h2>
-      </div>
-      <div class="row">
-        <div class="col-md-12"><?php print $info['thumbnail_image'] ?></div>
-      </div>
+      <?php if (!empty($info['banner_image'])): ?>
+        <div class="title">
+            <h2><?php print t('Banner image') ?></h2>
+        </div>
+          <div class="row">
+              <div class="col-md-12"><?php print $info['banner_image'] ?></div>
+          </div>
+      <?php endif;?>
+
+      <?php if (!empty($info['thumbnail_image'])): ?>
+        <div class="title">
+            <h2><?php print t('Thumbnail image') ?></h2>
+        </div>
+          <div class="row">
+              <div class="col-md-12"><?php print $info['thumbnail_image'] ?></div>
+          </div>
+      <?php endif;?>
     </div>
-  </div>
 </div>

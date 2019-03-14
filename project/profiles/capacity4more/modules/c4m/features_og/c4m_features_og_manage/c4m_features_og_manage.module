@@ -511,6 +511,7 @@ function c4m_features_og_manage_group_details() {
     'purl' => url($wrapper->value()->purl, array('absolute' => TRUE)),
     'title' => '<strong>' . $wrapper->label() . '</strong>',
     'description' => $wrapper->c4m_body->value(),
+    'welcome_message' => $wrapper->c4m_group_welcome_message->value(),
     'membership_open_request' => $membership_field['settings']['allowed_values'][$wrapper->field_membership_open_request->value(
     )],
     'group_access' => c4m_og_get_access_type($group),
@@ -1197,6 +1198,8 @@ function c4m_features_og_manage_group_status_statistics_and_thumbnail() {
       $options
     );
   }
+
+  $info['banner_image'] = c4m_content_get_og_image_markup($group);
 
   return $info;
 }
