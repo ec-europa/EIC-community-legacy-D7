@@ -49,3 +49,24 @@ function c4m_user_og_unified_workflow_logged_in_users($group) {
   // Redirect back to the group page.
   drupal_goto(drupal_get_path_alias('node/' . $group->nid));
 }
+
+/**
+ * Add membership to group when joining with a valid invitation.
+ *
+ * @param object $group
+ *   The object of the group.
+ *
+ * @throws OgException
+ */
+function c4m_user_og_join_invited($group) {
+  if (user_is_anonymous()) {
+    return;
+  }
+
+  global $user;
+  if ($membership = og_get_membership('node', $group->nid, 'user', $user->uid)) {
+    og_membership_delete($membership->id);
+    og_group('node', $group, ['entity' => $user]);
+    drupal_goto(drupal_get_path_alias('node/' . $group->nid));
+  }
+}

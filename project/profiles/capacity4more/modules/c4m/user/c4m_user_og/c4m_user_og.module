@@ -734,7 +734,11 @@ function c4m_user_og_group_management_cta($group) {
     );
 
     // Add project highlight icon.
-    if (c4m_user_is_site_admin() && in_array($group->type,  ['project', 'event_site', 'organisation'])) {
+    if (c4m_user_is_site_admin() && in_array($group->type, [
+      'project',
+      'event_site',
+      'organisation',
+    ])) {
       $field = [
         'entity' => $group,
         'view_mode' => 'block_list',
@@ -779,16 +783,29 @@ function c4m_user_og_c4m_join_cta($group) {
   }
 
   if (og_is_member('node', $group->nid, 'user', NULL, [OG_STATE_PENDING])) {
-    $message = t("This is a moderated group. Your request is waiting for approval. Continue to explore group's content.");
-    drupal_set_message($message);
-
-    return [
-      '#theme' => 'c4m_group_text_cta',
-      '#text' => t('Membership waiting approval'),
-      '#icon' => 'fa-hourglass-end',
-      '#wrapper_class' => 'c4m-wide-gothic-btn',
-      '#text_class' => 'btn text-small',
-    ];
+    // Split functionality when user is invited by Admin first.
+    if (c4m_user_og_c4m_check_invitation($group)) {
+      $message = t("You are already invited to this group, you can join it immediatelly.");
+      drupal_set_message($message);
+      $url = url('group/join/' . $group->nid . '/invited', ['absolute' => TRUE]);
+      return [
+        '#theme' => 'c4m_group_visitor_cta',
+        '#button_label' => t('Join this group immediately!'),
+        '#button_icon' => 'fa-check',
+        '#url' => url('group/join/' . $group->nid . '/invited', ['absolute' => TRUE]),
+      ];
+    }
+    else {
+      $message = t("This is a moderated group. Your request is waiting for approval. Continue to explore group's content.");
+      drupal_set_message($message);
+      return [
+        '#theme' => 'c4m_group_text_cta',
+        '#text' => t('Membership waiting approval'),
+        '#icon' => 'fa-hourglass-end',
+        '#wrapper_class' => 'c4m-wide-gothic-btn',
+        '#text_class' => 'btn text-small',
+      ];
+    }
   }
 
   if (og_is_member('node', $group->nid)) {
@@ -798,6 +815,39 @@ function c4m_user_og_c4m_join_cta($group) {
   return c4m_user_og_c4m_visitor_cta($group);
 }
 
+/**
+ * Check if user already has invitation to join this group.
+ *
+ * @param object $group
+ *   The Group object.
+ *
+ * @return bool
+ *   Returns true if user already invited to this group.
+ */
+function c4m_user_og_c4m_check_invitation($group) {
+  if (user_is_anonymous()) {
+    return FALSE;
+  }
+
+  global $user;
+
+  $query = db_select('og_membership', 'm');
+  $query->fields('m', ['id']);
+  $query->join('field_data_og_membership_invitation', 'n', 'n.entity_id = m.id');
+  $query->condition('m.entity_type', 'user');
+  $query->condition('m.gid', $group->nid);
+  $query->condition('m.state', 2);
+  $query->condition('m.etid', $user->uid);
+
+  $result = $query->execute()->fetchAssoc();
+
+  if (empty($result)) {
+    return FALSE;
+  }
+  // There is an invite for the user in this moderated group, offer posibility
+  // to join immediatelly.
+  return TRUE;
+}
 /**
  * Sets the Invite a member link CTA.
  *
@@ -932,6 +982,16 @@ function c4m_user_og_menu() {
     'title' => 'Join group',
     'type' => MENU_CALLBACK,
     'page callback' => 'c4m_user_og_unified_workflow',
+    'page arguments' => [2],
+    'access callback' => 'c4m_user_og_unified_workflow_access',
+    'access arguments' => [2],
+    'file' => 'c4m_user_og.page.inc',
+  ];
+
+  $items['group/join/%node/invited'] = [
+    'title' => 'Join group',
+    'type' => MENU_CALLBACK,
+    'page callback' => 'c4m_user_og_join_invited',
     'page arguments' => [2],
     'access callback' => 'c4m_user_og_unified_workflow_access',
     'access arguments' => [2],
