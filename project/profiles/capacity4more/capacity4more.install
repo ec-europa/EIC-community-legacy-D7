@@ -718,3 +718,10 @@ function capacity4more_update_7023() {
 function capacity4more_update_7024() {
   module_disable(['admin_menu', 'admin_menu_toolbar', 'adminimal_admin_menu']);
 }
+
+/**
+ * Enable ajax_comments.
+ */
+function capacity4more_update_7025() {
+  module_enable(['ajax_comments']);
+}

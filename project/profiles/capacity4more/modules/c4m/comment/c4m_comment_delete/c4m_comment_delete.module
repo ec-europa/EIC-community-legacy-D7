@@ -28,10 +28,14 @@ function c4m_comment_delete_menu() {
  * Implements hook_menu_alter().
  */
 function c4m_comment_delete_menu_alter(&$items) {
-  $items['comment/%/delete']['page callback']    = 'drupal_get_form';
-  $items['comment/%/delete']['page arguments']   = array('c4m_comment_delete_form', 1);
-  $items['comment/%/delete']['access callback']  = 'c4m_comment_delete_access_check';
-  $items['comment/%/delete']['access arguments'] = array(1);
+  $items['ajax_comment/%/delete']['page callback'] = 'c4m_comment_delete_form_ajax';
+  $items['ajax_comment/%/delete']['access callback'] = 'c4m_comment_delete_access_check';
+  $items['ajax_comment/%/delete']['access arguments'] = [1];
+
+  $items['comment/%/delete']['page callback'] = 'drupal_get_form';
+  $items['comment/%/delete']['page arguments'] = ['c4m_comment_delete_form', 1];
+  $items['comment/%/delete']['access callback'] = 'c4m_comment_delete_access_check';
+  $items['comment/%/delete']['access arguments'] = [1];
   unset($items['comment/delete']['file']);
 }
 
@@ -140,6 +144,41 @@ function c4m_comment_delete_reply_actions() {
   $actions[2] = t("Delete only the comment, or it's text and the subject if it has replies");
 
   return $actions;
+}
+
+/**
+ * Callback for delete comment AJAX request.
+ *
+ * @param int $cid
+ *   Comment id.
+ *
+ * @return array|int
+ *   AJAX response or MENU_NOT_FOUND.
+ */
+function c4m_comment_delete_form_ajax($cid) {
+  if (!($comment = comment_load($cid))) {
+    return MENU_NOT_FOUND;
+  }
+
+  // Need to include comment module admin file for delete form.
+  $form_state = [];
+  $form_state['build_info']['args'] = [$cid];
+
+  // Load this using form_load_include so it's cached properly and works in the
+  // ajax callback.
+  form_load_include($form_state, 'inc', 'comment', 'comment.admin');
+
+  $form_build = drupal_build_form('c4m_comment_delete_form', $form_state);
+
+  $form = drupal_render($form_build);
+
+  // Hide contents.
+  $commands[] = ajax_command_invoke('.comment-wrapper-' . $cid . ' >*', 'hide');
+
+  // Put form inside main comment wrapper.
+  $commands[] = ajax_command_prepend('.comment-wrapper-' . $cid, $form);
+
+  return ['#type' => 'ajax', '#commands' => $commands];
 }
 
 /**
