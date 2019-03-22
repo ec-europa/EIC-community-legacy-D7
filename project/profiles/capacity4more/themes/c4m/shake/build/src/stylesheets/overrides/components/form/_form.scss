@@ -126,9 +126,15 @@
 
 .input-group {
     width: 100%;
+    &.form-managed-file {
+        width: 50% !important;
+        .form-control {
+            border: none;
+        }
+    }
     .form-control {
         &.form-file {
-            opacity: 0;
+            padding: 9px;
         }
     }
 
@@ -328,6 +334,20 @@ fieldset {
 }
 
 .node-form {
+    .input-group {
+        &.form-managed-file {
+        width: 100% !important;
+        }
+    }
+    .cfm-file-upload-wrapper {
+        .droppable-controls {
+            .form-submit {
+                position: initial;
+                bottom: 0;
+            }
+        }
+    }
+
     .cfm-file-upload {
         flex-direction: row;
         align-items: stretch;
@@ -343,9 +363,6 @@ fieldset {
             margin: 0 1em;
         }
         a {
-            margin-left: auto;
-            flex-shrink: 0;
-            padding: 1em;
             @include css-var("background-color", "ec-grey-100");
             color: #fff;
             &:hover,
