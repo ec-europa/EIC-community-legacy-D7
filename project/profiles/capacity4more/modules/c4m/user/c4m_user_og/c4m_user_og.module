@@ -601,6 +601,17 @@ function c4m_user_og_c4m_cta_block() {
     if ($item = c4m_user_og_follow_group_cta($group)) {
       $items['follow'] = $item;
     }
+    if ($item = c4m_content_action_get_actions()) {
+      $items['other_actions'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#attributes' => array(
+          'class' => 'c4m-group-follow-cta text-copy--small',
+        ),
+        '#weight' => '100',
+        '#value' => $item,
+      );
+    }
   }
 
   return $items;

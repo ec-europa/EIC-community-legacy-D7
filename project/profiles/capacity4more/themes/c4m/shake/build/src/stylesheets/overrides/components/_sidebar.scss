@@ -50,6 +50,19 @@
             margin-top: 1em;
         }
     }
+
+    &.pane-c4m-features-og-group-dashboard-c4m-cta-block {
+        .sidebarblock__content {
+            .group-actions-recommend {
+                i {
+                    width: 2em;
+                }
+                .action {
+                    margin-left: 0.3rem;
+                }
+            }
+        }
+    }
 }
 
 .region-sidebar-first {

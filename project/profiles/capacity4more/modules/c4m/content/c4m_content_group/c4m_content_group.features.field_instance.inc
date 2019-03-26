@@ -107,7 +107,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 43,
+        'weight' => 50,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -280,7 +280,7 @@ function c4m_content_group_field_default_field_instances() {
           'trim_length' => 600,
         ),
         'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -423,7 +423,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 37,
+        'weight' => 44,
       ),
       'print' => array(
         'label' => 'above',
@@ -569,7 +569,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 45,
+        'weight' => 52,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -706,7 +706,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 38,
+        'weight' => 45,
       ),
       'print' => array(
         'label' => 'above',
@@ -782,7 +782,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 36,
+        'weight' => 43,
       ),
       'print' => array(
         'label' => 'above',
@@ -893,7 +893,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 32,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -1019,7 +1019,7 @@ function c4m_content_group_field_default_field_instances() {
         'module' => 'c4m_vocab_widget',
         'settings' => array(),
         'type' => 'term_reference_tree_hierarchical',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -1152,7 +1152,7 @@ function c4m_content_group_field_default_field_instances() {
         'module' => 'c4m_vocab_widget',
         'settings' => array(),
         'type' => 'term_reference_tree_hierarchical',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -1279,7 +1279,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 41,
+        'weight' => 48,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -1401,7 +1401,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 42,
+        'weight' => 49,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -1531,7 +1531,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 40,
+        'weight' => 47,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -1669,7 +1669,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 44,
+        'weight' => 51,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
@@ -1812,7 +1812,7 @@ function c4m_content_group_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 39,
+        'weight' => 46,
       ),
       'inthe_picture_block' => array(
         'label' => 'above',
