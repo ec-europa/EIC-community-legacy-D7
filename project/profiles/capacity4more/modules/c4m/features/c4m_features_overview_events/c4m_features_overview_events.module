@@ -191,6 +191,28 @@ function c4m_features_overview_events_form_alter(&$form, &$form_state, $form_id)
     // Unset the hidden token field and form_build_id field.
     unset($form['form_id'], $form['#token'], $form['form_build_id'], $form['#build_id']);
   }
+
+  // Adds reset button for Past Events and Upcoming Events pages.
+  if (in_array($form['#id'], [
+    // /events page.
+    'views-exposed-form-c4m-overview-events-landing-page',
+    // /events/upcoming page.
+    'views-exposed-form-c4m-overview-events-page',
+    // /events/past page.
+    'views-exposed-form-c4m-overview-events-page-1',
+  ])) {
+    if ($form['#id'] !== 'views-exposed-form-c4m-overview-events-landing-page' || !empty($form_state['input'])) {
+      $form['custom_reset'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#attributes' => [
+          'class' => 'views-reset-button',
+        ],
+        '#weight' => '100',
+        '#value' => l(t('Reset'), '/events', ['attributes' => ['class' => 'btn btn-default form-submit']]),
+      ];
+    }
+  }
 }
 
 /**
