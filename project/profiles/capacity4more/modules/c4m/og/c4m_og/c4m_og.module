@@ -877,6 +877,13 @@ function c4m_og_replace_owner_build_form_submit($form, &$form_state) {
  * Group owner replace form.
  */
 function c4m_og_export_statistics_form($form, $form_state) {
+  $group = og_context();
+
+  if (empty($group)) {
+    drupal_set_message(t('You have to be in a Group Context for statistics to work!'), 'error');
+    return;
+  }
+
   $format = 'Y-m-d';
 
   $intervals = [
@@ -990,6 +997,11 @@ function c4m_og_export_statistics_form_submit($form, &$form_state) {
   $values = $form_state['values'];
   $group = og_context();
 
+  if (empty($group)) {
+    drupal_set_message(t('You have to be in a Group Context for statistics to work!'), 'error');
+    return;
+  }
+
   $start_date = new DateTime($values['start_date']);
   $end_date = new DateTime($values['end_date']);
   $end_date->add(DateInterval::createFromDateString('1 day'));
@@ -1041,7 +1053,10 @@ function _c4m_og_export_statistics_form_batch($type_of_content, $gid, $start_dat
   $first_run = !isset($context['sandbox']['fid']);
 
   if ($type_of_content === 'members') {
-    $content = _c4m_og_export_statistics_form_submit_members($gid, $current_start_date, $current_end_date, $first_run);
+    $group = node_load($gid);
+    if (!empty($group)) {
+      $content = _c4m_og_export_statistics_form_submit_members($group, $current_start_date, $current_end_date, $first_run);
+    }
   }
   else {
     $content = _c4m_og_export_statistics_form_submit_content($gid, $current_start_date, $current_end_date, $first_run);
@@ -1195,14 +1210,13 @@ function _c4m_og_export_statistics_form_submit_content($gid, $start_date, $end_d
  *
  * Export members from group.
  */
-function _c4m_og_export_statistics_form_submit_members($gid, $start_date, $end_date, $first_run) {
+function _c4m_og_export_statistics_form_submit_members($group, $start_date, $end_date, $first_run) {
+  $group_type = $group->type;
+  $gid = $group->nid;
   $query = db_select('og_membership', 'ogm');
   $query->join('users', 'u', "u.uid = ogm.etid AND ogm.entity_type = 'user'");
   $query->leftJoin('field_data_c4m_first_name', 'fn', 'fn.entity_id = ogm.etid');
   $query->leftJoin('field_data_c4m_last_name', 'ln', 'ln.entity_id = ogm.etid');
-  $query->leftJoin('field_data_c4m_organisation_type', 'ot', 'ot.entity_id = u.uid');
-  $query->leftJoin('field_data_c4m_organisation', 'oname', 'oname.entity_id = u.uid');
-  $query->leftJoin('field_data_c4m_country', 'country', 'country.entity_id = ogm.etid');
   $query->leftJoin('og_membership', 'ogmc', 'ogmc.gid = ' . $gid . ' AND ogmc.entity_type = \'node\'');
   $query->leftJoin('node', 'n', 'n.nid = ogmc.etid AND n.uid = ogm.etid');
   $query->leftJoin('comment', 'c', 'c.uid = ogm.etid AND c.nid = ogmc.etid');
@@ -1210,13 +1224,16 @@ function _c4m_og_export_statistics_form_submit_members($gid, $start_date, $end_d
   $query->leftJoin('node_revision', 'nr', 'nr.uid = ogm.etid AND nr.nid = ogmc.etid');
   $query->leftJoin('og_users_roles', 'ur', 'ur.uid = ogm.etid AND ur.gid = ' . $gid);
   $query->leftJoin('og_role', 'r', 'r.rid = ur.rid');
+
+  if (in_array($group_type, ['event_site', 'organisation'])) {
+    $query->leftJoin('field_data_c4m_location_address', 'country', 'country.entity_id = ogm.etid');
+    $query->fields('country', ['c4m_location_address_country']);
+  }
+
   $query->fields('u', ['login']);
   $query->fields('ogm', ['created', 'state', 'etid']);
   $query->fields('fn', ['c4m_first_name_value']);
   $query->fields('ln', ['c4m_last_name_value']);
-  $query->fields('ot', ['c4m_organisation_type_value']);
-  $query->fields('oname', ['c4m_organisation_value']);
-  $query->fields('country', ['c4m_country_value']);
   $query->fields('inv', ['inv_inviter_id']);
   $query->addExpression('COUNT(n.nid)', 'content');
   $query->addExpression('COUNT(c.cid)', 'comments');
@@ -1242,7 +1259,16 @@ function _c4m_og_export_statistics_form_submit_members($gid, $start_date, $end_d
     }
   }
 
-  $output = "First name|Last name|Total content posted|Total comments posted|Invited by|Group Member since|Membership status|Member role|Last login on c4d|Last activity in group|Organisation name|Organisation type|Country\n";
+  $output = '';
+  if ($first_run) {
+    $output = "First name|Last name|Total content posted|Total comments posted|Invited by|Group Member since|Membership status|Member role|Last login on c4d|Last activity in group";
+    if (in_array($group_type, ['event_site', 'organisation'])) {
+      $output .= "|Country";
+    }
+    $output .= "\n";
+  }
+
+
   foreach ($members as $item) {
     $output .= '"' . (!empty($item->c4m_first_name_value) ? str_replace("|", "", $item->c4m_first_name_value) : '');
     $output .= '"|"' . (!empty($item->c4m_last_name_value) ? str_replace("|", "", $item->c4m_last_name_value) : '');
@@ -1263,9 +1289,11 @@ function _c4m_og_export_statistics_form_submit_members($gid, $start_date, $end_d
       }
     }
     $output .= '"|"' . (!empty($last_activity) ? date('d/m/Y h:i', $last_activity) : '');
-    $output .= '"|"' . (!empty($item->c4m_organisation_value) ? str_replace("|", "", $item->c4m_organisation_value) : '');
-    $output .= '"|"' . (!empty($item->c4m_organisation_type_value) ? str_replace("|", "", $item->c4m_organisation_type_value) : '');
-    $output .= '"|"' . (!empty($item->c4m_country_value) ? str_replace("|", "", $item->c4m_country_value) : '') . '"';
+
+    if (in_array($group_type, ['event_site', 'organisation'])) {
+      $output .= '"|"' . (!empty($item->c4m_location_address_country) ? str_replace("|", "", $item->c4m_location_address_country) : '');
+    }
+
     $output .= "\n";
   }
   return $output;

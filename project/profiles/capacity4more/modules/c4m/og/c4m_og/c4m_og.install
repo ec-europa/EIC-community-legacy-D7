@@ -61,3 +61,20 @@ function c4m_og_update_7001() {
   variable_set('og_use_queue', 1);
   variable_set('og_orphans_delete', 1);
 }
+
+/**
+ * Hide the Statistics menu item.
+ */
+function c4m_og_update_7002() {
+  try {
+    $update = db_update('menu_links')
+      ->fields([
+        'hidden' => 1,
+      ])
+      ->condition('link_path', 'admin/statistics', '=')
+      ->execute();
+  }
+  catch (PDOException $e) {
+    print_r('There was a problem when trying to disable the Statistics menu item.');
+  }
+}

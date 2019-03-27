@@ -1319,6 +1319,17 @@ function c4m_features_og_manage_event_site_thumbnail() {
       url('group/' . $event_site->entity_type . '/' . $event_site->nid . '/admin/people', $link_options)
     ),
   ];
+
+  // Statistics.
+  $options = [
+    'absolute' => TRUE,
+    'purl' => ['enabled' => TRUE],
+  ];
+  $path = 'admin/statistics';
+  $info['content_statistics'] = l(t('Event Site statistics'), $path, $options);
+  $info['member_statistics'] = l(t('Member statistics'), $path, $options);
+
+
   // Event site thumbnail image with edit link.
   $info['thumbnail_image'] = NULL;
   $file = $wrapper->c4m_media->value();
@@ -1387,6 +1398,16 @@ function c4m_features_og_manage_organisation_thumbnail() {
       url('group/' . $organisation->entity_type . '/' . $organisation->nid . '/admin/people', $link_options)
     ),
   ];
+
+  // Statistics.
+  $options = [
+    'absolute' => TRUE,
+    'purl' => ['enabled' => TRUE],
+  ];
+  $path = 'admin/statistics';
+  $info['content_statistics'] = l(t('Organisation statistics'), $path, $options);
+  $info['member_statistics'] = l(t('Member statistics'), $path, $options);
+
   // Organisation thumbnail image with edit link.
   $info['thumbnail_image'] = NULL;
   $file = $wrapper->c4m_media->value();
