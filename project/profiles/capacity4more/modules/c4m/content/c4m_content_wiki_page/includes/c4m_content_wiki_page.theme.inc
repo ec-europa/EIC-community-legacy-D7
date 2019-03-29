@@ -112,8 +112,8 @@ function theme_c4m_content_wiki_page_add_links(array $field) {
 
   // Links to add new book pages.
   $links = [
-    l('<i class="fa fa-plus"></i> ' . t('Add page on same level'), 'node/add/wiki-page', array_merge($options, ['query' => ['parent' => $parent_page]])),
-    $depth <= 5 ? l('<i class="fa fa-plus"></i> ' . t('Add child page'), 'node/add/wiki-page', array_merge($options, ['query' => ['parent' => $current_page]])) : '',
+    l('<i class="fa fa-wikipedia-w"></i> ' . t('Add page on same level'), 'node/add/wiki-page', array_merge($options, ['query' => ['parent' => $parent_page]])),
+    $depth <= 5 ? l('<i class="fa fa-wikipedia-w"></i> ' . t('Add child page'), 'node/add/wiki-page', array_merge($options, ['query' => ['parent' => $current_page]])) : '',
   ];
 
   $markup = theme('item_list', ['items' => $links, 'attributes' => ['class' => ['add-links']]]);
