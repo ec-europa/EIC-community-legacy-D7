@@ -5,6 +5,7 @@
   "author": "AMPLEXOR NV",
   "license": "MIT",
   "main": "gulpfile.js",
+  "repository": {},
   "scripts": {
     "postinstall": "find node_modules/ -name \"*.info\" -type f -delete"
   },
