@@ -602,11 +602,15 @@ function c4m_user_og_c4m_cta_block() {
       $items['follow'] = $item;
     }
     if ($item = c4m_content_action_get_actions()) {
+      $classes = ['c4m-group-follow-cta', 'text-copy--small'];
+      if (!og_is_member('node', $group->nid)) {
+        $classes = array_merge($classes, ['btn', 'btn-primary']);
+      }
       $items['other_actions'] = array(
         '#type' => 'html_tag',
         '#tag' => 'div',
         '#attributes' => array(
-          'class' => 'c4m-group-follow-cta text-copy--small',
+          'class' => implode(' ', $classes),
         ),
         '#weight' => '100',
         '#value' => $item,

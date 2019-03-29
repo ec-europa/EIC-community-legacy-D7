@@ -53,12 +53,22 @@
 
     &.pane-c4m-features-og-group-dashboard-c4m-cta-block {
         .sidebarblock__content {
-            .group-actions-recommend {
+            .c4m-group-follow-cta {
                 i {
                     width: 2em;
                 }
                 .action {
                     margin-left: 0.3rem;
+                }
+                &.btn-primary {
+                    a {
+                        color: $color-white;
+                    }
+                    &:hover {
+                        a {
+                            color: $color-blue;
+                        }
+                    }
                 }
             }
         }
