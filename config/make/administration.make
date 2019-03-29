@@ -16,7 +16,7 @@ projects[adminimal_admin_menu][patch][] = https://www.drupal.org/files/issues/ad
 projects[adminimal_admin_menu][patch][] = https://www.drupal.org/files/issues/adminimal_admin_menu-js-error-2407007-3.patch
 
 projects[module_filter][subdir] = "contrib"
-projects[module_filter][version] = "2.1"
+projects[module_filter][version] = "2.2"
 
 projects[better_formats][subdir] = "contrib"
 projects[better_formats][version] = "1.0-beta2"
@@ -25,7 +25,7 @@ projects[blockreference][subdir] = "contrib"
 projects[blockreference][version] = "2.7"
 
 projects[context][subdir] = "contrib"
-projects[context][version] = "3.9"
+projects[context][version] = "3.10"
 
 projects[context_block_disable][subdir] = "contrib"
 projects[context_block_disable][version] = "2.1"

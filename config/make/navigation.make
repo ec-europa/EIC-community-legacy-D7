@@ -4,4 +4,4 @@ api = 2
 ; Modules dealing with navigation.
 
 projects[path_breadcrumbs][subdir] = "contrib"
-projects[path_breadcrumbs][version] = "3.3"
+projects[path_breadcrumbs][version] = "3.4"

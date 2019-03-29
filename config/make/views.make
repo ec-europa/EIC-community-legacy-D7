@@ -7,7 +7,7 @@ projects[draggableviews][subdir] = "contrib"
 projects[draggableviews][version] = "2.1"
 
 projects[views][subdir] = "contrib"
-projects[views][version] = "3.20"
+projects[views][version] = "3.21"
 projects[views][patch][] = "https://www.drupal.org/files/issues/2018-04-27/views-undefined_index_flagging-2331209-59-D7.patch"
 
 projects[views_bulk_operations][subdir] = "contrib"
