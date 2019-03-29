@@ -1136,12 +1136,13 @@ function _c4m_og_statistics_results() {
     $output = t('<p>Export data is not available.</p>');
   }
   else {
+    $file_uri = file_create_url($file->uri);
     drupal_add_html_head([
       '#tag' => 'meta',
-      '#attributes' => ['http-equiv' => 'Refresh', 'content' => '3;url=' . file_create_url($file->uri)],
+      '#attributes' => ['http-equiv' => 'Refresh', 'content' => '3;url=' . $file_uri],
     ], 'c4m_og_statistics_download');
 
-    $output = t('<p>Your export has been created. Download the file <a href="@link">here</a> (will automatically download in 3 seconds.)</p>', ['@link' => $file->uri]);
+    $output = t('<p>Your export has been created. Download the file <a href="@link">here</a> (will automatically download in 3 seconds.)</p>', ['@link' => $file_uri]);
   }
 
   $options = [
