@@ -29,7 +29,7 @@ function c4m_features_site_settings_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_mail';
-  $strongarm->value = 'EASME-SME-HELPDESK@ec.europa.eu';
+  $strongarm->value = 'noreply-EIC-Community@easme-web.eu';
   $export['site_mail'] = $strongarm;
 
   $strongarm = new stdClass();
