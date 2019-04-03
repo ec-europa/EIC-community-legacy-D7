@@ -73,7 +73,7 @@ function c4m_content_article_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'article';
   $ds_fieldsetting->view_mode = 'activity_global';
   $ds_fieldsetting->settings = array(
-    'c4m_ds_content_footer_stats' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
@@ -90,13 +90,8 @@ function c4m_content_article_ds_field_settings_info() {
           'fis-el' => 'div',
           'fis-cl' => 'pull-right',
           'fis-at' => '',
-          'fis-def-at' => FALSE,
+          'fis-def-at' => TRUE,
         ),
-      ),
-    ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
       ),
     ),
   );
@@ -530,13 +525,13 @@ function c4m_content_article_ds_layout_settings_info() {
         1 => 'c4m_body',
       ),
       'footer' => array(
-        2 => 'c4m_ds_content_footer_stats',
+        2 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
       'c4m_media' => 'left',
       'c4m_body' => 'right',
-      'c4m_ds_content_footer_stats' => 'footer',
+      'c4m_ds_content_footer_stats_linked' => 'footer',
     ),
     'classes' => array(
       'layout_class' => array(

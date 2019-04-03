@@ -177,11 +177,11 @@ function c4m_content_photoalbum_strongarm() {
       'display' => array(
         'node_gallery_view' => array(
           'activity_group' => array(
-            'weight' => '0',
+            'weight' => '22',
             'visible' => FALSE,
           ),
           'activity_global' => array(
-            'weight' => '23',
+            'weight' => '32',
             'visible' => FALSE,
           ),
           'default' => array(
@@ -243,11 +243,11 @@ function c4m_content_photoalbum_strongarm() {
             'visible' => FALSE,
           ),
           'activity_global' => array(
-            'weight' => '10',
+            'weight' => '30',
             'visible' => FALSE,
           ),
           'activity_group' => array(
-            'weight' => '10',
+            'weight' => '32',
             'visible' => FALSE,
           ),
           'full' => array(

@@ -4509,3 +4509,28 @@ function c4m_og_get_users_from_group($gid) {
 
   return $uids;
 }
+
+/**
+ * Implements hook_flag_flag().
+ */
+function c4m_og_flag_flag($flag, $entity_id, $account, $flagging) {
+  c4m_og_clear_cache_activity_stream($flag);
+}
+
+/**
+ * Implements hook_flag_unflag().
+ */
+function c4m_og_flag_unflag($flag, $entity_id, $account, $flagging) {
+  c4m_og_clear_cache_activity_stream($flag);
+}
+
+/**
+ * Helper function for clearing caches on Activity Stream when user likes/dislikes one item.
+ */
+function c4m_og_clear_cache_activity_stream($flag) {
+  if ($flag->name != 'c4m_og_content_recommend') {
+    return;
+  }
+  // Clear cache of activity stream.
+  _c4m_message_clear_activity_stream_cache();
+}

@@ -207,11 +207,11 @@ function c4m_content_document_strongarm() {
             'visible' => FALSE,
           ),
           'activity_group' => array(
-            'weight' => '23',
+            'weight' => '33',
             'visible' => FALSE,
           ),
           'activity_global' => array(
-            'weight' => '23',
+            'weight' => '33',
             'visible' => FALSE,
           ),
           'default' => array(

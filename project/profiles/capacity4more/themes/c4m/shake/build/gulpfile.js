@@ -119,6 +119,7 @@ gulp.task('concat', ['eslint'], function() {
     var files = {
         "shake.concat.js": [
             'src/javascripts/shake.js',
+            'src/javascripts/recommend.js',
             'src/ec-preset-website/ecl-ec-preset-website.js'
         ]
     };

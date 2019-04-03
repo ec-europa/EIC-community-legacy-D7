@@ -96,8 +96,8 @@ function c4m_content_photoalbum_ds_field_settings_info() {
         'ft' => array(),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '3',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '10',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -127,11 +127,6 @@ function c4m_content_photoalbum_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
-      ),
-    ),
   );
   $export['node|photoalbum|activity_global'] = $ds_fieldsetting;
 
@@ -142,7 +137,7 @@ function c4m_content_photoalbum_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'photoalbum';
   $ds_fieldsetting->view_mode = 'activity_group';
   $ds_fieldsetting->settings = array(
-    'c4m_ds_content_footer_stats' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
@@ -171,11 +166,6 @@ function c4m_content_photoalbum_ds_field_settings_info() {
         'ft' => array(
           'func' => 'theme_ds_field_reset',
         ),
-      ),
-    ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
       ),
     ),
   );
@@ -925,14 +915,14 @@ function c4m_content_photoalbum_ds_layout_settings_info() {
         2 => 'c4m_body',
       ),
       'footer' => array(
-        3 => 'c4m_ds_content_footer_stats',
+        3 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
       'c4m_field_og_group' => 'header',
       'c4m_ds_photoalbum_cover_image' => 'left',
       'c4m_body' => 'right',
-      'c4m_ds_content_footer_stats' => 'footer',
+      'c4m_ds_content_footer_stats_linked' => 'footer',
     ),
     'classes' => array(
       'layout_class' => array(
@@ -970,13 +960,13 @@ function c4m_content_photoalbum_ds_layout_settings_info() {
         1 => 'c4m_body',
       ),
       'footer' => array(
-        2 => 'c4m_ds_content_footer_stats',
+        2 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
       'c4m_ds_photoalbum_cover_image' => 'left',
       'c4m_body' => 'right',
-      'c4m_ds_content_footer_stats' => 'footer',
+      'c4m_ds_content_footer_stats_linked' => 'footer',
     ),
     'classes' => array(
       'layout_class' => array(

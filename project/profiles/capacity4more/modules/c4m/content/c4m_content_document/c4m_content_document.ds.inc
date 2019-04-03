@@ -101,10 +101,10 @@ function c4m_content_document_ds_field_settings_info() {
         'ft' => array(),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '4',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '31',
       'label' => 'hidden',
-      'format' => 'downloads',
+      'format' => 'default',
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
@@ -127,11 +127,6 @@ function c4m_content_document_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
-      ),
-    ),
   );
   $export['node|document|activity_global'] = $ds_fieldsetting;
 
@@ -142,10 +137,10 @@ function c4m_content_document_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'document';
   $ds_fieldsetting->view_mode = 'activity_group';
   $ds_fieldsetting->settings = array(
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '3',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '31',
       'label' => 'hidden',
-      'format' => 'downloads',
+      'format' => 'default',
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
@@ -167,11 +162,6 @@ function c4m_content_document_ds_field_settings_info() {
       'weight' => '1',
       'label' => 'hidden',
       'format' => 'default',
-    ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
-      ),
     ),
   );
   $export['node|document|activity_group'] = $ds_fieldsetting;
@@ -947,7 +937,7 @@ function c4m_content_document_ds_layout_settings_info() {
         1 => 'c4m_body',
         2 => 'c4m_content_document_icon',
         3 => 'c4m_document',
-        4 => 'c4m_ds_content_footer_stats',
+        4 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
@@ -955,7 +945,7 @@ function c4m_content_document_ds_layout_settings_info() {
       'c4m_body' => 'ds_content',
       'c4m_content_document_icon' => 'ds_content',
       'c4m_document' => 'ds_content',
-      'c4m_ds_content_footer_stats' => 'ds_content',
+      'c4m_ds_content_footer_stats_linked' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(
@@ -987,14 +977,14 @@ function c4m_content_document_ds_layout_settings_info() {
         0 => 'c4m_body',
         1 => 'c4m_content_document_icon',
         2 => 'c4m_document',
-        3 => 'c4m_ds_content_footer_stats',
+        3 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
       'c4m_body' => 'ds_content',
       'c4m_content_document_icon' => 'ds_content',
       'c4m_document' => 'ds_content',
-      'c4m_ds_content_footer_stats' => 'ds_content',
+      'c4m_ds_content_footer_stats_linked' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(

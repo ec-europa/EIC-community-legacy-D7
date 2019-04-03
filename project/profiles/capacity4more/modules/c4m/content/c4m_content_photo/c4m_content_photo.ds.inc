@@ -77,7 +77,7 @@ function c4m_content_photo_ds_field_settings_info() {
         'ft' => array(),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
@@ -108,8 +108,8 @@ function c4m_content_photo_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'photo';
   $ds_fieldsetting->view_mode = 'activity_group';
   $ds_fieldsetting->settings = array(
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '11',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -127,11 +127,6 @@ function c4m_content_photo_ds_field_settings_info() {
           'fis-at' => '',
           'fis-def-at' => TRUE,
         ),
-      ),
-    ),
-    'c4m_media' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
       ),
     ),
   );
@@ -747,23 +742,23 @@ function c4m_content_photo_ds_layout_settings_info() {
   $ds_layout->layout = 'c4m_ds_8_4_fluid';
   $ds_layout->settings = array(
     'regions' => array(
-      'header' => array(
-        0 => 'c4m_field_og_group',
+      'left' => array(
+        0 => 'c4m_media',
       ),
       'footer' => array(
-        1 => 'c4m_ds_content_footer_stats',
+        1 => 'c4m_ds_content_footer_stats_linked',
       ),
-      'left' => array(
-        2 => 'c4m_media',
+      'header' => array(
+        2 => 'c4m_field_og_group',
       ),
       'right' => array(
         3 => 'c4m_body',
       ),
     ),
     'fields' => array(
-      'c4m_field_og_group' => 'header',
-      'c4m_ds_content_footer_stats' => 'footer',
       'c4m_media' => 'left',
+      'c4m_ds_content_footer_stats_linked' => 'footer',
+      'c4m_field_og_group' => 'header',
       'c4m_body' => 'right',
     ),
     'classes' => array(
@@ -795,19 +790,19 @@ function c4m_content_photo_ds_layout_settings_info() {
   $ds_layout->layout = 'c4m_ds_8_4_fluid';
   $ds_layout->settings = array(
     'regions' => array(
-      'left' => array(
-        0 => 'c4m_media',
-      ),
       'footer' => array(
-        1 => 'c4m_ds_content_footer_stats',
+        0 => 'c4m_ds_content_footer_stats_linked',
+      ),
+      'left' => array(
+        1 => 'c4m_media',
       ),
       'right' => array(
         2 => 'c4m_body',
       ),
     ),
     'fields' => array(
+      'c4m_ds_content_footer_stats_linked' => 'footer',
       'c4m_media' => 'left',
-      'c4m_ds_content_footer_stats' => 'footer',
       'c4m_body' => 'right',
     ),
     'classes' => array(

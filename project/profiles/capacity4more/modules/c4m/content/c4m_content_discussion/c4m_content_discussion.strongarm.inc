@@ -191,7 +191,7 @@ function c4m_content_discussion_strongarm() {
             'visible' => FALSE,
           ),
           'activity_global' => array(
-            'weight' => '20',
+            'weight' => '30',
             'visible' => FALSE,
           ),
           'default' => array(
@@ -203,7 +203,7 @@ function c4m_content_discussion_strongarm() {
             'visible' => FALSE,
           ),
           'activity_group' => array(
-            'weight' => '21',
+            'weight' => '31',
             'visible' => FALSE,
           ),
           'pinned_content' => array(

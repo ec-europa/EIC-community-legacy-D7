@@ -15,7 +15,7 @@ body {
     @include css-var("color", "ec-grey-100");
 }
 
-.text-normal, .header-4, .text-copy, .text-nav--selected, .topic-subtopics, .text-copy--inverse, .text-copy--muted, .field-name-c4m-ds-content-footer-stats, .field-name-c4m-content-article-disclaimer, .view-mode-activity_global .field-name-c4m-field-og-group, .view-mode-activity_group .field-name-c4m-field-og-group, .view-mode-activity_global .user-name, .view-mode-activity_group .user-name, .view-mode-activity_global .field-name-c4m-field-og-group a, .view-mode-activity_group .field-name-c4m-field-og-group a, .view-mode-activity_global .user-name a, .view-mode-activity_group .user-name a, .view-mode-block_list .field-name-c4m-field-og-group, .view-mode-block_list .field-name-c4m-field-og-group a, .text-link, .text-link--bold, .text-nav--unselected, .text-placeholder, .activity-stream--operator, .activity-stream--operator a, .field-name-c4m-ds-event-start-icon .fa-stack .calendar-text
+.text-normal, .header-4, .text-copy, .text-nav--selected, .topic-subtopics, .text-copy--inverse, .text-copy--muted, .field-name-c4m-ds-content-footer-stats, field-name-c4m-ds-content-footer-stats-linked, .field-name-c4m-content-article-disclaimer, .view-mode-activity_global .field-name-c4m-field-og-group, .view-mode-activity_group .field-name-c4m-field-og-group, .view-mode-activity_global .user-name, .view-mode-activity_group .user-name, .view-mode-activity_global .field-name-c4m-field-og-group a, .view-mode-activity_group .field-name-c4m-field-og-group a, .view-mode-activity_global .user-name a, .view-mode-activity_group .user-name a, .view-mode-block_list .field-name-c4m-field-og-group, .view-mode-block_list .field-name-c4m-field-og-group a, .text-link, .text-link--bold, .text-nav--unselected, .text-placeholder, .activity-stream--operator, .activity-stream--operator a, .field-name-c4m-ds-event-start-icon .fa-stack .calendar-text
 {
     font-size: inherit;
 }
@@ -82,10 +82,13 @@ h5 {
 .view-mode-teaser .field-name-c4m-ds-node-highlight .fa,
 .view-mode-teaser_group .field-name-c4m-ds-node-highlight .fa,
 .view-mode-teaser .field-name-c4m-ds-content-footer-stats .fa,
+.view-mode-teaser .field-name-c4m-ds-content-footer-stats-linked .fa,
 .view-mode-teaser_group .field-name-c4m-ds-content-footer-stats .fa,
+.view-mode-teaser_group .field-name-c4m-ds-content-footer-stats-linked .fa,
 .view-mode-teaser .form-type-item .fa,
 .view-mode-teaser_group .form-type-item .fa,
 .field-name-c4m-ds-content-footer-stats .row-entity-count,
+.field-name-c4m-ds-content-footer-stats-linked .row-entity-count,
 .group-statistic,
 .c4m-node-highlight,
 .header-breadcrumb ol li, .header-breadcrumb ol li a {
@@ -238,7 +241,7 @@ blockquote {
 
 
 @media (min-width: 1202px) {
-    .text-medium, .header-3, .sidebarblock--small .sidebarblock__title, .panel-pane--small .sidebarblock__title, .sidebarblock--small .panel-pane__title, .panel-pane--small .panel-pane__title, h3, .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, .header-sub, .field-name-c4m-ds-content-footer-stats .row-entity-count i, .view-mode-activity_global .row-entity-count i, .view-mode-activity_group .row-entity-count i
+    .text-medium, .header-3, .sidebarblock--small .sidebarblock__title, .panel-pane--small .sidebarblock__title, .sidebarblock--small .panel-pane__title, .panel-pane--small .panel-pane__title, h3, .view-mode-highlight_list .field-name-c4m-ds-content-type-icon, .header-sub, .field-name-c4m-ds-content-footer-stats .row-entity-count i, .field-name-c4m-ds-content-footer-stats  .row-entity-count i, .view-mode-activity_global .row-entity-count i, .view-mode-activity_group .row-entity-count i
     {
         font-size: inherit;
     }
