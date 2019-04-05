@@ -1713,7 +1713,7 @@ function c4m_message_format_help_section_url(Message $message) {
     'purl' => ['disabled' => TRUE],
   ];
 
-  return url('help-guidance/help-guidance', $options);
+  return url('help-guidance', $options);
 }
 
 /**
