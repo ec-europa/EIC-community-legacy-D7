@@ -93,11 +93,8 @@ projects[node_gallery][patch][] = "../patches/node-gallery-unpublished-frontend.
 projects[queue_ui][subdir] = "contrib"
 projects[queue_ui][version] = "2.x-dev"
 
-projects[restful][download][type] = "git"
-projects[restful][download][url] = "https://github.com/Gizra/restful.git"
-projects[restful][download][branch] = 7.x-1.x
 projects[restful][subdir] = "contrib"
-projects[restful][type] = "module"
+projects[restful][version] = "1.10"
 projects[restful][patch][] = "../patches/restful-fix-rr.patch"
 
 projects[shield][subdir] = "contrib"
