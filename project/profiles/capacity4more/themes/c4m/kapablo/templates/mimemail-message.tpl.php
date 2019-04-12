@@ -92,7 +92,7 @@
                           padding: 40px 64px;"
                           align="left">
                     <table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><th style="color: #0a0a0a; font-family: 'GillSans-Light', Verdana, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 16px; margin: 0; padding: 0;" align="left"> <br />
-                          <?php print $body; ?>
+                          <?php print html_entity_decode($body, ENT_QUOTES, "utf-8"); ?>
                         </th>
                       </tr></table></th>
                 </tr></tbody></table></td>
