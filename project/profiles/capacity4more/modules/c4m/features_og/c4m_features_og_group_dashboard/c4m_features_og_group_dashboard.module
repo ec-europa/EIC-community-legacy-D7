@@ -124,6 +124,11 @@ function c4m_features_og_group_dashboard_c4m_content_actions_info() {
       'callback' => 'c4m_features_og_group_dashboard_action_recommend',
       'weight' => '3',
     ],
+    'action_receive_notifications' => [
+      'context' => ['group', 'global'],
+      'callback' => 'c4m_features_og_group_dashboard_action_receive_notifications',
+      'weight' => '4',
+    ],
   ];
 }
 
@@ -151,6 +156,46 @@ function c4m_features_og_group_dashboard_action_recommend($node) {
       '#tag' => 'div',
       '#attributes' => array(
         'class' => 'group-actions-recommend',
+      ),
+      '#value' => $flag_link,
+    ),
+  ));
+  return $output;
+}
+
+/**
+ * Callback to show the notifications for discussions link.
+ *
+ * @param object $node
+ *   The node object.
+ *
+ * @return string
+ *   Rendered output of the notifications link.
+ */
+function c4m_features_og_group_dashboard_action_receive_notifications($node) {
+  global $user;
+  if (empty($node->nid)) {
+    return '';
+  }
+  $admins_ids = c4m_og_get_group_admins_ids($node->nid, TRUE);
+  if (empty($admins_ids)) {
+    return '';
+  }
+
+  if (!in_array($user->uid, $admins_ids)) {
+    return '';
+  }
+
+  $flag_link = flag_create_link('c4m_receive_discussions_notifications', $node->nid);
+  if (!$flag_link) {
+    return '';
+  }
+
+  $output = theme('html_tag', array(
+    'element' => array(
+      '#tag' => 'div',
+      '#attributes' => array(
+        'class' => 'group-actions-receive-notifications',
       ),
       '#value' => $flag_link,
     ),

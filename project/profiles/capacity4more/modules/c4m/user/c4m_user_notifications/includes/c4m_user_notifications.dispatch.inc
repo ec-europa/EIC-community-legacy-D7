@@ -259,6 +259,15 @@ function _c4m_user_notifications_node_insert($node) {
     return;
   }
 
+  // EASMESUP-54 - Monitor discussions in Group.
+  if ($node->type == 'discussion') {
+    // Only when they skip "Send notification".
+    if (_c4m_user_notifications_has_skip_notification($node)) {
+      // Send MT25 Discussion - Only to Group Administrators and Owners.
+      _c4m_user_notifications_notify_subscribe_group_content($node, 'insert-discussion');
+    }
+  }
+
   if (_c4m_user_notifications_has_skip_notification($node)) {
     return;
   }

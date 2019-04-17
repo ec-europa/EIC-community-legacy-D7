@@ -219,6 +219,11 @@ function _c4m_user_notifications_notify_subscribe_group_content($node, $action, 
       $event_action = 'added';
       break;
 
+    case 'insert-discussion':
+      $message_type = 'c4m_new_discussion_published';
+      $event_action = 'added';
+      break;
+
     case 'share':
       $message_type = 'c4m_new_content_share_published';
       $event_action = 'shared';

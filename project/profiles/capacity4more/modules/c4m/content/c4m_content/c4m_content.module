@@ -503,7 +503,9 @@ function _c4m_content_statistics_collect_data(array $list) {
   }
 
   // EASMESUP-17 - Group Events and Events Sites together.
-  $data['event']['count'] += $data['event_site']['count'];
+  if (!empty($data['event_site'])) {
+    $data['event']['count'] += $data['event_site']['count'];
+  }
   unset($data['event_site']);
 
   return $data;

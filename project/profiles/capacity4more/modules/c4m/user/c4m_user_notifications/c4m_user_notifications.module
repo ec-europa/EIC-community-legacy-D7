@@ -152,7 +152,67 @@ function c4m_user_notifications_queue_dispatch_message(array $data) {
   extract($data, EXTR_OVERWRITE);
 
   // Time intensive functionality, this is the reason we do this via a queue.
-  $subscribe_options['uids'] = message_subscribe_get_subscribers($entity_type, $entity, $message, $subscribe_options, $context);
+  $subscribe_options['uids'] = c4m_user_notifications_get_subscribers($entity_type, $entity, $message, $subscribe_options, $context);
 
   message_subscribe_send_message($entity_type, $entity, $message, $notify_options, $subscribe_options, $context);
+}
+
+/**
+ * Get a list of user IDs that need to recieve the message.
+ *
+ * @param string $entity_type
+ *   The entity type.
+ * @param object $entity
+ *   The entity object.
+ * @param Message $message
+ *   The Message object.
+ * @param array $subscribe_options
+ *   (optional) The options array to pass to
+ *   message_subscribe_get_basic_context(). Defaults to [].
+ * @param array $context
+ *   (optional) The context array, passed by reference. Default to [].
+ *
+ * @return array
+ *   Array keyed with the user IDs to send email, and array with the flags
+ *   the used it for the subscription, and the notifier names.
+ *
+ * @code
+ *   array(
+ *     1 => array(
+ *       'flags' => array('subscribe_node', 'subscribe_user'),
+ *       'notifiers' => array('email', 'sms'),
+ *     ),
+ *   );
+ * @endcode
+ */
+function c4m_user_notifications_get_subscribers($entity_type, $entity, Message $message, array $subscribe_options = [], array &$context = []) {
+  if ($message->type == 'c4m_new_discussion_published' && !empty($message->field_group_node[LANGUAGE_NONE][0]['target_id'])) {
+    // Out of all subscribers we only need admin and owners with the
+    // 'c4m_receive_discussions_notifications' flag set.
+    $group_id = $message->field_group_node[LANGUAGE_NONE][0]['target_id'];
+    $subscribers = message_subscribe_get_subscribers($entity_type, $entity, $message, $subscribe_options, $context);
+    $admins_and_owners = c4m_og_get_group_admins_ids($group_id, TRUE);
+    if (empty($subscribers) || empty($admins_and_owners)) {
+      return [];
+    }
+    $flag = flag_get_flag('c4m_receive_discussions_notifications');
+    if (empty($flag)) {
+      return [];
+    }
+    foreach ($subscribers as $uid => $subscriber) {
+      // Remove users that are not Owners / Admins of Group.
+      if (!in_array($uid, $admins_and_owners)) {
+        unset($subscribers[$uid]);
+      }
+      // Remove Owners / Admins of Group that don't have the flag set.
+      if (empty($flag && $flag->is_flagged($group_id, $uid))) {
+        if (isset($subscribers[$uid])) {
+          unset($subscribers[$uid]);
+        }
+      }
+    }
+    return $subscribers;
+  }
+
+  return message_subscribe_get_subscribers($entity_type, $entity, $message, $subscribe_options, $context);
 }

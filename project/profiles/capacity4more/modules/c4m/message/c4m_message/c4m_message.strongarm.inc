@@ -2135,6 +2135,181 @@ function c4m_message_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_message__c4m_new_discussion_published';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'message_notify_monthly_digest' => array(
+        'custom_settings' => TRUE,
+      ),
+      'message_notify_weekly_digest' => array(
+        'custom_settings' => TRUE,
+      ),
+      'message_notify_daily_digest' => array(
+        'custom_settings' => TRUE,
+      ),
+      'message_notify_email_subject' => array(
+        'custom_settings' => TRUE,
+      ),
+      'message_notify_email_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'activity_global' => array(
+        'custom_settings' => FALSE,
+      ),
+      'activity_group' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'message__message_text__0' => array(
+          'message_notify_email_subject' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'message_notify_email_body' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'default' => array(
+            'weight' => '3',
+            'visible' => FALSE,
+          ),
+          'message_notify_monthly_digest' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
+          'message_notify_weekly_digest' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
+          'message_notify_daily_digest' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__1' => array(
+          'message_notify_email_subject' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'message_notify_email_body' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'default' => array(
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
+          'message_notify_monthly_digest' => array(
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
+          'message_notify_weekly_digest' => array(
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
+          'message_notify_daily_digest' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__2' => array(
+          'default' => array(
+            'weight' => '5',
+            'visible' => FALSE,
+          ),
+          'message_notify_monthly_digest' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'message_notify_weekly_digest' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'message_notify_daily_digest' => array(
+            'weight' => '2',
+            'visible' => TRUE,
+          ),
+          'message_notify_email_subject' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'message_notify_email_body' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_footer__0' => array(
+          'default' => array(
+            'weight' => '2',
+            'visible' => TRUE,
+          ),
+          'message_notify_monthly_digest' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'message_notify_weekly_digest' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'message_notify_daily_digest' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'message_notify_email_subject' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'message_notify_email_body' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_header__0' => array(
+          'default' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+          'message_notify_monthly_digest' => array(
+            'weight' => '3',
+            'visible' => FALSE,
+          ),
+          'message_notify_weekly_digest' => array(
+            'weight' => '3',
+            'visible' => FALSE,
+          ),
+          'message_notify_daily_digest' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'message_notify_email_subject' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'message_notify_email_body' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_message__c4m_new_discussion_published'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_message__c4m_new_membership_request';
   $strongarm->value = array(
     'view_modes' => array(

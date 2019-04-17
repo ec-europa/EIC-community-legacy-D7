@@ -86,6 +86,9 @@ function _c4m_message_get_messages_subscribe_notifies() {
   // SUBSCRIPTION :: MT25 :: Group Content Published.
   $messages[] = _c4m_message_get_messages_mt25();
 
+  // SUBSCRIPTION :: MT25 Discussion :: New Group Discussion Published
+  $messages[] = _c4m_message_get_messages_mt25_discussion();
+
   // SUBSCRIPTION :: MT26 :: New Comment on Content.
   $messages[] = _c4m_message_get_messages_mt26();
 
@@ -571,6 +574,66 @@ function _c4m_message_get_messages_mt25() {
         "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
         "format" : "mail",
         "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+      }
+    ]
+  },
+  "entity_type" : "message_type",
+  "rdf_mapping" : []
+}
+  ';
+}
+
+/**
+ * Retrieve object for MT25 Discussion.
+ *
+ * @return string
+ *   Serialized message entity object.
+ */
+function _c4m_message_get_messages_mt25_discussion() {
+  return '
+{
+  "name" : "c4m_new_discussion_published",
+  "description" : "SUBSCRIPTION :: MT25 Discussion :: New Discussion Published without notification",
+  "argument_keys" : [],
+  "argument" : [],
+  "category" : "message_type",
+  "data" : {
+    "token options" : { "clear" : 0 },
+    "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
+  },
+  "language" : "",
+  "arguments" : null,
+  "message_text" : { "und" : [
+      {
+        "value" : "\u003Cp\u003ENew @content_type_name from @group_node_title\u003C\/p\u003E\r\n",
+        "format" : "mail",
+        "safe_value" : "\u003Cp\u003ENew @content_type_name from @group_node_title\u003C\/p\u003E\n"
+      },
+      {
+        "value" : "\u003Cp\u003EDear @user_full_name,\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Ca href=\u0022!event_user_url\u0022 rel=\u0022nofollow\u0022\u003E@event_user_full_name\u003C\/a\u003E @event_action\u0026nbsp;the following @content_type_name: \u003Cstrong\u003E\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E\u003C\/strong\u003E\u003C\/p\u003E\r\n\r\n\u003Cp\u003E\u003Cem\u003E@node_teaser_body \u003C\/em\u003E\u003Cbr \/\u003E\r\n\u003Ca href=\u0022!content_node_url\u0022\u003ERead more...\u003C\/a\u003E\u003C\/p\u003E\r\n\r\n\u003Cp\u003EAs a Group Owner, you\u0027re receiving this e-mail because you have you\u0027re Discussion Notifications on for the Group: \u003Ca href=\u0022!group_dashboard_url\u0022\u003E@group_node_title\u003C\/a\u003E\u0026nbsp;- if you no longer wish to receive notifications from this @group_node_type, please unsubscribe on @group_node_title\u0027s homepage.\u003C\/p\u003E\r\n",
+        "format" : "mail",
+        "safe_value" : "\u003Cp\u003EDear @user_full_name,\u003C\/p\u003E\n\n\u003Cp\u003E\u003Ca href=\u0022!event_user_url\u0022 rel=\u0022nofollow\u0022\u003E@event_user_full_name\u003C\/a\u003E @event_action\u0026nbsp;the following @content_type_name: \u003Cstrong\u003E\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E\u003C\/strong\u003E\u003C\/p\u003E\n\n\u003Cp\u003E\u003Cem\u003E@node_teaser_body \u003C\/em\u003E\u003Cbr \/\u003E\n\u003Ca href=\u0022!content_node_url\u0022\u003ERead more...\u003C\/a\u003E\u003C\/p\u003E\n\n\u003Cp\u003EAs a Group Owner, you\u0027re receiving this e-mail because you have you\u0027re Discussion Notifications on for the Group: \u003Ca href=\u0022!group_dashboard_url\u0022\u003E@group_node_title\u003C\/a\u003E\u0026nbsp;- if you no longer wish to receive notifications from this @group_node_type, please unsubscribe on @group_node_title\u0027s homepage.\u003C\/p\u003E\n"
+      },
+      {
+        "value" : "\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E, @content_type_name @event_action by \u003Ca href=\u0022!event_user_url\u0022 rel=\u0022nofollow\u0022\u003E@event_user_full_name\u003C\/a\u003E",
+        "format" : "mail",
+        "safe_value" : "\u003Ca href=\u0022!content_node_url\u0022\u003E@content_node_title\u003C\/a\u003E, @content_type_name @event_action by \u003Ca href=\u0022!event_user_url\u0022 rel=\u0022nofollow\u0022\u003E@event_user_full_name\u003C\/a\u003E"
+      }
+    ]
+  },
+  "message_footer" : { "und" : [
+      {
+        "value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E",
+        "format" : "mail",
+        "safe_value" : "\u003Cp\u003EYou are receiving these updates because you are subscribed to EIC Community notification message(s) - to manage these, update your \u003Ca href=\u0022!user_settings_url\u0022\u003Enotification settings\u003C\/a\u003E.\u003C\/p\u003E"
+      }
+    ]
+  },
+  "message_header" : { "und" : [
+      {
+        "value" : "\u003Cp\u003EDear @user_full_name,\u003C\/p\u003E\r\n  \r\n\u003Cp\u003EDiscover the latest updates you\u0027re subscribed to!\u003C\/p\u003E",
+        "format" : "mail",
+        "safe_value" : "\u003Cp\u003EDear @user_full_name,\u003C\/p\u003E\n  \n\u003Cp\u003EDiscover the latest updates you\u0027re subscribed to!\u003C\/p\u003E"
       }
     ]
   },
