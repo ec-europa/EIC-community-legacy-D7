@@ -517,6 +517,59 @@ function theme_c4m_ds_content_footer_stats(array $field) {
     )
   );
 
+  if ($default = _theme_c4m_ds_get_default_stats($field, $entity)) {
+    $items = array_merge($items, $default);
+  }
+
+  return implode($items);
+}
+
+/**
+ * Get all entity stats in one field. Recommendations as link.
+ *
+ * This is just a simple function, not a theme hook implementation.
+ *
+ * @param array $field
+ *   The field info.
+ *
+ * @return string
+ *   The rendered field.
+ */
+function theme_c4m_ds_content_footer_stats_linked(array $field) {
+  $entity = $field['entity'];
+
+  $recommends = c4m_helper_entity_entity_get_properties(
+    $entity,
+    array(),
+    '',
+    'node',
+    array('flag_name' => 'c4m_og_content_recommend')
+  );
+
+  $link = c4m_features_og_group_dashboard_action_recommend($entity);
+  drupal_add_js(drupal_get_path('module', 'flag') . '/theme/flag.js');
+
+  $items['recommends'] = theme(
+    'c4m_ds_entity_recommends_count_linked',
+    array(
+      'count' => (!empty($recommends) ? c4m_content_ec_number_format(
+        $recommends
+      ) : 0),
+      'link' => $link,
+    )
+  );
+
+  if ($default = _theme_c4m_ds_get_default_stats($field, $entity)) {
+    $items = array_merge($items, $default);
+  }
+
+  return implode($items);
+}
+
+/**
+ * Helper function to get the default footer stats.
+ */
+function _theme_c4m_ds_get_default_stats(array $field, $entity) {
   // Only show comments if comments counter is relevant to be shown.
   //
   // Only show if:
@@ -559,8 +612,7 @@ function theme_c4m_ds_content_footer_stats(array $field) {
       );
     }
   }
-
-  return implode($items);
+  return $items;
 }
 
 /**

@@ -444,6 +444,20 @@ function c4m_ds_ds_fields_info($entity_type) {
     ),
   );
 
+  $fields['node']['c4m_ds_content_footer_stats_linked'] = array(
+    'title' => t('Footer stats - linked'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'ui_limit' => array('*|*'),
+    'file' => $path . '/includes/c4m_ds.theme.node.inc',
+    'function' => 'theme_c4m_ds_content_footer_stats_linked',
+    'properties' => array(
+      'formatters' => array(
+        'default' => t('Default and linked likes'),
+        'downloads' => t('Default + number of downloads and linked likes'),
+      ),
+    ),
+  );
+
   $fields['node']['c4m_ds_content_status'] = array(
     'title' => t('Publication Status'),
     'field_type' => DS_FIELD_TYPE_FUNCTION,
@@ -950,6 +964,11 @@ function c4m_ds_theme() {
       'variables' => array('count' => 0),
       'path' => $path,
       'template' => 'c4m_ds_entity_recommends_count',
+    ),
+    'c4m_ds_entity_recommends_count_linked' => array(
+      'variables' => array('count' => 0, 'link' => 0),
+      'path' => $path,
+      'template' => 'c4m_ds_entity_recommends_count_linked',
     ),
     'c4m_ds_entity_recommends_count_full' => array(
       'variables' => array('text' => ''),

@@ -236,7 +236,7 @@ function c4m_content_event_strongarm() {
             'visible' => FALSE,
           ),
           'activity_global' => array(
-            'weight' => '30',
+            'weight' => '36',
             'visible' => FALSE,
           ),
           'default' => array(

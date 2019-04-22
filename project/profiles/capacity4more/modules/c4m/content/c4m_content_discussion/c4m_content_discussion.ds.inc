@@ -101,7 +101,7 @@ function c4m_content_discussion_ds_field_settings_info() {
         'ft' => array(),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
@@ -120,11 +120,6 @@ function c4m_content_discussion_ds_field_settings_info() {
           'fis-at' => '',
           'fis-def-at' => TRUE,
         ),
-      ),
-    ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
       ),
     ),
   );
@@ -137,8 +132,8 @@ function c4m_content_discussion_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'discussion';
   $ds_fieldsetting->view_mode = 'activity_group';
   $ds_fieldsetting->settings = array(
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '2',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '1',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -156,11 +151,6 @@ function c4m_content_discussion_ds_field_settings_info() {
           'fis-at' => '',
           'fis-def-at' => TRUE,
         ),
-      ),
-    ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
       ),
     ),
   );
@@ -919,13 +909,13 @@ function c4m_content_discussion_ds_layout_settings_info() {
       'ds_content' => array(
         0 => 'c4m_field_og_group',
         1 => 'c4m_body',
-        2 => 'c4m_ds_content_footer_stats',
+        2 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
       'c4m_field_og_group' => 'ds_content',
       'c4m_body' => 'ds_content',
-      'c4m_ds_content_footer_stats' => 'ds_content',
+      'c4m_ds_content_footer_stats_linked' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(
@@ -955,12 +945,12 @@ function c4m_content_discussion_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'c4m_body',
-        1 => 'c4m_ds_content_footer_stats',
+        1 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
       'c4m_body' => 'ds_content',
-      'c4m_ds_content_footer_stats' => 'ds_content',
+      'c4m_ds_content_footer_stats_linked' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(

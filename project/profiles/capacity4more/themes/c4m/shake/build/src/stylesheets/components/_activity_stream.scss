@@ -14,7 +14,21 @@
 }
 
 .view-mode-activity_global {
-  .field-name-c4m-ds-content-footer-stats {
+  .field-name-c4m-ds-content-footer-stats , .field-name-c4m-ds-content-footer-stats-linked{
     color: $color-text;
+  }
+}
+
+.field-name-c4m-ds-content-footer-stats-linked {
+  .count-recommends {
+    display: inline-block;
+    .group-actions-recommend {
+      display: inline-block;
+    }
+    span {
+      &.action {
+        display: none;
+      }
+    }
   }
 }

@@ -22,7 +22,8 @@
 
 .teaser-date,
 .field-name-c4m-ds-event-start-icon,
-.view-mode-activity_global .field-name-c4m-ds-content-footer-stats {
+.view-mode-activity_global .field-name-c4m-ds-content-footer-stats,
+.view-mode-activity_global .field-name-c4m-ds-content-footer-stats-linked {
     font-size: 14px;
     @include css-var("color", "ec-grey-50");
 }
@@ -54,7 +55,8 @@
     line-height: 1.2;
 }
 
-.view-mode-activity_group .field-name-c4m-ds-content-footer-stats {
+.view-mode-activity_group .field-name-c4m-ds-content-footer-stats,
+.view-mode-activity_group .field-name-c4m-ds-content-footer-stats-linked {
     @include css-var("color", "ec-grey-50");
 }
 
