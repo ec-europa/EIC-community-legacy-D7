@@ -8,7 +8,7 @@ projects[ckeditor][version] = "1.18"
 projects[ckeditor][patch][] = "https://www.drupal.org/files/issues/prepare_callback_is-2790539-2.patch"
 
 projects[media_ckeditor][subdir] = "contrib"
-projects[media_ckeditor][version] = "2.5"
+projects[media_ckeditor][version] = "2.9"
 
 projects[wysiwyg_filter][subdir] = "contrib"
 projects[wysiwyg_filter][version] = "1.6-rc9"

@@ -49,7 +49,7 @@ projects[entityreference_prepopulate][subdir] = "contrib"
 projects[entityreference_prepopulate][version] = "1.7"
 
 projects[file_entity][subdir] = "contrib"
-projects[file_entity][version] = "2.15"
+projects[file_entity][version] = "2.25"
 
 projects[file_download_count][subdir] = "contrib"
 projects[file_download_count][version] = "1.0-rc1"
@@ -114,7 +114,7 @@ projects[views_data_export][patch][] = https://www.drupal.org/files/issues/views
 ; Themes to upgrade the admin backend.
 
 projects[adminimal_theme][subdir] = "contrib"
-projects[adminimal_theme][version] = "1.24"
+projects[adminimal_theme][version] = "1.25"
 projects[adminimal_theme][type] = "theme"
 
 ; Libraries
