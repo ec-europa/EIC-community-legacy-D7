@@ -1094,10 +1094,14 @@ function c4m_content_taxonomy_build_tree(
   foreach ($trees as $taxonomy_tree) {
     $local_tree = [];
     foreach ($taxonomy_tree as $taxonomy) {
+      // For topics, we build the links to point to Topic pages.
+      if ($link_term_to_facet['vocabulary_name'] == 'c4m_vocab_topic') {
+        $link = _c4m_content_get_topic_link($taxonomy);
+      }
       // If the link term was not provided, or it isn't the proper
       // one for the current vocabulary, create a default link to
       // the taxonomy term.
-      if (empty($link_term_to_facet['vocabulary_name']) || $taxonomy->vocabulary_machine_name != $link_term_to_facet['vocabulary_name']) {
+      elseif (empty($link_term_to_facet['vocabulary_name']) || $taxonomy->vocabulary_machine_name != $link_term_to_facet['vocabulary_name']) {
         $link = l($taxonomy->name, "/taxonomy/term/" . $taxonomy->tid);
       }
       else {
@@ -1138,6 +1142,72 @@ function c4m_content_taxonomy_build_tree(
   ];
 
   return theme_html_tag($tag);
+}
+
+/**
+ * Helper function to get the link for a topic taxonomy term.
+ *
+ * @param object $taxonomy
+ *   The topic taxonomy term.
+ *
+ * @return string
+ *   The link to point to.
+ */
+function _c4m_content_get_topic_link($taxonomy) {
+  // Search for the Topic node linked to this taxonomy term.
+  $topics_overview_link = l($taxonomy->name, "/topics");
+  if (empty($taxonomy->tid) || empty($taxonomy)) {
+    return $topics_overview_link;
+  }
+
+  $nids = _c4m_content_get_topic_associated_node($taxonomy->tid, $topics_overview_link);
+
+  // If node found, create the link.
+  if (!empty($nids)) {
+    return l($taxonomy->name, 'node/' . $nids[0]);
+  }
+  // If no node found for this taxonomy term, search for the parent.
+  else {
+    $parents = taxonomy_get_parents($taxonomy->tid);
+    if (!empty($parents)) {
+      // If more than one, parent, will only take the one that has a node
+      // associated.
+      foreach ($parents as $parent) {
+        if (!empty($nids = _c4m_content_get_topic_associated_node($parent->tid, $topics_overview_link))) {
+          return l($taxonomy->name, 'node/' . $nids[0]);
+        }
+      }
+    }
+  }
+
+  // If no node for the parent, link to the topics overview page.
+  return $topics_overview_link;
+}
+
+/**
+ * Search for the node associated with the topic taxonomy term id.
+ *
+ * @param int $tid
+ *   The taxonomy term id.
+ * @param string $exception_link
+ *   The overview of topics page link.
+ *
+ * @return mixed
+ *   Either the array of nids or the exception link.
+ */
+function _c4m_content_get_topic_associated_node($tid, $exception_link) {
+  try {
+    $query = db_select('field_data_c4m_vocab_topic_mapping', 'node_topic');
+    $query->condition('c4m_vocab_topic_mapping_tid', $tid);
+    $query->condition('bundle', 'topic');
+    $query->fields('node_topic', ['entity_id']);
+    $nids = $query->execute()->fetchCol();
+    return $nids;
+
+  }
+  catch (Exception $e) {
+    return $exception_link;
+  }
 }
 
 /**
