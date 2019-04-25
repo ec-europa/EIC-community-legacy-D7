@@ -188,14 +188,14 @@ function c4m_user_notifications_queue_dispatch_message(array $data) {
 function c4m_user_notifications_get_subscribers($entity_type, $entity, Message $message, array $subscribe_options = [], array &$context = []) {
   if ($message->type == 'c4m_new_discussion_published' && !empty($message->field_group_node[LANGUAGE_NONE][0]['target_id'])) {
     // Out of all subscribers we only need admin and owners with the
-    // 'c4m_receive_discussions_notifications' flag set.
+    // 'c4m_get_discussions_alerts' flag set.
     $group_id = $message->field_group_node[LANGUAGE_NONE][0]['target_id'];
     $subscribers = message_subscribe_get_subscribers($entity_type, $entity, $message, $subscribe_options, $context);
     $admins_and_owners = c4m_og_get_group_admins_ids($group_id, TRUE);
     if (empty($subscribers) || empty($admins_and_owners)) {
       return [];
     }
-    $flag = flag_get_flag('c4m_receive_discussions_notifications');
+    $flag = flag_get_flag('c4m_get_discussions_alerts');
     if (empty($flag)) {
       return [];
     }

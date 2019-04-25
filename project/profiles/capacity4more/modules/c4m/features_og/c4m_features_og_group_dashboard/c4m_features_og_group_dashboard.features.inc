@@ -139,7 +139,7 @@ function c4m_features_og_group_dashboard_flag_default_flags() {
     'api_version' => 3,
   );
   // Exported flag: "Receive notifications for discussions".
-  $flags['c4m_receive_discussions_notifications'] = array(
+  $flags['c4m_get_discussions_alerts'] = array(
     'entity_type' => 'node',
     'title' => 'Receive notifications for discussions',
     'global' => 0,

@@ -186,7 +186,7 @@ function c4m_features_og_group_dashboard_action_receive_notifications($node) {
     return '';
   }
 
-  $flag_link = flag_create_link('c4m_receive_discussions_notifications', $node->nid);
+  $flag_link = flag_create_link('c4m_get_discussions_alerts', $node->nid);
   if (!$flag_link) {
     return '';
   }
