@@ -3382,6 +3382,30 @@ function c4m_og_user_can_access_restricted_group($group, $account, $op) {
   $node_grants = array_keys(pluggable_node_access_node_grants($account, $op));
   $node_access_records = pluggable_node_access_node_access_records($group);
 
+  // Rewrite the format for node_access_records. "organisation::nid" instead
+  // of "organisation::title".
+  foreach ($node_access_records as &$node_access_record) {
+    if (strpos($node_access_record['realm'], 'organisation::') === FALSE) {
+      continue;
+    }
+    if (empty($organisation = explode("::", $node_access_record['realm']))) {
+      continue;
+    }
+    if (is_int($organisation[1])) {
+      continue;
+    }
+    // We have to search for the nid of the Organisation.
+    $result = db_query("SELECT n.nid FROM {node} n WHERE n.title = :title AND n.type = :type",
+      array(
+        ":title" => $organisation[1],
+        ":type" => 'organisation',
+      )
+    );
+    $nid = $result->fetchField();
+    if (!empty($nid)) {
+      $node_access_record['realm'] = "organisation::" . $nid;
+    }
+  }
   // If one of node grants matches a realm of node access record,
   // access is allowed.
   foreach ($node_grants as $node_grant) {
