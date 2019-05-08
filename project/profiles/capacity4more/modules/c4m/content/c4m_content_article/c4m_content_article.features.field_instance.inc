@@ -249,7 +249,7 @@ function c4m_content_article_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(
-          'trim_length' => 600,
+          'trim_length' => 300,
         ),
         'type' => 'text_summary_or_trimmed',
         'weight' => 1,
@@ -506,6 +506,12 @@ function c4m_content_article_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 32,
       ),
+      'activity_group' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
+      ),
       'block_list' => array(
         'label' => 'above',
         'settings' => array(),
@@ -587,9 +593,13 @@ function c4m_content_article_field_default_field_instances() {
         'weight' => 0,
       ),
       'activity_group' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'c4m_field_media',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'c4m_image_medium',
+        ),
+        'type' => 'image',
         'weight' => 15,
       ),
       'block_list' => array(
@@ -724,6 +734,12 @@ function c4m_content_article_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 33,
       ),
+      'activity_group' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 17,
+      ),
       'block_list' => array(
         'label' => 'above',
         'settings' => array(),
@@ -794,6 +810,12 @@ function c4m_content_article_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 35,
       ),
+      'activity_group' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 18,
+      ),
       'block_list' => array(
         'label' => 'above',
         'settings' => array(),
@@ -863,6 +885,12 @@ function c4m_content_article_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 36,
+      ),
+      'activity_group' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 19,
       ),
       'block_list' => array(
         'label' => 'above',

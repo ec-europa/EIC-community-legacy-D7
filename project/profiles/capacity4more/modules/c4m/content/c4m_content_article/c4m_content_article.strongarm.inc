@@ -129,9 +129,18 @@ function c4m_content_article_strongarm() {
         'custom_settings' => TRUE,
       ),
       'activity_group' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'group_dashboard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'highlight_list' => array(
+        'custom_settings' => FALSE,
+      ),
+      'documents' => array(
+        'custom_settings' => FALSE,
+      ),
+      'pinned_content' => array(
         'custom_settings' => FALSE,
       ),
     ),

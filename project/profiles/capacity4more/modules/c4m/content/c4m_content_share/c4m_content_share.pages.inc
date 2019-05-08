@@ -183,7 +183,9 @@ function c4m_content_share_form_validate($form, &$form_state) {
   }
 
   $form_state['values']['nid'] = $node->nid;
-  $form_state['values']['gid'] = $group['gid'];
+  if ($group) {
+    $form_state['values']['gid'] = $group['gid'];
+  }
   $form_state['values']['title'] = $node->title;
   $form_state['values']['c4m_source_entity'] = $node->nid;
   $form_state['values']['og_group_ref'] = !empty($default) ? $default : $admin;

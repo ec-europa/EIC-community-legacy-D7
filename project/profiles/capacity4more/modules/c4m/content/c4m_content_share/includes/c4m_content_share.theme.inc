@@ -20,6 +20,10 @@ function theme_c4m_content_share_original_group(array $field) {
   $object = $field['entity'];
   $object_wrapper = entity_metadata_wrapper('node', $object);
 
+  if ($object_wrapper->c4m_source_entity->value()->type == 'article') {
+    return '';
+  }
+
   $original_entity = entity_metadata_wrapper(
     'node',
     $object_wrapper->c4m_source_entity->value()
@@ -28,7 +32,6 @@ function theme_c4m_content_share_original_group(array $field) {
     'node',
     $original_entity->og_group_ref->value()
   );
-
   $group_link = l(
     $group_wrapper->title->value(),
     url(

@@ -37,6 +37,7 @@ function c4m_content_share_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
+          'article' => 'article',
           'discussion' => 'discussion',
           'document' => 'document',
           'event' => 'event',

@@ -27,6 +27,15 @@ function c4m_content_share_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['node/%node/share-from-outside'] = array(
+    'title' => 'Share content to another group or project',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('c4m_content_share_form'),
+    'access callback' => TRUE,
+    'file' => 'c4m_content_share.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+
   $items['c4m-autocomplete-share-groups/%node'] = array(
     'title' => 'Available groups/projects for sharing content',
     'page callback' => '_c4m_content_share_groups_autocomplete_callback',
@@ -101,10 +110,10 @@ function c4m_content_share_c4m_content_actions_info() {
  * Callback to show the share link.
  *
  * @param object $node
- *    The node object.
+ *   The node object.
  *
  * @return string
- *    Rendered output of the share link.
+ *   Rendered output of the share link.
  */
 function c4m_content_share_action_share($node) {
   if (!c4m_og_user_is_member() || !og_is_group_content_type(
@@ -114,8 +123,6 @@ function c4m_content_share_action_share($node) {
   ) {
     return '';
   }
-
-  $context = og_context();
 
   $url = url(
     'node/' . $node->nid . '/share',
@@ -235,19 +242,25 @@ function c4m_content_share_node_view($node, $view_mode, $langcode) {
 
     $redirect = 'node/' . $source_entity->nid->value();
 
-    $group_id = $source_entity->og_group_ref->nid->value();
+    // If we share from outside the Group, articles.
+    if ($host_entity->c4m_source_entity->value()->type == 'article') {
+      drupal_goto($redirect);
+    }
+    else {
+      $group_id = $source_entity->og_group_ref->nid->value();
 
-    drupal_goto(
-      $redirect,
-      array(
-        'purl' => array(
-          'disabled' => FALSE,
-          'provider' => "og_purl|node",
-          'id' => $group_id,
+      drupal_goto(
+        $redirect,
+        array(
+          'purl' => array(
+            'disabled' => FALSE,
+            'provider' => "og_purl|node",
+            'id' => $group_id,
+          ),
         ),
-      ),
-      301
-    );
+        301
+      );
+    }
   }
 }
 

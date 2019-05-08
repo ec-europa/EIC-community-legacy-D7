@@ -559,29 +559,41 @@ function c4m_content_article_ds_layout_settings_info() {
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'article';
   $ds_layout->view_mode = 'activity_group';
-  $ds_layout->layout = 'ds_1col';
+  $ds_layout->layout = 'c4m_ds_4_8_fluid_stacked';
   $ds_layout->settings = array(
     'regions' => array(
-      'ds_content' => array(
-        0 => 'title',
+      'footer' => array(
+        0 => 'c4m_ds_content_footer_stats_linked',
+      ),
+      'right' => array(
         1 => 'c4m_body',
-        2 => 'c4m_ds_content_footer_stats',
+      ),
+      'left' => array(
+        2 => 'c4m_media',
       ),
     ),
     'fields' => array(
-      'title' => 'ds_content',
-      'c4m_body' => 'ds_content',
-      'c4m_ds_content_footer_stats' => 'ds_content',
+      'c4m_ds_content_footer_stats_linked' => 'footer',
+      'c4m_body' => 'right',
+      'c4m_media' => 'left',
     ),
-    'classes' => array(),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
     'wrappers' => array(
-      'ds_content' => 'div',
+      'header' => 'div',
+      'left' => 'div',
+      'right' => 'div',
+      'footer' => 'div',
     ),
     'layout_wrapper' => 'div',
     'layout_attributes' => '',
     'layout_attributes_merge' => 1,
     'layout_link_attribute' => '',
     'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
   );
   $export['node|article|activity_group'] = $ds_layout;
 
@@ -628,15 +640,19 @@ function c4m_content_article_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'title',
-        1 => 'c4m_body',
+        0 => 'c4m_body',
+        1 => 'title',
       ),
     ),
     'fields' => array(
-      'title' => 'ds_content',
       'c4m_body' => 'ds_content',
+      'title' => 'ds_content',
     ),
-    'classes' => array(),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
     'wrappers' => array(
       'ds_content' => 'div',
     ),
