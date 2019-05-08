@@ -18,8 +18,9 @@ projects[facetapi_bonus][subdir] = "contrib"
 projects[facetapi_bonus][version] = "1.2"
 
 projects[search_api][subdir] = "contrib"
-projects[search_api][version] = "1.24"
+projects[search_api][version] = "1.26"
 projects[search_api][patch][] = "https://www.drupal.org/files/issues/1123454-89--vbo_support.patch"
+projects[search_api][patch][] = "../patches/search_api_manual_include_missing_file.patch"
 
 projects[search_api_attachments][subdir] = "contrib"
 projects[search_api_attachments][version] = "1.18"

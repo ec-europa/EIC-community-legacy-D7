@@ -1,0 +1,12 @@
+diff --git a/contrib/search_api_views/includes/handler_filter_date.inc b/contrib/search_api_views/includes/handler_filter_date.inc
+index c921e9f5..0b508ab8 100644
+--- a/contrib/search_api_views/includes/handler_filter_date.inc
++++ b/contrib/search_api_views/includes/handler_filter_date.inc
+@@ -1,5 +1,7 @@
+ <?php
+ 
++include_once 'handler_filter_numeric.inc';
++
+ /**
+  * @file
+  * Contains SearchApiViewsHandlerFilterDate.
