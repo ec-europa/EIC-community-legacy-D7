@@ -1,9 +1,11 @@
 (function ($) {
     MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     var observer = new MutationObserver(function(mutations, observer) {
-        Drupal.flagLink();
-        Drupal.increaseDecrease();
-
+        // Check if there is at least one flag on the page.
+        if ($('.flag-wrapper').length > 0) {
+            Drupal.flagLink();
+            Drupal.increaseDecrease();
+        }
     });
 
     observer.observe(document, {
