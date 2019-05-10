@@ -56,9 +56,11 @@ function _c4m_user_notifications_message_subscribe_get_subscribers(Message $mess
     $wrapper->field_taxonomy_term->set($entity_id);
 
     // If the original node belongs to a group, we will need to check access.
-    $group = _c4m_user_notifications_message_subscribe_get_subscribers_get_group(
-      $wrapper->field_node->get('nid')->value()
-    );
+    if (!empty($wrapper->field_node->getIdentifier())) {
+      $group = _c4m_user_notifications_message_subscribe_get_subscribers_get_group(
+        $wrapper->field_node->getIdentifier()
+      );
+    }
   }
 
   // The first time recipients are loaded, no mid is available yet.
@@ -75,7 +77,7 @@ function _c4m_user_notifications_message_subscribe_get_subscribers(Message $mess
 
   // Remove executing user, he knows what he did.
   if (!empty($wrapper->field_executing_user)) {
-    $executing_user = $wrapper->field_executing_user->get('uid')->value();
+    $executing_user = $wrapper->field_executing_user->getIdentifier();
     if (array_key_exists($executing_user, $flagged_users)) {
       unset($flagged_users[$executing_user]);
     }

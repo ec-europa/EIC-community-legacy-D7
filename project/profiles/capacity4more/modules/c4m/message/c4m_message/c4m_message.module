@@ -1686,14 +1686,14 @@ function c4m_message_format_original_group_url(Message $message) {
     $node->og_group_ref->value()
   );
 
-  $url_options = [
-    'absolute' => TRUE,
-    'purl' => [
-      'provider' => 'og_purl|node',
-      'enabled' => TRUE,
-      'id' => $group_wrapper->nid->value(),
-    ],
-  ];
+    $url_options = [
+      'absolute' => TRUE,
+      'purl' => [
+        'provider' => 'og_purl|node',
+        'enabled' => TRUE,
+        'id' => $group_wrapper->nid->value(),
+      ],
+    ];
 
   return url('<front>', $url_options);
 }
@@ -2099,14 +2099,17 @@ function c4m_message_format_node_body_teaser(Message $message) {
 function c4m_message_format_comment_body_teaser(Message $message) {
   $wrapper = entity_metadata_wrapper('message', $message);
   $comment = $wrapper->field_comment->value();
-  $body_teaser = field_view_field(
-    'comment',
-    $comment,
-    'comment_body',
-    'teaser'
-  );
-
-  return strip_tags($body_teaser[0]['#markup']);
+  $body_teaser_markup = '';
+  if ($comment) {
+    $body_teaser = field_view_field(
+      'comment',
+      $comment,
+      'comment_body',
+      'teaser'
+    );
+    $body_teaser_markup = strip_tags($body_teaser[0]['#markup']);
+  }
+  return $body_teaser_markup;
 }
 
 /**
@@ -2914,14 +2917,14 @@ function c4m_message_format_group_share(Message $message) {
     $wrapper->field_node->og_group_ref->value()
   );
 
-  $url_options = [
-    'absolute' => TRUE,
-    'purl' => [
-      'provider' => 'og_purl|node',
-      'id' => $group_wrapper->nid->value(),
-      'enabled' => TRUE,
-    ],
-  ];
+    $url_options = [
+      'absolute' => TRUE,
+      'purl' => [
+        'provider' => 'og_purl|node',
+        'id' => $group_wrapper->nid->value(),
+        'enabled' => TRUE,
+      ],
+    ];
 
   $bundle = $group_wrapper->getBundle();
   drupal_alter('c4m_content_bundle', $bundle, $group_wrapper);
