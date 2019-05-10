@@ -160,15 +160,15 @@ function c4m_content_photo_strongarm() {
             'visible' => FALSE,
           ),
           'full' => array(
-            'weight' => '3',
+            'weight' => '4',
             'visible' => TRUE,
           ),
           'teaser' => array(
-            'weight' => '25',
+            'weight' => '32',
             'visible' => FALSE,
           ),
           'teaser_group' => array(
-            'weight' => '22',
+            'weight' => '32',
             'visible' => FALSE,
           ),
           'pinned_content' => array(
@@ -202,7 +202,7 @@ function c4m_content_photo_strongarm() {
             'visible' => FALSE,
           ),
           'teaser_group' => array(
-            'weight' => '10',
+            'weight' => '31',
             'visible' => FALSE,
           ),
           'highlight_list' => array(
@@ -210,7 +210,7 @@ function c4m_content_photo_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '10',
+            'weight' => '31',
             'visible' => FALSE,
           ),
           'activity_global' => array(
@@ -222,7 +222,7 @@ function c4m_content_photo_strongarm() {
             'visible' => FALSE,
           ),
           'full' => array(
-            'weight' => '10',
+            'weight' => '30',
             'visible' => FALSE,
           ),
         ),

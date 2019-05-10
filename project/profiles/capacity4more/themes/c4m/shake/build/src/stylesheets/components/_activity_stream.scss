@@ -14,12 +14,19 @@
 }
 
 .view-mode-activity_global {
-  .field-name-c4m-ds-content-footer-stats , .field-name-c4m-ds-content-footer-stats-linked{
+  .field-name-c4m-ds-content-footer-stats ,
+  .field-name-c4m-ds-content-footer-stats-linked{
     color: $color-text;
   }
 }
 
 .field-name-c4m-ds-content-footer-stats-linked {
+  a.flag {
+    color: $color_blue !important;
+    .fa {
+      color: $color-blue !important;
+    }
+  }
   .count-recommends {
     display: inline-block;
     .group-actions-recommend {

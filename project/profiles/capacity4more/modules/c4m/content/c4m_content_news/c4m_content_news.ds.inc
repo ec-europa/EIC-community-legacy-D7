@@ -201,7 +201,7 @@ function c4m_content_news_ds_field_settings_info() {
       ),
     ),
     'comments' => array(
-      'weight' => '6',
+      'weight' => '7',
       'label' => 'above',
       'format' => 'default',
     ),
@@ -266,8 +266,8 @@ function c4m_content_news_ds_field_settings_info() {
         'ft' => array(),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '3',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -293,7 +293,7 @@ function c4m_content_news_ds_field_settings_info() {
       'format' => 'default',
     ),
     'c4m_ds_content_shared_to' => array(
-      'weight' => '9',
+      'weight' => '10',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -566,13 +566,13 @@ function c4m_content_news_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '7',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '8',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'c4m_ds_node_highlight' => array(
-      'weight' => '8',
+      'weight' => '9',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -637,8 +637,8 @@ function c4m_content_news_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '6',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '7',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -918,23 +918,14 @@ function c4m_content_news_ds_layout_settings_info() {
   $ds_layout->layout = 'c4m_ds_8_4_fluid';
   $ds_layout->settings = array(
     'regions' => array(
-      'left' => array(
-        0 => 'c4m_ds_content_type_label',
-        2 => 'c4m_ds_content_status',
-        4 => 'title',
-        5 => 'c4m_ds_content_footer_stats',
-        6 => 'c4m_body',
-        7 => 'c4m_related_document',
-        8 => 'comments',
-      ),
       'right' => array(
-        1 => 'c4m_ds_node_highlight',
-        3 => 'c4m_ds_content_actions',
+        0 => 'c4m_ds_node_highlight',
+        2 => 'c4m_ds_content_actions',
         9 => 'group_node_meta',
         10 => 'group_node_actions',
         11 => 'c4m_ds_content_shared_to',
-        12 => 'group_node_details',
-        13 => 'c4m_user_first_and_last_name',
+        12 => 'c4m_user_first_and_last_name',
+        13 => 'group_node_details',
         14 => 'c4m_ds_type_insert_action',
         15 => 'c4m_user_picture',
         16 => 'group_meta_author',
@@ -945,22 +936,31 @@ function c4m_content_news_ds_layout_settings_info() {
         21 => 'c4m_vocab_geo',
         22 => 'og_vocabulary',
       ),
+      'left' => array(
+        1 => 'c4m_ds_content_type_label',
+        3 => 'c4m_ds_content_status',
+        4 => 'title',
+        5 => 'c4m_ds_content_footer_stats_linked',
+        6 => 'c4m_body',
+        7 => 'c4m_related_document',
+        8 => 'comments',
+      ),
     ),
     'fields' => array(
-      'c4m_ds_content_type_label' => 'left',
       'c4m_ds_node_highlight' => 'right',
-      'c4m_ds_content_status' => 'left',
+      'c4m_ds_content_type_label' => 'left',
       'c4m_ds_content_actions' => 'right',
+      'c4m_ds_content_status' => 'left',
       'title' => 'left',
-      'c4m_ds_content_footer_stats' => 'left',
+      'c4m_ds_content_footer_stats_linked' => 'left',
       'c4m_body' => 'left',
       'c4m_related_document' => 'left',
       'comments' => 'left',
       'group_node_meta' => 'right',
       'group_node_actions' => 'right',
       'c4m_ds_content_shared_to' => 'right',
-      'group_node_details' => 'right',
       'c4m_user_first_and_last_name' => 'right',
+      'group_node_details' => 'right',
       'c4m_ds_type_insert_action' => 'right',
       'c4m_user_picture' => 'right',
       'group_meta_author' => 'right',
@@ -1049,7 +1049,7 @@ function c4m_content_news_ds_layout_settings_info() {
         4 => 'c4m_ds_creation_date',
         5 => 'c4m_field_og_group',
         6 => 'c4m_body',
-        7 => 'c4m_ds_content_footer_stats',
+        7 => 'c4m_ds_content_footer_stats_linked',
         8 => 'c4m_ds_node_highlight',
       ),
     ),
@@ -1061,7 +1061,7 @@ function c4m_content_news_ds_layout_settings_info() {
       'c4m_ds_creation_date' => 'ds_content',
       'c4m_field_og_group' => 'ds_content',
       'c4m_body' => 'ds_content',
-      'c4m_ds_content_footer_stats' => 'ds_content',
+      'c4m_ds_content_footer_stats_linked' => 'ds_content',
       'c4m_ds_node_highlight' => 'ds_content',
     ),
     'classes' => array(
@@ -1097,7 +1097,7 @@ function c4m_content_news_ds_layout_settings_info() {
         3 => 'c4m_ds_type_insert_action',
         4 => 'c4m_ds_creation_date',
         5 => 'c4m_body',
-        6 => 'c4m_ds_content_footer_stats',
+        6 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
@@ -1107,7 +1107,7 @@ function c4m_content_news_ds_layout_settings_info() {
       'c4m_ds_type_insert_action' => 'ds_content',
       'c4m_ds_creation_date' => 'ds_content',
       'c4m_body' => 'ds_content',
-      'c4m_ds_content_footer_stats' => 'ds_content',
+      'c4m_ds_content_footer_stats_linked' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(

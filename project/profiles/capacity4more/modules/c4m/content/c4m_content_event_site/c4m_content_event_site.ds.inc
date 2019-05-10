@@ -361,18 +361,23 @@ function c4m_content_event_site_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '10',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'c4m_ds_node_highlight' => array(
+    'c4m_ds_group_members_count' => array(
       'weight' => '11',
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'c4m_ds_node_promote' => array(
+    'c4m_ds_group_posts_count' => array(
       'weight' => '12',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'c4m_ds_node_highlight' => array(
+      'weight' => '13',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'c4m_ds_node_promote' => array(
+      'weight' => '14',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -585,9 +590,11 @@ function c4m_content_event_site_ds_layout_settings_info() {
         9 => 'c4m_body',
       ),
       'footer' => array(
-        10 => 'c4m_ds_content_footer_stats',
-        11 => 'c4m_ds_node_highlight',
-        12 => 'c4m_ds_node_promote',
+        10 => 'group_iconbar_comments_views',
+        11 => 'c4m_ds_group_members_count',
+        12 => 'c4m_ds_group_posts_count',
+        13 => 'c4m_ds_node_highlight',
+        14 => 'c4m_ds_node_promote',
       ),
     ),
     'fields' => array(
@@ -601,7 +608,9 @@ function c4m_content_event_site_ds_layout_settings_info() {
       'c4m_field_location_city_country' => 'right',
       'c4m_organised_by' => 'right',
       'c4m_body' => 'right',
-      'c4m_ds_content_footer_stats' => 'footer',
+      'group_iconbar_comments_views' => 'footer',
+      'c4m_ds_group_members_count' => 'footer',
+      'c4m_ds_group_posts_count' => 'footer',
       'c4m_ds_node_highlight' => 'footer',
       'c4m_ds_node_promote' => 'footer',
     ),

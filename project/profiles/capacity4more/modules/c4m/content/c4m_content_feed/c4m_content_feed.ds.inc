@@ -127,13 +127,10 @@ function c4m_content_feed_ds_field_settings_info() {
         'ft' => array(),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
-      'formatter_settings' => array(
-        'ft' => array(),
-      ),
     ),
     'c4m_content_feed_url' => array(
       'weight' => '1',
@@ -286,16 +283,20 @@ function c4m_content_feed_ds_layout_settings_info() {
         0 => 'title',
         1 => 'c4m_content_feed_url',
         2 => 'c4m_body',
-        3 => 'c4m_ds_content_footer_stats',
+        3 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
       'c4m_content_feed_url' => 'ds_content',
       'c4m_body' => 'ds_content',
-      'c4m_ds_content_footer_stats' => 'ds_content',
+      'c4m_ds_content_footer_stats_linked' => 'ds_content',
     ),
-    'classes' => array(),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
     'wrappers' => array(
       'ds_content' => 'div',
     ),

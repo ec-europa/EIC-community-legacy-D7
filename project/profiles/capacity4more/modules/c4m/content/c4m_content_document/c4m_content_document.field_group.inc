@@ -50,7 +50,7 @@ function c4m_content_document_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Do more through EIC Community',
-    'weight' => '10',
+    'weight' => '11',
     'children' => array(
       0 => 'c4m_ds_node_highlight',
       1 => 'c4m_ds_node_promote',
@@ -84,7 +84,7 @@ function c4m_content_document_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Details',
-    'weight' => '11',
+    'weight' => '12',
     'children' => array(
       0 => 'c4m_vocab_date',
       1 => 'c4m_vocab_document_type',
@@ -117,7 +117,7 @@ function c4m_content_document_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Group meta',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'c4m_user_picture',
       1 => 'c4m_user_first_and_last_name',

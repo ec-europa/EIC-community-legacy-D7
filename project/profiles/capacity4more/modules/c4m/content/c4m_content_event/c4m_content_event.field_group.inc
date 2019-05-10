@@ -110,7 +110,7 @@ function c4m_content_event_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Details',
-    'weight' => '12',
+    'weight' => '13',
     'children' => array(
       0 => 'c4m_vocab_geo',
       1 => 'c4m_vocab_language',
@@ -145,7 +145,7 @@ function c4m_content_event_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Documents',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'c4m_document_agenda',
       1 => 'c4m_document_presentation',
@@ -179,7 +179,7 @@ function c4m_content_event_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Location',
-    'weight' => '11',
+    'weight' => '12',
     'children' => array(
       0 => 'c4m_location_map',
       1 => 'c4m_field_location_city_country',
@@ -212,7 +212,7 @@ function c4m_content_event_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Do more through EIC Community',
-    'weight' => '10',
+    'weight' => '11',
     'children' => array(
       0 => 'c4m_ds_node_highlight',
       1 => 'c4m_ds_node_promote',
@@ -246,7 +246,7 @@ function c4m_content_event_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Organiser',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'c4m_facebook',
       1 => 'c4m_link',

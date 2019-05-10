@@ -180,7 +180,7 @@ function c4m_content_wiki_page_strongarm() {
       'display' => array(
         'flag_c4m_og_content_highlight' => array(
           'full' => array(
-            'weight' => '31',
+            'weight' => '35',
             'visible' => FALSE,
           ),
           'activity_global' => array(
@@ -192,11 +192,11 @@ function c4m_content_wiki_page_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '34',
+            'weight' => '40',
             'visible' => FALSE,
           ),
           'teaser_group' => array(
-            'weight' => '34',
+            'weight' => '40',
             'visible' => FALSE,
           ),
           'activity_group' => array(

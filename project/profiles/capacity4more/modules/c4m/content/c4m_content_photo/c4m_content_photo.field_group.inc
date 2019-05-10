@@ -22,7 +22,7 @@ function c4m_content_photo_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Do more through EIC Community',
-    'weight' => '8',
+    'weight' => '9',
     'children' => array(
       0 => 'c4m_ds_node_highlight',
       1 => 'c4m_ds_content_actions',
@@ -55,7 +55,7 @@ function c4m_content_photo_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Group meta author',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'c4m_user_picture',
       1 => 'c4m_user_first_and_last_name',

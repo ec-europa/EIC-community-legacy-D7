@@ -51,7 +51,7 @@ function c4m_content_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Contributors',
-    'weight' => '8',
+    'weight' => '9',
     'children' => array(
       0 => 'c4m_link_multiple',
       1 => 'c4m_related_user',
@@ -84,7 +84,7 @@ function c4m_content_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Do more through EASME',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'c4m_ds_content_actions',
     ),
@@ -116,7 +116,7 @@ function c4m_content_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Group meta',
-    'weight' => '11',
+    'weight' => '10',
     'children' => array(
       0 => 'c4m_related_articles',
       1 => 'c4m_related_group',

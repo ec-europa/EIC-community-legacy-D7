@@ -301,8 +301,8 @@ function c4m_content_photoalbum_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '2',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '3',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -312,7 +312,7 @@ function c4m_content_photoalbum_ds_field_settings_info() {
       'format' => 'default',
     ),
     'c4m_ds_content_shared_to' => array(
-      'weight' => '12',
+      'weight' => '13',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -629,18 +629,18 @@ function c4m_content_photoalbum_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '8',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'c4m_ds_node_highlight' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '9',
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'c4m_ds_node_promote' => array(
+    'c4m_ds_node_highlight' => array(
       'weight' => '10',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'c4m_ds_node_promote' => array(
+      'weight' => '11',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -715,18 +715,18 @@ function c4m_content_photoalbum_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '7',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'c4m_ds_node_highlight' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '8',
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'c4m_ds_node_promote' => array(
+    'c4m_ds_node_highlight' => array(
       'weight' => '9',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'c4m_ds_node_promote' => array(
+      'weight' => '10',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -1081,17 +1081,17 @@ function c4m_content_photoalbum_ds_layout_settings_info() {
     'regions' => array(
       'left' => array(
         0 => 'c4m_ds_content_type_label',
-        3 => 'title',
-        6 => 'c4m_ds_content_footer_stats',
+        4 => 'title',
+        7 => 'c4m_ds_content_footer_stats_linked',
         8 => 'c4m_body',
         10 => 'node_gallery_view',
       ),
       'right' => array(
         1 => 'c4m_ds_entity_type_label',
         2 => 'c4m_ds_node_highlight',
-        4 => 'c4m_user_picture',
-        5 => 'c4m_ds_content_actions',
-        7 => 'c4m_user_first_and_last_name',
+        3 => 'c4m_ds_content_actions',
+        5 => 'c4m_user_picture',
+        6 => 'c4m_user_first_and_last_name',
         9 => 'c4m_ds_update_date',
         11 => 'group_node_meta',
         12 => 'group_node_actions',
@@ -1107,11 +1107,11 @@ function c4m_content_photoalbum_ds_layout_settings_info() {
       'c4m_ds_content_type_label' => 'left',
       'c4m_ds_entity_type_label' => 'right',
       'c4m_ds_node_highlight' => 'right',
+      'c4m_ds_content_actions' => 'right',
       'title' => 'left',
       'c4m_user_picture' => 'right',
-      'c4m_ds_content_actions' => 'right',
-      'c4m_ds_content_footer_stats' => 'left',
       'c4m_user_first_and_last_name' => 'right',
+      'c4m_ds_content_footer_stats_linked' => 'left',
       'c4m_body' => 'left',
       'c4m_ds_update_date' => 'right',
       'node_gallery_view' => 'left',
@@ -1250,7 +1250,7 @@ function c4m_content_photoalbum_ds_layout_settings_info() {
       ),
       'right' => array(
         7 => 'c4m_body',
-        8 => 'c4m_ds_content_footer_stats',
+        8 => 'c4m_ds_content_footer_stats_linked',
         9 => 'c4m_ds_node_highlight',
         10 => 'c4m_ds_node_promote',
       ),
@@ -1264,7 +1264,7 @@ function c4m_content_photoalbum_ds_layout_settings_info() {
       'c4m_field_og_group' => 'header',
       'c4m_ds_photoalbum_cover_image' => 'left',
       'c4m_body' => 'right',
-      'c4m_ds_content_footer_stats' => 'right',
+      'c4m_ds_content_footer_stats_linked' => 'right',
       'c4m_ds_node_highlight' => 'right',
       'c4m_ds_node_promote' => 'right',
     ),
@@ -1309,7 +1309,7 @@ function c4m_content_photoalbum_ds_layout_settings_info() {
       ),
       'right' => array(
         6 => 'c4m_body',
-        7 => 'c4m_ds_content_footer_stats',
+        7 => 'c4m_ds_content_footer_stats_linked',
         8 => 'c4m_ds_node_highlight',
         9 => 'c4m_ds_node_promote',
       ),
@@ -1322,7 +1322,7 @@ function c4m_content_photoalbum_ds_layout_settings_info() {
       'c4m_ds_creation_date' => 'header',
       'c4m_ds_photoalbum_cover_image' => 'left',
       'c4m_body' => 'right',
-      'c4m_ds_content_footer_stats' => 'right',
+      'c4m_ds_content_footer_stats_linked' => 'right',
       'c4m_ds_node_highlight' => 'right',
       'c4m_ds_node_promote' => 'right',
     ),

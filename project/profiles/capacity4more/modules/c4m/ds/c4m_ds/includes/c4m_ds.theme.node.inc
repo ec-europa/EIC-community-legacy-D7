@@ -819,13 +819,17 @@ function theme_c4m_ds_group_recommendation_count_full(array $field) {
     array('flag_name' => 'c4m_og_content_recommend')
   );
 
+  $link = c4m_features_og_group_dashboard_action_recommend($entity);
+  drupal_add_js(drupal_get_path('module', 'flag') . '/theme/flag.js');
+
   $output = theme(
     'c4m_ds_entity_recommends_count_full',
     array(
+      'link' => $link,
       'text' => format_plural(
         !empty($recommends) ? $recommends : 0,
-        '1 recommendation',
-        '@count recommendations',
+        '<span class="like-count">1</span> <span class="like-text">like</span>',
+        '<span class="like-count">@count</span> <span class="like-text">likes</span>',
         array('@count' => !empty($recommends) ? c4m_content_ec_number_format(
           $recommends
         ) : 0

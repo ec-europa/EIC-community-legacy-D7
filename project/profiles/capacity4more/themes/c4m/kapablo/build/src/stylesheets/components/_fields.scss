@@ -161,7 +161,8 @@
   @include image-overlay-bottom();
 }
 
-.field-name-c4m-ds-content-footer-stats {
+.field-name-c4m-ds-content-footer-stats,
+.field-name-c4m-ds-content-footer-stats-linked {
   @extend .text-copy--muted;
 
   .row-entity-count {

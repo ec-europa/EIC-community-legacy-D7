@@ -224,11 +224,11 @@ function c4m_content_event_strongarm() {
         ),
         'flag_c4m_og_content_highlight' => array(
           'full' => array(
-            'weight' => '30',
+            'weight' => '37',
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '29',
+            'weight' => '34',
             'visible' => FALSE,
           ),
           'c4m_related' => array(
@@ -244,11 +244,11 @@ function c4m_content_event_strongarm() {
             'visible' => FALSE,
           ),
           'teaser_group' => array(
-            'weight' => '28',
+            'weight' => '34',
             'visible' => FALSE,
           ),
           'activity_group' => array(
-            'weight' => '36',
+            'weight' => '42',
             'visible' => FALSE,
           ),
           'block_list' => array(

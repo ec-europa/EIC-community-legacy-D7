@@ -189,7 +189,7 @@ function c4m_content_event_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
@@ -206,7 +206,7 @@ function c4m_content_event_ds_field_settings_info() {
           'fis-el' => 'div',
           'fis-cl' => 'pull-right',
           'fis-at' => '',
-          'fis-def-at' => FALSE,
+          'fis-def-at' => TRUE,
         ),
       ),
     ),
@@ -214,11 +214,6 @@ function c4m_content_event_ds_field_settings_info() {
       'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
-    ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
-      ),
     ),
     'c4m_datetime_end' => array(
       'formatter_settings' => array(
@@ -346,7 +341,7 @@ function c4m_content_event_ds_field_settings_info() {
       ),
     ),
     'comments' => array(
-      'weight' => '8',
+      'weight' => '9',
       'label' => 'above',
       'format' => 'default',
     ),
@@ -360,8 +355,8 @@ function c4m_content_event_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '3',
+    'c4m_ds_content_footer_stats_linked' => array(
+      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -392,12 +387,12 @@ function c4m_content_event_ds_field_settings_info() {
       'format' => 'default',
     ),
     'c4m_ds_content_shared_to' => array(
-      'weight' => '13',
+      'weight' => '14',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'c4m_ds_event_start_icon' => array(
-      'weight' => '4',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -790,18 +785,18 @@ function c4m_content_event_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'c4m_ds_content_footer_stats' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '11',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'c4m_ds_node_highlight' => array(
-      'weight' => '12',
+      'weight' => '13',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'c4m_ds_node_promote' => array(
-      'weight' => '13',
+      'weight' => '14',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -904,18 +899,18 @@ function c4m_content_event_ds_field_settings_info() {
         ),
       ),
     ),
-    'c4m_ds_content_footer_stats' => array(
-      'weight' => '9',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'c4m_ds_node_highlight' => array(
+    'c4m_ds_content_footer_stats_linked' => array(
       'weight' => '10',
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'c4m_ds_node_promote' => array(
+    'c4m_ds_node_highlight' => array(
       'weight' => '11',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'c4m_ds_node_promote' => array(
+      'weight' => '12',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -923,11 +918,6 @@ function c4m_content_event_ds_field_settings_info() {
       'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
-    ),
-    'c4m_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
-      ),
     ),
     'c4m_datetime_end' => array(
       'formatter_settings' => array(
@@ -1188,7 +1178,7 @@ function c4m_content_event_ds_layout_settings_info() {
         2 => 'c4m_field_location_city_country',
         3 => 'c4m_organised_by',
         4 => 'c4m_body',
-        5 => 'c4m_ds_content_footer_stats',
+        5 => 'c4m_ds_content_footer_stats_linked',
       ),
     ),
     'fields' => array(
@@ -1197,7 +1187,7 @@ function c4m_content_event_ds_layout_settings_info() {
       'c4m_field_location_city_country' => 'right',
       'c4m_organised_by' => 'right',
       'c4m_body' => 'right',
-      'c4m_ds_content_footer_stats' => 'right',
+      'c4m_ds_content_footer_stats_linked' => 'right',
     ),
     'classes' => array(
       'layout_class' => array(
@@ -1310,31 +1300,31 @@ function c4m_content_event_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'right' => array(
-        0 => 'c4m_field_location_city_country',
-        2 => 'c4m_ds_node_highlight',
-        4 => 'c4m_vocab_topic',
-        5 => 'c4m_ds_node_promote',
+        0 => 'c4m_ds_node_highlight',
+        2 => 'c4m_field_location_city_country',
+        4 => 'c4m_ds_node_promote',
+        5 => 'c4m_vocab_topic',
+        6 => 'c4m_ds_content_actions',
         7 => 'c4m_vocab_language',
-        8 => 'c4m_ds_content_actions',
         9 => 'c4m_organised_by',
+        10 => 'c4m_vocab_geo',
         11 => 'c4m_location_map',
-        12 => 'c4m_vocab_geo',
-        14 => 'og_vocabulary',
+        13 => 'og_vocabulary',
         19 => 'group_organiser',
         20 => 'group_node_actions',
         21 => 'c4m_link',
         22 => 'group_location',
-        23 => 'group_details',
-        24 => 'c4m_facebook',
+        23 => 'c4m_facebook',
+        24 => 'group_details',
         25 => 'c4m_twitter',
         26 => 'c4m_ds_content_shared_to',
       ),
       'left' => array(
         1 => 'c4m_ds_content_type_label',
         3 => 'c4m_ds_content_status',
-        6 => 'title',
-        10 => 'c4m_ds_content_footer_stats',
-        13 => 'c4m_ds_event_start_icon',
+        8 => 'title',
+        12 => 'c4m_ds_content_footer_stats_linked',
+        14 => 'c4m_ds_event_start_icon',
         15 => 'c4m_datetime_end',
         16 => 'c4m_body',
         17 => 'group_documents',
@@ -1345,21 +1335,21 @@ function c4m_content_event_ds_layout_settings_info() {
       ),
     ),
     'fields' => array(
-      'c4m_field_location_city_country' => 'right',
-      'c4m_ds_content_type_label' => 'left',
       'c4m_ds_node_highlight' => 'right',
+      'c4m_ds_content_type_label' => 'left',
+      'c4m_field_location_city_country' => 'right',
       'c4m_ds_content_status' => 'left',
-      'c4m_vocab_topic' => 'right',
       'c4m_ds_node_promote' => 'right',
-      'title' => 'left',
-      'c4m_vocab_language' => 'right',
+      'c4m_vocab_topic' => 'right',
       'c4m_ds_content_actions' => 'right',
+      'c4m_vocab_language' => 'right',
+      'title' => 'left',
       'c4m_organised_by' => 'right',
-      'c4m_ds_content_footer_stats' => 'left',
-      'c4m_location_map' => 'right',
       'c4m_vocab_geo' => 'right',
-      'c4m_ds_event_start_icon' => 'left',
+      'c4m_location_map' => 'right',
+      'c4m_ds_content_footer_stats_linked' => 'left',
       'og_vocabulary' => 'right',
+      'c4m_ds_event_start_icon' => 'left',
       'c4m_datetime_end' => 'left',
       'c4m_body' => 'left',
       'group_documents' => 'left',
@@ -1368,8 +1358,8 @@ function c4m_content_event_ds_layout_settings_info() {
       'group_node_actions' => 'right',
       'c4m_link' => 'right',
       'group_location' => 'right',
-      'group_details' => 'right',
       'c4m_facebook' => 'right',
+      'group_details' => 'right',
       'c4m_twitter' => 'right',
       'c4m_ds_content_shared_to' => 'right',
       'c4m_document_agenda' => 'left',
@@ -1507,7 +1497,7 @@ function c4m_content_event_ds_layout_settings_info() {
         10 => 'c4m_body',
       ),
       'footer' => array(
-        11 => 'c4m_ds_content_footer_stats',
+        11 => 'c4m_ds_content_footer_stats_linked',
         12 => 'c4m_ds_node_highlight',
         13 => 'c4m_ds_node_promote',
       ),
@@ -1524,7 +1514,7 @@ function c4m_content_event_ds_layout_settings_info() {
       'c4m_field_location_city_country' => 'right',
       'c4m_organised_by' => 'right',
       'c4m_body' => 'right',
-      'c4m_ds_content_footer_stats' => 'footer',
+      'c4m_ds_content_footer_stats_linked' => 'footer',
       'c4m_ds_node_highlight' => 'footer',
       'c4m_ds_node_promote' => 'footer',
     ),
@@ -1573,7 +1563,7 @@ function c4m_content_event_ds_layout_settings_info() {
         8 => 'c4m_body',
       ),
       'footer' => array(
-        9 => 'c4m_ds_content_footer_stats',
+        9 => 'c4m_ds_content_footer_stats_linked',
         10 => 'c4m_ds_node_highlight',
         11 => 'c4m_ds_node_promote',
       ),
@@ -1588,7 +1578,7 @@ function c4m_content_event_ds_layout_settings_info() {
       'c4m_field_location_city_country' => 'right',
       'c4m_organised_by' => 'right',
       'c4m_body' => 'right',
-      'c4m_ds_content_footer_stats' => 'footer',
+      'c4m_ds_content_footer_stats_linked' => 'footer',
       'c4m_ds_node_highlight' => 'footer',
       'c4m_ds_node_promote' => 'footer',
     ),

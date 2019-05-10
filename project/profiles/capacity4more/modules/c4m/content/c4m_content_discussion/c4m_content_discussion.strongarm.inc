@@ -183,11 +183,11 @@ function c4m_content_discussion_strongarm() {
       'display' => array(
         'flag_c4m_og_content_highlight' => array(
           'full' => array(
-            'weight' => '27',
+            'weight' => '29',
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '24',
+            'weight' => '30',
             'visible' => FALSE,
           ),
           'activity_global' => array(
@@ -199,7 +199,7 @@ function c4m_content_discussion_strongarm() {
             'visible' => FALSE,
           ),
           'teaser_group' => array(
-            'weight' => '8',
+            'weight' => '29',
             'visible' => FALSE,
           ),
           'activity_group' => array(

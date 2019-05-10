@@ -81,6 +81,7 @@
   .field-name-c4m-content-wiki-page-collapse,
   .field-name-c4m-ds-content-actions,
   .field-name-c4m-ds-content-footer-stats,
+  .field-name-c4m-ds-content-footer-stats-linked,
   .content-col ul.links,
   .comment-form,
   .comment-wrapper,
@@ -109,7 +110,8 @@
     display: none;
   }
   .fa-search,
-  .field-name-c4m-ds-content-footer-stats {
+  .field-name-c4m-ds-content-footer-stats,
+  .field-name-c4m-ds-content-footer-stats-linked {
     display: none !important;
   }
 

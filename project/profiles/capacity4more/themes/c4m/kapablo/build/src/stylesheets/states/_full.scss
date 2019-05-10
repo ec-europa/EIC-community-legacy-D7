@@ -74,7 +74,8 @@
   }
 
   &.node-photo {
-    .field-name-c4m-ds-content-footer-stats {
+    .field-name-c4m-ds-content-footer-stats,
+    .field-name-c4m-ds-content-footer-stats-linked {
       text-align: left;
 
       .row-entity-count {
@@ -93,7 +94,8 @@
   }
 
   &.node-photoalbum {
-    .field-name-c4m-ds-content-footer-stats {
+    .field-name-c4m-ds-content-footer-stats,
+    .field-name-c4m-ds-content-footer-stats-linked {
       text-align: left;
 
       .row-entity-count {
@@ -267,7 +269,8 @@
   &.node-article,
   &.node-event,
   &.node-wiki-page {
-    .field-name-c4m-ds-content-footer-stats {
+    .field-name-c4m-ds-content-footer-stats,
+    .field-name-c4m-ds-content-footer-stats-linked {
       margin-bottom: 1rem;
       margin-top: 1rem;
     }
@@ -276,7 +279,8 @@
   &:not(.paragraphs-item-c4m-paragraph-system-block) {
     .view-mode-member_overview,
     .view-mode-teaser {
-      .field-name-c4m-ds-content-footer-stats {
+      .field-name-c4m-ds-content-footer-stats,
+      .field-name-c4m-ds-content-footer-stats-linked {
         display: none;
       }
     }

@@ -136,3 +136,13 @@
     border-left: 1px solid $color-yellow;
   }
 }
+
+.node-group.node-teaser .group-iconbar-comments-views .group-actions-recommend {
+  display: inline-block;
+  i {
+    color: $color-blue !important;
+  }
+  span.action {
+    display: none;
+  }
+}

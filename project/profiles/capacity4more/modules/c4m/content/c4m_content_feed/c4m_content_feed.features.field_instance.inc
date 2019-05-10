@@ -181,7 +181,7 @@ function c4m_content_feed_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -286,7 +286,7 @@ function c4m_content_feed_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 32,
       ),
       'upcoming_event' => array(
         'label' => 'above',
@@ -397,7 +397,7 @@ function c4m_content_feed_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 31,
       ),
       'upcoming_event' => array(
         'label' => 'above',
@@ -437,8 +437,8 @@ function c4m_content_feed_field_default_field_instances() {
   t('Comment');
   t('Description');
   t('Related Groups');
-  t('Related Topics');
   t('Related Stories');
+  t('Related Topics');
 
   return $field_instances;
 }

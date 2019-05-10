@@ -189,15 +189,15 @@ function c4m_content_photoalbum_strongarm() {
             'visible' => TRUE,
           ),
           'full' => array(
-            'weight' => '4',
+            'weight' => '5',
             'visible' => TRUE,
           ),
           'teaser' => array(
-            'weight' => '25',
+            'weight' => '32',
             'visible' => FALSE,
           ),
           'teaser_group' => array(
-            'weight' => '20',
+            'weight' => '31',
             'visible' => FALSE,
           ),
           'pinned_content' => array(
@@ -235,11 +235,11 @@ function c4m_content_photoalbum_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '10',
+            'weight' => '30',
             'visible' => FALSE,
           ),
           'teaser_group' => array(
-            'weight' => '10',
+            'weight' => '30',
             'visible' => FALSE,
           ),
           'activity_global' => array(
@@ -251,7 +251,7 @@ function c4m_content_photoalbum_strongarm() {
             'visible' => FALSE,
           ),
           'full' => array(
-            'weight' => '31',
+            'weight' => '34',
             'visible' => FALSE,
           ),
         ),

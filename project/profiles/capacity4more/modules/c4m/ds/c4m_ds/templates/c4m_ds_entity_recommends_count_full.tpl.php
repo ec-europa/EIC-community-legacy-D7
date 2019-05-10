@@ -10,6 +10,10 @@
 ?>
 
 <span class="row-entity-count count-recommends">
-  <i class="fa fa-thumbs-o-up"></i>
+   <?php if ($link): ?>
+     <?php print $link;?>
+   <?php else: ?>
+       <i class="fa fa-thumbs-o-up"></i>
+   <?php endif; ?>
   <?php print $text; ?>
 </span>

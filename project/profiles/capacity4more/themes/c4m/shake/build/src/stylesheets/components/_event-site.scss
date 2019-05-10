@@ -77,6 +77,12 @@
   }
 }
 
+// Teaser footer stats.
+.page-events .node-event-site.node-teaser .group-footer .field-type-ds {
+  display: inline-block;
+  margin-right: 10px;
+}
+
 // Mobile for Status labels and publish link.
 @media (max-width: 768px) {
   .project-indications {

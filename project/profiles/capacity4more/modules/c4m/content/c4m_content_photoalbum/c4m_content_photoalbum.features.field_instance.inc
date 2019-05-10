@@ -187,7 +187,7 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'highlight_list' => array(
         'label' => 'hidden',
@@ -342,7 +342,7 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'module' => 'c4m_vocab_widget',
         'settings' => array(),
         'type' => 'term_reference_tree_hierarchical',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'highlight_list' => array(
         'label' => 'above',
@@ -372,13 +372,13 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 26,
+        'weight' => 33,
       ),
       'teaser_group' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 27,
+        'weight' => 33,
       ),
       'upcoming_event' => array(
         'label' => 'above',
@@ -438,7 +438,7 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'module' => 'c4m_vocab_widget',
         'settings' => array(),
         'type' => 'term_reference_tree_hierarchical',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'highlight_list' => array(
         'label' => 'above',
@@ -456,13 +456,13 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 31,
       ),
       'teaser_group' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 25,
+        'weight' => 32,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -530,7 +530,7 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'module' => 'c4m_vocab_widget',
         'settings' => array(),
         'type' => 'term_reference_tree_hierarchical',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'highlight_list' => array(
         'label' => 'above',
@@ -560,13 +560,13 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 29,
+        'weight' => 36,
       ),
       'teaser_group' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 30,
+        'weight' => 36,
       ),
       'upcoming_event' => array(
         'label' => 'above',
@@ -638,7 +638,7 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'module' => 'c4m_vocab_widget',
         'settings' => array(),
         'type' => 'term_reference_tree_hierarchical',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'highlight_list' => array(
         'label' => 'above',
@@ -668,13 +668,13 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 28,
+        'weight' => 35,
       ),
       'teaser_group' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 29,
+        'weight' => 35,
       ),
       'upcoming_event' => array(
         'label' => 'above',
@@ -748,7 +748,7 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 32,
+        'weight' => 35,
       ),
       'highlight_list' => array(
         'label' => 'above',
@@ -784,13 +784,13 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 27,
+        'weight' => 34,
       ),
       'teaser_group' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 28,
+        'weight' => 34,
       ),
       'upcoming_event' => array(
         'label' => 'above',
@@ -902,7 +902,7 @@ function c4m_content_photoalbum_field_default_field_instances() {
           'concatenate' => FALSE,
         ),
         'type' => 'og_vocab',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'highlight_list' => array(
         'label' => 'above',
@@ -932,13 +932,13 @@ function c4m_content_photoalbum_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 30,
+        'weight' => 37,
       ),
       'teaser_group' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 31,
+        'weight' => 37,
       ),
       'upcoming_event' => array(
         'label' => 'above',

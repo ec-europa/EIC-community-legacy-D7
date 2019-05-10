@@ -169,7 +169,7 @@ function c4m_content_group_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '31',
+            'weight' => '36',
             'visible' => FALSE,
           ),
           'print' => array(
