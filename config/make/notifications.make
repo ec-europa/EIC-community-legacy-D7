@@ -19,6 +19,12 @@ projects[message_subscribe][patch][] = "../patches/message_subscribe_assign_uids
 projects[message_notify][subdir] = "contrib"
 projects[message_notify][version] = "2.5"
 
+projects[mailcomment][subdir] = "contrib"
+projects[mailcomment][version] = "2.4"
+
+projects[mailhandler][subdir] = "contrib"
+projects[mailhandler][version] = "2.11"
+
 projects[mimemail][version] = "1.1"
 projects[mimemail][subdir] = "contrib"
 

@@ -48,6 +48,9 @@ projects[elysia_cron][version] = "2.6"
 projects[entityreference_prepopulate][subdir] = "contrib"
 projects[entityreference_prepopulate][version] = "1.7"
 
+projects[feeds_comment_processor][subdir] = "contrib"
+projects[feeds_comment_processor][version] = "1.0"
+
 projects[file_entity][subdir] = "contrib"
 projects[file_entity][version] = "2.25"
 

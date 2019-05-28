@@ -725,3 +725,10 @@ function capacity4more_update_7024() {
 function capacity4more_update_7025() {
   module_enable(['ajax_comments']);
 }
+
+/**
+ * Enable mailcomment.
+ */
+function capacity4more_update_7026() {
+  module_enable(['mailhandler', 'mailhandler_php_imap', 'job_scheduler', 'mailcomment', 'mailcomment_message_notify', 'feeds_comment_processor', 'feeds_ui']);
+}
