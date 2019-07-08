@@ -725,3 +725,11 @@ function capacity4more_update_7024() {
 function capacity4more_update_7025() {
   module_enable(['ajax_comments']);
 }
+
+/**
+ * Enable c4m_web_services for Events (event-sites).
+ */
+function capacity4more_update_7026() {
+  module_enable(['c4m_web_services_events']);
+}
+
