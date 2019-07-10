@@ -1,0 +1,297 @@
+<?php
+
+/**
+ * @file
+ * Code for the Web Services feature.
+ */
+
+include_once 'c4m_web_services_events.features.inc';
+
+/**
+ * Implements hook_services_authentication_info().
+ */
+function c4m_web_services_events_services_authentication_info() {
+  return [
+    'title' => t('C4M - Request-specific token authorisation'),
+    'description' => t('Request-specific token is sent in each request.'),
+    'authenticate_call' => '_c4m_web_services_events_authenticate_call',
+    'security_settings' => '_c4m_web_services_events_security_settings',
+    'default_security_settings' => '_c4m_web_services_events_default_security_settings',
+  ];
+}
+
+/**
+ * Authorises a call using request-specific token to verify the request.
+ *
+ * @param array $settings
+ *   The settings for the authorisation module.
+ * @param array $method
+ *   The method that's being called.
+ * @param array $args
+ *   The arguments that are being used to call the method.
+ *
+ * @return null|string
+ *   Returns nothing, or a error message if authorisation fails.
+ *
+ * @see c4m_web_services_events_services_authentication_info()
+ */
+function _c4m_web_services_events_authenticate_call(array $settings, array $method, array $args) {
+
+  $endpoint_path = services_get_server_info('endpoint_path', '');
+  $context = new ServicesContext($endpoint_path);
+  $context->buildFromGlobals();
+
+  $valid_token = FALSE;
+  // Check if the header contains the authorization token. 
+  if (NULL !== $context->getServerVariable("HTTP_AUTHORIZATIONTOKEN")) {
+    if ($context->getServerVariable("HTTP_AUTHORIZATIONTOKEN") === $settings["authorization_token_key"]) {
+      $valid_token = TRUE;
+    }
+  }
+  else {
+    // Get the original request body.
+    $arguments = _c4m_web_services_events_array_flatten($args);
+    foreach ($arguments as $key => $one) {
+      if ($key == $settings["authorization_token_name"] && $one == $settings["authorization_token_key"]) {
+        $valid_token = TRUE;
+        break;
+      }
+    }
+  }
+  if (!$valid_token) {
+    return t('Invalid token value.');
+  }
+
+  // Open session for Admin user to edit/create content.
+  global $user;
+  drupal_save_session(FALSE);
+  $user = user_load_by_name('dashboard_user');
+  if (empty($user)) {
+    return t('Dashboard user not available, contact site administrator.');
+  }
+}
+
+/**
+ * Returns an associative array of Form API elements for a settings form.
+ *
+ * @see c4m_web_services_events_services_authentication_info()
+ */
+function _c4m_web_services_events_default_security_settings() {
+  return [
+    'authorization_token_name' => 'AuthorizationToken',
+    'authorization_token_key' => 'dh349fh3Fh48gfdFDhsg23DFdgh',
+  ];
+}
+
+/**
+ * Returns an array with the default settings for the auth module.
+ *
+ * @see c4m_web_services_events_services_authentication_info()
+ */
+function _c4m_web_services_events_security_settings($settings, &$form_state) {
+  $form = [];
+
+  $form['authorization_token_name'] = [
+    '#type' => 'textfield',
+    '#title' => t('Authorization Token Name'),
+    '#required' => TRUE,
+    '#default_value' => $settings['authorization_token_name'],
+  ];
+
+  $form['authorization_token_key'] = [
+    '#type' => 'textfield',
+    '#title' => t('Authorization Token Key'),
+    '#required' => TRUE,
+    '#default_value' => $settings['authorization_token_key'],
+  ];
+
+  return $form;
+}
+
+/**
+ * Helper function for flattening an array.
+ */
+function _c4m_web_services_events_array_flatten($array = NULL) {
+  $result = [];
+
+  if (!is_array($array)) {
+    $array = func_get_args();
+  }
+
+  foreach ($array as $key => $value) {
+    if (is_array($value)) {
+      $result = array_merge($result, _c4m_web_services_events_array_flatten($value));
+    }
+    else {
+      $result = array_merge($result, [$key => $value]);
+    }
+  }
+
+  return $result;
+}
+
+/**
+ * Implements hook_services_resources().
+ */
+function c4m_web_services_events_services_resources() {
+  $node_resource = [
+    'eventsite' => [
+      'operations' => [
+        'c4m_update_event' => [
+          'file' => [
+            'type' => 'inc',
+            'module' => 'c4m_web_services_events',
+            'name' => 'resources/c4m_web_services_eventsite_resource',
+          ],
+          'callback' => '_c4m_web_services_events_eventsite_resource_update',
+          'args' => [
+            [
+              'name' => 'event_id',
+              'opti onal' => FALSE,
+              'source' => ['path' => 0],
+              'type' => 'text',
+              'description' => 'The event id of the event node to update',
+            ],
+            [
+              'name' => 'node',
+              'optional' => FALSE,
+              'source' => 'data',
+              'description' => 'The node data to update',
+              'type' => 'array',
+            ],
+          ],
+          'access callback' => '_c4m_node_resource_access', //TOCHECK
+          'access arguments' => ['update'], //CHECK
+          'access arguments append' => TRUE,
+        ],
+        'retrieve' => array(
+          'file' => array('type' => 'inc', 'module' => 'services', 'name' => 'resources/node_resource'),
+          'callback' => '_node_resource_retrieve',
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'optional' => FALSE,
+              'source' => array('path' => 0),
+              'type' => 'int',
+              'description' => 'The nid of the node to get',
+            ),
+          ),
+          'access callback' => '_node_resource_access',
+          'access arguments' => array('view'),
+          'access arguments append' => TRUE,
+        ),
+      ],
+    ],
+  ];
+
+  return $node_resource;
+}
+
+/**
+ * Implements hook_server_info().
+ */
+function c4m_web_services_events_server_info() {
+  return [
+    'name' => 'C4M REST',
+    'path' => 'rest',
+    'settings' => [
+      'file' => ['inc', 'rest_server'],
+      'form' => '_rest_server_settings',
+      'submit' => '_rest_server_settings_submit',
+    ],
+  ];
+}
+
+/**
+ * Starting point of the REST server.
+ */
+function c4m_web_services_events_server() {
+  module_load_include('inc', 'c4m_web_services_events', 'includes/C4MServicesRESTServerFactory');
+  module_load_include('inc', 'c4m_web_services_events', 'includes/C4MRESTServer');
+  $endpoint_path = services_get_server_info('endpoint_path', 'services/rest');
+
+  $services_rest_server_factory = 'C4MServicesRESTServerFactory';
+  $rest_server_factory = new $services_rest_server_factory(['endpoint_path' => $endpoint_path]);
+  /* @var $rest_server C4MRESTServer */
+  $rest_server = $rest_server_factory->getRESTServer();
+
+  $canonical_path = $rest_server->getCanonicalPath();
+  if (empty($canonical_path)) {
+    $endpoint_name = services_get_server_info('endpoint', '');
+    $endpoint = services_endpoint_load($endpoint_name);
+    return t('Services Endpoint "@name" has been setup successfully.', ['@name' => $endpoint->name]);
+  }
+
+  try {
+    return $rest_server->handle();
+  }
+  catch (Exception $e) {
+    $rest_server->handleException($e);
+  }
+}
+
+/**
+ * Look for the taxonomy terms and update the arguments array for organisations.
+ *
+ * @param array $controller
+ *   Controller definition.
+ * @param array $args
+ *   Array of arguments.
+ * @param array $options
+ *   Options.
+ *
+ * @see services_controller_execute()
+ * @see services.runtime.inc
+ */
+function c4m_web_services_events_services_request_preprocess_alter(array $controller, array &$args, array $options) {
+  // Check by dashboard_id when Creating the new Event if already exists.
+  if (isset($controller["callback"]) && $controller["callback"] === '_node_resource_create') {
+    foreach ($args as &$arg) {
+      // if (is_array($arg) && isset($arg['c4m_organisation_dashboard_id']) && isset($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value'])) {
+      //   $node = c4m_web_services_events_get_existing_node($arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
+      //   if (empty($node)) {
+      //     continue;
+      //   }
+      //   $xml = new SimpleXMLElement('<organisation_node_exists/>');
+      //   $xml->addChild('organisation_name', $node->title);
+      //   $xml->addChild('nid', $node->nid);
+      //   $xml->addChild('c4m_organisation_dashboard_id', $arg['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
+      //   $xml->addChild('uri', url($node->purl, ['absolute' => TRUE]));
+      //   throw new ServicesException($xml->asXML(), 302);
+      // }
+    }
+  }
+  // Get all Taxonomy Fields of Organisation CT.
+
+}
+
+/**
+ * Implements hook_services_request_postprocess_alter().
+ */
+function c4m_web_services_events_services_request_postprocess_alter($controller, $args, &$result) {
+  foreach ($args as $arg) {
+    if (!is_array($arg)) {
+      continue;
+    }
+    if (empty($nid = $result['nid'])) {
+      continue;
+    }
+  }
+}
+
+/**
+ * Helper function for adding emails as keys for every user.
+ */
+function c4m_web_services_events_process_users_array($rest_users) {
+  if (!$rest_users) {
+    return;
+  }
+  $nre = [];
+  foreach ($rest_users as $rest_user) {
+    $nre[$rest_user['email']] = $rest_user;
+  }
+  unset($rest_users);
+  return $nre;
+}
+
+
