@@ -40,5 +40,20 @@ function c4m_content_event_site_field_default_field_bases() {
     'type' => 'datetime',
   );
 
+  // Exported field_base: 'c4m_event_dashboard_id'.
+  $field_bases['c4m_event_dashboard_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'c4m_event_dashboard_id',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
   return $field_bases;
 }
