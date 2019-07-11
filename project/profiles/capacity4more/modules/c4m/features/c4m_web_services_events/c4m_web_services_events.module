@@ -269,6 +269,17 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
  * Implements hook_services_request_postprocess_alter().
  */
 function c4m_web_services_events_services_request_postprocess_alter($controller, $args, &$result) {
+  $endpoint_path = services_get_server_info('endpoint_path', '');
+  $context = new ServicesContext($endpoint_path);
+  $context->buildFromGlobals();
+  /* Going to clean up some of parameters, SMED does not need all info back.*/
+  if ($context->getRequestMethod() === "GET") {
+    $properties = array('log', 'sticky', 'ds_switch','comment','promote','tnid','translate');
+    foreach ($properties as $property) {
+      unset($result->{$property});
+    }
+  }
+
   foreach ($args as $arg) {
     if (!is_array($arg)) {
       continue;
