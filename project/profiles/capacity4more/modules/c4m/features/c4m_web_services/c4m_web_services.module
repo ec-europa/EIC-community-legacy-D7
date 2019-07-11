@@ -44,12 +44,22 @@ function _c4m_web_services_authenticate_call(array $settings, array $method, arr
   $arguments = _c4m_web_services_array_flatten($args);
 
   $valid_token = FALSE;
-  foreach ($arguments as $key => $one) {
-    if ($key == $settings["authorization_token_name"] && $one == $settings["authorization_token_key"]) {
+  // Check if the header contains the authorization token. 
+  if (NULL !== $context->getServerVariable("HTTP_AUTHORIZATIONTOKEN")) {
+    if ($context->getServerVariable("HTTP_AUTHORIZATIONTOKEN") === $settings["authorization_token_key"]) {
       $valid_token = TRUE;
-      break;
     }
   }
+  else {
+    // Get the original request body.
+    foreach ($arguments as $key => $one) {
+      if ($key == $settings["authorization_token_name"] && $one == $settings["authorization_token_key"]) {
+        $valid_token = TRUE;
+        break;
+      }
+    }
+  }
+
   if (!$valid_token) {
     return t('Invalid token value.');
   }
