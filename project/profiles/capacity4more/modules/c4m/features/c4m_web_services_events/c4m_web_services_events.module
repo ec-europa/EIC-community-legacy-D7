@@ -43,8 +43,8 @@ function _c4m_web_services_events_authenticate_call(array $settings, array $meth
 
   $valid_token = FALSE;
   // Check if the header contains the authorization token. 
-  if (NULL !== $context->getServerVariable("HTTP_AUTHORIZATIONTOKEN")) {
-    if ($context->getServerVariable("HTTP_AUTHORIZATIONTOKEN") === $settings["authorization_token_key"]) {
+  if (NULL !== $context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"]))) {
+    if ($context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"])) === $settings["authorization_token_key"]) {
       $valid_token = TRUE;
     }
   }
@@ -78,7 +78,7 @@ function _c4m_web_services_events_authenticate_call(array $settings, array $meth
  */
 function _c4m_web_services_events_default_security_settings() {
   return [
-    'authorization_token_name' => 'AuthorizationToken',
+    'authorization_token_name' => 'Authorization',
     'authorization_token_key' => 'dh349fh3Fh48gfdFDhsg23DFdgh',
   ];
 }

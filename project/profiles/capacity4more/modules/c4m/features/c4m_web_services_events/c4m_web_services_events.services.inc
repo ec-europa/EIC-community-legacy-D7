@@ -18,7 +18,7 @@ function c4m_web_services_events_default_services_endpoint() {
   $endpoint->path = 'easme_events/rest';
   $endpoint->authentication = array(
     'c4m_web_services_events' => array(
-      'authorization_token_name' => 'AuthorizationToken',
+      'authorization_token_name' => 'Authorization',
       'authorization_token_key' => 'dh349fh3Fh48gfdFDhsg23DFdgh',
     ),
   );
