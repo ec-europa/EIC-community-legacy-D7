@@ -259,15 +259,35 @@ class C4MRESTServer extends RESTServer
     // First path element should be not empty.
     if ($request_method == 'PUT'
       && $canon_path_count >= 1
-      && isset($resource['operations']['update'])
-      && $this->checkNumberOfArguments($canon_path_count, $resource['operations']['update'])
+      && isset($resource['operations']['c4m_update_event'])
+      && $this->checkNumberOfArguments($canon_path_count, $resource['operations']['c4m_update_event'])
       && !empty($canonical_path_array[0])
     ) {
       $operation_type = 'operations';
-      $operation = 'update';
+      $operation = 'c4m_update_event';
+    }
+    
+    // 'create' method.
+    // First path element should be not empty.
+    if ($request_method == 'POST'
+      && isset($resource['operations']['create'])
+      && $this->checkNumberOfArguments($canon_path_count, $resource['operations']['create'])
+    ) {
+      $operation_type = 'operations';
+      $operation = 'create';
     }
 
-
+    // 'actions'
+    // First path element should be action name
+    if ($request_method == 'POST'
+      && $canon_path_count >= 1
+      && isset($resource['actions'][$canonical_path_array[0]])
+      && $this->checkNumberOfArguments($canon_path_count, $resource['actions'][$canonical_path_array[0]], 1)
+    ) {
+      $operation_type = 'actions';
+      $operation = $canonical_path_array[0];
+    }
+    
     // maybe refactor and move outside the metheod
     if (empty($operation_type) || empty($operation) || empty($resource[$operation_type][$operation])) {
       return FALSE;

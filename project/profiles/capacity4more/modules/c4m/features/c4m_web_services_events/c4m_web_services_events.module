@@ -147,7 +147,7 @@ function c4m_web_services_events_services_resources() {
           'args' => [
             [
               'name' => 'event_id',
-              'opti onal' => FALSE,
+              'optional' => FALSE,
               'source' => ['path' => 0],
               'type' => 'text',
               'description' => 'The event id of the event node to update',
@@ -160,24 +160,41 @@ function c4m_web_services_events_services_resources() {
               'type' => 'array',
             ],
           ],
-          'access callback' => '_c4m_node_resource_access', //TOCHECK
-          'access arguments' => ['update'], //CHECK
+          'access callback' => '_c4m_node_events_resource_access_using_dashboard_id',
+          'access arguments' => ['update'], // CHECK
           'access arguments append' => TRUE,
         ],
         'retrieve' => array(
-          'file' => array('type' => 'inc', 'module' => 'services', 'name' => 'resources/node_resource'),
-          'callback' => '_node_resource_retrieve',
+          'file' => array('type' => 'inc', 'module' => 'c4m_web_services_events', 'name' => 'resources/c4m_web_services_eventsite_resource'),
+          'callback' => '_c4m_node_resource_retrieve_via_dashboard_id',
           'args' => array(
             array(
-              'name' => 'nid',
+              'name' => 'dashboard_event_id',
               'optional' => FALSE,
               'source' => array('path' => 0),
               'type' => 'int',
-              'description' => 'The nid of the node to get',
+              'description' => 'The dashboard event ID  to get',
             ),
           ),
-          'access callback' => '_node_resource_access',
+          'access callback' => '_c4m_node_events_resource_access_using_dashboard_id',
           'access arguments' => array('view'),
+          'access arguments append' => TRUE,
+        ),
+        'create' => array(
+          'help' => 'Create a node',
+          'file' => array('type' => 'inc', 'module' => 'services', 'name' => 'resources/node_resource'),
+          'callback' => '_node_resource_create',
+          'args' => array(
+            array(
+              'name' => 'node',
+              'optional' => FALSE,
+              'source' => 'data',
+              'description' => 'The node data to create',
+              'type' => 'array',
+            ),
+          ),
+          'access callback' => '_node_resource_access', // TO CHECK
+          'access arguments' => array('create'),
           'access arguments append' => TRUE,
         ),
       ],
@@ -231,6 +248,7 @@ function c4m_web_services_events_server() {
 }
 
 /**
+ * Check if the event(site) exists or not.
  * Look for the taxonomy terms and update the arguments array for organisations.
  *
  * @param array $controller

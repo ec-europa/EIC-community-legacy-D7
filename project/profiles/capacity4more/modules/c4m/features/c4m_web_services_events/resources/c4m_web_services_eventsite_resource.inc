@@ -5,6 +5,76 @@
  * Node resource file.
  */
 
+
+function _c4m_node_events_resource_access_using_dashboard_id($op = 'view', $args = array()) {
+  // Adds backwards compatability with regression fixed in #1083242.
+  if (isset($args[0])) {
+    $args[0] = _services_access_value($args[0], 'node');
+  }
+
+  // Make sure we have an object or this all fails, some servers can
+  // mess up the types.
+  if (is_array($args[0])) {
+    $args[0] = (object) $args[0];
+  }
+  // This is to determine if it is just a string happens on node/%NID.
+  elseif (!is_array($args[0]) && !is_object($args[0])) {
+    if (empty($node = _c4m_eventsite_load_by_dashboard_id($args[0]))) {
+      services_error(t('Node type is required'), 406);
+    }
+    $args[0] = (object) array('nid' => $node->nid);
+  }
+
+  if ($op != 'create' && !empty($args)) {
+    $node = node_load($args[0]->nid);
+  }
+  elseif ($op == 'create') {
+    if (isset($args[0]->type)) {
+      $node = $args[0]->type;
+      return node_access($op, $node);
+    }
+    else {
+      return services_error(t('Node type is required'), 406);
+    }
+  }
+  if (isset($node->nid) && $node->nid) {
+    return node_access($op, $node);
+  }
+  else {
+    return services_error(t('Node @nid could not be found', array('@nid' => $args[0]->nid)), 404);
+  }
+}
+
+/**
+ * Returns the results of a node_load() for the specified node.
+ *
+ * This returned node may optionally take content_permissions settings into
+ * account, based on a configuration setting.
+ *
+ * @param $nid
+ *   NID of the node we want to return.
+ * @return
+ *   Node object or FALSE if not found.
+ *
+ * @see node_load()
+ */
+function _c4m_node_resource_retrieve_via_dashboard_id($dashboard_id) {
+  $node = _c4m_eventsite_load_by_dashboard_id($dashboard_id);
+
+  if ($node) {
+    $uri = entity_uri('node', $node);
+    $node->path = url($uri['path'], array('absolute' => TRUE));
+    // Unset uri as it has complete entity and this
+    // cause never ending recursion in rendering.
+    unset($node->uri);
+  }
+  //Lets check field_permissions
+  $node = services_field_permissions_clean('view', 'node', $node);
+  return $node;
+}
+
+
+
 /**
  * Updates a new node based on submitted values.
  *
@@ -88,11 +158,11 @@ function _c4m_web_services_eventsite_resource_update($dashboard_id, array $node)
  * @return null|object
  *   Node object.
  */
-function _c4m_organisation_load_by_dashboard_id($dashboard_id) {
+function _c4m_eventsite_load_by_dashboard_id($dashboard_id) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'organisation')
-    ->fieldCondition('c4m_organisation_dashboard_id', 'value', $dashboard_id, '=')
+    ->entityCondition('bundle', 'event_site')
+    ->fieldCondition('c4m_event_dashboard_id', 'value', $dashboard_id, '=')
     ->range(0, 1);
 
   $result = $query->execute();
