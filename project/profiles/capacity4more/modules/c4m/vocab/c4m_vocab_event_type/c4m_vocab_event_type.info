@@ -1,0 +1,16 @@
+name = Event Type Vocabulary
+description = Provides the Type of events vocabulary, including the SmeD event type ID.
+core = 7.x
+package = capacity4more - Vocabulary
+version = 7.x-0.5
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = number
+dependencies[] = strongarm
+dependencies[] = taxonomy
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[field_base][] = c4m_vocab_smed_event_type_id
+features[field_instance][] = taxonomy_term-event_types-c4m_vocab_smed_event_type_id
+features[taxonomy][] = event_types
+project path = profiles/capacity4more/modules/c4m/vocab
