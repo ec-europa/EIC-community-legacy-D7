@@ -10,9 +10,9 @@
  */
 function c4m_vocab_event_type_taxonomy_default_vocabularies() {
   return array(
-    'event_types' => array(
+    'c4m_event_types' => array(
       'name' => 'Event types',
-      'machine_name' => 'event_types',
+      'machine_name' => 'c4m_event_types',
       'description' => 'Types of events SMED based (via webservice) aswell as created directly in EIC Community',
       'hierarchy' => 0,
       'module' => 'taxonomy',
