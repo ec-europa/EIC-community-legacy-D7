@@ -92,11 +92,11 @@ function _c4m_node_resource_retrieve_via_dashboard_id($dashboard_id) {
  *
  * @see drupal_form_submit()
  */
-function _c4m_web_services_eventsite_resource_update($dashboard_id, array $node) {
+function _c4m_web_services_events_eventsite_resource_update($dashboard_event_id, array $node) {
   // Adds backwards compatibility with regression fixed in #1083242.
   $node = _services_arg_value($node, 'node');
 
-  $old_node = _c4m_organisation_load_by_dashboard_id($dashboard_id);
+  $old_node = _c4m_organisation_load_by_dashboard_id($dashboard_event_id);
   $node['nid'] = $old_node->nid;
 
   $nid = $old_node->nid;
