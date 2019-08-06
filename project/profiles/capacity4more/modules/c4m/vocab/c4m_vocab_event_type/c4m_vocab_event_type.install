@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * Installation hooks for Event Types vocabulary.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function c4m_vocab_event_type_install() {
+  //only create when it does not exist yet, we don't want to reset the event types.
+  $vocab = taxonomy_vocabulary_machine_name_load('c4m_event_types');
+  if (!isset($vocab)) {
+    c4m_vocab_event_types_install_vocabulary();
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function c4m_vocab_event_type_uninstall() {
+  // Clean up of the terms.
+  $vocab = taxonomy_vocabulary_machine_name_load('c4m_event_types');
+  // $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocab->vid));
+  // if (!empty($vocab)) {
+  //   taxonomy_vocabulary_delete($vocab->vid);
+  // }
+}
+
+function c4m_vocab_event_type_post_features_install_feature() {
+  //Only the first time and vocabulary is empty.
+  $vocab = taxonomy_vocabulary_machine_name_load('c4m_event_types');
+  $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocab->vid));
+  if (empty($terms)) {
+    c4m_vocab_event_type_install_terms($vocab);
+  }
+}
+
+function c4m_vocab_event_type_install_terms($vocab) {
+    // The default event_types.
+    $terms = array(
+      array('name' => st('Corporate days'), 'c4m_event_type_id' => '1' , "event_sites" => '1' , "events" => '0'),
+      array('name' => st('Pitching event'), 'c4m_event_type_id' => '2' , "event_sites" => '1' , "events" => '0'),
+      array('name' => st('Combined Corporate and Pitching '), 'c4m_event_type_id' => '3' , "event_sites" => '1' , "events" => '0'),
+      array('name' => st('Academy'), 'c4m_event_type_id' => '4' , "event_sites" => '1' , "events" => '0'),
+      array('name' => st('Overseas Trade Fairs'), 'c4m_event_type_id' => '5' , "event_sites" => '1' , "events" => '0'),
+      array('name' => st('Coordinators Welcome Day'), 'c4m_event_type_id' => '6' , "event_sites" => '1' , "events" => '0'),
+      array('name' => st('EIC Summit'), 'c4m_event_type_id' => '7' , "event_sites" => '1' , "events" => '0'),
+      array('name' => st('Event'), 'c4m_event_type_id' => '' , "event_sites" => '0' , "events" => '1'),
+      array('name' => st('Learning / Training'), 'c4m_event_type_id' => '' , "event_sites" => '0' , "events" => '1'),
+      array('name' => st('Meeting'), 'c4m_event_type_id' => '' , "event_sites" => '0' , "events" => '1'),
+      );
+  
+    $weight = -10;
+    foreach ($terms as $term) {
+      $term_object              = new stdClass();
+      $term_object->name        = $term['name'];
+      $term_object->description = 'Event Type ' . $term['name'];
+      $term_object->vid         = $vocab->vid;
+      $term_object->weight      = $weight;
+      if (!empty($term['c4m_event_type_id'])) {
+        $term_object->c4m_vocab_smed_event_type_id  = array(LANGUAGE_NONE => array(array("value" => $term['c4m_event_type_id'])));
+      }
+      $term_object->c4m_et_allowed_in_event_sites = array(LANGUAGE_NONE => array(array("value" => $term['event_sites'])));
+      $term_object->c4m_et_allowed_in_events      = array(LANGUAGE_NONE => array(array("value" => $term['events'])));
+  
+      taxonomy_term_save($term_object);
+  
+      $weight++;
+    }
+  }
+  
+
+function c4m_vocab_event_types_install_vocabulary() {
+  $event_types_vocab = (object) array(
+    'name' => 'Event types',
+    'description' => 'Types of events SMED based (via webservice) aswell as created directly in EIC Community',
+    'machine_name' => 'c4m_event_types',
+  );
+  taxonomy_vocabulary_save($event_types_vocab);
+    //   variable_set(
+    //     'pathauto_taxonomy_term_c4m_vocab_event_types_pattern',
+    //     'content-event_types/[term:name]'
+    //   );
+}
+  
+/**
+ * Delete old terms and add all the new ones.
+ */
+// function c4m_vocab_events_types_update_7001() {
+//   $vocabulary = taxonomy_vocabulary_machine_name_load('c4m_vocab_event_types');
+//   foreach (taxonomy_get_tree($vocabulary->vid) as $term) {
+//     if (!empty($term)) {
+//       taxonomy_term_delete($term->tid);
+//     }
+//   }
+//   c4m_vocab_events_types_install_terms();
+// }

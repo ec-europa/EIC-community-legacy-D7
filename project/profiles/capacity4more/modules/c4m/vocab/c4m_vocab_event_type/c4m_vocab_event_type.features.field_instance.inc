@@ -12,7 +12,81 @@ function c4m_vocab_event_type_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'taxonomy_term-event_types-c4m_vocab_smed_event_type_id'.
+  // 'taxonomy_term-c4m_event_types-c4m_et_allowed_in_event_sites'.
+  $field_instances['taxonomy_term-c4m_event_types-c4m_et_allowed_in_event_sites'] = array(
+    'bundle' => 'c4m_event_types',
+    'default_value' => array(),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'c4m_et_allowed_in_event_sites',
+    'label' => 'Allowed in content type "event sites"',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 32,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-c4m_event_types-c4m_et_allowed_in_events'.
+  $field_instances['taxonomy_term-c4m_event_types-c4m_et_allowed_in_events'] = array(
+    'bundle' => 'c4m_event_types',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 2,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'c4m_et_allowed_in_events',
+    'label' => 'Allowed in content type "events"',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 33,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-c4m_event_types-c4m_vocab_smed_event_type_id'.
   $field_instances['taxonomy_term-c4m_event_types-c4m_vocab_smed_event_type_id'] = array(
     'bundle' => 'c4m_event_types',
     'default_value' => NULL,
@@ -48,72 +122,6 @@ function c4m_vocab_event_type_field_default_field_instances() {
       'settings' => array(),
       'type' => 'number',
       'weight' => 31,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'taxonomy_term-event_types-c4m_et_allowed_in_event_sites'.
-  $field_instances['taxonomy_term-c4m_event_types-c4m_et_allowed_in_event_sites'] = array(
-    'bundle' => 'c4m_event_types',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 1,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'c4m_et_allowed_in_event_sites',
-    'label' => 'Allowed in content type "event sites"',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 32,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'taxonomy_term-event_types-c4m_et_allowed_in_events'.
-  $field_instances['taxonomy_term-c4m_event_types-c4m_et_allowed_in_events'] = array(
-    'bundle' => 'c4m_event_types',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'c4m_et_allowed_in_events',
-    'label' => 'Allowed in content type "events"',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 33,
     ),
   );
 
