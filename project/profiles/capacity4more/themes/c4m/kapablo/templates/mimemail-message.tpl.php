@@ -32,7 +32,7 @@
     <style type="text/css">
       <!--
       <?php if ($css): ?>
-        <?php print $css ?>
+        <?php  /* print $css  */ ?> 
       <?php endif; ?>
       .header {
           border-bottom-color: #004494;
