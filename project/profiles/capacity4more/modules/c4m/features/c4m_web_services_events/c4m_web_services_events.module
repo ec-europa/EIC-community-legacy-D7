@@ -22,6 +22,37 @@ function c4m_web_services_events_services_authentication_info() {
 }
 
 /**
+ * Implements hook_perm().
+ */
+function c4m_web_services_events_permission() {
+  return array(
+    'administer webservice event sites' => array(
+      'title' => t('Administer webservice event sites'),
+      'description' => t('Administer webservice event sites settings.'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function c4m_web_services_events_menu() {
+  $items = array();
+
+  $items['admin/config/services/events_site'] = array(
+    'title' => 'Events site menu settings',
+    'description' => 'General Events site menu settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('webservices_eventsite_admin_settings_general'),
+    'access arguments' => array('administer webservice event sites'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/eventsite.admin.inc',
+  );
+  return $items;
+}
+
+/**
  * Authorises a call using request-specific token to verify the request.
  *
  * @param array $settings
@@ -270,6 +301,14 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
         if (is_array($arg) && isset($arg['c4m_event_dashboard_id']) && isset($arg['c4m_event_dashboard_id'][LANGUAGE_NONE][0]['value'])) {
           $node = c4m_web_services_events_get_existing_node($arg['c4m_event_dashboard_id'][LANGUAGE_NONE][0]['value']);
           if (empty($node)) {
+
+
+            // Set Original owner // @todo: get it from the webservice:
+            $webservice_eventsite = variable_get('webservice_eventsite', '');
+            if ($webservice_eventsite !== '' && $webservice_eventsite['webservice_eventsite_owner_account'] != '') {
+              $arg['name'] = $webservice_eventsite['webservice_eventsite_owner_account'];
+            }
+            
             continue;
           }
           $xml = new SimpleXMLElement('<eventsite_node_exists/>');
