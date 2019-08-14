@@ -15,7 +15,7 @@ function c4m_web_services_events_default_services_endpoint() {
   $endpoint->api_version = 3;
   $endpoint->name = 'easme_events';
   $endpoint->server = 'c4m_web_services_events';
-  $endpoint->path = 'easme_events/rest';
+  $endpoint->path = WS_EVENTSITE_ENDPOINT;
   $endpoint->authentication = array(
     'c4m_web_services_events' => array(
       'authorization_token_name' => 'Authorization',

@@ -20,7 +20,7 @@ function _c4m_node_events_resource_access_using_dashboard_id($op = 'view', $args
   // This is to determine if it is just a string happens on node/%NID.
   elseif (!is_array($args[0]) && !is_object($args[0])) {
     if (empty($node = _c4m_eventsite_load_by_dashboard_id($args[0]))) {
-      services_error(t('Node type is required'), 406);
+      services_error(t('Unfortunately we were unable to load the Node.'), 406);
     }
     $args[0] = (object) array('nid' => $node->nid);
   }
@@ -96,7 +96,7 @@ function _c4m_web_services_events_eventsite_resource_update($dashboard_event_id,
   // Adds backwards compatibility with regression fixed in #1083242.
   $node = _services_arg_value($node, 'node');
 
-  $old_node = _c4m_organisation_load_by_dashboard_id($dashboard_event_id);
+  $old_node = _c4m_eventsite_load_by_dashboard_id($dashboard_event_id);
   $node['nid'] = $old_node->nid;
 
   $nid = $old_node->nid;
@@ -203,7 +203,7 @@ function _c4m_node_resource_access($op = 'view', array $args = []) {
   }
   // This is to determine if it is just a string happens on node/%NID.
   elseif (!is_array($args[0]) && !is_object($args[0])) {
-    if (empty($node = _c4m_organisation_load_by_dashboard_id($args[0]))) {
+    if (empty($node = _c4m_eventsite_load_by_dashboard_id($args[0]))) {
       services_error(t('Node type is required'), 406);
     }
     $args[0] = (object) array('nid' => $node->nid);
