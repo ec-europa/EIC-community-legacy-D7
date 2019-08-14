@@ -302,6 +302,11 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
           $node = c4m_web_services_events_get_existing_node($arg['c4m_event_dashboard_id'][LANGUAGE_NONE][0]['value']);
           if (empty($node)) {
 
+            // A new event site.
+            // check OG status , is used for the workflow process , if not set force to pending.
+            if (!isset($arg['c4m_og_status'])) {
+              $arg['c4m_og_status'] = array(LANGUAGE_NONE => 'pending');
+            }
 
             // Set Original owner // @todo: get it from the webservice:
             $webservice_eventsite = variable_get('webservice_eventsite', '');
@@ -340,15 +345,15 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
       if (empty($eventsites_taxonomy_fields)) {
         // taxonomy is required, should give a proper error probably.
         $message = t('Missing taxonomies for CT @content_type.', [
-          '@content_type' => 'event_site',  
+          '@content_type' => 'event_site',
         ]);
         throw new ServicesException($message, 404);
       }
 
-      // Override the Taxonomy Term Names with Term ids.
       foreach ($args as &$arg) {
         if (is_array($arg)) {
           foreach ($arg as $field_name => &$item) {
+            // Override the Taxonomy Term Names with Term ids.
             if (is_array($item) && isset($eventsites_taxonomy_fields[$field_name]) && isset($item[LANGUAGE_NONE])) {
               $new_terms = [];
               foreach ($item[LANGUAGE_NONE] as $term_key) {
@@ -399,6 +404,13 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
 
             }
 
+            if ($field_name == "c4m_location_address") {
+              // Remap the venue to the correct fieldname, naming used within Drupal.
+              if (!empty($item[LANGUAGE_NONE][0]['venue'])) {
+                $item[LANGUAGE_NONE][0]['name_line'] = $item[LANGUAGE_NONE][0]['venue'];
+                unset($item[LANGUAGE_NONE][0]['venue']);
+              }
+            }
           }
           // day/month/year - slashes not -
           // create correct datetimeformat. be warnedd minutes are in 15 minutes intervals.
@@ -438,6 +450,9 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
  */
 function c4m_web_services_events_services_request_postprocess_alter($controller, $args, &$result) {
   $endpoint_path = services_get_server_info('endpoint_path', '');
+  if ($endpoint_path !== WS_EVENTSITE_ENDPOINT) {
+    return;
+  }
   $context = new ServicesContext($endpoint_path);
   $context->buildFromGlobals();
   /* Going to clean up some of parameters, SMED does not need all info back.*/
@@ -448,6 +463,11 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
     }
   }
 
+    // When creating a new node, publish it and set default paragraphs.
+    if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create') {
+      $test="test";
+    }
+
   foreach ($args as $arg) {
     if (!is_array($arg)) {
       continue;
@@ -457,6 +477,56 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
     }
   }
 }
+
+/**
+ * Alter the newly created node, publish it and set default paragraphs.
+ *
+ * @param int $nid
+ *   The event_site node id.
+ * @param array $arg
+ *   The event_site info.
+ */
+function c4m_web_services_events_eventsite_set_paragraphs($nid, array $arg) {
+  if ($arg['type'] !== "event_site") {
+    return;
+  }
+
+  // #Todo : reate the paragraphs  - check original webservices.
+}
+
+/**
+ * Allows alteration of the services_resources array after processing.
+ *
+ * @param array $resources
+ *   The combined array of resource definitions from hook_services_resources.
+ * @param array $endpoint
+ *   An array describing the endpoint that resources are being built for.
+ *
+ * @deprecated
+ * @see _services_build_resources()
+ * @see services.resource_build.inc
+ */
+function c4m_web_services_events_services_resources_post_processing_alter(&$resources, &$endpoint) {
+  $endpoint_path = services_get_server_info('endpoint_path', '');
+  if ($endpoint_path !== WS_EVENTSITE_ENDPOINT) {
+    return;
+  }
+}
+
+
+/**
+ * Allows alteration of the parsed request data before calling the controller.
+ *
+ * @param array $data
+ *   The parsed request data.
+ * @param array $controller
+ *   The current controller definition.
+ *
+ * @see RESTServer->getControllerArguments()
+ */
+// function c4m_web_services_events_rest_server_request_parsed_alter(&$data, $controller) {
+//   //get the correct topic taxonomy here ?
+// }
 
 /**
  * Helper function for adding emails as keys for every user.

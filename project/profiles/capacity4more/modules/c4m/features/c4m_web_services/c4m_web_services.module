@@ -315,6 +315,9 @@ function c4m_web_services_services_request_postprocess_alter($controller, $args,
     if (!is_array($arg)) {
       continue;
     }
+    if ($arg['type'] != "organisation") {
+      continue;
+    }
     if (empty($nid = $result['nid'])) {
       continue;
     }
@@ -711,6 +714,9 @@ function c4m_web_services_get_existing_node($organisation_dashboard_id) {
  *   The organisation info.
  */
 function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) {
+  if ($arg['type'] !== "organisation") {
+    return;
+  }
   $node = node_load($nid);
   if (empty($node)) {
     return;
