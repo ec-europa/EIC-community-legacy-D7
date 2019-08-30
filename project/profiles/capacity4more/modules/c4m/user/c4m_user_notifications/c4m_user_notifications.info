@@ -2,6 +2,7 @@ name = Notifications
 description = This module provides functionality for the email notifications.
 core = 7.x
 package = capacity4more - User
+version = "7.x-1.0"
 dependencies[] = c4m_user
 dependencies[] = c4m_og
 dependencies[] = message_digest
