@@ -360,7 +360,18 @@ function _c4m_user_notifications_dispatch_content_action($node, $action) {
   if ('insert' === $action || 'update' === $action && $node->original->status != NODE_PUBLISHED) {
     // Send MT24 - Subscribed topic followers are informed about new content
     // tagged with a common topic of interest.
-    _c4m_user_notifications_notify_subscribe_content_of_interest($node);
+
+    /* We only are going to send new discussions for "public" groups.
+     * New discussion of Private and restricted groups should remain eh private.
+     * No matter of the shared "topics of interest".
+     */
+    $og_group_ref = $node->og_group_ref["und"][0]["target_id"];
+    $group_wrapper = entity_metadata_wrapper('node', $og_group_ref);
+    $group_access = $group_wrapper->group_access->value();
+    // Group_access is a boolean , false == public group .
+    if ($group_access === FALSE) {
+      _c4m_user_notifications_notify_subscribe_content_of_interest($node);
+    }
   }
 
   if (!in_array($node->type, $allowed_og_content_types)) {
