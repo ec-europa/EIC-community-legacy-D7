@@ -5,6 +5,8 @@ api = 2
 
 projects[campaignmonitor][subdir] = "contrib"
 projects[campaignmonitor][version] = "1.1"
+projects[campaignmonitor][patch][] = "../patches/campaignmonitor_use_same_libraries_module.patch"
+
 
 projects[email_confirm][subdir] = "contrib"
 projects[email_confirm][version] = "1.3"

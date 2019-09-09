@@ -1,0 +1,11 @@
+diff --git campaignmonitor.make campaignmonitor.make
+index f380107..5daa8c3 100644
+--- campaignmonitor.make
++++ campaignmonitor.make
+@@ -6,4 +6,4 @@ libraries[campaignmonitor][download][url] = "https://github.com/campaignmonitor/
+ libraries[campaignmonitor][directory_name] = "campaignmonitor"
+ libraries[campaignmonitor][destination] = "libraries"
+ 
+-projects[libraries] = "2.0"
++projects[libraries] = "2.5"
++projects[libraries][subdir] = "contrib"
