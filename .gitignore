@@ -31,6 +31,7 @@ bower_components
 .sass-cache
 
 # Avoid IDE files being committed.
+.vscode
 .idea
 *.sublime-project
 *.sublime-workspace
