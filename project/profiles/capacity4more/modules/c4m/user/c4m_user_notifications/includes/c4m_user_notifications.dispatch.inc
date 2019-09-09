@@ -371,7 +371,25 @@ function _c4m_user_notifications_dispatch_content_action($node, $action) {
   if ('insert' === $action || 'update' === $action && $node->original->status != NODE_PUBLISHED) {
     // Send MT24 - Subscribed topic followers are informed about new content
     // tagged with a common topic of interest.
-    _c4m_user_notifications_notify_subscribe_content_of_interest($node);
+
+    $send_notifications_interests = TRUE;
+    /* We only are going to send new discussions for "public" groups.
+     * New discussion of Private and restricted groups should remain eh private.
+     * No matter of the shared "topics of interest".
+     */
+    $og_group_ref = $node->og_group_ref[LANGUAGE_NONE][0]["target_id"];
+    if (!empty($og_group_ref)) {
+      $group_wrapper = entity_metadata_wrapper('node', $og_group_ref);
+      $group_access = $group_wrapper->group_access->value();
+      // Group_access is a boolean , false == public group .
+      if ($group_access !== FALSE) {
+        $send_notifications_interests = FALSE;
+      }
+    }
+
+    if ($send_notifications_interests === TRUE) {
+      _c4m_user_notifications_notify_subscribe_content_of_interest($node);
+    }
   }
 
   if (!in_array($node->type, $allowed_og_content_types)) {
@@ -554,8 +572,10 @@ function _c4m_user_notifications_dispatch_og_group_status_update($node, $wrapper
           // Send MT28 - Inform group admins the group was published.
           _c4m_user_notifications_notify_og_group_status_published($node);
 
-          // Send MT24 - Inform topic subscribers a new group is published.
-          _c4m_user_notifications_notify_subscribe_content_of_interest($node);
+          // Send MT24 - Inform topic subscribers a new "public" group is published.
+          if (isset($node->pluggable_group_access) && $node->pluggable_group_access == "public") {
+            _c4m_user_notifications_notify_subscribe_content_of_interest($node);
+          }
         }
         // Republishing a group after it got archived in the past.
         elseif ($group_status_old === 'archived') {
