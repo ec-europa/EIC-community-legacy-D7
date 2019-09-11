@@ -2,7 +2,7 @@
 
 /**
  * @file
- * c4m_web_services.features.inc
+ * c4m_web_services_events.features.inc
  */
 
 /**

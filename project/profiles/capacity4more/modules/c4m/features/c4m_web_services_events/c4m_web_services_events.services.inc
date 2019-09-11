@@ -2,14 +2,15 @@
 
 /**
  * @file
- * c4m_web_services.services.inc
+ * c4m_web_services_events.services.inc
  */
 
 /**
  * Implements hook_default_services_endpoint().
  */
 function c4m_web_services_events_default_services_endpoint() {
-  /* End-point for Events. */
+  $export = array();
+
   $endpoint = new stdClass();
   $endpoint->disabled = FALSE; /* Edit this to true to make a default endpoint disabled initially */
   $endpoint->api_version = 3;
@@ -38,7 +39,6 @@ function c4m_web_services_events_default_services_endpoint() {
       'text/xml' => FALSE,
     ),
   );
-
   $endpoint->resources = array(
     'node' => array(
       'operations' => array(
@@ -69,5 +69,6 @@ function c4m_web_services_events_default_services_endpoint() {
   );
   $endpoint->debug = 0;
   $export['easme_events'] = $endpoint;
+
   return $export;
 }
