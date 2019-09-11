@@ -1996,7 +1996,7 @@ function c4m_content_event_site_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'c4m_event_dashboard_id',
-    'label' => 'c4m_event_dashboard_id',
+    'label' => 'Event(Site) Dashboard ID',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -2128,7 +2128,7 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Twitter page');
   t('Type of Event');
   t('You can select up to 3 Topics and unlimited subtopics within these Topics.');
-  t('c4m_event_dashboard_id');
+  t('Event(Site) Dashboard ID');
 
   return $field_instances;
 }
