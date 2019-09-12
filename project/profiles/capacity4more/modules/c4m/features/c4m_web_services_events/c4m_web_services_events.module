@@ -582,26 +582,29 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
     $field_dasboard_id = "c4m_event_dashboard_id";
     // Load the currently logged in user.
     global $user;
-    if (!in_array('administrator', $user->roles)) {
-      // Not the proper role to edit.
-      if (empty($form[$field_dasboard_id][LANGUAGE_NONE][0]['value']['#default_value'])) {
-        // Event site created within drupal, no reason to show it.
-        $form[$field_dasboard_id]['#access'] = FALSE;
-      }
-      else {
-        // Created via webwservice allow to see.
+    // If an external event(site), make some fields readonly
+    if (!empty($form[$field_dasboard_id][LANGUAGE_NONE][0]['value']['#default_value'])) {
+      // Created via webwservice allow to seem, but no touch, unless you are an admin.
+      if (!in_array('administrator', $user->roles)) {
         $form[$field_dasboard_id][LANGUAGE_NONE]['#disabled'] = TRUE;
         $form_state['values'][$field][LANGUAGE_NONE][0]['value'] = $form[$field][LANGUAGE_NONE][0]['value']['#default_value'];
-        // Todo. need to make some other fields read only.
-        $read_only_default_fields = array("title");
-        foreach ($read_only_default_fields as $field) {
-          $form[$field]['#attributes'] = array('readonly' => 'readonly');
-        }
-        $read_only_fields = array("c4m_body", "c4m_location_address", "c4m_link", "c4m_organised_by", "c4m_datetime_end");
-        foreach ($read_only_fields as $field) {
-          // Test : $form[$field][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
-          $form[$field][LANGUAGE_NONE]['#disabled'] = TRUE;
-        }
+      }
+      //Need to make some other fields read only.
+      $read_only_default_fields = array("title");
+      foreach ($read_only_default_fields as $field) {
+        $form[$field]['#attributes'] = array('readonly' => 'readonly');
+      }
+      $read_only_fields = array("c4m_body", "c4m_location_address", "c4m_link", "c4m_organised_by", "c4m_datetime_end");
+      foreach ($read_only_fields as $field) {
+        // Test : $form[$field][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
+        $form[$field][LANGUAGE_NONE]['#disabled'] = TRUE;
+      }
+    }
+    else {
+      // Empty dashboard ID
+      if (!in_array('administrator', $user->roles)) {
+        // Event site created within drupal, no reason to show it for non admins.
+        $form[$field_dasboard_id]['#access'] = FALSE;
       }
     }
   }
