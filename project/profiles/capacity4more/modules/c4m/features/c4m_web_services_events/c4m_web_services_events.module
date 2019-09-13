@@ -601,10 +601,11 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
       foreach ($read_only_default_fields as $field) {
         $form[$field]['#attributes'] = array('readonly' => 'readonly');
       }
-      $read_only_fields = array("c4m_body", "c4m_location_address", "c4m_link", "c4m_organised_by", "c4m_datetime_end");
+      $read_only_fields = array("c4m_body", "c4m_location_address", "c4m_link", "c4m_organised_by"); //, "c4m_datetime_end"
       foreach ($read_only_fields as $field) {
         // Test : $form[$field][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
         $form[$field][LANGUAGE_NONE]['#disabled'] = TRUE;
+        $form_state['values'][$field][LANGUAGE_NONE][0]['value'] = $form[$field][LANGUAGE_NONE][0]['value']['#default_value'];
       }
     }
     else {
