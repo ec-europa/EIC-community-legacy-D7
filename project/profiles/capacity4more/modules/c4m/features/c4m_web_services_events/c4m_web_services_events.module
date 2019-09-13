@@ -579,9 +579,16 @@ function c4m_web_services_events_get_existing_node($event_dashboard_id) {
  */
 function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'event_site_node_form') {
-    $field_dasboard_id = "c4m_event_dashboard_id";
+
     // Load the currently logged in user.
     global $user;
+    // get settings.
+    $webservice_eventsite = variable_get('webservice_eventsite', array());
+    if (!empty($webservice_eventsite) && $user->name == $webservice_eventsite['webservice_user']) {
+      // Coming from werbservice, do not interfere.
+      return;
+    }
+    $field_dasboard_id = "c4m_event_dashboard_id";
     // If an external event(site), make some fields readonly
     if (!empty($form[$field_dasboard_id][LANGUAGE_NONE][0]['value']['#default_value'])) {
       // Created via webwservice allow to seem, but no touch, unless you are an admin.

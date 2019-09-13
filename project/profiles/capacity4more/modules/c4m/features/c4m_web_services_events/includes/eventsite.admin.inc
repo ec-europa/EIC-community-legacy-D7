@@ -31,6 +31,13 @@ function webservices_eventsite_admin_settings_general() {
     '#default_value' => isset($webservice_eventsite['webservice_eventsite_owner_account']) ? $webservice_eventsite['webservice_eventsite_owner_account'] : '',
     '#required' => FALSE,
   );
+  $form['webservice_eventsite']['webservice_user'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Drupal user that is allowed to create content (eventsites).'),
+    '#description' => '',
+    '#default_value' => isset($webservice_eventsite['webservice_user']) ? $webservice_eventsite['webservice_user'] : 'dashboard_user',
+    '#required' => TRUE,
+  );
 
   $form = system_settings_form($form);
 
