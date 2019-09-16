@@ -110,7 +110,7 @@ function _c4m_web_services_events_authenticate_call(array $settings, array $meth
  */
 function _c4m_web_services_events_default_security_settings() {
   return [
-    'authorization_token_name' => 'Authorization',
+    'authorization_token_name' => 'AuthorizationToken',
     'authorization_token_key' => 'dh349fh3Fh48gfdFDhsg23DFdgh',
   ];
 }
@@ -432,7 +432,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
           // $arg["c4m_datetime_end"]["und"][0]["value"] = array('date'=>"06/12/2019",'time'=>"06:00");
           // $arg["c4m_datetime_end"]["und"][0]["value2"] = array('date'=>"06/12/2019",'time'=>"17:44");
           // Add the purl based on the title - group path is required:
-          $arg['purl'] = array("value" => str_replace(' ', '-', $arg['title']));
+          $arg['purl'] = array("value" => strtolower(str_replace(' ', '-', $arg['title'])));
           // convert the registration Link.
           if (!isset($arg['c4m_link']) && isset($arg['link'])) {
             $arg['c4m_link'] = array (LANGUAGE_NONE => array( array ('url' => $arg['link'], 'title' => $arg['link'])));
