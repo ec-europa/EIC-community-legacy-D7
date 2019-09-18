@@ -25,9 +25,9 @@ function angular_build_npm {
   cd "$DIR_PROJECT/profiles/capacity4more/modules/c4m/restful/c4m_restful_quick_post/components/c4m-app"
 
   if [ ! -d "./node_modules" ]; then
-    npm install
+    npm ci
   elif [ $( option_is_set "--no-update" ) -ne 1 ]; then
-    npm install
+    npm ci
   fi
 
   cd "$DIR_ROOT"
@@ -53,8 +53,8 @@ function angular_build_grunt {
 function angular_bower_install {
   cd "$DIR_ROOT"
 
-  bower cache clean
-  bower install $DIR_PROJECT/profiles/capacity4more/modules/c4m/restful/c4m_restful_quick_post/components/c4m-app
+  bower cache clean --allow-root
+  bower install --allow-root $DIR_PROJECT/profiles/capacity4more/modules/c4m/restful/c4m_restful_quick_post/components/c4m-app
 
   cd "$DIR_ROOT"
 }
