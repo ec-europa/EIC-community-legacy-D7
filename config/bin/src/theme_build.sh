@@ -24,17 +24,17 @@ function theme_build_npm {
   cd "$DIR_PROJECT/profiles/capacity4more/themes/c4m/kapablo/build"
 
   if [ ! -d "./node_modules" ]; then
-    npm install
+    npm ci
   elif [ $( option_is_set "--no-update" ) -ne 1 ]; then
-    npm install
+    npm ci
   fi
 
   cd "$DIR_PROJECT/profiles/capacity4more/themes/c4m/shake/build"
 
   if [ ! -d "./node_modules" ]; then
-    npm install
+    npm ci
   elif [ $( option_is_set "--no-update" ) -ne 1 ]; then
-    npm install
+    npm ci
   fi
 
   cd "$DIR_ROOT"
