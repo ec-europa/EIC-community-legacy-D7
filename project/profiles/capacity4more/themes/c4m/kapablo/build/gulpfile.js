@@ -70,7 +70,7 @@ gulp.task('clean', function() {
 /**
  * Task to minimize the images.
  */
-gulp.task('imagemin', function() {
+gulp.task('imagemin', function(done) {
   gulp.src('src/images/**/*.{png,jpg,gif,svg}')
     .pipe(
       imagemin({
@@ -81,12 +81,13 @@ gulp.task('imagemin', function() {
       })
     )
     .pipe(gulp.dest(config.dist + '/images'));
+  done();
 });
 
 /**
  * Task to parse sass files and generate minimized CSS files.
  */
-gulp.task('sass', function() {
+gulp.task('sass', function(done) {
   gulp.src('src/stylesheets/kapablo.scss')
     .pipe(plumber({
       errorHandler: function (error) {
@@ -99,6 +100,7 @@ gulp.task('sass', function() {
     .pipe(rename({ extname : ".concat.css" }))
     .pipe(gulpif(config.sourceMaps, sourcemaps.write('.')))
     .pipe(gulp.dest(config.dist + '/css'));
+  done();
 });
 
 /**
@@ -114,7 +116,7 @@ gulp.task('eslint', function() {
 /**
  * Task to concatenate the scripts.
  */
-gulp.task('concat', ['eslint'], function() {
+gulp.task('concat', gulp.series(['eslint']), function() {
   var files = {
     "bootstrap.concat.js": [
       config.bootstrapDir + '/assets/javascripts/bootstrap/affix.js',
@@ -157,7 +159,7 @@ gulp.task('concat', ['eslint'], function() {
 /**
  * Task to uglify the scripts.
  */
-gulp.task('uglify', ['concat'], function(cb) {
+gulp.task('uglify', gulp.series(['concat']), function(cb) {
   pump(
     [
       gulp.src([config.dist + '/js/*.concat.js']),
@@ -183,15 +185,14 @@ gulp.task('dev-watch', function() {
 });
 
 // Aliases.
-gulp.task('images', ['imagemin']);
-gulp.task('styles', ['sass']);
-gulp.task('scripts', ['eslint', 'concat']);
+gulp.task('images', gulp.series(['imagemin']));
+gulp.task('styles', gulp.series(['sass']));
+gulp.task('scripts', gulp.series(['eslint', 'concat']));
 
 // Main task.
-gulp.task('default', ['build']);
-gulp.task('build', function() {
-  sequence('clean', ['images', 'styles', 'scripts']);
-});
+gulp.task('build', gulp.series('clean', ['images', 'styles', 'scripts']));
+gulp.task('default', gulp.series(['build']));
+
 
 // Dev task.
 gulp.task('dev', function() {
