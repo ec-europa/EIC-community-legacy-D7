@@ -167,8 +167,8 @@ gulp.task('uglify', gulp.series(['concat']), function(cb) {
  * Watch.
  */
 gulp.task('dev-watch', function() {
-  gulp.watch('src/images/**/*.{png,jpg,gif}', ['imagemin']);
-  gulp.watch('src/stylesheets/**/*.scss', ['styles']);
+  gulp.watch('src/images/**/*.{png,jpg,gif}', gulp.series(['imagemin']));
+  gulp.watch('src/stylesheets/**/*.scss', gulp.series(['styles']));
 
 });
 
