@@ -116,7 +116,7 @@ gulp.task('eslint', function() {
 /**
  * Task to concatenate the scripts.
  */
-gulp.task('concat', gulp.series(['eslint']), function() {
+gulp.task('concat', gulp.series('eslint', function(done) {
   var files = {
     "bootstrap.concat.js": [
       config.bootstrapDir + '/assets/javascripts/bootstrap/affix.js',
@@ -154,7 +154,8 @@ gulp.task('concat', gulp.series(['eslint']), function() {
         .pipe(gulp.dest(config.dist + '/js/'));
     }
   }
-});
+  done();
+}));
 
 /**
  * Task to uglify the scripts.
@@ -187,7 +188,7 @@ gulp.task('dev-watch', function() {
 // Aliases.
 gulp.task('images', gulp.series(['imagemin']));
 gulp.task('styles', gulp.series(['sass']));
-gulp.task('scripts', gulp.series(['eslint', 'concat']));
+gulp.task('scripts', gulp.series('concat'));
 
 // Main task.
 gulp.task('build', gulp.series('clean', ['images', 'styles', 'scripts']));
