@@ -46,7 +46,7 @@ var config = {
 /**
  * Task to update the settings for development.
  */
-gulp.task('dev-options', function () {
+gulp.task('dev-options', function (done) {
   config.sourceMaps = true;
   config.stripBanners = false;
   config.uglify = false;
@@ -54,6 +54,7 @@ gulp.task('dev-options', function () {
   config.sass.outputStyle = 'expanded';
   config.autoprefixer.diff = true;
   config.autoprefixer.map = true;
+  done();
 });
 
 /**
@@ -70,7 +71,7 @@ gulp.task('clean', function() {
 /**
  * Task to minimize the images.
  */
-gulp.task('imagemin', function() {
+gulp.task('imagemin', function(done) {
   gulp.src('src/images/**/*.{png,jpg,gif,svg}')
     .pipe(
       imagemin({
@@ -81,12 +82,13 @@ gulp.task('imagemin', function() {
       })
     )
     .pipe(gulp.dest(config.dist + '/images'));
+    done();
 });
 
 /**
  * Task to parse sass files and generate minimized CSS files.
  */
-gulp.task('sass', function() {
+gulp.task('sass', function(done) {
   gulp.src('src/stylesheets/shake.scss')
     .pipe(plumber({
       errorHandler: function (error) {
@@ -99,31 +101,33 @@ gulp.task('sass', function() {
     .pipe(rename({ extname : ".concat.css" }))
     .pipe(gulpif(config.sourceMaps, sourcemaps.write('.')))
     .pipe(gulp.dest(config.dist + '/css'));
+  done();
 });
 
 /**
- * Task to parse sass files and generate minimized CSS files.
+ * Task to es lint JS files .
  */
 gulp.task('eslint', function() {
-    return gulp.src('src/javascripts/shake.js')
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
+  return gulp.src('src/javascripts/shake.js')
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
+
 });
 
 
 /**
  * Task to concatenate the scripts.
  */
-gulp.task('concat', ['eslint'], function() {
-    var files = {
+gulp.task('concatjs', gulp.series('eslint', function(done) {
+  var files = {
         "shake.concat.js": [
             'src/javascripts/shake.js',
             'src/javascripts/recommend.js',
-            'src/ec-preset-website/ecl-ec-preset-website.js'
+            'src/ec-preset-website/scripts/ecl-ec-preset-website.js'
         ]
-    };
-    for (var file in files) {
+  };
+  for (var file in files) {
         // @see https://eslint.org/docs/rules/guard-for-in
         if (Object.prototype.hasOwnProperty.call(files, file)) {
             gulp.src(files[file])
@@ -140,12 +144,13 @@ gulp.task('concat', ['eslint'], function() {
                 .pipe(gulp.dest(config.dist + '/js/'));
         }
     }
-});
+  done();
+}));
 
 /**
  * Task to uglify the scripts.
  */
-gulp.task('uglify', ['concat'], function(cb) {
+gulp.task('uglify', gulp.series('concatjs', function(cb) {
     pump(
         [
             gulp.src([config.dist + '/js/*.concat.js']),
@@ -159,32 +164,32 @@ gulp.task('uglify', ['concat'], function(cb) {
         ],
         cb
     );
-});
+}));
 
 /**
  * Watch.
  */
-gulp.task('dev-watch', function() {
-  gulp.watch('src/images/**/*.{png,jpg,gif}', ['imagemin']);
-  gulp.watch('src/stylesheets/**/*.scss', ['styles']);
-
+gulp.task('dev-watch', function(done) {
+  gulp.watch('src/images/**/*.{png,jpg,gif}', gulp.series(['imagemin']));
+  gulp.watch('src/stylesheets/**/*.scss', gulp.series(['styles']));
+  done();
 });
 
 // Aliases.
-gulp.task('images', ['imagemin']);
-gulp.task('styles', ['sass']);
-gulp.task('scripts', ['eslint', 'concat']);
+gulp.task('images', gulp.series(['imagemin']));
+gulp.task('styles', gulp.series(['sass']));
+gulp.task('scripts', gulp.series('concatjs'));
 
 // Main task.
-gulp.task('default', ['build']);
-gulp.task('build', function() {
-  sequence('clean', ['images', 'styles', 'scripts']);
-});
+gulp.task('build', gulp.series(['clean','scripts','styles','images'])) ;
+
+//,function() {
+  // sequence('clean', ['images', 'styles', 'scripts']);
+//});
+
+gulp.task('default', gulp.series(['build']));
 
 // Dev task.
-gulp.task('dev', function() {
-  sequence('dev-options', 'build');
-});
-gulp.task('watch', function() {
-  sequence('dev', 'dev-watch');
-});
+gulp.task('dev', gulp.series(['dev-options', 'build']));
+
+gulp.task('watch',gulp.series(['dev', 'dev-watch']));
