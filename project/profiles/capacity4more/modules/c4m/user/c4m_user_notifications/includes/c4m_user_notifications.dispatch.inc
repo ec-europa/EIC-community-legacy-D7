@@ -380,9 +380,8 @@ function _c4m_user_notifications_dispatch_content_action($node, $action) {
     $og_group_ref = $node->og_group_ref[LANGUAGE_NONE][0]["target_id"];
     if (!empty($og_group_ref)) {
       $group_wrapper = entity_metadata_wrapper('node', $og_group_ref);
-      $group_access = $group_wrapper->group_access->value();
       // Group_access is a boolean , false == public group .
-      if ($group_access !== FALSE) {
+      if (!isset($group_wrapper->group_access) || $group_wrapper->group_access->value() !== FALSE) {
         $send_notifications_interests = FALSE;
       }
     }
