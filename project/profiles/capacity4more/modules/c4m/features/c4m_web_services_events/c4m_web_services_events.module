@@ -475,6 +475,31 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
     if (empty($nid = $result['nid'])) {
       continue;
     }
+
+
+    // Remove old members of a group - in case of updating the event site.
+    $old_member_ids = c4m_og_get_group_member_ids($nid);
+    foreach ($old_member_ids as $current_member) {
+      // Todo only remove members that are not in the list anymore.
+      og_ungroup('node', $nid, 'user', $current_member);
+    }
+    // Add Event organisers as an administrator to the event site.
+    $event_site_admin_groups = ['c4m_managers', 'c4m_organisers'];
+    foreach ($event_site_admin_groups as $admin_group) {
+      if (isset($arg[$admin_group])) {
+        foreach ($arg[$admin_group][LANGUAGE_NONE] as $manager) {
+          $loaded_manager = user_load_by_mail($manager['email']);
+          if ($loaded_manager !== FALSE) {
+            // Add the manager as a user to the group for this eventsite.
+            $membership = og_group('node', $nid, ['entity' => $loaded_manager]);
+            // Add administrator role.
+            $role = c4m_og_user_role_load_by_name('administrator member', 'event_site');
+            og_role_grant('node', $nid, $loaded_manager->uid, $role->rid);
+          }
+        }
+      }
+
+    }
   }
 }
 
