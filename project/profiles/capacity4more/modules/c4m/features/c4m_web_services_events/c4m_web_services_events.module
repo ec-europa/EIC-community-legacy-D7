@@ -457,7 +457,7 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
   $context->buildFromGlobals();
   /* Going to clean up some of parameters, SMED does not need all info back.*/
   if ($context->getRequestMethod() === "GET") {
-    $properties = array('log', 'sticky', 'ds_switch','comment','promote','tnid','translate');
+    $properties = array('log', 'sticky', 'ds_switch', 'comment', 'promote', 'tnid', 'translate');
     foreach ($properties as $property) {
       unset($result->{$property});
     }
