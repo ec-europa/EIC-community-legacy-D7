@@ -759,11 +759,20 @@ function c4m_content_event_site_form_og_ui_add_users_alter(&$form, &$form_state,
  * Only group administrators can start discussions.
  */
 function c4m_content_event_site_views_pre_render(&$view) {
-  global $user;
+  if ($view->name != "c4m_overview_og_discussions") {
+    return;
+  }
   $gid = $view->args[0];
+  
+  $group = entity_load_single('node', $gid);
+  // only process event sites.
+  if (!isset($group) || $group->type != "event_site") {
+    return;
+  }
+  global $user;
   $event_site_group_members = c4m_og_get_group_members($gid);
   $key = 'c4m_views_node_add';
-  if (isset($view->header) && !in_array($user->uid, $event_site_group_members)) {
+  if (isset($view->header) && !in_array($user->uid, $event_site_group_members) && $user->uid != $group->uid) {
     unset($view->header[$key]);
   }
 }
