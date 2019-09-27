@@ -477,7 +477,22 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
     if (empty($nid = $result['nid'])) {
       continue;
     }
+    // When creating a new node, approve it so it becomes status draft 
+    if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create') {
+      $node = node_load($nid);
+      if (empty($node)) {
+        return;
+      }
+ 
+      // When adding through the WS, organisation should be Approved, meaning it gets the status draft.
+      $node->c4m_og_status[LANGUAGE_NONE][0]['value'] = 'draft';
 
+      // And set default paragraphs.
+
+      
+      // Save the node.
+      node_save($node);
+    }
 
     // Remove old members of a group - in case of updating the event site.
     $old_member_ids = c4m_og_get_group_member_ids($nid);
