@@ -355,6 +355,20 @@ function c4m_content_event_site_c4m_helper_entity_label_info() {
       'insert action' => t('created a new combined corporate and pitching event site'),
       'update action' => t('updated the combined corporate and pitching event site'),
     ),
+    'event_site-e-pitching_event' => array(
+      'article' => t('an'),
+      'singular' => t('e-pitching event event site'),
+      'plural' => t('e-pitching event event sites'),
+      'insert action' => t('created a new e-pitching event event site'),
+      'update action' => t('updated the e-pitching event event site'),
+    ),
+    'event_site-eic_interviews' => array(
+      'article' => t('an'),
+      'singular' => t('eic interview event event site'),
+      'plural' => t('eic interviews event event sites'),
+      'insert action' => t('created a new EIC interviewsevent event site'),
+      'update action' => t('updated the EIC interviews event event site'),
+    ),
   );
 }
 
