@@ -758,7 +758,7 @@ function c4m_content_event_site_form_og_ui_add_users_alter(&$form, &$form_state,
  * 
  * Only group administrators can start discussions.
  */
-function c4m_content_event_sites_views_pre_render(&$view) {
+function c4m_content_event_site_views_pre_render(&$view) {
   //c4m_og_user_is_owner()
   $key = 'c4m_views_node_add';
   if (isset($view->header)) {
