@@ -326,122 +326,128 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
       }
       // Hard code event for now @ToDo.
       // $arg['event_type']['und'][0]['item'] = 'event';
-      
 
     }
 
-    // $arg['c4m_body']['und'][0]['value'] = "Gonna need to encode the tags.";
+      // $arg['c4m_body']['und'][0]['value'] = "Gonna need to encode the tags.";
       // // overwriting the event_type 
       // //Need to convert the SMED event type id to the correct taxonomy id.
       // $arg['event_type']['und'][0]['item'] = 'event';
 
       // Get all Taxonomy Fields of Eventsite Content Type.
-      $eventsites_taxonomy_fields = field_read_fields([
-        'entity_type' => 'node',
-        'bundle' => 'event_site',
-        'type' => 'taxonomy_term_reference',
+    $eventsites_taxonomy_fields = field_read_fields([
+      'entity_type' => 'node',
+      'bundle' => 'event_site',
+      'type' => 'taxonomy_term_reference',
+    ]);
+
+    if (empty($eventsites_taxonomy_fields)) {
+      // taxonomy is required, should give a proper error probably.
+      $message = t('Missing taxonomies for CT @content_type.', [
+        '@content_type' => 'event_site',
       ]);
-
-      if (empty($eventsites_taxonomy_fields)) {
-        // taxonomy is required, should give a proper error probably.
-        $message = t('Missing taxonomies for CT @content_type.', [
-          '@content_type' => 'event_site',
-        ]);
-        throw new ServicesException($message, 404);
-      }
-
-      foreach ($args as &$arg) {
-        if (is_array($arg)) {
-          foreach ($arg as $field_name => &$item) {
-            // Override the Taxonomy Term Names with Term ids.
-            if (is_array($item) && isset($eventsites_taxonomy_fields[$field_name]) && isset($item[LANGUAGE_NONE])) {
-              $new_terms = [];
-              foreach ($item[LANGUAGE_NONE] as $term_key) {
-                if (!empty($term_key)) {
-                  // If term cannot be found, throw error and stop the process.
-                  if (isset($eventsites_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary']) && $loaded = c4m_web_services_taxonomy_get_term_by_key($term_key, $eventsites_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])) {
-                    foreach ($loaded as $tid => $term) {
-                      // Check if the term has parents and add them aswell.
-                      // taxonomy_get_parents_all will always return at least the
-                      // current taxonomy term.
-                      if (!empty($term_and_or_parents = taxonomy_get_parents_all($tid))) {
-                        foreach ($term_and_or_parents as $term_and_or_parent) {
-                          // Only add the new tid if not existing already.
-                          if (!empty($term_and_or_parent->tid) && !in_array($term_and_or_parent->tid, $new_terms)) {
-                            $new_terms[] = $term_and_or_parent->tid;
-                          }
+      throw new ServicesException($message, 404);
+    }
+    foreach ($args as &$arg) {
+      if (is_array($arg)) {
+        foreach ($arg as $field_name => &$item) {
+          // Override the Taxonomy Term Names with Term ids.
+          if (is_array($item) && isset($eventsites_taxonomy_fields[$field_name]) && isset($item[LANGUAGE_NONE])) {
+            $new_terms = [];
+            foreach ($item[LANGUAGE_NONE] as $term_key) {
+              if (!empty($term_key)) {
+                // If term cannot be found, throw error and stop the process.
+                if (isset($eventsites_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary']) && $loaded = c4m_web_services_taxonomy_get_term_by_key($term_key, $eventsites_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])) {
+                  foreach ($loaded as $tid => $term) {
+                    // Check if the term has parents and add them aswell.
+                    // taxonomy_get_parents_all will always return at least the
+                    // current taxonomy term.
+                    if (!empty($term_and_or_parents = taxonomy_get_parents_all($tid))) {
+                      foreach ($term_and_or_parents as $term_and_or_parent) {
+                        // Only add the new tid if not existing already.
+                        if (!empty($term_and_or_parent->tid) && !in_array($term_and_or_parent->tid, $new_terms)) {
+                          $new_terms[] = $term_and_or_parent->tid;
                         }
                       }
                     }
                   }
-                  else {
-                    // Term with name not found, throw error.
-                    // Indicate the field they tried to populate with the term
-                    // that was not found.
-                    $message = t('Error when searching for taxonomy term with key: @term_key. Term was intended for field @field_name.', [
-                      '@field_name' => $field_name,
+                }
+                else {
+                  // Term with name not found, throw error.
+                  // Indicate the field they tried to populate with the term
+                  // that was not found.
+                  $message = t('Error when searching for taxonomy term with key: @term_key. Term was intended for field @field_name.', [
+                    '@field_name' => $field_name,
                       '@term_key' => $term_key,
                     ]);
                     throw new ServicesException($message, 404);
-                  }
                 }
               }
-              if (empty($new_terms)) {
-                continue;
-              }
-              $item[LANGUAGE_NONE] = $new_terms;
             }
+            if (empty($new_terms)) {
+              continue;
+            }
+            $item[LANGUAGE_NONE] = $new_terms;
+          }
 
-            // event_type conversion : 
-            if ($field_name == "c4m_event_type") {
-              $event_type_field = field_read_fields([
-                'entity_type' => 'node',
-                'bundle' => 'event_site',
-              ]);
-              if (isset($item[LANGUAGE_NONE][0]['value'])) {
+          // event_type conversion : 
+          if ($field_name == "c4m_event_type") {
+            $event_type_field = field_read_fields([
+              'entity_type' => 'node',
+              'bundle' => 'event_site',
+            ]);
+
+            $allowed_event_types['1'] = 'corporate_days';
+            $allowed_event_types['2'] = 'pitching_event';
+            $allowed_event_types['3'] = 'e-pitching';
+            $allowed_event_types['8'] = 'eic_interviews';
+            $allowed_event_types['6'] = 'coordinators_welcome_day';
+
+            if (isset($item[LANGUAGE_NONE][0]['value'])) {
+              if (isset($allowed_event_types[$item[LANGUAGE_NONE][0]['value']])) {
+                $item[LANGUAGE_NONE] = $allowed_event_types[$item[LANGUAGE_NONE][0]['value']];
+              }
+              else {
+                // set default event_type:
                 $item[LANGUAGE_NONE] = "corporate_days";
               }
-
-            }
-
-            if ($field_name == "c4m_location_address") {
-              // Remap the venue to the correct fieldname, naming used within Drupal.
-              if (!empty($item[LANGUAGE_NONE][0]['venue'])) {
-                $item[LANGUAGE_NONE][0]['name_line'] = $item[LANGUAGE_NONE][0]['venue'];
-                unset($item[LANGUAGE_NONE][0]['venue']);
-              }
             }
           }
-          // day/month/year - slashes not -
-          // create correct datetimeformat. be warnedd minutes are in 15 minutes intervals.
-          $start_datetime = DateTime::createFromFormat('Y-m-d H:i', $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]);
-          $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"] = array();
-          $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]['date'] = $start_datetime->format('d/m/Y');
-          $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]['time'] = $start_datetime->format('H:i');
-
-          $end_datetime = DateTime::createFromFormat('Y-m-d H:i', $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]);
-          $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"] = array();
-          $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]['date'] = $end_datetime->format('d/m/Y');
-          $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]['time'] = $end_datetime->format('H:i');
-
-
-          $arg["c4m_publish_date"] = array(LANGUAGE_NONE => array(array("value" => $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"])));
-
-          //if isset(arg["c4m_datetime_end"]["und"][0]["value"]['date'] && strpos(arg["c4m_datetime_end"]["und"][0]["value"]['date'], '/' <)
-          //isset(arg["c4m_datetime_end"]["und"][0]["value2"]['date'] && arg["c4m_datetime_end"]["und"][0]["value2"]['time'])
-          // $arg["c4m_datetime_end"]["und"][0]["value"] = array('date'=>"06/12/2019",'time'=>"06:00");
-          // $arg["c4m_datetime_end"]["und"][0]["value2"] = array('date'=>"06/12/2019",'time'=>"17:44");
-          // Add the purl based on the title - group path is required:
-          $arg['purl'] = array("value" => strtolower(str_replace(' ', '-', $arg['title'])));
-          // convert the registration Link.
-          if (!isset($arg['c4m_link']) && isset($arg['link'])) {
-            $arg['c4m_link'] = array (LANGUAGE_NONE => array( array ('url' => $arg['link'], 'title' => $arg['link'])));
-            unset($arg['link']);
+          if ($field_name == "c4m_location_address") {
+            // Remap the venue to the correct fieldname, naming used within Drupal.
+            if (!empty($item[LANGUAGE_NONE][0]['venue'])) {
+              $item[LANGUAGE_NONE][0]['name_line'] = $item[LANGUAGE_NONE][0]['venue'];
+              unset($item[LANGUAGE_NONE][0]['venue']);
+            }
           }
-          
+        }
+        // day/month/year - slashes not -
+        // create correct datetimeformat. be warnedd minutes are in 15 minutes intervals.
+        $start_datetime = DateTime::createFromFormat('Y-m-d H:i', $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]);
+        $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"] = array();
+        $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]['date'] = $start_datetime->format('d/m/Y');
+        $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]['time'] = $start_datetime->format('H:i');
+
+        $end_datetime = DateTime::createFromFormat('Y-m-d H:i', $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]);
+        $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"] = array();
+        $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]['date'] = $end_datetime->format('d/m/Y');
+        $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]['time'] = $end_datetime->format('H:i');
+
+       $arg["c4m_publish_date"] = array(LANGUAGE_NONE => array(array("value" => $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"])));
+
+        //if isset(arg["c4m_datetime_end"]["und"][0]["value"]['date'] && strpos(arg["c4m_datetime_end"]["und"][0]["value"]['date'], '/' <)
+        //isset(arg["c4m_datetime_end"]["und"][0]["value2"]['date'] && arg["c4m_datetime_end"]["und"][0]["value2"]['time'])
+        // $arg["c4m_datetime_end"]["und"][0]["value"] = array('date'=>"06/12/2019",'time'=>"06:00");
+        // $arg["c4m_datetime_end"]["und"][0]["value2"] = array('date'=>"06/12/2019",'time'=>"17:44");
+        // Add the purl based on the title - group path is required:
+        $arg['purl'] = array("value" => strtolower(str_replace(' ', '-', $arg['title'])));
+        // convert the registration Link.
+        if (!isset($arg['c4m_link']) && isset($arg['link'])) {
+          $arg['c4m_link'] = array (LANGUAGE_NONE => array( array ('url' => $arg['link'], 'title' => $arg['link'])));
+          unset($arg['link']);
         }
       }
-    
+    }
   }
 }
 
@@ -463,10 +469,6 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
     }
   }
 
-    // When creating a new node, publish it and set default paragraphs.
-    if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create') {
-      $test="test";
-    }
 
   foreach ($args as $arg) {
     if (!is_array($arg)) {
