@@ -303,9 +303,9 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
           if (empty($node)) {
 
             // A new event site.
-            // check OG status , is used for the workflow process , if not set force to pending.
+            // check OG status , is used for the workflow process , if not set force to draft, pending is not required.
             if (!isset($arg['c4m_og_status'])) {
-              $arg['c4m_og_status'] = array(LANGUAGE_NONE => 'pending');
+              $arg['c4m_og_status'] = array(LANGUAGE_NONE => array(array('value' => 'draft')));
             }
 
             // Set Original owner // @todo: get it from the webservice:
@@ -313,7 +313,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
             if ($webservice_eventsite !== '' && $webservice_eventsite['webservice_eventsite_owner_account'] != '') {
               $arg['name'] = $webservice_eventsite['webservice_eventsite_owner_account'];
             }
-            
+
             continue;
           }
           $xml = new SimpleXMLElement('<eventsite_node_exists/>');
