@@ -483,13 +483,13 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
       if (empty($node)) {
         return;
       }
- 
+
       // When adding through the WS, organisation should be Approved, meaning it gets the status draft.
       $node->c4m_og_status[LANGUAGE_NONE][0]['value'] = 'draft';
 
       // And set default paragraphs.
+      c4m_web_services_events_eventsite_set_paragraphs($node);
 
-      
       // Save the node.
       node_save($node);
     }
@@ -523,17 +523,68 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
 /**
  * Alter the newly created node, publish it and set default paragraphs.
  *
- * @param int $nid
- *   The event_site node id.
- * @param array $arg
- *   The event_site info.
+ * @param array $node
+ *   The event_site node.
  */
-function c4m_web_services_events_eventsite_set_paragraphs($nid, array $arg) {
-  if ($arg['type'] !== "event_site") {
+function c4m_web_services_events_eventsite_set_paragraphs(&$node) {
+  if ($node->type !== "event_site") {
     return;
   }
 
   // #Todo : reate the paragraphs  - check original webservices.
+  // Set paragraphs for left column.
+  $node_field = 'c4m_left_column';
+  $paragraph_bundle = 'c4m_paragraph_system_block';
+
+  // // About us block.
+  // $paragraph = new ParagraphsItemEntity([
+  //   'field_name' => $node_field,
+  //   'bundle' => $paragraph_bundle,
+  // ]);
+  // $paragraph->is_new = TRUE;
+  // $paragraph->setHostEntity('node', $node);
+  // $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_event_site:c4m_block_event_site_about_us';
+  // $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('About us');
+  // $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  // $paragraph->save(TRUE);
+
+  // Event site documents
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_event_site:c4m_block_event_site_documents';
+  $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('Documents');
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save(TRUE);
+
+  // Latest news block.
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'views:c4m_project_news-block';
+  $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('Latest activity');
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save(TRUE);
+
+  // Set paragraphs for right column.
+  $node_field = 'c4m_right_column';
+  // About us block.
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_event_site:c4m_block_event_site_about_us';
+  $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('About us');
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save(TRUE);
 }
 
 /**
