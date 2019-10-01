@@ -140,8 +140,6 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
 
   _c4m_og_alter_group_form($form, $form_state, $type);
   
-  $node = node_load($form["#node"]->nid); //Maybe switch to a wrapper?
-
   // There's no node ID at form => form is for new project creation.
   // Hide status field, for it to get default value of Pending, once created.
   if (is_null($form['nid']['#value'])) {
@@ -173,10 +171,13 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
       if (in_array($key, ['event', 'learning', 'meeting'])) {
         unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
       }
-      elseif (empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]['value'])) {
-        // Not coming from a webservice
-        if (in_array($key, ['e-pitching', 'eic_interviews'])) {
-          unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+      if (isset($form["#node"]->nid)) { // maybe use is_new ?
+        $node = node_load($form["#node"]->nid);  // Maybe switch to a wrapper?
+        if (empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]['value'])) {
+          // Not coming from a webservice, so removing these 2 options
+          if (in_array($key, ['e-pitching', 'eic_interviews'])) {
+            unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+          }
         }
       }
     }
