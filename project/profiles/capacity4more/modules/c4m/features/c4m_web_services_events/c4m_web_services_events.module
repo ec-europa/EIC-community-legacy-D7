@@ -520,7 +520,17 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
     foreach ($event_site_admin_groups as $admin_group) {
       if (isset($arg[$admin_group])) {
         foreach ($arg[$admin_group][LANGUAGE_NONE] as $manager) {
-          $loaded_manager = user_load_by_mail($manager['email']);
+          // Load the user via email or username (ecas ID), otherwise skip it.
+          if (isset($manager['email'])) {
+            $loaded_manager = user_load_by_mail($manager['email']);
+          }
+          elseif (isset($manager['ecas_id'])) {
+            $loaded_manager = user_load_by_name($manager['ecas_id']);
+          }
+          else {
+            // Invalid user, skipping...
+            continue;
+          }
           if ($loaded_manager !== FALSE) {
             // Add the manager as a user to the group for this eventsite.
             $membership = og_group('node', $nid, ['entity' => $loaded_manager]);
