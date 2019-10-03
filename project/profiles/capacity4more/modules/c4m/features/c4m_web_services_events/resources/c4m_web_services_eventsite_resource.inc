@@ -117,6 +117,18 @@ function _c4m_web_services_events_eventsite_resource_update($dashboard_event_id,
   // so code below won't be executed.
   _node_resource_validate_type($node);
 
+  // The Banner uses the manualcrop module.
+  // The metadata is reset because, it thinks it is a new form / entry.
+  // We will grab the metadata and so we can put it back later:
+  if (isset($old_node->c4m_banner[LANGUAGE_NONE][0])) {
+    $fid = $old_node->c4m_banner[LANGUAGE_NONE][0]['fid'];
+    $image_file = file_load($fid);
+    $manualcrop_metadata = manualcrop_load_crop_selection($image_file->uri, 'banner');
+    if (!empty($manualcrop_metadata)) {
+      $image_file->manualcrop_data = array('banner' => json_decode(json_encode($manualcrop_metadata), TRUE));
+    }
+  }
+
   // Load the required includes for drupal_form_submit.
   module_load_include('inc', 'node', 'node.pages');
 
@@ -146,6 +158,12 @@ function _c4m_web_services_events_eventsite_resource_update($dashboard_event_id,
   if ($uri = services_resource_uri(array('node', $nid))) {
     $node['uri'] = $uri;
   }
+
+  // RE-Save the manualcrop image data:
+  if (isset($image_file->manualcrop_data)) {
+    manualcrop_entity_update($image_file, $image_file->entity_type);
+  }
+
   return $node;
 }
 
