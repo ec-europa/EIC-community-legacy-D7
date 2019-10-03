@@ -1,4 +1,5 @@
 <?php
+
 define('WS_EVENTSITE_ENDPOINT', 'easme_events/rest');
 
 /**
@@ -323,6 +324,9 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
           $xml->addChild('uri', url($node->purl, ['absolute' => TRUE]));
           throw new ServicesException($xml->asXML(), 302);
         }
+        else {
+          _raise_error("missing_event_dashboard_id");
+        }
       }
       // Hard code event for now @ToDo.
       // $arg['event_type']['und'][0]['item'] = 'event';
@@ -350,8 +354,8 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
     }
     foreach ($args as &$arg) {
       if (is_array($arg)) {
+        // Override the Taxonomy Term Names with Term ids.
         foreach ($arg as $field_name => &$item) {
-          // Override the Taxonomy Term Names with Term ids.
           if (is_array($item) && isset($eventsites_taxonomy_fields[$field_name]) && isset($item[LANGUAGE_NONE])) {
             $new_terms = [];
             foreach ($item[LANGUAGE_NONE] as $term_key) {
@@ -412,6 +416,9 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
                 $item[LANGUAGE_NONE] = "corporate_days";
               }
             }
+            else {
+              _raise_error('missing_event_type');
+            }
           }
           if ($field_name == "c4m_location_address") {
             // Remap the venue to the correct fieldname, naming used within Drupal.
@@ -424,11 +431,17 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
         // day/month/year - slashes not -
         // create correct datetimeformat. be warnedd minutes are in 15 minutes intervals.
         $start_datetime = DateTime::createFromFormat('Y-m-d H:i', $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]);
+        if ($start_datetime == FALSE) {
+          _raise_error('missing_start_date');
+        }
         $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"] = array();
         $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]['date'] = $start_datetime->format('d/m/Y');
         $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]['time'] = $start_datetime->format('H:i');
 
         $end_datetime = DateTime::createFromFormat('Y-m-d H:i', $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]);
+        if ($end_datetime == FALSE) {
+          _raise_error('missing_end_date');
+        }
         $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"] = array();
         $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]['date'] = $end_datetime->format('d/m/Y');
         $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]['time'] = $end_datetime->format('H:i');
@@ -711,4 +724,54 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
+}
+
+/**
+ * Helper function to check the minimal field data is sent for one event_type. 
+ *
+ **/
+function _raise_error($error_key) {  
+  $error_messages = array(
+    'missing_start_date' => 'Missing the start date of the event site',
+    'missing_end_date' => 'Missing the end date of the event site',
+    'missing_event_type' => 'The event type is not included for this event site',
+    'missing_devent_dashboard_id' => 'The event dashboard ID is missing, not allowed to create an event_site without it.',
+  );
+  if (isset($error_messages[$error_key])) {
+    // throw new ServicesException($error_messages[$error_key], 500);
+    $xml = new SimpleXMLElement('<' . $error_key . '/>');
+    $xml->addChild('error_message', $error_messages[$error_key]);
+    throw new ServicesException($xml->asXML(), 500);
+  }
+  else {
+    $message = t('error for CT @content_type. todo proper error message for @error_key', [
+      '@content_type' => 'event_site',
+      '@error_key' => $error_key,
+    ]);
+    throw new ServicesException($message, 500);
+  }
+}
+
+/**
+ * Helper function to clean the title.
+ *
+ * @param string $string_to_be_normalized
+ *   The string that needs to be cleaded up.
+ */
+function _normalize_string_for_url($string_to_be_normalized) {
+  $table = array(
+      'Š'=>'S', 'š'=>'s', 'Đ'=>'Dj', 'đ'=>'dj', 'Ž'=>'Z', 'ž'=>'z', 'Č'=>'C', 'č'=>'c', 'Ć'=>'C', 'ć'=>'c',
+      'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+      'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O',
+      'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss',
+      'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
+      'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o',
+      'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
+      'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r',
+  );
+  // Replace spaces.
+  $string_to_be_normalized = strtolower(str_replace(' ', '-', $string_to_be_normalized));
+  // Replace quotes.
+  $string_to_be_normalized = str_replace(array('"', "'"), array("", "-"), $string_to_be_normalized);
+  return strtr($string_to_be_normalized, $table);
 }
