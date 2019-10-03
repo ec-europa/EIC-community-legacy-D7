@@ -453,7 +453,9 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
         // $arg["c4m_datetime_end"]["und"][0]["value"] = array('date'=>"06/12/2019",'time'=>"06:00");
         // $arg["c4m_datetime_end"]["und"][0]["value2"] = array('date'=>"06/12/2019",'time'=>"17:44");
         // Add the purl based on the title - group path is required:
-        $arg['purl'] = array("value" => strtolower(str_replace(' ', '-', $arg['title'])));
+        // first cleanup , replace spaces:
+
+        $arg['purl'] = array("value" => urlencode(_normalize_string_for_url($arg['title'])));
         // convert the registration Link.
         if (!isset($arg['c4m_link']) && isset($arg['link'])) {
           $arg['c4m_link'] = array (LANGUAGE_NONE => array( array ('url' => $arg['link'], 'title' => $arg['link'])));
