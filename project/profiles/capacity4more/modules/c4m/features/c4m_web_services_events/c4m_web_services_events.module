@@ -562,16 +562,16 @@ function c4m_web_services_events_eventsite_set_paragraphs(&$node) {
   $paragraph_bundle = 'c4m_paragraph_system_block';
 
   // // About us block.
-  // $paragraph = new ParagraphsItemEntity([
-  //   'field_name' => $node_field,
-  //   'bundle' => $paragraph_bundle,
-  // ]);
-  // $paragraph->is_new = TRUE;
-  // $paragraph->setHostEntity('node', $node);
-  // $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_event_site:c4m_block_event_site_about_us';
-  // $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('About us');
-  // $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
-  // $paragraph->save(TRUE);
+  $paragraph = new ParagraphsItemEntity([
+    'field_name' => $node_field,
+    'bundle' => $paragraph_bundle,
+  ]);
+  $paragraph->is_new = TRUE;
+  $paragraph->setHostEntity('node', $node);
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_event_site:c4m_block_event_site_about_us';
+  $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('About us');
+  $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
+  $paragraph->save(TRUE);
 
   // Event site documents
   $paragraph = new ParagraphsItemEntity([
@@ -606,8 +606,8 @@ function c4m_web_services_events_eventsite_set_paragraphs(&$node) {
   ]);
   $paragraph->is_new = TRUE;
   $paragraph->setHostEntity('node', $node);
-  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_event_site:c4m_block_event_site_about_us';
-  $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('About us');
+  $paragraph->c4m_block[LANGUAGE_NONE][0]['moddelta'] = 'c4m_content_event_site:c4m_block_event_site_about';
+  $paragraph->c4m_heading[LANGUAGE_NONE][0]['value'] = t('About this event site');
   $paragraph->c4m_number_of_items[LANGUAGE_NONE][0]['value'] = 5;
   $paragraph->save(TRUE);
 }
