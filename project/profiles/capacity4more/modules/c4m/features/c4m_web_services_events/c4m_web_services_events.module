@@ -429,7 +429,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
           }
         }
         // day/month/year - slashes not -
-        // create correct datetimeformat. be warnedd minutes are in 15 minutes intervals.
+        // create correct datetimeformat. be warned minutes are in 15 minutes intervals.
         $start_datetime = DateTime::createFromFormat('Y-m-d H:i', $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"]);
         if ($start_datetime == FALSE) {
           _raise_error('missing_start_date');
@@ -702,6 +702,7 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
     global $user;
     // get settings.
     $webservice_eventsite = variable_get('webservice_eventsite', array());
+    // TODO when settings not set, generate a warning
     if (!empty($webservice_eventsite) && $user->name == $webservice_eventsite['webservice_user']) {
       // Coming from werbservice, do not interfere.
       return;
@@ -709,7 +710,7 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
     $field_dasboard_id = "c4m_event_dashboard_id";
     // If an external event(site), make some fields readonly
     if (!empty($form[$field_dasboard_id][LANGUAGE_NONE][0]['value']['#default_value'])) {
-      // Created via webwservice allow to seem, but no touch, unless you are an admin.
+      // Created via webwservice allow to see the fields coming from the webservice, but no touch, unless you are an admin.
       if (!in_array('administrator', $user->roles)) {
         $form[$field_dasboard_id][LANGUAGE_NONE]['#disabled'] = TRUE;
         $form_state['values'][$field][LANGUAGE_NONE][0]['value'] = $form[$field][LANGUAGE_NONE][0]['value']['#default_value'];
@@ -719,10 +720,17 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
       foreach ($read_only_default_fields as $field) {
         $form[$field]['#attributes'] = array('readonly' => 'readonly');
       }
-      $read_only_fields = array("c4m_body", "c4m_project_tag_line", "c4m_location_address", "c4m_link", "c4m_facebook", "c4m_twitter", "c4m_event_type"); //, "c4m_organised_by", "c4m_datetime_end"
+      $read_only_fields = array('c4m_body', 'c4m_project_tag_line', 'c4m_location_address', 'c4m_link', 'c4m_facebook', 'c4m_twitter', 'c4m_event_type', 'c4m_datetime_end'); // 'c4m_organised_by'
       foreach ($read_only_fields as $field) {
         // Test : $form[$field][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
+        if (!isset($form[$field])) {
+          continue;
+        }
         $form[$field][LANGUAGE_NONE]['#disabled'] = TRUE;
+        // Special mod for datefield, when readonly switch the widget, otherwise it will generate an validation error on submit.
+        if ($field == 'c4m_datetime_end') {
+          $form_state['field'][$field][LANGUAGE_NONE]['instance']['widget']['type'] = 'date_text';
+        }
         if (isset($form_state['values'][$field])) {
           $form_state['values'][$field][LANGUAGE_NONE][0]['value'] = $form[$field][LANGUAGE_NONE][0]['value']['#default_value'];
         }
