@@ -42,8 +42,8 @@ function c4m_web_services_events_menu() {
   $items = array();
 
   $items['admin/config/services/events_site'] = array(
-    'title' => 'Events site menu settings',
-    'description' => 'General Events site menu settings.',
+    'title' => 'Events site Webservice settings',
+    'description' => 'manage the settings for the Events site Webservice.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('webservices_eventsite_admin_settings_general'),
     'access arguments' => array('administer webservice event sites'),
@@ -697,7 +697,6 @@ function c4m_web_services_events_get_existing_node($event_dashboard_id) {
  */
 function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'event_site_node_form') {
-
     // Load the currently logged in user.
     global $user;
     // get settings.
@@ -710,12 +709,26 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
     $field_dasboard_id = "c4m_event_dashboard_id";
     // If an external event(site), make some fields readonly
     if (!empty($form[$field_dasboard_id][LANGUAGE_NONE][0]['value']['#default_value'])) {
-      // Created via webwservice allow to see the fields coming from the webservice, but no touch, unless you are an admin.
+
+      if ($form['#node_edit_form']) {
+        $form['external_source'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('The event was created via SME Dashboard, to modify the locked fields please go to:'),
+        '#weight' => 0,
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+        );
+        $sme_dashboard_url = $webservice_eventsite['webservice_event_url'] . '/form/' . $form[$field_dasboard_id][LANGUAGE_NONE][0]['value']['#default_value'] . '/manage-event';
+        $form['external_source']['external_event_management_tool'] = array(
+          '#markup' => '<div id="smed_dasboard_url"><a href="' . $sme_dashboard_url . '" target="_blank">SME Dashboard Event Manager</a></div>',
+        );
+      }
+      // And administrator has the power to change the dashboard id of the event.
       if (!in_array('administrator', $user->roles)) {
         $form[$field_dasboard_id][LANGUAGE_NONE]['#disabled'] = TRUE;
         $form_state['values'][$field][LANGUAGE_NONE][0]['value'] = $form[$field][LANGUAGE_NONE][0]['value']['#default_value'];
       }
-      //Need to make some other fields read only.
+      // Created via webservice allow to see the fields coming from the webservice, but no touchy here.
       $read_only_default_fields = array("title");
       foreach ($read_only_default_fields as $field) {
         $form[$field]['#attributes'] = array('readonly' => 'readonly');

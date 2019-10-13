@@ -38,6 +38,14 @@ function webservices_eventsite_admin_settings_general() {
     '#default_value' => isset($webservice_eventsite['webservice_user']) ? $webservice_eventsite['webservice_user'] : 'dashboard_user',
     '#required' => TRUE,
   );
+  $form['webservice_eventsite']['webservice_event_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('The SME dashboard url to manage the events.'),
+    '#description' => '',
+    '#default_value' => isset($webservice_eventsite['webservice_event_url']) ? $webservice_eventsite['webservice_event_url'] : 'http://localhost:5050/exist/projects/cockpit',
+    '#required' => TRUE,
+  );
+  
 
   $form = system_settings_form($form);
 
