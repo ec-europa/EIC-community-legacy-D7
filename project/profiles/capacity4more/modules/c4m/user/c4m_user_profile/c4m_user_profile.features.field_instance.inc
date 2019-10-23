@@ -231,7 +231,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 12,
+        'weight' => 10,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -314,7 +314,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 9,
+        'weight' => 7,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1054,7 +1054,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 11,
+        'weight' => 9,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1148,7 +1148,7 @@ function c4m_user_profile_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'c4m_addressfield_based_in',
-        'weight' => 7,
+        'weight' => 5,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1641,7 +1641,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_label',
-        'weight' => 10,
+        'weight' => 8,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -1790,6 +1790,77 @@ function c4m_user_profile_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 21,
+    ),
+  );
+
+  // Exported field_instance: 'user-user-c4m_user_dashboard_id'.
+  $field_instances['user-user-c4m_user_dashboard_id'] = array(
+    'bundle' => 'user',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'block_list' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 34,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => 1,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 12,
+      ),
+      'member_overview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'user_picture' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'user',
+    'field_name' => 'c4m_user_dashboard_id',
+    'label' => 'User Dashboard ID',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 7,
     ),
   );
 
@@ -1974,7 +2045,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
           'taxonomy_term_separator' => ', ',
         ),
         'type' => 'ds_taxonomy_separator',
-        'weight' => 8,
+        'weight' => 6,
       ),
       'member_overview' => array(
         'label' => 'above',
@@ -2245,6 +2316,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.');
   t('Unsubscribe from group notifications');
   t('Unsubscribe from node notifications');
   t('Unsubscribe from terms notifications');
+  t('User Dashboard ID');
   t('User type');
 
   return $field_instances;

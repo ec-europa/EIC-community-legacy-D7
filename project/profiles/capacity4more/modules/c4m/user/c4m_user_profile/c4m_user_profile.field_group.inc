@@ -58,6 +58,7 @@ function c4m_user_profile_field_group_info() {
       2 => 'c4m_user_types',
       3 => 'c4m_vocab_language',
       4 => 'c4m_vocab_job_title',
+      5 => 'c4m_user_dashboard_id',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -188,9 +189,10 @@ function c4m_user_profile_field_group_info() {
       3 => 'c4m_location_address',
       4 => 'c4m_twitter',
       5 => 'c4m_vocab_language',
-      6 => 'c4m_user_first_and_last_name',
-      7 => 'c4m_user_user_type_and_job_title',
-      8 => 'c4m_user_contact_link',
+      6 => 'field_c4m_user_dashboard_id',
+      7 => 'c4m_user_first_and_last_name',
+      8 => 'c4m_user_user_type_and_job_title',
+      9 => 'c4m_user_contact_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(
