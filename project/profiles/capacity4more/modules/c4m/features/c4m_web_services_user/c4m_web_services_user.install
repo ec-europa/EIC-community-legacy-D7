@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Install/update hooks for c4m_web_services_user.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function c4m_web_services_user_install() {
+  //c4m_...
+}
+
+
+/**
+ * Perform necessary actions before module is disabled.
+ *
+ * The hook is called every time the module is disabled. It should be
+ * implemented in the module's .install file. The implementation can rely
+ * on the .module file being loaded.
+ *
+ * @see hook_uninstall()
+ * @see hook_modules_disabled()
+ */
+function c4m_web_services_user_disable() {
+  // remove the permission, when disabling.
+  if ($role = user_role_load_by_name('administrator')) {
+    user_role_revoke_permissions($role->rid, array("administer webservice user management settings"));
+  }
+}
+

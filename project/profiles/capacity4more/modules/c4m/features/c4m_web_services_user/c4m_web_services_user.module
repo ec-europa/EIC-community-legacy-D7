@@ -1,0 +1,436 @@
+<?php
+
+define('WS_USER_ENDPOINT', 'easme_user/rest');
+
+/**
+ * @file
+ * Code for the Web Services feature.
+ */
+
+include_once 'c4m_web_services_user.features.inc';
+
+/**
+ * Implements hook_services_authentication_info().
+ */
+function c4m_web_services_user_services_authentication_info() {
+  return [
+    'title' => t('C4M - Request-specific token authorisation'),
+    'description' => t('Request-specific token is sent in each request.'),
+    'authenticate_call' => '_c4m_web_services_user_authenticate_call',
+    'security_settings' => '_c4m_web_services_user_security_settings',
+    'default_security_settings' => '_c4m_web_services_user_default_security_settings',
+  ];
+}
+
+/**
+ * Implements hook_perm().
+ */
+function c4m_web_services_user_permission() {
+  return array(
+    'administer webservice user management settings' => array(
+      'title' => t('Administer webservice user management settings'),
+      'description' => t('Administer webservice user management settings.'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function c4m_web_services_user_menu() {
+  $items = array();
+
+  $items['admin/config/services/user_webservice_configuration'] = array(
+    'title' => 'User management webservice settings',
+    'description' => 'General User Management via webservice menu settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('webservices_user_managemement_admin_settings_general'),
+    'access arguments' => array('administer webservice user managemement'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/webservice_user.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Authorises a call using request-specific token to verify the request.
+ *
+ * @param array $settings
+ *   The settings for the authorisation module.
+ * @param array $method
+ *   The method that's being called.
+ * @param array $args
+ *   The arguments that are being used to call the method.
+ *
+ * @return null|string
+ *   Returns nothing, or a error message if authorisation fails.
+ *
+ * @see c4m_web_services_user_services_authentication_info()
+ */
+function _c4m_web_services_user_authenticate_call(array $settings, array $method, array $args) {
+
+  $endpoint_path = services_get_server_info('endpoint_path', '');
+  $context = new ServicesContext($endpoint_path);
+  $context->buildFromGlobals();
+
+  $valid_token = FALSE;
+  // Check if the header contains the authorization token. 
+  if (NULL !== $context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"]))) {
+    if ($context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"])) === $settings["authorization_token_key"]) {
+      $valid_token = TRUE;
+    }
+  }
+  else {
+    // Get the original request body.
+    $arguments = _c4m_web_services_user_array_flatten($args);
+    if (array_key_exists($settings["authorization_token_name"], $arguments) &&
+        $arguments[$settings["authorization_token_name"]] == $settings["authorization_token_key"]) {
+      $valid_token = TRUE;
+    }
+
+  }
+  if (!$valid_token) {
+    return t('Invalid token value.');
+  }
+
+  // Open session for Admin user to edit/create content.
+  if (!isset($settings['webservice_username'])) {
+    return t('Webservice user is not configured, please contact site administrator.');
+  }
+  global $user; //???
+  drupal_save_session(FALSE);
+  $user = user_load_by_name($settings['webservice_username']);
+  if (empty($user)) {
+    return t('Dashboard user not available, please contact site administrator.');
+  }
+}
+
+/**
+ * Returns an associative array of Form API elements for a settings form.
+ *
+ * @see c4m_web_services_user_services_authentication_info()
+ */
+function _c4m_web_services_user_default_security_settings() {
+  $webservice_user_settings = variable_get('webservice_user', array());
+  
+  return [
+    'authorization_token_name' => $webservice_user_settings['authorization_token_name'],
+    'authorization_token_key' => $webservice_user_settings['authorization_token_key'],
+    'webservice_username' => $webservice_user_settings['webservice_username'],
+  ];
+}
+
+/**
+ * Returns an array with the default settings for the auth module.
+ *
+ * @see c4m_web_services_user_services_authentication_info()
+ */
+function _c4m_web_services_user_security_settings($settings, &$form_state) {
+  $form = [];
+
+  $form['authorization_token_name'] = [
+    '#type' => 'textfield',
+    '#title' => t('Authorization Token Name'),
+    '#required' => TRUE,
+    '#default_value' => $settings['authorization_token_name'],
+  ];
+
+  $form['authorization_token_key'] = [
+    '#type' => 'textfield',
+    '#title' => t('Authorization Token Key'),
+    '#required' => TRUE,
+    '#default_value' => $settings['authorization_token_key'],
+  ];
+  $form['webservice_username'] = [
+    '#type' => 'textfield',
+    '#title' => t('The webservice username'),
+    '#required' => TRUE,
+    '#default_value' => $settings['webservice_username'],
+  ];
+  
+
+  return $form;
+}
+
+/**
+ * Helper function for flattening an array.
+ */
+function _c4m_web_services_user_array_flatten($array = NULL) {
+  $result = [];
+
+  if (!is_array($array)) {
+    $array = func_get_args();
+  }
+
+  foreach ($array as $key => $value) {
+    if (is_array($value)) {
+      $result = array_merge($result, _c4m_web_services_user_array_flatten($value));
+    }
+    else {
+      $result = array_merge($result, [$key => $value]);
+    }
+  }
+
+  return $result;
+}
+
+/**
+ * Implements hook_services_resources().
+ */
+function c4m_web_services_user_services_resources() {
+  $node_resource = [
+    'user' => [
+      'operations' => [
+        'c4m_update_user' => [
+          'file' => [
+            'type' => 'inc',
+            'module' => 'c4m_web_services_user',
+            'name' => 'resources/c4m_web_services_user_resource',
+          ],
+          'callback' => '_c4m_web_services_user_resource_update',
+          'args' => [
+            [
+              'name' => 'user_id',
+              'optional' => FALSE,
+              'source' => ['path' => 0],
+              'type' => 'text',
+              'description' => 'The user id of the user to update',
+            ],
+            [
+              'name' => 'node',
+              'optional' => FALSE,
+              'source' => 'data',
+              'description' => 'The node data to update',
+              'type' => 'array',
+            ],
+          ],
+          'access callback' => '_c4m_user_resource_access',
+          'access arguments' => ['update'], // CHECK
+          'access arguments append' => TRUE,
+        ],
+        'retrieve' => array(
+          'file' => array('type' => 'inc', 'module' => 'c4m_web_services_user', 'name' => 'resources/c4m_web_services_user_resource'),
+          'callback' => '_c4m_node_resource_retrieve_via_dashboard_id',
+          'args' => array(
+            array(
+              'name' => 'dashboard_user_id',
+              'optional' => FALSE,
+              'source' => array('path' => 0),
+              'type' => 'int',
+              'description' => 'The dashboard user ID  to get',
+            ),
+          ),
+          'access callback' => '_c4m_user_resource_access',
+          'access arguments' => array('view'),
+          'access arguments append' => TRUE,
+        ),
+        'c4m_create_user' => array(
+          'help' => 'Create a user',
+          'file' => array('type' => 'inc', 'module' => 'c4m_web_services_user', 'name' => 'resources/c4m_web_services_user_resource'),
+          'callback' => '_c4m_user_resource_user_create',
+          'args' => array(
+            array(
+              'name' => 'node',
+              'optional' => FALSE,
+              'source' => 'data',
+              'description' => 'The user data to create',
+              'type' => 'array',
+            ),
+          ),
+          'access callback' => '_c4m_user_resource_access', // TO CHECK
+          'access arguments' => array('c4m_create_user'),
+          'access arguments append' => TRUE,
+        ),
+      ],
+    ],
+  ];
+
+  return $node_resource;
+}
+
+/**
+ * Implements hook_server_info().
+ */
+function c4m_web_services_user_server_info() {
+  return [
+    'name' => 'C4M REST',
+    'path' => 'rest',
+    'settings' => [
+      'file' => ['inc', 'rest_server'],
+      'form' => '_rest_server_settings',
+      'submit' => '_rest_server_settings_submit',
+    ],
+  ];
+}
+
+/**
+ * Starting point of the REST server.
+ */
+function c4m_web_services_user_server() {
+  module_load_include('inc', 'c4m_web_services_user', 'includes/C4MServicesRESTServerFactory');
+  module_load_include('inc', 'c4m_web_services_user', 'includes/C4MRESTServer');
+  $endpoint_path = services_get_server_info('endpoint_path', 'services/rest');
+
+  $services_rest_server_factory = 'C4MServicesRESTServerFactory';
+  $rest_server_factory = new $services_rest_server_factory(['endpoint_path' => $endpoint_path]);
+  /* @var $rest_server C4MRESTServer */
+  $rest_server = $rest_server_factory->getRESTServer();
+
+  $canonical_path = $rest_server->getCanonicalPath();
+  if (empty($canonical_path)) {
+    $endpoint_name = services_get_server_info('endpoint', '');
+    $endpoint = services_endpoint_load($endpoint_name);
+    return t('Services Endpoint "@name" has been setup successfully.', ['@name' => $endpoint->name]);
+  }
+
+  try {
+    return $rest_server->handle();
+  }
+  catch (Exception $e) {
+    $rest_server->handleException($e);
+  }
+}
+
+/**
+ * Check if the user exists or not.
+ * Look for the taxonomy terms and update the arguments array for organisations.
+ *
+ * @param array $controller
+ *   Controller definition.
+ * @param array $args
+ *   Array of arguments.
+ * @param array $options
+ *   Options.
+ *
+ * @see services_controller_execute()
+ * @see services.runtime.inc
+ */
+function c4m_web_services_user_services_request_preprocess_alter(array $controller, array &$args, array $options) {
+  // Check by dashboard_id when Creating the new User if already exists.
+  if (isset($options['resource']) && $options['resource'] == "user") {
+    if (isset($controller["callback"]) && $controller["callback"] === '_c4m_user_resource_user_create') {
+      $user = $args[0];
+      if (empty($user['email'])) {
+        $xml = new SimpleXMLElement('<missing_properties/>');
+        $xml->addChild('missing_email', 'e-mail address not in payload');
+        throw new ServicesException($xml->asXML(), 500);
+      }
+      // check if user exists:
+      // Check if the user exists if appropriate.
+      $account = user_load_by_mail($user['email']);
+      if (!empty($account)) {
+        $xml = new SimpleXMLElement('<user_exists/>');
+        $xml->addChild('email', $account->mail);
+        $xml->addChild('uid', $account->uid);
+        $xml->addChild('c4m_user_dashboard_id', empty($account->c4m_user_dashboard_id) ? "" : $account->c4m_user_dashboard_id);
+        $xml->addChild('purl', 'user/' . $account->uid);
+        throw new ServicesException($xml->asXML(), 302);
+      }
+    }
+    // else {
+    //   _raise_error("missing_user_dashboard_id");
+    // }
+  }
+}
+
+/**
+ * Implements hook_services_request_postprocess_alter().
+ */
+function c4m_web_services_user_services_request_postprocess_alter($controller, $args, &$result) {
+  $endpoint_path = services_get_server_info('endpoint_path', '');
+  if ($endpoint_path !== WS_USER_ENDPOINT) {
+    return;
+  }
+  $context = new ServicesContext($endpoint_path);
+  $context->buildFromGlobals();
+  /* Going to clean up some of parameters, SMED does not need all info back.*/
+  if ($context->getRequestMethod() === "GET") {
+    // $properties = array('log', 'sticky', 'ds_switch', 'comment', 'promote', 'tnid', 'translate');
+    // foreach ($properties as $property) {
+    //   unset($result->{$property});
+    // }
+  }
+
+
+  foreach ($args as $arg) {
+    if (!is_array($arg)) {
+      continue;
+    }
+    if (empty($nid = $result['nid'])) {
+      continue;
+    }
+    // When creating a new node, approve it so it becomes status draft 
+    if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create_user') {
+
+    }
+  }
+
+}
+
+/**
+ * Allows alteration of the services_resources array after processing.
+ *
+ * @param array $resources
+ *   The combined array of resource definitions from hook_services_resources.
+ * @param array $endpoint
+ *   An array describing the endpoint that resources are being built for.
+ *
+ * @deprecated
+ * @see _services_build_resources()
+ * @see services.resource_build.inc
+ */
+function c4m_web_services_user_services_resources_post_processing_alter(&$resources, &$endpoint) {
+  $endpoint_path = services_get_server_info('endpoint_path', '');
+  if ($endpoint_path !== WS_USER_ENDPOINT) {
+    return;
+  }
+}
+
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Make some fields readonly, when user sit was created via the webservice.
+ * Make the dashboard ID readonly for non adminstrators.
+ */
+function c4m_web_services_user_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'user_site_node_form______TOBECHANGED') {
+
+    // Load the currently logged in user.
+    global $user;
+    // get settings.
+    $webservice_user = variable_get('webservice_user', array());
+    // TODO when settings not set, generate a warning
+    // if (!empty($webservice_eventsite) && $user->name == $webservice_eventsite['webservice_username']) {
+    //   // Coming from werbservice, do not interfere.
+    //   return;
+    // }
+  }
+}
+
+if (!function_exists('_normalize_string_for_url')) { 
+  /**
+   * Helper function to clean the title.
+   *
+   * @param string $string_to_be_normalized
+   *   The string that needs to be cleaded up.
+   */
+  function _normalize_string_for_url($string_to_be_normalized) {
+    $table = array(
+        'Š'=>'S', 'š'=>'s', 'Đ'=>'Dj', 'đ'=>'dj', 'Ž'=>'Z', 'ž'=>'z', 'Č'=>'C', 'č'=>'c', 'Ć'=>'C', 'ć'=>'c',
+        'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+        'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O',
+        'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss',
+        'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
+        'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o',
+        'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
+        'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r',
+    );
+    // Replace spaces.
+    $string_to_be_normalized = strtolower(str_replace(' ', '-', $string_to_be_normalized));
+    // Replace quotes.
+    $string_to_be_normalized = str_replace(array('"', "'"), array("", "-"), $string_to_be_normalized);
+    return strtr($string_to_be_normalized, $table);
+  }
+}

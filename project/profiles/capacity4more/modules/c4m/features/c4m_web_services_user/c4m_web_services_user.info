@@ -1,0 +1,14 @@
+name = Web Services for the user management via the Dashboard
+core = 7.x
+package = capacity4more - Features
+dependencies[] = ctools
+dependencies[] = c4m_user
+dependencies[] = c4m_user_profile
+dependencies[] = c4m_og
+dependencies[] = rest_server
+dependencies[] = services
+features[ctools][] = services:services:3
+features[features_api][] = api:2
+features[services_endpoint][] = easme_user
+features[user_permission][] = administer webservice user management settings
+project path = profiles/capacity4more/modules/c4m/features
