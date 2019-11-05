@@ -33,45 +33,6 @@ function _c4m_user_resource_access($op = 'view', $args = array()) {
   }
 }
 
-function _c4m_node_user_resource_access_using_dashboard_id($op = 'view', $args = array()) {
-  // Adds backwards compatability with regression fixed in #1083242.
-  if (isset($args[0])) {
-    $args[0] = _services_access_value($args[0], 'node');
-  }
-
-  // Make sure we have an object or this all fails, some servers can
-  // mess up the types.
-  if (is_array($args[0])) {
-    $args[0] = (object) $args[0];
-  }
-  // This is to determine if it is just a string happens on node/%NID.
-  elseif (!is_array($args[0]) && !is_object($args[0])) {
-    if (empty($node = _c4m_usersite_load_by_dashboard_id($args[0]))) {
-      services_error(t('Unfortunately we were unable to load the Node.'), 406);
-    }
-    $args[0] = (object) array('nid' => $node->nid);
-  }
-
-  if ($op != 'create' && !empty($args)) {
-    $node = node_load($args[0]->nid);
-  }
-  elseif ($op == 'create') {
-    if (isset($args[0]->type)) {
-      $node = $args[0]->type;
-      return node_access($op, $node);
-    }
-    else {
-      return services_error(t('Node type is required'), 406);
-    }
-  }
-  if (isset($node->nid) && $node->nid) {
-    return node_access($op, $node);
-  }
-  else {
-    return services_error(t('Node @nid could not be found', array('@nid' => $args[0]->nid)), 404);
-  }
-}
-
   /**
  * Update an existing user.
  *
@@ -92,10 +53,22 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
 
   $account_loaded = user_load_by_mail($account['email']);
 
+  $fields_changed = array();
+  if (isset($account['email'])) ? $account_loaded->mail = $account['email']; $fields_changed[]='email';
+
+  if (isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"])) {
+      $account_loaded->c4m_first_name["und"][0]["value"] = $account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]["und"][0]["first_name"];
+      $fields_changed[] = 'email';
+  }
+
+
   // Block / unblock a user:
   if (isset($account['c4m_status'])) {
     user_save($account_loaded, ['status' => $account['c4m_status'] == "Blocked" ? 0 : 1]);
+    $fields_changed[] = 'c4m_status';
   }
+
+
 }
 
 /**
@@ -110,7 +83,7 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
  *     - name (user name)
  *     - mail (email address)
  *     - pass (plain text unencrypted password)
- * 
+ *
  *   We need to extract some of the info from the structure of the first organisation.
  *   This might be refactored at a later date.
  *
@@ -126,7 +99,7 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
  *   The user object of the newly created user.
  */
 function _c4m_user_resource_user_create($account) {
-  if (!isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]) || 
+  if (!isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]) ||
       !isset($account['email']) ||
       !isset($account['c4m_user_dashboard_id'])) {
     $xml = new SimpleXMLElement('<missing_properties/>');
