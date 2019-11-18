@@ -244,6 +244,17 @@ function _c4m_user_notifications_og_role_revoke($gid, $uid, $rid) {
  *   Drupal node entity object.
  */
 function _c4m_user_notifications_node_insert($node) {
+  if ($node->type == 'event_site') {
+    // No notifications required,when using the webservice.
+    if (function_exists(services_get_server_info)) {
+      $endpoint_path = services_get_server_info('endpoint_path', '');
+      if ($endpoint_path == WS_EVENTSITE_ENDPOINT) {
+        return;
+      }
+    }
+
+  }
+
   if ($node->type == 'organisation') {
     return;
   }
@@ -369,9 +380,8 @@ function _c4m_user_notifications_dispatch_content_action($node, $action) {
     $og_group_ref = $node->og_group_ref[LANGUAGE_NONE][0]["target_id"];
     if (!empty($og_group_ref)) {
       $group_wrapper = entity_metadata_wrapper('node', $og_group_ref);
-      $group_access = $group_wrapper->group_access->value();
       // Group_access is a boolean , false == public group .
-      if ($group_access !== FALSE) {
+      if (!isset($group_wrapper->group_access) || $group_wrapper->group_access->value() !== FALSE) {
         $send_notifications_interests = FALSE;
       }
     }

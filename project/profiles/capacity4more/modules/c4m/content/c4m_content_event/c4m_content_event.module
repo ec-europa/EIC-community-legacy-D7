@@ -355,6 +355,7 @@ function c4m_content_event_form_event_node_form_alter(array &$form, array $form_
         unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
       }
     }
+
   }
   c4m_content_create_group_content_access();
   c4m_og_add_content_author_options_to_power_users($form);

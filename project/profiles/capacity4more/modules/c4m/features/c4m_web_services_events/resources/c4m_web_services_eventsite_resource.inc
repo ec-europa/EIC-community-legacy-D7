@@ -20,7 +20,7 @@ function _c4m_node_events_resource_access_using_dashboard_id($op = 'view', $args
   // This is to determine if it is just a string happens on node/%NID.
   elseif (!is_array($args[0]) && !is_object($args[0])) {
     if (empty($node = _c4m_eventsite_load_by_dashboard_id($args[0]))) {
-      services_error(t('Node type is required'), 406);
+      services_error(t('Unfortunately we were unable to load the Node.'), 406);
     }
     $args[0] = (object) array('nid' => $node->nid);
   }
@@ -96,7 +96,7 @@ function _c4m_web_services_events_eventsite_resource_update($dashboard_event_id,
   // Adds backwards compatibility with regression fixed in #1083242.
   $node = _services_arg_value($node, 'node');
 
-  $old_node = _c4m_organisation_load_by_dashboard_id($dashboard_event_id);
+  $old_node = _c4m_eventsite_load_by_dashboard_id($dashboard_event_id);
   $node['nid'] = $old_node->nid;
 
   $nid = $old_node->nid;
@@ -116,6 +116,18 @@ function _c4m_web_services_events_eventsite_resource_update($dashboard_event_id,
   // Validate the node. If there is validation error Exception will be thrown
   // so code below won't be executed.
   _node_resource_validate_type($node);
+
+  // The Banner uses the manualcrop module.
+  // The metadata is reset because, it thinks it is a new form / entry.
+  // We will grab the metadata and so we can put it back later:
+  if (isset($old_node->c4m_banner[LANGUAGE_NONE][0])) {
+    $fid = $old_node->c4m_banner[LANGUAGE_NONE][0]['fid'];
+    $image_file = file_load($fid);
+    $manualcrop_metadata = manualcrop_load_crop_selection($image_file->uri, 'banner');
+    if (!empty($manualcrop_metadata)) {
+      $image_file->manualcrop_data = array('banner' => json_decode(json_encode($manualcrop_metadata), TRUE));
+    }
+  }
 
   // Load the required includes for drupal_form_submit.
   module_load_include('inc', 'node', 'node.pages');
@@ -146,6 +158,12 @@ function _c4m_web_services_events_eventsite_resource_update($dashboard_event_id,
   if ($uri = services_resource_uri(array('node', $nid))) {
     $node['uri'] = $uri;
   }
+
+  // RE-Save the manualcrop image data:
+  if (isset($image_file->manualcrop_data)) {
+    manualcrop_entity_update($image_file, $image_file->entity_type);
+  }
+
   return $node;
 }
 
@@ -203,7 +221,7 @@ function _c4m_node_resource_access($op = 'view', array $args = []) {
   }
   // This is to determine if it is just a string happens on node/%NID.
   elseif (!is_array($args[0]) && !is_object($args[0])) {
-    if (empty($node = _c4m_organisation_load_by_dashboard_id($args[0]))) {
+    if (empty($node = _c4m_eventsite_load_by_dashboard_id($args[0]))) {
       services_error(t('Node type is required'), 406);
     }
     $args[0] = (object) array('nid' => $node->nid);

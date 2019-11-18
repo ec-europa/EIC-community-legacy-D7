@@ -107,6 +107,8 @@ function c4m_content_event_field_default_field_bases() {
         'corporate_days' => 'Corporate days',
         'pitching_event' => 'Pitching event',
         'combined_corporate_and_pitching' => 'Combined Corporate and Pitching',
+        'e-pitching' => 'E-pitching event',
+        'eic_interviews' => 'EIC interviews event'
       ),
       'allowed_values_function' => '',
     ),

@@ -46,7 +46,7 @@ var config = {
 /**
  * Task to update the settings for development.
  */
-gulp.task('dev-options', function () {
+gulp.task('dev-options', function (done) {
   config.sourceMaps = true;
   config.stripBanners = false;
   config.uglify = false;
@@ -54,6 +54,7 @@ gulp.task('dev-options', function () {
   config.sass.outputStyle = 'expanded';
   config.autoprefixer.diff = true;
   config.autoprefixer.map = true;
+  done();
 });
 
 /**
@@ -116,7 +117,7 @@ gulp.task('eslint', function() {
 /**
  * Task to concatenate the scripts.
  */
-gulp.task('concat', gulp.series(['eslint']), function() {
+gulp.task('concat', gulp.series('eslint', function(done) {
   var files = {
     "bootstrap.concat.js": [
       config.bootstrapDir + '/assets/javascripts/bootstrap/affix.js',
@@ -154,7 +155,8 @@ gulp.task('concat', gulp.series(['eslint']), function() {
         .pipe(gulp.dest(config.dist + '/js/'));
     }
   }
-});
+  done();
+}));
 
 /**
  * Task to uglify the scripts.
@@ -178,16 +180,17 @@ gulp.task('uglify', gulp.series(['concat']), function(cb) {
 /**
  * Watch.
  */
-gulp.task('dev-watch', function() {
+gulp.task('dev-watch', function(done) {
   gulp.watch('src/images/**/*.{png,jpg,gif}', ['imagemin']);
   gulp.watch('src/stylesheets/**/*.scss', ['styles']);
   gulp.watch('src/javascripts/**/*.js', ['scripts']);
+  done();
 });
 
 // Aliases.
 gulp.task('images', gulp.series(['imagemin']));
 gulp.task('styles', gulp.series(['sass']));
-gulp.task('scripts', gulp.series(['eslint', 'concat']));
+gulp.task('scripts', gulp.series('concat'));
 
 // Main task.
 gulp.task('build', gulp.series('clean', ['images', 'styles', 'scripts']));
@@ -195,9 +198,6 @@ gulp.task('default', gulp.series(['build']));
 
 
 // Dev task.
-gulp.task('dev', function() {
-  sequence('dev-options', 'build');
-});
-gulp.task('watch', function() {
-  sequence('dev', 'dev-watch');
-});
+gulp.task('dev', gulp.series(['dev-options', 'build']));
+
+gulp.task('watch',gulp.series(['dev', 'dev-watch']));

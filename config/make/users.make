@@ -5,6 +5,9 @@ api = 2
 
 projects[campaignmonitor][subdir] = "contrib"
 projects[campaignmonitor][version] = "1.1"
+; The campaignmonitor module uses an older version of libraries, it also installs it in another location, so then there 2 libraries modules.
+projects[campaignmonitor][patch][] = "../patches/campaignmonitor_sync_libraries_module.patch"
+
 
 projects[email_confirm][subdir] = "contrib"
 projects[email_confirm][version] = "1.3"
