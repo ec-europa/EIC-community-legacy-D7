@@ -393,7 +393,8 @@ var jQuery = jQuery || {};
                 placement: "right",
                 content: function () {
                     return $(content).html();
-                }
+                },
+                sanitize: false
             }).on('shown.bs.popover', function () {
                 // Items inherit the state of the "original" checkboxes, which is hidden if unchecked.
                 $("#edit-restricted-organisations-selector label").show();

@@ -10,7 +10,7 @@
     "postinstall": "find node_modules/ -name \"*.info\" -type f -delete"
   },
   "dependencies": {
-    "bootstrap-sass": "^3.3.6"
+    "bootstrap-sass": "^3.4.1"
   },
   "devDependencies": {
     "del": "~3.0.0",
