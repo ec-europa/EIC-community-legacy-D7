@@ -155,12 +155,12 @@ function _c4m_web_services_events_eventsite_resource_update($dashboard_event_id,
   }
 
   $node = array('nid' => $nid);
-  if ($uri = services_resource_uri(array('node', $nid))) {
-    $node['uri'] = $uri;
-  }
+  $node_path = 'node/' . $nid;
+  $node['uri'] = url( $node_path, array('absolute' => TRUE));
+
 
   // RE-Save the manualcrop image data:
-  if (isset($image_file->manualcrop_data)) {
+  if (isset($image_file) && isset($image_file->manualcrop_data)) {
     manualcrop_entity_update($image_file, $image_file->entity_type);
   }
 
