@@ -258,3 +258,126 @@
     }
   }
 }
+.anonymous-welcome {
+  & {
+    background-image: url(../images/business-camera-coffee-1509428.jpg);
+    background-repeat: no-repeat;
+    margin-top: -20px;
+  }
+  .field-name-title { 
+    h2 {
+      padding: 167px 10px 30px 20px;
+      display: block;
+      color: white;
+      font-size: 3.4em;
+      text-shadow: 0px 0px 9px black;
+      background-color: rgba(0,0,0,0.2);
+      margin: 0;
+      line-height: 90%;
+    }
+  } 
+  .field-type-text-with-summary {
+      margin: 0;
+      border-bottom: 4px solid #2a1d17;
+  } 
+  .field-type-text-with-summary {
+    p { 
+      margin: 0;
+      padding:0;
+
+    }
+    span {
+
+      & {
+        margin: 0;
+        display: block;
+        padding: 10px 20px;
+        font-weight: bold;
+        width: auto;
+        font-size: 1.4em;
+        background-color: antiquewhite;
+      }
+
+      &:nth-child(2) {
+        background-color: #eed1aa;
+      }
+    }
+  }
+  
+  .alert + .cta {
+    margin-top: 180px;
+  }
+
+  .cta { 
+    margin: 0;
+    margin-top: 40px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+
+    @media screen and (max-width: 860px) {
+      grid-template-columns: auto;
+      
+      .block { 
+        width: 100%;
+      }
+    }
+    .block { 
+      display: inline-block;
+      text-align: right;
+      font-weight: bold;
+      font-size: 1.7em;
+      border-top: 10px solid #004494;
+      padding: 20px 10px 20px 10px;
+      margin: 10px;
+      transition: background-color .6s, color .6s;
+      background-color: #ffffff;
+      box-sizing: border-box;
+      overflow: hidden;
+
+      &:hover { 
+          background-color: #dae5f1;
+
+          h3 { 
+            color: #004494;
+          }
+
+          a { 
+            background-color: #004494;
+            color: white;
+          }
+      }
+
+      h3 { 
+        display: block;
+        font-size: 1.0em;
+        color: black;
+        width: 100%;
+        text-align: left;
+        padding: 0 20px;    
+        color: black;
+      }
+      p {
+        text-align: left;
+        font-size: 0.6em;
+        color:black;
+        margin: 0 20px;
+        font-weight: normal;
+      } 
+      a { 
+        display: inline-block;
+        text-align: right;
+        font-weight: bold;
+        font-size: 0.7em;
+        box-sizing: border-box;
+        margin: 10px 10px 0px 0px;
+        text-decoration: none;
+        background-color: #dae5f1;
+        color: #004494;
+        padding: 10px 30px;
+      }
+    }
+
+  }
+  
+}

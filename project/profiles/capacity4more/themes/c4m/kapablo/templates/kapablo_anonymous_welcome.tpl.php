@@ -13,6 +13,8 @@
  * - $variables['cta-2']: Call-to-action to accompany the welcome text.
  *
  * @see kapablo_preprocess_page()
+ * MFA: better check this one
+ * @see capacity4more/modules/user/c4m_user/c4m_user.module::c4m_user_access_denied_ecas()
  * @ingroup themeable
  */
 ?>
@@ -31,10 +33,10 @@
 
   <div class="cta">
     <?php if ($variables['cta_1']): ?>
-      <?php print $variables['cta_1']; ?>
+      <div class="block"><?php print $variables['cta_1']; ?></div>
     <?php endif; ?>
     <?php if ($variables['cta_2']): ?>
-      <?php print $variables['cta_2']; ?>
+      <div class="block"><?php print $variables['cta_2']; ?></div>
     <?php endif; ?>
   </div>
 </div>

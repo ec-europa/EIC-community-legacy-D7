@@ -737,15 +737,15 @@ function c4m_user_access_denied_ecas() {
     }
     $sign_up_url = variable_get('c4m_user_sign_up_url', 'https://entrypoint-smei.easme-web.eu/admissions/entry');
 
-    $cta_1 = l(t('Access via EU login'), 'ecas', [
-      'attributes' => ['class' => ['btn', 'btn-primary']],
+    $cta_1 = t('<h3>Already a member?</h3>').l(t('Access via ECAS login'), 'ecas', [
+      'attributes' => ['class' => []],
     ]);
-    $cta_2 = l(t('Sign up'), $sign_up_url, [
-      'attributes' => ['class' => ['btn', 'btn-warning']],
+    $cta_2 = t('<h3>Not a member yet?</h3>').l(t('Sign up'), $sign_up_url, [
+      'attributes' => ['class' => []],
     ]);
 
     $warning_message = '';
-    if (!empty(request_uri())
+    if (empty(request_uri())
       && strpos(request_uri(), 'ecas_warning_page') !== FALSE) {
       $warning_message .= '<div class="alert alert-warning"><h2 class="ecl-heading ecl-heading--h2">' . t('Account not approved') . '</h2>';
       $warning_message .= '<p>' . variable_get('ecas_warning_message', t('Your account is not yet approved')) . '</p></div>';
