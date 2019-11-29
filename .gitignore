@@ -45,3 +45,6 @@ project/profiles/capacity4more/behat/features/dump
 
 # Avoid Vagrant files being committed.
 .vagrant
+
+# ignore database_dumps folder
+db_dumps/*
