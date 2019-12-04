@@ -75,7 +75,7 @@ function _c4m_web_services_events_authenticate_call(array $settings, array $meth
   $context->buildFromGlobals();
 
   $valid_token = FALSE;
-  // Check if the header contains the authorization token. 
+  // Check if the header contains the authorization token.
   if (NULL !== $context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"]))) {
     if ($context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"])) === $settings["authorization_token_key"]) {
       $valid_token = TRUE;
@@ -334,7 +334,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
     }
 
       // $arg['c4m_body']['und'][0]['value'] = "Gonna need to encode the tags.";
-      // // overwriting the event_type 
+      // // overwriting the event_type
       // //Need to convert the SMED event type id to the correct taxonomy id.
       // $arg['event_type']['und'][0]['item'] = 'event';
 
@@ -394,7 +394,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
             $item[LANGUAGE_NONE] = $new_terms;
           }
 
-          // event_type conversion : 
+          // event_type conversion :
           if ($field_name == "c4m_event_type") {
             $event_type_field = field_read_fields([
               'entity_type' => 'node',
@@ -446,7 +446,15 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
         $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]['date'] = $end_datetime->format('d/m/Y');
         $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value2"]['time'] = $end_datetime->format('H:i');
 
-       $arg["c4m_publish_date"] = array(LANGUAGE_NONE => array(array("value" => $arg["c4m_datetime_end"][LANGUAGE_NONE][0]["value"])));
+
+        // get publication date:
+        $publish_datetime = DateTime::createFromFormat('Y-m-d H:i', $arg["c4m_publish_date"][LANGUAGE_NONE][0]["value"]);
+        if ($publish_datetime == FALSE) {
+          _raise_error('missing_publication_date');
+        }
+        $arg["c4m_publish_date"][LANGUAGE_NONE][0]["value"] = array();
+        $arg["c4m_publish_date"][LANGUAGE_NONE][0]["value"]['date'] = $publish_datetime->format('d/m/Y');
+        $arg["c4m_publish_date"][LANGUAGE_NONE][0]["value"]['time'] = $publish_datetime->format('H:i');
 
         //if isset(arg["c4m_datetime_end"]["und"][0]["value"]['date'] && strpos(arg["c4m_datetime_end"]["und"][0]["value"]['date'], '/' <)
         //isset(arg["c4m_datetime_end"]["und"][0]["value2"]['date'] && arg["c4m_datetime_end"]["und"][0]["value2"]['time'])
@@ -492,7 +500,7 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
     if (empty($nid = $result['nid'])) {
       continue;
     }
-    // When creating a new node, approve it so it becomes status draft 
+    // When creating a new node, approve it so it becomes status draft
     if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create') {
       $node = node_load($nid);
       if (empty($node)) {
@@ -760,13 +768,14 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- * Helper function to check the minimal field data is sent for one event_type. 
+ * Helper function to check the minimal field data is sent for one event_type.
  *
  **/
-function _raise_error($error_key) {  
+function _raise_error($error_key) {
   $error_messages = array(
     'missing_start_date' => 'Missing the start date of the event site',
     'missing_end_date' => 'Missing the end date of the event site',
+    'missing_publication_date' => 'Missing the publication date of the event site, this is used to automatically change the status from draft to published.',
     'missing_event_type' => 'The event type is not included for this event site',
     'missing_devent_dashboard_id' => 'The event dashboard ID is missing, not allowed to create an event_site without it.',
   );
