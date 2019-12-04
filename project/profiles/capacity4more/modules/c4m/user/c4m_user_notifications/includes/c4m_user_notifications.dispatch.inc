@@ -246,7 +246,7 @@ function _c4m_user_notifications_og_role_revoke($gid, $uid, $rid) {
 function _c4m_user_notifications_node_insert($node) {
   if ($node->type == 'event_site') {
     // No notifications required,when using the webservice.
-    if (function_exists(services_get_server_info)) {
+    if (function_exists('services_get_server_info')) {
       $endpoint_path = services_get_server_info('endpoint_path', '');
       if ($endpoint_path == WS_EVENTSITE_ENDPOINT) {
         return;

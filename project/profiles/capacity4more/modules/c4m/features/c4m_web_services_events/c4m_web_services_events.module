@@ -305,6 +305,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
 
             // A new event site.
             // check OG status , is used for the workflow process , if not set force to draft, pending is not required.
+            // it will probably be overridden by the c4m_field_og module, because this one check if the node exists or not.
             if (!isset($arg['c4m_og_status'])) {
               $arg['c4m_og_status'] = array(LANGUAGE_NONE => array(array('value' => 'draft')));
             }
