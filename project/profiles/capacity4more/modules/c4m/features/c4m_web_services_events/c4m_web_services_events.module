@@ -305,7 +305,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
 
             // A new event site.
             // check OG status , is used for the workflow process , if not set force to draft, pending is not required.
-            // it will probably be overridden by the c4m_field_og module, because this one check if the node exists or not.
+            // it will probably be overridden by the c4m_field_og module, because that one checks if the node exists or not.
             if (!isset($arg['c4m_og_status'])) {
               $arg['c4m_og_status'] = array(LANGUAGE_NONE => array(array('value' => 'draft')));
             }
@@ -316,6 +316,8 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
               $arg['name'] = $webservice_eventsite['webservice_eventsite_owner_account'];
             }
 
+            // Clone the publish date:
+            $arg["original_c4m_publish_date"] = $arg["c4m_publish_date"][LANGUAGE_NONE][0]["value"];
             continue;
           }
           $xml = new SimpleXMLElement('<eventsite_node_exists/>');
@@ -457,13 +459,8 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
         $arg["c4m_publish_date"][LANGUAGE_NONE][0]["value"]['date'] = $publish_datetime->format('d/m/Y');
         $arg["c4m_publish_date"][LANGUAGE_NONE][0]["value"]['time'] = $publish_datetime->format('H:i');
 
-        //if isset(arg["c4m_datetime_end"]["und"][0]["value"]['date'] && strpos(arg["c4m_datetime_end"]["und"][0]["value"]['date'], '/' <)
-        //isset(arg["c4m_datetime_end"]["und"][0]["value2"]['date'] && arg["c4m_datetime_end"]["und"][0]["value2"]['time'])
-        // $arg["c4m_datetime_end"]["und"][0]["value"] = array('date'=>"06/12/2019",'time'=>"06:00");
-        // $arg["c4m_datetime_end"]["und"][0]["value2"] = array('date'=>"06/12/2019",'time'=>"17:44");
         // Add the purl based on the title - group path is required:
-        // first cleanup , replace spaces:
-
+        // But first, a cleanup, replace spaces:
         $arg['purl'] = array("value" => urlencode(_normalize_string_for_url($arg['title'])));
         // convert the registration Link.
         if (!isset($arg['c4m_link']) && isset($arg['link'])) {
@@ -501,7 +498,8 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
     if (empty($nid = $result['nid'])) {
       continue;
     }
-    // When creating a new node, approve it so it becomes status draft
+    // When creating a new event_site node, approve it so it becomes status draft,
+    // force the publish date and create the default paragraphs.
     if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create') {
       $node = node_load($nid);
       if (empty($node)) {
@@ -511,7 +509,13 @@ function c4m_web_services_events_services_request_postprocess_alter($controller,
       // When adding through the WS, organisation should be Approved, meaning it gets the status draft.
       $node->c4m_og_status[LANGUAGE_NONE][0]['value'] = 'draft';
 
-      // And set default paragraphs.
+      // Also use the original format of the publication date.
+      if (isset($arg['original_c4m_publish_date'])) {
+      $node->c4m_publish_date[LANGUAGE_NONE][0]['value'] = $arg['original_c4m_publish_date'];
+      }
+
+
+      // Set the default paragraphs.
       c4m_web_services_events_eventsite_set_paragraphs($node);
 
       // Save the node.
