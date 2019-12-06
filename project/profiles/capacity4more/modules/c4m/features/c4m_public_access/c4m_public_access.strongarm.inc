@@ -14,6 +14,13 @@ function c4m_public_access_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'access content' ;
+  $strongarm->value = 1;
+  $export['access content'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_view_permissions_article';
   $strongarm->value = 1;
   $export['node_view_permissions_article'] = $strongarm;
