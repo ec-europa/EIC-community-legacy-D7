@@ -318,6 +318,8 @@ function c4m_features_homepage_voices_views_carousel() {
     ->propertyOrderBy('sticky', 'DESC')
     ->propertyOrderBy('created', 'DESC')
     ->range(0, 3)
+    // Run the query as user 1.
+    ->addMetaData('account', user_load(1))
     ->execute();
 
   if (empty($result['node'])) {
