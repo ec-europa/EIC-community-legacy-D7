@@ -12,3 +12,6 @@ projects[features][patch][] = https://www.drupal.org/files/issues/features-user_
 
 projects[strongarm][subdir] = "contrib"
 projects[strongarm][version] = "2.0"
+
+projects[node_view_permissions][subdir] = "contrib"
+projects[node_view_permissions][version] = "1.6"
