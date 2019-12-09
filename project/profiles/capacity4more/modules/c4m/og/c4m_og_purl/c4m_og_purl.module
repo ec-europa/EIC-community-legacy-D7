@@ -554,7 +554,7 @@ function c4m_og_purl_global_content_access() {
     return TRUE;
   }
 
-  return !og_context() && user_access('access content');
+  return !og_context() && user_access('access content') && user_is_logged_in();
 }
 
 /**
