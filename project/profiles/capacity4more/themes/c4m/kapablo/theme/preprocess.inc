@@ -190,8 +190,8 @@ function kapablo_preprocess_page(&$variables) {
   if (in_array('authenticated user', array_values($user->roles))) {
     $variables['search_form'] = drupal_get_form('c4m_search_form');
   }
-  // For anonymous users, hide navigation.
-  else {
+  // For anonymous users and access denied, hide navigation.
+  elseif (!empty($_GET['q']) && $_GET['q'] === "access-denied-ecas") {
     unset($variables['primary_nav']);
     unset($variables['navigation']);
   }

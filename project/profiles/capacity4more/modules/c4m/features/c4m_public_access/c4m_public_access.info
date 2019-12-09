@@ -10,7 +10,6 @@ dependencies[] = shield
 dependencies[] = strongarm
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
-features[user_permission][] = administer shield
 features[user_permission][] = view any article content
 features[user_permission][] = view any banner content
 features[user_permission][] = view any book content
