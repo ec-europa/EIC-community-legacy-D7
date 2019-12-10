@@ -11,16 +11,6 @@
 function c4m_public_access_user_default_permissions() {
   $permissions = array();
 
-  // The permission that will make all content visible
-  // View published content
-    $permissions['access content'] = array(
-    'name' => 'access content',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'node',
-  );
   // Exported permission: 'administer shield'.
   $permissions['administer shield'] = array(
     'name' => 'administer shield',

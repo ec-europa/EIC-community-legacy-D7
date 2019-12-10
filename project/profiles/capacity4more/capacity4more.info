@@ -235,3 +235,4 @@ dependencies[] = c4m_features_responsive
 ;dependencies[] = c4m_wysiwyg_ckeditor
 
 ; Opening-up the eic
+dependencies[] = c4m_public_access
