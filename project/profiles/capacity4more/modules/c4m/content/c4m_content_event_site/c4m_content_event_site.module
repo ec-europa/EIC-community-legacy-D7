@@ -139,7 +139,7 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
   $type = 'event_site';
 
   _c4m_og_alter_group_form($form, $form_state, $type);
-  
+
   // There's no node ID at form => form is for new project creation.
   // Hide status field, for it to get default value of Pending, once created.
   if (is_null($form['nid']['#value'])) {
@@ -168,17 +168,19 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
   // Remove options that are only needed for Group Events in the event_type field.
   if (!empty($form['c4m_event_type'][LANGUAGE_NONE]['#options'])) {
     foreach ($form['c4m_event_type'][LANGUAGE_NONE]['#options'] as $key => $option) {
-      if (in_array($key, ['event', 'learning', 'meeting'])) {
+      if (in_array($key, ['event', 'learning', 'meeting', 'pitching_event'])) {
         unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
       }
+      $filter_clean_event_types = TRUE;
       if (isset($form["#node"]->nid)) { // maybe use is_new ?
         $node = node_load($form["#node"]->nid);  // Maybe switch to a wrapper?
-        if (empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]['value'])) {
-          // Not coming from a webservice, so removing these 2 options
-          if (in_array($key, ['e-pitching', 'eic_interviews'])) {
-            unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
-          }
+        if (!empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]['value'])) {
+          // Not coming from a webservice, so removing the some options
+          $filter_clean_event_types = FALSE;
         }
+      }
+      if ($filter_clean_event_types && in_array($key, ['e-pitching', 'eic_interviews', 'innovation_procurer_days', 'investor_days'])) {
+         unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
       }
     }
   }
@@ -764,7 +766,7 @@ function c4m_content_event_site_views_pre_render(&$view) {
     return;
   }
   $gid = $view->args[0];
-  
+
   $group = entity_load_single('node', $gid);
   // only process event sites.
   if (!isset($group) || $group->type != "event_site") {
