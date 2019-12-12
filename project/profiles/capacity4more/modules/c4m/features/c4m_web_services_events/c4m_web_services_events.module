@@ -405,10 +405,13 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
             ]);
 
             $allowed_event_types['1'] = 'corporate_days';
-            $allowed_event_types['2'] = 'pitching_event';
+            // $allowed_event_types['2'] = 'pitching_event'; -- replaced by investor_days
+            $allowed_event_types['2'] = 'investor_days';
             $allowed_event_types['3'] = 'e-pitching';
             $allowed_event_types['8'] = 'eic_interviews';
             $allowed_event_types['6'] = 'coordinators_welcome_day';
+            $allowed_event_types['9'] = 'innovation_procurer_days';
+
 
             if (isset($item[LANGUAGE_NONE][0]['value'])) {
               if (isset($allowed_event_types[$item[LANGUAGE_NONE][0]['value']])) {
