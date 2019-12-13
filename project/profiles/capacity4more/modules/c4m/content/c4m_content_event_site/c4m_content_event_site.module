@@ -137,6 +137,7 @@ function c4m_content_event_site_block_view($delta) {
  */
 function c4m_content_event_site_form_event_site_node_form_alter(array &$form, array &$form_state) {
   $type = 'event_site';
+  global $user;
 
   _c4m_og_alter_group_form($form, $form_state, $type);
 
@@ -167,20 +168,32 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
 
   // Remove options that are only needed for Group Events in the event_type field.
   if (!empty($form['c4m_event_type'][LANGUAGE_NONE]['#options'])) {
-    foreach ($form['c4m_event_type'][LANGUAGE_NONE]['#options'] as $key => $option) {
-      if (in_array($key, ['event', 'learning', 'meeting', 'pitching_event'])) {
-        unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
-      }
-      $filter_clean_event_types = TRUE;
-      if (isset($form["#node"]->nid)) { // maybe use is_new ?
-        $node = node_load($form["#node"]->nid);  // Maybe switch to a wrapper?
-        if (!empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]['value'])) {
-          // Not coming from a webservice, so removing the some options
-          $filter_clean_event_types = FALSE;
+    if ($user->uid !== "1") {
+      foreach ($form['c4m_event_type'][LANGUAGE_NONE]['#options'] as $key => $option) {
+        if (in_array($key, ['event', 'learning', 'meeting', 'pitching_event'])) {
+          unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
         }
-      }
-      if ($filter_clean_event_types && in_array($key, ['e-pitching', 'eic_interviews', 'innovation_procurer_days', 'investor_days'])) {
-         unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+        if (isset($form["#node"]->nid)) { // maybe use is_new ?
+          $node = node_load($form["#node"]->nid);  // Maybe switch to a wrapper?
+          if (!empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]['value'])) {
+            // Coming from a webservice, so removing the other options, except the one selected.
+            if ($key !== $node->c4m_event_type["und"][0]["value"]) {
+              unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+            }
+            continue;
+            //$filter_clean_event_types = FALSE;
+          }
+        }
+        // The webservice user gets a free pass.
+        if (module_exists('c4m_web_services_events')) {
+          $webservice_eventsite = variable_get('webservice_eventsite', array());
+          if (isset($webservice_eventsite['webservice_user']) && $webservice_eventsite['webservice_user']== $user->name){
+            continue;
+          }
+        }
+        if (in_array($key, ['e-pitching', 'eic_interviews', 'innovation_procurer_days', 'investor_days'])) {
+           unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+        }
       }
     }
   }
