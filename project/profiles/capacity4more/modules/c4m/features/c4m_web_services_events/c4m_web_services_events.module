@@ -416,6 +416,10 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
             if (isset($item[LANGUAGE_NONE][0]['value'])) {
               if (isset($allowed_event_types[$item[LANGUAGE_NONE][0]['value']])) {
                 $item[LANGUAGE_NONE] = $allowed_event_types[$item[LANGUAGE_NONE][0]['value']];
+                // check if value exists in the event_types to prevent awkward notices of illegal choice
+                if (!isset($event_type_field["c4m_event_type"]["settings"]["allowed_values"][$item[LANGUAGE_NONE]])) {
+                  _raise_error('illegal_event_type',$item[LANGUAGE_NONE]);
+                }
               }
               else {
                 // set default event_type:
@@ -778,14 +782,18 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Helper function to check the minimal field data is sent for one event_type.
  *
+ * @param string $error_key contains the error key message.
+ * @param  string $data Contains some extra info if needed.
  **/
-function _raise_error($error_key) {
+
+function _raise_error($error_key, $data = '') {
   $error_messages = array(
     'missing_start_date' => 'Missing the start date of the event site',
     'missing_end_date' => 'Missing the end date of the event site',
     'missing_publication_date' => 'Missing the publication date of the event site, this is used to automatically change the status from draft to published.',
     'missing_event_type' => 'The event type is not included for this event site',
     'missing_devent_dashboard_id' => 'The event dashboard ID is missing, not allowed to create an event_site without it.',
+    'illegal_event_type' => 'The event type: ' . $data . ' is not known in the options of event_types in the EIC community event sites',
   );
   if (isset($error_messages[$error_key])) {
     // throw new ServicesException($error_messages[$error_key], 500);
