@@ -6,3 +6,54 @@
  */
 
 include_once 'c4m_public_access.features.inc';
+
+
+
+/**
+ * Implements hook_node_access().
+ */
+function c4m_public_access_node_access($node, $op, $account) {
+  // anonymous users can only see the about us page (for books) , articles and event-sites.
+  if ($account->uid === 0){
+    if (!in_array($node->type, ['article', 'book', 'event_site']) ) {
+      return NODE_ACCESS_DENY;
+    }
+    if ($node->type == "book") {
+      if ($node->title !== "About Us") {
+        return NODE_ACCESS_DENY;
+      }
+    }
+
+    // Only allow event_sites with published og_status and non empty dashboard_id
+    if ($node->type == "event_site") {
+      if ($node->c4m_og_status["und"][0]["value"] !== "published" || empty($node->c4m_event_dashboard_id["und"][0]["value"])) {
+        return NODE_ACCESS_DENY;
+      }
+      if (in_array(current_path(), ["documents","discussions", "news", "media", "members"])) {
+        return NODE_ACCESS_DENY;
+      }
+    }
+  }
+
+}
+
+
+/**
+ * Implements hook_search_api_query_alter().
+ *
+ * Apply filter on search results in event overview.
+ */
+function c4m_public_access_search_api_query_alter(SearchApiQueryInterface $query) {
+  // don't execute when logged in or on the wrong path.
+  if (user_is_logged_in() || FALSE === strpos(current_path(), 'events', 0)) {
+      return;
+  }
+
+}
+
+function c4m_public_access_entity_view_alter(&$build, $type) {
+  if (user_is_anonymous()) {
+    $build["c4m_user_first_and_last_name"][0]["#markup"]="<span class='user-name'>The EIC </span>";
+  }
+
+}

@@ -10,18 +10,14 @@
  */
 function c4m_public_access_user_default_permissions() {
   $permissions = array();
-
-  // Exported permission: 'access content'.
   $permissions['access content'] = array(
     'name' => 'access content',
     'roles' => array(
-      'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
-    'module' => 'node',
+    'module' => 'node_view_permissions',
   );
-
   // Exported permission: 'view any article content'.
   $permissions['view any article content'] = array(
     'name' => 'view any article content',

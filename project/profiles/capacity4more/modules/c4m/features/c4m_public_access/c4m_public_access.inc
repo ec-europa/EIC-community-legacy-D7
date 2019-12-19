@@ -11,15 +11,6 @@
 function c4m_public_access_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: 'administer shield'.
-  $permissions['administer shield'] = array(
-    'name' => 'administer shield',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'shield',
-  );
-
   // Exported permission: 'view any article content'.
   $permissions['view any article content'] = array(
     'name' => 'view any article content',
