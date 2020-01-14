@@ -51,6 +51,35 @@ function c4m_public_access_search_api_query_alter(SearchApiQueryInterface $query
 
 }
 
+/**
+ * Lets modules alter a Solr search request before sending it.
+ *
+ * Apache_Solr_Service::search() is called afterwards with these parameters.
+ * Please see this method for details on what should be altered where and what
+ * is set afterwards.
+ *
+ * @param array $call_args
+ *   An associative array containing all three arguments to the
+ *   SearchApiSolrConnectionInterface::search() call ("query", "params" and
+ *   "method") as references.
+ * @param SearchApiQueryInterface $query
+ *   The SearchApiQueryInterface object representing the executed search query.
+ */
+function c4m_public_access_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  $search_pages = array("search_api_views:c4m_overview_events_landing:page" , "search_api_views:c4m_overview_events_landing:attachment_1");
+  if (user_is_anonymous()) {
+    if (in_array($query->getOption('search id'), $search_pages) ) {
+      $new_filters = array('ss_c4m_og_status:"published"', 'is_c4m_event_dashboard_id:[* TO *]');
+      // Want to add before the index_id and hash
+      foreach($new_filters as $new_filter) {
+        $position = count($call_args['params']['fq']) - 2;
+        array_splice($call_args['params']['fq'], $position, 0, $new_filter);
+      }
+    }
+  }
+}
+
+
 function c4m_public_access_entity_view_alter(&$build, $type) {
   if (user_is_anonymous()) {
     $build["c4m_user_first_and_last_name"][0]["#markup"]="<span class='user-name'>The EIC </span>";
