@@ -1095,7 +1095,7 @@ function c4m_content_taxonomy_build_tree(
     $local_tree = [];
     foreach ($taxonomy_tree as $taxonomy) {
       // for anonymous users only show the label
-      if (user_is_anonymous()) {
+      if (module_exists('c4m_public_access') && user_is_anonymous()) {
         if ($link_term_to_facet['vocabulary_name'] == 'c4m_vocab_topic') {
           $link = _c4m_content_get_topic_link($taxonomy);
         }
@@ -1166,11 +1166,12 @@ function c4m_content_taxonomy_build_tree(
  */
 function _c4m_content_get_topic_link($taxonomy) {
   // Search for the Topic node linked to this taxonomy term.
-  if (user_is_logged_in()) {
-    $topics_overview_link = l($taxonomy->name, "/topics");
+  if (module_exists('c4m_public_access') && user_is_anonymous()) {
+    $topics_overview_link = $taxonomy->name;
+
   }
   else {
-    $topics_overview_link = $taxonomy->name;
+    $topics_overview_link = l($taxonomy->name, "/topics");
   }
   if (empty($taxonomy->tid) || empty($taxonomy)) {
     return $topics_overview_link;
@@ -1180,11 +1181,11 @@ function _c4m_content_get_topic_link($taxonomy) {
 
   // If node found, create the link.
   if (!empty($nids)) {
-    if (user_is_logged_in()) {
-      return l($taxonomy->name, 'node/' . $nids[0]);
+    if (module_exists('c4m_public_access') && user_is_anonymous()) {
+      return $taxonomy->name;
     }
     else {
-      return $taxonomy->name;
+      return l($taxonomy->name, 'node/' . $nids[0]);
     }
   }
   // If no node found for this taxonomy term, search for the parent.
@@ -1195,11 +1196,11 @@ function _c4m_content_get_topic_link($taxonomy) {
       // associated.
       foreach ($parents as $parent) {
         if (!empty($nids = _c4m_content_get_topic_associated_node($parent->tid, $topics_overview_link))) {
-          if (user_is_logged_in()) {
-            return l($taxonomy->name, 'node/' . $nids[0]);
+          if (module_exists('c4m_public_access') && user_is_anonymous()) {
+            return $taxonomy->name;
           }
           else {
-            return $taxonomy->name;
+            return l($taxonomy->name, 'node/' . $nids[0]);
           }
         }
       }
