@@ -5,30 +5,45 @@
  * Code for the Public basic access to platform feature.
  */
 
-include_once 'c4m_public_access.features.inc';
+/**
+ * The ScaleUp EU node id
+ */
+define('SCALEUP_NODEPATH', "node/6092");
 
+include_once 'c4m_public_access.features.inc';
 
 
 /**
  * Implements hook_node_access().
+ *
+ * @param $node
+ * @param $account
+ *
+ * @return string
  */
 function c4m_public_access_node_access($node, $op, $account) {
   // anonymous users can only see the about us page (for books) , articles and event-sites.
-  if ($account->uid === 0){
-    if (!in_array($node->type, ['article', 'book', 'event_site']) ) {
+  if ($account->uid === 0 && $op === "view") {
+    if (!in_array($node->type, ['article', 'book', 'event_site','group']) ) {
       return NODE_ACCESS_DENY;
     }
     if ($node->type == "book") {
-      if ($node->title !== "About Us") {
+      // only allow about us and help-guidance section.
+      if ($node->title === "About Us" or strpos(drupal_get_path_alias($_GET['q']),'help-guidance') !== False ) {
+        return NODE_ACCESS_ALLOW;
+      }
+      else {
         return NODE_ACCESS_DENY;
       }
-    }
+  ;  }
 
     // Only allow event_sites with published og_status and non empty dashboard_id
     if ($node->type == "event_site") {
       if ($node->c4m_og_status["und"][0]["value"] !== "published" || empty($node->c4m_event_dashboard_id["und"][0]["value"])) {
         return NODE_ACCESS_DENY;
       }
+
+      // disable in event_sites also the sub items.
       if (in_array(current_path(), ["documents","discussions", "news", "media", "members"])) {
         return NODE_ACCESS_DENY;
       }
@@ -39,24 +54,9 @@ function c4m_public_access_node_access($node, $op, $account) {
 
 
 /**
- * Implements hook_search_api_query_alter().
- *
- * Apply filter on search results in event overview.
- */
-function c4m_public_access_search_api_query_alter(SearchApiQueryInterface $query) {
-  // don't execute when logged in or on the wrong path.
-  if (user_is_logged_in() || FALSE === strpos(current_path(), 'events', 0)) {
-      return;
-  }
-
-}
-
-/**
  * Lets modules alter a Solr search request before sending it.
  *
- * Apache_Solr_Service::search() is called afterwards with these parameters.
- * Please see this method for details on what should be altered where and what
- * is set afterwards.
+ * Limit events for anonymous to only coming from the webservice.
  *
  * @param array $call_args
  *   An associative array containing all three arguments to the
@@ -66,8 +66,11 @@ function c4m_public_access_search_api_query_alter(SearchApiQueryInterface $query
  *   The SearchApiQueryInterface object representing the executed search query.
  */
 function c4m_public_access_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
-  $search_pages = array("search_api_views:c4m_overview_events_landing:page" , "search_api_views:c4m_overview_events_landing:attachment_1");
   if (user_is_anonymous()) {
+    $search_pages = array("search_api_views:c4m_overview_events_landing:page" ,
+                          "search_api_views:c4m_overview_events_landing:attachment_1",
+                          "search_api_views:c4m_overview_events:page",
+                          "search_api_views:c4m_overview_events:page_1");
     if (in_array($query->getOption('search id'), $search_pages) ) {
       $new_filters = array('ss_c4m_og_status:"published"', 'is_c4m_event_dashboard_id:[* TO *]');
       // Want to add before the index_id and hash
