@@ -82,10 +82,19 @@ function c4m_public_access_search_api_solr_query_alter(array &$call_args, Search
   }
 }
 
+/**
+ * Hide the writers first and last in the results.
+ *
+ * @param $build
+ * @param $type
+ */
 
 function c4m_public_access_entity_view_alter(&$build, $type) {
-  if (user_is_anonymous()) {
-    $build["c4m_user_first_and_last_name"][0]["#markup"]="<span class='user-name'>The EIC </span>";
+  if (user_is_anonymous() && $build['#bundle'] == 'article') {
+    if (isset($build["c4m_user_first_and_last_name"])) {
+      $build["c4m_user_first_and_last_name"][0]["#markup"]="<span class='user-name'>The EIC </span>";
+    }
+
   }
 
 }
