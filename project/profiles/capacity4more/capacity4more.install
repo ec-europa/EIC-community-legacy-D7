@@ -727,9 +727,15 @@ function capacity4more_update_7025() {
 }
 
 /**
- * Enable c4m_web_services for Events (event-sites).
+ * Enable c4m_web_services for Events (event-sites). todo: move to EIC subprofile.
  */
 function capacity4more_update_7026() {
   module_enable(['c4m_web_services_events']);
 }
 
+/**
+ * Enable c4m_public_access for opening up part of the sites for EIC Community. todo: EIC move to subprofile.
+ */
+function capacity4more_update_7027() {
+  module_enable(['c4m_public_access']);
+}
