@@ -180,3 +180,53 @@ function c4m_public_access_block_view_c4m_features_header_c4m_header_menu_alter(
   }
 }
 
+/**
+ * Helper function for hiding / unhiding a menu item for anonymous users.
+ **/
+function _c4m_public_access_show_hide_menu_item_for_anonymous_users($menu_path,$show_menu_item=False) {
+  if (module_exists('menu_per_role')) {
+    $menu_link_info = db_select('menu_links', 'ml')
+      ->condition('ml.link_path', $menu_path)
+      ->fields('ml', ['mlid', 'plid'])
+      ->execute()
+      ->fetchAll();
+
+    if (!empty($menu_link_info)) {
+      $link = [];
+      $link['mlid'] = $menu_link_info[0]->mlid;
+
+      if ($show_menu_item) {
+        menu_per_role_menu_link_delete($link);
+      }
+
+      $roles = user_roles();
+      $role_id = array_search("anonymous user", $roles);
+      $fields = array('rids' => "", 'hrids' => "{$role_id}");
+
+      $count = db_select('menu_per_role')
+        ->condition('mlid', $link['mlid'])
+        ->countQuery()
+        ->execute()
+        ->fetchField();
+      if ($count == 0) {
+        $fields['mlid'] = $link['mlid'];
+        db_insert('menu_per_role')
+          ->fields($fields)
+          ->execute();
+      }
+      else {
+        db_update('menu_per_role')
+          ->fields($fields)
+          ->condition('mlid', $link['mlid'])
+          ->execute();
+      }
+      watchdog('info', 'C4M Public access - hidden the ScaleUp EU  menu item.', NULL, WATCHDOG_INFO);
+
+      // Finally set the flag to rebuild the menu.
+      variable_set('menu_rebuild_needed', TRUE);
+    }
+  }
+  else {
+      watchdog('warning', 'INSTALLER - menu_per_role module not enabled/found yet, ScaleUp EU  menu item not hidden', NULL, WATCHDOG_WARNING);
+  }
+}
