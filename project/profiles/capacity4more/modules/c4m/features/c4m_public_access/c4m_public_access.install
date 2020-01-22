@@ -19,6 +19,42 @@ function c4m_public_access_install() {
   //node_access_rebuild();
 }
 
+/**
+ * Implements hook_enable().
+ */
+function c4m_public_access_enable() {
+  //change some views accesses to use the node_view_permissions
+  //$view = views_get_view([machine name]);
+  //$view->set_display('default');
+
+  // Hide the ScaleUp EU in the menu if it exists.
+  _c4m_public_access_show_hide_menu_item_for_anonymous_users(SCALEUP_NODEPATH);
+
+  // give anonymous users access to contact form an the all the content.
+  // It will be managed by node_view_permissions.
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array(
+    'access content',
+    'access site-wide contact form',
+  ));
+  // clear cache.
+  menu_cache_clear_all();
+}
+
+
+/**
+ * Implements hook_disable().
+ */
+function c4m_public_access_disable() {
+  // revoke anonymous users access to the contact form and full access
+  user_role_revoke_permissions(DRUPAL_ANONYMOUS_RID, array(
+    'access site-wide contact form',
+    'access content',
+  ));
+  // Unhide the hidden page.
+  _c4m_public_access_show_hide_menu_item_for_anonymous_users(SCALEUP_NODEPATH);
+}
+
+
 
 
 
