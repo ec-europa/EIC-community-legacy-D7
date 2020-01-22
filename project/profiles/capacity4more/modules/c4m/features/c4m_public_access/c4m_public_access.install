@@ -1,0 +1,25 @@
+ <?php
+
+/**
+ * @file
+ * Install/update hooks for c4m_public_access
+ */
+
+
+/**
+ * Implements hook_install().
+ */
+function c4m_public_access_install() {
+  // Force the update
+  db_update('system')
+    ->fields(array('weight' => 50))
+    ->condition('name', 'c4m_public_access', '=')
+    ->execute();
+  drupal_set_installed_schema_version('c4m_public_access', '7100');
+  //node_access_rebuild();
+}
+
+
+
+
+
