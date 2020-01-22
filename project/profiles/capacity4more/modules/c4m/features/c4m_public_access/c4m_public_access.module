@@ -126,5 +126,43 @@ function c4m_public_access_views_default_views_alter(&$views) {
   }
 }
 
+/**
+ * Implements hook_default_page_manager_pages_alter().
+ */
+function c4m_public_access_default_page_manager_pages_alter(&$pages) {
+  if (user_is_anonymous() && isset($pages['c4m_homepage'])) {
+    // Make homepage accessible for anonymous users.
+    $homepage_panel = &$pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2'];
+    $homepage_panel->disabled = FALSE;
+    // Disable the featured_block.
+    $homepage_panel->conf['display']->content['new-e15ee274-a647-4920-85c1-4bb1286686f2']
+                   ->shown = FALSE;
+    // Disable the statistics.
+    $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
+                          ->conf['display']->content['new-0611c655-1657-489e-a844-c6648460af7c']
+                          ->shown = FALSE;
 
+    // Hide the activity stream.
+    $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
+                          ->conf['display']->content['new-b3476758-2767-4be2-b3ad-84697ac801c3']
+                          ->shown = FALSE;
+    // Hide the NOJS activity stream.
+    $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
+                          ->conf['display']->content['new-98afd53a-7134-42fa-aa33-75d6cdc905d7']
+                          ->shown = FALSE;
+    // Hide the c4m_featured_groups
+    $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
+                          ->conf['display']->content['new-e00433dd-e5e5-4c05-8231-b4642b65f37f']
+                          ->shown = FALSE;
+    // Hide the c4m_featured_projects.
+    $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
+                          ->conf['display']->content['new-21833ed8-d9c8-4bd3-a4fd-b3127b5351a1']
+                          ->shown = FALSE;
+    // Hide the c4m_features_homepage_newsletter
+    $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
+                          ->conf['display']->content['new-916fa034-f4ff-45cd-8e79-f5b40fced21c']
+                          ->shown = FALSE;
 
+  }
+
+}
