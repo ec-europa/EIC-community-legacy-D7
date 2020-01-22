@@ -74,10 +74,12 @@ function c4m_features_overview_events_search_api_sorts_alter(&$block, $view) {
 
   // Remove 'Start date' sort if this is not an events overview.
   if (!in_array($view->name, array_merge($views_group, $views_global))) {
-    foreach ($block['content']['#items'] as $key => $item) {
-      if (C4M_FEATURES_OVERVIEW_EVENTS_SORT_BY_START_DATE === $item['#name']) {
-        unset($block['content']['#items'][$key]);
-        break;
+    if (!empty($block)) {
+      foreach ($block['content']['#items'] as $key => $item) {
+        if (C4M_FEATURES_OVERVIEW_EVENTS_SORT_BY_START_DATE === $item['#name']) {
+          unset($block['content']['#items'][$key]);
+          break;
+        }
       }
     }
   }
