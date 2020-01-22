@@ -546,6 +546,9 @@ function c4m_og_purl_views_access_callbacks() {
  *   TRUE if context is not present, otherwise returns FALSE.
  */
 function c4m_og_purl_global_content_access() {
+  if (module_exists('c4m_public_access') && user_is_anonymous() ){
+    return FALSE;
+  }
   if (!og_context_is_init()) {
     // OG context was not determined yet, so register the path and return early.
     // The next time this access callback will be called, it will not enter
@@ -554,7 +557,7 @@ function c4m_og_purl_global_content_access() {
     return TRUE;
   }
 
-  return !og_context() && user_access('access content') && user_is_logged_in();
+  return !og_context() && user_access('access content');
 }
 
 /**
@@ -572,7 +575,7 @@ function c4m_og_purl_group_content_access() {
     return FALSE;
   }
 
-  return og_context() && user_access('access content');
+  return user_is_logged_in() && og_context() && user_access('access content');
 }
 
 /**
