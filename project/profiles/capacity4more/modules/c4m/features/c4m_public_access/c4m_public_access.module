@@ -98,3 +98,15 @@ function c4m_public_access_entity_view_alter(&$build, $type) {
   }
 
 }
+
+function c4m_public_access_module_implements_alter(&$implementations, $hook) {
+  // make sure this access check is done after the other ones.
+  if ($hook == 'node_access') {
+    $group = $implementations['c4m_public_access'];
+    unset($implementations['c4m_public_access']);
+    $implementations['c4m_public_access'] = $group;
+  }
+}
+
+
+
