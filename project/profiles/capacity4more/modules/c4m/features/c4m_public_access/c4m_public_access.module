@@ -166,3 +166,17 @@ function c4m_public_access_default_page_manager_pages_alter(&$pages) {
   }
 
 }
+
+/**
+ * Perform alterations to a custom block.
+ *
+ * Modules can implement hook_block_view_MODULE_DELTA_alter() to modify a
+ * specific block, rather than implementing hook_block_view_alter().
+ *
+ **/
+function c4m_public_access_block_view_c4m_features_header_c4m_header_menu_alter(&$data, $block){
+  if (user_is_anonymous() && current_path() !== "access-denied-ecas") {
+    $data['content'] .= '<a id="sign_up" href="/register">Sign up now!</a>';
+  }
+}
+
