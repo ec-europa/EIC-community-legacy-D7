@@ -52,6 +52,10 @@ function c4m_content_actions_info($context) {
  */
 function c4m_content_action_get_actions() {
   $output = '';
+
+  if (!user_is_logged_in()) {
+    return $output;
+  }
   $context = c4m_content_current_context();
   $actions = c4m_content_actions_info($context);
   $node = menu_get_object();
