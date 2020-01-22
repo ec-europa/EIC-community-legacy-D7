@@ -296,7 +296,7 @@ function c4m_search_search_api_solr_query_alter(
 function c4m_search_search_api_sorts_alter(&$block, $view) {
   $params = drupal_get_query_parameters();
 
-  if (empty($params['text'])) {
+  if (empty($params['text']) && !empty($block)) {
     foreach ($block['content']['#items'] as $key => $item) {
       if (isset($item['#options']['query']['sort'])
         && $item['#options']['query']['sort'] === 'search_api_relevance'
