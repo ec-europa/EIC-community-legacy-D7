@@ -40,16 +40,6 @@ function c4m_user_user_default_permissions() {
     'module' => 'campaignmonitor',
   );
 
-  // Exported permission: 'access content'.
-  $permissions['access content'] = array(
-    'name' => 'access content',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'access content overview'.
   $permissions['access content overview'] = array(
     'name' => 'access content overview',
@@ -125,16 +115,6 @@ function c4m_user_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'system',
-  );
-
-  // Exported permission: 'access site-wide contact form'.
-  $permissions['access site-wide contact form'] = array(
-    'name' => 'access site-wide contact form',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'contact',
   );
 
   // Exported permission: 'access statistics'.
