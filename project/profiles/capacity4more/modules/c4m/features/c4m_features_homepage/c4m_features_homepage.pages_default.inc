@@ -28,7 +28,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   );
   $page->default_handlers = array();
   $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->disabled = TRUE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_c4m_homepage_panel_context_2';
   $handler->task = 'page';
@@ -94,7 +94,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'bottom';
   $pane->type = 'featured_block';
   $pane->subtype = 'featured_block';
-  $pane->shown = FALSE;
+  $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
     'override_title' => 0,
@@ -116,7 +116,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'bottom';
   $pane->type = 'block';
   $pane->subtype = 'c4m_content-global_statistics_summary';
-  $pane->shown = FALSE;
+  $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
     'override_title' => 0,
@@ -141,7 +141,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'left';
   $pane->type = 'views';
   $pane->subtype = 'global_activity_stream_no_js_fallback';
-  $pane->shown = FALSE;
+  $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
     'override_pager_settings' => 0,
@@ -176,7 +176,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'right';
   $pane->type = 'c4m_featured_groups';
   $pane->subtype = 'c4m_featured_groups';
-  $pane->shown = FALSE;
+  $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
     'override_title' => 0,
@@ -199,7 +199,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'right';
   $pane->type = 'c4m_featured_projects';
   $pane->subtype = 'c4m_featured_projects';
-  $pane->shown = FALSE;
+  $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
     'override_title' => 0,
@@ -244,7 +244,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'right';
   $pane->type = 'block';
   $pane->subtype = 'c4m_features_homepage-c4m_features_homepage_newsletter';
-  $pane->shown = FALSE;
+  $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
     'override_title' => 0,
