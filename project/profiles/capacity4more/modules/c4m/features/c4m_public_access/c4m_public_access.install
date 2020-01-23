@@ -53,9 +53,3 @@ function c4m_public_access_disable() {
   // Unhide the hidden page.
   _c4m_public_access_show_hide_menu_item_for_anonymous_users(SCALEUP_NODEPATH);
 }
-
-
-
-
-
-
