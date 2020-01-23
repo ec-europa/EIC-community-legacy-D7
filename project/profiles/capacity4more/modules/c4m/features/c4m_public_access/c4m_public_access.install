@@ -16,7 +16,6 @@ function c4m_public_access_install() {
     ->condition('name', 'c4m_public_access', '=')
     ->execute();
   drupal_set_installed_schema_version('c4m_public_access', '7100');
-  //node_access_rebuild();
 }
 
 /**
