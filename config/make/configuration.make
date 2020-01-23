@@ -14,8 +14,11 @@ projects[strongarm][subdir] = "contrib"
 projects[strongarm][version] = "2.0"
 
 projects[node_view_permissions][subdir] = "contrib"
-projects[node_view_permissions][version]  = 1.x-dev
-; projects[node_view_permissions][download][type] = "git"
-; projects[node_view_permissions][download][url] = "https://git.drupal.org/project/node_view_permissions.git"
-; projects[node_view_permissions][download][revision] = "6012e87a7c05c6fc47f0cccf4dc8f99b72585e15"
+projects[node_view_permissions][download][type] = "git"
+projects[node_view_permissions][download][url] = "https://git.drupal.org/project/node_view_permissions.git"
+projects[node_view_permissions][download][revision] = "a0e5dfd9ac6f8dac6cad1202c23a69dd3d12ddc6"
 ;projects[node_view_permissions][patch][] = "../patches/node_view_permissions-deny_anonymous_access.patch"
+
+
+projects[menu_per_role][subdir] = "contrib"
+projects[menu_per_role][version] = "1.0"
