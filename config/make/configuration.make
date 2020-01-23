@@ -17,7 +17,7 @@ projects[node_view_permissions][subdir] = "contrib"
 projects[node_view_permissions][download][type] = "git"
 projects[node_view_permissions][download][url] = "https://git.drupal.org/project/node_view_permissions.git"
 projects[node_view_permissions][download][revision] = "a0e5dfd9ac6f8dac6cad1202c23a69dd3d12ddc6"
-;projects[node_view_permissions][patch][] = "../patches/node_view_permissions-deny_anonymous_access.patch"
+
 
 
 projects[menu_per_role][subdir] = "contrib"
