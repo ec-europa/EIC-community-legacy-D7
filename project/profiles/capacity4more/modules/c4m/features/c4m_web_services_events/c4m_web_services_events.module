@@ -398,7 +398,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
           }
 
           // event_type conversion :
-          if ($field_name == "c4m_event_type") {
+          if ($field_name == 'c4m_event_type') {
             $event_type_field = field_read_fields([
               'entity_type' => 'node',
               'bundle' => 'event_site',
@@ -417,7 +417,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
               if (isset($allowed_event_types[$item[LANGUAGE_NONE][0]['value']])) {
                 $item[LANGUAGE_NONE] = $allowed_event_types[$item[LANGUAGE_NONE][0]['value']];
                 // check if value exists in the event_types to prevent awkward notices of illegal choice
-                if (!isset($event_type_field["c4m_event_type"]["settings"]["allowed_values"][$item[LANGUAGE_NONE]])) {
+                if (!isset($event_type_field['c4m_event_type']['settings']['allowed_values'][$item[LANGUAGE_NONE]])) {
                   _raise_error('illegal_event_type',$item[LANGUAGE_NONE]);
                 }
               }
