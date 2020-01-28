@@ -96,21 +96,30 @@ header {
   margin-top: 25px;
 }
 
-#sign_up {
-    position: relative;
-    display: inline-block;
+
+/* EIC tobe moved*/
+.not-logged-in {
+  div#member_access {
+    position: absolute;
+    display: block;
     z-index: 5;
-    top: 100px;
-    width: 100%;
+    top: 104px;
+    width: 225px;
     height: 40px;
-    line-height: 40px;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-    background-color: #004494;
-    color: white;
-    &:hover {
-      background-color: #dae5f1;
-      color: #003776;
+    a {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      line-height: 40px;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      background-color: #004494;
+      color: white;
+      &:hover {
+        background-color: #dae5f1;
+        color: #003776;
+      }
     }
+  }
 }
