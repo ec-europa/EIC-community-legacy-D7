@@ -737,10 +737,10 @@ function c4m_user_access_denied_ecas() {
     }
     $sign_up_url = variable_get('c4m_user_sign_up_url', 'https://entrypoint-smei.easme-web.eu/admissions/entry');
 
-    $cta_1 = t('<h3>Already a member?</h3>').l(t('Access via ECAS login'), 'ecas', [
+    $cta_1 = t('<h3>Already a member?</h3>').l(t('Log in'), 'ecas', [
       'attributes' => ['class' => []],
     ]);
-    $cta_2 = t('<h3>Not a member yet?</h3>').l(t('Sign up'), $sign_up_url, [
+    $cta_2 = t('<h3>Not a member yet?</h3>').l(t('Register'), $sign_up_url, [
       'attributes' => ['class' => []],
     ]);
 

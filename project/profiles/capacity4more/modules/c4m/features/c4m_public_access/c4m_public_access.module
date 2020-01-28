@@ -176,7 +176,7 @@ function c4m_public_access_default_page_manager_pages_alter(&$pages) {
  **/
 function c4m_public_access_block_view_c4m_features_header_c4m_header_menu_alter(&$data, $block){
   if (user_is_anonymous() && current_path() !== "access-denied-ecas") {
-    $data['content'] .= '<a id="sign_up" href="/register">Sign up now!</a>';
+    $data['content'] .= '<div id="member_access"><a href="/register">Member access</a></div>';
   }
 }
 
