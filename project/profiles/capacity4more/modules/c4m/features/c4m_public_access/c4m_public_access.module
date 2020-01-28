@@ -13,6 +13,28 @@ define('SCALEUP_NODEPATH', "node/6092");
 include_once 'c4m_public_access.features.inc';
 
 
+function c4m_public_access_menu(){
+  $items = array();
+  $items['member_access'] = array(
+    'title' => 'Member access',
+    'page callback' => '_member_access',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+
+function _member_access() {
+  if (user_is_anonymous()) {
+    return c4m_user_access_denied_ecas();
+  }
+  else {
+    drupal_goto('<front>');
+  }
+}
+
+
 /**
  * Implements hook_node_access().
  *
@@ -176,7 +198,7 @@ function c4m_public_access_default_page_manager_pages_alter(&$pages) {
  **/
 function c4m_public_access_block_view_c4m_features_header_c4m_header_menu_alter(&$data, $block){
   if (user_is_anonymous() && current_path() !== "access-denied-ecas") {
-    $data['content'] .= '<div id="member_access"><a href="/register">Member access</a></div>';
+    $data['content'] .= '<div id="member_access"><a href="/member_access">Member access</a></div>';
   }
 }
 
