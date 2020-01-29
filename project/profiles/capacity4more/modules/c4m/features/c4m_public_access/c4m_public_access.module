@@ -13,7 +13,7 @@ define('SCALEUP_NODEPATH', "node/6092");
 include_once 'c4m_public_access.features.inc';
 
 
-function c4m_public_access_menu(){
+function c4m_public_access_menu() {
   $items = array();
   $items['member_access'] = array(
     'title' => 'Member access',
@@ -24,7 +24,6 @@ function c4m_public_access_menu(){
   return $items;
 }
 
-
 function _member_access() {
   if (user_is_anonymous()) {
     return c4m_user_access_denied_ecas();
@@ -34,7 +33,23 @@ function _member_access() {
   }
 }
 
-
+/**
+ * Implements hook_block_view_alter().
+ */
+function c4m_public_access_block_view_alter(&$data, $block) {
+  if (user_is_logged_in()) {
+    return;
+  }
+  if (!property_exists($block, 'context') || $block->context != 'c4m_context_og_menu') {
+    // Not the desired context.
+    return;
+  }
+  foreach ($data['content'] as $key => $value) {
+    if (is_integer($key) && $value["#attributes"]["class"][0] !== "first") {
+      unset($data['content'][$key]);
+    }
+  }
+}
 /**
  * Implements hook_node_access().
  *
@@ -57,7 +72,7 @@ function c4m_public_access_node_access($node, $op, $account) {
       else {
         return NODE_ACCESS_DENY;
       }
-  ;  }
+    }
 
     // Only allow event_sites with published og_status and non empty dashboard_id
     if ($node->type == "event_site") {
