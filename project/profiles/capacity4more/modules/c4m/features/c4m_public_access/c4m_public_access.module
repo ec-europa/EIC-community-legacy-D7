@@ -61,7 +61,7 @@ function c4m_public_access_block_view_alter(&$data, $block) {
 function c4m_public_access_node_access($node, $op, $account) {
   // anonymous users can only see the about us page (for books) , articles and event-sites.
   if ($account->uid === 0 && $op === "view") {
-    if (!in_array($node->type, ['article', 'book', 'event_site','group']) ) {
+    if (!in_array($node->type, ['article', 'book', 'event_site']) ) {
       return NODE_ACCESS_DENY;
     }
     if ($node->type == "book") {
