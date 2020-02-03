@@ -160,21 +160,21 @@ function c4m_og_form_alter(array &$form, array $form_state) {
  * Implements hook_menu().
  */
 function c4m_og_menu() {
-  $items['group/%/%/admin/owner'] = [
+  $items['group/%/%/admin/owner'] = array(
     'page callback' => 'drupal_get_form',
     'page arguments' => ['c4m_og_replace_owner_build_form', 1, 2],
     'access callback' => 'c4m_og_user_is_owner',
     'access arguments' => [1, 2],
     'title' => 'Replace Owner',
-  ];
+  );
 
-  $items['project/%/%/admin/owner'] = [
+  $items['project/%/%/admin/owner'] = array(
     'page callback' => 'drupal_get_form',
     'page arguments' => ['c4m_og_replace_project_owner_build_form', 1, 2],
     'access callback' => 'c4m_og_user_is_owner',
     'access arguments' => [1, 2],
     'title' => 'Replace Owner',
-  ];
+  );
 
   $items['event_site/%/%/admin/owner'] = array(
     'page callback' => 'drupal_get_form',
