@@ -180,7 +180,7 @@ function c4m_content_group_node_grants($account = NULL, $op = 'view') {
     $account = user_load($user->uid);
   }
 
-  $nodes = og_get_entity_groups();
+  $nodes = og_get_entity_groups('user', $account);
 
   $grants[C4M_CONTENT_GROUP_ACCESS_REALM . '_not_member'] = array(
     C4M_CONTENT_GROUP_STATUS_VIEW_PUBLISHED,
@@ -216,7 +216,7 @@ function c4m_content_group_node_grants($account = NULL, $op = 'view') {
   }
 
   // Go through all user's group he is owner, admin or member of.
-  foreach (og_get_entity_groups() as $group_type => $gids) {
+  foreach (og_get_entity_groups('user', $account) as $group_type => $gids) {
     foreach ($gids as $gid) {
       $node = node_load($gid);
 
