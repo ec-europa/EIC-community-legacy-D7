@@ -1,5 +1,5 @@
 #header-ec-wrapper {
-    padding: 40px 0 30px 0;
+    padding: 30px 0 30px 0;
 }
 
 .header-logo {
@@ -49,16 +49,25 @@
 @media (min-width: 860px) {
     .header-logo {
         margin-bottom: 0;
+        .site-name-slogan {
+            margin-top: 4px;
+        }
     }
 
+
+
     .header-logo h1 {
-        font-size: 1.5rem !important;
+        font-size: 2rem !important;
         line-height: 32px !important;
+        display: inline-block;
+        border-bottom: 3px solid #4073af;
+        margin: 0;
     }
 
     .header-logo h2 {
-        font-size: 1.25rem !important;
-        line-height: 21px;
+        font-size: 1.5rem !important;
+        line-height: 28px;
+        font-weight: bold;
     }
 
     .header-search {

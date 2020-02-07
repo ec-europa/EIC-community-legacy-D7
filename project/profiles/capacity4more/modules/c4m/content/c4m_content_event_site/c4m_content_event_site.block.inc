@@ -26,7 +26,13 @@ function _c4m_content_event_site_block_c4m_block_create_event_site() {
     $markup = t(
       '!register or !login to create or join event sites',
       array(
-        '!register' => l(t('Register'), 'user/register'),
+        '!register' => l(
+          t('Register'),
+          'user/register',
+          array(
+            'query' => array('destination' => request_path()),
+          )
+        ),
         '!login' => l(
           t('log in'),
           'user/login',
