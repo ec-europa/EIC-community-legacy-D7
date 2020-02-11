@@ -9,11 +9,61 @@
  * Implements hook_install().
  */
 function c4m_vocab_event_type_install() {
-  //only create when it does not exist yet, we don't want to reset the event types.
-  $vocab = taxonomy_vocabulary_machine_name_load('c4m_event_types');
-  if (!isset($vocab)) {
-    c4m_vocab_event_types_install_vocabulary();
+  //revert thyself.
+  features_revert_module('c4m_vocab_event_type');
+  $vocabulary = taxonomy_vocabulary_machine_name_load('c4m_vocab_event_type');
+  if ($vocabulary === False) {
+    drush_print("---- bugger, this should not happen -----");
+    // feature should have done it. No point of continuing.
+    return;
   }
+
+  if (!empty($vocabulary)) {
+    drush_print("---- Importing the new event_types into the vocabulary -----");
+    // create the terms from the existing field based on the previous field:
+    $prepared_terms = _c4m_vocab_event_type_get_terms_from_field('c4m_event_type');
+    if(!empty($prepared_terms)) {
+      _c4m_vocab_event_type_install_terms($vocabulary, $prepared_terms);
+    }
+  }
+
+  // create term field and attach them to be used in the content-types.
+  $field = array(
+    'field_name' => 'c4m_vocab_event_type',
+    'type' => 'taxonomy_term_reference',
+    'settings' => array(
+      'allowed_values' => array(
+        array(
+          'vocabulary' => $vocabulary->machine_name,
+          'parent' => 0
+          ),
+      ),
+    ),
+  );
+  field_create_field($field);
+
+  // attach it to the content types;
+  $content_types = array('event' => '1','event_site' => '3');
+  foreach ($content_types as $content_type => $weigth) {
+    $instance = array(
+      'field_name' => 'c4m_vocab_event_type',
+      'entity_type' => 'node',
+      'label' => 'Event type',
+      'bundle' => $content_type,
+      'required' => true,
+      'widget' => array(
+        'type' => 'options_buttons',
+        'weight' => $weigth,
+      ),
+      'display' => array(
+        'default' => array('type' => 'hidden'),
+        'teaser' => array('type' => 'hidden')
+      ),
+    );
+    field_create_instance($instance);
+  }
+
+  _c4m_vocab_event_type_update_related_node();
 }
 
 /**
@@ -21,11 +71,11 @@ function c4m_vocab_event_type_install() {
  */
 function c4m_vocab_event_type_uninstall() {
   // Clean up of the terms.
-  $vocab = taxonomy_vocabulary_machine_name_load('c4m_event_types');
+  $vocab = taxonomy_vocabulary_machine_name_load('c4m_vocab_event_type');
   // $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocab->vid));
-  // if (!empty($vocab)) {
-  //   taxonomy_vocabulary_delete($vocab->vid);
-  // }
+  if (!empty($vocab)) {
+    taxonomy_vocabulary_delete($vocab->vid);
+  }
 }
 
 function c4m_vocab_event_type_post_features_install_feature() {
