@@ -78,13 +78,13 @@ function c4m_vocab_event_type_uninstall() {
   }
 }
 
-function c4m_vocab_event_type_post_features_install_feature() {
-  //Only the first time and vocabulary is empty.
-  $vocab = taxonomy_vocabulary_machine_name_load('c4m_event_types');
-  $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocab->vid));
-  if (empty($terms)) {
-    c4m_vocab_event_type_install_terms($vocab);
-  }
+
+/**
+ * Implements hook_enable().
+ */
+function c4m_vocab_event_type_enable() {
+  // for content_types event and event_site,
+  // will port the old event_types list into the new taxonomy field in an update_hook.
 }
 
 /**
