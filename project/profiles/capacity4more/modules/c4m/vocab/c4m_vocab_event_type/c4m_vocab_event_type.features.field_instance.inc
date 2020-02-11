@@ -12,9 +12,9 @@ function c4m_vocab_event_type_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'taxonomy_term-c4m_event_types-c4m_et_allowed_in_event_sites'.
-  $field_instances['taxonomy_term-c4m_event_types-c4m_et_allowed_in_event_sites'] = array(
-    'bundle' => 'c4m_event_types',
+  // 'taxonomy_term-c4m_event_type-c4m_et_allowed_in_event_site'.
+  $field_instances['taxonomy_term-c4m_vocab_event_type-c4m_et_allowed_in_event_site'] = array(
+    'bundle' => 'c4m_vocab_event_type',
     'default_value' => array(),
     'deleted' => 0,
     'description' => '',
@@ -29,8 +29,8 @@ function c4m_vocab_event_type_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'taxonomy_term',
-    'field_name' => 'c4m_et_allowed_in_event_sites',
-    'label' => 'Allowed in content type "event sites"',
+    'field_name' => 'c4m_et_allowed_in_event_site',
+    'label' => 'Allowed in content type "event site"',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -47,9 +47,9 @@ function c4m_vocab_event_type_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-c4m_event_types-c4m_et_allowed_in_events'.
-  $field_instances['taxonomy_term-c4m_event_types-c4m_et_allowed_in_events'] = array(
-    'bundle' => 'c4m_event_types',
+  // 'taxonomy_term-c4m_event_types-c4m_et_allowed_in_event'.
+  $field_instances['taxonomy_term-c4m_vocab_event_type-c4m_et_allowed_in_event'] = array(
+    'bundle' => 'c4m_vocab_event_type',
     'default_value' => array(
       0 => array(
         'value' => 0,
@@ -68,8 +68,8 @@ function c4m_vocab_event_type_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'taxonomy_term',
-    'field_name' => 'c4m_et_allowed_in_events',
-    'label' => 'Allowed in content type "events"',
+    'field_name' => 'c4m_et_allowed_in_event',
+    'label' => 'Allowed in content type "event"',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -86,9 +86,9 @@ function c4m_vocab_event_type_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-c4m_event_types-c4m_vocab_smed_event_type_id'.
-  $field_instances['taxonomy_term-c4m_event_types-c4m_vocab_smed_event_type_id'] = array(
-    'bundle' => 'c4m_event_types',
+  // 'taxonomy_term-c4m_event_type-c4m_external_event_type_id'.
+  $field_instances['taxonomy_term-c4m_vocab_event_type-c4m_external_event_type_id'] = array(
+    'bundle' => 'c4m_vocab_event_type',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -107,8 +107,8 @@ function c4m_vocab_event_type_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'taxonomy_term',
-    'field_name' => 'c4m_vocab_smed_event_type_id',
-    'label' => 'smed event type id',
+    'field_name' => 'c4m_external_event_type_id',
+    'label' => 'External event type id',
     'required' => FALSE,
     'settings' => array(
       'max' => '',
@@ -127,8 +127,8 @@ function c4m_vocab_event_type_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Allowed in content type "event sites"');
-  t('Allowed in content type "events"');
+  t('Allowed in content type "event site"');
+  t('Allowed in content type "event"');
   t('smed event type id');
 
   return $field_instances;
