@@ -87,21 +87,11 @@ function c4m_vocab_event_type_post_features_install_feature() {
   }
 }
 
-function c4m_vocab_event_type_install_terms($vocab) {
+/**
+ * Helper function to import the terms into the vocabulary.
+ */
+function _c4m_vocab_event_type_install_terms($vocab, $terms) {
     // The default event_types.
-    $terms = array(
-      array('name' => st('Corporate days'), 'c4m_event_type_id' => '1' , "event_sites" => '1' , "events" => '0'),
-      array('name' => st('Pitching event'), 'c4m_event_type_id' => '2' , "event_sites" => '1' , "events" => '0'),
-      array('name' => st('Combined Corporate and Pitching '), 'c4m_event_type_id' => '3' , "event_sites" => '1' , "events" => '0'),
-      array('name' => st('Academy'), 'c4m_event_type_id' => '4' , "event_sites" => '1' , "events" => '0'),
-      array('name' => st('Overseas Trade Fairs'), 'c4m_event_type_id' => '5' , "event_sites" => '1' , "events" => '0'),
-      array('name' => st('Coordinators Welcome Day'), 'c4m_event_type_id' => '6' , "event_sites" => '1' , "events" => '0'),
-      array('name' => st('EIC Summit'), 'c4m_event_type_id' => '7' , "event_sites" => '1' , "events" => '0'),
-      array('name' => st('Event'), 'c4m_event_type_id' => '' , "event_sites" => '0' , "events" => '1'),
-      array('name' => st('Learning / Training'), 'c4m_event_type_id' => '' , "event_sites" => '0' , "events" => '1'),
-      array('name' => st('Meeting'), 'c4m_event_type_id' => '' , "event_sites" => '0' , "events" => '1'),
-      );
-  
     $weight = -10;
     foreach ($terms as $term) {
       $term_object              = new stdClass();
@@ -109,41 +99,70 @@ function c4m_vocab_event_type_install_terms($vocab) {
       $term_object->description = 'Event Type ' . $term['name'];
       $term_object->vid         = $vocab->vid;
       $term_object->weight      = $weight;
-      if (!empty($term['c4m_event_type_id'])) {
-        $term_object->c4m_vocab_smed_event_type_id  = array(LANGUAGE_NONE => array(array("value" => $term['c4m_event_type_id'])));
+      if (!empty($term['external_id'])) {
+        $term_object->c4m_external_event_type_id  = array(LANGUAGE_NONE => array(array("value" => $term['external_id'])));
       }
-      $term_object->c4m_et_allowed_in_event_sites = array(LANGUAGE_NONE => array(array("value" => $term['event_sites'])));
-      $term_object->c4m_et_allowed_in_events      = array(LANGUAGE_NONE => array(array("value" => $term['events'])));
-  
+      $term_object->c4m_et_allowed_in_event_site = array(LANGUAGE_NONE => array(array("value" => $term['event_site'])));
+      $term_object->c4m_et_allowed_in_event      = array(LANGUAGE_NONE => array(array("value" => $term['event'])));
+
       taxonomy_term_save($term_object);
-  
+
       $weight++;
     }
   }
-  
 
-function c4m_vocab_event_types_install_vocabulary() {
-  $event_types_vocab = (object) array(
-    'name' => 'Event types',
-    'description' => 'Types of events SMED based (via webservice) aswell as created directly in EIC Community',
-    'machine_name' => 'c4m_event_types',
-  );
-  taxonomy_vocabulary_save($event_types_vocab);
-    //   variable_set(
-    //     'pathauto_taxonomy_term_c4m_vocab_event_types_pattern',
-    //     'content-event_types/[term:name]'
-    //   );
+
+function _c4m_vocab_event_type_get_terms_from_field($field_name) {
+  //$field_settings =
+  $all_fields_of_platform = field_info_fields();
+  $allowed_values= list_allowed_values($all_fields_of_platform[$field_name]);
+  $prepared_terms = array();
+  foreach ($allowed_values as $key => $allowed_value) {
+    $prepared_terms[] =  array('name' => st($allowed_value), 'external_id' => '0' , "event_site" => '0' , "event" => '0');
+  }
+  return $prepared_terms;
 }
-  
 /**
- * Delete old terms and add all the new ones.
+ * update nodes (event, event_site) so that the new field matches the old field.
+ * update the taxonomy term, to be used in each content type
  */
-// function c4m_vocab_events_types_update_7001() {
-//   $vocabulary = taxonomy_vocabulary_machine_name_load('c4m_vocab_event_types');
-//   foreach (taxonomy_get_tree($vocabulary->vid) as $term) {
-//     if (!empty($term)) {
-//       taxonomy_term_delete($term->tid);
-//     }
-//   }
-//   c4m_vocab_events_types_install_terms();
-// }
+function _c4m_vocab_event_type_update_related_node() {
+  $field_name = 'c4m_event_type';
+  $field_c4m_event_type = field_info_field($field_name);
+
+  $vocabulary_event_type = taxonomy_vocabulary_machine_name_load("c4m_vocab_event_type");
+  $voc_event_types =  taxonomy_get_tree($vocabulary_event_type->vid, 0, NULL, True);
+  $voc_event_types_sorted_name = array();
+  foreach( $voc_event_types as $voc_taxonomy_event_type) {
+    $voc_event_types_sorted_name[$voc_taxonomy_event_type->name] = $voc_taxonomy_event_type;
+  }
+
+  $result = db_query("SELECT nid FROM {node} WHERE type IN ('event', 'event_site')");
+  while($row = $result->fetchObject()) {
+    drush_print(dt("---- Going to process nid : [@nid] -----", array('@nid' => $row->nid)));
+    $node = node_load($row->nid);
+    $c4m_event_type = $node->c4m_event_type[LANGUAGE_NONE][0]["value"];
+    if (array_key_exists($c4m_event_type, $field_c4m_event_type["settings"]["allowed_values"])) {
+      // Find the correct taxonomy ID
+      $c4m_event_type_value = $field_c4m_event_type["settings"]["allowed_values"][$c4m_event_type];
+
+      if (array_key_exists($c4m_event_type_value, $voc_event_types_sorted_name)) {
+        $node->c4m_vocab_event_type = array(LANGUAGE_NONE => array(array("tid" => $voc_event_types_sorted_name[$c4m_event_type_value]->tid)));
+        node_save($node);
+        // also update the taxonomy if needed.
+        if ($node->type == "event") {
+          if ($voc_event_types_sorted_name[$c4m_event_type_value]->c4m_et_allowed_in_event[LANGUAGE_NONE][0]["value"] !== "1") {
+            $voc_event_types_sorted_name[$c4m_event_type_value]->c4m_et_allowed_in_event[LANGUAGE_NONE][0]["value"] = "1";
+            taxonomy_term_save($voc_event_types_sorted_name[$c4m_event_type_value]);
+          }
+        }
+        elseif ($node->type == "event_site"){
+          if ($voc_event_types_sorted_name[$c4m_event_type_value]->c4m_et_allowed_in_event_site[LANGUAGE_NONE][0]["value"] !== "1") {
+            $voc_event_types_sorted_name[$c4m_event_type_value]->c4m_et_allowed_in_event_site[LANGUAGE_NONE][0]["value"] = "1";
+            taxonomy_term_save($voc_event_types_sorted_name[$c4m_event_type_value]);
+          }
+        }
+      }
+    }
+  }
+}
