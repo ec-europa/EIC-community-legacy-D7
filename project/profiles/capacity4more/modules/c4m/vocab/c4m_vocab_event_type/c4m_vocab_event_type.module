@@ -6,3 +6,22 @@
  */
 
 include_once 'c4m_vocab_event_type.features.inc';
+
+function c4m_vocab_event_type_form_node_form_alter(array &$form, array &$form_state) {
+  $content_types = array('event', 'event_site');
+
+  if (!in_array($form['#node']->type,$content_types )) {
+    return;
+  }
+
+  $voc_event_type = taxonomy_vocabulary_machine_name_load("c4m_vocab_event_type");
+  $event_types =  taxonomy_get_tree($voc_event_type->vid, 0, NULL, True);
+  // only allow the event_types that have been flagged.
+
+  // Remove options that are only needed for Group Events in the event_type field.
+  foreach ($event_types as $event_type) {
+    if ( $event_type->{"c4m_et_allowed_in_" . $form['#node']->type}[LANGUAGE_NONE][0]['value'] == 0) {
+      unset($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'][$event_type->tid]);
+    }
+  }
+}
