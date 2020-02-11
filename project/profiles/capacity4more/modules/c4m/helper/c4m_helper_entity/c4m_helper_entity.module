@@ -386,12 +386,33 @@ function c4m_helper_entity_label_info($entity) {
   $entity_type = $entity->type;
 
   // Allow content types to define subtypes (e.g. c4m_event_type).
-  $type = ($entity->type == 'event_site')? 'event' : $entity->type;
-  $field_name = 'c4m_' . $type . '_type';
+  if ($entity->type == 'event_site') {
+    $type = 'event';
+    $field_name = 'c4m_' . $type . '_type';
+    $field_name_vocab = 'c4m_vocab_' . $type . '_type';
 
-  if (!empty($entity->$field_name)) {
-    $object_wrapper = entity_metadata_wrapper('node', $entity);
-    $entity_type .= '-' . $object_wrapper->$field_name->value();
+    // check if event_type vocabulary exists
+    if (!empty($entity->$field_name_vocab)) {
+      $object_wrapper = entity_metadata_wrapper('node', $entity);
+      $event_type = $object_wrapper->$field_name_vocab->value();
+      $article = 'a';
+      if (ctype_alpha($event_type->description)
+          && preg_match('/^[aeiou]/i', $event_type->description)) {
+        $article = 'an';
+      }
+      return array(
+        'article' => $article,
+        'singular' => $event_type->description,
+        'plural' => $event_type->description,
+        'insert action' => 'Added a new ' . $event_type->description,
+        'update action' => 'Updated the ' . $event_type->description,
+      );
+    }
+    // Get label out of static list.
+    if (!empty($entity->$field_name)) {
+      $object_wrapper = entity_metadata_wrapper('node', $entity);
+      $entity_type .= '-' . $object_wrapper->$field_name->value();
+    }
   }
 
   // Only return data for a given feature.
