@@ -129,7 +129,7 @@ function c4m_vocab_event_type_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Allowed in content type "event site"');
   t('Allowed in content type "event"');
-  t('smed event type id');
+  t('External event type id');
 
   return $field_instances;
 }
