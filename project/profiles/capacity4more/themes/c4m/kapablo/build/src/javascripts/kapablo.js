@@ -55,6 +55,20 @@ var jQuery = jQuery || {};
                 parent.parent().addClass("col-xs-4");
 
             }));
+            var eventTypes = $("#edit-c4m-vocab-event-type-und");
+
+            eventTypes.addClass("row");
+
+            $("input:radio", eventTypes).each((function () {
+                var value = $(this).attr("value");
+                // Target the label.
+                var parent = $(this).parent();
+                parent.addClass("event-type-button")
+                    .addClass("event-type-" + value);
+                // Target the wrapper div.
+                parent.parent().addClass("col-xs-4");
+
+            }));
         }
     };
 
