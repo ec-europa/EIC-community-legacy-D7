@@ -364,7 +364,17 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
             foreach ($item[LANGUAGE_NONE] as $term_key) {
               if (!empty($term_key)) {
                 // If term cannot be found, throw error and stop the process.
-                if (isset($eventsites_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary']) && $loaded = c4m_web_services_taxonomy_get_term_by_key($term_key, $eventsites_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'])) {
+                // exception for the new vocabulary //@todo update the other vocabularies.
+                if ($field_name == 'c4m_vocab_event_type') {
+                  $taxonomy_fieldname = 'c4m_external_event_type_id';
+                }
+                else {
+                  $taxonomy_fieldname = 'c4m_dashboard_key';
+                }
+                if (isset($eventsites_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary']) &&
+                    $loaded = c4m_web_services_taxonomy_get_term_by_key($term_key,
+                                                                        $eventsites_taxonomy_fields[$field_name]['settings']['allowed_values'][0]['vocabulary'],
+                                                                        $taxonomy_fieldname)) {
                   foreach ($loaded as $tid => $term) {
                     // Check if the term has parents and add them aswell.
                     // taxonomy_get_parents_all will always return at least the
