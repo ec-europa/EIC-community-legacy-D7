@@ -407,39 +407,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
             $item[LANGUAGE_NONE] = $new_terms;
           }
 
-          // event_type conversion :
-          if ($field_name == 'c4m_event_type') {
-            $event_type_field = field_read_fields([
-              'entity_type' => 'node',
-              'bundle' => 'event_site',
-            ]);
 
-            $allowed_event_types['1'] = 'corporate_days';
-            // $allowed_event_types['2'] = 'pitching_event'; -- replaced by investor_days
-            $allowed_event_types['2'] = 'investor_days';
-            $allowed_event_types['3'] = 'e-pitching';
-            $allowed_event_types['8'] = 'eic_interviews';
-            $allowed_event_types['6'] = 'coordinators_welcome_day';
-            $allowed_event_types['9'] = 'innovation_procurer_days';
-
-
-            if (isset($item[LANGUAGE_NONE][0]['value'])) {
-              if (isset($allowed_event_types[$item[LANGUAGE_NONE][0]['value']])) {
-                $item[LANGUAGE_NONE] = $allowed_event_types[$item[LANGUAGE_NONE][0]['value']];
-                // check if value exists in the event_types to prevent awkward notices of illegal choice
-                if (!isset($event_type_field['c4m_event_type']['settings']['allowed_values'][$item[LANGUAGE_NONE]])) {
-                  _raise_error('illegal_event_type',$item[LANGUAGE_NONE]);
-                }
-              }
-              else {
-                // set default event_type:
-                $item[LANGUAGE_NONE] = "corporate_days";
-              }
-            }
-            else {
-              _raise_error('missing_event_type');
-            }
-          }
           if ($field_name == "c4m_location_address") {
             // Remap the venue to the correct fieldname, naming used within Drupal.
             if (!empty($item[LANGUAGE_NONE][0]['venue'])) {
