@@ -739,3 +739,10 @@ function capacity4more_update_7026() {
 function capacity4more_update_7027() {
   module_enable(['c4m_public_access']);
 }
+
+/**
+ * Enable the new event_type vocabulary to be used in event and event_site.
+ */
+function capacity4more_update_7028() {
+  module_enable(['c4m_vocab_event_type']);
+}

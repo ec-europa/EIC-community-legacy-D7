@@ -116,6 +116,7 @@ dependencies[] = c4m_vocab_tag
 dependencies[] = c4m_vocab_topic
 dependencies[] = c4m_vocab_theme
 dependencies[] = c4m_vocab_tr
+dependencies[] = c4m_vocab_event_type
 
 ; Users
 dependencies[] = c4m_user
