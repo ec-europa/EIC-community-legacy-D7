@@ -141,7 +141,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'left';
   $pane->type = 'views';
   $pane->subtype = 'global_activity_stream_no_js_fallback';
-  $pane->shown = TRUE;
+  $pane->shown = false;
   $pane->access = array();
   $pane->configuration = array(
     'override_pager_settings' => 0,
@@ -222,7 +222,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'right';
   $pane->type = 'upcoming_events';
   $pane->subtype = 'upcoming_events';
-  $pane->shown = TRUE;
+  $pane->shown = false;
   $pane->access = array();
   $pane->configuration = array(
     'override_title' => 0,
@@ -244,7 +244,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'right';
   $pane->type = 'block';
   $pane->subtype = 'c4m_features_homepage-c4m_features_homepage_newsletter';
-  $pane->shown = TRUE;
+  $pane->shown = false;
   $pane->access = array();
   $pane->configuration = array(
     'override_title' => 0,
@@ -289,7 +289,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'top';
   $pane->type = 'activity_stream';
   $pane->subtype = 'activity_stream';
-  $pane->shown = TRUE;
+  $pane->shown = false;
   $pane->access = array();
   $pane->configuration = array(
     'override_title' => 1,
