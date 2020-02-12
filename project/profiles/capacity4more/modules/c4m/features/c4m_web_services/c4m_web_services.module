@@ -44,7 +44,7 @@ function _c4m_web_services_authenticate_call(array $settings, array $method, arr
   $arguments = _c4m_web_services_array_flatten($args);
 
   $valid_token = FALSE;
-  // Check if the header contains the authorization token. 
+  // Check if the header contains the authorization token.
   if (NULL !== $context->getServerVariable("HTTP_AUTHORIZATIONTOKEN")) {
     if ($context->getServerVariable("HTTP_AUTHORIZATIONTOKEN") === $settings["authorization_token_key"]) {
       $valid_token = TRUE;
@@ -659,16 +659,17 @@ function _c4m_web_services_check_unique_name($name) {
  *   Dashboard key of the term to search for.
  * @param string $vocabulary
  *   Vocabulary machine name to limit the search.
- *
+ * @param string $taxonomy_fieldname
+ *   The
  * @return array
  *   An array of matching term objects.
  */
-function c4m_web_services_taxonomy_get_term_by_key($dashboard_key, $vocabulary) {
+function c4m_web_services_taxonomy_get_term_by_key($dashboard_key, $vocabulary, $taxonomy_fieldname = 'c4m_dashboard_key') {
   $terms = [];
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'taxonomy_term')
     ->entityCondition('bundle', $vocabulary)
-    ->fieldCondition('c4m_dashboard_key', 'value', $dashboard_key, '=')
+    ->fieldCondition($taxonomy_fieldname, 'value', $dashboard_key, '=')
     ->range(0, 10)
     ->addMetaData('account', user_load_by_name('dashboard_user'));
 
