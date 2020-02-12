@@ -57,8 +57,10 @@ function _c4m_search_block_facetapi_view_alter(&$data, $block) {
     'RA7qZWw02okb78IuBysWTadEIVCrCL1b' => t('Type'),
     // Document type.
     '2qrTnbxWr0rI2lmcQR6mBDryPwkuS1PH' => t('Type'),
-    // Event type.
+    // Event type - list.
     'ajPbeoCHay77liOuYn2HrFBMw0VZUgCz' => t('Type'),
+    // Event type - Taxononmy.
+    'w3PL8MoSi2Mi00PSJ5pd7yZlZXpLg8aW' => t('Type'),
     // Organisation type.
     'pDwQkkFRyuAyJpzVYbF8BA3nQXL5VT1P' => t('Type'),
     // Project type.
