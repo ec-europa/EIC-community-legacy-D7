@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * Recalculate node grants for 'share' nodes.
+ */
+function c4m_content_share_update_7001() {
+
+  $q = db_select('node', 'n');
+  $q->condition('n.type', 'share');
+  $q->addField('n', 'nid');
+  try {
+    $stmt = $q->execute();
+  }
+  catch (\Exception $e) {
+    throw $e;
+  }
+  if (!$stmt instanceof DatabaseStatementInterface) {
+    throw new \Exception("Database query did not produce a database statement object.");
+  }
+  $nids_as_strings = $stmt->fetchCol();
+
+  $n_nids = count($nids_as_strings);
+  $chunks = array_chunk($nids_as_strings, 50);
+  $n_chunks = count($chunks);
+
+  _c4m_content_share_update_set_message(
+  "Going to process $n_nids nids in $n_chunks chunks.");
+
+  foreach ($chunks as $i => $nids_in_chunk) {
+    $nodes_in_chunk = node_load_multiple($nids_in_chunk);
+    $n_nodes_in_chunk = count($nodes_in_chunk);
+
+    foreach ($nodes_in_chunk as $node) {
+      node_access_acquire_grants($node);
+    }
+
+    _c4m_content_share_update_set_message(
+      "Chunk $i / $n_chunks with $n_nodes_in_chunk nodes processed.");
+  }
+}
+
+/**
+ * @param string $message
+ * @param string $drush_status
+ * @param string $ui_status
+ */
+function _c4m_content_share_update_set_message($message, $drush_status = 'ok', $ui_status = 'status') {
+  if (function_exists('drush_log')) {
+    drush_log($message, $drush_status);
+  }
+  else {
+    drupal_set_message($message, $ui_status);
+  }
+}
