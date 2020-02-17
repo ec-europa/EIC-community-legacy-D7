@@ -43,6 +43,7 @@ features[facetapi][] = search_api@c4m_search_nodes:block:c4m_date
 features[facetapi][] = search_api@c4m_search_nodes:block:c4m_datetime_end:value2
 features[facetapi][] = search_api@c4m_search_nodes:block:c4m_discussion_type
 features[facetapi][] = search_api@c4m_search_nodes:block:c4m_event_type
+features[facetapi][] = search_api@c4m_search_nodes:block:c4m_vocab_event_type
 features[facetapi][] = search_api@c4m_search_nodes:block:c4m_looking_for
 features[facetapi][] = search_api@c4m_search_nodes:block:c4m_offering
 features[facetapi][] = search_api@c4m_search_nodes:block:c4m_og_group_access_type

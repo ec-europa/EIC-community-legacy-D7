@@ -300,6 +300,7 @@ function c4m_search_default_search_api_index() {
         "c4m_document_agenda" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
         "c4m_document_presentation" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
         "c4m_event_type" : { "type" : "string" },
+        "c4m_vocab_event_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "c4m_is_template" : { "type" : "boolean" },
         "c4m_looking_for" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "c4m_offering" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
