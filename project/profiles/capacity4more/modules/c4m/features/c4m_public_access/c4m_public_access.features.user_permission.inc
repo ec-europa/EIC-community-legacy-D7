@@ -374,5 +374,16 @@ function c4m_public_access_user_default_permissions() {
     'module' => 'node_view_permissions',
   );
 
+  // Display the search result sort options also for anonymous users
+  $permissions['use search_api_sorts'] = array(
+    'name' => 'use search_api_sorts',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
   return $permissions;
 }

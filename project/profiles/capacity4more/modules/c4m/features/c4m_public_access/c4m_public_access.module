@@ -120,6 +120,7 @@ function c4m_public_access_search_api_solr_query_alter(array &$call_args, Search
 }
 
 /**
+ * Implements hook_entity_view_alter.
  * Hide the writers first and last in the results.
  *
  * @param $build
@@ -136,8 +137,12 @@ function c4m_public_access_entity_view_alter(&$build, $type) {
 
 }
 
+/**
+ * Implements hook_views_module_implements_alter().
+ * To make sure the access check of this module is done after the other ones.
+ */
 function c4m_public_access_module_implements_alter(&$implementations, $hook) {
-  // make sure this access check is done after the other ones.
+  //
   if ($hook == 'node_access') {
     $group = $implementations['c4m_public_access'];
     unset($implementations['c4m_public_access']);
@@ -146,7 +151,7 @@ function c4m_public_access_module_implements_alter(&$implementations, $hook) {
 }
 
 /**
- * Implements hook_views_default_views_alter).
+ * Implements hook_views_default_views_alter().
  */
 function c4m_public_access_views_default_views_alter(&$views) {
   $to_be_secured_views = array( 'c4m_overview_organisations' => 'view any organisation content',
