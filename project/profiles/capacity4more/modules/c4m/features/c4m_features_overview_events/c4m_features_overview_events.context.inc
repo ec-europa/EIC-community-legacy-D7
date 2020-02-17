@@ -69,9 +69,9 @@ function c4m_features_overview_events_context_default_contexts() {
           'region' => 'sidebar_first',
           'weight' => '-8',
         ),
-        'facetapi-ajPbeoCHay77liOuYn2HrFBMw0VZUgCz' => array(
+        'facetapi-w3PL8MoSi2Mi00PSJ5pd7yZlZXpLg8aW' => array(
           'module' => 'facetapi',
-          'delta' => 'ajPbeoCHay77liOuYn2HrFBMw0VZUgCz',
+          'delta' => 'w3PL8MoSi2Mi00PSJ5pd7yZlZXpLg8aW',
           'region' => 'sidebar_first',
           'weight' => '-6',
         ),
@@ -156,9 +156,9 @@ function c4m_features_overview_events_context_default_contexts() {
           'region' => 'sidebar_first',
           'weight' => '-9',
         ),
-        'facetapi-ajPbeoCHay77liOuYn2HrFBMw0VZUgCz' => array(
+        'facetapi-w3PL8MoSi2Mi00PSJ5pd7yZlZXpLg8aW' => array(
           'module' => 'facetapi',
-          'delta' => 'ajPbeoCHay77liOuYn2HrFBMw0VZUgCz',
+          'delta' => 'w3PL8MoSi2Mi00PSJ5pd7yZlZXpLg8aW',
           'region' => 'sidebar_first',
           'weight' => '-8',
         ),
@@ -243,9 +243,9 @@ function c4m_features_overview_events_context_default_contexts() {
           'region' => 'sidebar_first',
           'weight' => '-9',
         ),
-        'facetapi-ajPbeoCHay77liOuYn2HrFBMw0VZUgCz' => array(
+        'facetapi-w3PL8MoSi2Mi00PSJ5pd7yZlZXpLg8aW' => array(
           'module' => 'facetapi',
-          'delta' => 'ajPbeoCHay77liOuYn2HrFBMw0VZUgCz',
+          'delta' => 'w3PL8MoSi2Mi00PSJ5pd7yZlZXpLg8aW',
           'region' => 'sidebar_first',
           'weight' => '-8',
         ),
