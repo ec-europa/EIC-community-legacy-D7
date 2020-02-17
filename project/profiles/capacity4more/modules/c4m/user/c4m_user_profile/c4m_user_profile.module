@@ -587,6 +587,11 @@ function c4m_user_profile_form_user_profile_form_alter(&$form, &$form_state, $fo
   if ($field_lastname = trim(variable_get('ecas_profile_core_lastname_field', 'field_lastname'))) {
     $form[$field_lastname]['#disabled'] = TRUE;
   }
+
+  // disable for not admin users : c4m_user_dashboard_id.
+  if (module_exists('c4m_web_services_user') && !empty($form['c4m_user_dashboard_id'] && $user->uid !== "1")) {
+      $form['c4m_user_dashboard_id']['#disabled'] = TRUE;
+  }
 }
 
 /**
