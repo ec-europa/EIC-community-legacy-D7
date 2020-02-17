@@ -60,7 +60,7 @@ function c4m_content_action_get_actions() {
   $actions = c4m_content_actions_info($context);
   $node = menu_get_object();
 
-  if ($node->type == 'article') {
+  if (!empty($node) && $node->type == 'article') {
     $url = url(
       'node/' . $node->nid . '/share-from-outside',
       array(
