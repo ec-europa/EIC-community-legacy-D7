@@ -446,6 +446,7 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
 
         // Add the purl based on the title - group path is required:
         // But first, a cleanup, replace spaces:
+        // @todo use pathauto_create_alias.
         $arg['purl'] = array("value" => urlencode(_normalize_string_for_url($arg['title'])));
         // convert the registration Link.
         if (!isset($arg['c4m_link']) && isset($arg['link'])) {
