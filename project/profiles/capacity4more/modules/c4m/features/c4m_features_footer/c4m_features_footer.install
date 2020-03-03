@@ -71,6 +71,13 @@ function c4m_features_footer_update_7006() {
 }
 
 /**
+ * Update links for EASME.
+ */
+function c4m_features_footer_update_7007() {
+  c4m_features_footer_set_social_media();
+}
+
+/**
  * Add the c4m_footer menu.
  */
 function c4m_features_footer_c4m_footer_menu() {
@@ -138,7 +145,7 @@ function c4m_features_footer_set_social_media() {
   $socialmedia_links = array(
     'twitter' => array(
       'title' => 'Twitter',
-      'url'   => 'https://twitter.com/H2020SME',
+      'url'   => 'https://twitter.com/EUeic',
     ),
     'linkedin' => array(
       'title' => 'LinkedIn',
