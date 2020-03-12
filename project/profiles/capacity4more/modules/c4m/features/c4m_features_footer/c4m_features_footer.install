@@ -163,7 +163,7 @@ function c4m_features_footer_set_social_media() {
 /**
  * Set Doormat Menu new links.
  */
-function c4m_features_footer_update_7007() {
+function c4m_features_footer_update_7008() {
   c4m_features_footer_set_social_media();
   c4m_features_footer_set_navigation_links();
 }
