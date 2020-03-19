@@ -90,6 +90,32 @@ function c4m_features_homepage_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
+  $pane->pid = 'new-03f020cf-1692-4458-982a-452a1ce6b238';
+  $pane->panel = 'left';
+  $pane->type = 'twitter_feed';
+  $pane->subtype = 'twitter_feed';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'title' => FALSE,
+    'description' => FALSE,
+    'twitter_url' => 'https://twitter.com/EUeic?ref_src=twsrc%5Etfw',
+    'twitter_limit' => '5',
+    'twitter_width' => '600',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '03f020cf-1692-4458-982a-452a1ce6b238';
+  $display->content['new-03f020cf-1692-4458-982a-452a1ce6b238'] = $pane;
+  $display->panels['left'][0] = 'new-03f020cf-1692-4458-982a-452a1ce6b238';
+
+  $pane = new stdClass();
   $pane->pid = 'new-e15ee274-a647-4920-85c1-4bb1286686f2';
   $pane->panel = 'bottom';
   $pane->type = 'featured_block';
