@@ -81,8 +81,11 @@ function c4m_features_homepage_my_event_sites_content_type_render($subtype, $con
   $output = '';
   if ($rendered_event_sites) {
     $output .= theme('c4m_features_homepage_my_event_sites', $variables);
-    $renderable_array = c4m_features_homepage_node_creation_button_cta('event-site');
-    $output .= render($renderable_array);
+    if (user_is_logged_in() && !drupal_is_front_page()) {
+      $renderable_array = c4m_features_homepage_node_creation_button_cta('event-site');
+      $output .= render($renderable_array);
+    }
+
   }
 
   $block->content = $output;
