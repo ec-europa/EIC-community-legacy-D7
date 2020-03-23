@@ -131,6 +131,58 @@ function c4m_features_homepage_get_user_event_sites($account = NULL, $allow_pend
 }
 
 /**
+ * Returns the list of event_sites that an anonymous user can see.
+ * When the public_access module is enabled.
+ *
+ * @returns mixed|null
+ *   List of event_sites or NULL if there no event_sites visible for anonymous users.
+ */
+function c4m_features_homepage_get_event_sites_for_anonymous_users() {
+  $bundle = "event_site";
+  $nodes = array();
+  $nodeQuery = new EntityFieldQuery;
+  $limit= 5;
+  // Show only upcoming or ongoing event sites.
+  $today_datetime = date_create()->format('Y-m-d H:i:s+0');
+  $entities = $nodeQuery->entityCondition('entity_type', 'node')
+                ->entityCondition('bundle', $bundle)
+                ->fieldCondition('c4m_event_dashboard_id','value', '0', '>')
+                ->fieldCondition('c4m_og_status','value', 'published', '=')
+                ->fieldCondition('c4m_datetime_end', 'value2', $today_datetime, '>=')
+                ->pager($limit)
+                ->execute();
+
+  //testing unrestricted access.
+  $result = db_query("SELECT nid FROM node WHERE type = :nodeType ", array(':nodeType'=>$bundle));
+  foreach ($result as $obj) {  //<-- change 2
+    $nodes[] = $obj->nid;
+  }
+  //$nodes = array_filter($event_sites, 'c4m_features_homepage_node_access_view_filter');
+
+  //usort($event_sites, '_c4m_og_sort_by_status');
+
+  if (empty($entities)) {
+    return [];
+  }
+  // Load groups of bundle type.
+  $nids = array_keys($entities['node']);
+  $event_sites_nodes = node_load_multiple($nids);
+
+
+
+//  // Sort groups by status.
+//  if ($sort && !empty($group_nodes)) {
+//    usort($group_nodes, 'c4m_sort_object_by_title');
+//    usort($event_sites_nodes, '_c4m_og_sort_by_status');
+//  }
+
+  return array($bundle => $event_sites_nodes);
+}
+
+
+
+
+/**
  * Returns the list of event_sites of an user, grouped by the membership type.
  *
  * @param object $account
