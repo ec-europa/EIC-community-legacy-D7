@@ -161,9 +161,7 @@ function c4m_features_homepage_get_event_sites_for_anonymous_users() {
   foreach ($result as $obj) {  //<-- change 2
     $nodes[] = $obj->nid;
   }
-  //$nodes = array_filter($event_sites, 'c4m_features_homepage_node_access_view_filter');
 
-  //usort($event_sites, '_c4m_og_sort_by_status');
 
   if (empty($entities)) {
     return [];
@@ -171,14 +169,6 @@ function c4m_features_homepage_get_event_sites_for_anonymous_users() {
   // Load groups of bundle type.
   $nids = array_keys($entities['node']);
   $event_sites_nodes = node_load_multiple($nids);
-
-
-
-//  // Sort groups by status.
-//  if ($sort && !empty($group_nodes)) {
-//    usort($group_nodes, 'c4m_sort_object_by_title');
-//    usort($event_sites_nodes, '_c4m_og_sort_by_status');
-//  }
 
   return array($bundle => $event_sites_nodes);
 }
