@@ -19,8 +19,14 @@ $plugin = array(
  * Render callback.
  */
 function c4m_features_homepage_my_event_sites_content_type_render($subtype, $conf, $args, $context) {
-  global $user;
-  $event_sites = c4m_features_homepage_get_user_event_sites_grouped_by_membership($user, TRUE);
+  if (module_exists('c4m_public_access') && user_is_anonymous() ) {
+    $event_sites = c4m_features_homepage_get_event_sites_for_anonymous_users();
+  }
+  else {
+    global $user;
+    $event_sites = c4m_features_homepage_get_user_event_sites_grouped_by_membership($user, TRUE);
+  }
+
 
   $block = new stdClass();
   $block->module = 'c4m_features_homepage';
