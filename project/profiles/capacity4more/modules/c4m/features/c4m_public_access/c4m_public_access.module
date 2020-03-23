@@ -170,6 +170,7 @@ function c4m_public_access_views_default_views_alter(&$views) {
 
 /**
  * Implements hook_default_page_manager_pages_alter().
+ * For anonymous users we want to hide some sections.
  */
 function c4m_public_access_default_page_manager_pages_alter(&$pages) {
   if (user_is_anonymous() && isset($pages['c4m_homepage'])) {
