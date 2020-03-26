@@ -87,10 +87,10 @@ function c4m_public_access_node_access($node, $op, $account) {
       return NODE_ACCESS_DENY;
     }
     if ($node->type == "book") {
-      // only allow about us and help-guidance section.
-      $public_access_settings = variable_get('$public_access_settings', array());
+      //only allow the book pages that are allowed and the whole help-guidance section.
+      $public_access_settings = variable_get('public_access_settings', array());
       $stored_public_nodes = json_decode($public_access_settings['stored_nodes']);
-      if (in_array($node->nid, $stored_public_nodes )) {
+      if (in_array($node->nid, $stored_public_nodes ) or strpos(drupal_get_path_alias($_GET['q']),'help-guidance') !== False) {
 //      if ($node->title === "About Us" or strpos(drupal_get_path_alias($_GET['q']),'help-guidance') !== False ) {
         return NODE_ACCESS_ALLOW;
       }
