@@ -52,3 +52,14 @@ function c4m_public_access_disable() {
   // Unhide the hidden page.
   _c4m_public_access_show_hide_menu_item_for_anonymous_users(SCALEUP_NODEPATH);
 }
+
+
+/**
+ * Update the initial book pages that should be visible for anonymous users.
+ */
+function c4m_public_access_update_7101() {
+  // the node id's for About, about us and Help & guidance.
+  $default_public_access_settings = array();
+  $default_public_access_settings['stored_nodes'] =   json_encode(array('3559','2612','2'));
+  variable_set('public_access_settings', $default_public_access_settings);
+}
