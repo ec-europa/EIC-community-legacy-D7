@@ -101,7 +101,7 @@ function c4m_public_access_node_access($node, $op, $account) {
 
     // Only allow event_sites with published og_status and non empty dashboard_id
     if ($node->type == "event_site") {
-      if ($node->c4m_og_status["und"][0]["value"] !== "published" || empty($node->c4m_event_dashboard_id["und"][0]["value"])) {
+      if ($node->c4m_og_status["und"][0]["value"] !== "published" || empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]["value"])) {
         return NODE_ACCESS_DENY;
       }
 
@@ -278,7 +278,7 @@ function _c4m_public_access_show_hide_menu_item_for_anonymous_users($menu_path,$
       $link['mlid'] = $menu_link_info[0]->mlid;
 
       // remove menu item
-      if (!$show_menu_item) {
+      if ($show_menu_item) {
         menu_per_role_menu_link_delete($link);
         return;
       }
