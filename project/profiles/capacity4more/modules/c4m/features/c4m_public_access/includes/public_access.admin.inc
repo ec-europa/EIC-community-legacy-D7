@@ -13,14 +13,14 @@
 function c4m_public_access_admin_settings_general() {
   $form = array();
   // Get event site configuration details.
-  $public_access_settings = variable_get('$public_access_settings', array());
+  $public_access_settings = variable_get('public_access_settings', array());
   $public_access_settings['stored_nodes'] = empty($public_access_settings['stored_nodes']) ? array() : json_decode($public_access_settings['stored_nodes']);
 
   $form['public_access_admin'] = array(
     '#id' => 'public_access_admin',
     '#type' => 'fieldset',
     '#title' => t('Manage "book" Pages that can be viewed by anonymous users'),
-    '#description' => t('Enter your Event site information.'),
+    '#description' => t('Manage the book pages, if you want to change the order in the menu in the (<a href="/admin/structure/menu/manage/main-menu">Main Menu Management</a>).'),
     '#collapsible' => empty($webservice_eventsite) ? FALSE : TRUE,
     '#collapsed' => FALSE,
     '#tree' => TRUE,
@@ -37,13 +37,7 @@ function c4m_public_access_admin_settings_general() {
   $form['public_access_admin']['add_node'] = array(
     '#type' => 'submit',
     '#value' => t('Add node'),
-    '#ajax' => array(
-      'callback' => 'ajax_add_node_to_public_access_callback',
-      'wrapper' => 'overview_anonymous_nodes',
-      'method' => 'replace',
-      'effect' => 'fade',
-     // '#validate' => 'c4m_public_access_admin_settings_general_validate',
-    ),
+    '#submit' => array('c4m_public_access_admin_settings_general_submit'),
     );
 
   // the section where can manage nodes to get made available for anonymous users (booklet pages).
@@ -82,12 +76,7 @@ function c4m_public_access_admin_settings_general() {
     $form['public_access_admin']['remove'] = array(
     '#type' => 'submit',
     '#value' => t('Remove selected'),
-    '#ajax' => array(
-      'callback' => 'ajax_remove_public_access_callback',
-      'wrapper' => 'overview_anonymous_nodes',
-      'method' => 'replace',
-      'effect' => 'fade',
-    ),
+    '#submit' => array('remove_public_access_callback'),
     );
 
   }
@@ -97,7 +86,7 @@ function c4m_public_access_admin_settings_general() {
 
 
   $form = system_settings_form($form);
-//  $form['#submit'][] = 'c4m_public_access_admin_settings_general_submit';
+  $form['#submit'][] = 'c4m_public_access_admin_settings_general_submit';
   $form['#validate'][] = 'c4m_public_access_admin_settings_general_validate';
   return $form;
 
@@ -109,13 +98,14 @@ function c4m_public_access_admin_settings_general_validate($form, &$form_state) 
 //  $test_node_exists = ($test_node != false);
 //  $test_type = $test_node->type;
 //  $user_check = user_load_by_name($form_state['values']['webservice_eventsite']['webservice_eventsite_owner_account']);
-  if (isset($_POST["_triggering_element_value"])) {
-    if (  $_POST["_triggering_element_value"] == "Add node") {
+  // for ajax check : $_POST["_triggering_element_value"]
+  if (isset($_POST["op"])) {
+    if (  $_POST["op"] == "Add node") {
       if (!empty($form_state["values"]["public_access_admin"]["node_id"])) {
         $new_public_nid = $form_state["values"]["public_access_admin"]["node_id"];
         $node = node_load($new_public_nid);
         if (empty($node)) {
-          $error_message = "incorrect node given.";
+          $error_message = "An incorrect node id was given.";
         }
         elseif ($node->type !== "book") {
           $error_message = "node is not of the <b>'Book Page'</b> type. Only those are allowed to be shown on the public side.";
@@ -142,10 +132,30 @@ function c4m_public_access_admin_settings_general_validate($form, &$form_state) 
 //  }
 }
 
+/**
+ * Form submission handler for removing a node to public_access_admin_settings().
+ * Ajax based.
+ */
+function remove_public_access_callback($form, &$form_state) {
+  $public_access_settings = variable_get('public_access_settings', array());
+  $public_access_settings['stored_nodes'] = empty($public_access_settings['stored_nodes']) || $public_access_settings['stored_nodes'] == 'null' ? array() : json_decode($public_access_settings['stored_nodes']);
+  foreach( $form_state["values"]["public_access_admin"]["nodes"] as $nid => $matching_nid) {
+    if ($nid == $matching_nid) {
+       $public_access_settings['stored_nodes'] = array_diff(  $public_access_settings['stored_nodes'], array($nid) );
+       // need to reindex the list, otherwise json will encode it as an object and not an array.
+       $public_access_settings['stored_nodes'] = array_values($public_access_settings['stored_nodes']);
+       // Hide also from menu @todo - TOTEST
+      _c4m_public_access_show_hide_menu_item_for_anonymous_users("node/" . $nid, False);
+    }
+  }
+  // save new list.
+  $public_access_settings['stored_nodes']  = json_encode($public_access_settings['stored_nodes'] );
+  variable_set('public_access_settings', $public_access_settings);
+}
 
 function ajax_remove_public_access_callback($form, &$form_state) {
   // eh delete something here ?
-  $public_access_settings = variable_get('$public_access_settings', array());
+  $public_access_settings = variable_get('public_access_settings', array());
   $public_access_settings['stored_nodes'] = empty($public_access_settings['stored_nodes']) || $public_access_settings['stored_nodes'] == 'null' ? array() : json_decode($public_access_settings['stored_nodes']);
   $x = $form_state["values"]["public_access_admin"]["nodes"];
   // even after deleteing, the nid is still here :
@@ -165,7 +175,7 @@ function ajax_remove_public_access_callback($form, &$form_state) {
   }
   // save new list.
   $public_access_settings['stored_nodes']  = json_encode($public_access_settings['stored_nodes'] );
-  variable_set('$public_access_settings', $public_access_settings);
+  variable_set('public_access_settings', $public_access_settings);
   // create new form
   //$form["public_access_admin"]["nodes"]["#options"]
 //  $new_form = c4m_public_access_admin_settings_general();  //$form['public_access_admin']['nodes'];
@@ -198,7 +208,7 @@ function  ajax_add_node_to_public_access_callback($form, &$form_state) {
   	return $element;
   }
   #No errors great, continue.
-  $public_access_settings = variable_get('$public_access_settings', array());
+  $public_access_settings = variable_get('public_access_settings', array());
   $public_access_settings['stored_nodes'] = empty($public_access_settings['stored_nodes']) || $public_access_settings['stored_nodes'] == 'null' ? array() : json_decode($public_access_settings['stored_nodes']);
 
   $new_node =$form_state["values"]["public_access_admin"]["node_id"];
@@ -206,7 +216,7 @@ function  ajax_add_node_to_public_access_callback($form, &$form_state) {
     array_push($public_access_settings['stored_nodes'], $new_node);
     # Saving the new new dataset in json style.
     $public_access_settings['stored_nodes']  = json_encode($public_access_settings['stored_nodes'] );
-    variable_set('$public_access_settings', $public_access_settings);
+    variable_set('public_access_settings', $public_access_settings);
     # Allow to show the menu item for anonymous users.
     _c4m_public_access_show_hide_menu_item_for_anonymous_users("node/" . $new_node, True);
     // Clear the menu cache of the menu;
@@ -224,30 +234,25 @@ function  ajax_add_node_to_public_access_callback($form, &$form_state) {
 /**
  * UNUSED  : Form submission handler for public_access_admin_settings().
  */
-function c4m_public_access_admin_settings_general_submit($form, &$form_statexxx) {
+function c4m_public_access_admin_settings_general_submit($form, &$form_state) {
   if (empty($form_state["values"]["public_access_admin"]["add_node"])) {
-    // going to delete some of the entries @todo.
+    // just clearing the cache.
+    cache_clear_all('*', 'cache_menu', TRUE);
     return;
   }
-  $public_access_settings = variable_get('$public_access_settings', array());
+  $public_access_settings = variable_get('public_access_settings', array());
   $public_access_settings['stored_nodes'] = empty($public_access_settings['stored_nodes']) || $public_access_settings['stored_nodes'] == 'null' ? array() : json_decode($public_access_settings['stored_nodes']);
 
-  $new_node =$form_state["values"]["public_access_admin"]["add_node"];
+  $new_node =$form_state["values"]["public_access_admin"]["node_id"];
   if (!in_array($new_node,$public_access_settings['stored_nodes'])) {
     array_push($public_access_settings['stored_nodes'], $new_node);
     # Saving the new new dataset in json style.
     $public_access_settings['stored_nodes']  = json_encode($public_access_settings['stored_nodes'] );
-    variable_set('$public_access_settings', $public_access_settings);
+    variable_set('public_access_settings', $public_access_settings);
     # Allow to show the menu item for anonymous users.
     _c4m_public_access_show_hide_menu_item_for_anonymous_users("node/" . $new_node, True);
     // Clear the menu cache of the menu;
     cache_clear_all('*', 'cache_menu', TRUE);
   }
 
-
-  //  if ((variable_get('minimum_word_size', 3) != $form_state['values']['minimum_word_size']) ||
-  //      (variable_get('overlap_cjk', TRUE) != $form_state['values']['overlap_cjk'])) {
-  //    drupal_set_message(t('The index will be rebuilt.'));
-  //    search_reindex();
-  //  }
 }
