@@ -12,6 +12,17 @@ define('SCALEUP_NODEPATH', "node/6092");
 
 include_once 'c4m_public_access.features.inc';
 
+/**
+ * Implements hook_perm().
+ */
+function c4m_public_access_permission() {
+  return array(
+    'administer public access settings' => array(
+      'title' => t('Administer public access settings'),
+      'description' => t('Administer public access settings.'),
+    ),
+  );
+}
 
 function c4m_public_access_menu() {
   $items = array();
@@ -21,8 +32,19 @@ function c4m_public_access_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
+
+  $items['admin/config/system/public_access'] = array(
+  'title' => 'Manage public access settings',
+  'description' => 'manage which (book) pages, shall be visible for anonymous users',
+  'page callback' => 'drupal_get_form',
+  'page arguments' => array('c4m_public_access_admin_settings_general'),
+  'access arguments' => array('administer public access settings'),
+  'type' => MENU_NORMAL_ITEM,
+  'file' => 'includes/public_access.admin.inc',
+  );
   return $items;
 }
+
 
 function _member_access() {
   if (user_is_anonymous()) {
@@ -65,8 +87,11 @@ function c4m_public_access_node_access($node, $op, $account) {
       return NODE_ACCESS_DENY;
     }
     if ($node->type == "book") {
-      // only allow about us and help-guidance section.
-      if ($node->title === "About Us" or strpos(drupal_get_path_alias($_GET['q']),'help-guidance') !== False ) {
+      //only allow the book pages that are allowed and the whole help-guidance section.
+      $public_access_settings = variable_get('public_access_settings', array());
+      $stored_public_nodes = json_decode($public_access_settings['stored_nodes']);
+      if (in_array($node->nid, $stored_public_nodes ) or strpos(drupal_get_path_alias($_GET['q']),'help-guidance') !== False) {
+//      if ($node->title === "About Us" or strpos(drupal_get_path_alias($_GET['q']),'help-guidance') !== False ) {
         return NODE_ACCESS_ALLOW;
       }
       else {
@@ -76,7 +101,7 @@ function c4m_public_access_node_access($node, $op, $account) {
 
     // Only allow event_sites with published og_status and non empty dashboard_id
     if ($node->type == "event_site") {
-      if ($node->c4m_og_status["und"][0]["value"] !== "published" || empty($node->c4m_event_dashboard_id["und"][0]["value"])) {
+      if ($node->c4m_og_status["und"][0]["value"] !== "published" || empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]["value"])) {
         return NODE_ACCESS_DENY;
       }
 
@@ -232,7 +257,15 @@ function c4m_public_access_block_view_c4m_features_header_c4m_header_menu_alter(
 
 /**
  * Helper function for hiding / unhiding a menu item for anonymous users.
- **/
+ *
+ * @param string $menu_path
+ *   the drupal path of the menu, node/node_id, eg 'node/1234'.
+ * @param boolean $show_menu_item
+ *   True to show it, False to hide it from anonymous users.
+ *
+ * @throws \Exception
+ *   throws exception?
+ */
 function _c4m_public_access_show_hide_menu_item_for_anonymous_users($menu_path,$show_menu_item=False) {
   if (module_exists('menu_per_role')) {
     $menu_link_info = db_select('menu_links', 'ml')
@@ -245,8 +278,10 @@ function _c4m_public_access_show_hide_menu_item_for_anonymous_users($menu_path,$
       $link = [];
       $link['mlid'] = $menu_link_info[0]->mlid;
 
+      // remove menu item
       if ($show_menu_item) {
         menu_per_role_menu_link_delete($link);
+        return;
       }
 
       $roles = user_roles();
