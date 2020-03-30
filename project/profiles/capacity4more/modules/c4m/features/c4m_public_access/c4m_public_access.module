@@ -17,7 +17,7 @@ include_once 'c4m_public_access.features.inc';
  */
 function c4m_public_access_permission() {
   return array(
-    'administer webservice event sites' => array(
+    'administer public access settings' => array(
       'title' => t('Administer public access settings'),
       'description' => t('Administer public access settings.'),
     ),
@@ -38,7 +38,7 @@ function c4m_public_access_menu() {
   'description' => 'manage which (book) pages, shall be visible for anonymous users',
   'page callback' => 'drupal_get_form',
   'page arguments' => array('c4m_public_access_admin_settings_general'),
-  'access arguments' => array('Administer public access settings'),
+  'access arguments' => array('administer public access settings'),
   'type' => MENU_NORMAL_ITEM,
   'file' => 'includes/public_access.admin.inc',
   );
