@@ -3332,6 +3332,9 @@ function c4m_message_prepare_insert_entity(
  * Node preprocess.
  */
 function c4m_message_preprocess_node(&$variables) {
+  if (user_is_anonymous()) {
+    return;
+  }
   if ($variables['view_mode'] == 'activity_group' || $variables['view_mode'] == 'activity_global') {
     $variables['theme_hook_suggestions'][] = 'node__activity_stream';
     $variables['theme_hook_suggestions'][] = 'node__' . $variables['node']->type . '__activity_stream';

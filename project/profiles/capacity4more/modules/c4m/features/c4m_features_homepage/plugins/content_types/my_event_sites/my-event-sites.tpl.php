@@ -16,7 +16,7 @@ if ($display_see_more) {
     <?php if (user_is_logged_in()): ?>
       <?php print t('My Event Sites') ?>
     <?php else: ?>
-      <?php print t('Public Event Sites')  ?>
+      <?php print t('Public Events')  ?>
     <?php endif; ?>
   </h2>
   <?php print $event_sites; ?>

@@ -57,7 +57,7 @@ function c4m_og_vocab_info($type) {
   $info = &drupal_static($cache_key);
 
   // Retrieve from Cache if not loaded before.
-  if (!isset($info)) {
+  if (empty($info)) {
     if (($cache = cache_get($cache_key)) && !empty($cache->data)) {
       $info = $cache->data;
     }

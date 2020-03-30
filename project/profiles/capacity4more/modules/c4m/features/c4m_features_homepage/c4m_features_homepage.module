@@ -63,6 +63,35 @@ function c4m_features_homepage_ctools_plugin_directory($module, $plugin) {
 }
 
 /**
+ * Returns suggested items (groups / projects) for the anonymous user.
+ * A requirement is that a extra field is created for each content type
+ *
+ * @param string $bundle
+ *   The bundle of the items to get.
+ */
+function c4m_features_homepage_get_suggested_items_for_anonymous_access($bundle) {
+  if (user_is_logged_in()) {
+    return;
+  }
+
+  $query = new EntityFieldQuery();
+
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', $bundle)
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('c4m_og_status', 'value', 'published');
+//    ->fieldCondition('c4m_content_allowed_for_anonymous_access', True, '=');
+
+  $result = $query
+    ->addTag('random')
+    ->execute();
+
+  return !empty($result['node']) ? $result['node'] : FALSE;
+}
+
+
+/**
  * Returns suggested items (groups / projects) for the current user.
  *
  * @param string $bundle
@@ -137,6 +166,49 @@ function c4m_features_homepage_c4m_suggested_groups_get_groups() {
 
   return theme('c4m_features_homepage_c4m_suggested_groups', $variables);
 }
+/**
+ * Renders groups a that are public.
+ *
+ * For the public site we want to show a list of public groups that have been
+ * approved to be visible for anonymous users.
+ *
+ * @return mixed
+ *   Rendered HTML of suggested groups.
+ */
+function c4m_features_homepage_c4m_public_groups_get_groups() {
+  if (user_is_logged_in()) {
+    return;
+  }
+  if (!$public_groups = c4m_features_homepage_get_suggested_items_for_anonymous_access('group')) {
+      return;
+  }
+
+
+  $items = node_load_multiple(array_keys($public_groups));
+  if (empty($items)) {
+    return;
+  }
+  $rendered_nodes = '';
+  foreach ($items as $node) {
+    $node_view = node_view($node, 'block_list');
+    $rendered_nodes .= drupal_render($node_view);
+  }
+
+  $variables['groups'] = $rendered_nodes;
+  $link_options = array(
+    'absolute' => TRUE,
+    'query' => array(
+      'filter' => 'interests',
+    ),
+  );
+  $variables['link'] = url('groups', $link_options);
+  $variables['display_more_button'] = $display_more_button;
+
+  return theme('c4m_features_homepage_c4m_public_groups', $variables);
+}
+
+
+
 
 /**
  * Renders suggested projects for the user.
