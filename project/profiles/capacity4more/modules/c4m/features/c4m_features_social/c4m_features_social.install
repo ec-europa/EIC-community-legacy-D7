@@ -21,16 +21,16 @@ function c4m_features_social_install() {
  */
 function c4m_features_social_share_settings() {
   $settings = array(
-    'facebook'  => array(
+    'more' => array(
       'enabled' => TRUE,
     ),
     'twitter'  => array(
       'enabled' => TRUE,
     ),
-    'googleplus'  => array(
+    'linkedin'  => array(
       'enabled' => TRUE,
     ),
-    'linkedin'  => array(
+    'facebook'  => array(
       'enabled' => TRUE,
     ),
     'e-mail'  => array(
@@ -40,9 +40,6 @@ function c4m_features_social_share_settings() {
       'enabled' => FALSE,
     ),
     'c4m_print'  => array(
-      'enabled' => TRUE,
-    ),
-    'more' => array(
       'enabled' => TRUE,
     ),
   );
