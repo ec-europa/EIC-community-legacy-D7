@@ -18,6 +18,19 @@ function c4m_features_social_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_c4m_content_actions_info().
+ */
+function c4m_features_social_c4m_content_actions_info() {
+  return array(
+    'social_share' => array(
+      'context'   => array('global'),
+      'callback'  => 'c4m_features_social_actions_share',
+      'weight'    => '10',
+    ),
+  );
+}
+
+/**
  * Implements hook_block_info().
  */
 function c4m_features_social_block_info() {
