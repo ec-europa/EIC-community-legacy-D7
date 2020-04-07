@@ -62,7 +62,7 @@
 
 .social-actions-share {
   .wtShareNetworks {
-    text-align: center;
+    text-align: left;
   }
 
   .wtShareList {
@@ -72,43 +72,45 @@
 
     li {
       display: inline-block;
-      float: none;
-      height: 24px;
+      //float: none;
+      //height: 24px;
 
       a {
-        line-height: 20px;
-        height: 20px;
+        //line-height: 20px;
+        //height: 40px;
 
         &.wtBtnOnlyIco {
-          background-size: 20px auto;
-          width: 20px;
+          //background-size: 20px auto;
+          //width: 40px;
 
           &:focus {
             outline: none;
           }
 
           &.wt_facebook {
-            background-position: 0 -20px;
+            //background-position: 0 -20px;
           }
 
           &.wt_googleplus {
-            background-position: 0 -60px;
+            //background-position: 0 -60px;
           }
 
           &.wt_twitter {
-            background-position: 0 -40px;
+            //background-position: 0 -40px;
           }
 
           &.wt_linkedin {
-            background-position: 0 -140px;
+            //background-position: 0 -140px;
           }
 
           &.wt_yammer {
-            background-position: 0 -240px;
+            //background-position: 0 -240px;
           }
 
           &.wt_email {
-            background-position: 0 0;
+            //background-position: 0 0;
+          }
+
           }
         }
       }
