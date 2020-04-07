@@ -75,7 +75,7 @@ function c4m_features_social_actions_share($node = NULL) {
   $social = array_values($social);
 
   $settings = array(
-    'service'   => 'sbkm',
+    'service'   => 'share',
     'popup'     => FALSE,
     'icon'      => TRUE,
     'to'        => $social,
