@@ -4,8 +4,7 @@ api = 2
 ; CKEditor
 
 projects[ckeditor][subdir] = "contrib"
-projects[ckeditor][version] = "1.18"
-projects[ckeditor][patch][] = "https://www.drupal.org/files/issues/prepare_callback_is-2790539-2.patch"
+projects[ckeditor][version] = "1.19"
 
 projects[media_ckeditor][subdir] = "contrib"
 projects[media_ckeditor][version] = "2.9"
