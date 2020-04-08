@@ -81,6 +81,7 @@ function c4m_features_social_actions_share($node = NULL) {
     'to'        => $social,
     'counter'   => array('atleast' => 1),
     'selection' => FALSE,
+    'target'    => TRUE,
   );
   $data = json_encode($settings);
 
