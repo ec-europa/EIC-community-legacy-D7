@@ -36,9 +36,6 @@ function c4m_features_social_share_settings() {
     'e-mail'  => array(
       'enabled' => TRUE,
     ),
-    'yammer'  => array(
-      'enabled' => FALSE,
-    ),
     'c4m_print'  => array(
       'enabled' => TRUE,
     ),

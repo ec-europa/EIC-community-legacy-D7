@@ -53,11 +53,11 @@ function c4m_content_actions_info($context) {
 function c4m_content_action_get_actions() {
   $output = '';
 
-  if (user_is_logged_in()) {
+
     $context = c4m_content_current_context();
     $actions = c4m_content_actions_info($context);
     $node = menu_get_object();
-
+  if (user_is_logged_in()) {
     if (!empty($node) && $node->type == 'article') {
       $url = url(
         'node/' . $node->nid . '/share-from-outside',
@@ -83,14 +83,21 @@ function c4m_content_action_get_actions() {
         $node = node_load($og['gid']);
       }
     }
-  }
-  foreach ($actions as $key => $action) {
-    if (!isset($action['callback']) || !function_exists($action['callback'])) {
-      continue;
-    }
 
-    $callback = $action['callback'];
-    $output .= $callback($node);
+    foreach ($actions as $key => $action) {
+      if (!isset($action['callback']) || !function_exists($action['callback'])) {
+        continue;
+      }
+
+      $callback = $action['callback'];
+      $output .= $callback($node);
+    }
+  }
+  else {
+    if (module_exists("c4m_public_access") && isset($actions['social_share']['callback']) && function_exists($actions['social_share']['callback'])) {
+      $callback = $actions['social_share']['callback'];
+      $output .= $callback($node);
+    }
   }
 
   return $output;
