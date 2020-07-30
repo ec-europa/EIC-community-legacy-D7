@@ -27,6 +27,12 @@ ACCOUNT_NAME="admin"
 ACCOUNT_PASS="drupal"
 ACCOUNT_MAIL="$ACCOUNT_NAME@$SITE_URL"
 
+
+# ! Important for DOCKER !!!
+# The External File path settings
+# So we are running inside a docker container with an external mapping
+FILE_EXTERNAL_PATH_PUBLIC="/srv/http/app/default_files"
+FILE_EXTERNAL_PATH_PRIVATE="/srv/http/app/default_private_private"
 # File path settings
 FILE_PATH_PUBLIC="sites/default/files"
 FILE_PATH_PRIVATE="sites/default/private"
