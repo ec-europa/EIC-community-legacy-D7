@@ -24,3 +24,6 @@ projects[node_view_permissions][download][revision] = "a0e5dfd9ac6f8dac6cad1202c
 
 projects[menu_per_role][subdir] = "contrib"
 projects[menu_per_role][version] = "1.0"
+
+projects[elements][subdir] = "contrib"
+projects[elements][version] = "1.5"
