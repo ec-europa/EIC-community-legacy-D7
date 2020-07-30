@@ -18,15 +18,18 @@ knowledge.
 Clone the project from [GitHub](https://github.com/ec-europa/EIC-community.git).
 
     $ git clone --recursive https://github.com/ec-europa/EIC-community.git
+If you have forgotten the --recursive option you can retried the druleton project with:
+
+    $ git submodule update --init --recursive
 
 ### Initialize configuration
 
 When we first clone the repository, we need to initialize it:
 
     $ bin/init
-    
+
 Keep in mind to configure the proper installation profile, which is "capacity4more" in our case!
-    
+
 This script will:
 1. Create the config/config.sh file based on the config/config_example.sh file.
 2. Ask you for the config variables (db credentials, website details, ...).
@@ -39,7 +42,7 @@ This script will:
 Run the install script from within the root of the repository:
 
 	$ bin/install
-	
+
 The install command has a few optional options:
 
 ```
@@ -55,7 +58,7 @@ Options:
   --confirm (-y)        Skip the confirmation step when the script starts.
   --verbose (-v)        Verbose.
 ```
-	
+
 ### Configure web server
 
 Create a vhost for your webserver, point it to the `REPOSITORY/ROOT/web` folder.
@@ -83,14 +86,14 @@ Run the reset script:
     $ bin/reset
 
 ## Unit testing
-   
+
 ### Install requirements
 
 For testing use Behat with PhantomJS.
 
-#### Install Behat 
+#### Install Behat
 
-To run our tests, we need behat (and some extensions). With composer installed, we can quickly install the right versions: 
+To run our tests, we need behat (and some extensions). With composer installed, we can quickly install the right versions:
 
 ```
 $ cd /PATH/TO/project/profiles/capacity4more/behat

@@ -58,7 +58,7 @@ angular.module('c4mApp')
 
     // Refresh rate of the activity stream (60000 is one minute).
     // @TODO: Import the refresh rate from the drupal settings.
-    $scope.refreshRate = 60000;
+    $scope.refreshRate = 300000;
 
     /**
      * Refreshes the activity stream.

@@ -4,7 +4,7 @@
         // Check if there is at least one flag on the page.
         if ($('.flag-wrapper').length > 0) {
             Drupal.flagLink();
-            Drupal.increaseDecrease();
+            Drupal.behaviors.increaseDecrease.attach();
         }
     });
 

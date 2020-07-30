@@ -30,3 +30,16 @@ function c4m_web_services_events_disable() {
   }
 }
 
+
+/**
+ * Implements hook_update_7001().
+ *
+ * remove the requirement of the original event_type field.
+ */
+function c4m_web_services_events_update_7001() {
+  $instance_info = field_info_instance("node", "c4m_event_type", "event_site");
+  // Change a single property in the instance definition.
+  $instance_info['required'] = FALSE;
+  // Write the changed definition back.
+  field_update_instance($instance_info);
+}
