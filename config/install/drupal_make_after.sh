@@ -24,18 +24,8 @@ mkdir -p "$DIR_WEB/sites/all/libraries"
 file_symlink_subdirectories "$DIR_PROJECT/libraries" "$DIR_WEB/sites/all/libraries"
 
 markup_h2 "Files"
-# check if FILE_EXTERNAL_PATH_PUBLIC has been set. So we are running inside a docker container with an external mapping.
-if [ -z "FILE_EXTERNAL_PATH_PUBLIC" ]
-  file_symlink_subdirectories $FILE_EXTERNAL_PATH_PUBLIC "$DIR_WEB/$FILE_PATH_PUBLIC"
-else
-  mkdir -p "$DIR_WEB/$FILE_PATH_PUBLIC"
-fi
-# check if $FILE_EXTERNAL_PATH_PRIVATE has been set. So we are running inside a docker container with an external mapping.
-if [ -z "$FILE_EXTERNAL_PATH_PRIVATE" ]
-  file_symlink_subdirectories $FILE_EXTERNAL_PATH_PRIVATE "$DIR_WEB/$FILE_PATH_PRIVATE"
-else
-  mkdir -p "$DIR_WEB/$FILE_PATH_PRIVATE"
-fi
+mkdir -p "$DIR_WEB/$FILE_PATH_PUBLIC"
+mkdir -p "$DIR_WEB/$FILE_PATH_PRIVATE"
 
 if [ "$FILE_PATH_PRIVATE" != "" ]; then
 
