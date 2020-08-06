@@ -136,6 +136,11 @@ function c4m_content_group_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
+    'c4m_body' => array(
+      'formatter_settings' => array(
+        'ft' => array(),
+      ),
+    ),
     'c4m_vocab_geo' => array(
       'formatter_settings' => array(
         'ft' => array(
