@@ -20,7 +20,7 @@ function c4m_web_services_default_services_endpoint() {
   $endpoint->authentication = array(
     'c4m_web_services' => array(
       'authorization_token_name' => 'AuthorizationToken',
-      'authorization_token_key' => 'dh349fh3Fh48gfdFDhsg23DFdgh',
+      'authorization_token_key' => variable_get('c4m_web_services_general_authorization_token_key', ''),
     ),
   );
   $endpoint->server_settings = array(

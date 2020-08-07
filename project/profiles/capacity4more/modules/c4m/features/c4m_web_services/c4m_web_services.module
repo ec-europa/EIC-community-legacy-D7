@@ -8,6 +8,34 @@
 include_once 'c4m_web_services.features.inc';
 
 /**
+ * Implements hook_menu().
+ */
+function c4m_web_services_menu() {
+  return [
+    'admin/config/services/organisations_and_members' => [
+      'title' => 'Organisations and members Webservice settings',
+      'description' => 'Manage the settings for the organisations and members Webservice.',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => ['c4m_web_services_admin_settings_general'],
+      'access arguments' => ['administer webservices with SMED'],
+      'type' => MENU_NORMAL_ITEM,
+      'file' => 'includes/c4m_web_services.admin.inc',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_permission().
+ */
+function c4m_web_services_permission() {
+  return [
+    'administer webservices with SMED' => [
+      'title' => t('Administer webservices with SMED'),
+    ],
+  ];
+}
+
+/**
  * Implements hook_services_authentication_info().
  */
 function c4m_web_services_services_authentication_info() {
@@ -81,7 +109,7 @@ function _c4m_web_services_authenticate_call(array $settings, array $method, arr
 function _c4m_web_services_default_security_settings() {
   return [
     'authorization_token_name' => 'AuthorizationToken',
-    'authorization_token_key' => 'dh349fh3Fh48gfdFDhsg23DFdgh',
+    'authorization_token_key' => variable_get('webservice_general_authorization_token_key', ''),
   ];
 }
 
