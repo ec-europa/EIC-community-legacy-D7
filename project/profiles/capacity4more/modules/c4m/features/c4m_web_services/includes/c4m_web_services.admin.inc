@@ -12,11 +12,11 @@
  */
 function c4m_web_services_admin_settings_general() {
 
-  $form['webservice_general_authorization_token_key'] = array(
+  $form['c4m_web_services_general_authorization_token_key'] = array(
     '#type' => 'textfield',
     '#title' => t('Authorization token key.'),
     '#description' => '',
-    '#default_value' => variable_get('webservice_general_authorization_token_key', ''),
+    '#default_value' => variable_get('c4m_web_services_general_authorization_token_key', ''),
     '#required' => TRUE,
   );  
 
