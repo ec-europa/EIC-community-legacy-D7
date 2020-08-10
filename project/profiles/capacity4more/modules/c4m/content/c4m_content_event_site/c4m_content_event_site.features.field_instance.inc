@@ -491,14 +491,10 @@ function c4m_content_event_site_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_site-c4m_event_type'.
-  $field_instances['node-event_site-c4m_event_type'] = array(
+  // Exported field_instance: 'node-event_site-c4m_event_dashboard_id'.
+  $field_instances['node-event_site-c4m_event_dashboard_id'] = array(
     'bundle' => 'event_site',
-    'default_value' => array(
-      0 => array(
-        'value' => 'event',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -506,48 +502,57 @@ function c4m_content_event_site_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 31,
+        'weight' => 0,
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 27,
       ),
       'documents' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 52,
+        'weight' => 0,
       ),
       'group_dashboard' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 40,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 57,
+        'weight' => 0,
       ),
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'c4m_event_type',
-    'label' => 'Type of Event',
-    'required' => 1,
+    'field_name' => 'c4m_event_dashboard_id',
+    'label' => 'Event(Site) Dashboard ID',
+    'required' => 0,
     'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'options',
+      'active' => 0,
+      'module' => 'number',
       'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 3,
+      'type' => 'number',
+      'weight' => 36,
     ),
   );
 
@@ -1781,6 +1786,61 @@ function c4m_content_event_site_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event_site-c4m_vocab_event_type'.
+  $field_instances['node-event_site-c4m_vocab_event_type'] = array(
+    'bundle' => 'event_site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'block_list' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 28,
+      ),
+      'documents' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'group_dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 61,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'c4m_vocab_event_type',
+    'label' => 'Event type',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-event_site-c4m_vocab_geo'.
   $field_instances['node-event_site-c4m_vocab_geo'] = array(
     'bundle' => 'event_site',
@@ -1949,71 +2009,6 @@ function c4m_content_event_site_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_site-c4m_event_dashboard_id'.
-  $field_instances['node-event_site-c4m_event_dashboard_id'] = array(
-    'bundle' => 'event_site',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'block_list' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => '',
-        ),
-        'type' => 'number_integer',
-        'weight' => 27,
-      ),
-      'documents' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'group_dashboard' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'node',
-    'field_name' => 'c4m_event_dashboard_id',
-    'label' => 'Event(Site) Dashboard ID',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 36,
-    ),
-  );
-
   // Exported field_instance: 'node-event_site-group_group'.
   $field_instances['node-event_site-group_group'] = array(
     'bundle' => 'event_site',
@@ -2104,6 +2099,8 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Description');
   t('Determine if this is an OG group.');
   t('Event Location');
+  t('Event type');
+  t('Event(Site) Dashboard ID');
   t('Facebook page');
   t('Group');
   t('Language');
@@ -2126,9 +2123,7 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Thumbnail image');
   t('Topics');
   t('Twitter page');
-  t('Type of Event');
   t('You can select up to 3 Topics and unlimited subtopics within these Topics.');
-  t('Event(Site) Dashboard ID');
 
   return $field_instances;
 }
