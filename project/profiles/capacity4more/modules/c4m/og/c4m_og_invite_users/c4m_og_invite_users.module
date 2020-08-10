@@ -401,11 +401,14 @@ function c4m_og_invite_users_pending_invitations($group_id) {
     ];
     foreach (entity_load('og_membership', array_keys($result['og_membership'])) as $og_membership) {
       $user = entity_metadata_wrapper('user', $og_membership->etid);
-      $rows[] = [
-        $user->c4m_first_name->value() . ' ' . $user->c4m_last_name->value() . ' (' . $user->name->value() . ')',
-        format_date($og_membership->created, 'short'),
-        l(t('delete'), 'group/node/' . $group_id . '/admin/people/invitations/username/delete/' . $og_membership->id),
-      ];
+      // Check if user account exists.
+      if ($account = user_load($og_membership->etid)) {
+        $rows[] = [
+          $user->c4m_first_name->value() . ' ' . $user->c4m_last_name->value() . ' (' . $user->name->value() . ')',
+          format_date($og_membership->created, 'short'),
+          l(t('delete'), 'group/node/' . $group_id . '/admin/people/invitations/username/delete/' . $og_membership->id),
+        ];
+     }
     }
 
     $output .= theme('table', ['header' => $header, 'rows' => $rows]);
