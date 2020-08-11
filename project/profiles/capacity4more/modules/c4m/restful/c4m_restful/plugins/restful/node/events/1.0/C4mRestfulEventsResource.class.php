@@ -17,7 +17,13 @@ class C4mRestfulEventsResource extends C4mRestfulEntityBaseNode {
     $public_fields = parent::publicFieldsInfo();
 
     $public_fields['event_type'] = array(
-      'property' => 'c4m_event_type',
+      'property' => 'c4m_vocab_event_type',
+      'resource' => array(
+        'c4m_vocab_event_type' => array(
+          'name' => 'events',
+          'full_view' => FALSE,
+        ),
+      ),
     );
 
     $public_fields['body'] = array(

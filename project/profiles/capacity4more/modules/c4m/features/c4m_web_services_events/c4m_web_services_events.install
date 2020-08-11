@@ -43,3 +43,10 @@ function c4m_web_services_events_update_7001() {
   // Write the changed definition back.
   field_update_instance($instance_info);
 }
+
+/**
+ * Delete c4m_event_type field and all its remaining instances.
+ */
+function c4m_web_services_events_update_7002() {
+  field_delete_field('c4m_event_type');
+}
