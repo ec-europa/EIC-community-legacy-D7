@@ -290,7 +290,7 @@ function c4m_content_event_ds_field_settings_info() {
         'ft' => array(),
       ),
     ),
-    'c4m_event_type' => array(
+    'c4m_vocab_event_type' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_expert',
@@ -1225,7 +1225,7 @@ function c4m_content_event_ds_layout_settings_info() {
       ),
       'footer' => array(
         3 => 'c4m_field_og_group',
-        4 => 'c4m_event_type',
+        4 => 'c4m_vocab_event_type',
       ),
     ),
     'fields' => array(
@@ -1233,7 +1233,7 @@ function c4m_content_event_ds_layout_settings_info() {
       'title' => 'right',
       'c4m_ds_node_highlight' => 'right',
       'c4m_field_og_group' => 'footer',
-      'c4m_event_type' => 'footer',
+      'c4m_vocab_event_type' => 'footer',
     ),
     'classes' => array(
       'layout_class' => array(

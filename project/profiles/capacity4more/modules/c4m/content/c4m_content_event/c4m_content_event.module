@@ -8,6 +8,22 @@
 include_once 'c4m_content_event.features.inc';
 
 /**
+ * Term ID for "Event" term.
+ */
+define('C4M_CONTENT_EVENT_TYPE_EVENT_TID', 1629);
+
+/**
+ * Term ID for "Learning / Training" term.
+ */
+define('C4M_CONTENT_EVENT_TYPE_LEARNING_TID', 1630);
+
+/**
+ * Term ID for "Meeting" term.
+ */
+define('C4M_CONTENT_EVENT_TYPE_MEETING_TID', 1631);
+
+
+/**
  * Implements hook_c4m_og_vocab_info_content().
  */
 function c4m_content_event_c4m_og_vocab_info_content() {
@@ -234,7 +250,7 @@ function c4m_content_event_c4m_content_share_fields_info() {
   return array(
     'event' => array(
       'type',
-      'c4m_event_type',
+      'c4m_vocab_event_type',
       'c4m_datetime_end',
     ),
   );
@@ -349,10 +365,15 @@ function c4m_content_event_c4m_offcanvas_trigger_label_left_alter(&$trigger_labe
  */
 function c4m_content_event_form_event_node_form_alter(array &$form, array $form_state) {
   // Remove options that are only needed for Event Siotes in the event_type field.
-  if (!empty($form['c4m_event_type'][LANGUAGE_NONE]['#options'])) {
-    foreach ($form['c4m_event_type'][LANGUAGE_NONE]['#options'] as $key => $option) {
-      if (!in_array($key, ['event', 'learning', 'meeting'])) {
-        unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+  if (!empty($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'])) {
+    $allowed_options = [
+      C4M_CONTENT_EVENT_TYPE_EVENT_TID,
+      C4M_CONTENT_EVENT_TYPE_LEARNING_TID,
+      C4M_CONTENT_EVENT_TYPE_MEETING_TID,
+    ];
+    foreach ($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'] as $key => $option) {
+      if (!in_array($key, $allowed_options)) {
+        unset($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'][$key]);
       }
     }
 
@@ -370,8 +391,8 @@ function c4m_content_event_addtocal_extract_event_info_alter(
   $entity
 ) {
   $entity_wrapper = entity_metadata_wrapper('node', $entity);
-  if (!empty($entity_wrapper->c4m_event_type)) {
-    $info['title'] = $info['title'] . ' - ' . $entity_wrapper->c4m_event_type->value();
+  if (!empty($entity_wrapper->c4m_vocab_event_type)) {
+    $info['title'] = $info['title'] . ' - ' . $entity_wrapper->c4m_vocab_event_type->label();
   }
   if (!empty($info['location'])) {
     str_replace("\r\n", "", $info['location']);

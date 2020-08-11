@@ -546,9 +546,9 @@ function c4m_search_facet_items_alter(&$build, &$settings) {
     }
     if (isset($build['event']['#active'])) {
       $build['event']['#item_children'] = _c4m_search_get_facet_items(
-        'c4m_event_type'
+        'c4m_vocab_event_type'
       );
-      _c4m_search_remove_facet_param($build['event'], 'c4m_event_type');
+      _c4m_search_remove_facet_param($build['event'], 'c4m_vocab_event_type');
     }
   }
 }
