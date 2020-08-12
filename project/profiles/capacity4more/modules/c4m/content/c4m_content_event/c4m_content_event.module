@@ -35,13 +35,13 @@ define('C4M_CONTENT_EVENT_TYPE_E_PITCHING_TID', 1639);
 /**
  * Term ID for "Innovation Procurer Days" term.
  */
-define('C4M_CONTENT_EVENT_TYPE_E_PITCHING_TID', 1641);
+define('C4M_CONTENT_EVENT_TYPE_INNOV_PROCUR_DAY_TID', 1641);
 
 
 /**
  * Term ID for "Investor Days" term.
  */
-define('C4M_CONTENT_EVENT_TYPE_E_PITCHING_TID', 1642);
+define('C4M_CONTENT_EVENT_TYPE_INVESTOR_DAY_TID', 1642);
 
 
 /**
