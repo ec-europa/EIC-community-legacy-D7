@@ -491,71 +491,6 @@ function c4m_content_event_site_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_site-c4m_event_dashboard_id'.
-  $field_instances['node-event_site-c4m_event_dashboard_id'] = array(
-    'bundle' => 'event_site',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'block_list' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => '',
-        ),
-        'type' => 'number_integer',
-        'weight' => 25,
-      ),
-      'documents' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'group_dashboard' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'node',
-    'field_name' => 'c4m_event_dashboard_id',
-    'label' => 'Event(Site) Dashboard ID',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 36,
-    ),
-  );
-
   // Exported field_instance: 'node-event_site-c4m_facebook'.
   $field_instances['node-event_site-c4m_facebook'] = array(
     'bundle' => 'event_site',
@@ -2108,7 +2043,6 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Determine if this is an OG group.');
   t('Event Location');
   t('Event type');
-  t('Event(Site) Dashboard ID');
   t('Facebook page');
   t('Group');
   t('Language');
