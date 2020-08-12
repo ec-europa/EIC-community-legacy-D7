@@ -22,6 +22,27 @@ define('C4M_CONTENT_EVENT_TYPE_LEARNING_TID', 1630);
  */
 define('C4M_CONTENT_EVENT_TYPE_MEETING_TID', 1631);
 
+/**
+ * Term ID for "Pitching" term.
+ */
+define('C4M_CONTENT_EVENT_TYPE_PITCHING_TID', 1637);
+
+/**
+ * Term ID for "E-pitching" term.
+ */
+define('C4M_CONTENT_EVENT_TYPE_E_PITCHING_TID', 1639);
+
+/**
+ * Term ID for "Innovation Procurer Days" term.
+ */
+define('C4M_CONTENT_EVENT_TYPE_E_PITCHING_TID', 1641);
+
+
+/**
+ * Term ID for "Investor Days" term.
+ */
+define('C4M_CONTENT_EVENT_TYPE_E_PITCHING_TID', 1642);
+
 
 /**
  * Implements hook_c4m_og_vocab_info_content().
