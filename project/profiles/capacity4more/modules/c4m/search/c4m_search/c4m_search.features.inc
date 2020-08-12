@@ -585,7 +585,7 @@ function c4m_search_default_search_api_sort() {
     "default_sort" : "0",
     "default_sort_no_terms" : "0",
     "default_order" : "desc",
-    "options" : { "field_name" : "The flag count of type c4m_og_content_recommend for an inthe_picture entity" },
+    "options" : { "field_name" : "The flag count of type c4m_og_content_recommend for an organisation entity" },
     "entity_type" : "search_api_sort",
     "rdf_mapping" : []
   }');
