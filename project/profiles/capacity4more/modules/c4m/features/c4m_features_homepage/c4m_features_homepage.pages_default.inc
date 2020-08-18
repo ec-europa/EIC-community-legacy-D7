@@ -137,11 +137,34 @@ function c4m_features_homepage_default_page_manager_pages() {
   $display->content['new-0611c655-1657-489e-a844-c6648460af7c'] = $pane;
   $display->panels['bottom'][1] = 'new-0611c655-1657-489e-a844-c6648460af7c';
   $pane = new stdClass();
+  $pane->pid = 'new-b3476758-2767-4be2-b3ad-84697ac801c3';
+  $pane->panel = 'left';
+  $pane->type = 'activity_stream';
+  $pane->subtype = 'activity_stream';
+  $pane->shown = FALSE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 1,
+    'override_title_text' => 'Latest activity',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = 'b3476758-2767-4be2-b3ad-84697ac801c3';
+  $display->content['new-b3476758-2767-4be2-b3ad-84697ac801c3'] = $pane;
+  $display->panels['left'][0] = 'new-b3476758-2767-4be2-b3ad-84697ac801c3';
+  $pane = new stdClass();
   $pane->pid = 'new-98afd53a-7134-42fa-aa33-75d6cdc905d7';
   $pane->panel = 'left';
   $pane->type = 'views';
   $pane->subtype = 'global_activity_stream_no_js_fallback';
-  $pane->shown = FALSE;
+  $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
     'override_pager_settings' => 0,
@@ -166,11 +189,11 @@ function c4m_features_homepage_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 0;
+  $pane->position = 1;
   $pane->locks = array();
   $pane->uuid = '98afd53a-7134-42fa-aa33-75d6cdc905d7';
   $display->content['new-98afd53a-7134-42fa-aa33-75d6cdc905d7'] = $pane;
-  $display->panels['left'][0] = 'new-98afd53a-7134-42fa-aa33-75d6cdc905d7';
+  $display->panels['left'][1] = 'new-98afd53a-7134-42fa-aa33-75d6cdc905d7';
   $pane = new stdClass();
   $pane->pid = 'new-326f47e8-17bc-4258-802a-16a16dfb1cf7';
   $pane->panel = 'right';
@@ -309,29 +332,6 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->uuid = 'afc6317f-416b-4682-b8f9-cf0330924740';
   $display->content['new-afc6317f-416b-4682-b8f9-cf0330924740'] = $pane;
   $display->panels['top'][0] = 'new-afc6317f-416b-4682-b8f9-cf0330924740';
-  $pane = new stdClass();
-  $pane->pid = 'new-b3476758-2767-4be2-b3ad-84697ac801c3';
-  $pane->panel = 'top';
-  $pane->type = 'activity_stream';
-  $pane->subtype = 'activity_stream';
-  $pane->shown = FALSE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'override_title' => 1,
-    'override_title_text' => 'Latest activity',
-    'override_title_heading' => 'h2',
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 1;
-  $pane->locks = array();
-  $pane->uuid = 'b3476758-2767-4be2-b3ad-84697ac801c3';
-  $display->content['new-b3476758-2767-4be2-b3ad-84697ac801c3'] = $pane;
-  $display->panels['top'][1] = 'new-b3476758-2767-4be2-b3ad-84697ac801c3';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -847,7 +847,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'left';
   $pane->type = 'activity_stream';
   $pane->subtype = 'activity_stream';
-  $pane->shown = TRUE;
+  $pane->shown = FALSE;
   $pane->access = array(
     'logic' => 'and',
   );
