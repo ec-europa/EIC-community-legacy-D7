@@ -109,6 +109,12 @@ function c4m_content_article_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 34,
       ),
+      'activity_global_anonymous' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 34,
+      ),
       'activity_group' => array(
         'label' => 'above',
         'settings' => array(),
@@ -245,6 +251,15 @@ function c4m_content_article_field_default_field_instances() {
         'type' => 'text_summary_or_trimmed',
         'weight' => 1,
       ),
+      'activity_global_anonymous' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 300,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
       'activity_group' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -380,6 +395,12 @@ function c4m_content_article_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 37,
       ),
+      'activity_global_anonymous' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 37,
+      ),
       'activity_group' => array(
         'label' => 'above',
         'settings' => array(),
@@ -506,6 +527,12 @@ function c4m_content_article_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 32,
       ),
+      'activity_global_anonymous' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 32,
+      ),
       'activity_group' => array(
         'label' => 'above',
         'settings' => array(),
@@ -591,6 +618,16 @@ function c4m_content_article_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 0,
+      ),
+      'activity_global_anonymous' => array(
+        'label' => 'hidden',
+        'module' => 'c4m_field_media',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'c4m_image_medium',
+        ),
+        'type' => 'image',
+        'weight' => 1,
       ),
       'activity_group' => array(
         'label' => 'hidden',
@@ -734,6 +771,12 @@ function c4m_content_article_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 33,
       ),
+      'activity_global_anonymous' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 33,
+      ),
       'activity_group' => array(
         'label' => 'above',
         'settings' => array(),
@@ -805,6 +848,12 @@ function c4m_content_article_field_default_field_instances() {
     'description' => 'Enter group(s) that are related to this article.',
     'display' => array(
       'activity_global' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 35,
+      ),
+      'activity_global_anonymous' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -886,6 +935,12 @@ function c4m_content_article_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 36,
       ),
+      'activity_global_anonymous' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 36,
+      ),
       'activity_group' => array(
         'label' => 'above',
         'settings' => array(),
@@ -956,6 +1011,12 @@ function c4m_content_article_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'activity_global' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 38,
+      ),
+      'activity_global_anonymous' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1047,6 +1108,12 @@ function c4m_content_article_field_default_field_instances() {
     'description' => 'You can select up to 3 Topics and unlimited subtopics within these Topics.',
     'display' => array(
       'activity_global' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 31,
+      ),
+      'activity_global_anonymous' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
