@@ -49,7 +49,7 @@ class C4mDemoContentCreateEvents extends C4mDemoContentCreateOgContent {
 
     $this->addFieldMapping('c4m_body', 'body');
 
-    $this->addFieldMapping('c4m_event_type', 'event_type');
+    $this->addFieldMapping('c4m_vocab_event_type', 'event_type');
 
     $this->addFieldMapping('field_date', 'field_date');
 

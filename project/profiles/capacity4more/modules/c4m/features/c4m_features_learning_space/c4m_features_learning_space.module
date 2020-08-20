@@ -204,7 +204,7 @@ function c4m_features_learning_space_learning_events() {
     'query' => array(
       'f' => array(
         'type:event',
-        'c4m_event_type:learning',
+        'c4m_vocab_event_type:' . C4M_CONTENT_EVENT_TYPE_LEARNING_TID,
       ),
     ),
     'purl' => array(

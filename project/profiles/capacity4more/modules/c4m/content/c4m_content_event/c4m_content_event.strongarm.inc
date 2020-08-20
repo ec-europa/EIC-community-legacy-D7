@@ -252,7 +252,7 @@ function c4m_content_event_strongarm() {
             'visible' => FALSE,
           ),
           'block_list' => array(
-            'weight' => '40',
+            'weight' => '47',
             'visible' => FALSE,
           ),
           'pinned_content' => array(
