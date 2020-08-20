@@ -919,6 +919,11 @@ function c4m_user_og_c4m_membership_cta($group) {
  * Sets the CTA to leave a group.
  */
 function c4m_user_og_c4m_leave_group_cta($group) {
+  // Users cannot leave organisation groups.
+  if ($group->type == 'organisation') {
+    return;
+  }
+
   // Non members and power users should not see this link.
   if (!og_is_member('node', $group->nid) || c4m_features_og_members_is_power_user($group)) {
     return;
@@ -1333,6 +1338,11 @@ function c4m_user_og_invite_access($group = NULL) {
 
   // For private or moderated groups, return false. Else check for member.
   if ($access_type['type'] == 'private' || $membership_request_value == 'moderated') {
+    return FALSE;
+  }
+
+  // Members cannot invite users in organisation groups.
+  if ($group->type == 'organisation') {
     return FALSE;
   }
 
