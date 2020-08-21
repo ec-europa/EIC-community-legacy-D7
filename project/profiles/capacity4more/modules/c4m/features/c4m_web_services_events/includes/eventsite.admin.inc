@@ -45,7 +45,14 @@ function webservices_eventsite_admin_settings_general() {
     '#default_value' => isset($webservice_eventsite['webservice_event_url']) ? $webservice_eventsite['webservice_event_url'] : 'http://localhost:5050/exist/projects/cockpit',
     '#required' => TRUE,
   );
-  
+  $form['c4m_web_services_events_authorization_token_key'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Authorization token key.'),
+    '#description' => '',
+    '#default_value' => variable_get('c4m_web_services_events_authorization_token_key', ''),
+    '#required' => TRUE,
+  );
+
 
   $form = system_settings_form($form);
 
