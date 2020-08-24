@@ -3,6 +3,9 @@ api = 2
 
 ; Modules related to users.
 
+projects[antibot][subdir] = "contrib"
+projects[antibot][version] = "1.2"
+
 projects[campaignmonitor][subdir] = "contrib"
 projects[campaignmonitor][version] = "1.1"
 ; The campaignmonitor module uses an older version of libraries, it also installs it in another location, so then there 2 libraries modules.
