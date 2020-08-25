@@ -252,11 +252,11 @@ function theme_c4m_ds_content_type_label(array $field) {
 
   if ($entity->type == 'event') {
     $wrapper = entity_metadata_wrapper('node', $entity->nid);
-    if ($wrapper->c4m_event_type->value() == 'event') {
+    if ($wrapper->c4m_vocab_event_type->value()->tid == C4M_CONTENT_EVENT_TYPE_EVENT_TID) {
       $type = t("Group Event");
     }
     else {
-      $type = t("@type Group Event", ['@type' => ucfirst($wrapper->c4m_event_type->value())]);
+      $type = t("@type Group Event", ['@type' => ucfirst($wrapper->c4m_vocab_event_type->label())]);
     }
   }
   else {

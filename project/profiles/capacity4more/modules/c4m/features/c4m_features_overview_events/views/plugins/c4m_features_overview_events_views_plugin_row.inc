@@ -19,27 +19,27 @@ class c4m_features_overview_events_views_plugin_row extends calendar_plugin_row 
   // @codingStandardsIgnoreLine
   function option_definition() {
     $options = parent::option_definition();
-    $options['colors']['contains']['c4m_event_type'] = ['default' => []];
+    $options['colors']['contains']['c4m_vocab_event_type'] = ['default' => []];
     return $options;
   }
 
   // @codingStandardsIgnoreLine
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
-    $form['colors']['legend']['#options']['c4m_event_type'] = t('Based on Event Type');
+    $form['colors']['legend']['#options']['c4m_vocab_event_type'] = t('Based on Event Type');
 
-    $colors = $this->options['colors']['c4m_event_type'];
+    $colors = $this->options['colors']['c4m_vocab_event_type'];
 
     $type_names = array(
-      'event' => t('Event'),
-      'learning' => t('Learning'),
-      'meeting' => t('Meeting'),
+      C4M_CONTENT_EVENT_TYPE_EVENT_TID => t('Event'),
+      C4M_CONTENT_EVENT_TYPE_LEARNING_TID => t('Learning'),
+      C4M_CONTENT_EVENT_TYPE_MEETING_TID => t('Meeting'),
     );
     foreach ($type_names as $key => $name) {
-      $form['colors']['c4m_event_type'][$key] = array(
+      $form['colors']['c4m_vocab_event_type'][$key] = array(
         '#title' => check_plain($name),
         '#default_value' => isset($colors[$key]) ? $colors[$key] : CALENDAR_EMPTY_STRIPE,
-        '#dependency' => array('edit-row-options-colors-legend' => array('c4m_event_type')),
+        '#dependency' => array('edit-row-options-colors-legend' => array('c4m_vocab_event_type')),
         '#type' => 'textfield',
         '#size' => 7,
         '#maxlength' => 7,
@@ -60,7 +60,7 @@ class c4m_features_overview_events_views_plugin_row extends calendar_plugin_row 
   // @codingStandardsIgnoreLine
   function render($row) {
     $rows = parent::render($row);
-    if ($this->options['colors']['legend'] == 'c4m_event_type') {
+    if ($this->options['colors']['legend'] == 'c4m_vocab_event_type') {
       if (!empty($rows)) {
         foreach ($rows as &$one_row) {
           $stripe_options = $this->calendar_event_type_stripe($one_row->entity);
@@ -83,7 +83,7 @@ class c4m_features_overview_events_views_plugin_row extends calendar_plugin_row 
       'stripe' => [],
       'stripe_label' => [],
     ];
-    $colors = isset($this->options['colors']['c4m_event_type']) ? $this->options['colors']['c4m_event_type'] : array();
+    $colors = isset($this->options['colors']['c4m_vocab_event_type']) ? $this->options['colors']['c4m_vocab_event_type'] : array();
     if (empty($colors)) {
       return $output;
     }
@@ -93,13 +93,13 @@ class c4m_features_overview_events_views_plugin_row extends calendar_plugin_row 
     }
     $entity_wrapper = entity_metadata_wrapper('node', $entity);
 
-    if (!isset($entity_wrapper->c4m_event_type)) {
+    if (!isset($entity_wrapper->c4m_vocab_event_type)) {
       return $output;
     }
-    $field_c4m_event_type = field_info_field('c4m_event_type');
+    $field_c4m_event_type = field_info_field('c4m_vocab_event_type');
 
     $event_types = $field_c4m_event_type['settings']['allowed_values'];
-    $type = $entity_wrapper->c4m_event_type->value();
+    $type = $entity_wrapper->c4m_vocab_event_type->value()->tid;
 
     if (array_key_exists($type, $event_types) || $colors[$type] == CALENDAR_EMPTY_STRIPE) {
       $output['stripe_label'][] = $event_types[$type];

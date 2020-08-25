@@ -388,7 +388,6 @@ function c4m_helper_entity_label_info($entity) {
   // Allow content types to define subtypes (e.g. c4m_event_type).
   if ($entity->type == 'event_site') {
     $type = 'event';
-    $field_name = 'c4m_' . $type . '_type';
     $field_name_vocab = 'c4m_vocab_' . $type . '_type';
 
     // check if event_type vocabulary exists
@@ -407,11 +406,6 @@ function c4m_helper_entity_label_info($entity) {
         'insert action' => 'Added a new ' . $event_type->description,
         'update action' => 'Updated the ' . $event_type->description,
       );
-    }
-    // Get label out of static list.
-    if (!empty($entity->$field_name)) {
-      $object_wrapper = entity_metadata_wrapper('node', $entity);
-      $entity_type .= '-' . $object_wrapper->$field_name->value();
     }
   }
 

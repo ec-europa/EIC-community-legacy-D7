@@ -112,7 +112,7 @@ function _c4m_web_services_events_authenticate_call(array $settings, array $meth
 function _c4m_web_services_events_default_security_settings() {
   return [
     'authorization_token_name' => 'AuthorizationToken',
-    'authorization_token_key' => 'dh349fh3Fh48gfdFDhsg23DFdgh',
+    'authorization_token_key' => variable_get('c4m_web_services_events_authorization_token_key', ''),
   ];
 }
 
@@ -732,7 +732,7 @@ function c4m_web_services_events_form_alter(&$form, &$form_state, $form_id) {
       foreach ($read_only_default_fields as $field) {
         $form[$field]['#attributes'] = array('readonly' => 'readonly');
       }
-      $read_only_fields = array('c4m_body', 'c4m_project_tag_line', 'c4m_location_address', 'c4m_link', 'c4m_facebook', 'c4m_twitter', 'c4m_vocab_event_type', 'c4m_event_type', 'c4m_datetime_end'); // 'c4m_organised_by'
+      $read_only_fields = array('c4m_body', 'c4m_project_tag_line', 'c4m_location_address', 'c4m_link', 'c4m_facebook', 'c4m_twitter', 'c4m_vocab_event_type', 'c4m_datetime_end'); // 'c4m_organised_by'
       foreach ($read_only_fields as $field) {
         // Test : $form[$field][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
         if (!isset($form[$field])) {
