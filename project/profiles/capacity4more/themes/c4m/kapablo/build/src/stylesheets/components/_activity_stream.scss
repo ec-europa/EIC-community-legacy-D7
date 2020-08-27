@@ -172,8 +172,8 @@
     height: 10px;
     border-right: 2px solid $color-link;
     border-bottom: 2px solid $color-link;
-    @include transform-origin(center center);
-    @include rotate(45deg);
+    transform-origin: center center;
+    transform: rotate(45deg);
 }
 
 .pane-activity-stream {
