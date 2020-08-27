@@ -1,0 +1,17 @@
+diff --git a/js/plugins/media/plugin.js b/js/plugins/media/plugin.js
+index 0d57173..2fccc27 100644
+--- a/js/plugins/media/plugin.js
++++ b/js/plugins/media/plugin.js
+@@ -20,9 +20,9 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
+     hidpi: true,
+     onLoad: function() {
+       // Check if Image Properties option is set, and this instance has widget support.
+-      if (!Drupal.settings.media_ckeditor.image_properties) {
+-        mediaPluginDefinition.hasWidgetSupport = typeof(CKEDITOR.plugins.registered.widget) != 'undefined';
+-      }
++      //if (!Drupal.settings.media_ckeditor.image_properties) {
++      //  mediaPluginDefinition.hasWidgetSupport = typeof(CKEDITOR.plugins.registered.widget) != 'undefined';
++      //}
+       // Add dependency to widget plugin if possible.
+       if (Drupal.settings.ckeditor.plugins['media'].compareVersions(CKEDITOR.version, '4.3') >= 0 && mediaPluginDefinition.hasWidgetSupport) {
+         mediaPluginDefinition.requires.push('widget');
