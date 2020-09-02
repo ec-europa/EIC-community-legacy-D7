@@ -183,7 +183,7 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
           $node = node_load($form["#node"]->nid);  // Maybe switch to a wrapper?
           if (!empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]['value'])) {
             // Coming from a webservice, so removing the other options, except the one selected.
-            if ($key !== $node->c4m_event_type["und"][0]["value"]) {
+            if ($key !== (int) $node->c4m_vocab_event_type[LANGUAGE_NONE][0]["tid"]) {
               unset($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'][$key]);
             }
             continue;
