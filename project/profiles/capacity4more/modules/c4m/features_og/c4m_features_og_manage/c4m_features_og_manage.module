@@ -786,7 +786,7 @@ function c4m_features_og_manage_event_site_details() {
   );
 
   // The event type.
-  $event_type = $wrapper->c4m_vocab_event_type->value();
+  $event_type = $wrapper->c4m_vocab_event_type->label();
   if (!empty($event_type)) {
     $details['event_type'] = $event_type;
   }

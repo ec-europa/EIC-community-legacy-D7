@@ -10,11 +10,12 @@ var jQuery = jQuery || {};
   "use strict";
 
   $(document).ready(function() {
-    $(".open-dealroom-trigger").click(function() {
+    $(".external-content-approval .open-dealroom-trigger").click(function() {
       event.preventDefault();
-      $(this).after('<p><a class="dealroom-sdk__link" data-widget="matchingTool" href="https://app.dealroom.co/target-investors"></a></p>');
+      var parent = $(this).closest('.external-content-approval');
+      parent.after('<p><a class="dealroom-sdk__link" data-widget="matchingTool" href="https://app.dealroom.co/target-investors"></a></p>');
       $.getScript("https://platform.dealroom.co/sdk.js");
-      $(this).hide();
+      parent.hide();
     });
   });
 
