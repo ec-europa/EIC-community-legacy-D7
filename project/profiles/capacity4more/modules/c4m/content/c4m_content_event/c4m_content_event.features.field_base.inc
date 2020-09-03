@@ -81,43 +81,6 @@ function c4m_content_event_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'c4m_event_type'.
-  $field_bases['c4m_event_type'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'c4m_event_type',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'event' => 'Event',
-        'learning' => 'Learning / Training',
-        'meeting' => 'Meeting',
-        'overseas_trade_fairs' => 'Overseas Trade Fairs',
-        'academy' => 'Academy',
-        'coordinators_welcome_day' => 'Coordinators Welcome Days',
-        'eic_summit' => 'EIC Summit',
-        'corporate_days' => 'Corporate Days',
-        'pitching_event' => 'Pitching',
-        'combined_corporate_and_pitching' => 'Combined Corporate and Pitching',
-        'e-pitching' => 'E-pitching',
-        'eic_interviews' => 'EIC Interviews',
-        'innovation_procurer_days' => 'Innovation Procurer Days',
-        'investor_days' => 'Investor Days',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
   // Exported field_base: 'c4m_organised_by'.
   $field_bases['c4m_organised_by'] = array(
     'active' => 1,

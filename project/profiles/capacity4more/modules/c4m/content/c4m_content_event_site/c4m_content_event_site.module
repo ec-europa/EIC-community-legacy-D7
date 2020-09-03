@@ -167,18 +167,24 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
   }
 
   // Remove options that are only needed for Group Events in the event_type field.
-  if (!empty($form['c4m_event_type'][LANGUAGE_NONE]['#options'])) {
+  if (!empty($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'])) {
     if ($user->uid !== "1") {
-      foreach ($form['c4m_event_type'][LANGUAGE_NONE]['#options'] as $key => $option) {
-        if (in_array($key, ['event', 'learning', 'meeting', 'pitching_event'])) {
-          unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+      foreach ($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'] as $key => $option) {
+        $disallowed_options = [
+          C4M_CONTENT_EVENT_TYPE_EVENT_TID,
+          C4M_CONTENT_EVENT_TYPE_LEARNING_TID,
+          C4M_CONTENT_EVENT_TYPE_MEETING_TID,
+          C4M_CONTENT_EVENT_TYPE_PITCHING_TID,
+        ];
+        if (in_array($key, $disallowed_options)) {
+          unset($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'][$key]);
         }
         if (isset($form["#node"]->nid)) { // maybe use is_new ?
           $node = node_load($form["#node"]->nid);  // Maybe switch to a wrapper?
           if (!empty($node->c4m_event_dashboard_id[LANGUAGE_NONE][0]['value'])) {
             // Coming from a webservice, so removing the other options, except the one selected.
             if ($key !== $node->c4m_event_type["und"][0]["value"]) {
-              unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+              unset($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'][$key]);
             }
             continue;
             //$filter_clean_event_types = FALSE;
@@ -191,12 +197,19 @@ function c4m_content_event_site_form_event_site_node_form_alter(array &$form, ar
             continue;
           }
         }
-        if (in_array($key, ['e-pitching', 'eic_interviews', 'innovation_procurer_days', 'investor_days'])) {
-           unset($form['c4m_event_type'][LANGUAGE_NONE]['#options'][$key]);
+        $disallowed_options2 = [
+          C4M_CONTENT_EVENT_TYPE_E_PITCHING_TID,
+          'eic_interviews',
+          C4M_CONTENT_EVENT_TYPE_INNOV_PROCUR_DAY_TID,
+          C4M_CONTENT_EVENT_TYPE_INVESTOR_DAY_TID,
+        ];
+        if (in_array($key, $disallowed_options2)) {
+           unset($form['c4m_vocab_event_type'][LANGUAGE_NONE]['#options'][$key]);
         }
       }
     }
   }
+
 }
 
 /**
@@ -291,131 +304,6 @@ function c4m_content_event_site_get_owned_event_sites_count($uid) {
   $amount = $query->rowCount();
 
   return $amount;
-}
-
-/**
- * Implements hook_c4m_helper_entity_label_info().
- */
-function c4m_content_event_site_c4m_helper_entity_label_info() {
-  return array(
-    'event_site' => array(
-      'article' => t('an'),
-      'singular' => t('Event site'),
-      'plural' => t('Event sites'),
-      'insert action' => t('added a new Event Site'),
-      'update action' => t('updated the Event Site'),
-      'icon' => 'fa-calendar',
-    ),
-    'event_site-event' => array(
-      'article' => t('an'),
-      'singular' => t('Event site'),
-      'plural' => t('Event sites'),
-      'insert action' => t('created a new Event site'),
-      'update action' => t('updated the Event site'),
-      'icon' => 'fa-calendar',
-    ),
-    'event_site-meeting' => array(
-      'article' => t('an'),
-      'singular' => t('event site Meeting'),
-      'plural' => t('event site Meetings'),
-      'insert action' => t('created a new Meeting - event site'),
-      'update action' => t('updated the Meeting - event site'),
-      'icon' => 'fa-users',
-    ),
-    'event_site-learning' => array(
-      'article' => t('an'),
-      'singular' => t('Learning / Training - event site'),
-      'plural' => t('Learning / Training - event sites'),
-      'insert action' => t('created a new Learning / Training - event site'),
-      'update action' => t('updated the Learning / Training - event site'),
-      'icon' => 'fa-university',
-    ),
-    'event_site-overseas_trade_fairs' => array(
-      'article' => t('an'),
-      'singular' => t('Overseas Trade Fairs - event site'),
-      'plural' => t('oOverseas Trade Fairs - event sites'),
-      'insert action' => t('created a new Overseas Trade Fairs - event site'),
-      'update action' => t('updated the Overseas Trade Fairs - event site'),
-    ),
-    'event_site-academy' => array(
-      'article' => t('an'),
-      'singular' => t('Academy - event site'),
-      'plural' => t('Academy - event sites'),
-      'insert action' => t('created a new Academy - event site'),
-      'update action' => t('updated the Academy - event site'),
-    ),
-    'event_site-coordinators_welcome_day' => array(
-      'article' => t('an'),
-      'singular' => t('Coordinators Welcome Days - event site'),
-      'plural' => t('Coordinators Welcome Days - event sites'),
-      'insert action' => t('created a new Coordinators Welcome Days - event site'),
-      'update action' => t('updated the Coordinators Welcome Days -event site'),
-    ),
-    'event_site-eic_summit' => array(
-      'article' => t('an'),
-      'singular' => t('EIC Summit - event site'),
-      'plural' => t('EIC Summit - event sites'),
-      'insert action' => t('created a new EIC Summit - event site'),
-      'update action' => t('updated the EIC Summit - event site'),
-    ),
-    'event_site-corporate_days' => array(
-      'article' => t('an'),
-      'singular' => t('Corporate Days - event site'),
-      'plural' => t('Corporate Days - event sites'),
-      'insert action' => t('created a new Corporate Days - event site'),
-      'update action' => t('updated the Corporate Days - event site'),
-    ),
-    'event_site-pitching_event' => array(
-      'article' => t('an'),
-      'singular' => t('Pitching - event site'),
-      'plural' => t('Pitching - event sites'),
-      'insert action' => t('created a new pitching - event site'),
-      'update action' => t('updated the pitching - event site'),
-    ),
-    'event_site-combined_corporate_and_pitching' => array(
-      'article' => t('an'),
-      'singular' => t('combined corporate and pitching - event site'),
-      'plural' => t('combined corporate and pitching - event sites'),
-      'insert action' => t('created a new combined corporate and pitching - event site'),
-      'update action' => t('updated the combined corporate and pitching - event site'),
-    ),
-    'event_site-e-pitching_event' => array(
-      'article' => t('an'),
-      'singular' => t('E-pitching - event site'),
-      'plural' => t('E-pitching - event sites'),
-      'insert action' => t('created a new E-pitching - event site'),
-      'update action' => t('updated the E-pitching - event site'),
-    ),
-    'event_site-e-pitching' => array(
-      'article' => t('an'),
-      'singular' => t('E-pitching - event site'),
-      'plural' => t('E-pitching - event sites'),
-      'insert action' => t('created a new E-pitching - event site'),
-      'update action' => t('updated the E-pitching - event site'),
-    ),
-    'event_site-eic_interviews' => array(
-      'article' => t('an'),
-      'singular' => t('EIC Interview - event site'),
-      'plural' => t('EIC Interviews - event sites'),
-      'insert action' => t('created a new EIC Interviews - event site'),
-      'update action' => t('updated the EIC Interviews - event site'),
-    ),
-    'event_site-innovation_procurer_days' => array(
-      'article' => t('an'),
-      'singular' => t('Innovation Procurer Days - event site'),
-      'plural' => t('Innovation Procurer Days - event sites'),
-      'insert action' => t('created a new Innovation Procurer Days - event site'),
-      'update action' => t('updated the Innovation Procurer Days - event site'),
-    ),
-    'event_site-investor_days' => array(
-      'article' => t('an'),
-      'singular' => t('Investor Days - event site'),
-      'plural' => t('Investor Days - event sites'),
-      'insert action' => t('created a new Investor Days - event site'),
-      'update action' => t('updated the Investor Days - event site'),
-    ),
-
-  );
 }
 
 /**
