@@ -85,21 +85,26 @@ function c4m_features_learning_space_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Date - end date (c4m_datetime_end:value2) */
   $handler->display->display_options['filters']['c4m_datetime_end_value2']['id'] = 'c4m_datetime_end_value2';
   $handler->display->display_options['filters']['c4m_datetime_end_value2']['table'] = 'field_data_c4m_datetime_end';
   $handler->display->display_options['filters']['c4m_datetime_end_value2']['field'] = 'c4m_datetime_end_value2';
   $handler->display->display_options['filters']['c4m_datetime_end_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['c4m_datetime_end_value2']['group'] = 1;
   $handler->display->display_options['filters']['c4m_datetime_end_value2']['granularity'] = 'minute';
   $handler->display->display_options['filters']['c4m_datetime_end_value2']['default_date'] = 'now';
   $handler->display->display_options['filters']['c4m_datetime_end_value2']['year_range'] = '-0:+0';
-  /* Filter criterion: Content: Type of Event (c4m_event_type) */
-  $handler->display->display_options['filters']['c4m_event_type_value']['id'] = 'c4m_event_type_value';
-  $handler->display->display_options['filters']['c4m_event_type_value']['table'] = 'field_data_c4m_event_type';
-  $handler->display->display_options['filters']['c4m_event_type_value']['field'] = 'c4m_event_type_value';
-  $handler->display->display_options['filters']['c4m_event_type_value']['value'] = array(
-    'learning' => 'learning',
+  /* Filter criterion: Content: Event type (c4m_vocab_event_type) */
+  $handler->display->display_options['filters']['c4m_vocab_event_type_tid']['id'] = 'c4m_vocab_event_type_tid';
+  $handler->display->display_options['filters']['c4m_vocab_event_type_tid']['table'] = 'field_data_c4m_vocab_event_type';
+  $handler->display->display_options['filters']['c4m_vocab_event_type_tid']['field'] = 'c4m_vocab_event_type_tid';
+  $handler->display->display_options['filters']['c4m_vocab_event_type_tid']['value'] = array(
+    1630 => '1630',
   );
+  $handler->display->display_options['filters']['c4m_vocab_event_type_tid']['group'] = 1;
+  $handler->display->display_options['filters']['c4m_vocab_event_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['c4m_vocab_event_type_tid']['vocabulary'] = 'c4m_vocab_event_type';
 
   /* Display: Documents Block */
   $handler = $view->new_display('block', 'Documents Block', 'block_1');

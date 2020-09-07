@@ -1004,98 +1004,6 @@ function c4m_search_facetapi_default_facet_settings() {
   $facet = new stdClass();
   $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
   $facet->api_version = 1;
-  $facet->name = 'search_api@c4m_search_nodes:block:c4m_event_type';
-  $facet->searcher = 'search_api@c4m_search_nodes';
-  $facet->realm = 'block';
-  $facet->facet = 'c4m_event_type';
-  $facet->enabled = TRUE;
-  $facet->settings = array(
-    'weight' => 0,
-    'widget' => 'facetapi_links',
-    'filters' => array(),
-    'active_sorts' => array(
-      'display' => 'display',
-      'active' => 'active',
-      'count' => 'count',
-      'indexed' => 0,
-    ),
-    'sort_weight' => array(
-      'active' => '-49',
-      'count' => '-48',
-      'display' => '-50',
-      'indexed' => '-47',
-    ),
-    'sort_order' => array(
-      'active' => '3',
-      'count' => '3',
-      'display' => '4',
-      'indexed' => '4',
-    ),
-    'empty_behavior' => 'none',
-    'facet_more_text' => 'Show more',
-    'facet_fewer_text' => 'Show fewer',
-    'soft_limit' => '20',
-    'nofollow' => 1,
-    'show_expanded' => 0,
-    'empty_text' => array(
-      'value' => '',
-      'format' => 'filtered_html',
-    ),
-  );
-  $export['search_api@c4m_search_nodes:block:c4m_event_type'] = $facet;
-
-  $facet = new stdClass();
-  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
-  $facet->api_version = 1;
-  $facet->name = 'search_api@c4m_search_nodes:block:c4m_vocab_event_type';
-  $facet->searcher = 'search_api@c4m_search_nodes';
-  $facet->realm = 'block';
-  $facet->facet = 'c4m_vocab_event_type';
-  $facet->enabled = TRUE;
-  $facet->settings = array(
-    'weight' => 0,
-    'widget' => 'facetapi_links',
-    'filters' => array(),
-    'active_sorts' => array(
-      'display' => 'display',
-      'active' => 'active',
-      'count' => 'count',
-      'taxonomy_weight' => 0,
-      'indexed' => 0,
-      'natural' => 0,
-    ),
-    'sort_weight' => array(
-      'active' => '-49',
-      'display' => '-50',
-      'count' => '-48',
-      'taxonomy_weight' => '-47',
-      'indexed' => '-46',
-      'natural' => '-45',
-    ),
-    'sort_order' => array(
-      'active' => '3',
-      'count' => '3',
-      'display' => '4',
-      'taxonomy_weight' => '4',
-      'indexed' => '4',
-      'natural' => '4',
-    ),
-    'empty_behavior' => 'none',
-    'facet_more_text' => 'Show more',
-    'facet_fewer_text' => 'Show fewer',
-    'soft_limit' => '20',
-    'nofollow' => 1,
-    'show_expanded' => 0,
-    'empty_text' => array(
-      'value' => '',
-      'format' => 'mail',
-    ),
-  );
-  $export['search_api@c4m_search_nodes:block:c4m_vocab_event_type'] = $facet;
-
-  $facet = new stdClass();
-  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
-  $facet->api_version = 1;
   $facet->name = 'search_api@c4m_search_nodes:block:c4m_looking_for';
   $facet->searcher = 'search_api@c4m_search_nodes';
   $facet->realm = 'block';
@@ -1698,6 +1606,55 @@ function c4m_search_facetapi_default_facet_settings() {
     ),
   );
   $export['search_api@c4m_search_nodes:block:c4m_vocab_document_type'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
+  $facet->name = 'search_api@c4m_search_nodes:block:c4m_vocab_event_type';
+  $facet->searcher = 'search_api@c4m_search_nodes';
+  $facet->realm = 'block';
+  $facet->facet = 'c4m_vocab_event_type';
+  $facet->enabled = TRUE;
+  $facet->settings = array(
+    'weight' => 0,
+    'widget' => 'facetapi_links',
+    'filters' => array(),
+    'active_sorts' => array(
+      'display' => 'display',
+      'active' => 'active',
+      'count' => 'count',
+      'taxonomy_weight' => 0,
+      'indexed' => 0,
+      'natural' => 0,
+    ),
+    'sort_weight' => array(
+      'active' => '-49',
+      'display' => '-50',
+      'count' => '-48',
+      'taxonomy_weight' => '-47',
+      'indexed' => '-46',
+      'natural' => '-45',
+    ),
+    'sort_order' => array(
+      'active' => '3',
+      'count' => '3',
+      'display' => '4',
+      'taxonomy_weight' => '4',
+      'indexed' => '4',
+      'natural' => '4',
+    ),
+    'empty_behavior' => 'none',
+    'facet_more_text' => 'Show more',
+    'facet_fewer_text' => 'Show fewer',
+    'soft_limit' => '20',
+    'nofollow' => 1,
+    'show_expanded' => 0,
+    'empty_text' => array(
+      'value' => '',
+      'format' => 'mail',
+    ),
+  );
+  $export['search_api@c4m_search_nodes:block:c4m_vocab_event_type'] = $facet;
 
   $facet = new stdClass();
   $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */

@@ -107,7 +107,7 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'c4m_event_row';
   $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
-  $handler->display->display_options['row_options']['colors']['legend'] = 'c4m_event_type';
+  $handler->display->display_options['row_options']['colors']['legend'] = 'c4m_vocab_event_type';
   $handler->display->display_options['row_options']['colors']['calendar_colors_type'] = array(
     'article' => '#ffffff',
     'banner' => '#ffffff',
@@ -139,10 +139,10 @@ function c4m_features_overview_events_views_default_views() {
     38 => '#ffffff',
     40 => '#ffffff',
   );
-  $handler->display->display_options['row_options']['colors']['c4m_event_type'] = array(
-    'event' => '#347C98',
-    'learning' => '#B0C35A',
-    'meeting' => '#EE6A32',
+  $handler->display->display_options['row_options']['colors']['c4m_vocab_event_type'] = array(
+    1629 => '#347C98',
+    1630 => '#B0C35A',
+    1631 => '#EE6A32',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -359,7 +359,7 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'c4m_event_row';
-  $handler->display->display_options['row_options']['colors']['legend'] = 'c4m_event_type';
+  $handler->display->display_options['row_options']['colors']['legend'] = 'c4m_vocab_event_type';
   $handler->display->display_options['row_options']['colors']['calendar_colors_type'] = array(
     'article' => '#ffffff',
     'banner' => '#ffffff',
@@ -391,10 +391,10 @@ function c4m_features_overview_events_views_default_views() {
     38 => '#ffffff',
     40 => '#ffffff',
   );
-  $handler->display->display_options['row_options']['colors']['c4m_event_type'] = array(
-    'event' => '#347C98',
-    'learning' => '#B0C35A',
-    'meeting' => '#EE6A32',
+  $handler->display->display_options['row_options']['colors']['c4m_vocab_event_type'] = array(
+    1629 => '#347C98',
+    1630 => '#B0C35A',
+    1631 => '#EE6A32',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -468,7 +468,7 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'c4m_event_row';
   $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
-  $handler->display->display_options['row_options']['colors']['legend'] = 'c4m_event_type';
+  $handler->display->display_options['row_options']['colors']['legend'] = 'c4m_vocab_event_type';
   $handler->display->display_options['row_options']['colors']['calendar_colors_type'] = array(
     'article' => '#ffffff',
     'banner' => '#ffffff',
@@ -500,10 +500,10 @@ function c4m_features_overview_events_views_default_views() {
     38 => '#ffffff',
     40 => '#ffffff',
   );
-  $handler->display->display_options['row_options']['colors']['c4m_event_type'] = array(
-    'event' => '#347C98',
-    'learning' => '#B0C35A',
-    'meeting' => '#EE6A32',
+  $handler->display->display_options['row_options']['colors']['c4m_vocab_event_type'] = array(
+    1629 => '#347C98',
+    1630 => '#B0C35A',
+    1631 => '#EE6A32',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -560,7 +560,7 @@ function c4m_features_overview_events_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'c4m_event_row';
   $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
-  $handler->display->display_options['row_options']['colors']['legend'] = 'c4m_event_type';
+  $handler->display->display_options['row_options']['colors']['legend'] = 'c4m_vocab_event_type';
   $handler->display->display_options['row_options']['colors']['calendar_colors_type'] = array(
     'article' => '#ffffff',
     'banner' => '#ffffff',
@@ -592,10 +592,10 @@ function c4m_features_overview_events_views_default_views() {
     38 => '#ffffff',
     40 => '#ffffff',
   );
-  $handler->display->display_options['row_options']['colors']['c4m_event_type'] = array(
-    'event' => '#347C98',
-    'learning' => '#B0C35A',
-    'meeting' => '#EE6A32',
+  $handler->display->display_options['row_options']['colors']['c4m_vocab_event_type'] = array(
+    1629 => '#347C98',
+    1630 => '#B0C35A',
+    1631 => '#EE6A32',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;

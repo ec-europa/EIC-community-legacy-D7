@@ -62,8 +62,8 @@ angular.module('c4mApp')
       // Set "Start a Debate" as default discussion type.
       $scope.data.discussion_type = 'info';
 
-      // Set "Event" as default event type.
-      $scope.data.event_type = 'event';
+      // Set "Event" as default event type. We're setting the specific term ID.
+      $scope.data.event_type = '1629';
 
       // Reset all the text fields.
       var textFields = ['label', 'body', 'tags', 'organiser' , 'datetime'];

@@ -70,7 +70,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 12,
+        'weight' => 11,
       ),
       'documents' => array(
         'label' => 'above',
@@ -170,7 +170,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'documents' => array(
         'label' => 'above',
@@ -288,7 +288,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
-        'weight' => 8,
+        'weight' => 7,
       ),
       'documents' => array(
         'label' => 'above',
@@ -395,7 +395,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 13,
+        'weight' => 12,
       ),
       'documents' => array(
         'label' => 'above',
@@ -477,7 +477,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 14,
+        'weight' => 13,
       ),
       'documents' => array(
         'label' => 'above',
@@ -617,12 +617,6 @@ function c4m_content_event_site_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 31,
       ),
-      'block_list_anonymous' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 43,
-      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -690,7 +684,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 6,
+        'weight' => 5,
       ),
       'documents' => array(
         'label' => 'above',
@@ -773,7 +767,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 26,
+        'weight' => 24,
       ),
       'documents' => array(
         'label' => 'above',
@@ -870,7 +864,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'view_mode' => 'full',
         ),
         'type' => 'paragraphs_view',
-        'weight' => 22,
+        'weight' => 20,
       ),
       'documents' => array(
         'label' => 'above',
@@ -950,7 +944,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 5,
+        'weight' => 4,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1038,7 +1032,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 9,
+        'weight' => 8,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1114,7 +1108,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'data' => 'full',
         ),
         'type' => 'geofield_wkt',
-        'weight' => 20,
+        'weight' => 18,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1257,7 +1251,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 11,
+        'weight' => 10,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1363,7 +1357,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 24,
+        'weight' => 22,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1427,7 +1421,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1522,7 +1516,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 10,
+        'weight' => 9,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1621,7 +1615,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
-        'weight' => 25,
+        'weight' => 23,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1699,7 +1693,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 15,
+        'weight' => 14,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1779,7 +1773,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 21,
+        'weight' => 19,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1852,7 +1846,7 @@ function c4m_content_event_site_field_default_field_instances() {
           'view_mode' => 'full',
         ),
         'type' => 'paragraphs_view',
-        'weight' => 23,
+        'weight' => 21,
       ),
       'documents' => array(
         'label' => 'above',
@@ -1932,7 +1926,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'documents' => array(
         'label' => 'above',
@@ -2012,9 +2006,17 @@ function c4m_content_event_site_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 28,
+        'module' => 'c4m_content_topic',
+        'settings' => array(
+          'display' => 'all',
+          'exclude_top_parent' => FALSE,
+          'link' => '',
+          'link_organisations' => '',
+          'separator' => ' » ',
+          'wrap' => 'none',
+        ),
+        'type' => 'term_reference_tree_children_expanded',
+        'weight' => 1,
       ),
       'documents' => array(
         'label' => 'above',
@@ -2035,14 +2037,16 @@ function c4m_content_event_site_field_default_field_instances() {
         'weight' => 61,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'c4m_vocab_event_type',
     'label' => 'Event type',
-    'required' => TRUE,
+    'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
@@ -2073,7 +2077,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 19,
+        'weight' => 17,
       ),
       'documents' => array(
         'label' => 'above',
@@ -2135,7 +2139,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 18,
+        'weight' => 16,
       ),
       'documents' => array(
         'label' => 'above',
@@ -2197,7 +2201,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 16,
+        'weight' => 15,
       ),
       'documents' => array(
         'label' => 'above',
@@ -2333,7 +2337,6 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Determine if this is an OG group.');
   t('Event Location');
   t('Event type');
-  t('Event(Site) Dashboard ID');
   t('Facebook page');
   t('Group');
   t('Language');
@@ -2358,6 +2361,7 @@ function c4m_content_event_site_field_default_field_instances() {
   t('Twitter page');
   t('Type of Event');
   t('You can select up to 3 Topics and unlimited subtopics within these Topics.');
+  t('Event(Site) Dashboard ID');
 
   return $field_instances;
 }
