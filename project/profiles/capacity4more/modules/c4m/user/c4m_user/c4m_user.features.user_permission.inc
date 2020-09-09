@@ -671,9 +671,7 @@ function c4m_user_user_default_permissions() {
   // Exported permission: 'bypass maxlength'.
   $permissions['bypass maxlength'] = array(
     'name' => 'bypass maxlength',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'maxlength',
   );
 
@@ -2408,6 +2406,7 @@ function c4m_user_user_default_permissions() {
     'name' => 'use search_api_sorts',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'search_api_sorts',
