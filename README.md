@@ -28,6 +28,11 @@ When we first clone the repository, we need to initialize it:
 
     $ bin/init
 
+Create a folder called "backup", otherwise the Druleton scripts (inside the bin folder) will not work!
+Create it inside the docker container, so it has the correct user/group ower.
+In "/srv/http/app/public_html" do:
+    $ mkdir backup
+
 Keep in mind to configure the proper installation profile, which is "capacity4more" in our case!
 
 This script will:
