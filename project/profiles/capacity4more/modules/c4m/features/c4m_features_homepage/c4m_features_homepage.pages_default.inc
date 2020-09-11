@@ -847,7 +847,7 @@ function c4m_features_homepage_default_page_manager_pages() {
   $pane->panel = 'left';
   $pane->type = 'activity_stream';
   $pane->subtype = 'activity_stream';
-  $pane->shown = FALSE;
+  $pane->shown = TRUE;
   $pane->access = array(
     'logic' => 'and',
   );
