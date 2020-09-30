@@ -235,10 +235,6 @@ function c4m_public_access_default_page_manager_pages_alter(&$pages) {
     $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
                           ->conf['display']->content['new-b3476758-2767-4be2-b3ad-84697ac801c3']
                           ->shown = FALSE;
-    // Hide the NOJS activity stream.
-    $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
-                          ->conf['display']->content['new-98afd53a-7134-42fa-aa33-75d6cdc905d7']
-                          ->shown = FALSE;
     // Hide the c4m_featured_groups
     $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
                           ->conf['display']->content['new-e00433dd-e5e5-4c05-8231-b4642b65f37f']
