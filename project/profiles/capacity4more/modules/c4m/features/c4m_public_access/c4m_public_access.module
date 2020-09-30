@@ -86,6 +86,12 @@ function c4m_public_access_node_access($node, $op, $account) {
     if (!in_array($node->type, ['article', 'book', 'event_site']) ) {
       return NODE_ACCESS_DENY;
     }
+    if ($node->type == 'article'){
+      if (!empty($node->group_group)) {
+        return NODE_ACCESS_DENY;
+      }
+    }
+
     if ($node->type == "book") {
       //only allow the book pages that are allowed and the whole help-guidance section.
       $public_access_settings = variable_get('public_access_settings', array());
@@ -160,6 +166,21 @@ function c4m_public_access_entity_view_alter(&$build, $type) {
 
   }
 
+}
+
+/**
+ * Implements hook_views_query_alter().
+ *
+ * Filter the activity stream by the user's choice.
+ */
+
+function c4m_public_access_views_query_alter(&$view, &$query)
+{
+  if (!(user_is_anonymous() && $view->name == 'global_activity_stream_no_js_fallback')) {
+    return;
+  }
+  // We limit what the anonymous visitor can see in the activity stream.
+  $query->where[1]["conditions"][1]["value"] = array("c4m_insert__node__article");
 }
 
 /**
