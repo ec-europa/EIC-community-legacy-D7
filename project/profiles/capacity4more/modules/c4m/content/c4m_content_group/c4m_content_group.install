@@ -32,3 +32,10 @@ function c4m_content_group_update_7001() {
     ->condition('bundle', 'group')
     ->execute();
 }
+
+/**
+ * Enable the jquery_expander for the search results overview.
+ */
+function c4m_content_group_update_7002() {
+  module_enable(['jquery_expander']);
+}
