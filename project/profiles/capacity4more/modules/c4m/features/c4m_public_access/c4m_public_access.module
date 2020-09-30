@@ -276,6 +276,14 @@ function c4m_public_access_block_view_c4m_features_header_c4m_header_menu_alter(
   }
 }
 
+function c4m_public_access_views_pre_build(&$view) {
+  if (user_is_anonymous() && $view->name == "global_activity_stream_no_js_fallback") {
+    $view->init_pager();
+    $view->set_items_per_page('8');
+
+  }
+}
+
 /**
  * Helper function for hiding / unhiding a menu item for anonymous users.
  *
