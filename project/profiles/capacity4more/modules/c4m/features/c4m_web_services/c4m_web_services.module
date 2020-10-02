@@ -433,9 +433,9 @@ function c4m_web_services_add_organisation_members(array $c4m_organisation_membe
     return;
   }
 
-  $users = c4m_web_services_get_or_add_user($c4m_organisation_members);
+  $new_members = c4m_web_services_get_or_add_user($c4m_organisation_members);
 
-  if (empty($users)) {
+  if (empty($new_members)) {
     return;
   }
 
@@ -452,10 +452,15 @@ function c4m_web_services_add_organisation_members(array $c4m_organisation_membe
     }
   }
 
-  // Remove old members of a group - in case of updating the organisation.
+  // Find users that are no longer member of the organisation and remove them.
   $old_member_ids = c4m_og_get_group_member_ids($nid);
-  foreach ($old_member_ids as $one) {
-    og_ungroup('node', $nid, 'user', $one);
+  foreach ($new_members as $member) {
+    $users[$member->uid] = $member;
+  }
+  foreach ($old_member_ids as $uid) {
+    if (empty($users[$uid])) {
+      og_ungroup('node', $nid, 'user', $uid);
+    }
   }
 
   foreach ($users as $user) {
