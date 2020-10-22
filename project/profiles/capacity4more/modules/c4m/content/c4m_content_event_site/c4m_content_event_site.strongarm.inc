@@ -307,6 +307,9 @@ function c4m_content_event_site_strongarm() {
       'documents' => array(
         'custom_settings' => TRUE,
       ),
+      'block_list_anonymous' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

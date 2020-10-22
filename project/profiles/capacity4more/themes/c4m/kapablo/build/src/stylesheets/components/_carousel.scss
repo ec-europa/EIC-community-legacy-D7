@@ -1,12 +1,14 @@
 #articles-panel {
   margin: 0;
   color: $color-text;
+  border-bottom: 1px solid #ccc;
+  background: #fcf7f0;
   .block-title {
-    display: inline-block;
-    margin: 1em 0;
-    float: right;
+    display: block;
+    margin: 1em 20px;
+    text-align: right;
   }
-  @include clearfix;
+  //@include clearfix;
 }
 
 .row.carousel {
@@ -19,6 +21,7 @@
     margin-bottom: 20px;
     text-align: left;
     color: $color-link;
+    display:none;
     @media (min-width: $screen-tablet) {
       text-align: center;
     }
@@ -40,7 +43,7 @@
     // padding: 10px;
     display: flex;
     justify-content: space-between;
-    margin: $base-spacing-small 0px;
+    margin: $base-spacing-small 20px;
     h2 {
       // clear: both;
       // display: block;
@@ -67,6 +70,20 @@
       margin: 0 0 0 $base-spacing-small;
       // margin- $base-spacing-small;
       text-align: left;
+      align-content: flex-end;
+      white-space: nowrap;
+      display: grid;
+      position: absolute;
+      z-index: 12;
+      color: white;
+      top: 1px;
+      left: 62px;
+      font-size: 1.6em;
+      /* display: block; */
+      background: rgba(0,0,0,0.6);
+      padding: 5px 40px !important;
+      font-weight: bold;
+
       @media (min-width: $screen-tablet) {
         // margin: 0 $base-spacing-small 0 0;
         text-align: right;
@@ -81,7 +98,8 @@
     font-size: 0.85rem;
     @media (min-width: $screen-tablet) {
       display: block;
-      margin: 10px 0;
+      margin: 10px 20px;
+      font-size: 1.1em;
       a {
         float: none;
         margin: 30px 0;
@@ -126,7 +144,7 @@
     .owl-pagination {
       margin: 0px;
       @media (min-width: $screen-tablet) {
-        float: right;
+        /* float: right; */
       }
     }
     .owl-prev {

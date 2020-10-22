@@ -71,7 +71,10 @@ projects[save_draft][subdir] = "contrib"
 projects[save_draft][version] = "1.4"
 
 projects[smart_trim][subdir] = "contrib"
-projects[smart_trim][version] = "1.5"
+projects[smart_trim][version] = "1.6"
+
+projects[jquery_expander][subdir] = "contrib"
+projects[jquery_expander][version] = "1.0"
 
 projects[summary_settings][subdir] = "contrib"
 projects[summary_settings][version] = "1.x-dev"
