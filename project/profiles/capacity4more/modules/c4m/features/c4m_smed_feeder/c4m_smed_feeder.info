@@ -1,0 +1,5 @@
+name = SMEDashboard feeder services
+description = Manage the synchronisation and verification of content with the SMEDashboard tools.
+core = 7.x
+package = Features - EIC
+version = 7.x-0.1
