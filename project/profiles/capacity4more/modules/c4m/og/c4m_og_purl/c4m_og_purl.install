@@ -40,3 +40,29 @@ function c4m_og_purl_schema() {
 function c4m_og_purl_update_7001() {
   drupal_install_schema('c4m_og_purl');
 }
+
+/**
+ * Clean up leftover PURLs from the database.
+ */
+function c4m_og_purl_update_7002() {
+  // Find out PURLs that reference a non-existing node.
+  $query = db_select('purl', 'p');
+  $query->leftJoin('node', 'n', 'p.id = n.nid');
+  $results = $query->fields('p', ['id'])
+    ->fields('n', ['nid'])
+    ->condition('p.provider', 'og_purl|node')
+    ->isNull('n.nid')
+    ->execute();
+
+  $ids = [];
+  foreach ($results->fetchAll() as $item) {
+    $ids[] = $item->id;
+  }
+  // Delete those.
+  $num_deleted = db_delete('purl')
+    ->condition('provider', 'og_purl|node')
+    ->condition('id', $ids, 'IN')
+    ->execute();
+
+  return t('Deleted @count orphan PURLs (og_purl|node).', ['@count' => $num_deleted]);
+}
