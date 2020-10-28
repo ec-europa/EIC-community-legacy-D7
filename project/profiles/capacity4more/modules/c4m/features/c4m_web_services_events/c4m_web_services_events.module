@@ -444,10 +444,8 @@ function c4m_web_services_events_services_request_preprocess_alter(array $contro
         $arg["c4m_publish_date"][LANGUAGE_NONE][0]["value"]['date'] = $publish_datetime->format('d/m/Y');
         $arg["c4m_publish_date"][LANGUAGE_NONE][0]["value"]['time'] = $publish_datetime->format('H:i');
 
-        // Add the purl based on the title - group path is required:
-        // But first, a cleanup, replace spaces:
-        // @todo use pathauto_create_alias.
-        $arg['purl'] = array("value" => urlencode(_normalize_string_for_url($arg['title'])));
+        // Add the purl based on the title - group path is required.
+        $arg['purl'] = array("value" => _c4m_web_services_generate_purl_alias($arg['title']));
         // convert the registration Link.
         if (!isset($arg['c4m_link']) && isset($arg['link'])) {
           $arg['c4m_link'] = array (LANGUAGE_NONE => array( array ('url' => $arg['link'], 'title' => $arg['link'])));
@@ -789,26 +787,3 @@ function _raise_error($error_key, $data = '') {
   }
 }
 
-/**
- * Helper function to clean the title.
- *
- * @param string $string_to_be_normalized
- *   The string that needs to be cleaded up.
- */
-function _normalize_string_for_url($string_to_be_normalized) {
-  $table = array(
-      'Š'=>'S', 'š'=>'s', 'Đ'=>'Dj', 'đ'=>'dj', 'Ž'=>'Z', 'ž'=>'z', 'Č'=>'C', 'č'=>'c', 'Ć'=>'C', 'ć'=>'c',
-      'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
-      'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O',
-      'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss',
-      'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
-      'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o',
-      'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
-      'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r',
-  );
-  // Replace spaces.
-  $string_to_be_normalized = strtolower(str_replace(' ', '-', $string_to_be_normalized));
-  // Replace quotes.
-  $string_to_be_normalized = str_replace(array('"', "'"), array("", "-"), $string_to_be_normalized);
-  return strtr($string_to_be_normalized, $table);
-}

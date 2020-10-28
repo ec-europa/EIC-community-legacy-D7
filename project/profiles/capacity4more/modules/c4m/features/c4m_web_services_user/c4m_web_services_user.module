@@ -75,7 +75,7 @@ function _c4m_web_services_user_authenticate_call(array $settings, array $method
   $context->buildFromGlobals();
 
   $valid_token = FALSE;
-  // Check if the header contains the authorization token. 
+  // Check if the header contains the authorization token.
   if (NULL !== $context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"]))) {
     if ($context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"])) === $settings["authorization_token_key"]) {
       $valid_token = TRUE;
@@ -113,7 +113,7 @@ function _c4m_web_services_user_authenticate_call(array $settings, array $method
  */
 function _c4m_web_services_user_default_security_settings() {
   $webservice_user_settings = variable_get('webservice_user', array());
-  
+
   return [
     'authorization_token_name' => $webservice_user_settings['authorization_token_name'],
     'authorization_token_key' => $webservice_user_settings['authorization_token_key'],
@@ -148,7 +148,7 @@ function _c4m_web_services_user_security_settings($settings, &$form_state) {
     '#required' => TRUE,
     '#default_value' => $settings['webservice_username'],
   ];
-  
+
 
   return $form;
 }
@@ -360,7 +360,7 @@ function c4m_web_services_user_services_request_postprocess_alter($controller, $
     if (empty($nid = $result['nid'])) {
       continue;
     }
-    // When creating a new node, approve it so it becomes status draft 
+    // When creating a new node, approve it so it becomes status draft
     if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create_user') {
 
     }
@@ -406,31 +406,5 @@ function c4m_web_services_user_form_alter(&$form, &$form_state, $form_id) {
     //   // Coming from werbservice, do not interfere.
     //   return;
     // }
-  }
-}
-
-if (!function_exists('_normalize_string_for_url')) { 
-  /**
-   * Helper function to clean the title.
-   *
-   * @param string $string_to_be_normalized
-   *   The string that needs to be cleaded up.
-   */
-  function _normalize_string_for_url($string_to_be_normalized) {
-    $table = array(
-        'Š'=>'S', 'š'=>'s', 'Đ'=>'Dj', 'đ'=>'dj', 'Ž'=>'Z', 'ž'=>'z', 'Č'=>'C', 'č'=>'c', 'Ć'=>'C', 'ć'=>'c',
-        'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
-        'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O',
-        'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss',
-        'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
-        'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o',
-        'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
-        'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r',
-    );
-    // Replace spaces.
-    $string_to_be_normalized = strtolower(str_replace(' ', '-', $string_to_be_normalized));
-    // Replace quotes.
-    $string_to_be_normalized = str_replace(array('"', "'"), array("", "-"), $string_to_be_normalized);
-    return strtr($string_to_be_normalized, $table);
   }
 }

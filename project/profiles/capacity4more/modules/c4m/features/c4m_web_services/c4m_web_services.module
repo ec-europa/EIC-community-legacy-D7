@@ -276,6 +276,13 @@ function c4m_web_services_services_request_preprocess_alter(array $controller, a
         }
       }
     }
+    // Make sure the PURL is unique.
+    if (!empty($args[0]['purl']['value'])) {
+      // First replace underscores by hyphens.
+      //$purl = str_replace('_', '-', $args[0]['purl']['value']);
+
+      $args[0]['purl']['value'] = _c4m_web_services_generate_purl_alias($purl);
+    }
     // Get all Taxonomy Fields of Organisation CT.
     $organisation_taxonomy_fields = field_read_fields([
       'entity_type' => 'node',
@@ -851,4 +858,42 @@ function c4m_web_services_publish_organisation_set_paragraphs($nid, array $arg) 
 
   // Save the node.
   node_save($node);
+}
+
+/**
+ * Helper function to generate a compliant alias for PURL.
+ *
+ * @param $string
+ *   The string to generate the path with.
+ * @return string
+ *   The sanitized path.
+ */
+function _c4m_web_services_generate_purl_alias($string) {
+  $alias = $string;
+  if (module_exists('pathauto')) {
+    module_load_include('inc', 'pathauto', 'pathauto');
+    // Sanitize the string first.
+    $alias = pathauto_cleanstring($alias);
+    $alias = pathauto_clean_alias($alias);
+    $original_alias = $alias;
+
+    // Check for duplicates, and if it exists, append a suffix to it.
+    $results = db_select('purl', 'p')
+      ->fields('p', ['value'])
+      ->condition('provider', 'og_purl|node')
+      ->condition('value', db_like($string) . '%', 'LIKE')
+      ->execute()->fetchCol('value');
+    if (in_array($alias, $results)) {
+      $i = 0;
+      $maxlength = min(variable_get('pathauto_max_length', 100), _pathauto_get_schema_alias_maxlength());
+      $separator = variable_get('pathauto_separator', '-');
+      do {
+        // Append an incrementing numeric suffix until we find a unique alias.
+        $unique_suffix = $separator . $i;
+        $alias = truncate_utf8($original_alias, $maxlength - drupal_strlen($unique_suffix), TRUE) . $unique_suffix;
+        $i++;
+      } while (in_array($alias, $results));
+    }
+    return $alias;
+  }
 }
