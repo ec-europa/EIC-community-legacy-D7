@@ -12,7 +12,7 @@
  *   An array with key|label.
  */
 function c4m_smed_feeder_field_status_list_options() {
-  module_load_include('inc', 'c4m_smed_feeder', 'c4m_smed_feeder.statuses');
+  module_load_include('inc', 'c4m_smed_feeder', 'includes/c4m_smed_feeder.statuses');
 
   $options = [];
   foreach (c4m_smed_feeder_status_list() as $key => $item) {
