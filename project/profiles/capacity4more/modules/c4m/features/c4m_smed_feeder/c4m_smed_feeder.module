@@ -6,6 +6,23 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function c4m_smed_feeder_menu() {
+  return [
+    'admin/config/services/smed_feeder' => [
+      'title' => 'The settings page for the SMED feeder webservice',
+      'description' => 'Manage the settings for the SMED feeder.',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => ['c4m_smed_feeder_admin_settings_general'],
+      'access arguments' => ['administer webservices with SMED'],
+      'type' => MENU_NORMAL_ITEM,
+      'file' => 'includes/smed_feeder.admin.inc',
+    ],
+  ];
+}
+
+/**
  * Returns the list options for the status field (c4m_user_status).
  *
  * @return array
