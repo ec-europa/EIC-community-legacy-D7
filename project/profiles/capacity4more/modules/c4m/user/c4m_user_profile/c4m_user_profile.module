@@ -595,6 +595,20 @@ function c4m_user_profile_form_user_profile_form_alter(&$form, &$form_state, $fo
   if (module_exists('c4m_web_services_user') && !empty($form['c4m_user_dashboard_id'] && $user->uid !== "1")) {
       $form['c4m_user_dashboard_id']['#disabled'] = TRUE;
   }
+
+  // Disable/hide SMED related fields.
+  $smed_fields = [
+    'c4m_updated_profile_by_user',
+    'c4m_updated_profile_by_service',
+    'c4m_user_status',
+    'c4m_message_from_service',
+  ];
+  foreach ($smed_fields as $smed_field) {
+    if (isset($form[$smed_field])) {
+      $form[$smed_field]['#access'] = FALSE;
+    }
+  }
+
 }
 
 /**

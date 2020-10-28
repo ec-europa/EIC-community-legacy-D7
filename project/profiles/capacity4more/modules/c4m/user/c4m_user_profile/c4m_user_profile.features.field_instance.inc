@@ -122,7 +122,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 30,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -224,7 +224,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 29,
+        'weight' => 16,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -307,7 +307,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 27,
+        'weight' => 14,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -420,7 +420,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 28,
       ),
       'full' => array(
         'label' => 'above',
@@ -517,7 +517,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 32,
       ),
       'full' => array(
         'label' => 'above',
@@ -583,7 +583,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 27,
       ),
       'full' => array(
         'label' => 'above',
@@ -651,7 +651,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 17,
+        'weight' => 12,
       ),
       'full' => array(
         'label' => 'above',
@@ -726,7 +726,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 10,
+        'weight' => 6,
       ),
       'full' => array(
         'label' => 'above',
@@ -794,7 +794,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 9,
+        'weight' => 5,
       ),
       'full' => array(
         'label' => 'above',
@@ -891,7 +891,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 25,
+        'weight' => 33,
       ),
       'full' => array(
         'label' => 'above',
@@ -983,7 +983,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 29,
       ),
       'full' => array(
         'label' => 'above',
@@ -1047,7 +1047,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 31,
+        'weight' => 18,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -1136,7 +1136,7 @@ function c4m_user_profile_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 26,
+        'weight' => 13,
       ),
       'full' => array(
         'label' => 'inline',
@@ -1331,10 +1331,9 @@ function c4m_user_profile_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 38,
+        'type' => 'hidden',
+        'weight' => 25,
       ),
       'full' => array(
         'label' => 'above',
@@ -1437,7 +1436,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 16,
+        'weight' => 11,
       ),
       'full' => array(
         'label' => 'above',
@@ -1512,7 +1511,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 15,
+        'weight' => 10,
       ),
       'full' => array(
         'label' => 'above',
@@ -1587,7 +1586,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 13,
+        'weight' => 8,
       ),
       'full' => array(
         'label' => 'above',
@@ -1662,7 +1661,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 14,
+        'weight' => 9,
       ),
       'full' => array(
         'label' => 'above',
@@ -1733,7 +1732,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 28,
+        'weight' => 15,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -1817,7 +1816,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 12,
+        'weight' => 7,
       ),
       'full' => array(
         'label' => 'above',
@@ -1906,17 +1905,9 @@ function c4m_user_profile_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 36,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
       ),
       'full' => array(
         'label' => 'above',
@@ -1975,6 +1966,7 @@ function c4m_user_profile_field_default_field_instances() {
   // Exported field_instance: 'user-user-c4m_updated_profile_by_user'.
   $field_instances['user-user-c4m_updated_profile_by_user'] = array(
     'bundle' => 'user',
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -1986,17 +1978,9 @@ function c4m_user_profile_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 35,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 22,
       ),
       'full' => array(
         'label' => 'above',
@@ -2135,10 +2119,9 @@ function c4m_user_profile_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 37,
+        'type' => 'hidden',
+        'weight' => 24,
       ),
       'full' => array(
         'label' => 'above',
@@ -2201,7 +2184,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 32,
+        'weight' => 19,
       ),
       'full' => array(
         'label' => 'inline',
@@ -2293,7 +2276,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 31,
       ),
       'full' => array(
         'label' => 'inline',
@@ -2355,7 +2338,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 30,
+        'weight' => 17,
       ),
       'full' => array(
         'label' => 'inline',
@@ -2452,7 +2435,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 5,
+        'weight' => 3,
       ),
       'full' => array(
         'label' => 'inline',
@@ -2549,7 +2532,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 6,
+        'weight' => 4,
       ),
       'full' => array(
         'label' => 'inline',
