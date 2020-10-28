@@ -3,3 +3,4 @@ description = Manage the synchronisation and verification of content with the SM
 core = 7.x
 package = Features - EIC
 version = 7.x-0.1
+project path = profiles/capacity4more/modules/c4m/features
