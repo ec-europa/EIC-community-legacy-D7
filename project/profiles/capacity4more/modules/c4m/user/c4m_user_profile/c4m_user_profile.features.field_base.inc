@@ -269,6 +269,25 @@ function c4m_user_profile_field_default_field_bases() {
     'type' => 'link_field',
   );
 
+  // Exported field_base: 'c4m_message_from_service'.
+  $field_bases['c4m_message_from_service'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'c4m_message_from_service',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'c4m_optout_comment'.
   $field_bases['c4m_optout_comment'] = array(
     'active' => 1,
@@ -478,6 +497,64 @@ function c4m_user_profile_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'c4m_updated_profile_by_service'.
+  $field_bases['c4m_updated_profile_by_service'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'c4m_updated_profile_by_service',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 'hour',
+        'minute' => 'minute',
+        'month' => 'month',
+        'second' => 'second',
+        'year' => 'year',
+      ),
+      'timezone_db' => 'UTC',
+      'todate' => '',
+      'tz_handling' => 'site',
+    ),
+    'translatable' => 0,
+    'type' => 'datestamp',
+  );
+
+  // Exported field_base: 'c4m_updated_profile_by_user'.
+  $field_bases['c4m_updated_profile_by_user'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'c4m_updated_profile_by_user',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 'hour',
+        'minute' => 'minute',
+        'month' => 'month',
+        'second' => 'second',
+        'year' => 'year',
+      ),
+      'timezone_db' => 'UTC',
+      'todate' => '',
+      'tz_handling' => 'site',
+    ),
+    'translatable' => 0,
+    'type' => 'datestamp',
+  );
+
   // Exported field_base: 'c4m_user_dashboard_id'.
   $field_bases['c4m_user_dashboard_id'] = array(
     'active' => 1,
@@ -491,6 +568,28 @@ function c4m_user_profile_field_default_field_bases() {
     'settings' => array(),
     'translatable' => 0,
     'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'c4m_user_status'.
+  $field_bases['c4m_user_status'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'c4m_user_status',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
   );
 
   // Exported field_base: 'c4m_user_types'.
