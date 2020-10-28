@@ -555,6 +555,44 @@ function c4m_content_article_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|article|activity_global_anonymous';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'article';
+  $ds_layout->view_mode = 'activity_global_anonymous';
+  $ds_layout->layout = 'c4m_ds_4_8_fluid_stacked';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'left' => array(
+        0 => 'c4m_body',
+        1 => 'c4m_media',
+      ),
+    ),
+    'fields' => array(
+      'c4m_body' => 'left',
+      'c4m_media' => 'left',
+    ),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
+    'wrappers' => array(
+      'header' => 'div',
+      'left' => 'div',
+      'right' => 'div',
+      'footer' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
+  );
+  $export['node|article|activity_global_anonymous'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'node|article|activity_group';
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'article';
@@ -792,6 +830,26 @@ function c4m_content_article_ds_layout_settings_info() {
     'layout_disable_css' => FALSE,
   );
   $export['node|article|teaser'] = $ds_layout;
+
+  return $export;
+}
+
+/**
+ * Implements hook_ds_view_modes_info().
+ */
+function c4m_content_article_ds_view_modes_info() {
+  $export = array();
+
+  $ds_view_mode = new stdClass();
+  $ds_view_mode->api_version = 1;
+  $ds_view_mode->view_mode = 'activity_global_anonymous';
+  $ds_view_mode->label = 'Activity global anonymous';
+  $ds_view_mode->entities = array(
+    'comment' => 'comment',
+    'message' => 'message',
+    'node' => 'node',
+  );
+  $export['activity_global_anonymous'] = $ds_view_mode;
 
   return $export;
 }

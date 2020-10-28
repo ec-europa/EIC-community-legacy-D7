@@ -124,7 +124,10 @@ function c4m_user_profile_tokens($type, $tokens, array $data = [], array $option
           if (!$account->status && $wrapper->c4m_is_deleted_anonymous->value()) {
             $name = t('Anonymous');
           }
-
+          // no linking when visitor is anonymous.
+          if (user_is_anonymous()) {
+            $account->status = 0;
+          }
           $replacements[$original] = !empty($account->uid) && $account->status ? l($name, "user/$account->uid", $url_options) : $name;
           break;
       }

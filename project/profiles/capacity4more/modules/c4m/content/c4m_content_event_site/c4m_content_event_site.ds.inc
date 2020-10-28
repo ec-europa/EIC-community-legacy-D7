@@ -66,6 +66,32 @@ function c4m_content_event_site_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|event_site|block_list_anonymous';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'event_site';
+  $ds_fieldsetting->view_mode = 'block_list_anonymous';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '1',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link' => 'purl_auto',
+        'wrapper' => 'h2',
+        'class' => '',
+        'ft' => array(),
+      ),
+    ),
+    'c4m_ds_event_site_type_icon' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|event_site|block_list_anonymous'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'node|event_site|documents';
   $ds_fieldsetting->entity_type = 'node';
   $ds_fieldsetting->bundle = 'event_site';
@@ -476,6 +502,50 @@ function c4m_content_event_site_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|event_site|block_list_anonymous';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'event_site';
+  $ds_layout->view_mode = 'block_list_anonymous';
+  $ds_layout->layout = 'c4m_ds_3_9_fluid';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'left' => array(
+        0 => 'c4m_media',
+      ),
+      'right' => array(
+        1 => 'title',
+        2 => 'c4m_ds_event_site_type_icon',
+        3 => 'c4m_datetime_end',
+        4 => 'c4m_og_status',
+      ),
+    ),
+    'fields' => array(
+      'c4m_media' => 'left',
+      'title' => 'right',
+      'c4m_ds_event_site_type_icon' => 'right',
+      'c4m_datetime_end' => 'right',
+      'c4m_og_status' => 'right',
+    ),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
+    'wrappers' => array(
+      'left' => 'div',
+      'right' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
+  );
+  $export['node|event_site|block_list_anonymous'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'node|event_site|documents';
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'event_site';
@@ -633,6 +703,24 @@ function c4m_content_event_site_ds_layout_settings_info() {
     'layout_disable_css' => FALSE,
   );
   $export['node|event_site|teaser'] = $ds_layout;
+
+  return $export;
+}
+
+/**
+ * Implements hook_ds_view_modes_info().
+ */
+function c4m_content_event_site_ds_view_modes_info() {
+  $export = array();
+
+  $ds_view_mode = new stdClass();
+  $ds_view_mode->api_version = 1;
+  $ds_view_mode->view_mode = 'block_list_anonymous';
+  $ds_view_mode->label = 'Block List Anonymous';
+  $ds_view_mode->entities = array(
+    'node' => 'node',
+  );
+  $export['block_list_anonymous'] = $ds_view_mode;
 
   return $export;
 }

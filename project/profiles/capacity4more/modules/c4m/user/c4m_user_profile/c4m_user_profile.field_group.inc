@@ -109,6 +109,37 @@ function c4m_user_profile_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_smed_service_info|user|user|form';
+  $field_group->group_name = 'group_smed_service_info';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'SMED Service Information',
+    'weight' => '32',
+    'children' => array(
+      0 => 'c4m_message_from_service',
+      1 => 'c4m_updated_profile_by_service',
+      2 => 'c4m_updated_profile_by_user',
+      3 => 'c4m_user_status',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-smed-service-info field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_smed_service_info|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_user_about|user|user|full';
   $field_group->group_name = 'group_user_about';
   $field_group->entity_type = 'user';
@@ -380,6 +411,7 @@ function c4m_user_profile_field_group_info() {
   t('Meta');
   t('Notable Contributions');
   t('Professional Interests');
+  t('SMED Service Information');
   t('Your account');
   t('Your expertise');
   t('Your interests');

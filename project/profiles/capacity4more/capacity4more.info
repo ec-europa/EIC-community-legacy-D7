@@ -74,6 +74,7 @@ dependencies[] = restful
 ; dependencies[] = save_draft
 dependencies[] = strongarm
 dependencies[] = smart_trim
+dependencies[] = jquery_expander
 dependencies[] = telephone
 dependencies[] = term_reference_tree
 dependencies[] = transliteration

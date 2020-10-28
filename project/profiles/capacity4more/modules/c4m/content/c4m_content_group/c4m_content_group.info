@@ -21,6 +21,7 @@ dependencies[] = features
 dependencies[] = field_group
 dependencies[] = hierarchical_taxonomy
 dependencies[] = image
+dependencies[] = jquery_expander
 dependencies[] = list
 dependencies[] = media
 dependencies[] = og_ui
