@@ -586,7 +586,7 @@ function c4m_user_profile_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => '',
+      'allowed_values_function' => 'c4m_smed_feeder_field_status_list_options',
     ),
     'translatable' => 0,
     'type' => 'list_text',
