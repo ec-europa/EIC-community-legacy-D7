@@ -37,3 +37,65 @@ function c4m_smed_feeder_field_status_list_options() {
   }
   return $options;
 }
+
+/**
+ * Synchronises a user account with the SMED.
+ *
+ * @param object $account
+ *   The user object or NULL to update the current user.
+ */
+function c4m_smed_feeder_request_sync_user($account = NULL) {
+  global $user;
+
+  if (empty($account)) {
+    $account = $user;
+  }
+
+  // Make sure we have a fully loaded user account.
+  $account = user_load($account->uid);
+
+  module_load_include('inc', 'c4m_smed_feeder', 'includes/C4mSmedRequest');
+
+  // Prepare data to send.
+  $data['username'] = $user->name;
+  $data['email'] = $user->mail;
+  $data['c4m_status'] = $user->status ? 'Blocked' : 'Active';
+  if (!empty($account->c4m_user_dashboard_id[LANGUAGE_NONE][0]['value'])) {
+    $data['dashboard_user_id'] = $account->c4m_user_dashboard_id[LANGUAGE_NONE][0]['value'];
+  }
+  if (!empty($account->c4m_user_status[LANGUAGE_NONE][0]['value'])) {
+    $data['c4m_user_status'] = $account->c4m_user_status[LANGUAGE_NONE][0]['value'];
+  }
+
+  // Send request.
+  $request = new C4mSmedRequest();
+  $request->requestPayload($data);
+  $response = $request->sendRequest();
+
+  // Update the user account with updated data.
+  $account->c4m_user_status[LANGUAGE_NONE][0]['value'] = $response['data']['user']['c4m_user_status'];
+  $account->c4m_updated_profile_by_service[LANGUAGE_NONE][0]['value'] = REQUEST_TIME;
+  $account->c4m_message_from_service[LANGUAGE_NONE][0]['value'] = c4m_smed_feeder_format_message_from_service($response);
+  field_attach_presave('user', $account);
+  field_attach_update('user', $account);
+  // Clear the static loading cache.
+  entity_get_controller('user')->resetCache([$account->uid]);
+}
+
+/**
+ * Formats the message to be recorded after a user account synchronisation.
+ *
+ * @param array $response
+ *   The response array returned by the request.
+ *   See C4mSmedRequest class.
+ *
+ * @return string
+ *   The message.
+ */
+function c4m_smed_feeder_format_message_from_service($response) {
+  $time = '[' . date('d/m/Y - H:i', REQUEST_TIME) . ']';
+  $http_code = $response['response']->code;
+  $user_status = $response['data']['user']['c4m_user_status'];
+
+  return implode(' - ', [$time, $http_code, $user_status]);
+}
