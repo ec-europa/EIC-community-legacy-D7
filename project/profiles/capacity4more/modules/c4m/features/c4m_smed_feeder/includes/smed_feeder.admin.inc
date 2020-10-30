@@ -46,7 +46,7 @@ function c4m_smed_feeder_admin_settings_general() {
   );
   $form['smed_feeder']['smed_feeder_basic_authentication_password'] = array(
     '#type' => 'password',
-    '#title' => t('The SME dashboard basic authentication user. (If you have already entered your password before, you should leave this field blank, unless you want to change the stored password.)'),
+    '#title' => t('The SME dashboard basic authentication password. (Leave this field blank, unless you want to change the stored password.)'),
     '#description' => '',
     '#default_value' => isset($smed_feeder['smed_feeder_basic_authentication_password']) ? $smed_feeder['smed_feeder_basic_authentication_password'] : '',
     '#required' => FALSE,
@@ -56,7 +56,7 @@ function c4m_smed_feeder_admin_settings_general() {
   );
   $form['smed_feeder']['smed_feeder_authorization_token_key'] = array(
     '#type' => 'password',
-    '#title' => t('smed-feeder Authorization token key. (If you have already entered the token before, you should leave this field blank, unless you want to change the stored token.)'),
+    '#title' => t('smed-feeder Authorization token key. (Leave this field blank, unless you want to change the stored token.)'),
     '#description' => '',
     '#default_value' => isset($smed_feeder['smed_feeder_authorization_token_key']) ? $smed_feeder['smed_feeder_authorization_token_key'] : '',
     '#required' => FALSE,
@@ -65,8 +65,22 @@ function c4m_smed_feeder_admin_settings_general() {
     ),
   );
 
+  $form['#submit'][] = 'c4m_smed_feeder_admin_settings_submit';
   $form = system_settings_form($form);
-
   return $form;
 }
 
+/**
+ * Submit handler().
+ */
+
+function c4m_smed_feeder_admin_settings_submit($form, &$form_state) {
+  // A password field is not shown . So, when a user submit this form without changing the password,
+  // the field(s) will be take the stored value(s).
+  if (empty($form_state['values']['smed_feeder']['smed_feeder_basic_authentication_password'])) {
+    $form_state['values']['smed_feeder']['smed_feeder_basic_authentication_password'] = $form_state["complete form"]["smed_feeder"]["smed_feeder_basic_authentication_password"]["#default_value"];
+  }
+  if (empty($form_state['values']['smed_feeder']['smed_feeder_authorization_token_key'])) {
+    $form_state['values']['smed_feeder']['smed_feeder_authorization_token_key'] = $form_state["complete form"]["smed_feeder"]["smed_feeder_authorization_token_key"]["#default_value"];
+  }
+}
