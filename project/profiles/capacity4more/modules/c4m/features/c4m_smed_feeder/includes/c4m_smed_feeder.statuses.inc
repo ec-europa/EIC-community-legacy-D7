@@ -17,8 +17,8 @@
 function c4m_smed_feeder_status_list() {
   global $user;
   $account = user_load($user->uid);
-  $firstname = empty($account->c4m_first_name[LANGUAGE_NONE][O]['value']) ? '' : $account->c4m_first_name[LANGUAGE_NONE][O]['value'];
-  $lastname = empty($account->c4m_last_name[LANGUAGE_NONE][O]['value']) ? '' : $account->c4m_last_name[LANGUAGE_NONE][O]['value'];
+  $firstname = empty($account->c4m_first_name[LANGUAGE_NONE][0]['value']) ? '' : $account->c4m_first_name[LANGUAGE_NONE][0]['value'];
+  $lastname = empty($account->c4m_last_name[LANGUAGE_NONE][0]['value']) ? '' : $account->c4m_last_name[LANGUAGE_NONE][0]['value'];
 
   // Get the SMED configuration.
   $smed_feeder = variable_get('smed_feeder', []);
@@ -46,7 +46,7 @@ function c4m_smed_feeder_status_list() {
     'user_not_bootstrapped' => [
       'label' => t('User not bootstrapped'),
       'message' => t('Please contact us via the %link_to_contactform',
-        ['%link_to_contactform' => l(t('contact form', url('contact')))]
+        ['%link_to_contactform' => l(t('contact form'), url('contact'))]
       ),
     ],
     'user_unknown' => [
@@ -58,13 +58,13 @@ function c4m_smed_feeder_status_list() {
     'user_blocked' => [
       'label' => t('User blocked'),
       'message' => t('Please contact us via the %link_to_contactform',
-        ['%link_to_contactform' => l(t('contact form', url('contact')))]
+        ['%link_to_contactform' => l(t('contact form'), url('contact'))]
       ),
     ],
     'user_unsuscribed' => [
       'label' => t('User unsubscribed'),
       'message' => t('If you want to re-activate your account please contact us via the %link_to_contactform',
-        ['%link_to_contactform' => l(t('contact form', url('contact')))]
+        ['%link_to_contactform' => l(t('contact form'), url('contact'))]
       ),
     ],
   ];
