@@ -746,3 +746,10 @@ function capacity4more_update_7027() {
 function capacity4more_update_7028() {
   module_enable(['c4m_vocab_event_type']);
 }
+
+/**
+ * SMED requests update hook.
+ */
+function capacity4more_update_7029() {
+  module_enable(['c4m_smed_feeder', 'chr']);
+}
