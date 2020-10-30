@@ -25,18 +25,28 @@ function c4m_smed_feeder_admin_settings_general() {
 
   $form['smed_feeder']['smed_feeder_endpoint_url'] = array(
     '#type' => 'textfield',
-    '#title' => t('the endpoint url for the smed feeder webservice.'),
+    '#title' => t('the endpoint url for the SMED feeder webservice.'),
     '#description' => '',
     '#default_value' => isset($smed_feeder['smed_feeder_endpoint_url']) ? $smed_feeder['smed_feeder_endpoint_url'] : '',
     '#required' => FALSE,
   );
+
+  $form['smed_feeder']['smed_generic_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('the main url for the SMED dashboard.'),
+    '#description' => '',
+    '#default_value' => isset($smed_feeder['smed_generic_url']) ? $smed_feeder['smed_generic_url'] : '',
+    '#required' => TRUE,
+  );
+
   $form['smed_feeder']['smed_feeder_timeout'] = array(
     '#type' => 'textfield',
-    '#title' => t('timeout allowed to communitcate with the smed service'),
+    '#title' => t('timeout allowed to communicate with the SMED service'),
     '#description' => '',
     '#default_value' => isset($smed_feeder['smed_feeder_timeout']) ? $smed_feeder['smed_feeder_timeout'] : '60',
     '#required' => TRUE,
   );
+
   $form['smed_feeder']['smed_feeder_basic_authentication_user'] = array(
     '#type' => 'textfield',
     '#title' => t('The SME dashboard basic authentication user.'),
@@ -44,9 +54,10 @@ function c4m_smed_feeder_admin_settings_general() {
     '#default_value' => isset($smed_feeder['smed_feeder_basic_authentication_user']) ? $smed_feeder['smed_feeder_basic_authentication_user'] : '',
     '#required' => FALSE
   );
+
   $form['smed_feeder']['smed_feeder_basic_authentication_password'] = array(
     '#type' => 'password',
-    '#title' => t('The SME dashboard basic authentication password. (Leave this field blank, unless you want to change the stored password.)'),
+    '#title' => t('The SMED dashboard basic authentication password. (Leave this field blank, unless you want to change the stored password.)'),
     '#description' => '',
     '#default_value' => isset($smed_feeder['smed_feeder_basic_authentication_password']) ? $smed_feeder['smed_feeder_basic_authentication_password'] : '',
     '#required' => FALSE,
@@ -56,7 +67,7 @@ function c4m_smed_feeder_admin_settings_general() {
   );
   $form['smed_feeder']['smed_feeder_authorization_token_key'] = array(
     '#type' => 'password',
-    '#title' => t('smed-feeder Authorization token key. (Leave this field blank, unless you want to change the stored token.)'),
+    '#title' => t('SMED Feeder Authorization Token key. (Leave this field blank, unless you want to change the stored token.)'),
     '#description' => '',
     '#default_value' => isset($smed_feeder['smed_feeder_authorization_token_key']) ? $smed_feeder['smed_feeder_authorization_token_key'] : '',
     '#required' => FALSE,
