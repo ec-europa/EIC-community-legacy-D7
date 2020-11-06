@@ -38,6 +38,12 @@ function c4m_smed_feeder_field_status_list_options() {
   return $options;
 }
 
+function c4m_smed_feeder_get_user_status($account = NULL) {
+  module_load_include('inc', 'c4m_smed_feeder', 'includes/c4m_smed_feeder.statuses');
+  $status_list = c4m_smed_feeder_status_list($account);
+  return $status_list;
+}
+
 /**
  * Synchronises a user account with the SMED.
  *
