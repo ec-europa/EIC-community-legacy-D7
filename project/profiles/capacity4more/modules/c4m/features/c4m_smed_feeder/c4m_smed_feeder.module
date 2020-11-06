@@ -63,9 +63,9 @@ function c4m_smed_feeder_request_sync_user($account = NULL) {
   module_load_include('inc', 'c4m_smed_feeder', 'includes/C4mSmedRequest');
 
   // Prepare data to send.
-  $data['username'] = $user->name;
-  $data['email'] = $user->mail;
-  $data['c4m_status'] = $user->status ? 'Blocked' : 'Active';
+  $data['username'] = $account->name;
+  $data['email'] = $account->mail;
+  $data['c4m_status'] = $account->status ? 'Blocked' : 'Active';
   if (!empty($account->c4m_user_dashboard_id[LANGUAGE_NONE][0]['value'])) {
     $data['dashboard_user_id'] = $account->c4m_user_dashboard_id[LANGUAGE_NONE][0]['value'];
   }
