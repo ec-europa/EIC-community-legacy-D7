@@ -14,9 +14,12 @@
  *     - label: the status label.
  *     - message: the message to show to the user.
  */
-function c4m_smed_feeder_status_list() {
+function c4m_smed_feeder_status_list($account = NULL) {
   global $user;
-  $account = user_load($user->uid);
+  if (empty($account)) {
+    $account = user_load($user->uid);
+  }
+
   $firstname = empty($account->c4m_first_name[LANGUAGE_NONE][0]['value']) ? '' : $account->c4m_first_name[LANGUAGE_NONE][0]['value'];
   $lastname = empty($account->c4m_last_name[LANGUAGE_NONE][0]['value']) ? '' : $account->c4m_last_name[LANGUAGE_NONE][0]['value'];
 
