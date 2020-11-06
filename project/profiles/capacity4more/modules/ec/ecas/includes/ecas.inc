@@ -445,6 +445,10 @@ function ecas_login_check() {
       }
 
       if ($account->status == 0) {
+        // Allow for a second chance.
+        // allow some preprocessing of a user account.
+        $account = module_invoke('c4m_smed_feeder', 'smed_feeder_check_user_status', $account);
+        $status_message =  module_invoke('c4m_smed_feeder', 'smed_feeder_get_message', $account);
         // Case when account is blocked.
         session_destroy();
 
@@ -459,7 +463,7 @@ function ecas_login_check() {
         if (isset($_REQUEST['edit']['destination'])) {
           unset($_REQUEST['edit']['destination']);
         }
-        drupal_goto('ecas_warning_page');
+        drupal_goto('ecas_warning_page', array("message" => $status_message));
       }
       else {
         $user = $account;
