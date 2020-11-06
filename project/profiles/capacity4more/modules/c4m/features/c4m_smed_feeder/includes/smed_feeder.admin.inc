@@ -14,6 +14,15 @@ function c4m_smed_feeder_admin_settings_general() {
   // Get the SMED feeder site configuration details.
   $smed_feeder = variable_get('smed_feeder', array());
 
+  $account = user_load_by_mail('siggy.loenders@ext.ec.europa.eu');
+  var_dump($account->c4m_user_status);
+  // allow some preprocessing of a user account.
+  module_invoke('c4m_smed_feeder', 'request_sync_user', $account);
+  // reload the account from DB;
+  $account = user_load_by_mail('siggy.loenders@ext.ec.europa.eu');
+  $status_message =  module_invoke('c4m_smed_feeder', 'get_user_status', $account);
+  $status_message =$status_message[$account->c4m_user_status[LANGUAGE_NONE][0]['value']];
+
   $form['smed_feeder'] = array(
     '#type' => 'fieldset',
     '#title' => t('Smed feeder Settings'),
