@@ -27,9 +27,9 @@ function c4m_smed_feeder_action_sync_user($account) {
 
     // We consider that anything else than 200 is an error.
     default:
-      drupal_set_message(t('An error occured while updating %name user'),
-        ['%name' => $result['account']->name]
-      );
+      drupal_set_message(t('An error occured while updating %name user',
+        ['%name' => $result['account']->name],
+      ), 'error');
       break;
   }
 
