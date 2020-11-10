@@ -49,6 +49,9 @@ function c4m_smed_feeder_get_user_status($account = NULL) {
  *
  * @param object $account
  *   The user object or NULL to update the current user.
+ *
+ * @return object
+ *   The updated user account.
  */
 function c4m_smed_feeder_request_sync_user($account = NULL) {
   global $user;
@@ -86,6 +89,8 @@ function c4m_smed_feeder_request_sync_user($account = NULL) {
   field_attach_update('user', $account);
   // Clear the static loading cache.
   entity_get_controller('user')->resetCache([$account->uid]);
+
+  return $account;
 }
 
 /**
