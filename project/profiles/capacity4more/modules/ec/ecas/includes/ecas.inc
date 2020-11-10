@@ -656,11 +656,22 @@ function _ecas_force_login() {
  * Page callback; displays the 'ecas_warning_page' page.
  */
 function ecas_warning_page() {
+  global $user;
+  $account = user_load_by_mail('siggy.loenders@ext.ec.europa.eu');
+  if ($account) {
+    $status_message = module_invoke('c4m_smed_feeder', 'get_user_status', $account);
+    $status_message = $status_message[$account->c4m_user_status[LANGUAGE_NONE][0]['value']];
+    $message_label = $status_message['label'];
+    $message_text = decode_entities($status_message['message']);
+  }
+  else {
+    $message_label = 'EU Login - Account status unknown';
+    $message_text = variable_get('ecas_warning_message', t('Your account is not yet approved'));
+  }
+
   $output = '';
-
-  $output .= '<h2 class="ecl-heading ecl-heading--h2">' . t('Account blocked') . '</h2>';
-  $output .= '<p>' . variable_get('ecas_warning_message', t('Your account is not yet approved')) . '</p>';
-
+  $output .= '<h2 class="ecl-heading ecl-heading--h2">' . t($message_label) . '</h2>';
+  $output .= '<div>' . $message_text . '</div>';
   return $output;
 }
 
