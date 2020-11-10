@@ -141,7 +141,7 @@ function _ecas_menu(array &$items) {
   );
 
   $items['ecas_warning_page'] = array(
-    'title' => 'EU Login warning',
+    'title' => 'Login was not successful',
     'page callback' => 'ecas_warning_page',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,

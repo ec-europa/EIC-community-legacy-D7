@@ -35,37 +35,37 @@ function c4m_smed_feeder_status_list($account = NULL) {
       ),
     ],
     'user_pending' => [
-      'label' => t('User pending'),
+      'label' => t('User is pending'),
       'message' => t('Welcome %user_firstname %user_lastname, your account is pending approval, once approved you will receive a notification e-mail',
         ['%user_firstname' => $firstname, '%user_lastname' => $lastname]
       ),
     ],
     'user_valid' => [
-      'label' => t('User valid'),
+      'label' => t('User validated'),
       'message' => t('Welcome %user_firstname %user_lastname',
         ['%user_firstname' => $firstname, '%user_lastname' => $lastname]
       ),
     ],
     'user_not_bootstrapped' => [
-      'label' => t('User not bootstrapped'),
+      'label' => t('User is not bootstrapped'),
       'message' => t('Please contact us via the %link_to_contactform',
         ['%link_to_contactform' => l(t('contact form'), url('contact'))]
       ),
     ],
     'user_unknown' => [
-      'label' => t('User unknown'),
+      'label' => t('User is unknown'),
       'message' => t('Please register at %smed_generic_url',
         ['%smed_generic_url ' => l($smed_generic_url, $smed_generic_url)]
       ),
     ],
     'user_blocked' => [
-      'label' => t('User blocked'),
+      'label' => t('The user account is blocked'),
       'message' => t('Please contact us via the %link_to_contactform',
         ['%link_to_contactform' => l(t('contact form'), url('contact'))]
       ),
     ],
     'user_unsuscribed' => [
-      'label' => t('User unsubscribed'),
+      'label' => t('User was unsubscribed'),
       'message' => t('If you want to re-activate your account please contact us via the %link_to_contactform',
         ['%link_to_contactform' => l(t('contact form'), url('contact'))]
       ),
