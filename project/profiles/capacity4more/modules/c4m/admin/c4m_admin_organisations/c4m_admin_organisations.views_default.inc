@@ -392,7 +392,7 @@ function c4m_admin_organisations_views_default_views() {
   $view = new view();
   $view->name = 'c4m_admin_users_status';
   $view->description = '';
-  $view->tag = 'default';
+  $view->tag = 'C4M Admin';
   $view->base_table = 'users';
   $view->human_name = 'Admin: Users\' status';
   $view->core = 7;
@@ -403,7 +403,7 @@ function c4m_admin_organisations_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'access user profiles';
+  $handler->display->display_options['access']['perm'] = 'administer users';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -510,7 +510,7 @@ function c4m_admin_organisations_views_default_views() {
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['label'] = 'Username';
   $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
   /* Field: User: E-mail */
@@ -547,6 +547,7 @@ function c4m_admin_organisations_views_default_views() {
   $handler->display->display_options['fields']['access']['table'] = 'users';
   $handler->display->display_options['fields']['access']['field'] = 'access';
   $handler->display->display_options['fields']['access']['label'] = 'Last access / login';
+  $handler->display->display_options['fields']['access']['empty'] = 'N/A';
   $handler->display->display_options['fields']['access']['date_format'] = 'short';
   $handler->display->display_options['fields']['access']['second_date_format'] = 'c4m_long_without_time';
   $handler->display->display_options['fields']['access']['reldate'] = '0';
@@ -554,6 +555,7 @@ function c4m_admin_organisations_views_default_views() {
   $handler->display->display_options['fields']['login']['id'] = 'login';
   $handler->display->display_options['fields']['login']['table'] = 'users';
   $handler->display->display_options['fields']['login']['field'] = 'login';
+  $handler->display->display_options['fields']['login']['empty'] = 'N/A';
   $handler->display->display_options['fields']['login']['date_format'] = 'short';
   $handler->display->display_options['fields']['login']['second_date_format'] = 'c4m_long_without_time';
   $handler->display->display_options['fields']['login']['reldate'] = '0';
@@ -562,6 +564,7 @@ function c4m_admin_organisations_views_default_views() {
   $handler->display->display_options['fields']['c4m_updated_profile_by_service']['table'] = 'field_data_c4m_updated_profile_by_service';
   $handler->display->display_options['fields']['c4m_updated_profile_by_service']['field'] = 'c4m_updated_profile_by_service';
   $handler->display->display_options['fields']['c4m_updated_profile_by_service']['label'] = 'Updated profile by service / user';
+  $handler->display->display_options['fields']['c4m_updated_profile_by_service']['empty'] = 'N/A';
   $handler->display->display_options['fields']['c4m_updated_profile_by_service']['settings'] = array(
     'format_type' => 'short',
     'custom_date_format' => '',
@@ -575,6 +578,7 @@ function c4m_admin_organisations_views_default_views() {
   $handler->display->display_options['fields']['c4m_updated_profile_by_user']['id'] = 'c4m_updated_profile_by_user';
   $handler->display->display_options['fields']['c4m_updated_profile_by_user']['table'] = 'field_data_c4m_updated_profile_by_user';
   $handler->display->display_options['fields']['c4m_updated_profile_by_user']['field'] = 'c4m_updated_profile_by_user';
+  $handler->display->display_options['fields']['c4m_updated_profile_by_user']['empty'] = 'N/A';
   $handler->display->display_options['fields']['c4m_updated_profile_by_user']['settings'] = array(
     'format_type' => 'short',
     'custom_date_format' => '',
@@ -583,6 +587,28 @@ function c4m_admin_organisations_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
     'show_remaining_days' => 0,
+  );
+  /* Field: User: Synchronise user */
+  $handler->display->display_options['fields']['smed_sync_user']['id'] = 'smed_sync_user';
+  $handler->display->display_options['fields']['smed_sync_user']['table'] = 'users';
+  $handler->display->display_options['fields']['smed_sync_user']['field'] = 'smed_sync_user';
+  /* Filter criterion: User: User Dashboard ID (c4m_user_dashboard_id) */
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['id'] = 'c4m_user_dashboard_id_value';
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['table'] = 'field_data_c4m_user_dashboard_id';
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['field'] = 'c4m_user_dashboard_id_value';
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['group'] = 1;
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['expose']['operator_id'] = 'c4m_user_dashboard_id_value_op';
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['expose']['label'] = 'User Dashboard ID';
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['expose']['operator'] = 'c4m_user_dashboard_id_value_op';
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['expose']['identifier'] = 'c4m_user_dashboard_id_value';
+  $handler->display->display_options['filters']['c4m_user_dashboard_id_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    5 => 0,
+    3 => 0,
+    4 => 0,
+    6 => 0,
   );
   /* Filter criterion: User: First Name (c4m_first_name) */
   $handler->display->display_options['filters']['c4m_first_name_value']['id'] = 'c4m_first_name_value';
@@ -679,6 +705,23 @@ function c4m_admin_organisations_views_default_views() {
     4 => 0,
     6 => 0,
   );
+  /* Filter criterion: User: The user ID */
+  $handler->display->display_options['filters']['uid_raw']['id'] = 'uid_raw';
+  $handler->display->display_options['filters']['uid_raw']['table'] = 'users';
+  $handler->display->display_options['filters']['uid_raw']['field'] = 'uid_raw';
+  $handler->display->display_options['filters']['uid_raw']['operator'] = '!=';
+  $handler->display->display_options['filters']['uid_raw']['value']['value'] = '0';
+  $handler->display->display_options['filters']['uid_raw']['group'] = 1;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['path'] = 'admin/people/smed-sync';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'SMED synchronisation';
+  $handler->display->display_options['menu']['weight'] = '-1';
+  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $export['c4m_admin_users_status'] = $view;
 
   return $export;

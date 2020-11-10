@@ -6,6 +6,16 @@
  */
 
 /**
+ * Implements hook_views_api
+ */
+function example_views_api() {
+  return [
+    'api' => 3,
+    'path' => drupal_get_path('module', 'c4m_smed_feeder'),
+  ];
+}
+
+/**
  * Implements hook_menu().
  */
 function c4m_smed_feeder_menu() {
@@ -18,6 +28,15 @@ function c4m_smed_feeder_menu() {
       'access arguments' => ['administer webservices with SMED'],
       'type' => MENU_NORMAL_ITEM,
       'file' => 'includes/smed_feeder.admin.inc',
+    ],
+    'user/%user/smed-sync' => [
+      'title' => 'Synchronise user',
+      'description' => 'Synchronises a user to the SMED',
+      'page callback' => 'c4m_smed_feeder_action_sync_user',
+      'page arguments' => [1],
+      'access arguments' => ['administer users'],
+      'type' => MENU_CALLBACK,
+      'file' => 'c4m_smed_feeder.pages.inc',
     ],
   ];
 }
@@ -50,8 +69,10 @@ function c4m_smed_feeder_get_user_status($account = NULL) {
  * @param object $account
  *   The user object or NULL to update the current user.
  *
- * @return object
- *   The updated user account.
+ * @return array
+ *   An array containing the updated user account and request response:
+ *     - account
+ *     - response
  */
 function c4m_smed_feeder_request_sync_user($account = NULL) {
   global $user;
@@ -90,7 +111,10 @@ function c4m_smed_feeder_request_sync_user($account = NULL) {
   // Clear the static loading cache.
   entity_get_controller('user')->resetCache([$account->uid]);
 
-  return $account;
+  return [
+    'account' => $account,
+    'response' => $response,
+  ];
 }
 
 /**
@@ -109,4 +133,19 @@ function c4m_smed_feeder_format_message_from_service($response) {
   $user_status = $response['data']['user']['c4m_user_status'];
 
   return implode(' - ', [$time, $http_code, $user_status]);
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function c4m_smed_feeder_views_data() {
+  $data['users']['smed_sync_user'] = [
+    'field' => [
+      'title' => t('Synchronise user'),
+      'help' => t('Synchronise user to the SMED.'),
+      'handler' => 'views_handler_field_user_link_smed_sync_user',
+    ],
+  ];
+
+  return $data;
 }

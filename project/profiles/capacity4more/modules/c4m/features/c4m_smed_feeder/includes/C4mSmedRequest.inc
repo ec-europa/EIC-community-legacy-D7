@@ -86,7 +86,7 @@ class C4mSmedRequest {
 
   /**
    * Performs the request and returns the result.
-   * 
+   *
    * @return array
    *   An array with following keys:
    *   - response
