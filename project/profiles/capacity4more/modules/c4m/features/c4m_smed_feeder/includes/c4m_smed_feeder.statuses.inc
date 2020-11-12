@@ -24,8 +24,8 @@ function c4m_smed_feeder_status_list($account = NULL) {
   $lastname = empty($account->c4m_last_name[LANGUAGE_NONE][0]['value']) ? '' : $account->c4m_last_name[LANGUAGE_NONE][0]['value'];
 
   $user_inactive_mesage = '';
-  if (!empty($account->status) && $account->status==0) {
-    $user_inactive_mesage = t('The account is inactive at the moment.');
+  if (!empty($account) && $account->status==0) {
+    $user_inactive_mesage = '<br>' . t('The account is inactive at the moment.');
   }
 
   // Get the SMED configuration.
