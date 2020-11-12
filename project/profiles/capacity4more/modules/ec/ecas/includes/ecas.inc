@@ -448,8 +448,9 @@ function ecas_login_check() {
       if ($account->status == 0) {
         // Allow for a second chance.
         // allow some preprocessing of a user account.
-        $account = module_invoke('c4m_smed_feeder', 'request_sync_user', $account);
-
+        $request_sync_user_response = module_invoke('c4m_smed_feeder', 'request_sync_user', $account);
+        $account = $request_sync_user_response['account'];
+        watchdog('c4m_smed_feeder', '[ecas-request]' . serialize($request_sync_user_response['response']), array());
       }
 
       if ($account->status == 0) {
