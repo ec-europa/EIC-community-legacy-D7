@@ -141,7 +141,7 @@ function _ecas_menu(array &$items) {
   );
 
   $items['ecas_warning_page'] = array(
-    'title' => 'Login was not successful',
+    'title' => '',
     'page callback' => 'ecas_warning_page',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
@@ -688,7 +688,7 @@ function ecas_warning_page() {
   }
 
   $output = '';
-  $output .= '<h2 class="ecl-heading ecl-heading--h2">' . t($message_label) . '</h2>';
+//  $output .= '<h2 class="ecl-heading ecl-heading--h2">' . t($message_label) . '</h2>';
   $output .= '<div>' . $message_text . '</div>';
   return $output;
 }

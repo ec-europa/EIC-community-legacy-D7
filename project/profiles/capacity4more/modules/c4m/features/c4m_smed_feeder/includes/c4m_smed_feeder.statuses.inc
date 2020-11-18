@@ -33,46 +33,72 @@ function c4m_smed_feeder_status_list($account = NULL) {
   $smed_generic_url = $smed_feeder['smed_generic_url'];
 
   return [
-    'user_profile_in_progress' => [
+    'user_invited' => [
+      'label' => t('Is invited to join the community but has not started the process yet.'),
+      'message' => t('<h2>Welcome to the EIC community!</h2>
+<br/>To get you started please
+<div class="register"> @smed_generic_url </div>
+<br/><br/>
+<p>If you have any questions @link_to_contactform .</p>',
+        [ '@link_to_contactform' => l(t('contact us'), url('contact')),
+          '@smed_generic_url ' => l("Register", $smed_generic_url)]
+      ),
+    ],
+    'user_draft' => [
       'label' => t('User profile is in progress'),
-      'message' => t('Please complete your profile at %smed_generic_url .',
-        ['%smed_generic_url ' => l($smed_generic_url, $smed_generic_url)]
+      'message' => t('<h2>Welcome to the EIC community!</h2>
+<br/>Almost there! It look like your registration is in draft.
+<div class="register"> @smed_generic_url </div>
+<br/><br/>
+<p>If you have any questions @link_to_contactform .</p>',
+        [ '@link_to_contactform' => l(t('contact us'), url('contact')),
+          '@smed_generic_url ' => l("Go to draft", $smed_generic_url)]
       ),
     ],
     'user_pending' => [
       'label' => t('User is pending'),
-      'message' => t('Welcome %user_firstname %user_lastname, your account is pending approval, once approved you will receive a notification e-mail.',
-        ['%user_firstname' => $firstname, '%user_lastname' => $lastname]
+      'message' => t('<p>Welcome @user_firstname,</p>
+<p>Currently your access is under review.</p>
+<p>If you do not hear from us in the coming days, please contact us @link_to_contactform</p>',
+        [ '@user_firstname' => $firstname,
+          '@link_to_contactform' => l(t('contact us'), url('contact')),
+          '@smed_generic_url ' => l("Register", $smed_generic_url)]
       ),
     ],
     'user_valid' => [
       'label' => t('User validated'),
-      'message' => t('Welcome %user_firstname %user_lastname.' . $user_inactive_mesage,
-        ['%user_firstname' => $firstname, '%user_lastname' => $lastname]
-      ),
-    ],
-    'user_not_bootstrapped' => [
-      'label' => t('The user is not bootstrapped'),
-      'message' => t('Please contact us via the %link_to_contactform.',
-        ['%link_to_contactform' => l(t('contact form'), url('contact'))]
+      'message' => t('Welcome %user_firstname ' . $user_inactive_mesage,
+        ['@user_firstname' => $firstname, '%user_lastname' => $lastname]
       ),
     ],
     'user_unknown' => [
       'label' => t('Current user is unknown'),
-      'message' => t('Please register at %smed_generic_url.',
-        ['%smed_generic_url ' => l($smed_generic_url, $smed_generic_url)]
+      'message' => t('<h2>It looks like you are not a member yet. Interested?</h2>
+<br/>
+<div class="register"> @smed_generic_url </div>
+<br/><br/>
+<p>If you have any questions @link_to_contactform .</p>',
+        [ '@smed_generic_url' => l("Register", $smed_generic_url),
+          '@link_to_contactform' => l(t('contact us'), url('contact'))]
       ),
     ],
+    'user_not_bootstrapped' => [
+      'label' => t('The user is not bootstrapped'),
+      'message' => t('It looks like something went wrong, <br> please @link_to_contactform.',
+        ['@link_to_contactform' => l(t('contact us'), url('contact'))]
+      ),
+    ],
+
     'user_blocked' => [
       'label' => t('The user account is blocked'),
-      'message' => t('Please contact us via the %link_to_contactform.',
-        ['%link_to_contactform' => l(t('contact form'), url('contact'))]
+      'message' => t('It looks like something went wrong, <br> please @link_to_contactform.',
+        ['@link_to_contactform' => l(t('contact us'), url('contact'))]
       ),
     ],
     'user_unsuscribed' => [
       'label' => t('User has been unsubscribed'),
-      'message' => t('If you want to re-activate your account please contact us via the %link_to_contactform.',
-        ['%link_to_contactform' => l(t('contact form'), url('contact'))]
+      'message' => t('It looks like something went wrong, <br> please @link_to_contactform.',
+        ['@link_to_contactform' => l(t('contact us'), url('contact'))]
       ),
     ],
   ];
