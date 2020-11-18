@@ -214,5 +214,3 @@ features_exclude[dependencies][options] = options
 features_exclude[dependencies][paragraphs] = paragraphs
 features_exclude[dependencies][strongarm] = strongarm
 features_exclude[dependencies][taxonomy] = taxonomy
-features_exclude[field_base][c4m_event_dashboard_id] = c4m_event_dashboard_id
-features_exclude[field_instance][node-event_site-c4m_event_dashboard_id] = node-event_site-c4m_event_dashboard_id
