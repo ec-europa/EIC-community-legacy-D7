@@ -134,6 +134,14 @@ function c4m_smed_feeder_format_message_from_service($response) {
   $time = '[' . date('d/m/Y - H:i', REQUEST_TIME) . ']';
   $http_code = $response['response']->code;
   $user_status = $response['data']['user']['c4m_user_status'];
+  if ($http_code!='200'){
+    if (!empty($user_status)) $user_status .= ' | ';
+    $user_status .= $response['data']['error'];
+  }
+  else {
+
+  }
+
 
   return implode(' - ', [$time, $http_code, $user_status]);
 }
