@@ -143,7 +143,9 @@ function c4m_smed_feeder_format_message_from_service($response) {
   }
 
 
-  return implode(' - ', [$time, $http_code, $user_status]);
+  $total_time_request = '(Request time ' . $response["response"]->curl_info["total_time"] . ' seconds)';
+  $total_time_request = '(' . round($response["response"]->curl_info["total_time"],3) . ' secs)';
+  return implode(' - ', [$time, $http_code, $user_status, $total_time_request]);
 }
 
 /**
