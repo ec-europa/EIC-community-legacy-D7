@@ -8,6 +8,3 @@ projects[devel][version] = "1.x-dev"
 
 projects[coder][subdir] = "development"
 projects[coder][version] = "2.x-dev"
-
-projects[chr][subdir] = "contrib"
-projects[chr][version] = "1.9"

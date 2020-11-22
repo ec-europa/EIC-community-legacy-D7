@@ -24,6 +24,9 @@ projects[better_formats][version] = "1.0-beta2"
 projects[blockreference][subdir] = "contrib"
 projects[blockreference][version] = "2.7"
 
+projects[chr][subdir] = "contrib"
+projects[chr][version] = "1.9"
+
 projects[context][subdir] = "contrib"
 projects[context][version] = "3.10"
 
