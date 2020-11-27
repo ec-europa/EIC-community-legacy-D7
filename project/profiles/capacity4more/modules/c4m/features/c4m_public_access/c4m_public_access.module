@@ -21,6 +21,10 @@ function c4m_public_access_permission() {
       'title' => t('Administer public access settings'),
       'description' => t('Administer public access settings.'),
     ),
+    'access authenticated content' => array(
+      'title' => t('View published content as an authenticated user'),
+      'description' => t('Allow to limit viewing published content.'),
+    ),
   );
 }
 
@@ -82,7 +86,10 @@ function c4m_public_access_block_view_alter(&$data, $block) {
  */
 function c4m_public_access_node_access($node, $op, $account) {
   // anonymous users can only see the about us page (for books) , articles and event-sites.
-  if ($account->uid === 0 && $op === "view") {
+  if ($account->uid === 0) {
+    if ($op !== "view") {
+      return NODE_ACCESS_DENY;
+    }
     if (!in_array($node->type, ['article', 'book', 'event_site']) ) {
       return NODE_ACCESS_DENY;
     }
@@ -200,12 +207,9 @@ function c4m_public_access_module_implements_alter(&$implementations, $hook) {
  * Implements hook_views_default_views_alter().
  */
 function c4m_public_access_views_default_views_alter(&$views) {
-  $to_be_secured_views = array( 'c4m_overview_organisations' => 'view any organisation content',
-                                'c4m_overview_events' => 'view any event_site content',
-                                'c4m_events_calendar' => 'view any event_site content',
-                                'c4m_overview_events_landing' => 'view any event_site content',
-                                'c4m_overview_topics' => 'view any topic content',
-                                'c4m_learning_content' => 'view any document content'
+  $to_be_secured_views = array( 'c4m_overview_organisations' => 'access authenticated content',
+                                'c4m_overview_topics' => 'access authenticated content',
+                                'c4m_learning_content' => 'access authenticated content'
                                 );
   foreach ($to_be_secured_views as $view_system_name => $view_permission) {
       if (isset($views[$view_system_name])) {
