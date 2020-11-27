@@ -21,6 +21,10 @@ function c4m_public_access_permission() {
       'title' => t('Administer public access settings'),
       'description' => t('Administer public access settings.'),
     ),
+    'access authenticated content' => array(
+      'title' => t('View published content as an authenticated user'),
+      'description' => t('Allow to limit viewing published content.'),
+    ),
   );
 }
 
