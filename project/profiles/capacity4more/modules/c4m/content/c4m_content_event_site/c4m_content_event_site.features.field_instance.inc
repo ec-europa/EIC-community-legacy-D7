@@ -302,7 +302,7 @@ function c4m_content_event_site_field_default_field_instances() {
         'settings' => array(
           'description' => array(
             'field' => -1,
-            'tokenized' => '[node:c4m_body] 
+            'tokenized' => '[node:c4m_body]
             Organised by: [node:c4m_organised_by] [node:c4m_link]
 [node:url]',
           ),

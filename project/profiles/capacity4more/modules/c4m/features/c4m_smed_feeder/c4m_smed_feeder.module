@@ -1,0 +1,164 @@
+<?php
+
+/**
+ * @file
+ * The code for the SMED feeder feature and to manage it.
+ */
+
+/**
+ * Implements hook_views_api
+ */
+function example_views_api() {
+  return [
+    'api' => 3,
+    'path' => drupal_get_path('module', 'c4m_smed_feeder'),
+  ];
+}
+
+/**
+ * Implements hook_menu().
+ */
+function c4m_smed_feeder_menu() {
+  return [
+    'admin/config/services/smed_feeder' => [
+      'title' => 'The settings page for the SMED feeder webservice',
+      'description' => 'Manage the settings for the SMED feeder.',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => ['c4m_smed_feeder_admin_settings_general'],
+      'access arguments' => ['administer webservices with SMED'],
+      'type' => MENU_NORMAL_ITEM,
+      'file' => 'includes/smed_feeder.admin.inc',
+    ],
+    'user/%user/smed-sync' => [
+      'title' => 'Synchronise user',
+      'description' => 'Synchronises a user to the SMED',
+      'page callback' => 'c4m_smed_feeder_action_sync_user',
+      'page arguments' => [1],
+      'access arguments' => ['administer users'],
+      'type' => MENU_CALLBACK,
+      'file' => 'c4m_smed_feeder.pages.inc',
+    ],
+  ];
+}
+
+/**
+ * Returns the list options for the status field (c4m_user_status).
+ *
+ * @return array
+ *   An array with key|label.
+ */
+function c4m_smed_feeder_field_status_list_options() {
+  module_load_include('inc', 'c4m_smed_feeder', 'includes/c4m_smed_feeder.statuses');
+
+  $options = [];
+  foreach (c4m_smed_feeder_status_list() as $key => $item) {
+    $options[$key] = $item['label'];
+  }
+  return $options;
+}
+
+function c4m_smed_feeder_get_user_status($account = NULL) {
+  module_load_include('inc', 'c4m_smed_feeder', 'includes/c4m_smed_feeder.statuses');
+  $status_list = c4m_smed_feeder_status_list($account);
+  return $status_list;
+}
+
+/**
+ * Synchronises a user account with the SMED.
+ *
+ * @param object $account
+ *   The user object or NULL to update the current user.
+ *
+ * @return array
+ *   An array containing the updated user account and request response:
+ *     - account
+ *     - response
+ */
+function c4m_smed_feeder_request_sync_user($account = NULL) {
+  global $user;
+
+  if (empty($account)) {
+    $account = $user;
+  }
+
+  // Make sure we have a fully loaded user account.
+  $account = user_load($account->uid);
+
+  module_load_include('inc', 'c4m_smed_feeder', 'includes/C4mSmedRequest');
+
+  // Prepare data to send.
+  $data['username'] = $account->name;
+  $data['email'] = $account->mail;
+  $data['c4m_status'] = $account->status ? 'Blocked' : 'Active';
+  if (!empty($account->c4m_user_dashboard_id[LANGUAGE_NONE][0]['value'])) {
+    $data['dashboard_user_id'] = $account->c4m_user_dashboard_id[LANGUAGE_NONE][0]['value'];
+  }
+  if (!empty($account->c4m_user_status[LANGUAGE_NONE][0]['value'])) {
+    $data['c4m_user_status'] = $account->c4m_user_status[LANGUAGE_NONE][0]['value'];
+  }
+
+  // Send request.
+  $request = new C4mSmedRequest();
+  $request->requestPayload($data);
+  $response = $request->sendRequest();
+
+  // Update the user account with updated data.
+  $account->c4m_user_status[LANGUAGE_NONE][0]['value'] = $response['data']['user']['c4m_user_status'];
+  if ($response['response']->code == '200') {
+    $account->c4m_updated_profile_by_service[LANGUAGE_NONE][0]['value'] = REQUEST_TIME;
+  }
+  $account->c4m_message_from_service[LANGUAGE_NONE][0]['value'] = c4m_smed_feeder_format_message_from_service($response);
+  $account->c4m_user_dashboard_id[LANGUAGE_NONE][0]['value'] =  $response['data']['user']['c4m_user_dashboard_id'];
+  field_attach_presave('user', $account);
+  field_attach_update('user', $account);
+  // Clear the static loading cache.
+  entity_get_controller('user')->resetCache([$account->uid]);
+
+  return [
+    'account' => $account,
+    'response' => $response,
+  ];
+}
+
+/**
+ * Formats the message to be recorded after a user account synchronisation.
+ *
+ * @param array $response
+ *   The response array returned by the request.
+ *   See C4mSmedRequest class.
+ *
+ * @return string
+ *   The message.
+ */
+function c4m_smed_feeder_format_message_from_service($response) {
+  $time = '[' . date('d/m/Y - H:i', REQUEST_TIME) . ']';
+  $http_code = $response['response']->code;
+  $user_status = $response['data']['user']['c4m_user_status'];
+  if ($http_code!='200'){
+    if (!empty($user_status)) $user_status .= ' | ';
+    $user_status .= $response['data']['error'];
+  }
+  else {
+
+  }
+
+
+  $total_time_request = '(Request time ' . $response["response"]->curl_info["total_time"] . ' seconds)';
+  $total_time_request = '(' . round($response["response"]->curl_info["total_time"],3) . ' secs)';
+  return implode(' - ', [$time, $http_code, $user_status, $total_time_request]);
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function c4m_smed_feeder_views_data() {
+  $data['users']['smed_sync_user'] = [
+    'field' => [
+      'title' => t('Synchronise user'),
+      'help' => t('Synchronise user to the SMED.'),
+      'handler' => 'views_handler_field_user_link_smed_sync_user',
+    ],
+  ];
+
+  return $data;
+}

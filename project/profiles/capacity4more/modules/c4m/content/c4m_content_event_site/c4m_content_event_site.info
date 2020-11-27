@@ -67,6 +67,7 @@ features[field_instance][] = node-event_site-c4m_datetime_end
 features[field_instance][] = node-event_site-c4m_document_agenda
 features[field_instance][] = node-event_site-c4m_document_presentation
 features[field_instance][] = node-event_site-c4m_event_dashboard_id
+features[field_instance][] = node-event_site-c4m_event_type
 features[field_instance][] = node-event_site-c4m_facebook
 features[field_instance][] = node-event_site-c4m_group_welcome_message
 features[field_instance][] = node-event_site-c4m_left_column

@@ -141,7 +141,7 @@ function _ecas_menu(array &$items) {
   );
 
   $items['ecas_warning_page'] = array(
-    'title' => 'EU Login warning',
+    'title' => '',
     'page callback' => 'ecas_warning_page',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
@@ -352,6 +352,7 @@ function ecas_sync_user_info(&$user, array $user_info, array $args) {
 
 /**
  * Uses ECAS to log in the user. Also updates her information.
+ * @throws Exception
  */
 function ecas_login_check() {
   global $user;
@@ -445,6 +446,14 @@ function ecas_login_check() {
       }
 
       if ($account->status == 0) {
+        // Allow for a second chance.
+        // allow some preprocessing of a user account.
+        $request_sync_user_response = module_invoke('c4m_smed_feeder', 'request_sync_user', $account);
+        $account = $request_sync_user_response['account'];
+        watchdog('c4m_smed_feeder', '[ecas-request]' . serialize($request_sync_user_response['response']), array());
+      }
+
+      if ($account->status == 0) {
         // Case when account is blocked.
         session_destroy();
 
@@ -459,7 +468,14 @@ function ecas_login_check() {
         if (isset($_REQUEST['edit']['destination'])) {
           unset($_REQUEST['edit']['destination']);
         }
-        drupal_goto('ecas_warning_page');
+
+        $payload = NULL;
+        $the_hash_key = variable_get('hash_key_for_data', FALSE);
+        if ($the_hash_key != FALSE) {
+          $iv = random_bytes('16');
+          $payload = base64_encode($iv.openssl_encrypt ($account->uid, 'aes128', $the_hash_key,0, $iv));
+        }
+        drupal_goto('ecas_warning_page', array("query" => array('data' => $payload)));
       }
       else {
         $user = $account;
@@ -649,11 +665,31 @@ function _ecas_force_login() {
  * Page callback; displays the 'ecas_warning_page' page.
  */
 function ecas_warning_page() {
+  //user_load()
+  if (!empty($_GET['data']) && $passing_hash_key = variable_get('hash_key_for_data', FALSE)) {
+    $data = base64_decode($_GET['data']);
+    $iv_size = '16';
+    $iv = substr($data, 0, $iv_size);
+    $data = substr($data,$iv_size);
+    $user_id = openssl_decrypt ($data, 'aes128', $passing_hash_key, 0, $iv);
+    $account = user_load($user_id);
+  }
+
+
+  if (isset($account)) {
+    $status_message = module_invoke('c4m_smed_feeder', 'get_user_status', $account);
+    $status_message = $status_message[$account->c4m_user_status[LANGUAGE_NONE][0]['value']];
+    $message_label = $status_message['label'];
+    $message_text = decode_entities($status_message['message']);
+  }
+  else {
+    $message_label = 'EU Login - Account status unknown';
+    $message_text = variable_get('ecas_warning_message', t('Your account is not yet approved'));
+  }
+
   $output = '';
-
-  $output .= '<h2 class="ecl-heading ecl-heading--h2">' . t('Account blocked') . '</h2>';
-  $output .= '<p>' . variable_get('ecas_warning_message', t('Your account is not yet approved')) . '</p>';
-
+//  $output .= '<h2 class="ecl-heading ecl-heading--h2">' . t($message_label) . '</h2>';
+  $output .= '<div>' . $message_text . '</div>';
   return $output;
 }
 
