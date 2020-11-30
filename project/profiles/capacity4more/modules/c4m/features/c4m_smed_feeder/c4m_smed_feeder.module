@@ -106,9 +106,10 @@ function c4m_smed_feeder_request_sync_user($account = NULL) {
   $account->c4m_user_status[LANGUAGE_NONE][0]['value'] = $response['data']['user']['c4m_user_status'];
   if ($response['response']->code == '200') {
     $account->c4m_updated_profile_by_service[LANGUAGE_NONE][0]['value'] = REQUEST_TIME;
+    $account->c4m_user_dashboard_id[LANGUAGE_NONE][0]['value'] =  $response['data']['user']['c4m_user_dashboard_id'];
   }
   $account->c4m_message_from_service[LANGUAGE_NONE][0]['value'] = c4m_smed_feeder_format_message_from_service($response);
-  $account->c4m_user_dashboard_id[LANGUAGE_NONE][0]['value'] =  $response['data']['user']['c4m_user_dashboard_id'];
+
   field_attach_presave('user', $account);
   field_attach_update('user', $account);
   // Clear the static loading cache.
