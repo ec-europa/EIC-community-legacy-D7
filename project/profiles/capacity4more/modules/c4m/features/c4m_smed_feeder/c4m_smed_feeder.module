@@ -6,16 +6,6 @@
  */
 
 /**
- * Implements hook_views_api
- */
-function example_views_api() {
-  return [
-    'api' => 3,
-    'path' => drupal_get_path('module', 'c4m_smed_feeder'),
-  ];
-}
-
-/**
  * Implements hook_menu().
  */
 function c4m_smed_feeder_menu() {
