@@ -104,10 +104,13 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
 function _c4m_user_resource_user_create($account) {
   if (!isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]) ||
       !isset($account['email']) ||
-      !isset($account['c4m_user_dashboard_id'])) {
+      !isset($account['c4m_user_dashboard_id']) ||
+      !isset($account['ecas_id']) ||
+      !isset($account['first_name']) ||
+      !isset($account['last_name'])) {
     $xml = new SimpleXMLElement('<missing_properties/>');
     $xml->addChild('missing_required_fields', "Missing one of the following minimum required properties");
-    $xml->addChild('fields', 'username, email, first-, lastname', 'c4m_user_dashboard_id');
+    $xml->addChild('fields', 'username (ecas_id), email, first-, lastname', 'c4m_user_dashboard_id');
     throw new ServicesException($xml->asXML(), 500);
   }
 
