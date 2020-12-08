@@ -120,6 +120,14 @@ function _c4m_user_resource_user_create($account) {
   else {
     $user_name = _c4m_web_services_return_valid_name($account['ecas_id']);
   }
+  // Check new user active status on the platform.
+  if (isset($account['c4m_status'])) {
+    $account['c4m_status'] == "Blocked" ? FALSE : TRUE;
+  }
+  else {
+    $account['c4m_status'] = FALSE;
+  }
+
   $new_user_data = array(
     'name' => $user_name,
     'pass' => user_password(),
@@ -128,7 +136,7 @@ function _c4m_user_resource_user_create($account) {
     'c4m_last_name' => [LANGUAGE_NONE => [['value' => $account['last_name']]]],
     'init' => $account['email'],
     'created' => time(),
-    'status' => TRUE,
+    'status' => $account['c4m_status'],
     'c4m_user_dashboard_id' => [LANGUAGE_NONE => [['value' => $account['c4m_user_dashboard_id']]]],
   );
 
