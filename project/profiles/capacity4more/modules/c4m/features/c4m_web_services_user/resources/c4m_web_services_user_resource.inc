@@ -113,7 +113,11 @@ function _c4m_user_resource_user_create($account) {
     throw new ServicesException($xml->asXML(), 500);
   }
 
-
+  if ($account_loaded = user_load_by_mail($account['email'])) {
+    $xml = new SimpleXMLElement('<user_already_exists/>');
+    $xml->addChild('user_already_exists_with_email', "We have found already a user that is using this email address");
+    throw new ServicesException($xml->asXML(), 500);
+  }
 
   $account['first_name'] = $account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"][LANGUAGE_NONE][0]['first_name'];
   $account['last_name'] = $account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"][LANGUAGE_NONE][0]['last_name'];
@@ -124,6 +128,13 @@ function _c4m_user_resource_user_create($account) {
   else {
     $user_name = _c4m_web_services_return_valid_name($account['ecas_id']);
   }
+
+  if ($account_loaded = user_load_by_name($user_name)) {
+    $xml = new SimpleXMLElement('<user_already_exists/>');
+    $xml->addChild('user_already_exists_with_username', "We have found already a user that is using this username");
+    throw new ServicesException($xml->asXML(), 500);
+  }
+
   // Check new user active status on the platform.
   if (isset($account['c4m_status'])) {
     $account['c4m_status'] == "Blocked" ? FALSE : TRUE;
