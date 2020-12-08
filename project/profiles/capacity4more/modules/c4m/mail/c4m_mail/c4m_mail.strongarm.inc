@@ -137,7 +137,7 @@ function c4m_mail_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'smtp_from';
-  $strongarm->value = 'EASME-SME-HELPDESK@ec.europa.eu';
+  $strongarm->value = 'noreply-EIC-Community@easme-web.eu';
   $export['smtp_from'] = $strongarm;
 
   $strongarm = new stdClass();
