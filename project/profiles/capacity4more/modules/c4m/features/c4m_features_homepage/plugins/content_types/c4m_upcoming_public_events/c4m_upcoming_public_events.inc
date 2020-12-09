@@ -81,7 +81,7 @@ function _get_event_sites_for_anonymous_users() {
     ->fieldCondition('c4m_event_dashboard_id', 'value', '0', '>')
     ->fieldCondition('c4m_og_status', 'value', 'published', '=')
     ->fieldCondition('c4m_datetime_end', 'value2', $today_datetime, '>=')
-    ->fieldOrderBy(c4m_datetime_end, 'value', 'ASC')
+    ->fieldOrderBy('c4m_datetime_end', 'value', 'ASC')
     ->pager($limit)
     ->execute();
 
