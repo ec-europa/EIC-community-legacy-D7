@@ -13,7 +13,6 @@
 function c4m_smed_feeder_admin_settings_general() {
   // Get the SMED feeder site configuration details.
   $smed_feeder = variable_get('smed_feeder', array());
-
   $form['smed_feeder'] = array(
     '#type' => 'fieldset',
     '#title' => t('Smed feeder Settings'),
