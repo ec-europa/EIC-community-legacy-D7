@@ -15,9 +15,9 @@ function _c4m_user_resource_access($op = 'view', $args = array()) {
   global $user;
   switch ($op) {
     case 'view':
-      return user_view_access($account);
+      return user_access('administer users');
     case 'update':
-      return ($user->uid == $account->uid || user_access('administer users'));
+      return user_access('administer users');
     case 'c4m_create_user':
       if (!$user->uid && variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL) != USER_REGISTER_ADMINISTRATORS_ONLY) {
         return TRUE;
