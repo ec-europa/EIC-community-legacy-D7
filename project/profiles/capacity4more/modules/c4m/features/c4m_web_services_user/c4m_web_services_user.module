@@ -359,7 +359,7 @@ function c4m_web_services_user_services_request_postprocess_alter($controller, $
     if (empty($nid = $result['nid'])) {
       continue;
     }
-    // When creating a new node, approve it so it becomes status draft 
+    // When creating a new node, approve it so it becomes status draft
     if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create_user') {
 
     }
@@ -408,7 +408,7 @@ function c4m_web_services_user_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
-if (!function_exists('_normalize_string_for_url')) { 
+if (!function_exists('_normalize_string_for_url')) {
   /**
    * Helper function to clean the title.
    *
