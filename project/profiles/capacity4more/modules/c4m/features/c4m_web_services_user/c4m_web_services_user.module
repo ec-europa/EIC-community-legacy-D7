@@ -50,6 +50,15 @@ function c4m_web_services_user_menu() {
     'type' => MENU_NORMAL_ITEM,
     'file' => 'includes/webservice_user.admin.inc',
   );
+
+  $items['user/edit/smed/%'] = array(
+    'title' => 'Edit your profile',
+    'page callback' => 'c4m_web_services_redirect_smed_user_to_profile',
+    'page arguments' => [3],
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'c4m_web_services_user.pages.inc',
+  );
   return $items;
 }
 
@@ -387,7 +396,6 @@ function c4m_web_services_user_services_resources_post_processing_alter(&$resour
   }
 }
 
-
 /**
  * Implements hook_form_alter().
  *
@@ -409,7 +417,38 @@ function c4m_web_services_user_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
-if (!function_exists('_normalize_string_for_url')) { 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function c4m_web_services_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  // If we don't have our session flag to return back to Challenge platform, do
+  // nothing.
+  if (empty($_SESSION['c4m_edit_profile']['back_to_challenge_platform'])) {
+    return;
+  }
+
+  // Change the submit button value and add our custom submit callback.
+  $form['actions']['submit']['#value'] = t('Save and return to the Challenge platform');
+  $form['#submit'][] = 'c4m_web_services_form_user_profile_form_submit';
+}
+
+/**
+ * Submit callback for user_profile_form form.
+ */
+function c4m_web_services_form_user_profile_form_submit($form, &$form_state) {
+  // If we don't have our session flag to return back to Challenge platform, do
+  // nothing.
+  if (empty($_SESSION['c4m_edit_profile']['back_to_challenge_platform'])) {
+    return;
+  }
+
+  // Remove the session variable and redirect back to the Challenge platform.
+  module_load_include('inc', 'c4m_web_services_user', 'c4m_web_services_user.pages');
+  unset($_SESSION['c4m_edit_profile']['back_to_challenge_platform']);
+  c4m_web_services_redirect_smed_user_to_challenge_platform();
+}
+
+if (!function_exists('_normalize_string_for_url')) {
   /**
    * Helper function to clean the title.
    *
