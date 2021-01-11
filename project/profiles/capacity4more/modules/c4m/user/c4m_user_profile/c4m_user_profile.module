@@ -1335,3 +1335,25 @@ function c4m_user_profile_user_cancel($edit, $account, $method) {
     }
   }
 }
+
+/**
+ * Returns a user account based on its dashboard ID.
+ *
+ * @param int $dashboard_id
+ *   The SME Dashboard ID.
+ *
+ * @return array
+ *   The user account or FALSE if not found.
+ */
+function c4m_user_profile_load_by_dashboard_id($dashboard_id) {
+  'c4m_user_dashboard_id';
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'user')
+    ->fieldCondition('c4m_user_dashboard_id', 'value', 'NULL', '!=')
+    ->range(0, 1);
+  $result = $query->execute();
+  if (isset($result['user'])) {
+    return user_load(array_pop($result['user'])->uid);
+  }
+  return FALSE;
+}
