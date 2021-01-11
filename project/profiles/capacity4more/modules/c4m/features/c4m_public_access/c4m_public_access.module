@@ -21,6 +21,10 @@ function c4m_public_access_permission() {
       'title' => t('Administer public access settings'),
       'description' => t('Administer public access settings.'),
     ),
+    'access authenticated content' => array(
+      'title' => t('View published content as an authenticated user'),
+      'description' => t('Allow to limit viewing published content.'),
+    ),
   );
 }
 
@@ -82,10 +86,19 @@ function c4m_public_access_block_view_alter(&$data, $block) {
  */
 function c4m_public_access_node_access($node, $op, $account) {
   // anonymous users can only see the about us page (for books) , articles and event-sites.
-  if ($account->uid === 0 && $op === "view") {
+  if ($account->uid === 0) {
+    if ($op !== "view") {
+      return NODE_ACCESS_DENY;
+    }
     if (!in_array($node->type, ['article', 'book', 'event_site']) ) {
       return NODE_ACCESS_DENY;
     }
+    if ($node->type == 'article'){
+      if (!empty($node->group_group)) {
+        return NODE_ACCESS_DENY;
+      }
+    }
+
     if ($node->type == "book") {
       //only allow the book pages that are allowed and the whole help-guidance section.
       $public_access_settings = variable_get('public_access_settings', array());
@@ -163,6 +176,21 @@ function c4m_public_access_entity_view_alter(&$build, $type) {
 }
 
 /**
+ * Implements hook_views_query_alter().
+ *
+ * Filter the activity stream by the user's choice.
+ */
+
+function c4m_public_access_views_query_alter(&$view, &$query)
+{
+  if (!(user_is_anonymous() && $view->name == 'global_activity_stream_no_js_fallback')) {
+    return;
+  }
+  // We limit what the anonymous visitor can see in the activity stream.
+  $query->where[1]["conditions"][1]["value"] = array("c4m_insert__node__article");
+}
+
+/**
  * Implements hook_views_module_implements_alter().
  * To make sure the access check of this module is done after the other ones.
  */
@@ -179,12 +207,9 @@ function c4m_public_access_module_implements_alter(&$implementations, $hook) {
  * Implements hook_views_default_views_alter().
  */
 function c4m_public_access_views_default_views_alter(&$views) {
-  $to_be_secured_views = array( 'c4m_overview_organisations' => 'view any organisation content',
-                                'c4m_overview_events' => 'view any event_site content',
-                                'c4m_events_calendar' => 'view any event_site content',
-                                'c4m_overview_events_landing' => 'view any event_site content',
-                                'c4m_overview_topics' => 'view any topic content',
-                                'c4m_learning_content' => 'view any document content'
+  $to_be_secured_views = array( 'c4m_overview_organisations' => 'access authenticated content',
+                                'c4m_overview_topics' => 'access authenticated content',
+                                'c4m_learning_content' => 'access authenticated content'
                                 );
   foreach ($to_be_secured_views as $view_system_name => $view_permission) {
       if (isset($views[$view_system_name])) {
@@ -195,6 +220,7 @@ function c4m_public_access_views_default_views_alter(&$views) {
 
 /**
  * Implements hook_default_page_manager_pages_alter().
+ * For anonymous users we want to hide some sections.
  */
 function c4m_public_access_default_page_manager_pages_alter(&$pages) {
   if (user_is_anonymous() && isset($pages['c4m_homepage'])) {
@@ -212,10 +238,6 @@ function c4m_public_access_default_page_manager_pages_alter(&$pages) {
     // Hide the activity stream.
     $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
                           ->conf['display']->content['new-b3476758-2767-4be2-b3ad-84697ac801c3']
-                          ->shown = FALSE;
-    // Hide the NOJS activity stream.
-    $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
-                          ->conf['display']->content['new-98afd53a-7134-42fa-aa33-75d6cdc905d7']
                           ->shown = FALSE;
     // Hide the c4m_featured_groups
     $pages['c4m_homepage']->default_handlers['page_c4m_homepage_panel_context_2']
@@ -251,6 +273,14 @@ function c4m_public_access_default_page_manager_pages_alter(&$pages) {
 function c4m_public_access_block_view_c4m_features_header_c4m_header_menu_alter(&$data, $block){
   if (user_is_anonymous() && current_path() !== "access-denied-ecas") {
     $data['content'] .= '<div id="member_access"><a href="/member_access">Member access</a></div>';
+  }
+}
+
+function c4m_public_access_views_pre_build(&$view) {
+  if (user_is_anonymous() && $view->name == "global_activity_stream_no_js_fallback") {
+    $view->init_pager();
+    $view->set_items_per_page('8');
+
   }
 }
 

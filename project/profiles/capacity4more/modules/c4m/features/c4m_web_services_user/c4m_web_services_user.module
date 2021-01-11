@@ -84,7 +84,7 @@ function _c4m_web_services_user_authenticate_call(array $settings, array $method
   $context->buildFromGlobals();
 
   $valid_token = FALSE;
-  // Check if the header contains the authorization token. 
+  // Check if the header contains the authorization token.
   if (NULL !== $context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"]))) {
     if ($context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"])) === $settings["authorization_token_key"]) {
       $valid_token = TRUE;
@@ -122,7 +122,7 @@ function _c4m_web_services_user_authenticate_call(array $settings, array $method
  */
 function _c4m_web_services_user_default_security_settings() {
   $webservice_user_settings = variable_get('webservice_user', array());
-  
+
   return [
     'authorization_token_name' => $webservice_user_settings['authorization_token_name'],
     'authorization_token_key' => $webservice_user_settings['authorization_token_key'],
@@ -157,7 +157,6 @@ function _c4m_web_services_user_security_settings($settings, &$form_state) {
     '#required' => TRUE,
     '#default_value' => $settings['webservice_username'],
   ];
-  
 
   return $form;
 }
@@ -327,12 +326,12 @@ function c4m_web_services_user_services_request_preprocess_alter(array $controll
       }
       // check if user exists:
       // Check if the user exists if appropriate.
-      $account = user_load_by_mail($user['email']);
-      if (!empty($account)) {
+
+      if ($account = user_load_by_mail($user['email'])) {
         $xml = new SimpleXMLElement('<user_exists/>');
         $xml->addChild('email', $account->mail);
         $xml->addChild('uid', $account->uid);
-        $xml->addChild('c4m_user_dashboard_id', empty($account->c4m_user_dashboard_id) ? "" : $account->c4m_user_dashboard_id);
+        $xml->addChild('c4m_user_dashboard_id', empty($account->c4m_user_dashboard_id) ? "" : $account->c4m_user_dashboard_id[LANGUAGE_NONE][0]["value"]);
         $xml->addChild('purl', 'user/' . $account->uid);
         throw new ServicesException($xml->asXML(), 302);
       }
@@ -369,7 +368,7 @@ function c4m_web_services_user_services_request_postprocess_alter($controller, $
     if (empty($nid = $result['nid'])) {
       continue;
     }
-    // When creating a new node, approve it so it becomes status draft 
+    // When creating a new node, approve it so it becomes status draft
     if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create_user') {
 
     }
