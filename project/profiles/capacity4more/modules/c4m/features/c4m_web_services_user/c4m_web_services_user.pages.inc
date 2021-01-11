@@ -35,6 +35,7 @@ function c4m_web_services_redirect_smed_user_to_profile($smed_id) {
  */
 function c4m_web_services_redirect_smed_user_to_challenge_platform($smed_id = NULL) {
   // Redirect user to the defined page.
-  $url = variable_get('c4m_web_services_challenge_platform_return_back_url', 'https://covid-eic.easme-web.eu/user/edit/smed');
+  $url = variable_get('capacity4more_url_challenge_platform', 'https://covid-eic.easme-web.eu');
+  $url .= '/user/edit/smed';
   drupal_goto($url);
 }

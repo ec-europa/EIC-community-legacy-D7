@@ -84,7 +84,7 @@ function _c4m_web_services_user_authenticate_call(array $settings, array $method
   $context->buildFromGlobals();
 
   $valid_token = FALSE;
-  // Check if the header contains the authorization token. 
+  // Check if the header contains the authorization token.
   if (NULL !== $context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"]))) {
     if ($context->getServerVariable("HTTP_" . strtoupper($settings["authorization_token_name"])) === $settings["authorization_token_key"]) {
       $valid_token = TRUE;
@@ -122,7 +122,7 @@ function _c4m_web_services_user_authenticate_call(array $settings, array $method
  */
 function _c4m_web_services_user_default_security_settings() {
   $webservice_user_settings = variable_get('webservice_user', array());
-  
+
   return [
     'authorization_token_name' => $webservice_user_settings['authorization_token_name'],
     'authorization_token_key' => $webservice_user_settings['authorization_token_key'],
@@ -157,7 +157,7 @@ function _c4m_web_services_user_security_settings($settings, &$form_state) {
     '#required' => TRUE,
     '#default_value' => $settings['webservice_username'],
   ];
-  
+
 
   return $form;
 }
@@ -369,7 +369,7 @@ function c4m_web_services_user_services_request_postprocess_alter($controller, $
     if (empty($nid = $result['nid'])) {
       continue;
     }
-    // When creating a new node, approve it so it becomes status draft 
+    // When creating a new node, approve it so it becomes status draft
     if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create_user') {
 
     }
@@ -428,7 +428,7 @@ function c4m_web_services_form_user_profile_form_alter(&$form, &$form_state, $fo
   }
 
   // Change the submit button value and add our custom submit callback.
-  $form['actions']['submit']['#value'] = t('Save and return to the Challenge platform');
+  $form['actions']['submit']['#value'] = t('Save & return to the Challenge platform');
   $form['#submit'][] = 'c4m_web_services_form_user_profile_form_submit';
 }
 

@@ -746,3 +746,10 @@ function capacity4more_update_7027() {
 function capacity4more_update_7028() {
   module_enable(['c4m_vocab_event_type']);
 }
+
+/**
+ * Set a common variable for the Challenge Platform URL.
+ */
+function capacity4more_update_7029() {
+  variable_set('capacity4more_url_challenge_platform', 'https://covid-eic.easme-web.eu');
+}
