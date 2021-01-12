@@ -125,6 +125,11 @@ function c4m_contact_form_contact_site_form_alter(&$form, &$form_state, $form_id
   // Prepend a submit callback to handle the difference between visitor and user
   // forms (with a WIYIWYG editor). Sends a uniform single string value.
   array_unshift($form['#submit'], 'c4m_contact_contact_site_form_submit');
+
+  $query_params =  drupal_get_query_parameters();
+  if (!empty($query_params['back_to']) && $query_params['back_to'] == 'challenge') {
+    $form['actions']['submit']['#value'] = t('Save & return to the Challenge platform');
+  }
 }
 
 /**
@@ -140,6 +145,21 @@ function c4m_contact_contact_site_form_submit($form, &$form_state) {
   // Inserts HTML line breaks before all newlines.
   if (!_c4m_contact_string_is_html($form_state['values']['message'])) {
     $form_state['values']['message'] = nl2br($form_state['values']['message']);
+  }
+
+  // Check if user should be redirected.
+  $query_params =  drupal_get_query_parameters();
+  if (!empty($query_params['back_to'])) {
+
+    switch ($query_params['back_to']) {
+      case 'challenge':
+        $url = variable_get('capacity4more_url_challenge_platform');
+        if (!empty($url)) {
+          drupal_goto($url);
+        }
+        break;
+    }
+
   }
 }
 

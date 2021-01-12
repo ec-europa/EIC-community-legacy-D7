@@ -427,7 +427,7 @@ function c4m_web_services_form_user_profile_form_alter(&$form, &$form_state, $fo
   }
 
   // Change the submit button value and add our custom submit callback.
-  $form['actions']['submit']['#value'] = t('Save and return to the Challenge platform');
+  $form['actions']['submit']['#value'] = t('Save & return to the Challenge platform');
   $form['#submit'][] = 'c4m_web_services_form_user_profile_form_submit';
 }
 
