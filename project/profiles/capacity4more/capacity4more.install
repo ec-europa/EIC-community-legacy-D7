@@ -748,8 +748,15 @@ function capacity4more_update_7028() {
 }
 
 /**
- * Set a common variable for the Challenge Platform URL.
+ * SMED requests update hook.
  */
 function capacity4more_update_7029() {
+  module_enable(['c4m_smed_feeder', 'chr']);
+}
+
+/**
+ * Set a common variable for the Challenge Platform URL.
+ */
+function capacity4more_update_7030() {
   variable_set('capacity4more_url_challenge_platform', 'https://covid-eic.easme-web.eu');
 }

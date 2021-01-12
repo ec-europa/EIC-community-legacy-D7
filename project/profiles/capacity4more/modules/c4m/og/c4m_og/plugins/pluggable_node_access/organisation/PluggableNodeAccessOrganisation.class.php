@@ -16,8 +16,13 @@ class PluggableNodeAccessOrganisation extends PluggableNodeAccessBase {
   public static function getNodeGrants($account = NULL, $op = 'view') {
     if (empty($account)) {
       global $user;
-      $account = user_load($user->uid);
+      $user_id = $user->uid;
     }
+    else {
+      $user_id = $account->uid;
+    }
+    // We need the full user object.
+    $account = user_load($user_id);
 
     if (!$account->uid) {
       // Anonymous user.
@@ -30,13 +35,18 @@ class PluggableNodeAccessOrganisation extends PluggableNodeAccessBase {
     }
     $realms = array();
 
-    $domain = explode('@', $account->mail);
+    if (empty($account->og_user_node[LANGUAGE_NONE])) {
+     return array();
+    }
+    $user_organisation_memberships = $account->og_user_node[LANGUAGE_NONE];
+
 
     $query = db_select('node', 'n');
 
     $query
       ->condition('n.status', 1, '=')
-      ->condition('n.type', 'organisation', '=');
+      ->condition('n.type', 'organisation', '=')
+      ->condition('n.nid', $user_organisation_memberships, 'IN');
 
     $query->fields('n', array('title', 'nid'));
 

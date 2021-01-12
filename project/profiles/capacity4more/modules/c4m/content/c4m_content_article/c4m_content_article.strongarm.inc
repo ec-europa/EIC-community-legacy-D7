@@ -143,6 +143,12 @@ function c4m_content_article_strongarm() {
       'pinned_content' => array(
         'custom_settings' => FALSE,
       ),
+      'activity_global_anonymous' => array(
+        'custom_settings' => TRUE,
+      ),
+      'block_list_anonymous' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

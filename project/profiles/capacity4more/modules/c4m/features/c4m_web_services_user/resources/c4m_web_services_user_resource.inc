@@ -15,9 +15,9 @@ function _c4m_user_resource_access($op = 'view', $args = array()) {
   global $user;
   switch ($op) {
     case 'view':
-      return user_view_access($account);
+      return user_access('administer users');
     case 'update':
-      return ($user->uid == $account->uid || user_access('administer users'));
+      return user_access('administer users');
     case 'c4m_create_user':
       if (!$user->uid && variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL) != USER_REGISTER_ADMINISTRATORS_ONLY) {
         return TRUE;
@@ -104,10 +104,18 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
 function _c4m_user_resource_user_create($account) {
   if (!isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]) ||
       !isset($account['email']) ||
-      !isset($account['c4m_user_dashboard_id'])) {
+      !isset($account['c4m_user_dashboard_id']) ||
+      !isset($account['first_name']) ||
+      !isset($account['last_name'])) {
     $xml = new SimpleXMLElement('<missing_properties/>');
     $xml->addChild('missing_required_fields', "Missing one of the following minimum required properties");
     $xml->addChild('fields', 'username, email, first-, lastname', 'c4m_user_dashboard_id');
+    throw new ServicesException($xml->asXML(), 500);
+  }
+
+  if ($account_loaded = user_load_by_mail($account['email'])) {
+    $xml = new SimpleXMLElement('<user_already_exists/>');
+    $xml->addChild('user_already_exists_with_email', "We have found already a user that is using this email address");
     throw new ServicesException($xml->asXML(), 500);
   }
 
@@ -120,6 +128,21 @@ function _c4m_user_resource_user_create($account) {
   else {
     $user_name = _c4m_web_services_return_valid_name($account['ecas_id']);
   }
+
+  if ($account_loaded = user_load_by_name($user_name)) {
+    $xml = new SimpleXMLElement('<user_already_exists/>');
+    $xml->addChild('user_already_exists_with_username', "We have found already a user that is using this username");
+    throw new ServicesException($xml->asXML(), 500);
+  }
+
+  // Check new user active status on the platform.
+  if (isset($account['c4m_status'])) {
+    $account['c4m_status'] == "Blocked" ? FALSE : TRUE;
+  }
+  else {
+    $account['c4m_status'] = FALSE;
+  }
+
   $new_user_data = array(
     'name' => $user_name,
     'pass' => user_password(),
@@ -128,7 +151,7 @@ function _c4m_user_resource_user_create($account) {
     'c4m_last_name' => [LANGUAGE_NONE => [['value' => $account['last_name']]]],
     'init' => $account['email'],
     'created' => time(),
-    'status' => TRUE,
+    'status' => $account['c4m_status'],
     'c4m_user_dashboard_id' => [LANGUAGE_NONE => [['value' => $account['c4m_user_dashboard_id']]]],
   );
 

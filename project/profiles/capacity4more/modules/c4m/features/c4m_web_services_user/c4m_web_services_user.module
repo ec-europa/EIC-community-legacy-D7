@@ -158,7 +158,6 @@ function _c4m_web_services_user_security_settings($settings, &$form_state) {
     '#default_value' => $settings['webservice_username'],
   ];
 
-
   return $form;
 }
 
@@ -327,12 +326,12 @@ function c4m_web_services_user_services_request_preprocess_alter(array $controll
       }
       // check if user exists:
       // Check if the user exists if appropriate.
-      $account = user_load_by_mail($user['email']);
-      if (!empty($account)) {
+
+      if ($account = user_load_by_mail($user['email'])) {
         $xml = new SimpleXMLElement('<user_exists/>');
         $xml->addChild('email', $account->mail);
         $xml->addChild('uid', $account->uid);
-        $xml->addChild('c4m_user_dashboard_id', empty($account->c4m_user_dashboard_id) ? "" : $account->c4m_user_dashboard_id);
+        $xml->addChild('c4m_user_dashboard_id', empty($account->c4m_user_dashboard_id) ? "" : $account->c4m_user_dashboard_id[LANGUAGE_NONE][0]["value"]);
         $xml->addChild('purl', 'user/' . $account->uid);
         throw new ServicesException($xml->asXML(), 302);
       }

@@ -298,3 +298,5 @@ $conf['reroute_email_enable_message'] = 1;
 // $conf["cache_class_cache_form"] = "DrupalDatabaseCache";
 // $conf["page_cache_without_database"] = TRUE;
 // $conf["page_cache_invoke_hooks"] = FALSE;
+
+$conf['support_email_address'] = "support@change.this-address.com";

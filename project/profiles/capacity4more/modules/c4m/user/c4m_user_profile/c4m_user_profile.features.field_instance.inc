@@ -122,7 +122,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 30,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -224,7 +224,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 29,
+        'weight' => 16,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -307,7 +307,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 27,
+        'weight' => 14,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -420,7 +420,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 28,
       ),
       'full' => array(
         'label' => 'above',
@@ -517,7 +517,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 32,
       ),
       'full' => array(
         'label' => 'above',
@@ -583,7 +583,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 27,
       ),
       'full' => array(
         'label' => 'above',
@@ -651,7 +651,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 17,
+        'weight' => 12,
       ),
       'full' => array(
         'label' => 'above',
@@ -726,7 +726,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 10,
+        'weight' => 6,
       ),
       'full' => array(
         'label' => 'above',
@@ -794,7 +794,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 9,
+        'weight' => 5,
       ),
       'full' => array(
         'label' => 'above',
@@ -891,7 +891,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 25,
+        'weight' => 33,
       ),
       'full' => array(
         'label' => 'above',
@@ -983,7 +983,7 @@ function c4m_user_profile_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 29,
       ),
       'full' => array(
         'label' => 'above',
@@ -1047,7 +1047,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 31,
+        'weight' => 18,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -1136,7 +1136,7 @@ function c4m_user_profile_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 26,
+        'weight' => 13,
       ),
       'full' => array(
         'label' => 'inline',
@@ -1316,6 +1316,104 @@ function c4m_user_profile_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'user-user-c4m_message_from_service'.
+  $field_instances['user-user-c4m_message_from_service'] = array(
+    'bundle' => 'user',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'block_list' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 25,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'member_overview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'user_picture' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'user',
+    'field_name' => 'c4m_message_from_service',
+    'label' => 'Message from service',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_text' => 'basic_text',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'mail' => 'mail',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_text' => array(
+              'weight' => 0,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'mail' => array(
+              'weight' => 0,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 29,
+    ),
+  );
+
   // Exported field_instance: 'user-user-c4m_optout_comment'.
   $field_instances['user-user-c4m_optout_comment'] = array(
     'bundle' => 'user',
@@ -1338,7 +1436,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 16,
+        'weight' => 11,
       ),
       'full' => array(
         'label' => 'above',
@@ -1413,7 +1511,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 15,
+        'weight' => 10,
       ),
       'full' => array(
         'label' => 'above',
@@ -1488,7 +1586,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 13,
+        'weight' => 8,
       ),
       'full' => array(
         'label' => 'above',
@@ -1563,7 +1661,7 @@ function c4m_user_profile_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 14,
+        'weight' => 9,
       ),
       'full' => array(
         'label' => 'above',
@@ -1634,7 +1732,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 28,
+        'weight' => 15,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -1718,7 +1816,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 12,
+        'weight' => 7,
       ),
       'full' => array(
         'label' => 'above',
@@ -1793,6 +1891,148 @@ function c4m_user_profile_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'user-user-c4m_updated_profile_by_service'.
+  $field_instances['user-user-c4m_updated_profile_by_service'] = array(
+    'bundle' => 'user',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'block_list' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'member_overview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'user_picture' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'user',
+    'field_name' => 'c4m_updated_profile_by_service',
+    'label' => 'Updated profile by service',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 1,
+        'input_format' => 'd/m/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_text',
+      'weight' => 27,
+    ),
+  );
+
+  // Exported field_instance: 'user-user-c4m_updated_profile_by_user'.
+  $field_instances['user-user-c4m_updated_profile_by_user'] = array(
+    'bundle' => 'user',
+    'default_value' => array(),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'block_list' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 22,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'member_overview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'user_picture' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'user',
+    'field_name' => 'c4m_updated_profile_by_user',
+    'label' => 'Updated profile by user',
+    'required' => FALSE,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 1,
+        'input_format' => 'd/m/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_text',
+      'weight' => 26,
+    ),
+  );
+
   // Exported field_instance: 'user-user-c4m_user_dashboard_id'.
   $field_instances['user-user-c4m_user_dashboard_id'] = array(
     'bundle' => 'user',
@@ -1864,6 +2104,69 @@ function c4m_user_profile_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'user-user-c4m_user_status'.
+  $field_instances['user-user-c4m_user_status'] = array(
+    'bundle' => 'user',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'block_list' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 24,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'member_overview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'user_picture' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'user',
+    'field_name' => 'c4m_user_status',
+    'label' => 'User status',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'content_taxonomy_opt_groups' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 28,
+    ),
+  );
+
   // Exported field_instance: 'user-user-c4m_user_types'.
   $field_instances['user-user-c4m_user_types'] = array(
     'bundle' => 'user',
@@ -1881,7 +2184,7 @@ function c4m_user_profile_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 32,
+        'weight' => 19,
       ),
       'full' => array(
         'label' => 'inline',
@@ -1973,7 +2276,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 31,
       ),
       'full' => array(
         'label' => 'inline',
@@ -2035,7 +2338,7 @@ You can select maximum 3 regions and an unlimited number of subregions or countr
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 30,
+        'weight' => 17,
       ),
       'full' => array(
         'label' => 'inline',
@@ -2132,7 +2435,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 5,
+        'weight' => 3,
       ),
       'full' => array(
         'label' => 'inline',
@@ -2229,7 +2532,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 6,
+        'weight' => 4,
       ),
       'full' => array(
         'label' => 'inline',
@@ -2298,6 +2601,7 @@ You can select maximum 3 topics and an unlimited number of subtopics.',
   t('Languages spoken');
   t('Last Name');
   t('LinkedIn');
+  t('Message from service');
   t('Picture');
   t('Select all countries and/or regions which you are targetting.
 You can select maximum 3 regions and an unlimited number of subregions or countries.');
@@ -2316,7 +2620,10 @@ You can select maximum 3 topics and an unlimited number of subtopics.');
   t('Unsubscribe from group notifications');
   t('Unsubscribe from node notifications');
   t('Unsubscribe from terms notifications');
+  t('Updated profile by service');
+  t('Updated profile by user');
   t('User Dashboard ID');
+  t('User status');
   t('User type');
 
   return $field_instances;

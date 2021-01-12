@@ -24,6 +24,9 @@ projects[better_formats][version] = "1.0-beta2"
 projects[blockreference][subdir] = "contrib"
 projects[blockreference][version] = "2.7"
 
+projects[chr][subdir] = "contrib"
+projects[chr][version] = "1.9"
+
 projects[context][subdir] = "contrib"
 projects[context][version] = "3.10"
 
@@ -49,7 +52,7 @@ projects[entityreference_prepopulate][subdir] = "contrib"
 projects[entityreference_prepopulate][version] = "1.7"
 
 projects[file_entity][subdir] = "contrib"
-projects[file_entity][version] = "2.25"
+projects[file_entity][version] = "2.30"
 
 projects[file_download_count][subdir] = "contrib"
 projects[file_download_count][version] = "1.0-rc1"
@@ -71,7 +74,10 @@ projects[save_draft][subdir] = "contrib"
 projects[save_draft][version] = "1.4"
 
 projects[smart_trim][subdir] = "contrib"
-projects[smart_trim][version] = "1.5"
+projects[smart_trim][version] = "1.6"
+
+projects[jquery_expander][subdir] = "contrib"
+projects[jquery_expander][version] = "1.0"
 
 projects[summary_settings][subdir] = "contrib"
 projects[summary_settings][version] = "1.x-dev"

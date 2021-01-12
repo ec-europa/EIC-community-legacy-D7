@@ -13,7 +13,11 @@ if ($display_see_more) {
 
 <div class="sidebarblock my-projects<?php print $classes; ?>">
   <h2 class="sidebarblock__title closely">
-    <?php print t('My Event Sites') ?>
+    <?php if (user_is_logged_in()): ?>
+      <?php print t('My Event Sites') ?>
+    <?php else: ?>
+      <?php print t('Public Event Sites')  ?>
+    <?php endif; ?>
   </h2>
   <?php print $event_sites; ?>
 

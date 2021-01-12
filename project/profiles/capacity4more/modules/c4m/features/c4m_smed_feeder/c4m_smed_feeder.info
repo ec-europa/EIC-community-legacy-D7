@@ -1,0 +1,9 @@
+name = SMEDashboard feeder services
+description = Manage the synchronisation and verification of content with the SMEDashboard tools.
+core = 7.x
+package = Features - EIC
+version = 7.x-0.1
+project path = profiles/capacity4more/modules/c4m/features
+
+dependencies[] = views
+files[] = includes/views_handler_field_user_link_smed_sync_user.inc

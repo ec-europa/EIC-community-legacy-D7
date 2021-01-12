@@ -139,10 +139,13 @@
 
 
 
-.groupNavigation-divider, .view .see-more-link, .view .more-link {
+.groupNavigation-divider, .view .see-more-link, .view .more-link, :not(.page-groups) .view .more-link {
     @include css-var("border-top", "ec-grey-10", "solid 1px");
 }
 
+.page-groups .view .more-link {
+  margin-top: 0;
+}
 
 
 .more-info a .fa {

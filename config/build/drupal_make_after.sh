@@ -44,6 +44,13 @@ rm -r "$DIR_WEB/profiles/capacity4more/behat/bin/behat"
 rm -r "$DIR_WEB/profiles/capacity4more/behat/bin/webunit"
 message_success "Successfully removed node_modules, behat and webunit directories from build"
 
+markup_h2 "[CLEANUP] Remove the .map files for javascript and css files in the theme(s), if they exist..."
+rm "$DIR_WEB/profiles/capacity4more/themes/c4m/kapablo/js/kapablo.concat.js.map"
+rm "$DIR_WEB/profiles/capacity4more/themes/c4m/shake/js/shake.concat.js.map"
+rm "$DIR_WEB/profiles/capacity4more/themes/c4m/shake/css/shake.concat.css.map"
+rm "$DIR_WEB/profiles/capacity4more/themes/c4m/kapablo/css/kapablo.concat.css.map"
+message_success "[CLEANUP] Successful."
+
 markup_h2 "Settings file"
 cp -a "$DIR_ROOT/config/build/settings/settings.php" "$DIR_WEB/sites/default"
 message_success "Master Settings file copied to build"
