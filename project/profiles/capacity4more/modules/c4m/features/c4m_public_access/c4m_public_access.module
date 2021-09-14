@@ -272,7 +272,13 @@ function c4m_public_access_default_page_manager_pages_alter(&$pages) {
  **/
 function c4m_public_access_block_view_c4m_features_header_c4m_header_menu_alter(&$data, $block){
   if (user_is_anonymous() && current_path() !== "access-denied-ecas") {
-    $data['content'] .= '<div id="member_access"><a href="/member_access">Member access</a></div>';
+    $member_access = '/member_access';
+
+    if (isset($_SERVER['HTTP_NGINX_REQUEST_URI'])) {
+      $nginx_request_uri = preg_split('@/@', $_SERVER['HTTP_NGINX_REQUEST_URI'], NULL, PREG_SPLIT_NO_EMPTY);
+      $member_access = '/' . $nginx_request_uri[0] . $member_access;
+    }
+    $data['content'] .= '<div id="member_access"><a href="' . $member_access . '">Member access</a></div>';
   }
 }
 
