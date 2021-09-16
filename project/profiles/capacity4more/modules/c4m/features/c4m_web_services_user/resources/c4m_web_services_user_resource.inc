@@ -61,7 +61,7 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
 
   if (isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"])) {
       $account_loaded->c4m_first_name["und"][0]["value"] = $account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]["und"][0]["first_name"];
-      $fields_changed[] = 'email';
+      $fields_changed[] = 'first_name';
   }
 
 
