@@ -67,7 +67,7 @@ function c4m_mail_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mimemail_mail';
-  $strongarm->value = 'noreply-EIC-Community@easme-web.eu';
+  $strongarm->value = 'noreply-EIC-Community@eic.eismea.eu';
   $export['mimemail_mail'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -137,7 +137,7 @@ function c4m_mail_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'smtp_from';
-  $strongarm->value = 'noreply-EIC-Community@easme-web.eu';
+  $strongarm->value = 'noreply-EIC-Community@eic.eismea.eu';
   $export['smtp_from'] = $strongarm;
 
   $strongarm = new stdClass();
