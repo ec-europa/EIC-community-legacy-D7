@@ -377,8 +377,8 @@ function _c4m_user_notifications_dispatch_content_action($node, $action) {
      * New discussion of Private and restricted groups should remain eh private.
      * No matter of the shared "topics of interest".
      */
-    $og_group_ref = $node->og_group_ref[LANGUAGE_NONE][0]["target_id"];
-    if (!empty($og_group_ref)) {
+    if (isset($node->og_group_ref) && !empty($node->og_group_ref[LANGUAGE_NONE][0]["target_id"])) {
+      $og_group_ref = $node->og_group_ref[LANGUAGE_NONE][0]["target_id"];
       $group_wrapper = entity_metadata_wrapper('node', $og_group_ref);
       // Group_access is a boolean , false == public group .
       if (!isset($group_wrapper->group_access) || $group_wrapper->group_access->value() !== FALSE) {
