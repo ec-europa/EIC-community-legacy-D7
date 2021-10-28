@@ -291,12 +291,13 @@ function _c4m_user_notifications_get_message_unique_recipients($mid) {
  *   Array of UID's that will receive this notification.
  */
 function _c4m_user_notifications_set_message_unique_recipients($mid, array $uids) {
-  db_merge('message_recipients_unique')
+  $str_uids = serialize($uids);
+  $query = db_merge('message_recipients_unique')
     ->key(['mid' => $mid])
     ->fields([
-      'recipients' => serialize($uids),
-    ])
-    ->execute();
+      'recipients' => $str_uids,
+    ]);
+  $query->execute();
 }
 
 /**
