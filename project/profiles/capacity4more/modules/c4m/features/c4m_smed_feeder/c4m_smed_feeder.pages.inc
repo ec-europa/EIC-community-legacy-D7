@@ -18,7 +18,7 @@ function c4m_smed_feeder_action_sync_user($account) {
   $result = c4m_smed_feeder_request_sync_user($account);
   $destination = drupal_get_destination();
 
-  switch ($result['response']['response']->code) {
+  switch ($result['response']['http_code']) {
     case 200:
       drupal_set_message(t('User %name has been updated successfully',
         ['%name' => $result['account']->name]
