@@ -407,7 +407,7 @@ function ecas_login_check() {
 
       // what if user has changed his email ?
       if (empty($account)){
-        watchdog('ec_ecas', 'no user (%user) found with email: %mail', array('%username' => $ecas_name,'%mail' => $ecas_email), WATCHDOG_DEBUG);
+        watchdog('ec_ecas', 'no user (%username) found with email: %mail', array('%username' => $ecas_name,'%mail' => $ecas_email), WATCHDOG_DEBUG);
         $account = user_load_by_name($ecas_name);
         $data = var_export($account,true);
         watchdog('ec_ecas', '[allowed to login! - TODO: FLAG] but found with username %username with dataset: %data', array('%username' => $ecas_name,  '%data' => $data), WATCHDOG_DEBUG);
