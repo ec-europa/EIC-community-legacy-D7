@@ -12,6 +12,10 @@
  *   The SMED ID.
  */
 function c4m_web_services_redirect_smed_user_to_profile($smed_id) {
+  // filter out bad requests.
+  if (!is_numeric($smed_id)) {
+     return drupal_access_denied();
+  }
   // We don't explicitely deny access for non logged-in users as we want them to
   // hit the existing login workflow.
   $account = c4m_user_profile_load_by_dashboard_id($smed_id);
