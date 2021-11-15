@@ -52,26 +52,67 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
   $account = _services_arg_value($account, 'data');
 
   $account_loaded = user_load_by_mail($account['email']);
+  $updated_account = array();
 
   $fields_changed = array();
-  if (isset($account['email'])) {
-    $account_loaded->mail = $account['email'];
-    $fields_changed[] = 'email';
+
+  foreach ($account as $fieldname => $value) {
+    switch ($fieldname) {
+      case "c4m_user_dashboard_id":
+      case "c4m_user_status":
+        if ($account_loaded->{$fieldname}[LANGUAGE_NONE][0]["value"] !== $value) {
+          $updated_account[$fieldname] = [LANGUAGE_NONE => [['value' => $value]]];
+          $fields_changed[] = $fieldname;
+        }
+        break;
+  //    case "type":
+  //    break;
+      case "ecas_id":
+        if ($account_loaded->name !== $value) {
+          $updated_account['name'] = $value;
+          $fields_changed[] = $fieldname;
+        }
+        break;
+      case "email":
+        if ($account_loaded->mail !== $value) {
+          $updated_account['mail'] = $value;
+          $fields_changed[] = $fieldname;
+        }
+        break;
+      case "c4m_status":
+        $c4m_status = $value == "Blocked" ? "0" : "1";
+        if ($account_loaded->status !== $c4m_status) {
+          // Block / unblock a user:
+          $updated_account['status'] = $c4m_status;
+          $fields_changed[] = $fieldname;
+        }
+        break;
+      case "first_name":
+      case "last_name":
+        $organisation = $account["c4m_organisations_informations"]["c4m_organisation"];
+        $org_member_info = $organisation["c4m_member_informations"];
+        // using the dataset from the organisation section. the main section is currently not updated.
+        $value = $org_member_info[LANGUAGE_NONE][0][$fieldname];
+        if ($account_loaded->{'c4m_' . $fieldname}[LANGUAGE_NONE][0]['value'] !== $value) {
+
+          $updated_account['c4m_' . $fieldname] = [LANGUAGE_NONE => [['value' => $value]]];
+          $fields_changed[] = $fieldname;
+        }
+        break;
+    }
   }
 
-  if (isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"])) {
-      $account_loaded->c4m_first_name["und"][0]["value"] = $account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]["und"][0]["first_name"];
-      $fields_changed[] = 'first_name';
+  $nid = c4m_web_services_get_existing_node($organisation['c4m_organisation_dashboard_id'][LANGUAGE_NONE][0]['value']);
+  $membership = og_group('node', $nid, ['entity' => $account_loaded]);
+
+  if (count($updated_account) > 0) {
+    user_save($account_loaded, $updated_account);
+    $message = "updated user :  %usermail (dashboard id : %dashboardID) updated the fields : %fields";
+    if (function_exists ('watchdog')) {
+      watchdog('my_module', $message, array("%usermail" => $account['email'], "%dashboardID" => $dashboard_id , "%fields" => implode( ',', $fields_changed)), WATCHDOG_INFO);
+    }
+
   }
-
-
-  // Block / unblock a user:
-  if (isset($account['c4m_status'])) {
-    user_save($account_loaded, ['status' => $account['c4m_status'] == "Blocked" ? 0 : 1]);
-    $fields_changed[] = 'c4m_status';
-  }
-
-
 }
 
 /**

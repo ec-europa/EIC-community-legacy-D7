@@ -1346,10 +1346,10 @@ function c4m_user_profile_user_cancel($edit, $account, $method) {
  *   The user account or FALSE if not found.
  */
 function c4m_user_profile_load_by_dashboard_id($dashboard_id) {
-  'c4m_user_dashboard_id';
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'user')
     ->fieldCondition('c4m_user_dashboard_id', 'value', 'NULL', '!=')
+    ->fieldCondition('c4m_user_dashboard_id', 'value', $dashboard_id, '=')
     ->range(0, 1);
   $result = $query->execute();
   if (isset($result['user'])) {

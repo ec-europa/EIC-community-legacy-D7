@@ -405,6 +405,14 @@ function ecas_login_check() {
       // $account = user_load_by_name($ecas_name);
       $account = user_load_by_mail($ecas_email);
 
+      // what if user has changed his email ?
+      if (empty($account)){
+        watchdog('ec_ecas', 'no user (%username) found with email: %mail', array('%username' => $ecas_name,'%mail' => $ecas_email), WATCHDOG_DEBUG);
+        $account = user_load_by_name($ecas_name);
+        $data = var_export($account,true);
+        watchdog('ec_ecas', '[allowed to login! - TODO: FLAG] but found with username %username with dataset: %data', array('%username' => $ecas_name,  '%data' => $data), WATCHDOG_DEBUG);
+      }
+
       // Extra process to filter ECAS user.
       drupal_alter('ecas_extra_filter', $ecas_name, $account, $_SESSION['ecas_goto']);
     }
