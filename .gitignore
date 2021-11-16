@@ -6,7 +6,7 @@
 # The backups folder is used to store local backups whan one of the scripts is
 # performing destructive operations. No need for it in the repository.
 /backup
-
+*.sql
 # The build folder is used when building the whole project to be packaged or
 # uploaded. No need to be stored in the repository.
 /build
