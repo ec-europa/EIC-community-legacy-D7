@@ -1,0 +1,24 @@
+From 58c8b6818729ed6d0a93ec4c67a1929ae57e1f67 Mon Sep 17 00:00:00 2001
+From: Jaleel Carter <chuchunaku@users.noreply.github.com>
+Date: Fri, 3 Mar 2017 08:29:56 -0500
+Subject: [PATCH] 2857612-1
+
+---
+ includes/iso.inc | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/includes/iso.inc b/includes/iso.inc
+index 5cad329d9d..28c6add2ae 100644
+--- a/includes/iso.inc
++++ b/includes/iso.inc
+@@ -146,6 +146,7 @@ function _country_get_predefined_list() {
+     'KN' => $t('Saint Kitts and Nevis'),
+     'KP' => $t('North Korea'),
+     'KR' => $t('South Korea'),
++    'XK' => $t('Kosovo'),
+     'KW' => $t('Kuwait'),
+     'KY' => $t('Cayman Islands'),
+     'KZ' => $t('Kazakhstan'),
+-- 
+2.12.0
+

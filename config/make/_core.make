@@ -43,3 +43,6 @@ projects[drupal][patch][] = "../patches/300387-18-mime-encode-clutter.patch"
 
 ; Add HTTPS step-up to htaccess file.
 projects[drupal][patch][] = "../patches/htaccess-https-step-up.patch"
+
+; Add missing country - https://www.drupal.org/project/drupal/issues/2857612
+projects[drupal][patch][] = "../patches/kosovo-missing-from-list-of-countries-2857612-1-d7.patch"
