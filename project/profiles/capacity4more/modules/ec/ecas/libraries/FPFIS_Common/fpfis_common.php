@@ -3,8 +3,9 @@
 if ( is_file(FPFIS_COMMON_LIBRARIES_PATH . '/FPFIS_Common/constants/constants.php') )
 	include_once(FPFIS_COMMON_LIBRARIES_PATH . '/FPFIS_Common/constants/constants.php');
 
-if ( is_file(FPFIS_COMMON_LIBRARIES_PATH . '/FPFIS_Common/forwarded-proxy/config-forwarded-proxy.php') )
-	include_once(FPFIS_COMMON_LIBRARIES_PATH . '/FPFIS_Common/forwarded-proxy/config-forwarded-proxy.php');
+// Don't enable the EC forwarding proxy helper.
+// if ( is_file(FPFIS_COMMON_LIBRARIES_PATH . '/FPFIS_Common/forwarded-proxy/config-forwarded-proxy.php') )
+//	include_once(FPFIS_COMMON_LIBRARIES_PATH . '/FPFIS_Common/forwarded-proxy/config-forwarded-proxy.php');
 
 if ( is_file(FPFIS_COMMON_LIBRARIES_PATH . '/FPFIS_Common/generic/generic-functions.php') )
 	include_once(FPFIS_COMMON_LIBRARIES_PATH . '/FPFIS_Common/generic/generic-functions.php');
