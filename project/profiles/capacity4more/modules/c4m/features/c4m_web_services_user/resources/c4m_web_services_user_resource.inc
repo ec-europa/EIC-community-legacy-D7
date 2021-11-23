@@ -156,13 +156,17 @@ function _c4m_user_resource_user_create($account) {
     $str_missing_fields = implode(",", $missing_fields);
     watchdog('ws_user', 'missing one of the required fields (%missing_fields) in : %account', array('%account' => $str_account, '%missing_fields' => $str_missing_fields), WATCHDOG_INFO);
     $xml = new SimpleXMLElement('<missing_properties/>');
-    $xml->addChild('missing_required_fields', "Missing one of the following minimum required properties");
+    $xml->addChild('missing_required_fields', "Missing one of the following minimum required properties: ");
     $xml->addChild('required_fields', 'email, first-, lastname, c4m_user_dashboard_id');
     $xml->addChild('missing_fields', $str_missing_fields);
     throw new ServicesException($xml->asXML(), 500);
   }
-  // We check here for the organisation , could be a fresh user, just log it if it is missing.
-  if (!isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"])) {
+  // We check here for the organisation , if it is missing, it could a new user, other we prefer this dataset
+  if (isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"])) {
+    $account['first_name'] = $account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"][LANGUAGE_NONE][0]['first_name'];
+    $account['last_name'] = $account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"][LANGUAGE_NONE][0]['last_name'];
+  }
+  else {
     watchdog('ws_user', 'no organisation info included for user %email with dashboard_id : %user_dashboard_id' ,array('%email' => $account['email'], '%user_dashboard_id' => $account['c4m_user_dashboard_id']) ,WATCHDOG_INFO);
   }
 
@@ -171,9 +175,6 @@ function _c4m_user_resource_user_create($account) {
     $xml->addChild('user_already_exists_with_email', "We have found already a user that is using this email address");
     throw new ServicesException($xml->asXML(), 500);
   }
-
-  $account['first_name'] = $account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"][LANGUAGE_NONE][0]['first_name'];
-  $account['last_name'] = $account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"][LANGUAGE_NONE][0]['last_name'];
 
   if (empty($account['ecas_id'])) {
     $user_name = _c4m_web_services_return_valid_name($account['first_name'] . ' ' . $account['last_name']);
