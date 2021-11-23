@@ -143,15 +143,27 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
  *   The user object of the newly created user.
  */
 function _c4m_user_resource_user_create($account) {
-  if (!isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]) ||
-      !isset($account['email']) ||
-      !isset($account['c4m_user_dashboard_id']) ||
-      !isset($account['first_name']) ||
-      !isset($account['last_name'])) {
+  $required_fields = ['email', 'c4m_user_dashboard_id', 'first_name', 'last_name'];
+  $missing_fields = [];
+  foreach ($required_fields as $fieldname) {
+    if (!in_array($fieldname,$account)) {
+      $missing_fields[] = $fieldname;
+    }
+  }
+  // can be that isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]
+  $str_account = var_export($account,true);
+  if (count($missing_fields) > 0) {
+    $str_missing_fields = implode(",", $missing_fields);
+    watchdog('ws_user', 'missing one of the required fields(%missing_fields) in : %account', array('%account' => $str_account, '%missing_fields' => $str_missing_fields), WATCHDOG_INFO);
     $xml = new SimpleXMLElement('<missing_properties/>');
     $xml->addChild('missing_required_fields', "Missing one of the following minimum required properties");
-    $xml->addChild('fields', 'username, email, first-, lastname', 'c4m_user_dashboard_id');
+    $xml->addChild('required_fields', 'email, first-, lastname, c4m_user_dashboard_id');
+    $xml->addChild('missing_fields', $str_missing_fields);
     throw new ServicesException($xml->asXML(), 500);
+  }
+  // We check here for the organisation , could be a fresh user, just log it if it is missing.
+  if (!isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"])) {
+    watchdog('ws_user', 'no organisation info included for user %email with dashboard_id : %user_dashboard_id' ,array('%email' => $account['email'], '%user_dashboard_id' => $account['c4m_user_dashboard_id']) ,WATCHDOG_INFO);
   }
 
   if ($account_loaded = user_load_by_mail($account['email'])) {
@@ -178,10 +190,10 @@ function _c4m_user_resource_user_create($account) {
 
   // Check new user active status on the platform.
   if (isset($account['c4m_status'])) {
-    $account['c4m_status'] == "Blocked" ? FALSE : TRUE;
+    $account['c4m_status'] == "Blocked" ? "0" : "1";
   }
   else {
-    $account['c4m_status'] = FALSE;
+    $account['c4m_status'] = "0";
   }
 
   $new_user_data = array(
