@@ -365,8 +365,11 @@ function c4m_web_services_user_services_request_postprocess_alter($controller, $
     if (!is_array($arg)) {
       continue;
     }
-    if (empty($nid = $result['nid'])) {
+    if ( !isset($result['nid']) || empty($result['nid'])) {
       continue;
+    }
+    else {
+      $nid = $result['nid'];
     }
     // When creating a new node, approve it so it becomes status draft
     if (!empty($controller['callback']) && $controller['callback'] === '_node_resource_create_user') {
