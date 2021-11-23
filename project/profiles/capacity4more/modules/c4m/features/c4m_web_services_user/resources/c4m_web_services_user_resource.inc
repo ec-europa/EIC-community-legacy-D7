@@ -154,7 +154,7 @@ function _c4m_user_resource_user_create($account) {
   $str_account = var_export($account,true);
   if (count($missing_fields) > 0) {
     $str_missing_fields = implode(",", $missing_fields);
-    watchdog('ws_user', 'missing one of the required fields(%missing_fields) in : %account', array('%account' => $str_account, '%missing_fields' => $str_missing_fields), WATCHDOG_INFO);
+    watchdog('ws_user', 'missing one of the required fields (%missing_fields) in : %account', array('%account' => $str_account, '%missing_fields' => $str_missing_fields), WATCHDOG_INFO);
     $xml = new SimpleXMLElement('<missing_properties/>');
     $xml->addChild('missing_required_fields', "Missing one of the following minimum required properties");
     $xml->addChild('required_fields', 'email, first-, lastname, c4m_user_dashboard_id');
