@@ -146,7 +146,7 @@ function _c4m_user_resource_user_create($account) {
   $required_fields = ['email', 'c4m_user_dashboard_id', 'first_name', 'last_name'];
   $missing_fields = [];
   foreach ($required_fields as $fieldname) {
-    if (!in_array($fieldname,$account)) {
+    if (!array_key_exists($fieldname,$account)) {
       $missing_fields[] = $fieldname;
     }
   }
