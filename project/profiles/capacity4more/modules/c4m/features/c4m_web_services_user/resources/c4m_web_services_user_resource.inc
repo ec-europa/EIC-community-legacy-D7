@@ -192,7 +192,7 @@ function _c4m_user_resource_user_create($account) {
 
   // Check new user active status on the platform.
   if (isset($account['c4m_status'])) {
-    $account['c4m_status'] == "Blocked" ? "0" : "1";
+    $account['c4m_status'] = $account['c4m_status'] == "Blocked" ? "0" : "1";
   }
   else {
     watchdog('ws_user', 'No status found for user : %user_name / %email . Blocking access for now!',array('%user_name' => $user_name, '%email' => $account['email'] ),'WATCHDOG_NOTICE');
