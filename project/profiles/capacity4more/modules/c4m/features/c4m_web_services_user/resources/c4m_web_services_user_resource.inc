@@ -210,7 +210,7 @@ function _c4m_user_resource_user_create($account) {
     'status' => $account['c4m_status'],
     'c4m_user_dashboard_id' => [LANGUAGE_NONE => [['value' => $account['c4m_user_dashboard_id']]]],
   );
-  watchdog('ws_user', 'new user : %new_user_data', array('%new_user_data'=>$new_user_data) ,WATCHDOG_INFO);
+  watchdog('ws_user', 'new user : %new_user_data', array('%new_user_data' => var_export($new_user_data, true)) ,WATCHDOG_INFO);
   // Create new user.
   $new_user = user_save(drupal_anonymous_user(), $new_user_data);
 
