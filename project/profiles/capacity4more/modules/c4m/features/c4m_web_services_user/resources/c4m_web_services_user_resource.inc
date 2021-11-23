@@ -178,6 +178,7 @@ function _c4m_user_resource_user_create($account) {
 
   if (empty($account['ecas_id'])) {
     $user_name = _c4m_web_services_return_valid_name($account['first_name'] . ' ' . $account['last_name']);
+    watchdog('ws_user', 'user with email : "%email", has not been registered with EULOGIN yet. Using a temporarily username.',array( '%email' => $account['email'] ),'WATCHDOG_NOTICE');
   }
   else {
     $user_name = _c4m_web_services_return_valid_name($account['ecas_id']);
@@ -194,9 +195,10 @@ function _c4m_user_resource_user_create($account) {
     $account['c4m_status'] == "Blocked" ? "0" : "1";
   }
   else {
+    watchdog('ws_user', 'No status found for user : %user_name / %email . Blocking access for now!',array('%user_name' => $user_name, '%email' => $account['email'] ),'WATCHDOG_NOTICE');
     $account['c4m_status'] = "0";
   }
-
+  # watchdog('ws_user', 'new account variable check : %account', array('%account'=>$account) ,WATCHDOG_INFO);
   $new_user_data = array(
     'name' => $user_name,
     'pass' => user_password(),
@@ -208,7 +210,7 @@ function _c4m_user_resource_user_create($account) {
     'status' => $account['c4m_status'],
     'c4m_user_dashboard_id' => [LANGUAGE_NONE => [['value' => $account['c4m_user_dashboard_id']]]],
   );
-
+  watchdog('ws_user', 'new user : %new_user_data', array('%new_user_data'=>$new_user_data) ,WATCHDOG_INFO);
   // Create new user.
   $new_user = user_save(drupal_anonymous_user(), $new_user_data);
 
