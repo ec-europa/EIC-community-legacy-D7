@@ -29,7 +29,7 @@ function c4m_wysiwyg_ckeditor_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'file_entity_max_filesize';
-  $strongarm->value = '10 MB';
+  $strongarm->value = '1000 MB';
   $export['file_entity_max_filesize'] = $strongarm;
 
   $strongarm = new stdClass();
