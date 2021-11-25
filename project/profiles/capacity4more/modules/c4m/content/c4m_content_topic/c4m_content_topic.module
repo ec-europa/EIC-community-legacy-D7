@@ -662,13 +662,25 @@ function c4m_content_topic_array_to_tree(array &$terms, array &$term) {
     return;
   }
   foreach ($term['children'] as $key => $child) {
-    if (!isset($terms[$child->tid])) {
+    if (isset($child->tid) && !isset($terms[$child->tid])) {
       unset($term['children'][$key]);
     }
     else {
-      c4m_content_topic_array_to_tree($terms, $terms[$child->tid]);
-      $term['children'][$key] = $terms[$child->tid];
-      unset($terms[$child->tid]);
+      if (is_array($child)) {
+        $child_tid = $child['tid'];
+      }
+      else {
+        $child_tid = $child->tid;
+      }
+
+      if (isset($terms[$child_tid])) {
+        c4m_content_topic_array_to_tree($terms, $terms[$child_tid]);
+        $term['children'][$key] = $terms[$child_tid];
+        unset($terms[$child_tid]);
+      }
+
+
     }
   }
+  $x='test;';
 }
