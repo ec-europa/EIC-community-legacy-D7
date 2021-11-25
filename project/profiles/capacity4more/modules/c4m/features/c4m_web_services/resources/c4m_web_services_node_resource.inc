@@ -91,9 +91,11 @@ function _c4m_web_services_node_resource_update($dashboard_id, array $node) {
   }
 
     // RE-Save the manualcrop image data:
-    foreach ($image_files as $fid => $image_file_data) {
-      if (isset($image_file_data->manualcrop_data)) {
-        manualcrop_entity_update($image_file_data, $image_file_data->entity_type);
+    if (isset($image_files)) {
+      foreach ($image_files as $fid => $image_file_data) {
+        if (isset($image_file_data->manualcrop_data)) {
+          manualcrop_entity_update($image_file_data, $image_file_data->entity_type);
+        }
       }
     }
   return $node;
