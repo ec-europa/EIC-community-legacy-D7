@@ -25,7 +25,7 @@ projects[blockreference][subdir] = "contrib"
 projects[blockreference][version] = "2.7"
 
 projects[chr][subdir] = "contrib"
-projects[chr][version] = "1.9"
+projects[chr][version] = "7.x-1.x-dev"
 
 projects[context][subdir] = "contrib"
 projects[context][version] = "3.10"
