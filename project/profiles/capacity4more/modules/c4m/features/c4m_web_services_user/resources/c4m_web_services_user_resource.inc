@@ -109,7 +109,7 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
     user_save($account_loaded, $updated_account);
     $message = "updated user :  %usermail (dashboard id : %dashboardID) updated the fields : %fields";
     if (function_exists ('watchdog')) {
-      watchdog('my_module', $message, array("%usermail" => $account['email'], "%dashboardID" => $dashboard_id , "%fields" => implode( ',', $fields_changed)), WATCHDOG_INFO);
+      watchdog('ws_user', $message, array("%usermail" => $account['email'], "%dashboardID" => $dashboard_id , "%fields" => implode( ',', $fields_changed)), WATCHDOG_INFO);
     }
 
   }
@@ -210,7 +210,7 @@ function _c4m_user_resource_user_create($account) {
     'status' => $account['c4m_status'],
     'c4m_user_dashboard_id' => [LANGUAGE_NONE => [['value' => $account['c4m_user_dashboard_id']]]],
   );
-  watchdog('ws_user', 'new user : %new_user_data', array('%new_user_data' => var_export($new_user_data, true)) ,WATCHDOG_INFO);
+
   // Create new user.
   $new_user = user_save(drupal_anonymous_user(), $new_user_data);
 
@@ -219,6 +219,15 @@ function _c4m_user_resource_user_create($account) {
     $xml->addChild('error_creating_user_message', "Something went wrong and user was not created");
     throw new ServicesException($xml->asXML(), 406);
   }
+  watchdog('ws_user', "new user [%uid] :
+                                      User_dashboard_id : %user_dashboard_id |
+                                      Username :          %new_user_name |
+                                      c4m_first_name:     %firstname |
+                                      c4m_last_name:      %lastname |
+                                      mail:               %mail",
+                          array( '%uid' => $new_user->uid, '%user_dashboard_id' => $account['c4m_user_dashboard_id'],
+                                 '%new_user_name' => $new_user->name, '%firstname' =>  $account['first_name'],
+                                 '%lastname' =>  $account['last_name'], '%mail' => $new_user->mail) ,WATCHDOG_INFO);
 
   // Set Authmap record for this newly created user.
   user_set_authmaps($new_user, ['authname_ecas' => $new_user_data['name']]);
