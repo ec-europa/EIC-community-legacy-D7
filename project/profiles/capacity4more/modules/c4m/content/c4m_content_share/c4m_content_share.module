@@ -165,7 +165,23 @@ function c4m_content_share_search_api_index_items_alter(
       $index_fields = c4m_content_share_fields_info($original_node->type);
 
       foreach ($index_fields as $field) {
-        $item->{$field} = $original_node->{$field};
+        if (is_array($field)) {
+          watchdog('c4m_content_share', 'field is array : %thearray',array('%thearray' => var_export($field, true)),'WATCHDOG_NOTICE');
+          foreach ($field as $sub_field) {
+            if (property_exists($original_node, $sub_field)) {
+              $item->{$sub_field} = $original_node->{$sub_field};
+            }
+            else {
+              watchdog('c4m_content_share', 'original node [%nid] does not have the (sub) property : %property',array('%nid' => $original_node->nid, '%field' => var_export($field, true)),'WATCHDOG_NOTICE');
+            }
+          }
+        }
+        elseif (property_exists($original_node, $field)) {
+          $item->{$field} = $original_node->{$field};
+        }
+        else {
+          watchdog('c4m_content_share', 'original node [%nid] does not have the property : %property',array('%nid' => $original_node->nid, '%field' => var_export($field, true)),'WATCHDOG_NOTICE');
+        }
       }
 
       $item->original_node_type = 'share';
