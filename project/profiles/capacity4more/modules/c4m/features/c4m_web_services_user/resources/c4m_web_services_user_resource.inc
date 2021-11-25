@@ -147,12 +147,18 @@ function _c4m_user_resource_user_create($account) {
   $missing_fields = [];
   foreach ($required_fields as $fieldname) {
     if (!array_key_exists($fieldname,$account)) {
+      // double check for first- and lastname , check if organization exists
+      if (in_array($fieldname, ['first_name', 'last_name']) &&
+          isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"][LANGUAGE_NONE][0][$fieldname])) {
+        // found the fields within the organisation.
+        continue;
+      }
       $missing_fields[] = $fieldname;
     }
   }
   // can be that isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"]
-  $str_account = var_export($account,true);
   if (count($missing_fields) > 0) {
+    $str_account = var_export($account,true);
     $str_missing_fields = implode(",", $missing_fields);
     watchdog('ws_user', 'missing one of the required fields (%missing_fields) in : %account', array('%account' => $str_account, '%missing_fields' => $str_missing_fields), WATCHDOG_INFO);
     $xml = new SimpleXMLElement('<missing_properties/>');
