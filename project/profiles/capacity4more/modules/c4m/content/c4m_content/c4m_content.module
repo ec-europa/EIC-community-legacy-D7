@@ -1106,7 +1106,7 @@ function c4m_content_taxonomy_build_tree(
         continue;
       }
       // For topics, we build the links to point to Topic pages.
-      if ($link_term_to_facet['vocabulary_name'] == 'c4m_vocab_topic') {
+      if (isset($link_term_to_facet['vocabulary_name']) && $link_term_to_facet['vocabulary_name'] == 'c4m_vocab_topic') {
         $link = _c4m_content_get_topic_link($taxonomy);
       }
       // If the link term was not provided, or it isn't the proper
