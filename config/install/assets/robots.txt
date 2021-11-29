@@ -22,6 +22,8 @@ Disallow: /modules/
 Disallow: /profiles/
 Disallow: /scripts/
 Disallow: /themes/
+Disallow: /community7/flag/
+
 # Files
 Disallow: /CHANGELOG.txt
 Disallow: /cron.php
