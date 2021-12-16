@@ -83,7 +83,7 @@ function c4m_search_default_search_api_index() {
           "status" : 0,
           "weight" : "0",
           "settings" : {
-            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv",
+            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv jp2 jpc j2k sqlite3 sqlite db db3",
             "number_indexed" : "0",
             "max_file_size" : "0",
             "excluded_private" : 1
@@ -194,7 +194,7 @@ function c4m_search_default_search_api_index() {
           "status" : 1,
           "weight" : "0",
           "settings" : {
-            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv",
+            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv jp2 jpc j2k sqlite3 sqlite db db3",
             "number_indexed" : "0",
             "max_file_size" : "0",
             "excluded_private" : 1
@@ -393,7 +393,7 @@ function c4m_search_default_search_api_index() {
           "status" : 0,
           "weight" : "0",
           "settings" : {
-            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv",
+            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv jp2 jpc j2k sqlite3 sqlite db db3",
             "number_indexed" : "0",
             "max_file_size" : "0",
             "excluded_private" : 1
