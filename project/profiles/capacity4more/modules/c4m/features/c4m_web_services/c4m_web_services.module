@@ -503,14 +503,24 @@ function c4m_web_services_add_organisation_members(array $c4m_organisation_membe
       }
       $membership->save();
 
-      // Add membership role.
-      $role = c4m_og_user_role_load_by_name('member', 'organisation');
-      og_role_grant('node', $nid, $user->uid, $role->rid);
 
-      // Add administrator role.
-      if (in_array($user->mail, $manager_users)) {
-        $role = c4m_og_user_role_load_by_name('administrator member', 'organisation');
+      $user_current_roles = og_get_user_roles('node', $nid, $user->uid);
+
+      // Add membership role if not exists.
+      $role = c4m_og_user_role_load_by_name('member', 'organisation');
+      if (!key_exists($role->rid,$user_current_roles)) {
         og_role_grant('node', $nid, $user->uid, $role->rid);
+      }
+      // Add administrator role.
+      $role = c4m_og_user_role_load_by_name('administrator member', 'organisation');
+      if (in_array($user->mail, $manager_users)) {
+        og_role_grant('node', $nid, $user->uid, $role->rid);
+      }
+      else {
+        // only need to revoke, if they have the role
+        if (key_exists($role->rid,$user_current_roles)) {
+          og_role_revoke('node', $nid, $user->uid, $role->rid);
+        }
       }
       // Send welcome to Group notification.
       _c4m_user_notifications_notify_user_og_group_membership_accepted($membership);
