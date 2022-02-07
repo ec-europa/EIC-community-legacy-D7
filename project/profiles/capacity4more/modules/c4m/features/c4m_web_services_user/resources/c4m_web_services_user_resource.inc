@@ -52,6 +52,48 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
   $account = _services_arg_value($account, 'data');
 
   $account_loaded = user_load_by_mail($account['email']);
+  if ($account_loaded == false) {
+    //user with email not found, this could indicate an email change
+    if (function_exists ('watchdog')) {
+      $message = "user not found with with email:  %usermail, dashboard id : %dashboardID , username/ecas_id: %ecas_id ";
+      watchdog('ws_user', $message, array("%usermail" => $account['email'], "%dashboardID" => $dashboard_id , "%ecas_id" => $account["ecas_id"]), WATCHDOG_INFO);
+    }
+    $account_loaded = user_load_by_name($account["ecas_id"]) ;
+    if ($account_loaded == false) {
+      // also ecas changed, then last change for the update using the dashboard ID.'
+      if (function_exists ('watchdog')) {
+        $message = "user also not found with with ecas_id:  %usermail, dashboard id : %dashboardID , username/ecas_id: %ecas_id ";
+        watchdog('ws_user', $message, array("%usermail" => $account['email'], "%dashboardID" => $dashboard_id , "%ecas_id" => $account["ecas_id"]), WATCHDOG_INFO);
+      }
+       //$account['c4m_user_dashboard_id'];
+      $query = new EntityFieldQuery();
+      $results = $query->entityCondition('entity_type', 'user')
+        ->propertyCondition('status', 1)
+        ->fieldCondition('c4m_user_dashboard_id', 'value', $dashboard_id, '=')
+        ->execute();
+      // there should be only one result.
+      if (count($results['user']) > 1 ){
+        $xml = new SimpleXMLElement('<user_issue/>');
+        $xml->addChild('message', "multuple users not found with c4m_user_dashboard_id:" . $dashboard_id);
+        throw new ServicesException($xml->asXML(), 500);
+      }
+      $account_loaded = user_load( key($results['user']));
+    }
+
+  }
+
+  if ($account_loaded == false) {
+    //user with email not found, this could indicate an email change
+    if (function_exists('watchdog')) {
+      $message = "user not found with with one of these values:  %usermail, dashboard id : %dashboardID , username/ecas_id: %ecas_id ";
+      watchdog('ws_user', $message, array("%usermail" => $account['email'], "%dashboardID" => $dashboard_id, "%ecas_id" => $account["ecas_id"]), WATCHDOG_INFO);
+    }
+    $xml = new SimpleXMLElement('<user_not_found/>');
+    $xml->addChild('message', "user not found with with one of these key fields: email, ecas_id(username), c4m_user_dashboard_id");
+    $xml->addChild('received_data', " email: {$account['email']}, ecas_id / username: {$account['ecas_id']}, dashboard_id: $dashboard_id ");
+
+    throw new ServicesException($xml->asXML(), 500);
+  }
   $updated_account = array();
 
   $fields_changed = array();
