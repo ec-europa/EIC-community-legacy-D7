@@ -74,8 +74,8 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
       // there should be only one result.
       if (count($results['user']) > 1 ){
         $xml = new SimpleXMLElement('<user_issue/>');
-        $xml->addChild('message', "multuple users not found with c4m_user_dashboard_id:" . $dashboard_id);
-        throw new ServicesException($xml->asXML(), 500);
+        $xml->addChild('message', "Multiple users not found with following c4m_user_dashboard_id:" . $dashboard_id);
+        throw new ServicesException($xml->asXML(), 406);
       }
       $account_loaded = user_load( key($results['user']));
     }
@@ -92,7 +92,7 @@ function _c4m_web_services_user_resource_update($dashboard_id, array $account) {
     $xml->addChild('message', "user not found with with one of these key fields: email, ecas_id(username), c4m_user_dashboard_id");
     $xml->addChild('received_data', " email: {$account['email']}, ecas_id / username: {$account['ecas_id']}, dashboard_id: $dashboard_id ");
 
-    throw new ServicesException($xml->asXML(), 500);
+    throw new ServicesException($xml->asXML(), 404);
   }
   $updated_account = array();
 
@@ -207,7 +207,7 @@ function _c4m_user_resource_user_create($account) {
     $xml->addChild('missing_required_fields', "Missing one of the following minimum required properties: ");
     $xml->addChild('required_fields', 'email, first-, lastname, c4m_user_dashboard_id');
     $xml->addChild('missing_fields', $str_missing_fields);
-    throw new ServicesException($xml->asXML(), 500);
+    throw new ServicesException($xml->asXML(), 406);
   }
   // We check here for the organisation , if it is missing, it could a new user, other we prefer this dataset
   if (isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"])) {
@@ -221,7 +221,7 @@ function _c4m_user_resource_user_create($account) {
   if ($account_loaded = user_load_by_mail($account['email'])) {
     $xml = new SimpleXMLElement('<user_already_exists/>');
     $xml->addChild('user_already_exists_with_email', "We have found already a user that is using this email address");
-    throw new ServicesException($xml->asXML(), 500);
+    throw new ServicesException($xml->asXML(), 406);
   }
 
   if (empty($account['ecas_id'])) {
@@ -235,7 +235,7 @@ function _c4m_user_resource_user_create($account) {
   if ($account_loaded = user_load_by_name($user_name)) {
     $xml = new SimpleXMLElement('<user_already_exists/>');
     $xml->addChild('user_already_exists_with_username', "We have found already a user that is using this username");
-    throw new ServicesException($xml->asXML(), 500);
+    throw new ServicesException($xml->asXML(), 406);
   }
 
   // Check new user active status on the platform.
