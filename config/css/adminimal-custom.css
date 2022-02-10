@@ -1,0 +1,23 @@
+.views-exposed-form #edit-c4m-user-dashboard-id-value {
+    width: 130px;
+}
+
+.views-exposed-form #edit-c4m-first-name-value, .views-exposed-form #edit-c4m-last-name-value,
+.views-exposed-form #edit-mail, .views-exposed-form #edit-name {
+  width: 140px;
+}
+
+.views-exposed-form #edit-mail {
+  width: 150px;
+}
+
+.views-exposed-form #edit-c4m-message-from-service-value {
+  width: 180px;
+}
+
+
+
+
+
+
+
