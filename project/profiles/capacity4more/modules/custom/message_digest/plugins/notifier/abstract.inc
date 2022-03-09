@@ -126,6 +126,12 @@ class MessageDigest extends MessageNotifierBase {
 
         foreach ($messages as $mid) {
           $message = message_load($mid);
+          if ($message == false) {
+            if (function_exists('watchdog')) {
+                 watchdog('message_digest', "failed to load message for group ID: %eid, with mid: %mid, uid: %uid ", array("%mid" => $mid, "%eid" => $eid, "%uid" => $uid), WATCHDOG_ERROR);
+            }
+            continue;
+          }
           $message->uid = $uid;
           if (empty($message) || !is_object($message)) {
             continue;

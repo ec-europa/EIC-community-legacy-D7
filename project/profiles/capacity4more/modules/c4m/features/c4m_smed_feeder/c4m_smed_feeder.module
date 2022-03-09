@@ -132,9 +132,8 @@ function c4m_smed_feeder_format_message_from_service($response) {
   $time = '[' . date('d/m/Y - H:i', REQUEST_TIME) . ']';
   $cleaned_response['http_code'] = $response['response']->code;
   if (isset($response['response']->error)) {
-    $error_message = $response['response']->error;
+    $cleaned_response['sys_error'] = $response['response']->error;
   }
-  $cleaned_response['sys_error'] = $response['response']->error;
   $user_status = $response['data']['user']['c4m_user_status'];
   if ($cleaned_response['http_code'] != '200'){
     if (!empty($user_status)) $user_status .= ' | error: ';
