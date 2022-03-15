@@ -72,6 +72,9 @@ function _c4m_content_project_system_block_renderer($field) {
     )
     ) {
       $paragraphs_item = reset($paragraphs_item);
+      if (empty($paragraphs_item->c4m_block)) {
+        return False;
+      }
       $block_info = explode(
         ':',
         $paragraphs_item->c4m_block[LANGUAGE_NONE][0]['moddelta']
