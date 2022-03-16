@@ -9,5 +9,5 @@ libraries[font_awesome][download][url] = "https://github.com/FortAwesome/Font-Aw
 libraries[font_awesome][patch][] = "../patches/github-dependency-vulnerability-fontawesome.patch"
 
 projects[bootstrap][subdir] = "contrib"
-projects[bootstrap][version] = "3.10"
+projects[bootstrap][version] = "3.26"
 projects[bootstrap][type] = "theme"

@@ -4,7 +4,7 @@ api = 2
 ; Modules that every project (should) need.
 
 projects[ctools][subdir] = "contrib"
-projects[ctools][version] = "1.17"
+projects[ctools][version] = "1.20"
 projects[ctools][patch][] = "https://www.drupal.org/files/issues/2067997-reload-plugins-class-7.patch"
 
 projects[entity][subdir] = "contrib"
@@ -24,7 +24,7 @@ projects[pathauto][subdir] = "contrib"
 projects[pathauto][version] = "1.3"
 
 projects[redirect][subdir] = "contrib"
-projects[redirect][version] = "1.0-rc3"
+projects[redirect][version] = "1.0-rc4"
 
 projects[path_redirect_import][subdir] = "contrib"
 projects[path_redirect_import][version] = "1.0-rc4"
