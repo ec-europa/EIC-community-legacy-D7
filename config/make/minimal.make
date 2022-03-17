@@ -34,3 +34,7 @@ projects[token][version] = "1.7"
 
 projects[transliteration][subdir] = contrib
 projects[transliteration][version] = "3.2"
+
+; Logging to STD OUT useful for kubernetes - INSTALLED BUT NOT ENABLED by default
+projects[log_stdout][subdir] = "contrib"
+projects[log_stdout][version] = "1.0"
