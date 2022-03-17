@@ -166,7 +166,7 @@ function c4m_content_share_search_api_index_items_alter(
 
       foreach ($index_fields as $field) {
         if (is_array($field)) {
-          watchdog('c4m_content_share', 'field is array : %thearray',array('%thearray' => var_export($field, true)),'WATCHDOG_NOTICE');
+          // watchdog('c4m_content_share', 'field is array : %thearray',array('%thearray' => var_export($field, true)),'WATCHDOG_NOTICE');
           foreach ($field as $sub_field) {
             if (property_exists($original_node, $sub_field)) {
               $item->{$sub_field} = $original_node->{$sub_field};
