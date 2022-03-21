@@ -11,22 +11,22 @@ projects[current_search_links][download][revision] = "55c035d131f99a131f49de2dec
 projects[current_search_links][patch][] = "https://www.drupal.org/files/issues/current_search_links-theming-hooks-2929123-2.patch"
 
 projects[facetapi][subdir] = "contrib"
-projects[facetapi][version] = "1.5"
+projects[facetapi][version] = "1.9"
 projects[facetapi][patch][] = "https://www.drupal.org/files/issues/facetapi-exportable-current-search-searcher-1469002-0.patch"
 
 projects[facetapi_bonus][subdir] = "contrib"
-projects[facetapi_bonus][version] = "1.2"
+projects[facetapi_bonus][version] = "1.3"
 
 projects[search_api][subdir] = "contrib"
-projects[search_api][version] = "1.26"
+projects[search_api][version] = "1.28"
 projects[search_api][patch][] = "https://www.drupal.org/files/issues/1123454-89--vbo_support.patch"
 projects[search_api][patch][] = "../patches/search_api_manual_include_missing_file.patch"
 
 projects[search_api_attachments][subdir] = "contrib"
-projects[search_api_attachments][version] = "1.18"
+projects[search_api_attachments][version] = "1.19"
 
 projects[search_api_solr][subdir] = "contrib"
-projects[search_api_solr][version] = "1.14"
+projects[search_api_solr][version] = "1.15"
 
 projects[search_api_sorts][subdir] = "contrib"
 projects[search_api_sorts][version] = "1.7"

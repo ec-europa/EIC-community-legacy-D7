@@ -4,7 +4,7 @@ api = 2
 ; Modules to make the life of a Drupal admin more pleasant.
 
 projects[admin_menu][subdir] = "contrib"
-projects[admin_menu][version] = "3.0-rc5"
+projects[admin_menu][version] = "3.0-rc6"
 
 projects[admin_views][subdir] = "contrib"
 projects[admin_views][version] = "1.7"
@@ -46,7 +46,7 @@ projects[eu_cookie_compliance][subdir] = "contrib"
 projects[eu_cookie_compliance][version] = "1.18"
 
 projects[elysia_cron][subdir] = "contrib"
-projects[elysia_cron][version] = "2.6"
+projects[elysia_cron][version] = "2.8"
 
 projects[entityreference_prepopulate][subdir] = "contrib"
 projects[entityreference_prepopulate][version] = "1.7"
@@ -89,11 +89,12 @@ projects[ds][subdir] = "contrib"
 projects[ds][version] = "2.16"
 
 projects[flag][subdir] = "contrib"
-projects[flag][version] = "3.9"
+projects[flag][version] = "3.x-dev"
 projects[flag][patch][] = "../patches/flag-array-check-1925922.patch"
+projects[flag][patch][] = https://www.drupal.org/files/issues/2019-07-16/3067469_php_7.2_issues.patch
 
 projects[node_gallery][subdir] = "contrib"
-projects[node_gallery][version] = "1.2"
+projects[node_gallery][version] = "1.x-dev"
 projects[node_gallery][patch][] = "../patches/node-gallery-unpublished-frontend.patch"
 
 projects[queue_ui][subdir] = "contrib"
@@ -107,7 +108,7 @@ projects[shield][subdir] = "contrib"
 projects[shield][version] = "1.3"
 
 projects[smtp][subdir] = "contrib"
-projects[smtp][version] = "1.7"
+projects[smtp][version] = "1.x-dev"
 projects[smtp][patch][] = "../patches/smtp-smtp_reroute_address-default-value.patch"
 
 projects[term_reference_tree][subdir] = "contrib"
@@ -136,6 +137,6 @@ libraries[plupload][directory_name] = "plupload"
 libraries[plupload][destination] = "libraries"
 
 libraries[leaflet_draw][download][type]= "get"
-libraries[leaflet_draw][download][url] = "https://github.com/Leaflet/Leaflet.draw/archive/v0.4.6.zip"
+libraries[leaflet_draw][download][url] = "https://github.com/Leaflet/Leaflet.draw/archive/v1.0.4.zip"
 libraries[leaflet_draw][directory_name] = "Leaflet.draw"
 libraries[leaflet_draw][destination] = "libraries"
