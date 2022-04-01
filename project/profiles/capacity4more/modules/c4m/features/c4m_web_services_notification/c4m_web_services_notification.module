@@ -1,0 +1,97 @@
+<?php
+
+define('WS_NOTIFICATION_ENDPOINT', 'eismea_notification/rest');
+
+/**
+* @file
+* Code for the Web Services feature.
+*/
+
+include_once 'c4m_web_services_notification.features.inc';
+
+/**
+ * Implements hook_services_resources().
+ */
+function c4m_web_services_notification_resources() {
+  $node_resource = [
+    'notification' => [
+      'operations' => [
+        'retrieve' => array(
+          'file' => array('type' => 'inc', 'module' => 'c4m_web_services_notification', 'name' => 'resources/c4m_web_service_notification_resource.inc'),
+          'callback' => '_notifications_retrieve_memberlist',
+          'args' => array(
+            array(
+              'name' => 'c4m_topic',
+              'optional' => FALSE,
+              'source' => array('path' => 0),
+              'type' => 'string',
+              'description' => 'the topic to retrieve users',
+            ),
+          ),
+          'access callback' => '_c4m_web_services_notification_resource_access',
+          'access arguments' => array('view'),
+          'access arguments append' => TRUE,
+        )
+      ],
+    ],
+  ];
+
+  return $node_resource;
+}
+/**
+ * Implements hook_server_info().
+ */
+function c4m_web_services_notification_server_info() {
+  return [
+    'name' => 'EISMEA Notification Restful server',
+    'path' => 'rest',
+    'settings' => [
+      'file' => ['inc', 'rest_server'],
+      'form' => '_rest_server_settings',
+      'submit' => '_rest_server_settings_submit',
+    ],
+  ];
+}
+
+/**
+ * Starting point of the REST server.
+ */
+function c4m_web_services_notification_server() {
+
+//  module_load_include('inc', 'c4m_web_services_user', 'includes/C4MServicesRESTServerFactory');
+//  module_load_include('inc', 'c4m_web_services_user', 'includes/C4MRESTServer');
+  $endpoint_path = services_get_server_info('endpoint_path', 'services/rest');
+
+  $services_rest_server_factory = 'ServicesRESTServerFactory';
+  $rest_server_factory = new $services_rest_server_factory(['endpoint_path' => $endpoint_path]);
+  /* @var $rest_server C4MRESTServer */
+  $rest_server = $rest_server_factory->getRESTServer();
+
+  $canonical_path = $rest_server->getCanonicalPath();
+  if (empty($canonical_path)) {
+    $endpoint_name = services_get_server_info('endpoint', '');
+    $endpoint = services_endpoint_load($endpoint_name);
+    return t('Services Endpoint "@name" has been setup successfully.', ['@name' => $endpoint->name]);
+  }
+
+  try {
+    return $rest_server->handle();
+  }
+  catch (Exception $e) {
+    $rest_server->handleException($e);
+  }
+}
+
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function c4m_web_services_notification_ctools_plugin_api($owner, $api) {
+  if ($owner == 'services' && $api == 'services') {
+    return array(
+      'version' => 3,
+      'file' => 'c4m_web_services_notification.services.inc', // Optional parameter to indicate the file name to load.
+      'path' => drupal_get_path('module', 'c4m_web_services_notification') . '/includes', // If specifying the file key, path is required.
+    );
+  }
+}

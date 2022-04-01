@@ -1,0 +1,12 @@
+name = Web Services for creating a notification
+description = Web Services for creating a notification to users with a certain topic of interest
+core = 7.x
+package = capacity4more - Features
+dependencies[] = ctools
+dependencies[] = rest_server
+dependencies[] = services
+features[ctools][] = services:services:3
+features[features_api][] = api:2
+features[services_endpoint][] = eismea_notifications
+features[user_permission][] = administer webservice notifications
+project path = profiles/capacity4more/modules/c4m/features
