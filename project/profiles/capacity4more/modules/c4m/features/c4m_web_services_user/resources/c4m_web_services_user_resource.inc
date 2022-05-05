@@ -191,7 +191,7 @@ function _c4m_user_resource_user_create($account) {
     if (!array_key_exists($fieldname,$account)) {
       // double check for first- and lastname , check if organization exists
       if (in_array($fieldname, ['first_name', 'last_name']) &&
-          isset($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"][LANGUAGE_NONE][0][$fieldname])) {
+        !empty(trim($account["c4m_organisations_informations"]["c4m_organisation"]["c4m_member_informations"][LANGUAGE_NONE][0][$fieldname]))) {
         // found the fields within the organisation.
         continue;
       }
@@ -224,7 +224,7 @@ function _c4m_user_resource_user_create($account) {
     throw new ServicesException($xml->asXML(), 406);
   }
 
-  if (empty($account['ecas_id'])) {
+  if (empty(trim($account['ecas_id']))) {
     $user_name = _c4m_web_services_return_valid_name($account['first_name'] . ' ' . $account['last_name']);
     watchdog('ws_user', 'user with email : "%email", has not been registered with EULOGIN yet. Using a temporarily username.',array( '%email' => $account['email'] ),'WATCHDOG_NOTICE');
   }
